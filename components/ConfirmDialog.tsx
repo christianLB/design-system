@@ -3,7 +3,7 @@
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogDescription } from "./dialog";
 import { Button } from "./button";
 import React from "react";
-import { useConfirmStore } from "../hooks/useConfirm";
+import { useConfirmStore } from "../hooks/useConfirm"
 
 export default function ConfirmDialog() {
   const {
