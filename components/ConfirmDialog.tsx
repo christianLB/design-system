@@ -1,9 +1,9 @@
 "use client";
 
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { useConfirmStore } from "@/hooks/useConfirm";
-import React from 'react';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogDescription } from "./dialog";
+import { Button } from "./button";
+import React from "react";
+import { useConfirmStore } from "../hooks/useConfirm";
 
 export default function ConfirmDialog() {
   const {
