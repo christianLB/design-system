@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "emitDeclarationOnly": true,
+    "declarationDir": "dist/types",
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "components/**/*.tsx"
+  ]
+}
