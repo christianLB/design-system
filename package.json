@@ -1,6 +1,9 @@
 {
-  "name": "@joseprio/design-system",
-  "version": "1.0.0",
+  "name": "@k2600x/design-system",
+  "version": "1.0.1",
+  "author": "k2600x <k2600x@gmail.com>",
+  "license": "MIT",
+    "repository": { "type": "git", "url": "https://github.com/k2600x/design-system.git" },
   "description": "A reusable design system built with React and Tailwind CSS",
   "keywords": [
     "design-system",
