@@ -3,7 +3,10 @@
   "version": "1.0.1",
   "author": "k2600x <k2600x@gmail.com>",
   "license": "MIT",
-    "repository": { "type": "git", "url": "https://github.com/k2600x/design-system.git" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k2600x/design-system.git"
+  },
   "description": "A reusable design system built with React and Tailwind CSS",
   "keywords": [
     "design-system",
@@ -41,7 +44,13 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^8.6.12",
+    "@storybook/addon-backgrounds": "^8.6.12",
+    "@storybook/addon-controls": "^8.6.12",
+    "@storybook/addon-docs": "^8.6.12",
+    "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-interactions": "^8.6.12",
+    "@storybook/addon-links": "^8.6.12",
     "@storybook/addon-onboarding": "^8.6.12",
     "@storybook/blocks": "^8.6.12",
     "@storybook/react": "^8.6.12",
@@ -49,7 +58,7 @@
     "@storybook/test": "^8.6.12",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.4.35",
-    "storybook": "^8.6.12",
+    "storybook": "^8.0.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   }
