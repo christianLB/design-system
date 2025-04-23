@@ -26,14 +26,15 @@ const Carousel: React.FC<CarouselProps> = ({ items, itemsToShow }) => {
       carouselRef.current.style.transform = `translateX(-${currentIndex * (100 / itemsToShow)}%)`;
     }
   }, [currentIndex, itemsToShow]);
+  const itemsToDisplay = items.length;
   return (
     <div className="relative overflow-hidden">
       <div
         ref={carouselRef}
         className="flex transition-transform duration-300 ease-in-out"
-        style={{ width: `${items.length * (100 / itemsToShow)}%` }}
+        style={{ width: `${itemsToDisplay * 100}%` }}
       >
-        {items.map((item, index) => (
+        {items.map((item, index) =>(
           <div
             key={index}
             className="flex-shrink-0"
@@ -59,13 +60,15 @@ const Carousel: React.FC<CarouselProps> = ({ items, itemsToShow }) => {
           {'>'}
         </button>
       </div>
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-2">
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-2 items-center">
         {Array.from({ length: Math.ceil(items.length / itemsToShow) }).map((_, index) => (
           <button
             key={index}
             onClick={() => handleDotClick(index)}
-            className={`h-2 w-2 rounded-full ${
-              currentIndex === index ? 'bg-blue-500' : 'bg-gray-300'
+            className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+              currentIndex === index
+                ? 'bg-blue-500'
+                : 'bg-gray-300'
             }`}
           ></button>
         ))}

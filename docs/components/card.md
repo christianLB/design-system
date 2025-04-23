@@ -13,6 +13,21 @@ The `Card` component is a versatile container used to display related informatio
 -   **Action Buttons (Optional):** The ability to include one or more action buttons within the card, typically located in the footer or header.
 - **Customizable styling**: The card component can be styled based on the needs of the project.
 
+## Variants
+
+The `Card` component supports several variants to change its appearance:
+
+-   **`default`**: The standard card style with a white background and a subtle shadow.
+-   **`muted`**: A card with a muted background color, suitable for less emphasized content sections.
+-   **`destructive`**: A card style with a red background and white text. Ideal to highlight dangerous information or actions.
+-   **`outline`**: A card with a primary color border.
+
+### Using Variants
+
+To use a variant, you need to pass the `variant` prop to the component:
+
+
+
 ## Dependencies
 
 -   **None:** The `Card` component is designed to be self-contained with no external dependencies, relying on standard HTML and CSS for its structure and styling. If you are using a design system, you can use the colors and typography of it.

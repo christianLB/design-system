@@ -1,115 +1,163 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "../lib/utils"
+import {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+  VisibilityState,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table"
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+import { cn } from "../lib/utils"
+import { Checkbox } from "./checkbox"
+import { Input } from "./input"
+import Pagination  from "./Pagination"
+import Badge  from "./Badge"
+
+export type TableProps<TData> = {
+  data: TData[]
+  columns: ColumnDef<TData>[]
+  emptyMessage?: React.ReactNode
+  defaultSortBy?: SortingState
+  onSelectionChange?: (selection: TData[]) => void
+  className?: string
+}
+
+function Table<TData>({
+  data,
+  columns,
+  emptyMessage = "No data found.",
+  defaultSortBy = [],
+  onSelectionChange,
+  className,
+}: TableProps<TData>) {
+  const [sorting, setSorting] = React.useState<SortingState>(defaultSortBy)
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
+  const [rowSelection, setRowSelection] = React.useState({})
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({})
+  const [currentPage, setCurrentPage] = React.useState(0)
+  const [pageSize, setPageSize] = React.useState(10)
+
+  const table = useReactTable({
+    data,
+    columns,
+    state: {
+      sorting,
+      columnFilters,
+      rowSelection,
+      columnVisibility,
+      pagination: { pageIndex: currentPage, pageSize },
+    },
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    onRowSelectionChange: setRowSelection,
+    onColumnVisibilityChange: setColumnVisibility,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    manualPagination: false,
+    debugTable: false,
+  })
+
+  React.useEffect(() => {
+    const selectedData = table
+      .getSelectedRowModel()
+      .rows.map((row) => row.original)
+    onSelectionChange?.(selectedData)
+  }, [rowSelection])
+
+  const onPageChange = (page: number) => {
+    setCurrentPage(page - 1);
+  }
+
+  const pageCount = Math.ceil(table.getCoreRowModel().rows.length / pageSize);
+
+
   return (
-    <div
-      data-slot="table-container"
-      className="relative w-full overflow-x-auto"
-    >
-      <table
-        data-slot="table"
-        className={cn("w-full caption-bottom text-sm shadow-sm border", className)}
-        {...props}
-      />
+    <div className={cn("space-y-4", className)}>
+      <div className="rounded-md border">
+        <div className="flex items-center py-4 px-2">
+          <Input
+            placeholder="Filter all columns..."
+            value={(table.getColumn("global")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("global")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+        </div>     
+        <div className="relative w-full overflow-auto">
+          <table className="w-full text-sm caption-bottom">
+            <thead className="[&_tr]:border-b">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <th
+                        key={header.id}
+                        className={cn(
+                          "text-muted-foreground h-10 px-2  align-middle font-semibold text-left whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+                          header.column.getCanSort() && "cursor-pointer"
+                        )}
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        {header.isPlaceholder ? null : (
+                          <div>
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                            {{
+                              asc: " ▲",
+                              desc: " ▼",
+                            }[header.column.getIsSorted() as string] ?? null}
+                          </div>
+                        )}
+                      </th>
+                    )
+                  })}
+                </tr>
+              ))}
+            </thead>
+            <tbody>            
+              {table.getPaginationRowModel().rows.length === 0 ? (
+                <tr><td className="p-4 text-center" colSpan={table.getAllColumns().length}>{emptyMessage}</td></tr>                
+              ) : (table.getPaginationRowModel().rows.map((row) => (
+                <tr key={row.id} className="hover:bg-muted/50  border-b transition-colors p-4">
+                  {row.getVisibleCells().map((cell) => (
+                    <td key={cell.id} className="p-4 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>                    
+                  ))}
+                </tr>
+              )))}
+               {table.getPaginationRowModel().rows.length === 0 && table.getCoreRowModel().rows.length > 0 && (
+                  <tr >
+                  {table.getCoreRowModel().rows[0].getVisibleCells().map((cell) => (
+                    <td key={cell.id} className="p-4 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+                    
+                    </td>
+                  ))}
+                </tr>)}
+            </tbody>
+          </table>
+        </div>
+        <div className="flex justify-end px-2 py-4">
+          <Pagination totalItems={table.getCoreRowModel().rows.length} currentPage={currentPage + 1} itemsPerPage={pageSize} onPageChange={onPageChange} />
+        </div>
+      </div>
     </div>
   )
 }
 
-function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
-  return (
-    <thead
-      data-slot="table-header"
-      className={cn("[&_tr]:border-b text-sm", className)}
-      {...props}
-    />
-  )
-}
-
-function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
-  return (
-    <tbody
-      data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0", className)}
-      {...props}
-    />
-  )
-}
-
-function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
-  return (
-    <tfoot
-      data-slot="table-footer"
-      className={cn(
-        "bg-muted/50 border-t font-medium [&>tr]:last:border-b-0",
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
-  return (
-    <tr
-      data-slot="table-row"
-      className={cn(
-        "hover:bg-muted/50  border-b transition-colors p-4",
-        className
-      )}
-      {...props} 
-    />
-  )
-}
-
-function TableHead({ className, ...props }: React.ComponentProps<"th">) {
-  return (
-    <th
-      data-slot="table-head"
-      className={cn(
-        "text-muted-foreground h-10 px-2  align-middle font-semibold text-left whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-function TableCell({ className, ...props }: React.ComponentProps<"td">) {
-  return (
-    <td
-      data-slot="table-cell"
-      className={cn(
-        "p-4 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-function TableCaption({
-  className,
-  ...props
-}: React.ComponentProps<"caption">) {
-  return (
-    <caption
-      data-slot="table-caption"
-      className={cn("text-muted-foreground mt-4 text-sm", className)}
-      {...props}
-    />
-  )
-}
-
-export {
-  Table,
-  TableHeader,
-  TableBody,
-  TableFooter,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableCaption,
-}
+export { Table }
