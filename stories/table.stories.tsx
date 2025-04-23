@@ -132,6 +132,15 @@ export default meta;
 
 type Story = StoryObj<typeof Table>;
 
+export const Primary: Story = {  
+  args: {
+    onSelectionChange: fn()
+  },
+  render: (args) => (
+    <Table data={users} columns={columns} onSelectionChange={args.onSelectionChange} />
+  ),  
+};
+
 export const Default: Story = {  
   args: {
     onSelectionChange: fn()
