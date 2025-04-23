@@ -11,14 +11,6 @@ export interface CardProps {
   className?: string
 }
 
-interface CardProps {
-  header?: ReactNode;
-  title?: string;
-  footer?: ReactNode;
-  children?: ReactNode;
-  variant?: 'default' | 'muted' | 'destructive' | 'outline'
-}
-
 const Card: React.FC<CardProps> = ({
   header,
   title,
