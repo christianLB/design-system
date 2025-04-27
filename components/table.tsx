@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import {
   ColumnDef,
@@ -27,6 +25,7 @@ export type TableProps<TData> = {
   defaultSortBy?: SortingState
   onSelectionChange?: (selection: TData[]) => void
   className?: string
+  meta?: Record<string, any>
 }
 
 function Table<TData>({
@@ -36,6 +35,7 @@ function Table<TData>({
   defaultSortBy = [],
   onSelectionChange,
   className,
+  meta,
 }: TableProps<TData>) {
   const [sorting, setSorting] = React.useState<SortingState>(defaultSortBy)
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -67,6 +67,7 @@ function Table<TData>({
     getFilteredRowModel: getFilteredRowModel(),
     manualPagination: false,
     debugTable: false,
+    meta,
   })
 
   React.useEffect(() => {
