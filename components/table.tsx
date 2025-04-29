@@ -20,7 +20,7 @@ import Badge  from "./Badge"
 
 export type TableProps<TData, TMeta = unknown> = {
   data: TData[];
-  columns: ColumnDef<TData>[];
+  columns: ColumnDef<TData, any>[];
   emptyMessage?: React.ReactNode;
   defaultSortBy?: SortingState;
   onSelectionChange?: (selection: TData[]) => void;
