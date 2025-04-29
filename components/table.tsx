@@ -28,15 +28,17 @@ export type TableProps<TData, TMeta = unknown> = {
   meta?: TMeta;
 };
 
-function Table<TData, TMeta = unknown>({
-  data,
-  columns,
-  emptyMessage = "No data found.",
-  defaultSortBy = [],
-  onSelectionChange,
-  className,
-  meta,
-}: TableProps<TData, TMeta>) {
+export function Table<TData, TMeta = unknown>(props: TableProps<TData, TMeta>) {
+  const {
+    data,
+    columns,
+    emptyMessage = "No data found.",
+    defaultSortBy = [],
+    onSelectionChange,
+    className,
+    meta,
+  } = props;
+
   const [sorting, setSorting] = React.useState<SortingState>(defaultSortBy)
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -150,5 +152,3 @@ function Table<TData, TMeta = unknown>({
     </div>
   )
 }
-
-export { Table }
