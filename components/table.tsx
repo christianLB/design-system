@@ -18,17 +18,22 @@ import { Input } from "./input"
 import Pagination  from "./Pagination"
 import Badge  from "./Badge"
 
-export type TableProps<TData> = {
+// Export a generic TableMeta interface for consumers (optional, can be extended)
+export interface TableMeta {
+  [key: string]: any;
+}
+
+export type TableProps<TData, TMeta = TableMeta> = {
   data: TData[]
   columns: ColumnDef<TData>[]
   emptyMessage?: React.ReactNode
   defaultSortBy?: SortingState
   onSelectionChange?: (selection: TData[]) => void
   className?: string
-  meta?: Record<string, any>
+  meta?: TMeta
 }
 
-function Table<TData>({
+function Table<TData, TMeta = TableMeta>({
   data,
   columns,
   emptyMessage = "No data found.",
@@ -36,7 +41,7 @@ function Table<TData>({
   onSelectionChange,
   className,
   meta,
-}: TableProps<TData>) {
+}: TableProps<TData, TMeta>) {
   const [sorting, setSorting] = React.useState<SortingState>(defaultSortBy)
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -47,7 +52,7 @@ function Table<TData>({
   const [currentPage, setCurrentPage] = React.useState(0)
   const [pageSize, setPageSize] = React.useState(10)
 
-  const table = useReactTable({
+  const table = useReactTable<TData>({
     data,
     columns,
     state: {
@@ -67,7 +72,7 @@ function Table<TData>({
     getFilteredRowModel: getFilteredRowModel(),
     manualPagination: false,
     debugTable: false,
-    meta,
+    meta: meta as any,
   })
 
   React.useEffect(() => {
