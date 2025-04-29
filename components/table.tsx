@@ -87,16 +87,6 @@ function Table<TData>({
   return (
     <div className={cn("space-y-4", className)}>
       <div className="rounded-md border">
-        <div className="flex items-center py-4 px-2">
-          <Input
-            placeholder="Filter all columns..."
-            value={(table.getColumn("global")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("global")?.setFilterValue(event.target.value)
-            }
-            className="max-w-sm"
-          />
-        </div>     
         <div className="relative w-full overflow-auto">
           <table className="w-full text-sm caption-bottom">
             <thead className="[&_tr]:border-b">
