@@ -18,22 +18,17 @@ import { Input } from "./input"
 import Pagination  from "./Pagination"
 import Badge  from "./Badge"
 
-// Export a generic TableMeta interface for consumers (optional, can be extended)
-export interface TableMeta {
-  [key: string]: any;
-}
+export type TableProps<TData, TMeta = unknown> = {
+  data: TData[];
+  columns: ColumnDef<TData>[];
+  emptyMessage?: React.ReactNode;
+  defaultSortBy?: SortingState;
+  onSelectionChange?: (selection: TData[]) => void;
+  className?: string;
+  meta?: TMeta;
+};
 
-export type TableProps<TData, TMeta = TableMeta> = {
-  data: TData[]
-  columns: ColumnDef<TData>[]
-  emptyMessage?: React.ReactNode
-  defaultSortBy?: SortingState
-  onSelectionChange?: (selection: TData[]) => void
-  className?: string
-  meta?: TMeta
-}
-
-function Table<TData, TMeta = TableMeta>({
+function Table<TData, TMeta = unknown>({
   data,
   columns,
   emptyMessage = "No data found.",
