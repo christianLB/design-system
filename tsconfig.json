@@ -1,22 +1,38 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es2018",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
+    "rootDir": ".",
     "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "declarationDir": "dist/types",
     "strict": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "allowJs": true,
+    "noEmit": false,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
+    "src/**/*",
     "components/**/*.tsx",
+    "components/**/*.ts",
+    "lib/**/*.ts",
     "index.ts",
     "docs/component-docs/**/*.d.ts",
     "docs/component-docs/**/*.json"
-  ]
+  ],
+  "exclude": ["node_modules", "dist", "**/*.test.tsx", "**/*.stories.tsx"]
 }

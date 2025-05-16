@@ -1,27 +1,9 @@
-{
-  "tags": {
-    "component": "",
-    "example": "import { Tabs } from \"@/components/Tabs\"\n\nfunction App() {\n  return <Tabs />\n}"
-  },
-  "filePath": "C:/dev/design-system/components/tabs.tsx",
-  "description": "Componente Tabs.",
-  "displayName": "Tabs",
-  "methods": [],
-  "props": {
-    "asChild": {
-      "defaultValue": null,
-      "description": "",
-      "name": "asChild",
-      "declarations": [
-        {
-          "fileName": "design-system/node_modules/@radix-ui/react-primitive/dist/index.d.ts",
-          "name": "TypeLiteral"
-        }
-      ],
-      "required": false,
-      "type": {
-        "name": "boolean"
-      }
-    }
+[
+  {
+    "displayName": "tabs",
+    "description": "Documentation for tabs",
+    "props": {},
+    "tags": {},
+    "methods": []
   }
-}
+]

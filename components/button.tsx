@@ -1,26 +1,53 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "../lib/utils"
+import { cn } from "../src/lib/utils"
+import { tokens } from "../src/lib/tokens"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[color,box-shadow] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-ring/50 focus-visible:ring-offset-background focus-visible:ring-[3px]",
+  cn(
+    "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium",
+    tokens.transition.DEFAULT,
+    "disabled:pointer-events-none disabled:opacity-50",
+    "[&_svg]:pointer-events-none [&_svg]:shrink-0",
+    "[&_svg:not([class*='size-'])]:size-4",
+    "outline-none",
+    tokens.colors.focus.ring,
+    tokens.colors.focus.ringOffset,
+    tokens.colors.focus.ringWidth
+  ),
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
-        outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        default: cn(
+          tokens.colors.background,
+          tokens.colors.text,
+          tokens.colors.hover.primary,
+          "hover:text-primary-foreground"
+        ),
+        destructive: cn(
+          tokens.colors.backgroundDestructive,
+          "text-destructive-foreground",
+          tokens.colors.hover.destructive,
+          tokens.colors.focus.ringDestructive
+        ),
+        outline: cn(
+          "border",
+          tokens.colors.borderInput,
+          tokens.colors.background,
+          "hover:bg-accent hover:text-accent-foreground"
+        ),
+        secondary: cn(
+          "bg-secondary text-secondary-foreground",
+          tokens.colors.hover.secondary
+        ),
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        sm: cn("h-8", tokens.radius.md, "gap-1.5 px-3 has-[>svg]:px-2.5"),
+        lg: cn(tokens.radius.md, "h-10 px-6 has-[>svg]:px-4"),
         icon: "size-9",
       },
     },
@@ -66,7 +93,10 @@ function Button({
       type="button"
       data-slot="button"
       aria-pressed={ariaPressed}
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        'shrink-0' // Ensure button doesn't shrink in flex containers
+      )}
       {...props}
     />
   );

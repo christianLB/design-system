@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const { tokens } = require('./src/lib/tokens');
+
 module.exports = {
   darkMode: ['class'],
   content: [
@@ -10,26 +12,14 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        primary: '#007bff',
-        secondary: '#6c757d',
-        background: '#ffffff',
-        text: '#333333',
-        destructive: '#dc3545',
-        accent: '#f5f5f5',
-        input: '#cccccc',
-        ring: '#007bff',
-      },
-      spacing: {
-        xs: '0.25rem',
-        sm: '0.5rem',
-        md: '1rem',
-        lg: '1.5rem',
-        xl: '2rem',
-      },
-      fontSize: {
-        base: '1rem',
-      },
+      colors: tokens.colors,
+      spacing: tokens.spacing,
+      borderRadius: tokens.radius,
+      boxShadow: tokens.shadow,
+      transitionProperty: tokens.transition,
+      fontSize: tokens.typography.fontSize,
+      lineHeight: tokens.typography.lineHeight,
+      fontFamily: tokens.typography.fontFamily,
     },
   },
   plugins: [],

@@ -1,6 +1,29 @@
-# My Design System
+# Design System
 
-Welcome to the My Design System! This is a collection of reusable UI components built with React and TypeScript, designed to help you quickly and consistently build user interfaces.
+A comprehensive design system built with React, TypeScript, and Tailwind CSS. This system provides a consistent set of UI components and design tokens to help you build beautiful, accessible, and maintainable user interfaces.
+
+## Features
+
+- 🎨 **Design Tokens** - Consistent theming with a comprehensive token system
+- 🖥️ **Responsive** - Mobile-first components that work on all screen sizes
+- 🎭 **Dark Mode** - Built-in support for light and dark themes
+- 🧩 **Composable** - Flexible components that can be easily customized
+- 📱 **Accessible** - Built with accessibility in mind
+
+## Design Tokens
+
+Our design system uses a comprehensive set of design tokens to ensure consistency across all components. These tokens include colors, spacing, typography, shadows, and more.
+
+### Token Categories
+
+- **Colors**: Semantic color tokens for backgrounds, text, borders, and interactive states
+- **Spacing**: Consistent spacing scale for margins and padding
+- **Typography**: Font families, sizes, and weights
+- **Shadows**: Elevation and depth with consistent shadow styles
+- **Border Radius**: Consistent corner rounding
+- **Transitions**: Standardized animation timings and easings
+
+For detailed information on using design tokens, see the [Design Token Guide](./DESIGN_TOKEN_GUIDE.md).
 
 ## Components
 
@@ -20,6 +43,61 @@ This design system includes the following components:
 -   **Tabs:** A tabbed interface for organizing content.
 -   **Textarea:** A multi-line text input component.
 -   **ThemeToggle**: a toggle to change between a light and dark theme
+
+## Theming
+
+Our design system supports theming out of the box using a comprehensive design tokens system. This allows for consistent theming across your application.
+
+### Using Design Tokens
+
+Design tokens are the smallest, most basic design elements that define the visual style of your application. They include:
+
+- Colors
+- Typography
+- Spacing
+- Border radius
+- Shadows
+- Transitions
+
+```tsx
+import { tokens } from './lib/tokens';
+
+// Using tokens in your components
+function MyComponent() {
+  return (
+    <div className={tokens.colors.background}>
+      <h1 className={tokens.typography.heading1}>Hello World</h1>
+      <p className={tokens.typography.body}>
+        This is some text with consistent styling.
+      </p>
+    </div>
+  );
+}
+```
+
+### Customizing the Theme
+
+To customize the theme, you can override the default tokens in your Tailwind configuration:
+
+```js
+// tailwind.config.js
+const { tokens } = require('./lib/tokens');
+
+module.exports = {
+  theme: {
+    extend: {
+      colors: tokens.colors,
+      borderRadius: tokens.radius,
+      boxShadow: tokens.shadow,
+      // ... other theme extensions
+    },
+  },
+};
+```
+
+### Migration Guide
+
+If you're upgrading from a previous version, please see our [Migration Guide](./MIGRATION_GUIDE.md) for instructions on updating your components to use the new design tokens system.
 
 ## Getting Started
 
