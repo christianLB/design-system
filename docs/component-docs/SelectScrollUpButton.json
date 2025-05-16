@@ -1,0 +1,24 @@
+{
+  "tags": {},
+  "filePath": "C:/dev/design-system/components/select.tsx",
+  "description": "",
+  "displayName": "SelectScrollUpButton",
+  "methods": [],
+  "props": {
+    "asChild": {
+      "defaultValue": null,
+      "description": "",
+      "name": "asChild",
+      "declarations": [
+        {
+          "fileName": "design-system/node_modules/@radix-ui/react-primitive/dist/index.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    }
+  }
+}

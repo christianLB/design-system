@@ -31,6 +31,23 @@ const buttonVariants = cva(
   },
 );
 
+/**
+ * Botón reutilizable con múltiples variantes y tamaños.
+ * @component
+ * @example
+ * import { Button } from "@/components/button"
+ *
+ * function App() {
+ *   return <Button>Haz clic</Button>
+ * }
+ * 
+ * @param {Object} props - Las propiedades del componente
+ * @param {string} [props.className] - Clases CSS adicionales
+ * @param {'default'|'destructive'|'outline'|'secondary'|'ghost'|'link'} [props.variant='outline'] - Variante del botón
+ * @param {'default'|'sm'|'lg'|'icon'} [props.size='default'] - Tamaño del botón
+ * @param {boolean} [props.asChild=false] - Si es true, renderiza el contenido como hijo
+ * @param {React.ReactNode} props.children - Contenido del botón
+ */
 function Button({
   className,
   variant,

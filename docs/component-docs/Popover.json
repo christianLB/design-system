@@ -1,0 +1,11 @@
+{
+  "tags": {
+    "component": "",
+    "example": "import { Popover } from \"@/components/Popover\"\n\nfunction App() {\n  return <Popover />\n}"
+  },
+  "filePath": "C:/dev/design-system/components/popover.tsx",
+  "description": "Componente Popover.",
+  "displayName": "Popover",
+  "methods": [],
+  "props": {}
+}

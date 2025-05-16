@@ -1,0 +1,117 @@
+{
+  "tags": {
+    "component": "",
+    "example": "import { Table } from \"@/components/Table\"\n\nfunction App() {\n  return <Table />\n}"
+  },
+  "filePath": "C:/dev/design-system/components/table.tsx",
+  "description": "Componente Table.",
+  "displayName": "Table",
+  "methods": [],
+  "props": {
+    "data": {
+      "defaultValue": null,
+      "description": "",
+      "name": "data",
+      "declarations": [
+        {
+          "fileName": "design-system/components/table.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "TData[]"
+      }
+    },
+    "columns": {
+      "defaultValue": null,
+      "description": "",
+      "name": "columns",
+      "declarations": [
+        {
+          "fileName": "design-system/components/table.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "ColumnDef<TData, any>[]"
+      }
+    },
+    "emptyMessage": {
+      "defaultValue": null,
+      "description": "",
+      "name": "emptyMessage",
+      "declarations": [
+        {
+          "fileName": "design-system/components/table.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "ReactNode"
+      }
+    },
+    "defaultSortBy": {
+      "defaultValue": null,
+      "description": "",
+      "name": "defaultSortBy",
+      "declarations": [
+        {
+          "fileName": "design-system/components/table.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "SortingState"
+      }
+    },
+    "onSelectionChange": {
+      "defaultValue": null,
+      "description": "",
+      "name": "onSelectionChange",
+      "declarations": [
+        {
+          "fileName": "design-system/components/table.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "(selection: TData[]) => void"
+      }
+    },
+    "className": {
+      "defaultValue": null,
+      "description": "",
+      "name": "className",
+      "declarations": [
+        {
+          "fileName": "design-system/components/table.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "meta": {
+      "defaultValue": null,
+      "description": "",
+      "name": "meta",
+      "declarations": [
+        {
+          "fileName": "design-system/components/table.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "TMeta"
+      }
+    }
+  }
+}

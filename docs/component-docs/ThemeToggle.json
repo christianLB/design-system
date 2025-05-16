@@ -1,0 +1,11 @@
+{
+  "tags": {
+    "component": "",
+    "example": "import { ThemeToggle } from \"@/components/ThemeToggle\"\n\nfunction App() {\n  return <ThemeToggle />\n}"
+  },
+  "filePath": "C:/dev/design-system/components/ThemeToggle.tsx",
+  "description": "Componente ThemeToggle.",
+  "displayName": "ThemeToggle",
+  "methods": [],
+  "props": {}
+}

@@ -1,0 +1,11 @@
+{
+  "tags": {
+    "component": "",
+    "example": "import { Loader } from \"@/components/Loader\"\n\nfunction App() {\n  return <Loader />\n}"
+  },
+  "filePath": "C:/dev/design-system/components/loader.tsx",
+  "description": "Componente Loader.",
+  "displayName": "Loader",
+  "methods": [],
+  "props": {}
+}

@@ -6,6 +6,16 @@ interface AlertProps {
   children: React.ReactNode;
 }
 
+/**
+ * Componente Alert.
+ * @component
+ * @example
+ * import { Alert } from "@/components/Alert"
+ *
+ * function App() {
+ *   return <Alert />
+ * }
+ */
 const Alert: React.FC<AlertProps> = ({ variant, title, children }) => {
   const getVariantClasses = () => {
     switch (variant) {

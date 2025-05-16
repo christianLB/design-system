@@ -1,0 +1,58 @@
+{
+  "tags": {
+    "component": "",
+    "example": "import { Input } from \"@/components/input\"\n\nfunction App() {\n  return <Input placeholder=\"Escribe algo...\" />\n}",
+    "param": "props - Las propiedades del componente\nprops.className - Clases CSS adicionales\nprops.type - Tipo de entrada\nprops.placeholder - Texto de marcador de posición\nprops.disabled - Si el campo está deshabilitado\nprops.value - Valor controlado\nprops.onChange - Manejador de cambio"
+  },
+  "filePath": "C:/dev/design-system/components/select.tsx",
+  "description": "Campo de entrada de texto.",
+  "displayName": "Select",
+  "methods": [],
+  "props": {
+    "value": {
+      "defaultValue": null,
+      "description": "",
+      "name": "value",
+      "declarations": [
+        {
+          "fileName": "design-system/node_modules/@radix-ui/react-select/dist/index.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "defaultValue": {
+      "defaultValue": null,
+      "description": "",
+      "name": "defaultValue",
+      "declarations": [
+        {
+          "fileName": "design-system/node_modules/@radix-ui/react-select/dist/index.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "onValueChange": {
+      "defaultValue": null,
+      "description": "",
+      "name": "onValueChange",
+      "declarations": [
+        {
+          "fileName": "design-system/node_modules/@radix-ui/react-select/dist/index.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "(value: string) => void"
+      }
+    }
+  }
+}

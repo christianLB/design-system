@@ -6,6 +6,24 @@ import { CheckIcon } from "lucide-react"
 
 import { cn } from "../lib/utils"
 
+/**
+ * Campo de entrada de texto.
+ * @component
+ * @example
+ * import { Input } from "@/components/input"
+ *
+ * function App() {
+ *   return <Input placeholder="Escribe algo..." />
+ * }
+ * 
+ * @param {Object} props - Las propiedades del componente
+ * @param {string} [props.className] - Clases CSS adicionales
+ * @param {string} [props.type='text'] - Tipo de entrada
+ * @param {string} [props.placeholder] - Texto de marcador de posición
+ * @param {boolean} [props.disabled] - Si el campo está deshabilitado
+ * @param {string} [props.value] - Valor controlado
+ * @param {function} [props.onChange] - Manejador de cambio
+ */
 function Checkbox({
   className,
   ...props

@@ -1,0 +1,28 @@
+{
+  "tags": {
+    "component": "",
+    "example": "import { Input } from \"@/components/input\"\n\nfunction App() {\n  return <Input placeholder=\"Escribe algo...\" />\n}",
+    "param": "props - Las propiedades del componente\nprops.className - Clases CSS adicionales\nprops.type - Tipo de entrada\nprops.placeholder - Texto de marcador de posición\nprops.disabled - Si el campo está deshabilitado\nprops.value - Valor controlado\nprops.onChange - Manejador de cambio"
+  },
+  "filePath": "C:/dev/design-system/components/switch.tsx",
+  "description": "Campo de entrada de texto.",
+  "displayName": "Switch",
+  "methods": [],
+  "props": {
+    "asChild": {
+      "defaultValue": null,
+      "description": "",
+      "name": "asChild",
+      "declarations": [
+        {
+          "fileName": "design-system/node_modules/@radix-ui/react-primitive/dist/index.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    }
+  }
+}

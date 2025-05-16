@@ -6,6 +6,16 @@ import { XIcon } from "lucide-react"
 
 import { cn } from "../lib/utils"
 
+/**
+ * Componente Dialog.
+ * @component
+ * @example
+ * import { Dialog } from "@/components/Dialog"
+ *
+ * function App() {
+ *   return <Dialog />
+ * }
+ */
 function Dialog({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Root>) {

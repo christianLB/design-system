@@ -1,0 +1,86 @@
+{
+  "tags": {
+    "component": "",
+    "example": "import { Button } from \"@/components/button\"\n\nfunction App() {\n  return <Button>Haz clic</Button>\n}",
+    "param": "props - Las propiedades del componente\nprops.className - Clases CSS adicionales\nprops.variant - Variante del botón\nprops.size - Tamaño del botón\nprops.asChild - Si es true, renderiza el contenido como hijo\nprops.children - Contenido del botón"
+  },
+  "filePath": "C:/dev/design-system/components/button.tsx",
+  "description": "Botón reutilizable con múltiples variantes y tamaños.",
+  "displayName": "Button",
+  "methods": [],
+  "props": {
+    "variant": {
+      "defaultValue": null,
+      "description": "",
+      "name": "variant",
+      "declarations": [],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "\"link\" | \"default\" | \"destructive\" | \"outline\" | \"secondary\" | \"ghost\"",
+        "value": [
+          {
+            "value": "\"link\""
+          },
+          {
+            "value": "\"default\""
+          },
+          {
+            "value": "\"destructive\""
+          },
+          {
+            "value": "\"outline\""
+          },
+          {
+            "value": "\"secondary\""
+          },
+          {
+            "value": "\"ghost\""
+          }
+        ]
+      }
+    },
+    "size": {
+      "defaultValue": null,
+      "description": "",
+      "name": "size",
+      "declarations": [],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "\"default\" | \"sm\" | \"lg\" | \"icon\"",
+        "value": [
+          {
+            "value": "\"default\""
+          },
+          {
+            "value": "\"sm\""
+          },
+          {
+            "value": "\"lg\""
+          },
+          {
+            "value": "\"icon\""
+          }
+        ]
+      }
+    },
+    "asChild": {
+      "defaultValue": {
+        "value": false
+      },
+      "description": "",
+      "name": "asChild",
+      "declarations": [
+        {
+          "fileName": "design-system/components/button.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    }
+  }
+}

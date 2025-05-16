@@ -1,0 +1,11 @@
+{
+  "tags": {
+    "component": "",
+    "example": "import { Dialog } from \"@/components/Dialog\"\n\nfunction App() {\n  return <Dialog />\n}"
+  },
+  "filePath": "C:/dev/design-system/components/dialog.tsx",
+  "description": "Componente Dialog.",
+  "displayName": "Dialog",
+  "methods": [],
+  "props": {}
+}

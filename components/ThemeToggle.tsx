@@ -3,6 +3,16 @@
 'use client';
 import { useEffect, useState } from 'react';
 
+/**
+ * Componente ThemeToggle.
+ * @component
+ * @example
+ * import { ThemeToggle } from "@/components/ThemeToggle"
+ *
+ * function App() {
+ *   return <ThemeToggle />
+ * }
+ */
 export function ThemeToggle() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     if (typeof window === 'undefined') return 'light';

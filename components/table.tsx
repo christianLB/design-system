@@ -28,6 +28,16 @@ export type TableProps<TData, TMeta = unknown> = {
   meta?: TMeta;
 };
 
+/**
+ * Componente Table.
+ * @component
+ * @example
+ * import { Table } from "@/components/Table"
+ *
+ * function App() {
+ *   return <Table />
+ * }
+ */
 export function Table<TData, TMeta = unknown>(props: TableProps<TData, TMeta>) {
   const {
     data,
