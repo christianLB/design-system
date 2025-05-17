@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
-import { cn } from '../src/lib/utils'
-import { tokens } from '../src/lib/tokens'
+import { cn } from '../utils'
+import { tokens } from '../tokens'
 
 export interface CardProps {
   variant?: 'default' | 'muted' | 'destructive' | 'outline'

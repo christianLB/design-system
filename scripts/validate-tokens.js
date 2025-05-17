@@ -97,7 +97,7 @@ function main() {
   
   if (totalIssues > 0) {
     console.log('\nRecommendations:');
-    console.log('1. Replace hardcoded values with design tokens from src/lib/tokens.ts');
+    console.log('1. Replace hardcoded values with design tokens from tokens.ts');
     console.log('2. Run the migration script: npm run migrate-tokens');
     console.log('3. Run the linter: npx eslint . --fix');
     process.exit(1);

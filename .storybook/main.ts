@@ -1,20 +1,32 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
-  framework: '@storybook/react-vite',
-  stories: ['../components/**/*.stories.@(ts|tsx)', '../stories/**/*.stories.@(ts|tsx)'],
-  addons: [
-    '@storybook/addon-controls',
-    '@storybook/addon-actions',
-    '@storybook/addon-docs',
-    '@storybook/addon-backgrounds',
+  stories: [
+    '../stories/**/*.stories.@(js|jsx|ts|tsx)',
+    '../stories/*.stories.@(js|jsx|ts|tsx)',
+    '../stories/**/*.mdx',
+    '../stories/*.mdx'
   ],
+  addons: [
+    '@storybook/addon-essentials',
+    '@storybook/addon-links'
+  ],
+  framework: {
+    name: '@storybook/react-vite',
+    options: {}
+  },
   docs: {
-    autodocs: true,
+    autodocs: 'tag'
   },
+  // Simplified TypeScript configuration
+  typescript: {
+    check: false,
+    reactDocgen: false
+  },
+  staticDirs: ['../public'],
   core: {
-    builder: '@storybook/builder-vite',
-  },
+    disableTelemetry: true
+  }
 };
 
 export default config;

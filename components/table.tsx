@@ -12,9 +12,9 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 
-import { cn } from "../src/lib/utils"
-import { Checkbox } from "./checkbox"
-import { Input } from "./input"
+import { cn } from "../utils"
+import { Checkbox } from "./Checkbox"
+import { Input } from "./Input"
 import Pagination  from "./Pagination"
 import Badge  from "./Badge"
 

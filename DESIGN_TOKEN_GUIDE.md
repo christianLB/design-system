@@ -35,7 +35,7 @@ tokens.colors.focus.ring;       // 'focus-visible:ring-ring/50'
 ### Spacing
 
 ```typescript
-import { spacing } from '../lib/tokens';
+import { spacing } from '../tokens';
 
 // Usage
 spacing(4);                    // 'p-4'
@@ -175,7 +175,7 @@ To migrate existing components to use the new token system:
 ## Troubleshooting
 
 ### Token not working?
-- Ensure you've imported the tokens: `import { tokens } from '../lib/tokens'`
+- Ensure you've imported the tokens: `import { tokens } from '../tokens'`
 - Check for typos in the token path
 - Verify the token exists in `lib/tokens.ts`
 

@@ -20,20 +20,21 @@
   "types": "dist/types/index.d.ts",
   "files": [
     "dist",
-    "src",
-    "!src/**/*.test.*",
-    "!src/**/*.stories.*",
-    "!src/**/__tests__",
+    "components",
+    "lib",
+    "*.d.ts",
+    "!**/*.test.*",
+    "!**/*.stories.*",
     "!**/__tests__",
     "!**/__mocks__"
   ],
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "tsc && npm run generate-docs && npm run copy-docs",
+    "build": "tsc",
     "build:types": "tsc --emitDeclarationOnly",
     "prepublishOnly": "npm run build",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --debug",
     "build-storybook": "storybook build",
     "generate-docs": "node generate-docs.js",
     "enhance-docs": "node scripts/add-jsdoc.js",
@@ -65,19 +66,45 @@
     "zustand": "^5.0.3"
   },
   "peerDependenciesMeta": {
-    "@storybook/addon-actions": { "optional": true },
-    "@storybook/addon-backgrounds": { "optional": true },
-    "@storybook/addon-controls": { "optional": true },
-    "@storybook/addon-docs": { "optional": true },
-    "@storybook/addon-essentials": { "optional": true },
-    "@storybook/addon-interactions": { "optional": true },
-    "@storybook/addon-links": { "optional": true },
-    "@storybook/addon-onboarding": { "optional": true },
-    "@storybook/blocks": { "optional": true },
-    "@storybook/react": { "optional": true },
-    "@storybook/react-vite": { "optional": true },
-    "@storybook/test": { "optional": true },
-    "storybook": { "optional": true }
+    "@storybook/addon-actions": {
+      "optional": true
+    },
+    "@storybook/addon-backgrounds": {
+      "optional": true
+    },
+    "@storybook/addon-controls": {
+      "optional": true
+    },
+    "@storybook/addon-docs": {
+      "optional": true
+    },
+    "@storybook/addon-essentials": {
+      "optional": true
+    },
+    "@storybook/addon-interactions": {
+      "optional": true
+    },
+    "@storybook/addon-links": {
+      "optional": true
+    },
+    "@storybook/addon-onboarding": {
+      "optional": true
+    },
+    "@storybook/blocks": {
+      "optional": true
+    },
+    "@storybook/react": {
+      "optional": true
+    },
+    "@storybook/react-vite": {
+      "optional": true
+    },
+    "@storybook/test": {
+      "optional": true
+    },
+    "storybook": {
+      "optional": true
+    }
   },
   "peerDependencies": {
     "@types/node": "^20.0.0 || ^22.0.0",
@@ -85,30 +112,45 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^8.6.14",
     "@storybook/addon-actions": "^8.6.12",
     "@storybook/addon-backgrounds": "^8.6.12",
     "@storybook/addon-controls": "^8.6.12",
-    "@storybook/addon-docs": "^8.6.12",
-    "@storybook/addon-essentials": "^8.6.12",
-    "@storybook/addon-interactions": "^8.6.12",
-    "@storybook/addon-links": "^8.6.12",
-    "@storybook/addon-onboarding": "^8.6.12",
-    "@storybook/blocks": "^8.6.12",
-    "@storybook/react": "^8.6.12",
-    "@storybook/react-vite": "^8.6.12",
-    "@storybook/test": "^8.6.12",
+    "@storybook/addon-docs": "^8.6.14",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/addon-interactions": "^8.6.14",
+    "@storybook/addon-links": "^8.6.14",
+    "@storybook/addon-onboarding": "^8.6.14",
+    "@storybook/addon-styling-webpack": "^1.0.1",
+    "@storybook/addon-themes": "^8.6.14",
+    "@storybook/addon-webpack5-compiler-swc": "^3.0.0",
+    "@storybook/blocks": "^8.6.14",
+    "@storybook/builder-vite": "^8.6.14",
+    "@storybook/react": "^8.6.14",
+    "@storybook/react-vite": "^8.6.14",
+    "@storybook/test": "^8.6.14",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.12.0",
+    "@types/node": "^20.17.47",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "@types/webpack": "^5.28.5",
+    "@vitejs/plugin-react": "^4.4.1",
     "autoprefixer": "^10.4.21",
     "eslint": "^8.0.0",
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-react-hooks": "^4.0.0",
+    "eslint-plugin-storybook": "^0.12.0",
     "fs-extra": "^11.3.0",
     "postcss": "^8.4.35",
-    "storybook": "^8.0.0",
+    "storybook": "^8.6.14",
+    "storybook-addon-pseudo-states": "^4.0.4",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "webpack": "^5.99.8"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }

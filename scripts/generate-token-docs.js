@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { tokens } = require('../src/lib/tokens');
+const { tokens } = require('../tokens');
 
 // Create markdown content for tokens
 function generateTokenDocs() {

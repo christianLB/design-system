@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const { tokens } = require('./src/lib/tokens');
+const { tokens } = require('./tokens');
 
 module.exports = {
   darkMode: ['class'],
@@ -8,7 +8,7 @@ module.exports = {
     './components/**/*.{ts,tsx}',
     './stories/**/*.stories.@(js|jsx|ts|tsx)',
     './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    './**/*.{ts,tsx}',
   ],
   theme: {
     extend: {

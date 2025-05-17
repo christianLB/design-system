@@ -18,7 +18,8 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@components/*": ["./components/*"],
+      "@lib/*": ["./lib/*"]
     },
     "allowJs": true,
     "noEmit": false,
@@ -26,13 +27,20 @@
     "allowSyntheticDefaultImports": true
   },
   "include": [
-    "src/**/*",
     "components/**/*.tsx",
     "components/**/*.ts",
     "lib/**/*.ts",
-    "index.ts",
-    "docs/component-docs/**/*.d.ts",
-    "docs/component-docs/**/*.json"
+    "stories/**/*.tsx",
+    "stories/**/*.ts",
+    "*.ts",
+    "*.tsx"
   ],
-  "exclude": ["node_modules", "dist", "**/*.test.tsx", "**/*.stories.tsx"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.tsx",
+    "**/*.test.ts",
+    "**/*.stories.tsx",
+    "**/*.stories.ts"
+  ]
 }

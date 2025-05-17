@@ -60,13 +60,13 @@ function processFile(filePath) {
     let updated = false;
     
     // Skip files that already use tokens
-    if (content.includes('from "../src/lib/tokens"') || content.includes("from '../src/lib/tokens'")) {
+    if (content.includes('from "../tokens"') || content.includes("from '../tokens'")) {
       return false;
     }
     
     // Add tokens import if not present
-    if (!content.includes('from "../src/lib/tokens"') && !content.includes("from '../src/lib/tokens'")) {
-      const importStatement = 'import { tokens } from "../src/lib/tokens";\n';
+    if (!content.includes('from "../tokens"') && !content.includes("from '../tokens'")) {
+      const importStatement = 'import { tokens } from "../tokens";\n';
       content = content.replace(/(import.*?['"];?\n)/, `$1${importStatement}`);
       updated = true;
     }

@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 // Import tokens using dynamic import
 let tokens;
 try {
-  const tokensModule = await import('../src/lib/tokens');
+  const tokensModule = await import('../tokens');
   tokens = tokensModule.tokens;
 } catch (error) {
   console.error('Error importing tokens:', error);
@@ -29,13 +29,13 @@ if (!fs.existsSync(tailwindConfigPath)) {
 let configContent = fs.readFileSync(tailwindConfigPath, 'utf8');
 
 // Check if tokens are already imported
-if (configContent.includes('from "./src/lib/tokens"') || configContent.includes("from './src/lib/tokens'")) {
+if (configContent.includes('from "./tokens"') || configContent.includes("from './tokens'")) {
   console.log('Tokens are already imported in the Tailwind config');
   process.exit(0);
 }
 
 // Add tokens import at the top of the file
-const importStatement = 'import { tokens } from "./src/lib/tokens.js";\n\n';
+const importStatement = 'import { tokens } from "./tokens.js";\n\n';
 configContent = importStatement + configContent;
 
 // Update theme configuration

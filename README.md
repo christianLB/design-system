@@ -1,54 +1,84 @@
 # Design System
 
-A comprehensive design system built with React, TypeScript, and Tailwind CSS. This system provides a consistent set of UI components and design tokens to help you build beautiful, accessible, and maintainable user interfaces.
+A comprehensive design system built with React, TypeScript, and CSS. This system provides a consistent set of UI components to help you build beautiful, accessible, and maintainable user interfaces.
 
-## Features
+## 🚀 Características
 
-- 🎨 **Design Tokens** - Consistent theming with a comprehensive token system
-- 🖥️ **Responsive** - Mobile-first components that work on all screen sizes
-- 🎭 **Dark Mode** - Built-in support for light and dark themes
-- 🧩 **Composable** - Flexible components that can be easily customized
-- 📱 **Accessible** - Built with accessibility in mind
+- 🎨 **Componentes Reutilizables** - Biblioteca de componentes UI consistentes
+- 🖥️ **Responsive** - Componentes que funcionan en todos los tamaños de pantalla
+- 🎭 **Temas** - Soporte para múltiples temas
+- 🧩 **Componible** - Componentes flexibles y personalizables
+- 📱 **Accesible** - Construido siguiendo las mejores prácticas de accesibilidad
 
-## Design Tokens
+## 📁 Estructura del Proyecto
 
-Our design system uses a comprehensive set of design tokens to ensure consistency across all components. These tokens include colors, spacing, typography, shadows, and more.
+```
+design-system/
+├── .storybook/           # Configuración de Storybook
+├── components/           # Componentes de UI reutilizables
+│   ├── Button/          
+│   │   ├── Button.tsx    # Componente Button
+│   │   └── Button.css    # Estilos del componente Button
+│   └── ...              # Otros componentes
+├── docs/                # Documentación del proyecto
+│   ├── tasks/           # Tareas y seguimiento
+│   └── ...              # Otra documentación
+├── public/              # Archivos estáticos
+├── stories/             # Historias de Storybook
+│   └── Button.stories.tsx
+├── .gitignore
+├── package.json
+├── pnpm-lock.yaml
+└── README.md
+```
 
-### Token Categories
+Para más detalles sobre la estructura, consulta [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md).
 
-- **Colors**: Semantic color tokens for backgrounds, text, borders, and interactive states
-- **Spacing**: Consistent spacing scale for margins and padding
-- **Typography**: Font families, sizes, and weights
-- **Shadows**: Elevation and depth with consistent shadow styles
-- **Border Radius**: Consistent corner rounding
-- **Transitions**: Standardized animation timings and easings
+## 🛠 Instalación
 
-For detailed information on using design tokens, see the [Design Token Guide](./DESIGN_TOKEN_GUIDE.md).
+1. Clona el repositorio:
+   ```bash
+   git clone [URL_DEL_REPOSITORIO]
+   cd design-system
+   ```
 
-## Components
+2. Instala las dependencias:
+   ```bash
+   pnpm install
+   ```
 
-This design system includes the following components:
+3. Inicia Storybook:
+   ```bash
+   pnpm storybook
+   ```
 
--   **Button:** A versatile button component for various actions.
--   **Checkbox:** A checkbox component for boolean selections.
--   **ConfirmDialog:** A dialog to allow the user to confirm an action.
--   **Dialog:** A generic dialog component for modal interactions.
--   **Input:** A text input component for user data entry.
--   **Loader:** An animated loader to indicate loading states.
--   **Multi-select:** a select that allows for multiple choices.
--   **Popover:** A popover for displaying additional content.
--   **Select:** A dropdown select component.
--   **Switch:** A toggle switch for on/off states.
--   **Table:** A component for displaying tabular data.
--   **Tabs:** A tabbed interface for organizing content.
--   **Textarea:** A multi-line text input component.
--   **ThemeToggle**: a toggle to change between a light and dark theme
+## 🧩 Componentes
 
-## Theming
+### Componentes Disponibles
 
-Our design system supports theming out of the box using a comprehensive design tokens system. This allows for consistent theming across your application.
+- **Button** - Botón versátil para diversas acciones
+- *Más componentes serán agregados...*
 
-### Using Design Tokens
+## 📚 Documentación
+
+Para más información sobre cómo usar los componentes, consulta la documentación en el directorio `/docs`.
+
+## 🧪 Desarrollo
+
+Para desarrollar nuevos componentes o modificar los existentes:
+
+1. Crea un nuevo directorio en `/components`
+2. Desarrolla el componente siguiendo las convenciones
+3. Añade las historias de Storybook en `/stories`
+4. Documenta el componente en `/docs`
+
+## 🤝 Contribución
+
+Las contribuciones son bienvenidas. Por favor, lee las pautas de contribución antes de enviar un pull request.
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT.
 
 Design tokens are the smallest, most basic design elements that define the visual style of your application. They include:
 

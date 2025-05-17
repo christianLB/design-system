@@ -7,19 +7,19 @@ const importsToUpdate = [
   // Tailwind classes
   { 
     regex: /import\s+.*\s+from\s+['"]tailwindcss\/colors['"]/g,
-    replacement: 'import { tokens } from "../src/lib/tokens";',
+    replacement: 'import { tokens } from "../tokens";',
     message: 'Replaced tailwind/colors import with tokens'
   },
   // Direct color imports
   {
     regex: /import\s+\{([^}]*)\}\s+from\s+['"]@\/styles\/colors['"]/g,
-    replacement: 'import { tokens } from "../src/lib/tokens";',
+    replacement: 'import { tokens } from "../tokens";',
     message: 'Replaced @/styles/colors import with tokens'
   },
   // Spacing utilities
   {
     regex: /import\s+\{([^}]*)\}\s+from\s+['"]@\/utils\/spacing['"]/g,
-    replacement: 'import { spacing } from "../src/lib/tokens";',
+    replacement: 'import { spacing } from "../tokens";',
     message: 'Replaced @/utils/spacing import with tokens'
   }
 ];
@@ -53,8 +53,8 @@ function processFile(filePath) {
     let updated = false;
     
     // Check if we need to add tokens import
-    const hasTokensImport = content.includes('from "../src/lib/tokens"') || 
-                          content.includes("from '../src/lib/tokens'");
+    const hasTokensImport = content.includes('from "../tokens"') || 
+                          content.includes("from '../tokens'");
     
     // Process each import pattern
     importsToUpdate.forEach(({ regex, replacement, message }) => {
@@ -69,7 +69,7 @@ function processFile(filePath) {
     
     // Add tokens import if we made changes and it's not already there
     if (updated && !hasTokensImport) {
-      const importStatement = 'import { tokens } from "../src/lib/tokens";\n';
+      const importStatement = 'import { tokens } from "../tokens";\n';
       content = importStatement + content;
       console.log(`Added tokens import to ${filePath}`);
     }

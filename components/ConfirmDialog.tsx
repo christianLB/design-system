@@ -1,7 +1,7 @@
 "use client";
 
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogDescription } from "./dialog";
-import { Button } from "./button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogDescription } from "./Dialog";
+import { Button } from "./Button";
 import React from "react";
 import { useConfirmStore } from "../hooks/useConfirm"
 

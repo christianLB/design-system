@@ -84,7 +84,7 @@ const Button = styled.button`
 `;
 
 // After
-import { tokens } from '../lib/tokens';
+import { tokens } from '../tokens';
 
 const Button = styled.button`
   background-color: var(--primary);

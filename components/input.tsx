@@ -1,6 +1,6 @@
 import * as React from "react"
-import { cn } from "../src/lib/utils"
-import { tokens } from "../src/lib/tokens"
+import { cn } from "../utils"
+import { tokens } from "../tokens"
 
 /**
  * Campo de entrada de texto.
