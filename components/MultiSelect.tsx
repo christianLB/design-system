@@ -2,29 +2,45 @@ import React from "react";
 import Select from "react-select";
 
 interface Option {
-  id: number;
+  id: string | number;
   label: string;
 }
 
 interface MultiSelectProps {
   options: Option[];
-  defaultValue?: number[];
+  defaultValue?: Array<string | number>;
   placeholder?: string;
-  onChange: (selectedIds: string[]) => void;
+  onChange: (selectedIds: Array<string | number>) => void;
 }
 
-const MultiSelect: React.FC<MultiSelectProps> = ({ options, defaultValue, placeholder, onChange }) => {
-  const selectedOptions = options.filter(opt => defaultValue?.includes(opt.id));
+const MultiSelect: React.FC<MultiSelectProps> = ({ 
+  options, 
+  defaultValue = [], 
+  placeholder, 
+  onChange 
+}) => {
+  const selectedOptions = options.filter(opt => 
+    (defaultValue as Array<string | number>).includes(opt.id)
+  );
+
+  const handleChange = (selected: any) => {
+    const selectedIds = selected ? selected.map((opt: any) => {
+      // Convert to number if the ID is a numeric string and the original ID was a number
+      const originalOption = options.find(o => o.id.toString() === opt.id.toString());
+      return originalOption ? originalOption.id : opt.id;
+    }) : [];
+    onChange(selectedIds);
+  };
 
   return (
     <Select
       isMulti
       options={options}
-      getOptionLabel={(option) => option.label}
+      classNamePrefix="react-select"
       getOptionValue={(option) => option.id.toString()}
       value={selectedOptions}
-      placeholder={placeholder || "Selecciona..."}
-      onChange={(selected) => onChange(selected.map((opt: any) => opt.id))}
+      placeholder={placeholder || "Select..."}
+      onChange={handleChange}
       className="text-black"
     />
   );

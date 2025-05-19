@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface BreadcrumbItem {
+export interface BreadcrumbItem {
   name: string;
   href: string;
 }
@@ -28,4 +28,4 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
   );
 };
 
-export default Breadcrumb;
+export { Breadcrumb as default };

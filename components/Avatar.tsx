@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AvatarProps {
+interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
   alt?: string;
   size?: 'small' | 'medium' | 'large';
@@ -12,6 +12,8 @@ const Avatar: React.FC<AvatarProps> = ({
   alt,
   size = 'medium',
   shape = 'circle',
+  className,
+  ...props
 }) => {
   const sizeClass = {
     small: 'w-8 h-8',
@@ -26,7 +28,8 @@ const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div
-      className={`overflow-hidden flex items-center justify-center ${sizeClass} ${shapeClass}`}
+      className={`overflow-hidden flex items-center justify-center ${sizeClass} ${shapeClass} ${className || ''}`}
+      {...props}
     >
       {src ? (
         <img src={src} alt={alt} className="object-cover w-full h-full" />
