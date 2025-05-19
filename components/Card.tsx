@@ -22,27 +22,26 @@ const Card: React.FC<CardProps> = ({
   const cardVariants = {
     default: cn(
       'border',
-      tokens.colors.border,
-      tokens.colors.background,
-      tokens.shadow.md
+      'border-border',
+      'bg-background',
+      'shadow-md'
     ),
     muted: cn(
       'border',
-      tokens.colors.border,
-      tokens.colors.backgroundMuted
+      'border-border',
+      'bg-muted'
     ),
     destructive: cn(
       'border',
-      tokens.colors.borderDestructive,
+      'border-destructive',
       'bg-destructive/10',
       'text-destructive',
       'dark:bg-destructive/20',
       'dark:text-destructive-foreground'
     ),
     outline: cn(
-      'border',
       'border-primary',
-      tokens.colors.background,
+      'bg-background',
       'ring-1 ring-primary/10'
     ),
   }

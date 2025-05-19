@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2018",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "node",
     "outDir": "dist",
     "rootDir": ".",
@@ -18,22 +18,27 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
+      "@/*": ["./src/*"],
       "@components/*": ["./components/*"],
-      "@lib/*": ["./lib/*"]
+      "@lib/*": ["./lib/*"],
+      "@types/*": ["./src/types/*"]
     },
     "allowJs": true,
     "noEmit": false,
     "isolatedModules": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": []
   },
   "include": [
+    "src/**/*",
     "components/**/*.tsx",
     "components/**/*.ts",
     "lib/**/*.ts",
     "stories/**/*.tsx",
     "stories/**/*.ts",
     "*.ts",
-    "*.tsx"
+    "*.tsx",
+
   ],
   "exclude": [
     "node_modules",
@@ -41,6 +46,8 @@
     "**/*.test.tsx",
     "**/*.test.ts",
     "**/*.stories.tsx",
-    "**/*.stories.ts"
+    "**/*.stories.ts",
+    "**/*.spec.tsx",
+    "**/*.spec.ts"
   ]
 }

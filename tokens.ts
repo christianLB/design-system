@@ -27,41 +27,41 @@ export const tokens = {
   // Color Tokens
   colors: {
     // Background colors
-    background: 'bg-background',
-    backgroundMuted: 'bg-muted',
-    backgroundDestructive: 'bg-destructive',
-    
+    background: '#ffffff', // light background
+    backgroundMuted: '#f3f4f6', // muted background
+    backgroundDestructive: '#fee2e2', // destructive background
+
     // Text colors
-    text: 'text-foreground',
-    textMuted: 'text-muted-foreground',
-    textDestructive: 'text-destructive',
-    
+    text: '#111827', // default foreground
+    textMuted: '#6b7280', // muted foreground
+    textDestructive: '#b91c1c', // destructive text
+
     // Border colors
-    border: 'border-border',
-    borderInput: 'border-input',
-    borderDestructive: 'border-destructive',
-    
-    // Interactive states
+    border: '#e5e7eb', // default border
+    borderInput: '#d1d5db', // input border
+    borderDestructive: '#fca5a5', // destructive border
+
+    // Interactive states (these are for reference, not direct Tailwind utilities)
     hover: {
-      primary: 'hover:bg-primary/90',
-      secondary: 'hover:bg-secondary/80',
-      destructive: 'hover:bg-destructive/90',
-      muted: 'hover:bg-muted/50',
+      primary: '#2563eb', // blue-600
+      secondary: '#6d28d9', // purple-700
+      destructive: '#dc2626', // red-600
+      muted: '#e5e7eb', // gray-200
     },
-    
-    // Focus states
+
+    // Focus states (for reference, not direct Tailwind utilities)
     focus: {
-      ring: 'focus-visible:ring-ring/50',
-      ringOffset: 'focus-visible:ring-offset-background',
-      ringWidth: 'focus-visible:ring-[3px]',
-      ringDestructive: 'focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40',
+      ring: '#3b82f6', // blue-500
+      ringOffset: '#ffffff', // white
+      ringWidth: '3px',
+      ringDestructive: '#fca5a5', // red-300
     },
-    
-    // Opacity
+
+    // Opacity (not needed for Tailwind config)
     opacity: {
-      disabled: 'opacity-50',
-      hover: 'hover:opacity-90',
-      active: 'active:opacity-80',
+      disabled: '0.5',
+      hover: '0.9',
+      active: '0.8',
     },
   },
   
