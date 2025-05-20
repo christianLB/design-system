@@ -1,19 +1,19 @@
 import React from "react";
-import Select from "react-select";
+import Select, { MultiValue } from "react-select";
 
-interface Option {
+export interface MultiSelectOption {
   id: string | number;
   label: string;
 }
 
-interface MultiSelectProps {
-  options: Option[];
+export interface MultiSelectProps {
+  options: MultiSelectOption[];
   defaultValue?: Array<string | number>;
   placeholder?: string;
   onChange: (selectedIds: Array<string | number>) => void;
 }
 
-const MultiSelect: React.FC<MultiSelectProps> = ({ 
+export const MultiSelect: React.FC<MultiSelectProps> = ({ 
   options, 
   defaultValue = [], 
   placeholder, 
@@ -21,10 +21,10 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 }) => {
   const selectedOptions = options.filter(opt => 
     (defaultValue as Array<string | number>).includes(opt.id)
-  );
+  ) as MultiSelectOption[];
 
-  const handleChange = (selected: any) => {
-    const selectedIds = selected ? selected.map((opt: any) => {
+  const handleChange = (selected: MultiValue<MultiSelectOption>) => {
+    const selectedIds = selected ? selected.map(opt => {
       // Convert to number if the ID is a numeric string and the original ID was a number
       const originalOption = options.find(o => o.id.toString() === opt.id.toString());
       return originalOption ? originalOption.id : opt.id;
@@ -46,4 +46,4 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   );
 };
 
-export default MultiSelect;
+// Export the MultiSelect component as a named export

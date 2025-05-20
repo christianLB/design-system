@@ -5,6 +5,8 @@ import { Input, type InputProps } from '../components/Input';
 import { Table, type TableProps } from '../components/Table';
 import { Pagination, type PaginationProps } from '../components/Pagination';
 import { Badge, badgeVariants, type BadgeProps } from '../components/Badge';
+import { MultiSelect, type MultiSelectProps } from '../components/MultiSelect';
+import { ConfirmDialog } from '../components/ConfirmDialog';
 
 // Export all components and their variants
 export {
@@ -27,6 +29,10 @@ export {
   // Badge
   Badge,
   badgeVariants,
+  // MultiSelect
+  MultiSelect,
+  // ConfirmDialog
+  ConfirmDialog,
 };
 
 // Re-export types
@@ -46,6 +52,8 @@ export type {
   PaginationProps,
   // Badge types
   BadgeProps,
+  // MultiSelect types
+  MultiSelectProps,
 };
 
 export default {

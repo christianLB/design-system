@@ -3,9 +3,22 @@
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogDescription } from "./Dialog";
 import { Button } from "./Button";
 import React from "react";
-import { useConfirmStore } from "../hooks/useConfirm"
+import { useConfirmStore } from "../hooks/useConfirm";
 
-export default function ConfirmDialog() {
+export interface ConfirmDialogProps {
+  // The component doesn't accept any props directly;
+  // all configuration is handled through the useConfirmStore
+}
+
+export interface ConfirmDialogExtraContentProps {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+/**
+ * A dialog component that displays a confirmation message with confirm/cancel buttons.
+ * Configured through the useConfirmStore.
+ */
+export function ConfirmDialog({}: ConfirmDialogProps) {
   const {
     open,
     title,
