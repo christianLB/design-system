@@ -1,91 +1,142 @@
 # Project Structure
 
-This document describes the directory and file structure of the design system project.
+This document describes the standard directory and file structure of the design system project.
 
 ## Overview
 
 ```
 design-system/
-├── .storybook/           # Storybook configuration
-├── components/           # Reusable UI components
-│   ├── Accordion.tsx     # Accordion component
-│   ├── Alert.tsx         # Alert component
-│   ├── Avatar.tsx        # Avatar component
-│   ├── Badge.tsx         # Badge component
-│   ├── Breadcrumb.tsx    # Breadcrumb component
-│   ├── Button.tsx        # Button component
-│   ├── Card.tsx          # Card component
-│   ├── Carousel.tsx      # Carousel component
-│   ├── Checkbox.tsx      # Checkbox component
-│   ├── ConfirmDialog.tsx # Confirmation dialog component
-│   ├── DatePicker.tsx    # Date picker component
-│   ├── Dialog.tsx        # Dialog component
-│   ├── FileUpload.tsx    # File upload component
-│   ├── Input.tsx         # Input component
-│   ├── Loader.tsx        # Loading indicator
-│   ├── MultiSelect.tsx   # Multi-select component
-│   ├── Pagination.tsx    # Pagination component
-│   ├── Popover.tsx       # Popover component
-│   ├── ProgressBar.tsx   # Progress bar component
-│   ├── RadioGroup.tsx    # Radio group component
-│   ├── Select.tsx        # Select dropdown component
-│   ├── Switch.tsx        # Toggle switch component
-│   ├── Table.tsx         # Table component
-│   ├── Tabs.tsx          # Tabs component
-│   ├── Textarea.tsx      # Textarea component
-│   ├── ThemeToggle.tsx   # Theme toggle component
-│   ├── Tooltip.tsx       # Tooltip component
-│   └── index.ts          # Component exports
-├── docs/                 # Project documentation
-│   ├── tasks/            # Task tracking
-│   └── ...               # Other documentation
-├── lib/                  # Shared utilities and tokens
-│   ├── tokens.ts         # Design tokens
-│   └── utils.ts          # Utility functions
-├── public/               # Static assets
-├── stories/              # Storybook stories
-│   └── ...
-├── .gitignore
-├── package.json
-├── pnpm-lock.yaml
-├── PROJECT_STRUCTURE.md  # This file
-├── README.md
-├── tailwind.config.js    # Tailwind CSS configuration
-└── tsconfig.json        # TypeScript configuration
-```
+├── src/                           # Source code
+│   ├── components/               # Reusable UI components (1 component per folder)
+│   │   ├── Accordion/           # Accordion component
+│   │   │   ├── index.ts         # Public API (exports)
+│   │   │   ├── Accordion.tsx    # Component implementation
+│   │   │   ├── types.ts         # Type definitions
+│   │   │   └── styles.ts        # Component styles
+│   │   ├── Button/              # Button component
+│   │   │   ├── index.ts
+│   │   │   ├── Button.tsx
+│   │   │   ├── types.ts
+│   │   │   └── styles.ts
+│   │   └── ...
+│   │
+│   ├── hooks/                   # Custom hooks
+│   ├── utils/                   # Utility functions
+│   ├── providers/               # Context providers
+│   └── index.ts                 # Main entry point
+│
+├── dist/                      # Build output (generated)
+│   ├── esm/                    # ES Modules
+│   └── cjs/                    # CommonJS
+│
+├── demo/                     # Demo application
+│   ├── pages/                 # Demo pages for components
+│   │   ├── button/           # Button demo
+│   │   ├── card/             # Card demo
+│   │   └── table/            # Table demo
+│   ├── public/               # Static assets
+│   ├── styles/               # Global styles
+│   ├── _app.tsx              # App wrapper
+│   ├── _document.tsx         # Document template
+│   └── index.tsx             # Home page
+│
+├── docs/                    # Documentation
+│   ├── tasks/                # Task tracking
+│   └── guides/               # Usage guides
+│
+├── tests/                     # Test files
+│   ├── unit/                   # Unit tests
+│   └── integration/            # Integration tests
+│
+├── .github/                   # GitHub configurations
+│   └── workflows/              # CI/CD workflows
+│
+├── public/                    # Static assets
+├── scripts/                    # Build and utility scripts
+├── .eslintrc                   # ESLint config
+├── .prettierrc                 # Prettier config
+├── tsconfig.json               # TypeScript config
+├── vite.config.ts              # Vite config
+└── package.json                # Project manifest
 
 ## Structure Details
 
-### `/components`
-Contiene todos los componentes de UI reutilizables. Cada componente debe tener su propio directorio con:
-- `ComponentName.tsx`: El componente React
-- `ComponentName.css`: Estilos del componente (opcional)
-- `index.ts`: Exportación del componente
+### `/src/components`
+Each component should follow this structure:
+```
+ComponentName/
+  ├── index.ts         # Public API (exports)
+  ├── ComponentName.tsx  # Main component
+  ├── types.ts          # TypeScript types
+  ├── styles.ts         # Component styles
+  └── __tests__/        # Component tests
+     └── ComponentName.test.tsx
+```
+
+### `/demo`
+The demo application showcases components in an interactive way:
+- `/pages` - Demo pages for each component
+- `/public` - Static assets
+- `/styles` - Global styles and theming
+- `_app.tsx` - App wrapper with providers
+- `_document.tsx` - Custom document for Next.js
 
 ### `/docs`
-Documentación del proyecto, incluyendo:
-- Guías de estilo
-- Patrones de diseño
-- Tareas pendientes
-- Decisiones de arquitectura
+- `tasks/` - Task tracking and management
+- `guides/` - Usage guides and documentation
 
-### `/.storybook`
-Configuración de Storybook, incluyendo:
-- `main.ts`: Configuración principal
-- `preview.tsx`: Configuración de vista previa
-- `manager.tsx`: Configuración de la interfaz de usuario (opcional)
+### Configuration Files
+- `.eslintrc` - ESLint configuration
+- `.prettierrc` - Prettier configuration
+- `tsconfig.json` - TypeScript configuration
+- `vite.config.ts` - Vite build configuration
+- `tailwind.config.js` - Tailwind CSS configuration
+- `package.json` - Project manifest and dependencies
+```
 
-### `/public`
-Archivos estáticos como imágenes, fuentes y otros recursos.
+## Development Workflow
 
-### `/stories`
-Historias de Storybook que muestran los diferentes estados de los componentes.
+### Adding a New Component
+1. Create a new directory in `/src/components`
+2. Follow the component structure outlined above
+3. Add demo page in `/demo/pages`
+4. Update documentation in `/docs/guides`
 
-## Convenciones
+### Building the Project
+```bash
+# Install dependencies
+pnpm install
 
-- No usamos un directorio `src/`
-- Los componentes van directamente en `/components`
-- Cada componente debe tener su propio directorio
-- Los nombres de archivos de componentes usan PascalCase
-- Los estilos usan CSS vanilla por defecto
-- La documentación va en `/docs`
+# Start development server for demo
+pnpm dev
+
+# Build the library
+pnpm build
+
+# Run tests
+pnpm test
+```
+
+## Code Conventions
+
+### Component Development
+- Use TypeScript for all components
+- Follow the component structure exactly
+- Write tests for all components
+- Document props and usage examples in JSDoc
+- Use CSS Modules for component styling
+
+### Demo Application
+- Each component should have a dedicated demo page
+- Show all variants and states
+- Include interactive examples
+- Document usage patterns
+
+### Project Standards
+- Components are located in `/src/components`
+- Use Tailwind CSS for styling
+- TypeScript is required for all code
+- Follow React naming conventions (PascalCase for components)
+- Use functional components with TypeScript interfaces
+- Prefer named exports over default exports
+- Document all public APIs with JSDoc

@@ -38,9 +38,27 @@ git checkout -b task/TASK-001/export-consistency
 2. Verify the current state of the main branch builds successfully
 3. Create a new branch following the naming convention
 4. Update the task status to `inprogress_`
-5. Implement the changes following the coding standards
-6. Update documentation as needed
-7. Ensure the code builds successfully before committing changes
+5. **Verify Project Structure**
+   - Review `PROJECT_STRUCTURE.md` to understand where files should be placed
+   - Ensure all new files follow the established patterns
+   - Keep components self-contained with their types and styles
+6. Implement the changes following the coding standards
+7. Update documentation as needed, including `PROJECT_STRUCTURE.md` if making structural changes
+8. Ensure the code builds successfully before committing changes
+
+### Project Structure Compliance
+All changes must adhere to the structure defined in `PROJECT_STRUCTURE.md`:
+- Components go in `src/components/ComponentName/`
+- Demo pages go in `demo/pages/component-name/`
+- Documentation goes in `docs/`
+- Tests go in `tests/`
+- Build output goes to `dist/`
+
+Before submitting any changes, verify:
+- [ ] File locations match the project structure
+- [ ] Component structure follows the pattern (index.ts, Component.tsx, types.ts, styles.ts)
+- [ ] Demo pages exist for new components
+- [ ] Documentation is updated if structure changes are made
 
 ### Committing Changes
 - Use [Conventional Commits](https://www.conventionalcommits.org/) format:

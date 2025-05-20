@@ -1,128 +1,97 @@
-import { defineConfig, loadEnv, type UserConfig } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
+import { visualizer } from 'rollup-plugin-visualizer';
 
-// Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = resolve(__filename, '..');
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }) => {
-  // Load environment variables based on the current mode
-  const env = loadEnv(mode, process.cwd(), '');
+  const isDev = command === 'serve';
+  const isAnalyze = mode === 'analyze';
 
-  const isProduction = mode === 'production';
-  
-  // Base configuration
-  const config: UserConfig = {
+  return {
     plugins: [
       react({
-        // React plugin options (fastRefresh is enabled by default)
         jsxImportSource: '@emotion/react',
         babel: {
           plugins: ['@emotion/babel-plugin'],
         },
       }),
-    ],
+      isAnalyze && visualizer({
+        open: true,
+        filename: 'dist/stats.html',
+        gzipSize: true,
+        brotliSize: true,
+      }),
+    ].filter(Boolean),
     resolve: {
       alias: [
-        { find: '@components', replacement: path.resolve(__dirname, './components') },
-        { find: '@lib', replacement: path.resolve(__dirname, './lib') },
-        { find: '@hooks', replacement: path.resolve(__dirname, './hooks') },
+        { find: '@', replacement: resolve(__dirname, 'src') },
+        { find: '@components', replacement: resolve(__dirname, 'src/components') },
+        { find: '@hooks', replacement: resolve(__dirname, 'src/hooks') },
+        { find: '@utils', replacement: resolve(__dirname, 'src/utils') },
+        { find: '@styles', replacement: resolve(__dirname, 'src/styles') },
       ],
     },
     css: {
+      postcss: {
+        plugins: [tailwindcss, autoprefixer],
+      },
       modules: {
         localsConvention: 'camelCaseOnly',
       },
-      postcss: {
-        plugins: [
-          tailwindcss,
-          autoprefixer,
-        ],
-      },
     },
-    // Environment variables and build settings
-    define: {
-      'process.env': {},
-      'process.env.NODE_ENV': JSON.stringify(mode || 'development'),
-    },
-  };
-  
-  // Development server configuration
-  if (!isProduction) {
-    config.server = {
-      fs: {
-        allow: [path.resolve(__dirname, '.'), path.resolve(__dirname, 'demo')],
-      },
-      cors: true,
-      open: false,
-      hmr: {
-        overlay: true,
-      },
-      proxy: {},
-    };
-    // NOTE: To view your demo, open http://localhost:5173/demo/index.html in your browser.
-  }
-  
-  // Production build configuration
-  if (isProduction) {
-    config.base = env.VITE_BASE_URL || '/';
-    config.build = {
-      outDir: 'dist',
-      emptyOutDir: true,
+    build: {
+      minify: isDev ? false : 'esbuild',
+      sourcemap: true,
       lib: {
-        entry: path.resolve(__dirname, 'src/index.ts'),
+        entry: resolve(__dirname, 'src/index.ts'),
         name: 'DesignSystem',
         formats: ['es', 'cjs'],
-        fileName: (format) => `design-system.${format}.js`,
+        fileName: (format) => (format === 'es' ? 'index.js' : 'index.cjs'),
       },
-      sourcemap: true,
-      minify: false, // Keep false for better debugging
-      chunkSizeWarningLimit: 2000,
       rollupOptions: {
         external: [
           'react',
           'react-dom',
           'react-dom/client',
           'react/jsx-runtime',
+          '@emotion/react',
+          '@emotion/styled',
           '@radix-ui/react-slot',
           'class-variance-authority',
           'tailwind-merge',
+          'tailwindcss',
+          'autoprefixer',
         ],
-        output: {
-          globals: {
-            react: 'React',
-            'react-dom': 'ReactDOM',
-            'react-dom/client': 'ReactDOMClient',
-            'react/jsx-runtime': 'jsxRuntime',
+        output: [
+          {
+            dir: 'dist/esm',
+            format: 'es',
+            exports: 'named',
+            preserveModules: true,
+            preserveModulesRoot: 'src',
+            entryFileNames: '[name].js',
+            chunkFileNames: '[name].js',
+            assetFileNames: 'assets/[name][extname]',
           },
-          preserveModules: true,
-          exports: 'named',
-        },
+          {
+            dir: 'dist/cjs',
+            format: 'cjs',
+            exports: 'named',
+            preserveModules: true,
+            preserveModulesRoot: 'src',
+            entryFileNames: '[name].cjs',
+            chunkFileNames: '[name].cjs',
+            assetFileNames: 'assets/[name][extname]',
+          },
+        ],
       },
-      cssCodeSplit: false, // Set to false to ensure CSS is included in the bundle
-      target: 'es2020',
-      commonjsOptions: {
-        transformMixedEsModules: true,
-        esmExternals: true,
-      },
-      modulePreload: {
-        polyfill: false,
-      }
-    };
-  }
-  
-  // Optimize dependencies for faster builds
-  config.optimizeDeps = {
-    include: ['react', 'react-dom'],
-    // Force dependency pre-bundling in development
-    force: mode === 'development',
-
+    },
   };
-  
-  return config;
 });
