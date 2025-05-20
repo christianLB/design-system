@@ -1,28 +1,88 @@
 # Breadcrumb Component
 
-## Description
+## Overview
 
-The Breadcrumb component is used to display the hierarchical path of the current page within the application. It provides users with a clear navigation trail, helping them understand their location within the site's structure and easily navigate back to higher-level pages.
+The `Breadcrumb` component displays the current page's location within a navigational hierarchy. It helps users understand their position and easily navigate back to previous pages. Breadcrumbs are accessible, customizable, and responsive.
 
 ## Features
+- **Hierarchical Display**: Shows navigation path
+- **Dynamic Items**: Accepts an array of objects for flexible paths
+- **Navigable Links**: Each item is a clickable link
+- **Custom Separator**: Supports custom character or icon between items
+- **Responsive**: Adapts to various screen sizes
+- **Accessible**: ARIA roles, keyboard navigation, and semantic markup
 
--   **Hierarchical Display:** Shows the user's current location and the path they have traversed to reach it.
--   **Dynamic Path Generation:** Automatically generates breadcrumb items based on an array of objects provided to it.
--   **Navigable Links:** Each item in the breadcrumb is a clickable link that navigates to the corresponding page.
--   **Customizable Separator:** Allows for different separator characters or icons between breadcrumb items.
-- **Responsive:** Adjusts well to different screen sizes.
-- **Accessible:** Follows ARIA guidelines to provide semantic information to screen readers.
+## Usage
 
-## Props
+### Basic Breadcrumb
+```jsx
+<Breadcrumb items={[
+  { name: 'Home', href: '/' },
+  { name: 'Library', href: '/library' },
+  { name: 'Data', href: '/library/data' }
+]} />
+```
 
--   **items:** An array of objects, each representing a breadcrumb item. Each object should have the following properties:
-    -   `name`: (string) The display text for the breadcrumb item.
-    -   `href`: (string) The URL that the breadcrumb item links to.
--   **separator:** (string, optional) The character or icon used to separate breadcrumb items. Defaults to ">".
+### Custom Separator
+```jsx
+<Breadcrumb
+  items={[
+    { name: 'Home', href: '/' },
+    { name: 'Profile', href: '/profile' }
+  ]}
+  separator={<ChevronRightIcon />}
+/>
+```
 
-## Dependencies
+### With Last Item as Current Page
+```jsx
+<Breadcrumb
+  items={[
+    { name: 'Home', href: '/' },
+    { name: 'Settings', href: '/settings' },
+    { name: 'Profile', href: '/settings/profile', current: true }
+  ]}
+/>
+```
 
--   **React:** This component is built using React.
--   **Tailwind CSS:** This component will use tailwind CSS classes to handle styles.
+## Prop Table
+| Prop        | Type                | Default | Description                                                      |
+|-------------|---------------------|---------|------------------------------------------------------------------|
+| `items`     | `Array<{ name: string, href: string, current?: boolean }>` | —       | Breadcrumb items (name, href, optional current flag)              |
+| `separator` | `string \| ReactNode`| `'>'`   | Separator character or icon                                      |
+| `className` | `string`            | —       | Custom class for styling                                         |
 
-## Usage Example
+## Accessibility
+- Uses `nav` with `aria-label="Breadcrumb"`
+- Uses `ol`/`li` for semantic structure
+- Last item has `aria-current="page"`
+- Links are keyboard accessible
+- Separator is hidden from screen readers
+
+**Example Accessible Breadcrumb:**
+```jsx
+<nav aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li aria-current="page">Profile</li>
+  </ol>
+</nav>
+```
+
+## Best Practices
+- Use breadcrumbs for deep navigation, not for top-level pages
+- Show the full path from the homepage/root
+- Use clear, concise names for each item
+- Mark the current page with `aria-current="page"`
+- Hide separators from screen readers
+
+## Troubleshooting
+- If links are not working, check the `href` values
+- For accessibility, ensure correct ARIA roles and semantic markup
+- Adjust separator for visual clarity on all backgrounds
+
+## Related Components
+- [Tabs](./tabs.md) — For horizontal navigation
+- [Card](./card.md) — For embedding breadcrumbs in headers
+- [Button](./button.md) — For navigation actions
+- [Tooltip](./tooltip.md) — For extra info on breadcrumb items

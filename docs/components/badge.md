@@ -2,42 +2,80 @@
 
 ## Overview
 
-The Badge component is used to display status information, categories, or tags. It's a small, visually distinct element that can be used to highlight important information or categorize content.
+The `Badge` component is a small, visually distinct element for displaying status, categories, tags, or counts. It supports multiple variants and sizes, is accessible, and fits seamlessly into lists, cards, buttons, and more.
 
 ## Features
-
--   **Variants:** The Badge component supports several variants to convey different meanings or states:
-    -   `primary`: Used for general-purpose badges.
-    -   `secondary`: Used for less important information or alternative categorizations.
-    -   `success`: Used to indicate a positive outcome or successful state.
-    -   `error`: Used to indicate an error or negative outcome.
-    -   `warning`: Used to indicate a warning or potential issue.
-    -   `info`: Used to convey neutral information.
--   **Customizable Text:** The text inside the badge can be customized to represent any category, status, or tag.
--   **Size:** Support for different sizes such as:
-    - small
-    - medium
-    - large
--   **Styling:** The Badge component should be customizable in terms of color, background, and typography to fit the design system's overall aesthetic.
--   **Rounded corners**: The component should be displayed with rounded corners by default.
--   **Accessibility:** The component should be accessible and provide meaningfull information for screen readers
-
-## Dependencies
-
--   **Tailwind CSS:** For styling and theming, Tailwind CSS should be used.
--   **React:** This component is intended for use in React-based projects.
+- **Variants**: `primary`, `secondary`, `success`, `error`, `warning`, `info`
+- **Sizes**: `small`, `medium`, `large`
+- **Custom Content**: Any string or React node as children
+- **Rounded Corners**: Consistent pill/rounded appearance
+- **Accessible**: ARIA roles and labeling support
+- **Themed**: Customizable with Tailwind CSS or your theme
 
 ## Usage
 
-The Badge component can be used in various contexts, including:
+### Basic Badges
+```jsx
+<Badge>Default</Badge>
+<Badge variant="success">Active</Badge>
+<Badge variant="error">Error</Badge>
+<Badge variant="warning" size="large">Warning</Badge>
+<Badge variant="info" size="small">Info</Badge>
+```
 
--   **Status Indicators:** Displaying the status of a task, user, or item (e.g., "Active," "Pending," "Completed").
--   **Categories:** Categorizing content or items (e.g., "New," "Featured," "Trending").
--   **Tags:** Tagging content with keywords (e.g., "React," "JavaScript," "Design").
--   **Notifications**: Displaying the number of unread notifications.
+### Badge as Status Indicator
+```jsx
+<UserAvatar>
+  <Badge variant="success" size="small" aria-label="Online" />
+</UserAvatar>
+```
 
-## API
+### Badge with Count
+```jsx
+<Button>
+  Notifications <Badge variant="primary">4</Badge>
+</Button>
+```
 
-- **variant**: (string):  one of: primary, secondary, success, error, warning, info.
-- **size**: (string): one of: small, medium, large.
-- **children**: string. The text that will be displayed inside the component.
+### Badge with Custom Content
+```jsx
+<Badge variant="secondary"><Icon /> New</Badge>
+```
+
+## Prop Table
+| Prop       | Type        | Default   | Description                                                        |
+|------------|-------------|-----------|--------------------------------------------------------------------|
+| `variant`  | `string`    | `primary` | Visual style: "primary", "secondary", "success", "error", "warning", "info" |
+| `size`     | `string`    | `medium`  | Size: "small", "medium", "large"                                  |
+| `children` | `ReactNode` | —         | Content to display inside the badge                                |
+| `className`| `string`    | —         | Custom class for styling                                           |
+| `aria-label`| `string`   | —         | Accessible label for screen readers                                |
+
+## Accessibility
+- Use `aria-label` for badges that are not self-descriptive (e.g., status dots)
+- Ensure color contrast meets WCAG guidelines
+- Use as a supplement to text, not as the only indicator of state
+- Keyboard and screen reader accessible
+
+**Example Accessible Badge:**
+```jsx
+<Badge variant="success" aria-label="Online" />
+```
+
+## Best Practices
+- Use badges for concise, at-a-glance information (statuses, counts, tags)
+- Pair badges with text or icons for clarity
+- Avoid using only color to convey meaning
+- Use appropriate size for context (small for icons, medium/large for text)
+- Test badge contrast on all backgrounds
+
+## Troubleshooting
+- If badge is not visible, check variant and background contrast
+- For accessibility issues, ensure `aria-label` is set and colors are distinguishable
+- If badge is misaligned, adjust parent layout or use `className` for spacing
+
+## Related Components
+- [Alert](./alert.md) — For larger, actionable feedback
+- [Button](./button.md) — For badges as notification dots
+- [Card](./card.md) — For badges as category or status indicators
+- [Tooltip](./tooltip.md) — For additional info on badge hover

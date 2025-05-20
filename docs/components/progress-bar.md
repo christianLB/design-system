@@ -1,33 +1,74 @@
 # Progress Bar Component
 
-## Description
+## Overview
 
-The Progress Bar component is a visual element used to indicate the progress of a process or task to the user. It provides a clear and intuitive way to show the completion status, improving the user experience by reducing uncertainty and providing feedback during lengthy operations.
+The `ProgressBar` component visually represents the progress of a task or operation. It provides immediate feedback to users on ongoing processes such as uploads, downloads, form completion, or loading states. Supports labels, custom colors, indeterminate states, and accessibility features.
 
 ## Features
-
--   **Visual Representation:** Displays a horizontal bar that fills up to indicate the current progress level.
--   **Numerical Percentage:** Shows a numerical percentage of completion alongside the visual bar.
--   **Dynamic Updates:** The progress can be updated dynamically to reflect changes in the task's completion status.
--   **Customizable:** The component can be styled to fit the design of the application.
-- **Value Range:** Accepts a value between 0 and 100.
-
-## Dependencies
-
--   **None:** This component is designed to be self-contained and does not rely on any external libraries. It only depends on the basic React and TypeScript setup.
+- **Visual Progress**: Horizontal bar fills to indicate completion
+- **Percentage Label**: Optionally displays numeric percentage
+- **Indeterminate State**: Shows animated bar for unknown durations
+- **Customizable**: Colors, height, labels, and styles
+- **Accessible**: ARIA roles, screen reader support, keyboard focus
 
 ## Usage
 
-The Progress Bar component is ideal for use in scenarios such as:
+### Basic Usage
+```jsx
+<ProgressBar value={60} />
+```
 
--   File uploads
--   Data processing tasks
--   Multi-step forms
--   Loading screens
-- Any other operation that requires a long time.
+### With Label
+```jsx
+<ProgressBar value={80} label="Uploading..." />
+```
 
-## Properties
+### Indeterminate State
+```jsx
+<ProgressBar indeterminate />
+```
 
--   **`value`**: (number) - A number between 0 and 100 that represents the percentage of completion. This property is required.
+### Custom Color and Height
+```jsx
+<ProgressBar value={40} color="green" height={8} />
+```
 
-## Example
+## Prop Table
+| Prop           | Type                | Default   | Description                                 |
+|----------------|---------------------|-----------|---------------------------------------------|
+| `value`        | `number`            | —         | Progress percentage (0-100)                 |
+| `label`        | `string`            | —         | Optional label or description               |
+| `indeterminate`| `boolean`           | false     | Show animated bar for unknown progress      |
+| `color`        | `string`            | 'primary' | Bar color (theme or hex)                    |
+| `height`       | `number`            | 4         | Height of the bar in pixels                 |
+| `className`    | `string`            | —         | Custom class for styling                    |
+| `aria-label`   | `string`            | —         | Accessible label for screen readers         |
+
+## Accessibility
+- Uses `role="progressbar"` and `aria-valuenow`, `aria-valuemin`, `aria-valuemax`
+- Label or `aria-label` describes the progress context
+- Indeterminate state uses `aria-busy="true"`
+- Fully keyboard and screen reader accessible
+
+**Example Accessible ProgressBar:**
+```jsx
+<ProgressBar value={70} aria-label="File upload progress" />
+```
+
+## Best Practices
+- Use for long-running or multi-step tasks
+- Provide a label for context
+- Use indeterminate only when duration is unknown
+- Ensure color contrast for accessibility
+- Announce completion with a status message
+
+## Troubleshooting
+- If bar does not update, check `value` prop and re-renders
+- For accessibility, ensure ARIA attributes and labels are present
+- If styling is off, check custom classes and parent container
+
+## Related Components
+- [FileUpload](./fileupload.md) — For upload progress
+- [Button](./button.md) — For actions
+- [Card](./card.md) — For progress in cards
+- [Alert](./alert.md) — For completion or error feedback

@@ -1,29 +1,21 @@
 # Alert Component
 
-## Description
+## Overview
 
-The Alert component is used to display important information to the user. It can be used to communicate various types of messages, such as informational updates, success confirmations, warnings, or error notifications.
+The `Alert` component is used to display important feedback messages to the user. It supports multiple variants (info, success, warning, error) and can include a title, description, actions, and an optional close button. Alerts are accessible, customizable, and suitable for both inline and global notifications.
 
 ## Features
-
--   **Variant:** The Alert component supports different variants to convey the nature of the message:
-    -   `info`: Used for general information or updates.
-    -   `success`: Used to indicate that an operation has been completed successfully.
-    -   `warning`: Used to warn the user about potential issues or important information.
-    -   `error`: Used to indicate that an error has occurred.
--   **Title:** An optional title to provide context to the message.
--   **Content:** The main content of the alert, which can include text, links, or other elements. This is passed as `children` to the component.
--   **Closeable:** An optional close button to dismiss the alert.
-
-## Dependencies
-
--   None. The Alert component is designed to be self-contained and does not rely on any external libraries or components.
+- **Variants**: `info`, `success`, `warning`, `error` for different message types
+- **Title & Description**: Optional title and rich content
+- **Closeable**: Optional close button for dismissible alerts
+- **Custom Actions**: Support for buttons/links inside the alert
+- **Accessible**: Uses ARIA roles and keyboard navigation
+- **Themed**: Supports custom styles and theming
 
 ## Usage
 
-The Alert component is highly customizable through its props:
-```
-jsx
+### Basic Alerts
+```jsx
 <Alert variant="info" title="Did you know?">
   This is an informational alert.
 </Alert>
@@ -40,10 +32,59 @@ jsx
   Something went wrong. Please try again.
 </Alert>
 ```
-## Props
 
-| Prop       | Type     | Description                                                       |
-| ---------- | -------- | ----------------------------------------------------------------- |
-| variant    | string   | The type of alert: "info", "success", "warning", or "error".      |
-| title      | string   | The title of the alert.                                           |
-| children   | ReactNode | The content to be displayed inside the alert.                     |
+### Dismissible Alert
+```jsx
+<Alert variant="info" title="Heads up!" onClose={() => setShow(false)}>
+  This alert can be dismissed by the user.
+</Alert>
+```
+
+### Alert with Actions
+```jsx
+<Alert variant="success" title="Saved!">
+  <p>Your changes have been saved.</p>
+  <Button variant="link" size="sm">Undo</Button>
+</Alert>
+```
+
+## Prop Table
+| Prop       | Type        | Default | Description                                                        |
+|------------|-------------|---------|--------------------------------------------------------------------|
+| `variant`  | `string`    | `info`  | The type of alert: "info", "success", "warning", or "error"        |
+| `title`    | `string`    | —       | The title of the alert                                             |
+| `children` | `ReactNode` | —       | The content to be displayed inside the alert                       |
+| `onClose`  | `() => void`| —       | Callback fired when the close button is clicked (if present)       |
+| `closeLabel`| `string`   | `"Close"`| Accessible label for the close button                              |
+
+## Accessibility
+- Uses `role="alert"` for assertive announcements
+- Title is rendered as a heading for screen readers
+- Close button is keyboard accessible and labeled
+- Supports ARIA attributes for custom actions inside alerts
+
+**Example Accessible Alert:**
+```jsx
+<Alert role="alert" title="Error!" closeLabel="Dismiss alert">
+  Something went wrong.
+</Alert>
+```
+
+## Best Practices
+- Use alerts for important, actionable, or time-sensitive messages
+- Prefer concise, clear language in titles and descriptions
+- Place alerts near related content or at the top of the page
+- Use the correct variant for the message type
+- Make dismissible only when appropriate
+- Ensure all actions are accessible by keyboard
+
+## Troubleshooting
+- If the alert does not appear, check the `variant` and `title` props
+- If the close button does not work, ensure `onClose` is provided
+- For accessibility issues, check ARIA roles and close button labeling
+
+## Related Components
+- [Badge](./badge.md) — For status indicators
+- [Dialog](./dialog.md) — For modal feedback
+- [Tooltip](./tooltip.md) — For contextual hints
+- [Button](./button.md) — For alert actions

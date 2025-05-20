@@ -1,88 +1,98 @@
 # Radio Group Component
 
-## Description
+## Overview
 
-The Radio Group component is used to allow a user to select only one option from a predefined set of choices. This component is ideal for scenarios where a single selection is required, such as choosing a preference or answering a multiple-choice question.
+The `Radio Group` component lets users select one option from a set. It supports custom labels, keyboard navigation, accessibility, and theming. Ideal for forms, surveys, and settings.
 
 ## Features
-
--   **Single Selection:** Enforces that only one option can be selected at any time.
--   **Configurable Options:** Accepts an array of objects, where each object represents an option with a `value` and a `label`.
--   **Label Display:** Displays the `label` for each option, providing clear text for user understanding.
--   **Internal State:** Manages the currently selected `value` internally.
--   **Event Emission:** Emits an event whenever a new option is selected, allowing for external handling of the selection change.
--   **Clear Indication:** Visually highlights the selected option for easy identification.
--   **Accessibility:** Supports keyboard navigation and screen readers, ensuring accessibility compliance.
-
-## Dependencies
-
--   **React:** The component is built using React, so it requires React to be installed and available in the project.
--   **TailwindCSS**: The component uses Tailwind classes for styling.
--   **Typescript:** The component is written in typescript.
-
-## Props
-
--   **options** (`Array<{ value: string | number; label: string }>`): An array of objects, each defining an option with a `value` (which can be a string or number) and a `label` (a string) to display to the user.
--   **onChange** (`(value: string | number) => void`): A callback function that is triggered when a new option is selected. It receives the `value` of the selected option as an argument.
+- **Single Selection**: Only one option can be selected
+- **Configurable Options**: Array of `{ value, label }` objects
+- **Custom Labels**: Supports text, icons, or complex nodes
+- **Keyboard Navigation**: Arrow keys move selection
+- **Accessible**: ARIA roles, screen reader support
+- **Customizable**: Theming and custom classes
 
 ## Usage
 
-The component is straightforward to use. Provide an array of options and a callback for handling changes.
-```
-jsx
+### Basic Usage
+```jsx
 <RadioGroup
   options={[
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' },
+    { value: 'a', label: 'Option A' },
+    { value: 'b', label: 'Option B' },
+    { value: 'c', label: 'Option C' }
   ]}
-  onChange={(value) => console.log('Selected value:', value)}
+  onChange={value => setValue(value)}
 />
 ```
-## Example
+
+### Controlled Radio Group
+```jsx
+const [selected, setSelected] = useState('a');
+<RadioGroup
+  options={options}
+  value={selected}
+  onChange={setSelected}
+/>
 ```
-typescript
-import React, { useState } from 'react';
 
-interface Option {
-  value: string | number;
-  label: string;
-}
-
-interface RadioGroupProps {
-  options: Option[];
-  onChange: (value: string | number) => void;
-}
-
-const RadioGroup: React.FC<RadioGroupProps> = ({ options, onChange }) => {
-  const [selectedValue, setSelectedValue] = useState<string | number | null>(null);
-
-  const handleChange = (value: string | number) => {
-    setSelectedValue(value);
-    onChange(value);
-  };
-
-  return (
-    <div className="space-y-2">
-      {options.map((option) => (
-        <label key={option.value} className="inline-flex items-center cursor-pointer">
-          <input
-            type="radio"
-            className="form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
-            value={option.value}
-            checked={selectedValue === option.value}
-            onChange={() => handleChange(option.value)}
-          />
-          <span className="ml-2 text-gray-700">{option.label}</span>
-        </label>
-      ))}
-    </div>
-  );
-};
-
-export default RadioGroup;
+### Custom Label Content
+```jsx
+<RadioGroup
+  options={[
+    { value: 'dog', label: <><DogIcon /> Dog</> },
+    { value: 'cat', label: <><CatIcon /> Cat</> }
+  ]}
+  onChange={setValue}
+/>
 ```
-## Considerations
 
--   The `value` prop should be unique for each option to ensure proper identification and selection.
--   The `onChange` callback is essential for handling changes in the selected option. Make sure to implement it to react to user selections.
+## Prop Table
+| Prop        | Type                                               | Default | Description                                 |
+|-------------|----------------------------------------------------|---------|---------------------------------------------|
+| `options`   | `Array<{ value: string \| number, label: ReactNode }>` | —       | Array of options                            |
+| `onChange`  | `(value: string \| number) => void`                | —       | Callback when selection changes             |
+| `value`     | `string \| number`                                 | —       | Controlled selected value                   |
+| `defaultValue`| `string \| number`                               | —       | Uncontrolled initial value                  |
+| `name`      | `string`                                           | —       | Name for grouping radios (HTML name attr)   |
+| `className` | `string`                                           | —       | Custom class for styling                    |
+| `disabled`  | `boolean`                                          | false   | Disables all radio options                  |
+| `aria-label`| `string`                                           | —       | ARIA label for accessibility                |
+
+## Accessibility
+- Uses `role="radiogroup"` and `role="radio"` for items
+- Keyboard navigation: arrow keys to move, space/enter to select
+- Each radio is focusable and labeled
+- Use `aria-checked`, `aria-label`, and `aria-labelledby` as needed
+
+**Example Accessible Radio Group:**
+```jsx
+<fieldset>
+  <legend>Choose a fruit</legend>
+  <RadioGroup
+    options={[
+      { value: 'apple', label: 'Apple' },
+      { value: 'banana', label: 'Banana' }
+    ]}
+    aria-label="Fruit selection"
+  />
+</fieldset>
+```
+
+## Best Practices
+- Use for mutually exclusive choices
+- Always provide clear labels
+- Group related radios in a `fieldset` with a `legend`
+- Use controlled mode for form validation
+- Ensure visible and accessible focus state
+
+## Troubleshooting
+- If radios are not selectable, check `value`/`onChange` props
+- For accessibility, ensure ARIA roles and labels are present
+- Check that each option's value is unique
+
+## Related Components
+- [Switch](./switch.md) — For binary on/off
+- [Tabs](./tabs.md) — For switching between views
+- [Select](./select.md) — For dropdown single selection
+- [Form](./form.md) — For grouping input fields

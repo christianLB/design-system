@@ -1,54 +1,77 @@
 # Carousel Component
 
-## Description
+## Overview
 
-The Carousel component is designed to display a collection of items in a rotating or sliding manner. It is versatile and can showcase various types of content, such as images, cards, or custom elements. The Carousel provides navigation controls, allowing users to interact with the content easily.
+The `Carousel` component displays a collection of items in a rotating or sliding view. It supports images, cards, or custom elements, with navigation controls, autoplay, and full accessibility support.
 
 ## Features
-
-*   **Item Display:**
-    *   Displays an array of elements.
-    *   Supports various content types (images, text, custom elements).
-*   **Multiple Item Display:**
-    *   Configurable to show multiple items simultaneously.
-    *   Responsive design to adjust the number of items shown based on screen size.
-*   **Navigation Controls:**
-    *   Includes "previous" and "next" buttons for manual navigation.
-    *   Provides navigation dots to jump to specific items.
-*   **Automatic Rotation (Optional):**
-    *   Optionally rotates items automatically.
-    *   Configurable rotation speed.
-    *   Pause on hover functionality.
-*   **Responsiveness:**
-    *   Adapts to different screen sizes and resolutions.
-* **Customization:**
-    *   Custom styles can be applied.
-
-## Dependencies
-
-*   **React:** The component is built using React and relies on its core functionalities.
-*   **CSS/Tailwind:** Styling will be managed through CSS classes, preferably using Tailwind for utility-first styling.
-*   **State Management:** Internal state management to handle active item and navigation.
-
-## Props
-
-*   **`items` (Array):**
-    *   An array of elements to be displayed in the carousel.
-    *   Each element can be a React node.
-*   **`itemsToShow` (Number):**
-    *   The number of items to display at the same time.
-    *   Default value can be 1.
-*   **`autoPlay` (Boolean, Optional):**
-    *   Enables or disables automatic rotation.
-    *   Default value: `false`.
-*   **`interval` (Number, Optional):**
-    *   The time interval (in milliseconds) between automatic rotations.
-    *   Default value can be `3000` (3 seconds).
-* **`showDots` (Boolean, Optional):**
-    * Enables or disables the display of the dots.
-    * Default value: true
-* **`showButtons` (Boolean, Optional):**
-    * Enables or disables the display of the navigation buttons.
-    * Default value: true
+- **Item Display**: Shows one or more items at a time
+- **Navigation Controls**: Previous/next buttons and navigation dots
+- **Autoplay**: Optional automatic rotation with configurable interval
+- **Responsive**: Adjusts number of visible items based on screen size
+- **Customizable**: Theming, custom classes, and custom content
+- **Accessible**: Keyboard navigation, ARIA roles, and screen reader support
 
 ## Usage
+
+### Basic Carousel
+```jsx
+<Carousel items={[<img src="1.jpg" />, <img src="2.jpg" />, <img src="3.jpg" />]} />
+```
+
+### Multiple Items
+```jsx
+<Carousel items={cards} itemsToShow={3} />
+```
+
+### Autoplay with Custom Interval
+```jsx
+<Carousel items={slides} autoPlay interval={5000} />
+```
+
+### Hide Dots/Buttons
+```jsx
+<Carousel items={slides} showDots={false} showButtons={false} />
+```
+
+## Prop Table
+| Prop         | Type           | Default | Description                                      |
+|--------------|----------------|---------|--------------------------------------------------|
+| `items`      | `ReactNode[]`  | —       | Array of elements to display                      |
+| `itemsToShow`| `number`       | 1       | Number of items visible at once                   |
+| `autoPlay`   | `boolean`      | false   | Enable automatic rotation                         |
+| `interval`   | `number`       | 3000    | Interval (ms) for autoplay                        |
+| `showDots`   | `boolean`      | true    | Show navigation dots                              |
+| `showButtons`| `boolean`      | true    | Show previous/next navigation buttons             |
+| `className`  | `string`       | —       | Custom class for styling                          |
+| `aria-label` | `string`       | —       | Accessible label for screen readers               |
+
+## Accessibility
+- Uses `region` or `listbox` ARIA roles
+- Navigation buttons and dots are keyboard accessible
+- Each slide has `aria-roledescription="slide"`
+- Supports screen readers with `aria-label` and focus management
+- Pause on hover for autoplay
+
+**Example Accessible Carousel:**
+```jsx
+<Carousel aria-label="Featured Products" />
+```
+
+## Best Practices
+- Use for showcasing images, cards, or featured content
+- Limit autoplay speed for readability
+- Always provide keyboard navigation
+- Use descriptive `aria-label` for screen readers
+- Test on all device sizes
+
+## Troubleshooting
+- If slides do not rotate, check `autoPlay` and `interval`
+- For accessibility, ensure ARIA roles and labels are present
+- If navigation is broken, check `showButtons` and event handlers
+
+## Related Components
+- [Tabs](./tabs.md) — For switching between views
+- [Card](./card.md) — For carousel card content
+- [Button](./button.md) — For navigation controls
+- [Tooltip](./tooltip.md) — For slide descriptions
