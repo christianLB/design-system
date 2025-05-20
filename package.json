@@ -15,13 +15,14 @@
     "components",
     "ui"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/design-system.cjs.js",
+  "module": "dist/design-system.es.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist",
     "components",
     "lib",
+    "index.js",
     "*.d.ts",
     "!**/*.test.*",
     "!**/*.stories.*",
