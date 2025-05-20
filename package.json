@@ -33,7 +33,7 @@
     "dev": "vite",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "cross-env NODE_ENV=production tsc && vite build",
+    "build": "cross-env NODE_ENV=production tsc && vite build && node scripts/prepare-components.js",
     "build:types": "tsc --emitDeclarationOnly",
     "prepublishOnly": "npm run build",
     "preview": "vite preview --port 4173",
