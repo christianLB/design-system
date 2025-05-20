@@ -2,6 +2,8 @@ import { defineConfig, loadEnv, type UserConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
@@ -19,12 +21,17 @@ export default defineConfig(({ mode, command }) => {
     plugins: [
       react({
         // React plugin options (fastRefresh is enabled by default)
+        jsxImportSource: '@emotion/react',
+        babel: {
+          plugins: ['@emotion/babel-plugin'],
+        },
       }),
     ],
     resolve: {
       alias: [
         { find: '@components', replacement: path.resolve(__dirname, './components') },
         { find: '@lib', replacement: path.resolve(__dirname, './lib') },
+        { find: '@hooks', replacement: path.resolve(__dirname, './hooks') },
       ],
     },
     css: {
@@ -33,8 +40,8 @@ export default defineConfig(({ mode, command }) => {
       },
       postcss: {
         plugins: [
-          require('tailwindcss'),
-          require('autoprefixer'),
+          tailwindcss,
+          autoprefixer,
         ],
       },
     },
@@ -42,7 +49,6 @@ export default defineConfig(({ mode, command }) => {
     define: {
       'process.env': {},
       'process.env.NODE_ENV': JSON.stringify(mode || 'development'),
-
     },
   };
   
@@ -69,30 +75,44 @@ export default defineConfig(({ mode, command }) => {
       outDir: 'dist',
       emptyOutDir: true,
       lib: {
-        entry: path.resolve(__dirname, './components/index.ts'),
+        entry: path.resolve(__dirname, 'src/index.ts'),
         name: 'DesignSystem',
         formats: ['es', 'cjs'],
         fileName: (format) => `design-system.${format}.js`,
       },
-      sourcemap: !!process.env.SOURCE_MAP,
-      minify: 'esbuild',
-      chunkSizeWarningLimit: 1000,
+      sourcemap: true,
+      minify: false, // Keep false for better debugging
+      chunkSizeWarningLimit: 2000,
       rollupOptions: {
         external: [
           'react',
           'react-dom',
           'react-dom/client',
           'react/jsx-runtime',
+          '@radix-ui/react-slot',
+          'class-variance-authority',
+          'tailwind-merge',
         ],
+        output: {
+          globals: {
+            react: 'React',
+            'react-dom': 'ReactDOM',
+            'react-dom/client': 'ReactDOMClient',
+            'react/jsx-runtime': 'jsxRuntime',
+          },
+          preserveModules: true,
+          exports: 'named',
+        },
       },
-      cssCodeSplit: true,
-      target: 'esnext',
+      cssCodeSplit: false, // Set to false to ensure CSS is included in the bundle
+      target: 'es2020',
       commonjsOptions: {
         transformMixedEsModules: true,
+        esmExternals: true,
       },
       modulePreload: {
         polyfill: false,
-      },
+      }
     };
   }
   

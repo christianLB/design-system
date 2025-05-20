@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "es2020",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
@@ -27,18 +27,22 @@
     "noEmit": false,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
-    "types": []
+    "types": [],
+    "composite": true,
+    "incremental": true,
+    "jsxImportSource": "@emotion/react"
   },
   "include": [
     "src/**/*",
     "components/**/*.tsx",
     "components/**/*.ts",
     "lib/**/*.ts",
-    "stories/**/*.tsx",
-    "stories/**/*.ts",
+    "hooks/**/*.ts",
+    "docs/**/*.ts",
+    "docs/**/*.tsx",
+    "scripts/**/*.ts",
     "*.ts",
-    "*.tsx",
-
+    "*.tsx"
   ],
   "exclude": [
     "node_modules",
