@@ -1,18 +1,36 @@
-import React from 'react';
+import * as React from 'react';
 
 interface PaginationProps {
+  /** Total number of items */
   totalItems: number;
+  /** Number of items per page */
   itemsPerPage: number;
+  /** Current active page */
   currentPage: number;
+  /** Callback when page changes */
   onPageChange: (page: number) => void;
+  /** Additional CSS classes */
+  className?: string;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
+/**
+ * A pagination component that allows navigation between pages of content.
+ * @component
+ * @example
+ * <Pination 
+ *   totalItems={100}
+ *   itemsPerPage={10}
+ *   currentPage={1}
+ *   onPageChange={(page) => console.log(page)}
+ * />
+ */
+function Pagination({
   totalItems,
   itemsPerPage,
   currentPage,
   onPageChange,
-}) => {
+  className = '',
+}: PaginationProps) {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   if (totalPages <= 1) {
@@ -68,4 +86,7 @@ const Pagination: React.FC<PaginationProps> = ({
   );
 };
 
-export default Pagination;
+Pagination.displayName = 'Pagination';
+
+export { Pagination };
+export type { PaginationProps };

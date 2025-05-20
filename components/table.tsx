@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -10,55 +10,90 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
+  RowSelectionState,
+  RowModel,
+  Table as TableType,
+} from '@tanstack/react-table';
 
-import { cn } from "../utils"
-import { Checkbox } from "./Checkbox"
-import { Input } from "./Input"
-import Pagination  from "./Pagination"
-import Badge  from "./Badge"
+import { cn } from '../utils';
+import { Checkbox } from './Checkbox';
+import { Input } from './Input';
+import { Pagination } from './Pagination';
+import { Badge } from './Badge';
 
-export type TableProps<TData, TMeta = unknown> = {
+interface TableProps<TData, TMeta = unknown> {
+  /**
+   * Array of data to be displayed in the table
+   */
   data: TData[];
+  /**
+   * Column definitions for the table
+   */
   columns: ColumnDef<TData, any>[];
+  /**
+   * Message to display when no data is available
+   * @default "No data found."
+   */
   emptyMessage?: React.ReactNode;
+  /**
+   * Initial sorting state
+   * @default []
+   */
   defaultSortBy?: SortingState;
+  /**
+   * Callback when row selection changes
+   */
   onSelectionChange?: (selection: TData[]) => void;
+  /**
+   * Additional CSS classes
+   */
   className?: string;
+  /**
+   * Additional metadata to pass to the table
+   */
   meta?: TMeta;
-};
+}
 
 /**
- * Componente Table.
+ * A customizable table component with sorting, filtering, and pagination.
  * @component
  * @example
- * import { Table } from "@/components/Table"
- *
- * function App() {
- *   return <Table />
- * }
+ * const columns = [
+ *   {
+ *     accessorKey: 'name',
+ *     header: 'Name',
+ *   },
+ *   // ... more column definitions
+ * ];
+ * 
+ * const data = [
+ *   { id: 1, name: 'John Doe' },
+ *   // ... more data
+ * ];
+ * 
+ * <Table 
+ *   columns={columns} 
+ *   data={data} 
+ *   emptyMessage="No records found"
+ * />
  */
-export function Table<TData, TMeta = unknown>(props: TableProps<TData, TMeta>) {
-  const {
-    data,
-    columns,
-    emptyMessage = "No data found.",
-    defaultSortBy = [],
-    onSelectionChange,
-    className,
-    meta,
-  } = props;
+function Table<TData, TMeta = unknown>({
+  data,
+  columns,
+  emptyMessage = 'No data found.',
+  defaultSortBy = [],
+  onSelectionChange,
+  className,
+  meta,
+}: TableProps<TData, TMeta>) {
+  const [sorting, setSorting] = React.useState<SortingState>(defaultSortBy);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [currentPage, setCurrentPage] = React.useState(0);
+  const [pageSize, setPageSize] = React.useState(10);
 
-  const [sorting, setSorting] = React.useState<SortingState>(defaultSortBy)
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  )
-  const [rowSelection, setRowSelection] = React.useState({})
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
-  const [currentPage, setCurrentPage] = React.useState(0)
-  const [pageSize, setPageSize] = React.useState(10)
-
+  // Create the table instance
   const table = useReactTable<TData>({
     data,
     columns,
@@ -80,85 +115,114 @@ export function Table<TData, TMeta = unknown>(props: TableProps<TData, TMeta>) {
     manualPagination: false,
     debugTable: false,
     meta: meta as any,
-  })
+  });
 
+  // Handle selection changes
   React.useEffect(() => {
-    const selectedData = table
-      .getSelectedRowModel()
-      .rows.map((row) => row.original)
-    onSelectionChange?.(selectedData)
-  }, [rowSelection])
+    if (onSelectionChange) {
+      const selectedData = table
+        .getSelectedRowModel()
+        .rows.map((row) => row.original);
+      onSelectionChange(selectedData);
+    }
+  }, [rowSelection, table, onSelectionChange]);
 
-  const onPageChange = (page: number) => {
+  const handlePageChange = React.useCallback((page: number) => {
     setCurrentPage(page - 1);
-  }
+  }, []);
 
-  const pageCount = Math.ceil(table.getCoreRowModel().rows.length / pageSize);
+  const pageCount = React.useMemo(
+    () => Math.ceil(table.getCoreRowModel().rows.length / pageSize),
+    [table, pageSize]
+  );
 
 
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn('space-y-4', className)}>
       <div className="rounded-md border">
         <div className="relative w-full overflow-auto">
           <table className="w-full text-sm caption-bottom">
             <thead className="[&_tr]:border-b">
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => {
-                    return (
-                      <th
-                        key={header.id}
-                        className={cn(
-                          "text-muted-foreground h-10 px-2  align-middle font-semibold text-left whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
-                          header.column.getCanSort() && "cursor-pointer"
-                        )}
-                        onClick={header.column.getToggleSortingHandler()}
-                      >
-                        {header.isPlaceholder ? null : (
-                          <div>
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                            {{
-                              asc: " ▲",
-                              desc: " ▼",
-                            }[header.column.getIsSorted() as string] ?? null}
-                          </div>
-                        )}
-                      </th>
-                    )
-                  })}
+                  {headerGroup.headers.map((header) => (
+                    <th
+                      key={header.id}
+                      className={cn(
+                        'text-muted-foreground h-10 px-2 align-middle font-semibold text-left whitespace-nowrap',
+                        '[&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
+                        header.column.getCanSort() && 'cursor-pointer hover:text-foreground',
+                      )}
+                      onClick={header.column.getToggleSortingHandler()}
+                    >
+                      {header.isPlaceholder ? null : (
+                        <div className="flex items-center gap-2">
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                          {header.column.getCanSort() && (
+                            <span className="text-muted-foreground">
+                              {{
+                                asc: '↑',
+                                desc: '↓',
+                              }[header.column.getIsSorted() as string] ?? '↕'}
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </th>
+                  ))}
                 </tr>
               ))}
             </thead>
-            <tbody>            
+            <tbody>
               {table.getPaginationRowModel().rows.length === 0 ? (
-                <tr><td className="p-4 text-center" colSpan={table.getAllColumns().length}>{emptyMessage}</td></tr>                
-              ) : (table.getPaginationRowModel().rows.map((row) => (
-                <tr key={row.id} className="hover:bg-muted/50  border-b transition-colors p-4">
-                  {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="p-4 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>                    
-                  ))}
+                <tr>
+                  <td 
+                    className="p-4 text-center text-muted-foreground" 
+                    colSpan={table.getAllColumns().length}
+                  >
+                    {emptyMessage}
+                  </td>
                 </tr>
-              )))}
-               {table.getPaginationRowModel().rows.length === 0 && table.getCoreRowModel().rows.length > 0 && (
-                  <tr >
-                  {table.getCoreRowModel().rows[0].getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="p-4 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                    
-                    </td>
-                  ))}
-                </tr>)}
+              ) : (
+                table.getPaginationRowModel().rows.map((row) => (
+                  <tr 
+                    key={row.id} 
+                    className="hover:bg-muted/50 border-b transition-colors"
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <td 
+                        key={cell.id} 
+                        className="p-4 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                      >
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
-        <div className="flex justify-end px-2 py-4">
-          <Pagination totalItems={table.getCoreRowModel().rows.length} currentPage={currentPage + 1} itemsPerPage={pageSize} onPageChange={onPageChange} />
-        </div>
+        {pageCount > 1 && (
+          <div className="flex items-center justify-end px-4 py-3 border-t">
+            <Pagination 
+              totalItems={table.getFilteredRowModel().rows.length}
+              currentPage={currentPage + 1}
+              itemsPerPage={pageSize}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        )}
       </div>
     </div>
-  )
+  );
 }
+
+Table.displayName = 'Table';
+
+;
+export type { TableProps };
+export { Table };
