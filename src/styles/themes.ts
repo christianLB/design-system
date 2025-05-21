@@ -1,4 +1,30 @@
-export const lightTheme = {
+export interface Theme {
+  base: string;
+  brandTitle: string;
+  brandUrl: string;
+  brandImage: string | null;
+  brandTarget: string;
+  colorPrimary: string;
+  colorSecondary: string;
+  appBg: string;
+  appContentBg: string;
+  appBorderColor: string;
+  appBorderRadius: number;
+  fontBase: string;
+  fontCode: string;
+  textColor: string;
+  textInverseColor: string;
+  textMutedColor: string;
+  barTextColor: string;
+  barSelectedColor: string;
+  barBg: string;
+  inputBg: string;
+  inputBorder: string;
+  inputTextColor: string;
+  inputBorderRadius: number;
+}
+
+export const lightTheme: Theme = {
   base: 'light',
   brandTitle: 'Design System',
   brandUrl: 'https://your-design-system.com',
@@ -36,7 +62,7 @@ export const lightTheme = {
   inputBorderRadius: 4,
 };
 
-export const darkTheme = {
+export const darkTheme: Theme = {
   ...lightTheme,
   base: 'dark',
   appBg: '#0f172a',

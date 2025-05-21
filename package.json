@@ -1,189 +1,59 @@
 {
   "name": "@k2600x/design-system",
-  "version": "1.4.3",
+  "version": "1.4.8",
+  "description": "A reusable design system built with React and TypeScript.",
   "author": "k2600x <k2600x@gmail.com>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/k2600x/design-system.git"
-  },
-  "description": "A reusable design system built with React and Tailwind CSS",
-  "keywords": [
-    "design-system",
-    "react",
-    "tailwind",
-    "components",
-    "ui"
-  ],
-  "type": "module",
-  "main": "./dist/cjs/index.cjs",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/types/index.d.ts",
-  "sideEffects": false,
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "types": "./dist/types/index.d.ts"
-    },
-    "./*": {
-      "import": "./dist/esm/*.js",
-      "require": "./dist/cjs/*.cjs",
-      "types": "./dist/types/*.d.ts"
-    },
-    "./components/*": {
-      "import": "./dist/esm/components/*/index.js",
-      "require": "./dist/cjs/components/*/index.cjs",
-      "types": "./dist/types/components/*/index.d.ts"
     }
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
-    "prepack": "npm run build",
     "dev": "vite",
-    "clean": "rimraf dist",
-    "prebuild": "npm run clean && npm run type-check",
-    "build": "npm run clean && tsc && vite build",
-    "build:analyze": "vite build --mode analyze",
+    "build": "tsc --project tsconfig.build.json && vite build",
     "type-check": "tsc --noEmit",
-    "preview": "vite preview",
-    "test": "vitest",
-    "test:watch": "vitest watch",
-    "test:coverage": "vitest run --coverage",
-    "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
-    "check": "npm run lint && npm run type-check",
-    "generate-docs": "node generate-docs.js",
-    "enhance-docs": "node scripts/add-jsdoc.js",
-    "migrate-components": "node scripts/migrate-components.js",
-    "generate-doc-declarations": "node scripts/generate-doc-declarations.js",
-    "copy-docs": "node scripts/copy-docs.js",
-    "migrate-tokens": "node scripts/migrate-to-tokens.js",
-    "migrate-tailwind-config": "node scripts/migrate-tailwind-config.js",
-    "validate-tokens": "node scripts/validate-tokens.js",
-    "update-imports": "node scripts/update-imports.js",
-    "generate-token-docs": "node scripts/generate-token-docs.js"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.11.0",
-    "@emotion/styled": "^11.11.0",
-    "@radix-ui/react-checkbox": "^1.2.3",
-    "@radix-ui/react-dialog": "^1.1.11",
-    "@radix-ui/react-popover": "^1.1.11",
-    "@radix-ui/react-select": "^2.2.2",
-    "@radix-ui/react-slot": "^1.0.2",
-    "@radix-ui/react-switch": "^1.2.2",
-    "@radix-ui/react-tabs": "^1.1.9",
-    "@tanstack/react-table": "^8.21.3",
-    "class-variance-authority": "^0.7.0",
-    "lucide-react": "^0.503.0",
-    "react": "^18.0.0 || ^17.0.0",
-    "react-dom": "^18.0.0 || ^17.0.0",
-    "react-select": "^5.10.1",
-    "tailwind-merge": "^1.14.0",
-    "tailwindcss": "^3.3.0",
-    "zustand": "^5.0.3"
+    "clean": "rimraf dist"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.11.0",
-    "@emotion/styled": "^11.11.0",
-    "@radix-ui/react-slot": "^1.0.2",
-    "class-variance-authority": "^0.7.0",
-    "react": "^18.0.0 || ^17.0.0",
-    "react-dom": "^18.0.0 || ^17.0.0",
-    "tailwind-merge": "^1.14.0",
-    "tailwindcss": "^3.3.0"
-  },
-  "peerDependenciesMeta": {
-    "@emotion/react": {
-      "optional": true
-    },
-    "@emotion/styled": {
-      "optional": true
-    },
-    "@radix-ui/react-slot": {
-      "optional": true
-    },
-    "class-variance-authority": {
-      "optional": true
-    },
-    "tailwind-merge": {
-      "optional": true
-    },
-    "tailwindcss": {
-      "optional": true
-    }
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.10",
-    "@babel/plugin-transform-runtime": "^7.22.10",
-    "@babel/preset-env": "^7.22.10",
-    "@babel/preset-react": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.5",
-    "@emotion/babel-plugin": "^11.11.0",
-    "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-commonjs": "^25.0.3",
-    "@rollup/plugin-node-resolve": "^15.1.0",
-    "@rollup/plugin-terser": "^0.4.3",
-    "@rollup/plugin-typescript": "^11.1.2",
-    "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.5.1",
-    "@types/jest": "^29.5.3",
-    "@types/node": "^20.4.5",
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.6",
-    "@typescript-eslint/eslint-plugin": "^6.2.1",
-    "@typescript-eslint/parser": "^6.2.1",
-    "@vitejs/plugin-react": "^4.0.4",
-    "autoprefixer": "^10.4.15",
-    "babel-jest": "^29.6.2",
-    "babel-plugin-macros": "^3.1.0",
-    "esbuild": "^0.18.20",
-    "eslint": "^8.46.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-import": "^2.28.0",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "eslint-plugin-unused-imports": "^2.0.0",
-    "fs-extra": "^11.1.1",
-    "glob": "^10.3.3",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^29.6.2",
-    "jest-environment-jsdom": "^29.6.2",
-    "postcss": "^8.4.27",
-    "postcss-import": "^15.1.0",
-    "postcss-nesting": "^12.0.2",
-    "prettier": "^3.0.0",
-    "prettier-plugin-tailwindcss": "^0.5.1",
+    "@types/node": "^22.15.19",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
     "rimraf": "^5.0.1",
-    "rollup": "^3.26.2",
-    "rollup-plugin-dts": "^6.0.1",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.34.1",
-    "rollup-plugin-visualizer": "^5.14.0",
-    "tailwindcss-animate": "^1.0.7",
-    "ts-jest": "^29.1.1",
-    "ts-node": "^10.9.1",
-    "tsx": "^3.12.7",
+    "tailwindcss": "^4.1.7",
     "typescript": "^5.1.6",
-    "vite": "^4.4.9",
-    "vite-tsconfig-paths": "^4.1.0",
-    "vitest": "^0.34.1"
+    "vite": "^4.4.9"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
+  "dependencies": {
+    "@radix-ui/react-checkbox": "^1.3.2",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-popover": "^1.1.14",
+    "@radix-ui/react-select": "^2.2.5",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-switch": "^1.2.5",
+    "@radix-ui/react-tabs": "^1.1.12",
+    "@tanstack/react-table": "^8.21.3",
+    "@types/react-select": "^5.0.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.511.0",
+    "react-select": "^5.10.1",
+    "tailwind-merge": "^3.3.0",
+    "zustand": "^5.0.4"
   }
 }
