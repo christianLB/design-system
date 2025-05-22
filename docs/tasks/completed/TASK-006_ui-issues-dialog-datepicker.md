@@ -3,6 +3,13 @@
 ## Description
 Address UI issues in the Dialog and DatePicker components that are currently not functioning as expected. This task involves investigating, documenting, and fixing the identified issues to ensure these components meet the design system's quality standards.
 
+### Key Achievements / Foundational Fixes (as of 2025-05-22)
+- **Upgraded to Tailwind CSS v4.x**: Successfully migrated the project to use Tailwind CSS v4.x, leveraging the new `@tailwindcss/vite` plugin for optimized integration with the Vite build system.
+- **Adopted CSS-First Theming**: Implemented Tailwind CSS v4's CSS-first configuration approach. All design tokens (colors, fonts, shadows, radii, etc.) are now defined directly within a `@theme` block in `src/styles/index.css`.
+- **Consolidated Styles**: The content of the previous `src/styles/tokens.css` has been merged into `src/styles/index.css`. The `tailwind.config.js` has been simplified by removing theme extensions for colors and fonts, as these are now sourced from the CSS variables defined in `@theme`.
+- **Functional Theming System**: The core theming system, including light and dark mode support, is now fully functional. Tailwind CSS correctly generates utility classes based on the custom theme, and these styles are successfully applied in consuming applications (verified with `design-system-showcase`).
+- **Unblocked Component Styling**: This foundational fix resolves underlying issues with style generation and application, unblocking further work on component-specific UI styling, theming, and bug fixes outlined in this task.
+
 ## Current Issues
 
 ### Dialog Component
@@ -252,7 +259,7 @@ Address UI issues in the Dialog and DatePicker components that are currently not
 - Any related styles or utilities
 
 ## Dependencies
-- Design system theming system
+- Design system theming system (now based on Tailwind CSS v4 CSS-first configuration with `@theme` in `src/styles/index.css`)
 - Any third-party libraries used by these components
 
 ## Notes
