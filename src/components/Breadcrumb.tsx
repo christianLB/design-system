@@ -5,11 +5,11 @@ export interface BreadcrumbItem {
   href: string;
 }
 
-interface BreadcrumbProps {
+export interface BreadcrumbProps {
   items: BreadcrumbItem[];
 }
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
+export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
   return (
     <nav aria-label="Breadcrumb">
       <ol className="flex items-center space-x-2">
@@ -27,5 +27,3 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
     </nav>
   );
 };
-
-export { Breadcrumb as default };

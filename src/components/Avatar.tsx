@@ -1,13 +1,13 @@
 import React from 'react';
 
-interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
   alt?: string;
   size?: 'small' | 'medium' | 'large';
   shape?: 'circle' | 'square';
 }
 
-const Avatar: React.FC<AvatarProps> = ({
+export const Avatar: React.FC<AvatarProps> = ({
   src,
   alt,
   size = 'medium',
@@ -41,5 +41,3 @@ const Avatar: React.FC<AvatarProps> = ({
     </div>
   );
 };
-
-export default Avatar;
