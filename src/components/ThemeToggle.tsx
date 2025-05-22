@@ -1,7 +1,8 @@
 // ThemeToggle.tsx
 // Simple button to toggle dark/light mode, persists in localStorage
 'use client';
-import { useEffect, useState } from 'react';
+
+import { useTheme } from '../contexts/ThemeContext';
 
 /**
  * Componente ThemeToggle.
@@ -14,24 +15,13 @@ import { useEffect, useState } from 'react';
  * }
  */
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    if (typeof window === 'undefined') return 'light';
-    if (window.localStorage.getItem('theme') === 'dark') return 'dark';
-    if (window.localStorage.getItem('theme') === 'light') return 'light';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  });
-
-  useEffect(() => {
-    document.documentElement.classList.remove('dark', 'light');
-    document.documentElement.classList.add(theme);
-    window.localStorage.setItem('theme', theme);
-  }, [theme]);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <button
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
       className="rounded px-2 py-1 border bg-card text-card-foreground hover:bg-muted transition-colors"
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      onClick={toggleTheme}
       style={{ minWidth: 40 }}
     >
       {theme === 'dark' ? (

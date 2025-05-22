@@ -86,7 +86,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         {...props}
       >
         {header && (
-          <div className="px-6 py-4 border-b border-border">
+          <div className="px-6 py-4 border-b border-border bg-background">
             {typeof title === 'string' ? (
               <h3 className="text-lg font-medium">{title}</h3>
             ) : (
@@ -94,14 +94,14 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
             )}
           </div>
         )}
-        <div className="p-6">
+        <div className="p-6 bg-background">
           {!header && title && (
             <h3 className="text-lg font-medium mb-4">{title}</h3>
           )}
           {children}
         </div>
         {footer && (
-          <div className="px-6 py-4 border-t border-border bg-muted/20">
+          <div className="px-6 py-4 border-t border-border bg-muted">
             {footer}
           </div>
         )}

@@ -1,3 +1,4 @@
+import './styles/index.css';
 // Core exports
 export * from './components';
 export * from './hooks';
@@ -18,6 +19,9 @@ export type { PaginationProps } from './components/Pagination';
 export type { BadgeProps } from './components/Badge';
 export type { MultiSelectProps } from './components/MultiSelect';
 export type { DatePickerProps } from './components/DatePicker';
+
+// Theme Provider
+export { ThemeProvider, useTheme } from './contexts/ThemeContext';
 
 // Design System Provider
 export { DesignSystemProvider } from './components/DesignSystemProvider';

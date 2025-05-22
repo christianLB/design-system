@@ -63,7 +63,7 @@ const variantClasses = {
 };
 
 const trackClasses = {
-  default: 'bg-gray-200 dark:bg-gray-700',
+  default: 'bg-muted',
   primary: 'bg-primary/20',
   success: 'bg-green-500/20',
   warning: 'bg-yellow-500/20',
@@ -134,7 +134,7 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
               }}
             >
               {showIndicator && !isIndeterminate && displayValue > 0 && (
-                <div className="h-full w-full bg-white/20 absolute right-0 top-0"></div>
+                <div className="h-full w-full bg-background/20 absolute right-0 top-0"></div>
               )}
             </div>
           </div>

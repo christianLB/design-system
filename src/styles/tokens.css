@@ -6,6 +6,11 @@
 :root {
   /* Background Colors */
   --color-background: #ffffff;
+  --color-primary-foreground: #fff;
+  --color-secondary-foreground: #fff;
+  --color-destructive-foreground: #fff;
+  --color-accent: #f3f4f6;
+  --color-accent-foreground: #111827;
   --color-background-muted: #f3f4f6;
   --color-background-destructive: #fee2e2;
 
@@ -54,8 +59,12 @@
 
 /**
  * Dark mode overrides
+ * Supports both class-based (.dark) and data-attribute ([data-theme="dark"]) theming
  */
-.dark {
+.dark,
+[data-theme="dark"],
+.dark *,
+[data-theme="dark"] * {
   --color-background: #1f2937;
   --color-background-muted: #111827;
   --color-background-destructive: #7f1d1d;

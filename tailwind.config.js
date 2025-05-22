@@ -1,76 +1,76 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class'],
+  darkMode: ['class', '[data-theme="dark"]'],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './stories/**/*.stories.@(js|jsx|ts|tsx)',
-    './app/**/*.{ts,tsx}',
-    './demo/**/*.{ts,tsx,js,jsx,html}',
-    './**/*.{ts,tsx}',
+    './src/components/**/*.{ts,tsx,js,jsx}',
+  ],
+  safelist: [
+    'ultra-specific-cascade-test-class', // Added for testing
+    // Button base classes (some might be complex for JIT)
+    'inline-flex',
+    'items-center',
+    'justify-center',
+    // Example classes from Button variants and sizes
+    'bg-background',
+    'text-foreground',
+    'bg-primary',
+    'text-primary-foreground',
+    'bg-secondary',
+    'text-secondary-foreground',
+    'bg-destructive',
+    'text-destructive-foreground',
+    'border',
+    'border-input',
+    'hover:bg-accent',
+    'hover:text-accent-foreground',
+    'text-primary',
+    // Sizing
+    'h-9',
+    'h-10',
+    'h-11',
+    'px-3',
+    'px-4',
+    'px-8',
+    'py-2',
+    'rounded-md',
+    'size-9',
+    // States
+    'disabled:opacity-50',
+    'focus-visible:ring-[3px]',
+    // Add other commonly used component classes if needed
+    {
+      pattern: /^(bg-|text-|border-|ring-|hover:bg-|hover:text-)/, // Broadly safelist theme-related classes
+    },
   ],
   theme: {
     extend: {
-      colors: {
-        // Background colors
-        background: 'var(--color-background)',
-        muted: 'var(--color-background-muted)',
-        destructive: 'var(--color-background-destructive)',
-        
-        // Text colors
-        foreground: 'var(--color-text)',
-        'muted-foreground': 'var(--color-text-muted)',
-        'destructive-foreground': 'var(--color-text-destructive)',
-        
-        // Border colors
-        border: 'var(--color-border)',
-        input: 'var(--color-border-input)',
-        
-        // Interactive colors
-        primary: 'var(--color-primary)',
-        'primary-foreground': 'white',
-        secondary: 'var(--color-secondary)',
-        'secondary-foreground': 'white',
-        accent: 'var(--color-muted)',
-        'accent-foreground': 'var(--color-text)',
-        
-        // Ring colors
-        ring: 'var(--color-focus-ring)',
-      },
+      /*
       borderRadius: {
-        none: 'var(--radius-none)',
-        sm: 'var(--radius-sm)',
-        DEFAULT: 'var(--radius-md)',
-        md: 'var(--radius-md)',
-        lg: 'var(--radius-lg)',
-        xl: 'var(--radius-xl)',
-        full: 'var(--radius-full)',
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
-      boxShadow: {
-        sm: 'var(--shadow-sm)',
-        DEFAULT: 'var(--shadow)',
-        md: 'var(--shadow-md)',
-        lg: 'var(--shadow-lg)',
-        xl: 'var(--shadow-xl)',
-        inner: 'var(--shadow-inner)',
-        none: 'none',
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
       },
-      fontSize: {
-        sm: '0.875rem',
-        base: '1rem',
-        lg: '1.125rem',
-        xl: '1.25rem',
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
-      lineHeight: {
-        normal: '1.5',
-        relaxed: '1.625',
-        loose: '2',
-      },
-      fontFamily: {
-        sans: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif',
-        mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
-      },
+      */
     },
   },
-  plugins: [],
+  plugins: [
+    // require('@tailwindcss/typography'),
+    // require('@tailwindcss/forms'),
+    // require('tailwindcss-animate'),
+    // require('tailwindcss-radix'),
+  ],
 };
