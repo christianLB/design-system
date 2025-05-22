@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-interface DatePickerProps {
+export interface DatePickerProps {
   value?: Date;
   onChange: (date: Date) => void;
   defaultValue?: Date;
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, defaultValue }) => {
+export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, defaultValue }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(defaultValue || new Date());
   const [currentDate, setCurrentDate] = useState<Date>(defaultValue || new Date());
 
@@ -96,4 +96,4 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, defaultValue }
   );
 };
 
-export default DatePicker;
+// DatePicker component is now exported as a named export

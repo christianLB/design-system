@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-interface CarouselProps {
+export interface CarouselProps {
   items: React.ReactNode[];
   itemsToShow: number;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ items, itemsToShow }) => {
+export const Carousel: React.FC<CarouselProps> = ({ items, itemsToShow }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -76,5 +76,3 @@ const Carousel: React.FC<CarouselProps> = ({ items, itemsToShow }) => {
     </div>
   );
 };
-
-export default Carousel;

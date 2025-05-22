@@ -17,7 +17,7 @@ export type { TableProps } from './components/Table';
 export type { PaginationProps } from './components/Pagination';
 export type { BadgeProps } from './components/Badge';
 export type { MultiSelectProps } from './components/MultiSelect';
+export type { DatePickerProps } from './components/DatePicker';
 
-// Default export (if needed)
-import { DesignSystemProvider } from './components/DesignSystemProvider';
-export default DesignSystemProvider;
+// Design System Provider
+export { DesignSystemProvider } from './components/DesignSystemProvider';

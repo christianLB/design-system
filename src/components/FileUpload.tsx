@@ -1,11 +1,11 @@
 import React, { useState, useCallback, useRef } from 'react';
 
-interface FileUploadProps {
+export interface FileUploadProps {
   files: File[];
   onFileChange: (files: File[]) => void;
 }
 
-const FileUpload: React.FC<FileUploadProps> = ({ files, onFileChange }) => {
+export const FileUpload: React.FC<FileUploadProps> = ({ files, onFileChange }) => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>(files);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -100,5 +100,3 @@ const FileUpload: React.FC<FileUploadProps> = ({ files, onFileChange }) => {
     </div>
   );
 };
-
-export default FileUpload;

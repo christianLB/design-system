@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AlertProps {
+export interface AlertProps {
   variant: 'info' | 'success' | 'warning' | 'error';
   title: string;
   children: React.ReactNode;
@@ -10,13 +10,13 @@ interface AlertProps {
  * Componente Alert.
  * @component
  * @example
- * import { Alert } from "@/components/Alert"
+ * import { Alert, AlertProps } from "@/components/Alert"
  *
  * function App() {
  *   return <Alert />
  * }
  */
-const Alert: React.FC<AlertProps> = ({ variant, title, children }) => {
+export const Alert: React.FC<AlertProps> = ({ variant = 'info', title, children }) => {
   const getVariantClasses = () => {
     switch (variant) {
       case 'info':
@@ -39,5 +39,3 @@ const Alert: React.FC<AlertProps> = ({ variant, title, children }) => {
     </div>
   );
 };
-
-export default Alert;

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
-interface AccordionItem {
+export interface AccordionItem {
   title: string;
   content: React.ReactNode;
+  disabled?: boolean;
 }
 
-interface AccordionProps {
+export interface AccordionProps {
   items: AccordionItem[];
 }
 
-const Accordion: React.FC<AccordionProps> = ({ items }) => {
+export const Accordion: React.FC<AccordionProps> = ({ items }) => {
   const [expanded, setExpanded] = useState<number | null>(null);
 
   const toggleExpanded = (index: number) => {
@@ -50,5 +51,3 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
     </div>
   );
 };
-
-export default Accordion;
