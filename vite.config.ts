@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
+    emptyOutDir: false,
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'DesignSystem',
