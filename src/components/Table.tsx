@@ -77,15 +77,17 @@ interface TableProps<TData, TMeta = unknown> {
  *   emptyMessage="No records found"
  * />
  */
-function Table<TData, TMeta = unknown>({
-  data,
-  columns,
-  emptyMessage = 'No data found.',
-  defaultSortBy = [],
-  onSelectionChange,
-  className,
-  meta,
-}: TableProps<TData, TMeta>) {
+const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
+  <TData, TMeta = unknown>({
+    data,
+    columns,
+    emptyMessage = 'No data found.',
+    defaultSortBy = [],
+    onSelectionChange,
+    className,
+    meta,
+    ...props
+  }: TableProps<TData, TMeta>, ref: React.ForwardedRef<HTMLDivElement>) => {
   const [sorting, setSorting] = React.useState<SortingState>(defaultSortBy);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
@@ -138,18 +140,18 @@ function Table<TData, TMeta = unknown>({
 
 
   return (
-    <div className={cn('space-y-4', className)}>
-      <div className="rounded-md border border-border">
+    <div ref={ref} className={cn('space-y-4', className)} {...props}>
+      <div className="rounded-md border border-border bg-background">
         <div className="relative w-full overflow-auto">
-          <table className="w-full text-sm caption-bottom">
-            <thead className="[&_tr]:border-b [&_tr]:border-border">
+          <table className="w-full text-sm caption-bottom text-foreground">
+            <thead className="[&_tr]:border-b [&_tr]:border-border bg-muted/50">
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}> 
                   {headerGroup.headers.map((header) => (
                     <th
                       key={header.id}
                       className={cn(
-                        'text-muted-foreground h-10 px-2 align-middle font-semibold text-left whitespace-nowrap',
+                        'h-10 px-4 py-3 align-middle font-medium text-left text-muted-foreground whitespace-nowrap',
                         '[&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
                         header.column.getCanSort() && 'cursor-pointer hover:text-foreground',
                       )}
@@ -162,7 +164,7 @@ function Table<TData, TMeta = unknown>({
                             header.getContext()
                           )}
                           {header.column.getCanSort() && (
-                            <span className="text-muted-foreground">
+                            <span className="text-muted-foreground ml-1">
                               {{
                                 asc: '↑',
                                 desc: '↓',
@@ -176,7 +178,7 @@ function Table<TData, TMeta = unknown>({
                 </tr>
               ))}
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-border">
               {table.getPaginationRowModel().rows.length === 0 ? (
                 <tr>
                   <td 
@@ -190,7 +192,7 @@ function Table<TData, TMeta = unknown>({
                 table.getPaginationRowModel().rows.map((row) => (
                   <tr 
                     key={row.id} 
-                    className="hover:bg-muted/50 border-b border-border transition-colors"
+                    className="hover:bg-muted/50 transition-colors"
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td 
@@ -207,7 +209,7 @@ function Table<TData, TMeta = unknown>({
           </table>
         </div>
         {pageCount > 1 && (
-          <div className="flex items-center justify-end px-4 py-3 border-t border-border">
+          <div className="flex items-center justify-end px-4 py-3 border-t border-border bg-muted/30">
             <Pagination 
               totalItems={table.getFilteredRowModel().rows.length}
               currentPage={currentPage + 1}
@@ -219,10 +221,9 @@ function Table<TData, TMeta = unknown>({
       </div>
     </div>
   );
-}
+});
 
 Table.displayName = 'Table';
 
-;
 export type { TableProps };
 export { Table };

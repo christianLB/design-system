@@ -1,27 +1,17 @@
-/**
- * Componente Loader.
- * @component
- * @example
- * import { Loader } from "@/components/Loader"
- *
- * function App() {
- *   return <Loader />
- * }
- */
-import React from 'react';
+import * as React from 'react';
 import { cn } from '../utils';
 
-interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Size of the loader
    * @default 'md'
    */
   size?: 'sm' | 'md' | 'lg' | 'xl';
   /**
-   * Color of the loader
+   * Color variant of the loader
    * @default 'primary'
    */
-  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
+  variant?: 'primary' | 'secondary' | 'success' | 'destructive' | 'warning' | 'info';
   /**
    * Whether the loader should take up the full width of its container
    * @default false
@@ -44,10 +34,10 @@ const sizeClasses = {
 const variantClasses = {
   primary: 'border-t-primary',
   secondary: 'border-t-secondary',
-  success: 'border-t-green-500',
-  danger: 'border-t-red-500',
-  warning: 'border-t-yellow-500',
-  info: 'border-t-blue-500',
+  success: 'border-t-success',
+  destructive: 'border-t-destructive',
+  warning: 'border-t-warning',
+  info: 'border-t-info',
 };
 
 /**
@@ -65,16 +55,20 @@ const variantClasses = {
  *   <Loader center />
  * </div>
  */
-export function Loader({
-  size = 'md',
-  variant = 'primary',
-  fullWidth = false,
-  center = false,
-  className,
-  ...props
-}: LoaderProps) {
+const Loader = React.forwardRef<HTMLDivElement, LoaderProps>((
+  {
+    size = 'md',
+    variant = 'primary',
+    fullWidth = false,
+    center = false,
+    className,
+    ...props
+  }, 
+  ref
+) => {
   return (
     <div 
+      ref={ref}
       className={cn(
         'inline-block',
         {
@@ -89,7 +83,7 @@ export function Loader({
     >
       <div 
         className={cn(
-          'animate-spin rounded-full border-gray-300',
+          'animate-spin rounded-full border-border',
           sizeClasses[size],
           variantClasses[variant]
         )}
@@ -98,6 +92,16 @@ export function Loader({
       </div>
     </div>
   );
+});
+
+Loader.displayName = 'Loader';
+
+export interface PageLoaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Text to display under the loader
+   * @default 'Loading...' 
+   */
+  text?: string;
 }
 
 /**
@@ -105,14 +109,33 @@ export function Loader({
  * @component
  * @example
  * <PageLoader />
+ * 
+ * // With custom text
+ * <PageLoader text="Processing your request..." />
  */
-export function PageLoader() {
+const PageLoader = React.forwardRef<HTMLDivElement, PageLoaderProps>((
+  { className, text = "Loading...", ...props },
+  ref
+) => {
   return (
-    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50">
+    <div 
+      ref={ref}
+      className={cn(
+        "fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50",
+        className
+      )}
+      role="status"
+      aria-label={text}
+      {...props}
+    >
       <div className="text-center">
         <Loader size="xl" />
-        <p className="mt-4 text-muted-foreground">Loading...</p>
+        <p className="mt-4 text-sm text-muted-foreground">{text}</p>
       </div>
     </div>
   );
-}
+});
+
+PageLoader.displayName = "PageLoader";
+
+export { Loader, PageLoader };

@@ -141,8 +141,10 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
         {show && (
           <div 
             className={cn(
-              'absolute z-50 rounded-md px-3 py-2 text-sm shadow-md',
-              'animate-in fade-in-0 zoom-in-95',
+              'absolute z-50 rounded-md px-3 py-1.5 text-sm shadow-md',
+              'animate-in fade-in-0 zoom-in-95 duration-200',
+              'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2',
+              'data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
               positionClasses[position],
               variantClasses[variant],
               className

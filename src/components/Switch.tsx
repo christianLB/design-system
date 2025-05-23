@@ -5,44 +5,42 @@ import * as SwitchPrimitive from "@radix-ui/react-switch"
 import { cn } from "../utils"
 
 /**
- * Campo de entrada de texto.
+ * A switch component used for toggling between enabled or disabled states.
+ * Based on Radix UI's Switch primitive.
+ * 
  * @component
  * @example
- * import { Input } from "@/components/input"
- *
- * function App() {
- *   return <Input placeholder="Escribe algo..." />
- * }
- * 
- * @param {Object} props - Las propiedades del componente
- * @param {string} [props.className] - Clases CSS adicionales
- * @param {string} [props.type='text'] - Tipo de entrada
- * @param {string} [props.placeholder] - Texto de marcador de posición
- * @param {boolean} [props.disabled] - Si el campo está deshabilitado
- * @param {string} [props.value] - Valor controlado
- * @param {function} [props.onChange] - Manejador de cambio
+ * <Switch id="airplane-mode" />
+ * <Label htmlFor="airplane-mode">Airplane Mode</Label>
  */
-function Switch({
-  className,
-  ...props
-}: React.ComponentProps<typeof SwitchPrimitive.Root>) {
-  return (
-    <SwitchPrimitive.Root
-      data-slot="switch"
+const Switch = React.forwardRef<
+  React.ElementRef<typeof SwitchPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <SwitchPrimitive.Root
+    ref={ref}
+    data-slot="switch"
+    className={cn(
+      "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full",
+      "border-2 border-transparent transition-colors",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+      "disabled:cursor-not-allowed disabled:opacity-50",
+      "data-[state=checked]:bg-primary data-[state=unchecked]:bg-input",
+      className
+    )}
+    {...props}
+  >
+    <SwitchPrimitive.Thumb
+      data-slot="switch-thumb"
       className={cn(
-        "peer data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-5 w-9 shrink-0 items-center rounded-full border-2 border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
-        className
+        "pointer-events-none block h-5 w-5 rounded-full bg-background",
+        "shadow-lg ring-0 transition-transform",
+        "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
       )}
-      {...props}
-    >
-      <SwitchPrimitive.Thumb
-        data-slot="switch-thumb"
-        className={cn(
-          "bg-background pointer-events-none block size-4 rounded-full ring-0 shadow-lg transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
-        )}
-      />
-    </SwitchPrimitive.Root>
-  )
-}
+    />
+  </SwitchPrimitive.Root>
+))
+
+Switch.displayName = "Switch"
 
 export { Switch }

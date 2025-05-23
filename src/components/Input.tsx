@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { cn } from '../utils';
-import { tokens } from '../tokens';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
@@ -45,20 +44,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         type={type}
         data-slot="input"
         className={cn(
-          'flex w-full min-w-0',
-          tokens.radius.DEFAULT,
-          'border bg-transparent',
-          tokens.colors.borderInput,
-          'px-3 py-1 text-base md:text-sm',
+          'flex w-full min-w-0 rounded-md',
+          'border border-border bg-background text-foreground',
+          'px-3 py-2 text-sm',
           'file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium',
           'placeholder:text-muted-foreground',
           'selection:bg-primary selection:text-primary-foreground',
-          tokens.transition.DEFAULT,
-          tokens.colors.focus.ring,
-          tokens.colors.focus.ringOffset,
-          tokens.colors.focus.ringWidth,
+          'transition-colors',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
           'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
-          'aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
+          'aria-invalid:border-destructive aria-invalid:ring-destructive/30',
           className
         )}
         {...props}

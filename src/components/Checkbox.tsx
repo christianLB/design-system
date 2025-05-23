@@ -7,44 +7,45 @@ import { CheckIcon } from "lucide-react"
 import { cn } from "../utils"
 
 /**
- * Campo de entrada de texto.
+ * A checkbox component that allows users to select one or more items from a set.
+ * Based on Radix UI's Checkbox primitive.
+ * 
  * @component
  * @example
- * import { Input } from "@/components/input"
- *
- * function App() {
- *   return <Input placeholder="Escribe algo..." />
- * }
- * 
- * @param {Object} props - Las propiedades del componente
- * @param {string} [props.className] - Clases CSS adicionales
- * @param {string} [props.type='text'] - Tipo de entrada
- * @param {string} [props.placeholder] - Texto de marcador de posición
- * @param {boolean} [props.disabled] - Si el campo está deshabilitado
- * @param {string} [props.value] - Valor controlado
- * @param {function} [props.onChange] - Manejador de cambio
+ * <Checkbox id="terms" />
+ * <Label htmlFor="terms">Accept terms and conditions</Label>
  */
-function Checkbox({
-  className,
-  ...props
-}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
-  return (
-    <CheckboxPrimitive.Root
-      data-slot="checkbox"
+const Checkbox = React.forwardRef<
+  React.ElementRef<typeof CheckboxPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <CheckboxPrimitive.Root
+    ref={ref}
+    data-slot="checkbox"
+    className={cn(
+      "peer h-4 w-4 shrink-0 rounded-sm border border-border",
+      "shadow-sm ring-offset-background",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+      "disabled:cursor-not-allowed disabled:opacity-50",
+      "data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
+      "data-[state=checked]:border-primary",
+      "aria-invalid:border-destructive aria-invalid:ring-destructive/30",
+      "transition-colors",
+      className
+    )}
+    {...props}
+  >
+    <CheckboxPrimitive.Indicator
+      data-slot="checkbox-indicator"
       className={cn(
-        "peer border-input data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
-        className
+        "flex h-full w-full items-center justify-center text-current"
       )}
-      {...props}
     >
-      <CheckboxPrimitive.Indicator
-        data-slot="checkbox-indicator"
-        className="flex items-center justify-center text-current transition-none"
-      >
-        <CheckIcon className="size-3.5" />
-      </CheckboxPrimitive.Indicator>
-    </CheckboxPrimitive.Root>
-  )
-}
+      <CheckIcon className="h-3.5 w-3.5" />
+    </CheckboxPrimitive.Indicator>
+  </CheckboxPrimitive.Root>
+))
+
+Checkbox.displayName = "Checkbox"
 
 export { Checkbox }

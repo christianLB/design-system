@@ -78,11 +78,11 @@ const labelSizeClasses = {
 };
 
 const variantClasses = {
-  default: 'text-primary focus:ring-primary',
-  primary: 'text-blue-600 focus:ring-blue-500',
-  success: 'text-green-600 focus:ring-green-500',
-  warning: 'text-yellow-600 focus:ring-yellow-500',
-  danger: 'text-red-600 focus:ring-red-500',
+  default: 'text-primary focus:ring-ring',
+  primary: 'text-primary focus:ring-ring',
+  success: 'text-success focus:ring-success/40',
+  warning: 'text-warning focus:ring-warning/40',
+  danger: 'text-destructive focus:ring-destructive/40',
 };
 
 /**
@@ -128,7 +128,7 @@ const RadioGroup = <T extends string = string>({
   };
 
   return (
-    <div className={className} {...props}>
+    <div className={cn('space-y-2', className)} {...props}>
       {label && (
         <label className="block text-sm font-medium text-foreground mb-1">
           {label}
@@ -141,8 +141,8 @@ const RadioGroup = <T extends string = string>({
         className={cn(
           orientation === 'horizontal' 
             ? 'flex flex-wrap gap-4 items-center' 
-            : 'space-y-2',
-          disabled && 'opacity-60 cursor-not-allowed'
+            : 'space-y-3',
+          disabled && 'opacity-50 cursor-not-allowed'
         )}
         role="radiogroup"
         aria-label={label}
@@ -154,7 +154,7 @@ const RadioGroup = <T extends string = string>({
             className={cn(
               'flex items-start',
               orientation === 'horizontal' ? 'flex-shrink-0' : 'w-full',
-              item.disabled && 'opacity-60 cursor-not-allowed'
+              item.disabled && 'opacity-50 cursor-not-allowed'
             )}
           >
             <div className="flex items-center h-5">
@@ -167,14 +167,14 @@ const RadioGroup = <T extends string = string>({
                 onChange={handleChange}
                 disabled={disabled || item.disabled}
                 className={cn(
-                  'rounded-full border-gray-300',
+                  'rounded-full border border-border',
                   variantClasses[variant],
                   sizeClasses[size],
-                  'focus:ring-2 focus:ring-offset-2',
+                  'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background',
                   'disabled:opacity-50 disabled:cursor-not-allowed',
-                  'transition-colors duration-200',
+                  'transition-colors',
                   'cursor-pointer',
-                  error && 'border-red-500',
+                  error && 'border-destructive focus:ring-destructive/30',
                   item.disabled && 'cursor-not-allowed'
                 )}
                 aria-describedby={error ? `${name}-error` : undefined}
@@ -210,7 +210,7 @@ const RadioGroup = <T extends string = string>({
       {error && (
         <p 
           id={`${name}-error`} 
-          className="mt-2 text-sm text-red-600"
+          className="mt-2 text-sm text-destructive"
           role="alert"
         >
           {error}

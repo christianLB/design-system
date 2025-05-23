@@ -54,21 +54,21 @@ const sizeClasses = {
 };
 
 const variantClasses = {
-  default: 'bg-blue-600',
+  default: 'bg-primary',
   primary: 'bg-primary',
-  success: 'bg-green-500',
-  warning: 'bg-yellow-500',
-  danger: 'bg-red-500',
-  info: 'bg-blue-400',
+  success: 'bg-success',
+  warning: 'bg-warning',
+  danger: 'bg-destructive',
+  info: 'bg-info',
 };
 
 const trackClasses = {
   default: 'bg-muted',
   primary: 'bg-primary/20',
-  success: 'bg-green-500/20',
-  warning: 'bg-yellow-500/20',
-  danger: 'bg-red-500/20',
-  info: 'bg-blue-400/20',
+  success: 'bg-success/20',
+  warning: 'bg-warning/20',
+  danger: 'bg-destructive/20',
+  info: 'bg-info/20',
 };
 
 /**
@@ -140,8 +140,8 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
           </div>
           {showLabel && !isIndeterminate && (
             <div className={cn(
-              'text-xs whitespace-nowrap',
-              variant === 'default' ? 'text-gray-700 dark:text-gray-300' : `text-${variant}`
+              'text-xs whitespace-nowrap text-foreground',
+              variant !== 'default' && 'font-medium'
             )}>
               {label}
             </div>
