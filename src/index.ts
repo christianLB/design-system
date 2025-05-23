@@ -1,4 +1,5 @@
-import './styles/index.css';
+import '../index.css'; // Import the main CSS file for Vite to process
+
 // Core exports
 export * from './components';
 export * from './hooks';

@@ -1,6 +1,6 @@
 {
   "name": "@k2600x/design-system",
-  "version": "1.7.1",
+  "version": "1.7.10",
   "description": "A reusable design system built with React and TypeScript.",
   "author": "k2600x <k2600x@gmail.com>",
   "license": "MIT",
@@ -19,7 +19,8 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "tailwind.preset.js"
   ],
   "scripts": {
     "dev": "vite",
@@ -61,6 +62,7 @@
     "lucide-react": "^0.511.0",
     "react-select": "^5.10.1",
     "tailwind-merge": "^3.3.0",
+    "tailwindcss-animate": "^1.0.7",
     "zustand": "^5.0.4"
   }
 }

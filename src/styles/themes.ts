@@ -63,15 +63,36 @@ export const lightTheme: Theme = {
 };
 
 export const darkTheme: Theme = {
-  ...lightTheme,
+  ...lightTheme, 
   base: 'dark',
-  appBg: '#0f172a',
-  appContentBg: '#1e293b',
-  appBorderColor: '#334155',
-  textColor: '#f8fafc',
-  textMutedColor: '#94a3b8',
-  barBg: '#1e293b',
-  inputBg: '#1e293b',
-  inputBorder: '#334155',
-  inputTextColor: '#f8fafc',
+
+  // Dark Theme Specific Colors
+  colorPrimary: '#60a5fa',        
+  colorSecondary: '#a78bfa',      
+  
+  appBg: '#0f172a',              
+  appContentBg: '#1e293b',        
+  appBorderColor: '#334155',      
+  
+  textColor: '#f8fafc',          
+  textInverseColor: '#1e293b',    
+  textMutedColor: '#94a3b8',      
+  
+  barTextColor: '#94a3b8',        
+  barSelectedColor: '#60a5fa',    
+  barBg: '#1e293b',              
+  
+  inputBg: '#1e293b',            
+  inputBorder: '#334155',        
+  inputTextColor: '#f8fafc',      
+
+  // Ensure all properties from Theme interface are present, even if inheriting non-color ones
+  brandTitle: lightTheme.brandTitle,
+  brandUrl: lightTheme.brandUrl,
+  brandImage: lightTheme.brandImage,
+  brandTarget: lightTheme.brandTarget,
+  appBorderRadius: lightTheme.appBorderRadius,
+  fontBase: lightTheme.fontBase,
+  fontCode: lightTheme.fontCode,
+  inputBorderRadius: lightTheme.inputBorderRadius,
 };

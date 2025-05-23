@@ -139,12 +139,12 @@ function Table<TData, TMeta = unknown>({
 
   return (
     <div className={cn('space-y-4', className)}>
-      <div className="rounded-md border">
+      <div className="rounded-md border border-border">
         <div className="relative w-full overflow-auto">
           <table className="w-full text-sm caption-bottom">
-            <thead className="[&_tr]:border-b">
+            <thead className="[&_tr]:border-b [&_tr]:border-border">
               {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}>
+                <tr key={headerGroup.id}> 
                   {headerGroup.headers.map((header) => (
                     <th
                       key={header.id}
@@ -190,7 +190,7 @@ function Table<TData, TMeta = unknown>({
                 table.getPaginationRowModel().rows.map((row) => (
                   <tr 
                     key={row.id} 
-                    className="hover:bg-muted/50 border-b transition-colors"
+                    className="hover:bg-muted/50 border-b border-border transition-colors"
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td 
@@ -207,7 +207,7 @@ function Table<TData, TMeta = unknown>({
           </table>
         </div>
         {pageCount > 1 && (
-          <div className="flex items-center justify-end px-4 py-3 border-t">
+          <div className="flex items-center justify-end px-4 py-3 border-t border-border">
             <Pagination 
               totalItems={table.getFilteredRowModel().rows.length}
               currentPage={currentPage + 1}

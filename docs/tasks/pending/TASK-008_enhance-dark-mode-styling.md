@@ -66,3 +66,150 @@ This task aims to improve the visual appeal, usability, and accessibility of the
 
 ## 6. Dependencies
 -   None beyond the existing project setup.
+
+## 7. CSS Structure Analysis and Recommendations
+
+### 7.1 Current CSS Architecture
+
+After thorough investigation, we've identified several key aspects of the design system's CSS architecture:
+
+1. **Theme Definition Flow**:
+   - `src/styles/themes.ts` defines theme objects with properties like `colorPrimary`, `appBg`, `textColor`, etc.
+   - `src/styles/globals.css` uses these values to create CSS custom properties (variables) like `--color-primary`, `--app-bg`, `--text-color`
+   - Dark mode variables are applied via the `[data-theme="dark"]` selector
+
+2. **CSS Files Structure**:
+   - `index.css` (root): Contains Tailwind directives and imports `globals.css`
+   - `src/styles/globals.css`: Defines CSS variables based on themes
+   - `src/styles/tokens.css`: Previously contained overlapping definitions (now removed)
+
+3. **Library Build Process**:
+   - `src/index.ts` imports the root `index.css`
+   - Vite builds this into `dist/design-system.css`
+   - The `tailwind.preset.js` defines how Tailwind utility classes map to CSS variables
+
+4. **Tailwind Integration**:
+   - `tailwind.preset.js` maps Tailwind color utilities (e.g., `bg-background`) to CSS variables (e.g., `var(--app-bg)`)
+   - Consuming applications use this preset in their own Tailwind configuration
+
+### 7.2 Identified Issues
+
+1. **CSS Variable Naming Mismatch**:
+   - The variable names used in `tailwind.preset.js` sometimes don't match those defined in `globals.css`
+   - Example: preset may use `--background` while `globals.css` defines `--app-bg`
+
+2. **CSS Value Format Incompatibility**:
+   - Tailwind color utilities work best with HSL format (e.g., `hsl(var(--color))`) when opacity modifiers are needed
+   - Our variables use direct hex values (e.g., `#ffffff`)
+
+3. **Tailwind JIT Detection**:
+   - The JIT engine may not detect utility classes used in pre-compiled components
+   - This leads to necessary styles not being generated in consuming applications
+
+4. **Component-Specific vs. Theme Styles**:
+   - Some styles come from Tailwind utilities, others from component-specific CSS
+   - Changes to one system can break the other
+
+5. **Dark Mode Configuration Conflicts**:
+   - Both the design system and consuming applications define darkMode strategies
+   - This can lead to conflicting behavior
+
+### 7.3 Potential Solutions
+
+#### Solution 1: Align Variable Names & Format
+
+1. **Update `globals.css`** to use variable names that match Tailwind conventions:
+   ```css
+   :root {
+     --background: #ffffff; /* Instead of --app-bg */
+     --foreground: #1e293b; /* Instead of --text-color */
+     /* etc. */
+   }
+   ```
+
+2. **Convert to HSL format** for better Tailwind compatibility:
+   ```css
+   :root {
+     --background: 0 0% 100%; /* HSL values without 'hsl()' wrapper */
+     --foreground: 222 47% 18%;
+     /* etc. */
+   }
+   ```
+
+3. **Update `tailwind.preset.js`** to use these standardized variables with HSL:
+   ```js
+   colors: {
+     background: 'hsl(var(--background))',
+     foreground: 'hsl(var(--foreground))',
+     /* etc. */
+   }
+   ```
+
+#### Solution 2: Comprehensive Safelist in Consuming Apps
+
+Add an extensive safelist to consuming applications' Tailwind configs:
+
+```js
+// In design-system-showcase/tailwind.config.js
+safelist: [
+  // Explicit classes
+  'bg-background', 'text-foreground', 'border-border',
+  // Patterns to match many related classes
+  {
+    pattern: /^(bg|text|border)-(background|foreground|primary|secondary|muted|accent|destructive|card|popover|input|ring)(-(foreground))?$/,
+  },
+  // Component classes that might be missed by JIT
+  {
+    pattern: /^(btn|card|input|modal|table|badge)-/
+  }
+]
+```
+
+#### Solution 3: Explicit CSS Variables in Preset
+
+Instead of using HSL formatting, make the preset use direct CSS variables:
+
+```js
+// In tailwind.preset.js
+colors: {
+  background: 'var(--app-bg)',
+  foreground: 'var(--text-color)',
+  /* etc. */
+}
+```
+
+This approach accepts the variable names as they are in `globals.css`.
+
+#### Solution 4: CSS Modules Approach
+
+For component-specific styles, consider using CSS modules instead of relying entirely on Tailwind:
+
+1. Create `.module.css` files for components with complex styling needs
+2. Import these in component files and use the resulting class names
+3. Use Tailwind only for theme-related and utility styling
+
+#### Solution 5: Scoped CSS Variables
+
+Add a specific scope for design system variables to prevent conflicts:
+
+```css
+:root {
+  --ds-app-bg: #ffffff;
+  --ds-text-color: #1e293b;
+  /* etc. */
+}
+```
+
+Then use these scoped variables in the preset.
+
+### 7.4 Recommended Implementation Path
+
+For the most stable solution with minimal disruption:
+
+1. **Rollback to last known working version** (e.g., 1.7.5)
+2. **Implement Solution 2 (Safelist)** in the consuming application first
+3. **Test thoroughly** before making more invasive changes
+4. If needed, gradually implement Solution 3 (Explicit CSS Variables)
+5. Long-term, consider Solution 1 (standardized variable names) for a more maintainable approach
+
+This incremental strategy minimizes risk while working toward a more robust CSS architecture.

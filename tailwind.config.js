@@ -44,11 +44,45 @@ module.exports = {
   ],
   theme: {
     extend: {
-      /*
+      colors: {
+        border: 'hsl(var(--app-border-color))',
+        input: 'hsl(var(--input-border))',
+        ring: 'hsl(var(--color-primary))', // Or a specific ring color variable if defined
+        background: 'hsl(var(--app-bg))',
+        foreground: 'hsl(var(--text-color))',
+        primary: {
+          DEFAULT: 'hsl(var(--color-primary))',
+          foreground: 'hsl(var(--text-inverse-color))', // Assuming primary buttons use inverse text color
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--color-secondary))',
+          foreground: 'hsl(var(--text-inverse-color))', // Assuming secondary buttons use inverse text color
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--color-destructive))',
+          foreground: 'hsl(var(--color-destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--app-content-bg))', // Or a specific muted bg color
+          foreground: 'hsl(var(--text-muted-color))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--color-secondary))', // Example: using secondary as accent
+          foreground: 'hsl(var(--text-inverse-color))', // Assuming accent buttons use inverse text color
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--app-content-bg))',
+          foreground: 'hsl(var(--text-color))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--app-content-bg))',
+          foreground: 'hsl(var(--text-color))',
+        },
+      },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "var(--app-border-radius)",
+        md: "calc(var(--app-border-radius) - 2px)",
+        sm: "calc(var(--app-border-radius) - 4px)",
       },
       keyframes: {
         "accordion-down": {
@@ -64,7 +98,6 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      */
     },
   },
   plugins: [

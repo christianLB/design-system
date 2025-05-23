@@ -88,7 +88,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         {header && (
           <div className="px-6 py-4 border-b border-border bg-background">
             {typeof title === 'string' ? (
-              <h3 className="text-lg font-medium">{title}</h3>
+              <h3 className="text-lg font-medium text-foreground">{title}</h3>
             ) : (
               header
             )}
@@ -96,7 +96,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         )}
         <div className="p-6 bg-background">
           {!header && title && (
-            <h3 className="text-lg font-medium mb-4">{title}</h3>
+            <h3 className="text-lg font-medium mb-4 text-foreground">{title}</h3>
           )}
           {children}
         </div>
@@ -120,7 +120,7 @@ CardHeader.displayName = 'CardHeader';
 
 export const CardTitle = ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
   <h3
-    className={cn('text-2xl font-semibold leading-none tracking-tight', className)}
+    className={cn('text-2xl font-semibold leading-none tracking-tight text-foreground', className)}
     {...props}
   />
 );
