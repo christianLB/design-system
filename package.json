@@ -1,6 +1,6 @@
 {
   "name": "@k2600x/design-system",
-  "version": "1.7.10",
+  "version": "2.0.0",
   "description": "A reusable design system built with React and TypeScript.",
   "author": "k2600x <k2600x@gmail.com>",
   "license": "MIT",
