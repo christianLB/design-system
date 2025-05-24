@@ -9,8 +9,8 @@
  */
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 // First check if the Button component exists in either location
 // It could be at src/components/Button.tsx (older structure) or 

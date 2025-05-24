@@ -8,9 +8,9 @@
  */
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
-import fs from 'fs';
-import path from 'path';
-import React from 'react';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as React from 'react';
 
 // Determine whether to import from new or old structure
 const buttonExists = (() => {

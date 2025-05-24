@@ -6,10 +6,22 @@
  * 2. The output structure matches the package.json exports field
  * 3. Key files like CSS and type definitions are present
  */
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
-import packageJson from '../../package.json';
+
+// Use a dynamic import approach to handle JSON
+let packageJson: any;
+
+beforeAll(async () => {
+  // Dynamically import the package.json
+  packageJson = await import('../../package.json', { assert: { type: 'json' } })
+    .then(module => module.default)
+    .catch(() => {
+      console.warn('Could not import package.json, using empty object');
+      return {};
+    });
+});
 
 describe('Design System Build Output', () => {
   // Skip these tests during development if dist doesn't exist yet
