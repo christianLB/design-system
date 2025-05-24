@@ -4,6 +4,8 @@
 export type { Theme } from '../styles/themes';
 
 // Component props
+export type { AlertProps } from '../components/Alert/Alert';
+export type { AvatarProps } from '../components/Avatar/Avatar';
 export type { ButtonProps } from '../components/Button/Button';
 export type { CardProps } from '../components/Card/Card';
 export type { InputProps } from '../components/Input/Input';

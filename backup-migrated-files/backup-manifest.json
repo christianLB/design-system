@@ -1,0 +1,49 @@
+{
+  "date": "2025-05-24T16:57:31.116Z",
+  "files": [
+    {
+      "original": "C:\\dev\\design-system\\src\\components\\Carousel.tsx",
+      "backup": "C:\\dev\\design-system\\backup-migrated-files\\Carousel.tsx"
+    },
+    {
+      "original": "C:\\dev\\design-system\\src\\components\\ConfirmDialog.tsx",
+      "backup": "C:\\dev\\design-system\\backup-migrated-files\\ConfirmDialog.tsx"
+    },
+    {
+      "original": "C:\\dev\\design-system\\src\\components\\DatePicker.tsx",
+      "backup": "C:\\dev\\design-system\\backup-migrated-files\\DatePicker.tsx"
+    },
+    {
+      "original": "C:\\dev\\design-system\\src\\components\\FileUpload.tsx",
+      "backup": "C:\\dev\\design-system\\backup-migrated-files\\FileUpload.tsx"
+    },
+    {
+      "original": "C:\\dev\\design-system\\src\\components\\Label.tsx",
+      "backup": "C:\\dev\\design-system\\backup-migrated-files\\Label.tsx"
+    },
+    {
+      "original": "C:\\dev\\design-system\\src\\components\\Loader.tsx",
+      "backup": "C:\\dev\\design-system\\backup-migrated-files\\Loader.tsx"
+    },
+    {
+      "original": "C:\\dev\\design-system\\src\\components\\MultiSelect.tsx",
+      "backup": "C:\\dev\\design-system\\backup-migrated-files\\MultiSelect.tsx"
+    },
+    {
+      "original": "C:\\dev\\design-system\\src\\components\\RadioGroup.tsx",
+      "backup": "C:\\dev\\design-system\\backup-migrated-files\\RadioGroup.tsx"
+    },
+    {
+      "original": "C:\\dev\\design-system\\src\\components\\Select.tsx",
+      "backup": "C:\\dev\\design-system\\backup-migrated-files\\Select.tsx"
+    },
+    {
+      "original": "C:\\dev\\design-system\\src\\components\\Textarea.tsx",
+      "backup": "C:\\dev\\design-system\\backup-migrated-files\\Textarea.tsx"
+    },
+    {
+      "original": "C:\\dev\\design-system\\src\\components\\ThemeToggle.tsx",
+      "backup": "C:\\dev\\design-system\\backup-migrated-files\\ThemeToggle.tsx"
+    }
+  ]
+}
