@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.3] - 2025-06-06
+
+### Fixed
+- Use `npm install` instead of `npm ci` in the publish workflow.
+- Updated package version to 1.7.3.
+
 ## [1.7.2] - 2025-06-06
 
 ### Added
