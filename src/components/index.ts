@@ -26,3 +26,4 @@ export * from './Tabs';
 export * from './Textarea';
 export * from './ThemeToggle';
 export * from './Tooltip';
+export * from './DesignSystemProvider';

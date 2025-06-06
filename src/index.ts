@@ -23,5 +23,3 @@ export type { DatePickerProps } from './components/DatePicker';
 // Theme Provider
 export { ThemeProvider, useTheme } from './contexts/ThemeContext';
 
-// Design System Provider
-export { DesignSystemProvider } from './components/DesignSystemProvider';
