@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { spacing, tokens } from "../tokens";
+import { cn } from "../utils";
 
 export interface AccordionItem {
   title: string;
@@ -19,35 +21,61 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
 
   return (
     <div className="space-y-2">
-      {items.map((item, index) => (
-        <div key={index} className="border border-gray-300 rounded-md">
+      {items.map((item, index) => {
+        const isExpanded = expanded === index;
+        return (
           <div
-            className="flex items-center justify-between px-4 py-2 cursor-pointer bg-gray-100 hover:bg-gray-200"
-            onClick={() => toggleExpanded(index)}
+            key={index}
+            className={cn("border", tokens.radius.md)}
+            style={{ borderColor: tokens.colors.border }}
           >
-            <h3 className="text-lg font-medium">{item.title}</h3>
-            <svg
-              className={`w-4 h-4 transition-transform ${expanded === index ? 'rotate-180' : ''}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+            <button
+              type="button"
+              onClick={() => toggleExpanded(index)}
+              className={cn(
+                "flex w-full items-center justify-between cursor-pointer",
+                spacing(4, "x"),
+                spacing(2, "y"),
+              )}
+              style={{
+                backgroundColor: tokens.colors.backgroundMuted,
+              }}
+              aria-expanded={isExpanded}
+              aria-controls={`accordion-content-${index}`}
+              id={`accordion-header-${index}`}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+              <h3 className="text-lg font-medium">{item.title}</h3>
+              <svg
+                className={cn(
+                  "w-4 h-4 transition-transform",
+                  isExpanded && "rotate-180",
+                )}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            {isExpanded && (
+              <div
+                id={`accordion-content-${index}`}
+                role="region"
+                aria-labelledby={`accordion-header-${index}`}
+                className={cn(spacing(4))}
+              >
+                {item.content}
+              </div>
+            )}
           </div>
-          {expanded === index && (
-            <div className="p-4">
-              {item.content}
-            </div>
-          )}
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
