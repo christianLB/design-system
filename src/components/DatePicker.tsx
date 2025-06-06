@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { spacing, tokens } from '../tokens';
+import { cn } from '../utils';
 
 export interface DatePickerProps {
   value?: Date;
@@ -52,48 +54,94 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, default
   const totalDays = daysInMonth(currentDate);
 
   for (let i = 0; i < firstDay; i++) {
-    days.push(<div key={`empty-${i}`} className="w-10 h-10"></div>);
+    days.push(<div key={`empty-${i}`} className="w-10 h-10" />);
   }
 
   for (let i = 1; i <= totalDays; i++) {
     const fullDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
     const isSelected = selectedDate.toDateString() === fullDate.toDateString();
     days.push(
-      <div
+      <button
+        type="button"
         key={i}
-        className={`w-10 h-10 flex items-center justify-center cursor-pointer rounded-full ${
-          isSelected ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'
-        }`}
         onClick={() => handleDateClick(i)}
+        aria-pressed={isSelected}
+        className={cn(
+          'flex items-center justify-center',
+          'w-10 h-10',
+          tokens.radius.full,
+          tokens.transition.colors,
+        )}
+        style={{
+          backgroundColor: isSelected
+            ? tokens.colors.hover.primary
+            : undefined,
+          color: isSelected ? tokens.colors.text : undefined,
+        }}
       >
         {i}
-      </div>
+      </button>
     );
   }
 
   return (
-    <div className="p-4 border rounded-md shadow-md">
-      <div className="flex justify-between items-center mb-4">
-        <button onClick={handlePrevYear} className="px-2 py-1 rounded-md hover:bg-gray-200">&lt;&lt;</button>
-        <button onClick={handlePrevMonth} className="px-2 py-1 rounded-md hover:bg-gray-200">&lt;</button>
+    <div
+      className={cn(spacing(4), tokens.radius.md, tokens.shadow.md, 'border')}
+      style={{ borderColor: tokens.colors.border }}
+    >
+      <div className={cn('flex justify-between items-center', spacing(4, 'b'))}>
+        <button
+          type="button"
+          onClick={handlePrevYear}
+          className={cn(spacing(1, 'y'), spacing(2, 'x'), tokens.radius.md)}
+          style={{ backgroundColor: tokens.colors.backgroundMuted }}
+          aria-label="Previous year"
+        >
+          &lt;&lt;
+        </button>
+        <button
+          type="button"
+          onClick={handlePrevMonth}
+          className={cn(spacing(1, 'y'), spacing(2, 'x'), tokens.radius.md)}
+          style={{ backgroundColor: tokens.colors.backgroundMuted }}
+          aria-label="Previous month"
+        >
+          &lt;
+        </button>
         <h2 className="text-lg font-semibold">
           {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}
         </h2>
-        <button onClick={handleNextMonth} className="px-2 py-1 rounded-md hover:bg-gray-200">&gt;</button>
-        <button onClick={handleNextYear} className="px-2 py-1 rounded-md hover:bg-gray-200">&gt;&gt;</button>
+        <button
+          type="button"
+          onClick={handleNextMonth}
+          className={cn(spacing(1, 'y'), spacing(2, 'x'), tokens.radius.md)}
+          style={{ backgroundColor: tokens.colors.backgroundMuted }}
+          aria-label="Next month"
+        >
+          &gt;
+        </button>
+        <button
+          type="button"
+          onClick={handleNextYear}
+          className={cn(spacing(1, 'y'), spacing(2, 'x'), tokens.radius.md)}
+          style={{ backgroundColor: tokens.colors.backgroundMuted }}
+          aria-label="Next year"
+        >
+          &gt;&gt;
+        </button>
+        </div>
+        <div className="grid grid-cols-7 gap-2">
+          <div className="w-10 h-10 flex items-center justify-center font-semibold">Su</div>
+          <div className="w-10 h-10 flex items-center justify-center font-semibold">Mo</div>
+          <div className="w-10 h-10 flex items-center justify-center font-semibold">Tu</div>
+          <div className="w-10 h-10 flex items-center justify-center font-semibold">We</div>
+          <div className="w-10 h-10 flex items-center justify-center font-semibold">Th</div>
+          <div className="w-10 h-10 flex items-center justify-center font-semibold">Fr</div>
+          <div className="w-10 h-10 flex items-center justify-center font-semibold">Sa</div>
+          {days}
+        </div>
       </div>
-      <div className="grid grid-cols-7 gap-2">
-        <div className="w-10 h-10 flex items-center justify-center font-semibold">Su</div>
-        <div className="w-10 h-10 flex items-center justify-center font-semibold">Mo</div>
-        <div className="w-10 h-10 flex items-center justify-center font-semibold">Tu</div>
-        <div className="w-10 h-10 flex items-center justify-center font-semibold">We</div>
-        <div className="w-10 h-10 flex items-center justify-center font-semibold">Th</div>
-        <div className="w-10 h-10 flex items-center justify-center font-semibold">Fr</div>
-        <div className="w-10 h-10 flex items-center justify-center font-semibold">Sa</div>
-        {days}
-      </div>
-    </div>
-  );
-};
+    );
+  };
 
 // DatePicker component is now exported as a named export

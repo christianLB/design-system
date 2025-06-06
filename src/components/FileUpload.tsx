@@ -1,4 +1,6 @@
 import React, { useState, useCallback, useRef } from 'react';
+import { spacing, tokens } from '../tokens';
+import { cn } from '../utils';
 
 export interface FileUploadProps {
   files: File[];
@@ -63,7 +65,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({ files, onFileChange }) =
   return (
     <div className="space-y-4">
       <div
-        className="border-2 border-dashed border-gray-300 p-6 rounded-md cursor-pointer"
+        className={cn('border-2 border-dashed cursor-pointer', spacing(6), tokens.radius.md)}
+        style={{ borderColor: tokens.colors.border }}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onClick={handleClick}
@@ -74,8 +77,9 @@ export const FileUpload: React.FC<FileUploadProps> = ({ files, onFileChange }) =
           className="hidden"
           onChange={handleFileChange}
           ref={fileInputRef}
+          aria-label="Upload files"
         />
-        <p className="text-gray-500 text-center">
+        <p className="text-center" style={{ color: tokens.colors.textMuted }}>
           Drag and drop files here or click to select files
         </p>
       </div>
@@ -84,12 +88,19 @@ export const FileUpload: React.FC<FileUploadProps> = ({ files, onFileChange }) =
           {selectedFiles.map((file, index) => (
             <div
               key={index}
-              className="flex items-center justify-between bg-gray-100 p-2 rounded-md"
+              className={cn('flex items-center justify-between', spacing(2), tokens.radius.md)}
+              style={{ backgroundColor: tokens.colors.backgroundMuted }}
             >
               <span className="text-sm">{file.name}</span>
               <button
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                type="button"
+                className={cn(tokens.radius.sm, tokens.transition.colors, spacing(1, 'y'), spacing(2, 'x'))}
+                style={{
+                  backgroundColor: tokens.colors.backgroundDestructive,
+                  color: tokens.colors.text,
+                }}
                 onClick={() => handleDeleteFile(file)}
+                aria-label={`Remove ${file.name}`}
               >
                 Delete
               </button>
