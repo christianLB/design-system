@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.2] - 2025-06-06
+
+### Added
+- Re-exported `cn` from `src/utils` so it can be imported from the package root.
+- Updated package version to 1.7.2.
+
 ## [1.7.0] - 2025-05-22
 
 ### Changed
