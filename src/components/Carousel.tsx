@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { spacing, tokens } from '../tokens';
+import { cn } from '../utils';
 
 export interface CarouselProps {
   items: React.ReactNode[];
@@ -28,7 +30,11 @@ export const Carousel: React.FC<CarouselProps> = ({ items, itemsToShow }) => {
   }, [currentIndex, itemsToShow]);
   const itemsToDisplay = items.length;
   return (
-    <div className="relative overflow-hidden">
+    <div
+      className="relative overflow-hidden"
+      role="region"
+      aria-roledescription="carousel"
+    >
       <div
         ref={carouselRef}
         className="flex transition-transform duration-300 ease-in-out"
@@ -46,16 +52,22 @@ export const Carousel: React.FC<CarouselProps> = ({ items, itemsToShow }) => {
       </div>
       <div className="absolute inset-0 flex items-center justify-between">
         <button
+          type="button"
           onClick={handlePrevious}
           disabled={currentIndex === 0}
-          className="p-2 bg-gray-200 rounded-full disabled:opacity-50"
+          aria-label="Previous slide"
+          className={cn(spacing(2), tokens.radius.full, 'disabled:opacity-50')}
+          style={{ backgroundColor: tokens.colors.backgroundMuted }}
         >
           {'<'}
         </button>
         <button
+          type="button"
           onClick={handleNext}
           disabled={currentIndex >= items.length - itemsToShow}
-          className="p-2 bg-gray-200 rounded-full disabled:opacity-50"
+          aria-label="Next slide"
+          className={cn(spacing(2), tokens.radius.full, 'disabled:opacity-50')}
+          style={{ backgroundColor: tokens.colors.backgroundMuted }}
         >
           {'>'}
         </button>
@@ -64,13 +76,15 @@ export const Carousel: React.FC<CarouselProps> = ({ items, itemsToShow }) => {
         {Array.from({ length: Math.ceil(items.length / itemsToShow) }).map((_, index) => (
           <button
             key={index}
+            type="button"
             onClick={() => handleDotClick(index)}
-            className={`h-2 w-2 rounded-full transition-colors duration-300 ${
-              currentIndex === index
-                ? 'bg-blue-500'
-                : 'bg-gray-300'
-            }`}
-          ></button>
+            aria-label={`Go to slide ${index + 1}`}
+            className={cn(tokens.size.xs, tokens.radius.full, tokens.transition.colors)}
+            style={{
+              backgroundColor:
+                currentIndex === index ? tokens.colors.hover.primary : tokens.colors.border,
+            }}
+          />
         ))}
       </div>
     </div>
