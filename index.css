@@ -1,5 +1,6 @@
 /* Import design tokens (CSS variables) */
 @import "./styles/tokens.css";
+@import "./styles/react-select.css";
 
 @tailwind base;
 @tailwind components;

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.8.0] - 2025-06-06
+
+### Fixed
+- Added popover background variables to ensure dropdowns and overlays are opaque
+- Styled MultiSelect dropdown using `bg-popover` colors
+- Updated package version to 1.8.0.
+
 ## [1.7.3] - 2025-06-06
 
 ### Fixed

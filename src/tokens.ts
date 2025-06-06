@@ -30,6 +30,8 @@ export const tokens = {
     background: '#ffffff', // light background
     backgroundMuted: '#f3f4f6', // muted background
     backgroundDestructive: '#fee2e2', // destructive background
+    popover: '#ffffff', // popover background
+    popoverForeground: '#1a1a1a', // popover text
 
     // Text colors
     text: '#111827', // default foreground
