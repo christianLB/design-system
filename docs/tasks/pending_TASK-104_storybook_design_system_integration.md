@@ -57,17 +57,14 @@ Create a proper integration between the @k2600x/design-system package and Storyb
   - [ ] Update project README with setup instructions
 
 ## Testing Instructions
-1. Run `npm run storybook` in the design-system-showcase project
-2. Verify that components render properly without spinners
-3. Test dark/light mode theme switching
-4. Verify that all component variants and states render correctly
-5. Test component interactions like clicks and form inputs
+1. Verify that components render properly in the showcase project
+2. Test dark/light mode theme switching
+3. Verify that all component variants and states render correctly
+4. Test component interactions like clicks and form inputs
 
 ## Related Files
-- `c:\dev\design-system-showcase\.storybook\main.ts`
-- `c:\dev\design-system-showcase\.storybook\preview.ts`
-- `c:\dev\design-system-showcase\src\stories\**\*.stories.tsx`
-- `c:\dev\design-system-showcase\tailwind.config.js`
+- `c:\dev\design-system-showcase\vite.config.ts`
+- `c:\dev\design-system-showcase\src\examples\**\*.tsx`
 - `c:\dev\design-system-showcase\postcss.config.js`
 - `c:\dev\design-system\src\components\**\*.tsx`
 - `c:\dev\design-system\src\index.ts`

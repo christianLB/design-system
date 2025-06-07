@@ -117,7 +117,7 @@ Before submitting any changes, verify:
 ## Documentation
 - Keep documentation up to date
 - Document component props and usage
-- Include examples in storybook/story files
+- Include usage examples in documentation
 - Update CHANGELOG.md for all user-facing changes
 
 ## Review Process
