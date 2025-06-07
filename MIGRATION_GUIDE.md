@@ -116,8 +116,8 @@ When using Tailwind classes, prefer using the token-based classes:
 If you encounter a style that doesn't have a corresponding token:
 
 1. Check if there's a similar token that could be used
-2. If not, add a new token to `lib/tokens.ts`
-3. Document the new token in `DESIGN_TOKENS.md`
+2. If not, add a new CSS variable in `src/styles/globals.css`
+3. Document the new variable in `DESIGN_TOKENS.md`
 
 ### 2. Styling Overrides
 
