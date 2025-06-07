@@ -1,14 +1,25 @@
-import React from 'react';
+import * as React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Select } from '../Select';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '../Select';
 
 describe('Select Component', () => {
-  const options = [{ value: "1", label: "Option 1" }];
-  
   it('renders correctly', () => {
-    render(<Select options={options} data-testid="select" />);
-    expect(screen.getByTestId('select')).toBeInTheDocument();
+    render(
+      <Select>
+        <SelectTrigger data-testid="trigger">
+          <SelectValue placeholder="Select an option" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="1">Option 1</SelectItem>
+        </SelectContent>
+      </Select>
+    );
+    expect(screen.getByTestId('trigger')).toBeInTheDocument();
   });
-  
-  // Add more tests as needed
 });

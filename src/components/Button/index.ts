@@ -1,2 +1,2 @@
-// src/components/Button/index.ts
-export * from './Button';
+export { Button, buttonVariants } from './Button';
+export type { ButtonProps, ButtonVariant, ButtonSize } from './Button';
