@@ -14,7 +14,6 @@ A comprehensive design system built with React, TypeScript, and CSS. This system
 
 ```
 design-system/
-├── .storybook/           # Configuración de Storybook
 ├── components/           # Componentes de UI reutilizables
 │   ├── Button/          
 │   │   ├── Button.tsx    # Componente Button
@@ -24,8 +23,6 @@ design-system/
 │   ├── tasks/           # Tareas y seguimiento
 │   └── ...              # Otra documentación
 ├── public/              # Archivos estáticos
-├── stories/             # Historias de Storybook
-│   └── Button.stories.tsx
 ├── .gitignore
 ├── package.json
 ├── pnpm-lock.yaml
@@ -47,10 +44,6 @@ Para más detalles sobre la estructura, consulta [PROJECT_STRUCTURE.md](./PROJEC
    pnpm install
    ```
 
-3. Inicia Storybook:
-   ```bash
-   pnpm storybook
-   ```
 
 ## 🧩 Componentes
 
@@ -69,8 +62,22 @@ Para desarrollar nuevos componentes o modificar los existentes:
 
 1. Crea un nuevo directorio en `/components`
 2. Desarrolla el componente siguiendo las convenciones
-3. Añade las historias de Storybook en `/stories`
+3. Añade ejemplos de uso en la documentación
 4. Documenta el componente en `/docs`
+
+## Storybook
+
+Para visualizar los componentes de forma aislada utiliza Storybook:
+
+```bash
+pnpm storybook
+```
+
+Para generar una versión estática de la documentación:
+
+```bash
+pnpm build-storybook
+```
 
 ## 🤝 Contribución
 

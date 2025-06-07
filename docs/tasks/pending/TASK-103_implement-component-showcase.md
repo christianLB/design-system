@@ -11,7 +11,7 @@ Now that we've standardized the components and released version 2.0.0 of the des
 ## Objectives
 - Initialize the design-system-showcase repository with the existing content
 - Create a main branch and then branch off for v2 implementation
-- Install and configure Storybook or a similar tool (alternatives to evaluate: Ladle, Docusaurus, or a custom solution)
+- Install and configure a component showcase tool (alternatives to evaluate: Ladle, Docusaurus, or a custom solution)
 - Set up a comprehensive showcase for all standardized components
 - Demonstrate theme switching capabilities
 - Document component props, variants, and usage examples
@@ -85,7 +85,7 @@ Now that we've standardized the components and released version 2.0.0 of the des
 - Documentation site is deployed and accessible
 
 ## Resources
-- [Storybook Documentation](https://storybook.js.org/docs/react/get-started/introduction)
+- Documentation for the selected showcase tool
 - [Design System v2.0.0 Repository](https://github.com/christianLB/design-system)
 - [Component Standardization Documentation](https://github.com/christianLB/design-system/blob/v2-development/docs/COMPONENT_STYLING.md)
 
