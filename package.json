@@ -30,11 +30,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui",
-    "lint": "tsc --noEmit",
-    "prepare": "husky",
+    "test:ui": "vitest --ui",   
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -74,6 +75,11 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "rimraf": "^5.0.1",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^3.2.5",
     "tailwindcss": "^4.1.7",
     "ts-jest": "^29.3.4",
     "typescript": "^5.1.6",

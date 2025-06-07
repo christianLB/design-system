@@ -17,19 +17,15 @@ Design tokens are the visual design atoms of the design system — specifically,
 
 ## Available Tokens
 
-All tokens are defined in `lib/tokens.ts`. Here's an overview of the available token categories:
+All tokens are defined as CSS variables in `src/styles/globals.css`. Here's an overview of the available categories:
 
 ### Colors
 
-```typescript
-import { tokens } from '../lib/tokens';
-
-// Usage
-tokens.colors.primary;          // 'bg-primary'
-tokens.colors.text;            // 'text-foreground'
-tokens.colors.border;          // 'border-border'
-tokens.colors.hover.primary;    // 'hover:bg-primary/90'
-tokens.colors.focus.ring;       // 'focus-visible:ring-ring/50'
+```css
+/* Usage */
+color: hsl(var(--primary));
+background-color: hsl(var(--background));
+/* etc. */
 ```
 
 ### Spacing
@@ -46,37 +42,21 @@ spacing(1.5, 't');             // 'pt-1.5'
 
 ### Border Radius
 
-```typescript
-import { tokens } from '../lib/tokens';
-
-// Usage
-tokens.radius.none;             // 'rounded-none'
-tokens.radius.sm;              // 'rounded-sm'
-tokens.radius.DEFAULT;         // 'rounded'
-tokens.radius.lg;              // 'rounded-lg'
-tokens.radius.xl;              // 'rounded-xl'
+```html
+<!-- Usage -->
+<div class="rounded-lg"></div>
 ```
 
 ### Shadows
 
-```typescript
-import { tokens } from '../lib/tokens';
-
-tokens.shadow.none;            // 'shadow-none'
-tokens.shadow.sm;             // 'shadow-sm'
-tokens.shadow.DEFAULT;        // 'shadow'
-tokens.shadow.md;             // 'shadow-md'
-tokens.shadow.lg;             // 'shadow-lg'
+```html
+<div class="shadow-md"></div>
 ```
 
 ### Transitions
 
-```typescript
-import { tokens } from '../lib/tokens';
-
-tokens.transition.DEFAULT;     // 'transition-[color,box-shadow]'
-tokens.transition.all;         // 'transition-all'
-tokens.transition.colors;      // 'transition-colors'
+```html
+<button class="transition-colors"></button>
 ```
 
 ## Using Tokens in Components
@@ -84,21 +64,9 @@ tokens.transition.colors;      // 'transition-colors'
 ### Basic Usage
 
 ```tsx
-import { tokens } from '../lib/tokens';
-
 function MyComponent() {
   return (
-    <button
-      className={cn(
-        tokens.colors.background,
-        tokens.colors.text,
-        'px-4 py-2',
-        tokens.radius.DEFAULT,
-        tokens.transition.DEFAULT,
-        tokens.colors.hover.primary,
-        'hover:text-white'
-      )}
-    >
+    <button className="bg-background text-foreground px-4 py-2 rounded transition-colors hover:bg-primary hover:text-white">
       Click me
     </button>
   );
@@ -109,21 +77,13 @@ function MyComponent() {
 
 ```tsx
 import { cva } from 'class-variance-authority';
-import { tokens } from '../lib/tokens';
 
 const buttonVariants = cva('flex items-center', {
   variants: {
     variant: {
-      primary: cn(
-        tokens.colors.primary,
-        tokens.colors.hover.primary,
-        'text-white'
-      ),
+      primary: cn('bg-primary', 'hover:bg-primary/90', 'text-white'),
       outline: cn(
-        'border',
-        tokens.colors.border,
-        tokens.colors.hover.muted,
-        tokens.colors.text
+        'border border-border hover:bg-muted text-foreground'
       ),
     },
     size: {
@@ -141,8 +101,8 @@ const buttonVariants = cva('flex items-center', {
 
 ## Adding New Tokens
 
-1. **Add the token** to the appropriate category in `lib/tokens.ts`
-2. **Document** the new token in this guide
+1. **Add the token** as a CSS variable in `src/styles/globals.css`
+2. **Document** the new variable in this guide
 3. **Update** any relevant components to use the new token
 4. **Run tests** to ensure everything works as expected
 
@@ -175,9 +135,8 @@ To migrate existing components to use the new token system:
 ## Troubleshooting
 
 ### Token not working?
-- Ensure you've imported the tokens: `import { tokens } from '../tokens'`
-- Check for typos in the token path
-- Verify the token exists in `lib/tokens.ts`
+- Ensure the CSS variable is declared in `src/styles/globals.css`
+- Check for typos in the variable name
 
 ### Styling looks off?
 - Check for CSS specificity issues
