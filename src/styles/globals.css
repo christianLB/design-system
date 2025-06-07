@@ -17,30 +17,30 @@
 :root {
   /* ----- LEGACY VARIABLES (BACKWARD COMPATIBILITY) ----- */
   /* Light Theme Variables from themes.ts */
-  --color-primary: #3b82f6;
-  --color-secondary: #8b5cf6;
-  --app-bg: #ffffff;
-  --app-content-bg: #f8fafc;
-  --app-border-color: #e2e8f0;
+  --color-primary: 217 91% 60%;
+  --color-secondary: 258 90% 66%;
+  --app-bg: 0 0% 100%;
+  --app-content-bg: 210 40% 98%;
+  --app-border-color: 214 32% 91%;
   --app-border-radius: 6px;
   --font-base: Inter, -apple-system, sans-serif;
   --font-code: Fira Code, monospace;
-  --text-color: #1e293b;
-  --text-inverse-color: #f8fafc;
-  --text-muted-color: #64748b;
-  --bar-text-color: #64748b;
-  --bar-selected-color: #3b82f6;
-  --bar-bg: #ffffff;
-  --input-bg: #ffffff;
-  --input-border: #e2e8f0;
-  --input-text-color: #1e293b;
+  --text-color: 217 33% 17%;
+  --text-inverse-color: 210 40% 98%;
+  --text-muted-color: 215 16% 47%;
+  --bar-text-color: 215 16% 47%;
+  --bar-selected-color: 217 91% 60%;
+  --bar-bg: 0 0% 100%;
+  --input-bg: 0 0% 100%;
+  --input-border: 214 32% 91%;
+  --input-text-color: 217 33% 17%;
   --input-border-radius: 4px;
   --radius: 0.5rem; /* Example: 8px */
-  --color-accent: #16a34a; /* Example: green-600 */
-  --accent-foreground: #ffffff;
+  --color-accent: 142 71% 45%; /* Example: green-600 */
+  --accent-foreground: 0 0% 100%;
   /* Destructive Colors */
-  --color-destructive: #ef4444; /* red-500 */
-  --color-destructive-foreground: #ffffff;
+  --color-destructive: 0 84% 60%; /* red-500 */
+  --color-destructive-foreground: 0 0% 100%;
   
   /* ----- STANDARDIZED VARIABLES (v2.0 APPROACH) ----- */
   /* Using HSL format for better Tailwind compatibility */
@@ -72,26 +72,26 @@
 [data-theme="dark"] {
   /* ----- LEGACY VARIABLES (BACKWARD COMPATIBILITY) ----- */
   /* Dark Theme Variables from themes.ts (overrides and inherited) */
-  --color-primary: #60a5fa;        /* Lighter blue for dark mode (tailwind blue-400) */
-  --color-secondary: #a78bfa;      /* Lighter purple for dark mode (tailwind violet-400) */
-  --app-bg: #0f172a;              /* slate-900 */
-  --app-content-bg: #1e293b;        /* slate-800 */
-  --app-border-color: #334155;      /* slate-700 */
-  --text-color: #f8fafc;          /* slate-50 (white) */
-  --text-inverse-color: #1e293b;    /* slate-800 (dark) */
-  --text-muted-color: #94a3b8;      /* slate-400 */
-  --bar-text-color: #94a3b8;        /* slate-400 */
-  --bar-selected-color: #60a5fa;    /* Lighter blue (match --color-primary for dark) */
-  --bar-bg: #1e293b;              /* slate-800 */
-  --input-bg: #1e293b;            /* slate-800 */
-  --input-border: #334155;        /* slate-700 */
-  --input-text-color: #f8fafc;      /* slate-50 (white) */
+  --color-primary: 217 91% 67%;        /* Lighter blue for dark mode */
+  --color-secondary: 258 90% 74%;      /* Lighter purple for dark mode */
+  --app-bg: 222 47% 11%;              /* slate-900 */
+  --app-content-bg: 217 33% 17%;        /* slate-800 */
+  --app-border-color: 215 25% 27%;      /* slate-700 */
+  --text-color: 210 40% 98%;          /* slate-50 */
+  --text-inverse-color: 217 33% 17%;    /* slate-800 */
+  --text-muted-color: 215 20% 65%;      /* slate-400 */
+  --bar-text-color: 215 20% 65%;        /* slate-400 */
+  --bar-selected-color: 217 91% 67%;    /* match primary */
+  --bar-bg: 217 33% 17%;              /* slate-800 */
+  --input-bg: 217 33% 17%;            /* slate-800 */
+  --input-border: 215 25% 27%;        /* slate-700 */
+  --input-text-color: 210 40% 98%;      /* slate-50 */
   --radius: 0.5rem; /* Example: 8px */
-  --color-accent: #4ade80; /* Example: green-400 */
-  --accent-foreground: #0f172a; /* Dark text for lighter accent in dark mode */
+  --color-accent: 142 69% 58%; /* Example: green-400 */
+  --accent-foreground: 222 47% 11%; /* Dark text for lighter accent in dark mode */
   /* Destructive Colors */
-  --color-destructive: #f87171; /* red-400 */
-  --color-destructive-foreground: #ffffff;
+  --color-destructive: 0 91% 71%; /* red-400 */
+  --color-destructive-foreground: 0 0% 100%;
   
   /* ----- STANDARDIZED VARIABLES (v2.0 APPROACH) ----- */
   /* Using HSL format for better Tailwind compatibility */
