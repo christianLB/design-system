@@ -14,9 +14,10 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": ["node"],
+    "lib": ["dom", "esnext"]
   },
   "include": ["src"],
-  "types": ["node"],
   "exclude": ["node_modules", "dist", "**/*.stories.tsx"]
 }

@@ -10,4 +10,3 @@ export {
   SelectTrigger,
   SelectValue,
 } from './Select';
-export type { SelectProps } from './Select';
