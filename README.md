@@ -143,6 +143,21 @@ or
 bash
 yarn add my-design-system
 ```
+
+### Local Development
+
+If you are working on the design system itself, install the project dependencies first:
+
+```bash
+npm install
+```
+
+Then you can build the package locally:
+
+```bash
+npm run build
+```
+
 ### Usage
 
 Import the components you need from the package:
