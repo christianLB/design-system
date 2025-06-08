@@ -1,4 +1,6 @@
-import '../src/index.css';
+// Use the compiled global styles for Storybook
+// The CSS entry lives at the project root, not under src
+import '../index.css';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
