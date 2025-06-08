@@ -41,7 +41,7 @@ Create a proper integration between the @k2600x/design-system package and Storyb
   - [ ] Set up CSS/styling pipeline correctly
 
 - [ ] Implement theme integration
-  - [ ] Configure theme provider in preview.js
+  - [ ] Configure theme provider in preview.ts
   - [ ] Set up CSS variables correctly
   - [ ] Configure light/dark mode toggle
 
