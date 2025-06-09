@@ -79,6 +79,12 @@ Para generar una versión estática de la documentación:
 pnpm build-storybook
 ```
 
+Para ejecutar tests automáticos sobre las historias y detectar errores en los componentes:
+
+```bash
+npm run test-storybook
+```
+
 ## 🤝 Contribución
 
 Las contribuciones son bienvenidas. Por favor, lee las pautas de contribución antes de enviar un pull request.
