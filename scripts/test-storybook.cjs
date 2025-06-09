@@ -1,7 +1,8 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const { chromium } = require('playwright');
+// Use Playwright from the test package to avoid an additional dependency
+const { chromium } = require('@playwright/test');
 
 async function main() {
   // Build Storybook static site
