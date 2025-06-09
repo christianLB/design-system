@@ -5,7 +5,7 @@ const { chromium } = require('playwright');
 
 async function main() {
   // Build Storybook static site
-  execSync('npm run build-storybook', { stdio: 'inherit' });
+  execSync('pnpm run build-storybook', { stdio: 'inherit' });
 
   const staticDir = path.resolve(__dirname, '../storybook-static');
   const storiesPath = path.join(staticDir, 'stories.json');
@@ -18,7 +18,10 @@ async function main() {
   const storiesJson = JSON.parse(fs.readFileSync(storiesPath, 'utf8'));
   const ids = Object.keys(storiesJson.stories || {});
 
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
   const page = await browser.newPage();
   let hasError = false;
 

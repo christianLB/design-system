@@ -82,7 +82,7 @@ pnpm build-storybook
 Para ejecutar tests automáticos sobre las historias y detectar errores en los componentes:
 
 ```bash
-npm run test-storybook
+pnpm test-storybook
 ```
 
 ## 🤝 Contribución
