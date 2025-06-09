@@ -19,10 +19,16 @@ async function main() {
   const storiesJson = JSON.parse(fs.readFileSync(storiesPath, 'utf8'));
   const ids = Object.keys(storiesJson.stories || {});
 
-  const browser = await chromium.launch({
+  const launchOptions = {
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
+  };
+
+  if (process.env.CHROMIUM_PATH) {
+    launchOptions.executablePath = process.env.CHROMIUM_PATH;
+  }
+
+  const browser = await chromium.launch(launchOptions);
   const page = await browser.newPage();
   let hasError = false;
 
