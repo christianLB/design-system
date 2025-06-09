@@ -47,9 +47,9 @@ Para más detalles sobre la estructura, consulta [PROJECT_STRUCTURE.md](./PROJEC
    pnpm install
    ```
 
-3. Inicia Storybook:
+3. Inicia Storybook para ver los componentes en desarrollo:
    ```bash
-   pnpm storybook
+   pnpm run storybook
    ```
 
 ## 🧩 Componentes
@@ -69,8 +69,7 @@ Para desarrollar nuevos componentes o modificar los existentes:
 
 1. Crea un nuevo directorio en `/components`
 2. Desarrolla el componente siguiendo las convenciones
-3. Añade las historias de Storybook en `/stories`
-4. Documenta el componente en `/docs`
+3. Documenta el componente en `/docs`
 
 ## 🤝 Contribución
 
@@ -143,6 +142,28 @@ or
 bash
 yarn add my-design-system
 ```
+
+### Local Development
+
+If you are working on the design system itself, install the project dependencies first:
+
+```bash
+npm install
+```
+
+Then you can build the package locally:
+
+```bash
+npm run build
+```
+To run Storybook:
+```bash
+pnpm run storybook
+```
+If components render without styling, check the troubleshooting guide at
+[docs/storybook-troubleshooting.md](docs/storybook-troubleshooting.md).
+
+
 ### Usage
 
 Import the components you need from the package:
