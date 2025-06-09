@@ -160,6 +160,8 @@ To run Storybook:
 ```bash
 pnpm run storybook
 ```
+If components render without styling, check the troubleshooting guide at
+[docs/storybook-troubleshooting.md](docs/storybook-troubleshooting.md).
 
 
 ### Usage
