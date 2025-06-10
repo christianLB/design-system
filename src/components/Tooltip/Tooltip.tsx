@@ -65,7 +65,6 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     maxWidth = '240px',
     ...props
   }, ref) => {
-    const [isHovering, setIsHovering] = React.useState(false);
     const [isVisible, setIsVisible] = React.useState(false);
     const timeoutRef = React.useRef<NodeJS.Timeout>();
     const isControlled = controlledOpen !== undefined;

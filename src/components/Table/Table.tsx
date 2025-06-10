@@ -93,7 +93,7 @@ const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
   const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [currentPage, setCurrentPage] = React.useState(0);
-  const [pageSize, setPageSize] = React.useState(10);
+  const [pageSize] = React.useState(10);
 
   // Create the table instance
   const table = useReactTable<TData>({

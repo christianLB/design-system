@@ -7,20 +7,20 @@ interface ConfirmDialogState {
   description?: string;
   confirmText?: string;
   cancelText?: string;
-  onConfirm?: (options?: any) => void;
+  onConfirm?: (options?: unknown) => void;
   onCancel?: () => void;
   extraContent?: React.ReactNode;
-  extraState?: any;
+  extraState?: unknown;
 
   show: (options: {
     title: string;
     description: string;
     confirmText?: string;
     cancelText?: string;
-    onConfirm?: (options?: any) => void;
+    onConfirm?: (options?: unknown) => void;
     onCancel?: () => void;
     extraContent?: React.ReactNode;
-    extraState?: any;
+    extraState?: unknown;
   }) => void;
 
   hide: () => void;

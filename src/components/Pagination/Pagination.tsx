@@ -60,7 +60,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((
     
     // Logic to only show a window of page numbers when there are many pages
     let startPage = Math.max(1, currentPage - Math.floor(maxPageButtons / 2));
-    let endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
+    const endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
     
     // Adjust if we're near the end
     if (endPage - startPage + 1 < maxPageButtons) {

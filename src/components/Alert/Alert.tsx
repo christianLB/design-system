@@ -2,10 +2,6 @@ import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils';
 
-/**
- * Available alert variants
- */
-type AlertVariant = 'default' | 'destructive' | 'success' | 'warning' | 'info';
 
 const alertVariants = cva(
   'relative w-full rounded-lg border p-4',
