@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import { cn } from '../../utils';
 import { ThemeProvider as ThemeProviderContext } from '../../contexts/ThemeContext';
 

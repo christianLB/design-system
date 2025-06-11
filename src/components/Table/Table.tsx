@@ -11,15 +11,10 @@ import {
   getSortedRowModel,
   useReactTable,
   RowSelectionState,
-  RowModel,
-  Table as TableType,
 } from '@tanstack/react-table';
 
 import { cn } from '../../utils';
-import { Checkbox } from '../Checkbox';
-import { Input } from '../Input/Input';
 import { Pagination } from '../Pagination';
-import { Badge } from '../Badge';
 
 interface TableProps<TData, TMeta = unknown> {
   /**
@@ -29,7 +24,7 @@ interface TableProps<TData, TMeta = unknown> {
   /**
    * Column definitions for the table
    */
-  columns: ColumnDef<TData, any>[];
+  columns: ColumnDef<TData, unknown>[];
   /**
    * Message to display when no data is available
    * @default "No data found."
@@ -77,7 +72,7 @@ interface TableProps<TData, TMeta = unknown> {
  *   emptyMessage="No records found"
  * />
  */
-const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
+const Table = React.forwardRef<HTMLDivElement, TableProps<unknown, unknown>>(
   <TData, TMeta = unknown>({
     data,
     columns,
@@ -116,7 +111,7 @@ const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
     getFilteredRowModel: getFilteredRowModel(),
     manualPagination: false,
     debugTable: false,
-    meta: meta as any,
+    meta: meta as unknown,
   });
 
   // Handle selection changes
