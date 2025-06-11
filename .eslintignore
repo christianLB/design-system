@@ -1,6 +1,7 @@
 backup-migrated-files/
 docs/
 scripts/
+dist/
 src/compatibility/
 src/test/
 tests/
