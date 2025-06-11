@@ -79,6 +79,24 @@ Para generar una versión estática de la documentación:
 pnpm build-storybook
 ```
 
+Para ejecutar tests automáticos sobre las historias y detectar errores en los componentes, asegúrate de tener un navegador disponible para Playwright. Puedes instalar Chromium con apt o descargar los navegadores de Playwright:
+
+```bash
+pnpm exec playwright install
+```
+
+Si ya tienes Chromium instalado en el sistema, exporta la ruta antes de ejecutar los tests:
+
+```bash
+export CHROMIUM_PATH=$(which chromium-browser)
+```
+
+Luego ejecuta:
+
+```bash
+pnpm test-storybook
+```
+
 ## 🤝 Contribución
 
 Las contribuciones son bienvenidas. Por favor, lee las pautas de contribución antes de enviar un pull request.

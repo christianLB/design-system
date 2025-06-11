@@ -11,74 +11,31 @@ import {
   getSortedRowModel,
   useReactTable,
   RowSelectionState,
-  RowModel,
-  Table as TableType,
+  TableMeta,
 } from '@tanstack/react-table';
 
 import { cn } from '../../utils';
-import { Checkbox } from '../Checkbox';
-import { Input } from '../Input/Input';
 import { Pagination } from '../Pagination';
-import { Badge } from '../Badge';
 
 interface TableProps<TData, TMeta = unknown> {
-  /**
-   * Array of data to be displayed in the table
-   */
+  /** Array of data to be displayed in the table */
   data: TData[];
-  /**
-   * Column definitions for the table
-   */
-  columns: ColumnDef<TData, any>[];
-  /**
-   * Message to display when no data is available
-   * @default "No data found."
-   */
+  /** Column definitions for the table */
+  columns: ColumnDef<TData, unknown>[];
+  /** Message to display when no data is available */
   emptyMessage?: React.ReactNode;
-  /**
-   * Initial sorting state
-   * @default []
-   */
+  /** Initial sorting state */
   defaultSortBy?: SortingState;
-  /**
-   * Callback when row selection changes
-   */
+  /** Callback when row selection changes */
   onSelectionChange?: (selection: TData[]) => void;
-  /**
-   * Additional CSS classes
-   */
+  /** Additional CSS classes */
   className?: string;
-  /**
-   * Additional metadata to pass to the table
-   */
+  /** Additional metadata to pass to the table */
   meta?: TMeta;
 }
 
-/**
- * A customizable table component with sorting, filtering, and pagination.
- * @component
- * @example
- * const columns = [
- *   {
- *     accessorKey: 'name',
- *     header: 'Name',
- *   },
- *   // ... more column definitions
- * ];
- * 
- * const data = [
- *   { id: 1, name: 'John Doe' },
- *   // ... more data
- * ];
- * 
- * <Table 
- *   columns={columns} 
- *   data={data} 
- *   emptyMessage="No records found"
- * />
- */
-const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
-  <TData, TMeta = unknown>({
+function TableInner<TData, TMeta = unknown>(
+  {
     data,
     columns,
     emptyMessage = 'No data found.',
@@ -87,15 +44,16 @@ const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
     className,
     meta,
     ...props
-  }: TableProps<TData, TMeta>, ref: React.ForwardedRef<HTMLDivElement>) => {
+  }: TableProps<TData, TMeta>,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   const [sorting, setSorting] = React.useState<SortingState>(defaultSortBy);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [currentPage, setCurrentPage] = React.useState(0);
-  const [pageSize, setPageSize] = React.useState(10);
+  const [pageSize] = React.useState(10);
 
-  // Create the table instance
   const table = useReactTable<TData>({
     data,
     columns,
@@ -116,10 +74,9 @@ const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
     getFilteredRowModel: getFilteredRowModel(),
     manualPagination: false,
     debugTable: false,
-    meta: meta as any,
+    meta: meta as TableMeta<TData> | undefined,
   });
 
-  // Handle selection changes
   React.useEffect(() => {
     if (onSelectionChange) {
       const selectedData = table
@@ -135,9 +92,8 @@ const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
 
   const pageCount = React.useMemo(
     () => Math.ceil(table.getCoreRowModel().rows.length / pageSize),
-    [table, pageSize]
+    [table, pageSize],
   );
-
 
   return (
     <div ref={ref} className={cn('space-y-4', className)} {...props}>
@@ -146,7 +102,7 @@ const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
           <table className="w-full text-sm caption-bottom text-foreground">
             <thead className="[&_tr]:border-b [&_tr]:border-border bg-muted/50">
               {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}> 
+                <tr key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
                     <th
                       key={header.id}
@@ -159,10 +115,7 @@ const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
                     >
                       {header.isPlaceholder ? null : (
                         <div className="flex items-center gap-2">
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          {flexRender(header.column.columnDef.header, header.getContext())}
                           {header.column.getCanSort() && (
                             <span className="text-muted-foreground ml-1">
                               {{
@@ -181,8 +134,8 @@ const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
             <tbody className="divide-y divide-border">
               {table.getPaginationRowModel().rows.length === 0 ? (
                 <tr>
-                  <td 
-                    className="p-4 text-center text-muted-foreground" 
+                  <td
+                    className="p-4 text-center text-muted-foreground"
                     colSpan={table.getAllColumns().length}
                   >
                     {emptyMessage}
@@ -190,13 +143,10 @@ const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
                 </tr>
               ) : (
                 table.getPaginationRowModel().rows.map((row) => (
-                  <tr 
-                    key={row.id} 
-                    className="hover:bg-muted/50 transition-colors"
-                  >
+                  <tr key={row.id} className="hover:bg-muted/50 transition-colors">
                     {row.getVisibleCells().map((cell) => (
-                      <td 
-                        key={cell.id} 
+                      <td
+                        key={cell.id}
                         className="p-4 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
                       >
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -210,7 +160,7 @@ const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
         </div>
         {pageCount > 1 && (
           <div className="flex items-center justify-end px-4 py-3 border-t border-border bg-muted/30">
-            <Pagination 
+            <Pagination
               totalItems={table.getFilteredRowModel().rows.length}
               currentPage={currentPage + 1}
               itemsPerPage={pageSize}
@@ -221,9 +171,13 @@ const Table = React.forwardRef<HTMLDivElement, TableProps<any, any>>(
       </div>
     </div>
   );
-});
+}
 
-Table.displayName = 'Table';
+const Table = React.forwardRef(TableInner) as <TData, TMeta = unknown>(
+  props: TableProps<TData, TMeta> & React.HTMLAttributes<HTMLDivElement> & { ref?: React.ForwardedRef<HTMLDivElement> }
+) => JSX.Element;
+
+(Table as React.FC).displayName = 'Table';
 
 export type { TableProps };
 export { Table };
