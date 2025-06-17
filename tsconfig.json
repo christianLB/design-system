@@ -19,9 +19,12 @@
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "types": ["node"],
+    "types": ["node", "@types/jest", "@types/testing-library__jest-dom"],
     "lib": ["dom", "esnext"]
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "tests"
+  ],
   "exclude": ["node_modules", "dist"]
 }
