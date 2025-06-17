@@ -1,84 +1,45 @@
-"use client";
+import * as React from 'react';
+import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../Dialog/Dialog';
+import { Button } from '../Button/Button';
 
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogDescription } from "../Dialog/Dialog";
-import { Button } from "../Button/Button";
-import React, { forwardRef } from "react";
-import { useConfirmStore } from "../../hooks/useConfirm";
-import { cn } from '../../utils';
-
-export interface ConfirmDialogProps extends React.HTMLAttributes<HTMLDivElement> {
-  // The component doesn't accept any props directly;
-  // all configuration is handled through the useConfirmStore
-  className?: string;
+export interface ConfirmDialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  title: string;
+  description: string;
+  confirmText?: string;
+  cancelText?: string;
+  children?: React.ReactNode;
 }
 
-export interface ConfirmDialogExtraContentProps {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-/**
- * A dialog component that displays a confirmation message with confirm/cancel buttons.
- * Configured through the useConfirmStore.
- */
-const ConfirmDialog = forwardRef<HTMLDivElement, ConfirmDialogProps>((
-  { className, ...props }, 
-  ref
-) => {
-  const {
-    open,
-    title,
-    description,
-    confirmText,
-    cancelText,
-    onConfirm,
-    onCancel,
-    hide,
-    extraContent,
-  } = useConfirmStore();
-
-  // Local state for checkbox (if present)
-  const [deleteFile, setDeleteFile] = React.useState(false);
-  React.useEffect(() => {
-    setDeleteFile(false); // reset on open
-  }, [open]);
-
-  const handleConfirm = () => {
-    if (onConfirm) onConfirm({ deleteFile });
-    hide();
-  };
-
-  const handleCancel = () => {
-    if (onCancel) onCancel();
-    hide();
-  };
+export const ConfirmDialog = ({
+  isOpen,
+  onClose,
+  onConfirm,
+  title,
+  description,
+  confirmText = 'Confirm',
+  cancelText = 'Cancel',
+  children,
+}: ConfirmDialogProps) => {
+  if (!isOpen) {
+    return null;
+  }
 
   return (
-    <div ref={ref} data-testid="confirmdialog" className={cn(className)} {...props}>
-      <Dialog open={open} onOpenChange={hide}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
-            <DialogDescription>{description}</DialogDescription>
-          </DialogHeader>
-          {extraContent && (
-            <div className="mb-4">
-              {React.cloneElement(extraContent as React.ReactElement, {
-                // onChange: (e: React.ChangeEvent<HTMLInputElement>) => setDeleteFile(e.target.checked),
-              })}
-            </div>
-          )}
-          <DialogFooter className="flex justify-end gap-2">
-            <Button variant="outline" onClick={handleCancel}>
-              {cancelText}
-            </Button>
-            <Button onClick={handleConfirm}>{confirmText}</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </div>
+    <Dialog isOpen={isOpen} onClose={onClose}>
+      <DialogHeader>
+        <DialogTitle>{title}</DialogTitle>
+        <DialogDescription>{description}</DialogDescription>
+      </DialogHeader>
+      {children && <div className="confirm-dialog-body">{children}</div>}
+      <DialogFooter>
+        <Button className="btn-outline" onClick={onClose}>
+          {cancelText}
+        </Button>
+        <Button onClick={onConfirm}>{confirmText}</Button>
+      </DialogFooter>
+    </Dialog>
   );
-});
-
-ConfirmDialog.displayName = 'ConfirmDialog';
-
-export { ConfirmDialog };
+};

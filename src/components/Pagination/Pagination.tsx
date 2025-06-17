@@ -1,7 +1,16 @@
 import * as React from 'react';
-import { cn } from '../../utils';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+/**
+ * A pagination component that allows navigation between pages of content.
+ * @component
+ * @example
+ * <Pagination 
+ *   totalItems={100}
+ *   itemsPerPage={10}
+ *   currentPage={1}
+ *   onPageChange={(page) => console.log(page)}
+ * />
+ */
 export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Total number of items */
   totalItems: number;
@@ -79,42 +88,27 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((
   return (
     <div 
       ref={ref}
-      className={cn("flex items-center justify-center gap-2", className)}
+      className={`pagination-container ${className || ''}`}
       {...props}
     >
       <button
         type="button"
         onClick={() => handlePageClick(currentPage - 1)}
         disabled={currentPage === 1}
-        className={cn(
-          "p-2 rounded-md flex items-center justify-center",
-          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          "border border-border text-muted-foreground",
-          "transition-colors",
-          currentPage === 1 
-            ? "bg-muted opacity-50 cursor-not-allowed" 
-            : "bg-card hover:bg-muted"
-        )}
+        className={`pagination-button ${currentPage === 1 ? 'pagination-button--disabled' : ''}`}
         aria-label="Previous page"
       >
-        <ChevronLeft className="h-4 w-4" />
+        ‹
       </button>
 
       {pageNumbers.length > 0 && (
-        <div className="flex items-center gap-1">
+        <div className="pagination-pages">
           {pageNumbers.map((page) => (
             <button
               key={page}
               type="button"
               onClick={() => handlePageClick(page)}
-              className={cn(
-                "px-3 py-1 rounded-md min-w-[2rem] text-sm font-medium",
-                "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-                "transition-colors",
-                currentPage === page 
-                  ? "bg-primary text-primary-foreground" 
-                  : "bg-card text-card-foreground border border-border hover:bg-muted"
-              )}
+              className={`pagination-button pagination-button--page ${currentPage === page ? 'pagination-button--active' : ''}`}
               aria-label={`Go to page ${page}`}
               aria-current={currentPage === page ? 'page' : undefined}
             >
@@ -128,18 +122,10 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((
         type="button"
         onClick={() => handlePageClick(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className={cn(
-          "p-2 rounded-md flex items-center justify-center",
-          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          "border border-border text-muted-foreground",
-          "transition-colors",
-          currentPage === totalPages 
-            ? "bg-muted opacity-50 cursor-not-allowed" 
-            : "bg-card hover:bg-muted"
-        )}
+        className={`pagination-button ${currentPage === totalPages ? 'pagination-button--disabled' : ''}`}
         aria-label="Next page"
       >
-        <ChevronRight className="h-4 w-4" />
+        ›
       </button>
     </div>
   );

@@ -1,70 +1,75 @@
-"use client"
+import React, { createContext, useContext, useState, forwardRef, HTMLAttributes, ReactNode } from 'react';
 
-import * as React from "react"
-import * as TabsPrimitive from "@radix-ui/react-tabs"
+interface TabsContextType {
+  activeTab: string;
+  setActiveTab: (value: string) => void;
+}
 
-import { cn } from "../../utils"
+const TabsContext = createContext<TabsContextType | undefined>(undefined);
 
-const Tabs = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.Root
-    ref={ref}
-    data-slot="tabs"
-    className={cn("flex flex-col gap-2", className)}
-    {...props}
-  />
+export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
+  defaultValue: string;
+  children: ReactNode;
+}
+
+const Tabs = forwardRef<HTMLDivElement, TabsProps>(({ defaultValue, children, className, ...props }, ref) => {
+  const [activeTab, setActiveTab] = useState(defaultValue);
+
+  return (
+    <TabsContext.Provider value={{ activeTab, setActiveTab }}>
+      <div ref={ref} className={`tabs ${className || ''}`} {...props}>
+        {children}
+      </div>
+    </TabsContext.Provider>
+  );
+});
+Tabs.displayName = 'Tabs';
+
+export const TabsList = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
+  <div ref={ref} role="tablist" className={`tabs-list ${className || ''}`} {...props} />
 ));
+TabsList.displayName = 'TabsList';
 
-Tabs.displayName = "Tabs";
+export interface TabsTriggerProps extends HTMLAttributes<HTMLButtonElement> {
+  value: string;
+}
 
-const TabsList = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.List
-    ref={ref}
-    data-slot="tabs-list"
-    className={cn(
-      "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-1",
-      className
-    )}
-    {...props}
-  />
-));
+export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(({ value, className, ...props }, ref) => {
+  const context = useContext(TabsContext);
+  if (!context) {
+    throw new Error('TabsTrigger must be used within a Tabs component');
+  }
+  const { activeTab, setActiveTab } = context;
+  const isActive = activeTab === value;
 
-TabsList.displayName = "TabsList";
+  return (
+    <button
+      ref={ref}
+      role="tab"
+      aria-selected={isActive}
+      onClick={() => setActiveTab(value)}
+      className={`tabs-trigger ${isActive ? 'tabs-trigger--active' : ''} ${className || ''}`}
+      {...props}
+    />
+  );
+});
+TabsTrigger.displayName = 'TabsTrigger';
 
-const TabsTrigger = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.Trigger
-    ref={ref}
-    data-slot="tabs-trigger"
-    className={cn(
-      "data-[state=active]:bg-background data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring inline-flex flex-1 items-center justify-center gap-1.5 rounded-md px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-      className
-    )}
-    {...props}
-  />
-));
+export interface TabsContentProps extends HTMLAttributes<HTMLDivElement> {
+  value: string;
+}
 
-TabsTrigger.displayName = "TabsTrigger";
+export const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(({ value, className, ...props }, ref) => {
+  const context = useContext(TabsContext);
+  if (!context) {
+    throw new Error('TabsContent must be used within a Tabs component');
+  }
+  const isActive = context.activeTab === value;
 
-const TabsContent = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.Content
-    ref={ref}
-    data-slot="tabs-content"
-    className={cn("flex-1 outline-none", className)}
-    {...props}
-  />
-));
+  return isActive ? (
+    <div ref={ref} role="tabpanel" className={`tabs-content ${className || ''}`} {...props} />
+  ) : null;
+});
+TabsContent.displayName = 'TabsContent';
 
-TabsContent.displayName = "TabsContent";
-
-export { Tabs, TabsList, TabsTrigger, TabsContent }
+export { Tabs };

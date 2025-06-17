@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cn } from '../../utils';
+
 
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {
@@ -40,17 +40,12 @@ const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
     return (
       <label
         ref={ref} data-testid="label"
-        className={cn(
-          'text-sm font-medium leading-none text-foreground',
-          'peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
-          disabled && 'cursor-not-allowed opacity-70 text-muted-foreground',
-          className
-        )}
+        className={`label ${disabled ? 'label--disabled' : ''} ${className || ''}`}
         htmlFor={htmlFor}
         {...props}
       >
         {children}
-        {required && <span className="ml-0.5 text-destructive">*</span>}
+        {required && <span className="label-required-indicator"> *</span>}
       </label>
     );
   }

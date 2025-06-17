@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { cn } from '../../utils';
 
 export interface BreadcrumbItem {
   name: string;
@@ -8,32 +7,21 @@ export interface BreadcrumbItem {
 
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   items: BreadcrumbItem[];
-  className?: string;
+  separator?: React.ReactNode;
 }
 
 const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
-  ({ items, className, ...props }, ref) => {
+  ({ items, className, separator = '>', ...props }, ref) => {
     return (
-      <nav 
-        ref={ref} 
-        aria-label="Breadcrumb" 
-        className={cn(className)} 
-        {...props}
-      >
-        <ol className="flex items-center space-x-2">
+      <nav ref={ref} aria-label="Breadcrumb" className={`breadcrumb ${className || ''}`} {...props}>
+        <ol className="breadcrumb-list">
           {items.map((item, index) => (
-            <li key={index} className="flex items-center">
-              <a 
-                href={item.href} 
-                className={cn(
-                  "text-primary hover:text-primary/80",
-                  "transition-colors font-medium text-sm"
-                )}
-              >
+            <li key={index} className="breadcrumb-item">
+              <a href={item.href} className="breadcrumb-link">
                 {item.name}
               </a>
               {index < items.length - 1 && (
-                <span className="mx-2 text-muted-foreground">&gt;</span>
+                <span className="breadcrumb-separator">{separator}</span>
               )}
             </li>
           ))}

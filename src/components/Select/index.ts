@@ -1,12 +1,9 @@
 export {
   Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectScrollDownButton,
-  SelectScrollUpButton,
-  SelectSeparator,
   SelectTrigger,
   SelectValue,
+  SelectContent,
+  SelectItem,
 } from './Select';
+
+export type { SelectProps, SelectItemProps } from './Select';

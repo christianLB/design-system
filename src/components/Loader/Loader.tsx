@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cn } from '../../utils';
+
 
 export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -24,21 +24,9 @@ export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
   center?: boolean;
 }
 
-const sizeClasses = {
-  sm: 'h-4 w-4 border-2',
-  md: 'h-6 w-6 border-2',
-  lg: 'h-8 w-8 border-[3px]',
-  xl: 'h-12 w-12 border-4',
-};
 
-const variantClasses = {
-  primary: 'border-t-primary',
-  secondary: 'border-t-secondary',
-  success: 'border-t-success',
-  destructive: 'border-t-destructive',
-  warning: 'border-t-warning',
-  info: 'border-t-info',
-};
+
+
 
 /**
  * A loading spinner component that can be used to indicate loading states.
@@ -69,26 +57,15 @@ const Loader = React.forwardRef<HTMLDivElement, LoaderProps>((
   return (
     <div 
       ref={ref} data-testid="loader"
-      className={cn(
-        'inline-block',
-        {
-          'w-full flex justify-center': fullWidth,
-          'mx-auto': center,
-        },
-        className
-      )}
+      className={`loader-container ${fullWidth ? 'loader-container--full-width' : ''} ${center ? 'loader-container--center' : ''} ${className || ''}`}
       role="status"
       aria-label="Loading"
       {...props}
     >
       <div 
-        className={cn(
-          'animate-spin rounded-full border-border',
-          sizeClasses[size],
-          variantClasses[variant]
-        )}
+        className={`loader loader--${size} loader--${variant}`}
       >
-        <span className="sr-only">Loading...</span>
+        {/* The sr-only text was removed as aria-label on the container is sufficient */}
       </div>
     </div>
   );
@@ -120,17 +97,14 @@ const PageLoader = React.forwardRef<HTMLDivElement, PageLoaderProps>((
   return (
     <div 
       ref={ref}
-      className={cn(
-        "fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50",
-        className
-      )}
+      className={`page-loader ${className || ''}`}
       role="status"
       aria-label={text}
       {...props}
     >
       <div className="text-center">
         <Loader size="xl" />
-        <p className="mt-4 text-sm text-muted-foreground">{text}</p>
+        <p className="page-loader-text">{text}</p>
       </div>
     </div>
   );

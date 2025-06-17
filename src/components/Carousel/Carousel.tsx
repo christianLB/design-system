@@ -1,24 +1,22 @@
 import React, { useState, useRef, useEffect, forwardRef } from 'react';
-import { cn } from '../../utils';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   items: React.ReactNode[];
-  itemsToShow: number;
-  className?: string;
+  itemsToShow?: number;
 }
 
 const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
-  ({ items, itemsToShow, className, ...props }, ref) => {
+  ({ items, itemsToShow = 1, className, ...props }, ref) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const carouselRef = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+    const totalPages = items.length > 0 ? Math.ceil(items.length / itemsToShow) : 0;
 
     const handleNext = () => {
-      setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, items.length - itemsToShow));
+      setCurrentIndex((prev) => Math.min(prev + 1, totalPages - 1));
     };
 
     const handlePrevious = () => {
-      setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+      setCurrentIndex((prev) => Math.max(prev - 1, 0));
     };
 
     const handleDotClick = (index: number) => {
@@ -26,82 +24,61 @@ const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
     };
 
     useEffect(() => {
-      if (carouselRef.current) {
-        carouselRef.current.style.transition = 'transform 0.3s ease-in-out';
-        carouselRef.current.style.transform = `translateX(-${currentIndex * (100 / itemsToShow)}%)`;
+      if (contentRef.current) {
+        const offset = currentIndex * 100;
+        contentRef.current.style.transform = `translateX(-${offset}%)`;
       }
-    }, [currentIndex, itemsToShow]);
-
-    const itemsToDisplay = items.length;
+    }, [currentIndex]);
 
     return (
-      <div 
-        ref={ref} data-testid="carousel" 
-        className={cn("relative overflow-hidden", className)}
-        {...props}
-      >
-        <div
-          ref={carouselRef}
-          className="flex transition-transform duration-300 ease-in-out"
-          style={{ width: `${itemsToDisplay * 100}%` }}
-        >
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0"
-              style={{ width: `${100 / itemsToShow}%` }}
-            >
-              {item}
+      <div ref={ref} className={`carousel ${className || ''}`} {...props}>
+        <div className="carousel__viewport">
+          <div ref={contentRef} className="carousel__content">
+            {items.map((item, index) => (
+              <div
+                key={index}
+                className="carousel__slide"
+                style={{ flex: `0 0 ${100 / itemsToShow}%` }}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {totalPages > 1 && (
+          <>
+            <div className="carousel__navigation">
+              <button
+                type="button"
+                onClick={handlePrevious}
+                disabled={currentIndex === 0}
+                className="carousel__button carousel__button--prev"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                disabled={currentIndex >= totalPages - 1}
+                className="carousel__button carousel__button--next"
+              >
+                ›
+              </button>
             </div>
-          ))}
-        </div>
-        <div className="absolute inset-0 flex items-center justify-between">
-          <button
-            type="button"
-            onClick={handlePrevious}
-            disabled={currentIndex === 0}
-            className={cn(
-              "p-2 rounded-full", 
-              "bg-secondary hover:bg-secondary/90 transition-colors",
-              "text-secondary-foreground",
-              "disabled:opacity-50 disabled:pointer-events-none",
-              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-            )}
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-          <button
-            type="button"
-            onClick={handleNext}
-            disabled={currentIndex >= items.length - itemsToShow}
-            className={cn(
-              "p-2 rounded-full", 
-              "bg-secondary hover:bg-secondary/90 transition-colors",
-              "text-secondary-foreground",
-              "disabled:opacity-50 disabled:pointer-events-none",
-              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-            )}
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </div>
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-2 items-center">
-          {Array.from({ length: Math.ceil(items.length / itemsToShow) }).map((_, index) => (
-            <button
-              key={index}
-              type="button"
-              onClick={() => handleDotClick(index)}
-              className={cn(
-                "h-2 w-2 rounded-full transition-colors duration-300",
-                "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1",
-                currentIndex === index 
-                  ? "bg-primary" 
-                  : "bg-muted hover:bg-muted-foreground/50"
-              )}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
+            <div className="carousel__pagination">
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => handleDotClick(index)}
+                  className={`carousel__dot ${currentIndex === index ? 'carousel__dot--active' : ''}`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     );
   }

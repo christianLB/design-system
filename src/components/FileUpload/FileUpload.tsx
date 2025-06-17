@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useRef, forwardRef } from 'react';
-import { cn } from '../../utils';
-import { Trash2 } from 'lucide-react';
+
 
 export interface FileUploadProps extends React.HTMLAttributes<HTMLDivElement> {
   files: File[];
@@ -68,16 +67,11 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
     return (
       <div 
         ref={ref} data-testid="fileupload" 
-        className={cn("space-y-4", className)}
+        className={`fileupload ${className || ''}`}
         {...props}
       >
         <div
-          className={cn(
-            "border-2 border-dashed rounded-md cursor-pointer",
-            "border-border hover:border-primary/50 transition-colors",
-            "p-6 flex flex-col items-center justify-center",
-            "bg-muted/50 hover:bg-muted transition-colors"
-          )}
+          className="fileupload-dropzone"
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onClick={handleClick}
@@ -89,33 +83,25 @@ const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
             onChange={handleFileChange}
             ref={fileInputRef}
           />
-          <p className="text-muted-foreground text-center">
+          <p className="fileupload-dropzone-text">
             Drag and drop files here or click to select files
           </p>
         </div>
         {selectedFiles.length > 0 && (
-          <div className="space-y-2">
+          <div className="fileupload-list">
             {selectedFiles.map((file, index) => (
               <div
                 key={index}
-                className={cn(
-                  "flex items-center justify-between p-2 rounded-md",
-                  "bg-card text-card-foreground border border-border"
-                )}
+                className="fileupload-item"
               >
-                <span className="text-sm font-medium truncate flex-1 mr-2">{file.name}</span>
+                <span className="fileupload-item-name">{file.name}</span>
                 <button
                   type="button"
-                  className={cn(
-                    "p-1 rounded-md flex items-center justify-center",
-                    "bg-destructive hover:bg-destructive/90 transition-colors",
-                    "text-destructive-foreground",
-                    "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                  )}
+                  className="fileupload-item-delete"
                   onClick={() => handleDeleteFile(file)}
                   aria-label={`Delete ${file.name}`}
                 >
-                  <Trash2 className="h-4 w-4" />
+                  🗑️
                 </button>
               </div>
             ))}

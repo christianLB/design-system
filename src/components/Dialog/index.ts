@@ -1,12 +1,8 @@
 export {
   Dialog,
-  DialogClose,
-  DialogContent,
+  DialogHeader,
+  DialogTitle,
   DialogDescription,
   DialogFooter,
-  DialogHeader,
-  DialogOverlay,
-  DialogPortal,
-  DialogTitle,
-  DialogTrigger,
 } from './Dialog';
+export type { DialogProps } from './Dialog';
