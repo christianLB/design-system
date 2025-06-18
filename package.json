@@ -1,6 +1,6 @@
 {
   "name": "@k2600x/design-system",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A reusable design system built with React and TypeScript.",
   "author": "k2600x <k2600x@gmail.com>",
   "license": "MIT",
@@ -19,11 +19,12 @@
   "files": [
     "dist",
     "README.md",
-    "tailwind.preset.js"
+    "tailwind.preset.js",
+    "REQUIREMENTS.md"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npm run copy-docs",
     "type-check": "tsc --noEmit",
     "clean": "rimraf dist",
     "test": "vitest run",
@@ -35,7 +36,8 @@
     "test-storybook": "node scripts/test-storybook.cjs",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "copy-docs": "cp README.md REQUIREMENTS.md dist/"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

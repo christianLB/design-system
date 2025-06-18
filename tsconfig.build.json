@@ -3,7 +3,7 @@
   "compilerOptions": {
     "declaration": true,
     "emitDeclarationOnly": true,
-    "outDir": "dist/types"
+    "outDir": "dist"
   },
   "include": ["src"],
   "exclude": ["**/__tests__/**", "**/*.test.tsx", "**/*.test.ts", "**/*.stories.tsx"]
