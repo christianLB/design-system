@@ -1,6 +1,6 @@
 {
   "name": "@k2600x/design-system",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A reusable design system built with React and TypeScript.",
   "author": "k2600x <k2600x@gmail.com>",
   "license": "MIT",
@@ -19,11 +19,12 @@
   "files": [
     "dist",
     "README.md",
+    "REQUIREMENTS.md",
     "tailwind.preset.js"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc -p tsconfig.build.json && vite build",
     "type-check": "tsc --noEmit",
     "clean": "rimraf dist",
     "test": "vitest run",
