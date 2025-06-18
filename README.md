@@ -20,8 +20,7 @@ design-system/
 │   │   └── Button.css    # Estilos del componente Button
 │   └── ...              # Otros componentes
 ├── docs/                # Documentación del proyecto
-│   ├── tasks/           # Tareas y seguimiento
-│   └── ...              # Otra documentación
+│   └── ...              # Archivos de ayuda y guías
 ├── public/              # Archivos estáticos
 ├── .gitignore
 ├── package.json
@@ -168,7 +167,29 @@ or
 bash
 yarn add my-design-system
 ```
+
+### Required dependencies
+
+The design system expects the following packages to exist in your application:
+
+- **react** and **react-dom** (version 17 or newer)
+- **tailwindcss** v4 (plus `postcss` and `autoprefixer`)
+
+If these are not present, add them along with the design system:
+
+```bash
+pnpm add react react-dom tailwindcss@^4 autoprefixer postcss
+```
+
+After installing Tailwind CSS, follow the steps in [REQUIREMENTS.md](./REQUIREMENTS.md) to configure it with the provided preset.
+
 ### Usage
+
+All component styles are bundled with the package. Import the CSS once in your application entry point:
+
+```javascript
+import '@k2600x/design-system/style.css';
+```
 
 Import the components you need from the package:
 ```
