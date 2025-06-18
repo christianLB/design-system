@@ -25,3 +25,29 @@ The components themselves make use of several supporting libraries which will be
 - zustand
 
 Ensure your project uses a version of React compatible with these dependencies (React 17 or newer).  The library's styles also rely on Tailwind CSS v4.
+
+## Installing Peer Dependencies
+
+If your project does not already include React and Tailwind CSS, install them along with this package:
+
+```bash
+pnpm add react react-dom tailwindcss@^4 autoprefixer postcss
+```
+
+After installing Tailwind, initialize its configuration if you haven't already:
+
+```bash
+npx tailwindcss init
+```
+
+The design system ships with a `tailwind.preset.js` file. Extend your project's `tailwind.config.js` to use it:
+
+```js
+// tailwind.config.js
+module.exports = {
+  presets: [require('@k2600x/design-system/tailwind.preset.js')],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+};
+```
+
+With these dependencies installed and Tailwind configured, you can import components directly from the design system and use them in your application.
