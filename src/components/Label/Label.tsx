@@ -1,6 +1,8 @@
 import * as React from 'react';
 
 
+export type LabelSize = 'sm' | 'md' | 'lg';
+
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {
   /**
@@ -15,6 +17,10 @@ export interface LabelProps
    * Additional class name for the label
    */
   className?: string;
+  /**
+   * Optional size of the label text
+   */
+  size?: LabelSize;
   /**
    * The label content
    */
@@ -36,11 +42,16 @@ export interface LabelProps
  * ```
  */
 const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
-  ({ className, children, disabled, required, htmlFor, ...props }, ref) => {
+  (
+    { className, children, disabled, required, htmlFor, size = 'md', ...props },
+    ref,
+  ) => {
     return (
       <label
         ref={ref} data-testid="label"
-        className={`label ${disabled ? 'label--disabled' : ''} ${className || ''}`}
+        className={`label label--${size} ${disabled ? 'label--disabled' : ''} ${
+          className || ''
+        }`}
         htmlFor={htmlFor}
         {...props}
       >
