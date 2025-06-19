@@ -189,6 +189,20 @@ p {
   color: var(--secondary-foreground);
 }
 
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--spacing-md) 0;
+}
+
+.divider[data-orientation='vertical'] {
+  border-top: none;
+  border-left: 1px solid var(--border);
+  height: 100%;
+  margin: 0 var(--spacing-md);
+}
+
 /* Accordion */
 .accordion {
   width: 100%;

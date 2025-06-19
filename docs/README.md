@@ -87,6 +87,7 @@ This design system includes the following components. Refer to `ComponentTests.t
 - Alert
 - Avatar
 - Badge
+- Divider
 - Breadcrumb
 - Button
 - Card
