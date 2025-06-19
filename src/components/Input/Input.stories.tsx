@@ -5,6 +5,13 @@ import { Input } from './Input';
 const meta: Meta<typeof Input> = {
   title: 'Components/Input',
   component: Input,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Input padding and radius come from spacing and radius tokens.',
+      },
+    },
+  },
   argTypes: {
     label: { control: 'text' },
     error: { control: 'text' },

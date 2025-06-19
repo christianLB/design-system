@@ -57,6 +57,7 @@ const ComponentTests = () => {
   const [radioValue, setRadioValue] = React.useState('option2');
   const [selectValue, setSelectValue] = React.useState('apple');
   const [isSwitchOn, setSwitchOn] = React.useState(true);
+  const [inputValue, setInputValue] = React.useState('');
   const totalItems = 100;
   const itemsPerPage = 10;
   const tableColumns: { accessorKey: 'id' | 'name'; header: string }[] = [
@@ -127,7 +128,12 @@ const ComponentTests = () => {
       <hr style={{ margin: '2rem 0' }} />
 
       <h2>Input</h2>
-      <Input placeholder="Test Input" />
+      <Input
+        id="test-input"
+        value={inputValue}
+        onChange={e => setInputValue(e.target.value)}
+        placeholder="Test Input"
+      />
 
       <hr style={{ margin: '2rem 0' }} />
 
@@ -258,15 +264,34 @@ const ComponentTests = () => {
       <h2>Label</h2>
       <div>
         <Label htmlFor="name-input">Name</Label>
-        <Input type="text" id="name-input" placeholder="Enter your name" />
+        <Input
+          type="text"
+          id="name-input"
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value)}
+          placeholder="Enter your name"
+        />
       </div>
       <div style={{ marginTop: '1rem' }}>
         <Label htmlFor="email-input" required>Email</Label>
-        <Input type="email" id="email-input" placeholder="Enter your email" />
+        <Input
+          type="email"
+          id="email-input"
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value)}
+          placeholder="Enter your email"
+        />
       </div>
       <div style={{ marginTop: '1rem' }}>
         <Label htmlFor="disabled-input" disabled>Disabled Field</Label>
-        <Input type="text" id="disabled-input" placeholder="Cannot edit" disabled />
+        <Input
+          type="text"
+          id="disabled-input"
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value)}
+          placeholder="Cannot edit"
+          disabled
+        />
       </div>
 
       <hr style={{ margin: '2rem 0' }} />

@@ -5,6 +5,13 @@ const meta: Meta<typeof Icon> = {
   title: 'Components/Icon',
   component: Icon,
   args: { name: 'Star' },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Icon sizes map to spacing tokens sm/md/lg.',
+      },
+    },
+  },
   argTypes: {
     name: { control: 'text' },
     size: { control: 'select', options: ['sm', 'md', 'lg'] },

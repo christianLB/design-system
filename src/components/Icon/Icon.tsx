@@ -17,7 +17,7 @@ const sizeMap: Record<IconSize, number> = {
   lg: 32,
 };
 
-const iconSet = Icons as Record<IconName, React.FC<{ size?: number; color?: string }>>;
+const iconSet = Icons as unknown as Record<IconName, React.FC<{ size?: number; color?: string }>>;
 
 export const Icon = ({ name, size = 'md', color = 'currentColor', ...props }: IconProps) => {
   const LucideIcon = iconSet[name];

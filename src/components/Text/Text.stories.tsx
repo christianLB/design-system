@@ -7,6 +7,14 @@ const meta: Meta<typeof Text> = {
   args: {
     children: 'Sample text',
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Typography sizes and weights use values from theme tokens.',
+      },
+    },
+  },
   argTypes: {
     as: {
       control: { type: 'select' },

@@ -8,6 +8,13 @@ const meta: Meta<typeof Label> = {
     children: 'Label text',
     htmlFor: 'input-id',
   },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Label font sizes rely on tokens under --font-size-*.',
+      },
+    },
+  },
   argTypes: {
     size: {
       control: { type: 'select' },

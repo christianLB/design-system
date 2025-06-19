@@ -7,6 +7,13 @@ const meta: Meta<typeof Heading> = {
   args: {
     children: 'Heading',
   },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Heading sizes map to tokens under --heading-size-*.',
+      },
+    },
+  },
   argTypes: {
     as: {
       control: { type: 'select' },

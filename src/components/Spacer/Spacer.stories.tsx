@@ -4,6 +4,13 @@ import { Spacer } from './Spacer';
 const meta: Meta<typeof Spacer> = {
   title: 'Components/Spacer',
   component: Spacer,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Spacer height uses spacing tokens xs-xl.',
+      },
+    },
+  },
   argTypes: {
     size: { control: 'select', options: ['xs', 'sm', 'md', 'lg', 'xl'] },
   },
