@@ -2,6 +2,7 @@ export * from './Accordion/index';
 export * from './Alert/index';
 export * from './Avatar/index';
 export * from './Badge/Badge';
+export * from './Divider/Divider';
 export * from './Breadcrumb/index';
 export * from './Button/Button';
 export * from './Card/Card';
