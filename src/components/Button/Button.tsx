@@ -1,20 +1,52 @@
-import * as React from 'react';
+import React from 'react';
+import { motion, type HTMLMotionProps } from 'framer-motion';
+import clsx from 'clsx';
+import './button.css';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+
+export interface ButtonProps extends HTMLMotionProps<'button'> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, ...props }, ref) => {
-    const combinedClassName = ['btn', className].filter(Boolean).join(' ');
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      variant = 'primary',
+      size = 'md',
+      disabled,
+      className,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const classes = clsx(
+      'button',
+      `button--${variant}`,
+      `button--${size}`,
+      className,
+    );
+
     return (
-      <button className={combinedClassName} ref={ref} {...props}>
+      <motion.button
+        ref={ref}
+        className={classes}
+        aria-disabled={disabled}
+        whileHover={{ scale: disabled ? 1 : 1.02 }}
+        whileFocus={{ scale: disabled ? 1 : 1.02 }}
+        transition={{ duration: 0.15 }}
+        disabled={disabled}
+        {...props}
+      >
         {children}
-      </button>
+      </motion.button>
     );
   },
 );
 
 Button.displayName = 'Button';
 
-export { Button };
+export default Button;

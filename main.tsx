@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import ComponentTests from './src/components/ComponentTests';
-import { ThemeProvider } from './src/context/ThemeContext';
+import { ThemeProvider } from './src/theme/ThemeContext';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

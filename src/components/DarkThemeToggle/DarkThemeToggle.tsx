@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../theme/ThemeContext';
 import { Button } from '../Button/Button';
 
 // Basic SVG icons for sun and moon
