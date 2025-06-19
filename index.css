@@ -31,9 +31,17 @@
   --ring: #020817;
   --radius: 0.5rem;
   --font-family-base: system-ui, sans-serif;
+  --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
   --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --heading-size-1: 2.25rem;
+  --heading-size-2: 1.875rem;
+  --heading-size-3: 1.5rem;
+  --heading-size-4: 1.25rem;
+  --heading-size-5: 1.125rem;
+  --heading-size-6: 1rem;
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
@@ -1501,3 +1509,40 @@ p {
 .tooltip-arrow--variant-success { background-color: var(--success); }
 .tooltip-arrow--variant-warning { background-color: var(--warning); }
 .tooltip-arrow--variant-danger { background-color: var(--destructive); }
+/* Text */
+.text { font-family: var(--font-family-base); line-height: 1.5; }
+.text--xs { font-size: var(--font-size-xs); }
+.text--sm { font-size: var(--font-size-sm); }
+.text--md { font-size: var(--font-size-md); }
+.text--lg { font-size: var(--font-size-lg); }
+.text--xl { font-size: var(--font-size-xl); }
+.text-weight--normal { font-weight: 400; }
+.text-weight--medium { font-weight: 500; }
+.text-weight--bold { font-weight: 700; }
+.text-align--left { text-align: left; }
+.text-align--center { text-align: center; }
+.text-align--right { text-align: right; }
+.text-align--justify { text-align: justify; }
+
+/* Heading */
+.heading { font-family: var(--font-family-base); font-weight: 700; line-height: 1.2; }
+.heading--1 { font-size: var(--heading-size-1); }
+.heading--2 { font-size: var(--heading-size-2); }
+.heading--3 { font-size: var(--heading-size-3); }
+.heading--4 { font-size: var(--heading-size-4); }
+.heading--5 { font-size: var(--heading-size-5); }
+.heading--6 { font-size: var(--heading-size-6); }
+
+/* Label size modifiers */
+.label--sm { font-size: var(--font-size-sm); }
+.label--md { font-size: var(--font-size-md); }
+.label--lg { font-size: var(--font-size-lg); }
+
+/* Input wrapper */
+.input-wrapper { display: flex; flex-direction: column; }
+.input--error { border-color: var(--destructive); }
+.input-error { color: var(--destructive); font-size: var(--font-size-sm); margin-top: var(--spacing-xs); }
+
+/* Spacer */
+.spacer { width: 100%; }
+
