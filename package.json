@@ -32,8 +32,10 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "storybook": "storybook dev",
+    "storybook:build": "storybook build",
     "build-storybook": "storybook build",
     "test-storybook": "node scripts/test-storybook.cjs",
+    "check:storybook": "node scripts/check-storybook.cjs",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "format": "prettier --write .",
     "prepare": "husky"
