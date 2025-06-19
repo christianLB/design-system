@@ -1,5 +1,7 @@
 # Contributing Guide
 
+Codex debe seguir el [Manifiesto Codex](./docs/MANIFIESTO_Codex.md) como referencia obligatoria para cualquier contribución.
+
 ## Project structure
 
 ```

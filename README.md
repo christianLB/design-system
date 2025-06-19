@@ -210,6 +210,10 @@ function MyComponent() {
 
 Contributions are welcome! Please read our contributing guidelines for more information.
 
+## Contrato de trabajo
+
+Codex debe seguir el [Manifiesto Codex](./docs/MANIFIESTO_Codex.md) para cualquier entrega en este repositorio.
+
 ## License
 
 This project is licensed under the MIT License.
