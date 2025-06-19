@@ -28,6 +28,8 @@ export * from './Switch/index';
 export * from './Table/Table';
 export * from './Tabs/index';
 export * from './Textarea/index';
-export * from './Tooltip/index'
-
-
+export * from './Tooltip/index';
+export * from './InputField';
+export * from './TextAreaField';
+export * from './CheckboxField';
+export * from './FieldGroup';
