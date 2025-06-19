@@ -53,6 +53,10 @@
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
   --duration-fast: 150ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
