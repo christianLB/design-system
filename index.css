@@ -30,6 +30,19 @@
   --input: #e4e4e7;
   --ring: #020817;
   --radius: 0.5rem;
+  --font-family-base: system-ui, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --easing-in-out: ease-in-out;
 }
 
 [data-theme='dark'] {

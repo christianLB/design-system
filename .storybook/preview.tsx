@@ -1,7 +1,7 @@
 // Import Tailwind CSS with design system styles
 import './tailwind.css';
 import type { Preview, StoryFn, Decorator, StoryContext } from '@storybook/react';
-import { ThemeProvider } from '@/contexts/ThemeContext';
+import { ThemeProvider } from '@/theme/ThemeContext';
 import React from 'react';
 
 const preview: Preview = {

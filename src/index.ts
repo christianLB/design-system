@@ -1,4 +1,4 @@
-import '../index.css'; // Import main styles for the library
+import '../index.css';
 
 export * from './components';
-export { ThemeProvider, useTheme } from './context/ThemeContext';
+export * from './theme';
