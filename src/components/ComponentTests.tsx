@@ -424,9 +424,9 @@ const ComponentTests = () => {
       <div style={{ display: 'flex', gap: '4rem' }}>
         <div>
           <RadioGroup
-            label="Vertical Group"
+            legend="Vertical Group"
             name="vertical-group"
-            items={[
+            options={[
               { value: 'option1', label: 'Option 1' },
               { value: 'option2', label: 'Option 2' },
               { value: 'option3', label: 'Option 3 (Disabled)', disabled: true },
@@ -437,26 +437,26 @@ const ComponentTests = () => {
         </div>
         <div>
           <RadioGroup
-            label="Horizontal Group"
+            legend="Horizontal Group"
             name="horizontal-group"
-            orientation="horizontal"
-            items={[
+            options={[
               { value: 'option1', label: 'Option 1' },
               { value: 'option2', label: 'Option 2' },
             ]}
-            defaultValue="option1"
+            value={radioValue}
+            onChange={setRadioValue}
           />
         </div>
         <div>
           <RadioGroup
-            label="Disabled Group"
+            legend="Disabled Group"
             name="disabled-group"
-            disabled
-            items={[
+            options={[
               { value: 'option1', label: 'Option 1' },
               { value: 'option2', label: 'Option 2' },
             ]}
-            defaultValue="option1"
+            value={radioValue}
+            onChange={setRadioValue}
           />
         </div>
       </div>

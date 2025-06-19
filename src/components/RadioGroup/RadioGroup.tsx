@@ -1,78 +1,63 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Label } from '../Label';
 
-export interface RadioGroupItem {
-  value: string;
+export interface RadioOption {
   label: string;
+  value: string;
   disabled?: boolean;
 }
 
-export interface RadioGroupProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  items: RadioGroupItem[];
-  value?: string;
-  defaultValue?: string;
-  onChange?: (value: string) => void;
-  name?: string;
-  disabled?: boolean;
-  orientation?: 'vertical' | 'horizontal';
-  label?: string;
+export interface RadioGroupProps
+  extends Omit<React.HTMLAttributes<HTMLFieldSetElement>, 'onChange'> {
+  name: string;
+  options: RadioOption[];
+  value: string;
+  onChange: (value: string) => void;
+  legend: string;
+  error?: string;
 }
 
 const RadioGroup = ({
-  items,
-  value: valueProp,
-  defaultValue,
+  name,
+  options,
+  value,
   onChange,
-  name = 'radio-group',
-  disabled = false,
-  orientation = 'vertical',
-  label,
+  legend,
+  error,
   className,
   ...props
 }: RadioGroupProps) => {
-  const [internalValue, setInternalValue] = useState(defaultValue);
-  const isControlled = valueProp !== undefined;
-  const currentValue = isControlled ? valueProp : internalValue;
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    if (!isControlled) {
-      setInternalValue(newValue);
-    }
-    onChange?.(newValue);
-  };
-
-  const containerClasses = [
-    'radio-group',
-    `radio-group--${orientation}`,
-    disabled ? 'radio-group--disabled' : '',
-    className || ''
-  ].filter(Boolean).join(' ');
-
+  const errorId = error ? `${name}-error` : undefined;
   return (
-    <div className={containerClasses} role="radiogroup" aria-label={label} {...props}>
-      {label && <span className="radio-group__label">{label}</span>}
-      <div className="radio-group__items-container">
-        {items.map((item) => (
-          <label
-            key={item.value}
-            className={`radio-item ${item.disabled || disabled ? 'radio-item--disabled' : ''}`}>
+    <fieldset className={`radio-group-fieldset ${className || ''}`} {...props}>
+      <legend className="radio-group-legend">{legend}</legend>
+      {options.map((opt) => {
+        const id = `${name}-${opt.value}`;
+        return (
+          <label key={opt.value} className="radio-item">
             <input
               type="radio"
+              id={id}
               name={name}
-              value={item.value}
-              checked={currentValue === item.value}
-              onChange={handleChange}
-              disabled={disabled || item.disabled}
+              value={opt.value}
+              checked={value === opt.value}
+              onChange={(e) => onChange(e.target.value)}
+              disabled={opt.disabled}
               className="radio-item__input"
+              aria-invalid={Boolean(error)}
+              aria-describedby={errorId}
             />
-            <span className="radio-item__label">{item.label}</span>
+            <Label htmlFor={id}>{opt.label}</Label>
           </label>
-        ))}
-      </div>
-    </div>
+        );
+      })}
+      {error && (
+        <p role="alert" id={errorId} className="input-error">
+          {error}
+        </p>
+      )}
+    </fieldset>
   );
 };
-
-RadioGroup.displayName = 'RadioGroup';
 
 export { RadioGroup };

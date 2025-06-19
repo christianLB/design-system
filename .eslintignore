@@ -9,3 +9,4 @@ test-types.ts
 tailwind.config.js
 tailwind.preset.js
 generate-docs.js
+storybook-static/
