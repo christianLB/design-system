@@ -1,0 +1,16 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Guides/Responsive Layout" />
+
+# Guía de Layout Responsive
+
+Esta guía muestra cómo componer interfaces usando los componentes de layout.
+
+<Story name="Token Explorer">
+  {() => (
+    <div>
+      <p>Breakpoints:</p>
+      <pre>{JSON.stringify(require('../theme/tokens.json').breakpoints, null, 2)}</pre>
+    </div>
+  )}
+</Story>
