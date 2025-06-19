@@ -22,6 +22,8 @@ export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    */
   center?: boolean;
+  ariaLabel?: string;
+  decorative?: boolean;
 }
 
 
@@ -49,17 +51,23 @@ const Loader = React.forwardRef<HTMLDivElement, LoaderProps>((
     variant = 'primary',
     fullWidth = false,
     center = false,
+    ariaLabel = 'Loading',
+    decorative = false,
     className,
     ...props
-  }, 
+  },
   ref
 ) => {
+  const ariaProps = decorative
+    ? { 'aria-hidden': true }
+    : { role: 'status', 'aria-label': ariaLabel };
+
   return (
-    <div 
-      ref={ref} data-testid="loader"
+    <div
+      ref={ref}
+      data-testid="loader"
       className={`loader-container ${fullWidth ? 'loader-container--full-width' : ''} ${center ? 'loader-container--center' : ''} ${className || ''}`}
-      role="status"
-      aria-label="Loading"
+      {...ariaProps}
       {...props}
     >
       <div 
