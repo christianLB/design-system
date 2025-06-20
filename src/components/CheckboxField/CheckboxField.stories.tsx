@@ -6,7 +6,7 @@ import { CheckboxField } from './CheckboxField';
 const meta: Meta<typeof CheckboxField> = {
   title: 'Components/CheckboxField',
   component: CheckboxField,
-  argTypes: { error: { control: 'text' }, helperText: { control: 'text' } },
+  argTypes: { error: { control: 'text' }, description: { control: 'text' } },
 };
 export default meta;
 
@@ -14,7 +14,13 @@ type Story = StoryObj<typeof CheckboxField>;
 
 export const Default: Story = {
   render: (args) => <CheckboxField {...args} />,
-  args: { id: 'agree', label: 'I agree', helperText: 'Required to continue', checked: false, onChange: () => {} },
+  args: {
+    id: 'agree',
+    label: 'I agree',
+    description: 'Required to continue',
+    checked: false,
+    onChange: () => {},
+  },
 };
 
 export const WithReactHookForm: Story = {
