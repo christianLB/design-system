@@ -8,23 +8,36 @@ export interface BreadcrumbItem {
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   items: BreadcrumbItem[];
   separator?: React.ReactNode;
+  renderItem?: (item: BreadcrumbItem, isLast: boolean) => React.ReactNode;
 }
 
 const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
-  ({ items, className, separator = '>', ...props }, ref) => {
+  ({ items, className, separator = '>', renderItem, ...props }, ref) => {
     return (
-      <nav ref={ref} aria-label="Breadcrumb" className={`breadcrumb ${className || ''}`} {...props}>
+      <nav
+        ref={ref}
+        aria-label="Breadcrumb"
+        className={`breadcrumb ${className || ''}`}
+        {...props}
+      >
         <ol className="breadcrumb-list">
-          {items.map((item, index) => (
-            <li key={index} className="breadcrumb-item">
-              <a href={item.href} className="breadcrumb-link">
-                {item.name}
-              </a>
-              {index < items.length - 1 && (
-                <span className="breadcrumb-separator">{separator}</span>
-              )}
-            </li>
-          ))}
+          {items.map((item, index) => {
+            const isLast = index === items.length - 1;
+            return (
+              <li key={index} className="breadcrumb-item">
+                {renderItem ? (
+                  renderItem(item, isLast)
+                ) : (
+                  <a href={item.href} className="breadcrumb-link">
+                    {item.name}
+                  </a>
+                )}
+                {!isLast && (
+                  <span className="breadcrumb-separator">{separator}</span>
+                )}
+              </li>
+            );
+          })}
         </ol>
       </nav>
     );
