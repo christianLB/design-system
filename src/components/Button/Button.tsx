@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import clsx from 'clsx';
-import './button.css';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -23,12 +22,26 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    const classes = clsx(
-      'button',
-      `button--${variant}`,
-      `button--${size}`,
-      className,
+    const base = clsx(
+      'inline-flex items-center justify-center rounded-[var(--radius)]',
+      'border border-[var(--border)]',
+      'transition-colors duration-[var(--duration-normal)] ease-[var(--easing-in-out)]',
+      'cursor-pointer',
     );
+
+    const variantClasses: Record<ButtonVariant, string> = {
+      primary: 'bg-[var(--primary)] text-[var(--primary-foreground)]',
+      secondary: 'bg-[var(--secondary)] text-[var(--secondary-foreground)]',
+      ghost: 'bg-transparent text-[var(--primary)]',
+    };
+
+    const sizeClasses: Record<ButtonSize, string> = {
+      sm: 'text-[var(--font-size-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)]',
+      md: 'text-[var(--font-size-md)] px-[var(--spacing-md)] py-[var(--spacing-sm)]',
+      lg: 'text-[var(--font-size-lg)] px-[var(--spacing-lg)] py-[var(--spacing-md)]',
+    };
+
+    const classes = clsx(base, variantClasses[variant], sizeClasses[size], className);
 
     return (
       <motion.button

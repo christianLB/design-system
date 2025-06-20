@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './menu.css';
+import clsx from 'clsx';
 
 export interface MenuItem {
   label: string;
@@ -27,21 +27,31 @@ const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
     };
 
     return (
-      <div ref={ref} className={`menu ${className ?? ''}`} {...props}>
+      <div
+        ref={ref}
+        className={clsx('relative inline-block', className)}
+        {...props}
+      >
         <button
           onClick={toggle}
-          className="menu__trigger"
+          className="bg-transparent border-none"
           aria-haspopup="true"
           aria-expanded={open}
         >
           {trigger}
         </button>
         {open && (
-          <ul className={`menu__list menu__list--${align}`} role="menu">
+          <ul
+            className={clsx(
+              'absolute mt-[var(--spacing-xs)] list-none p-[var(--spacing-xs)] bg-[var(--neutral100)] border border-[var(--neutral900)] z-20',
+              align === 'right' ? 'right-0' : ''
+            )}
+            role="menu"
+          >
             {items.map((item) => (
               <li key={item.value} role="menuitem">
                 <button
-                  className="menu__item"
+                  className="block w-full text-left bg-transparent border-none px-[var(--spacing-md)] py-[var(--spacing-xs)] hover:bg-[var(--neutral900)] hover:text-[var(--primary-foreground)]"
                   onClick={() => handleSelect(item.value)}
                 >
                   {item.label}
