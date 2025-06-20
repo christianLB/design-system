@@ -44,3 +44,5 @@ export * from './Stack';
 export * from './Navbar';
 export * from './Sidebar';
 export * from './Menu';
+export * from './DataTable';
+export * from './TableToolbar';
