@@ -28,12 +28,16 @@ export const FormField = ({
   const errorId = error ? `${id}-error` : undefined;
 
   const child = React.isValidElement(children)
-    ? React.cloneElement(children as React.ReactElement<any>, {
-        id,
-        'aria-describedby': [descId, errorId].filter(Boolean).join(' ') || undefined,
-        'aria-invalid': !!error,
-        required,
-      } as any)
+    ? React.cloneElement(
+        children as React.ReactElement<Record<string, unknown>>,
+        {
+          id,
+          'aria-describedby': [descId, errorId].filter(Boolean).join(' ') ||
+            undefined,
+          'aria-invalid': !!error,
+          required,
+        } as Record<string, unknown>,
+      )
     : children;
 
   return (
