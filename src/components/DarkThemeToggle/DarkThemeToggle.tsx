@@ -26,32 +26,17 @@ const MoonIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export const DarkThemeToggle = () => {
   const { theme, setTheme } = useTheme();
 
-  // We need to know the effective theme (resolving 'system') to decide which icon to show
-  const [effectiveTheme, setEffectiveTheme] = React.useState(theme);
-
-  React.useEffect(() => {
-    if (theme === 'system') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      setEffectiveTheme(mediaQuery.matches ? 'dark' : 'light');
-      
-      const handler = (e: MediaQueryListEvent) => setEffectiveTheme(e.matches ? 'dark' : 'light');
-      mediaQuery.addEventListener('change', handler);
-      return () => mediaQuery.removeEventListener('change', handler);
-    } else {
-      setEffectiveTheme(theme);
-    }
-  }, [theme]);
-
   const toggleTheme = () => {
-    setTheme(effectiveTheme === 'dark' ? 'light' : 'dark');
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   return (
-    <Button onClick={toggleTheme} className="btn-outline btn-icon" aria-label="Toggle theme">
-      {effectiveTheme === 'dark' ? 
-        <SunIcon className="h-[1.2rem] w-[1.2rem]" /> : 
+    <Button onClick={toggleTheme} className="btn-outline btn-icon" aria-label="Toggle dark mode">
+      {theme === 'dark' ? (
+        <SunIcon className="h-[1.2rem] w-[1.2rem]" />
+      ) : (
         <MoonIcon className="h-[1.2rem] w-[1.2rem]" />
-      }
+      )}
     </Button>
   );
 };

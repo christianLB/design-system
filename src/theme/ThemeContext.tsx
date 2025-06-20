@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-type Theme = 'light' | 'dark' | 'system';
+export type Theme = 'light' | 'dark';
 const THEME_KEY = 'vite-ui-theme';
 
 interface ThemeProviderState {
@@ -12,14 +12,18 @@ const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undef
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
-    // Initialize state from localStorage or default to 'system'
-    return (localStorage.getItem(THEME_KEY) as Theme) || 'system';
+    const stored = localStorage.getItem(THEME_KEY) as Theme | null;
+    if (stored === 'light' || stored === 'dark') {
+      return stored;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
   });
 
   useEffect(() => {
     const root = window.document.documentElement;
-    const isDark =
-      theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDark = theme === 'dark';
 
     // Remove old theme classes and data-theme attribute
     root.classList.remove('light', 'dark');

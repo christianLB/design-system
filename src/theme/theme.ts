@@ -1,7 +1,8 @@
-import tokens from './tokens.json';
+import { lightTheme, ThemeTokens } from './theme.light';
+import { darkTheme } from './theme.dark';
 
-export type DesignTokens = typeof tokens;
+export type DesignTokens = ThemeTokens;
 
-export const theme: DesignTokens = tokens;
-
+export { lightTheme, darkTheme };
+export const theme = lightTheme;
 export default theme;
