@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
-import './navbar.css';
 
 export interface NavItem {
   label: string;
@@ -38,25 +37,38 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
       <nav
         ref={ref}
         className={clsx(
-          'navbar',
-          `navbar--${background}`,
-          sticky && 'navbar--sticky',
-          `navbar--${position}`,
-          className
+          'flex w-full px-[var(--spacing-md)] py-[var(--spacing-sm)]',
+          background === 'dark'
+            ? 'bg-[var(--neutral900)] text-[var(--primary-foreground)]'
+            : 'bg-[var(--neutral100)]',
+          sticky && 'sticky top-0 z-10',
+          position === 'bottom' && 'top-auto bottom-0',
+          className,
         )}
         {...props}
       >
-        <div className="navbar__inner">
-          {logo && <div className="navbar__logo">{logo}</div>}
-          <button className="navbar__toggle" onClick={toggle} aria-label="Menu">
+        <div className="flex items-center w-full">
+          {logo && <div className="mr-[var(--spacing-md)]">{logo}</div>}
+          <button
+            className="mr-[var(--spacing-md)] bg-transparent border-none md:hidden"
+            onClick={toggle}
+            aria-label="Menu"
+          >
             ☰
           </button>
-          <ul className={clsx('navbar__list', open && 'navbar__list--open')}>
+          <ul
+            className={clsx(
+              'gap-[var(--spacing-md)] list-none m-0 p-0',
+              open
+                ? 'flex flex-col w-full mt-[var(--spacing-sm)] md:flex md:flex-row md:w-auto md:mt-0'
+                : 'hidden md:flex',
+            )}
+          >
             {items.map((item) => (
-              <li key={item.href} className="navbar__item">
+              <li key={item.href}>
                 <motion.a
                   whileHover={{ scale: 1.05 }}
-                  className="navbar__link"
+                  className="no-underline text-inherit"
                   href={item.href}
                 >
                   {item.label}
@@ -64,7 +76,7 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
               </li>
             ))}
           </ul>
-          {cta && <div className="navbar__cta">{cta}</div>}
+          {cta && <div className="ml-auto hidden md:block">{cta}</div>}
         </div>
       </nav>
     );

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import clsx from 'clsx';
-import './sidebar.css';
 
 export interface SidebarItem {
   label: string;
@@ -28,31 +27,33 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       <motion.aside
         ref={ref}
         className={clsx(
-          'sidebar',
-          collapsed && 'sidebar--collapsed',
-          className
+          'flex flex-col h-screen overflow-y-auto bg-[var(--neutral100)]',
+          className,
         )}
         animate={{ width: collapsed ? '3rem' : '16rem' }}
         {...props}
       >
-        {header && <div className="sidebar__header">{header}</div>}
+        {header && <div className="p-[var(--spacing-md)]">{header}</div>}
         <button
-          className="sidebar__toggle"
+          className="self-end m-[var(--spacing-sm)] bg-transparent border-none"
           onClick={handleToggle}
           aria-label="Toggle"
         />
-        <nav className="sidebar__nav">
-          <ul className="sidebar__list">
+        <nav>
+          <ul className="list-none m-0 p-0">
             {items.map((item) => (
-              <li key={item.href} className="sidebar__item">
-                <a href={item.href} className="sidebar__link">
+              <li key={item.href} className="p-[var(--spacing-sm)] px-[var(--spacing-md)]">
+                <a
+                  href={item.href}
+                  className={clsx('no-underline text-inherit', collapsed && 'whitespace-nowrap')}
+                >
                   {item.label}
                 </a>
                 {item.items && (
-                  <ul className="sidebar__sublist">
+                  <ul className="list-none m-0 p-0 pl-[var(--spacing-lg)]">
                     {item.items.map((sub) => (
-                      <li key={sub.href} className="sidebar__subitem">
-                        <a href={sub.href} className="sidebar__link">
+                      <li key={sub.href}>
+                        <a href={sub.href} className="no-underline text-inherit">
                           {sub.label}
                         </a>
                       </li>
@@ -63,7 +64,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
             ))}
           </ul>
         </nav>
-        {footer && <div className="sidebar__footer">{footer}</div>}
+        {footer && <div className="p-[var(--spacing-md)]">{footer}</div>}
       </motion.aside>
     );
   }

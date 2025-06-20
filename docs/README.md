@@ -130,3 +130,9 @@ This design system includes the following components. Refer to `ComponentTests.t
 
 - **Visual Testing**: Add examples to `ComponentTests.tsx` for all new components and significant changes.
 - **Automated Tests**: (Future) Write unit/integration tests using React Testing Library to ensure components mount and function correctly.
+
+## Epics
+
+Longer initiatives are documented under `docs/epics/`.
+
+- [Épica 10: Purga de CSS y unificación visual](./epics/epic-10-purge-css-tokens.md)
