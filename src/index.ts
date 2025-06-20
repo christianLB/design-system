@@ -2,4 +2,4 @@ import '../index.css';
 
 export * from './components';
 export * from './theme';
-export * from './hooks/responsive';
+export * from './hooks';
