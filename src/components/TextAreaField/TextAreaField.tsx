@@ -1,42 +1,34 @@
 import React, { useEffect, useRef } from 'react';
-import { Label } from '../Label';
+import clsx from 'clsx';
+import { FormField, FormFieldProps } from '../FormField/FormField';
 
 export interface TextAreaFieldProps
-  extends Omit<
-    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-    'onChange' | 'value'
-  > {
-  id: string;
-  label: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  error?: string;
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'id'>,
+    Pick<FormFieldProps, 'id' | 'label' | 'description' | 'error' | 'required'> {
   autoGrow?: boolean;
-  layout?: 'vertical' | 'inline';
+  wrapperClassName?: string;
 }
 
-const TextAreaField = React.forwardRef<HTMLTextAreaElement, TextAreaFieldProps>(
+export const TextAreaField = React.forwardRef<HTMLTextAreaElement, TextAreaFieldProps>(
   (
     {
       id,
       label,
-      value,
-      onChange,
+      description,
       error,
+      required,
       autoGrow,
-      layout = 'vertical',
+      wrapperClassName,
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const internalRef = useRef<HTMLTextAreaElement | null>(null);
-    const combinedRef = (node: HTMLTextAreaElement) => {
+    const combinedRef = (node: HTMLTextAreaElement | null) => {
       internalRef.current = node;
       if (typeof ref === 'function') ref(node);
-      else if (ref)
-        (ref as React.MutableRefObject<HTMLTextAreaElement | null>).current =
-          node;
+      else if (ref) (ref as React.MutableRefObject<HTMLTextAreaElement | null>).current = node;
     };
 
     useEffect(() => {
@@ -44,41 +36,31 @@ const TextAreaField = React.forwardRef<HTMLTextAreaElement, TextAreaFieldProps>(
         internalRef.current.style.height = 'auto';
         internalRef.current.style.height = `${internalRef.current.scrollHeight}px`;
       }
-    }, [value, autoGrow]);
-
-    const wrapperClasses = [
-      'input-wrapper',
-      layout === 'inline' ? 'input-wrapper--inline' : '',
-      className || '',
-    ]
-      .filter(Boolean)
-      .join(' ');
-
-    const errorId = error ? `${id}-error` : undefined;
+    }, [autoGrow, props.value]);
 
     return (
-      <div className={wrapperClasses}>
-        <Label htmlFor={id}>{label}</Label>
+      <FormField
+        id={id}
+        label={label}
+        description={description}
+        error={error}
+        required={required}
+        className={wrapperClassName}
+      >
         <textarea
           ref={combinedRef}
-          id={id}
-          className={`textarea ${error ? 'textarea--error' : ''}`}
-          value={value}
-          onChange={onChange}
-          aria-invalid={Boolean(error)}
-          aria-describedby={errorId}
+          className={clsx(
+            'w-full rounded-[var(--radius)] border border-[var(--input)] bg-[var(--background)] p-2 text-sm',
+            'focus:outline-none focus:border-[var(--ring)]',
+            className,
+          )}
           {...props}
         />
-        {error && (
-          <p role="alert" id={errorId} className="input-error">
-            {error}
-          </p>
-        )}
-      </div>
+      </FormField>
     );
-  }
+  },
 );
 
 TextAreaField.displayName = 'TextAreaField';
 
-export { TextAreaField };
+export default TextAreaField;

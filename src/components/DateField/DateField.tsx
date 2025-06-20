@@ -2,28 +2,15 @@ import React from 'react';
 import clsx from 'clsx';
 import { FormField, FormFieldProps } from '../FormField/FormField';
 
-export interface CheckboxFieldProps
+export interface DateFieldProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'type'>,
     Pick<FormFieldProps, 'id' | 'label' | 'description' | 'error' | 'required'> {
   wrapperClassName?: string;
-  checked: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const CheckboxField = React.forwardRef<HTMLInputElement, CheckboxFieldProps>(
+export const DateField = React.forwardRef<HTMLInputElement, DateFieldProps>(
   (
-    {
-      id,
-      label,
-      description,
-      error,
-      required,
-      wrapperClassName,
-      className,
-      checked,
-      onChange,
-      ...props
-    },
+    { id, label, description, error, required, wrapperClassName, className, ...props },
     ref,
   ) => {
     return (
@@ -37,14 +24,12 @@ export const CheckboxField = React.forwardRef<HTMLInputElement, CheckboxFieldPro
       >
         <input
           ref={ref}
-          type="checkbox"
+          type="date"
           className={clsx(
-            'h-4 w-4 rounded border border-[var(--input)] text-[var(--primary)]',
-            'focus:ring-[var(--ring)]',
+            'w-full rounded-[var(--radius)] border border-[var(--input)] bg-[var(--background)] p-2 text-sm',
+            'focus:outline-none focus:border-[var(--ring)]',
             className,
           )}
-          checked={checked}
-          onChange={onChange}
           {...props}
         />
       </FormField>
@@ -52,6 +37,6 @@ export const CheckboxField = React.forwardRef<HTMLInputElement, CheckboxFieldPro
   },
 );
 
-CheckboxField.displayName = 'CheckboxField';
+DateField.displayName = 'DateField';
 
-export default CheckboxField;
+export default DateField;

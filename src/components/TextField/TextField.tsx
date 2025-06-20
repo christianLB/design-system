@@ -2,15 +2,16 @@ import React from 'react';
 import clsx from 'clsx';
 import { FormField, FormFieldProps } from '../FormField/FormField';
 
-export interface CheckboxFieldProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'type'>,
+export interface TextFieldProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id'>,
     Pick<FormFieldProps, 'id' | 'label' | 'description' | 'error' | 'required'> {
   wrapperClassName?: string;
-  checked: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const CheckboxField = React.forwardRef<HTMLInputElement, CheckboxFieldProps>(
+/**
+ * Text input with label, helper text and error message.
+ */
+export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (
     {
       id,
@@ -20,8 +21,7 @@ export const CheckboxField = React.forwardRef<HTMLInputElement, CheckboxFieldPro
       required,
       wrapperClassName,
       className,
-      checked,
-      onChange,
+      type = 'text',
       ...props
     },
     ref,
@@ -37,14 +37,12 @@ export const CheckboxField = React.forwardRef<HTMLInputElement, CheckboxFieldPro
       >
         <input
           ref={ref}
-          type="checkbox"
+          type={type}
           className={clsx(
-            'h-4 w-4 rounded border border-[var(--input)] text-[var(--primary)]',
-            'focus:ring-[var(--ring)]',
+            'w-full rounded-[var(--radius)] border border-[var(--input)] bg-[var(--background)] p-2 text-sm',
+            'focus:outline-none focus:border-[var(--ring)]',
             className,
           )}
-          checked={checked}
-          onChange={onChange}
           {...props}
         />
       </FormField>
@@ -52,6 +50,6 @@ export const CheckboxField = React.forwardRef<HTMLInputElement, CheckboxFieldPro
   },
 );
 
-CheckboxField.displayName = 'CheckboxField';
+TextField.displayName = 'TextField';
 
-export default CheckboxField;
+export default TextField;

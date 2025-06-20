@@ -1,44 +1,35 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { CheckboxField } from './CheckboxField';
 
 const meta: Meta<typeof CheckboxField> = {
   title: 'Components/CheckboxField',
   component: CheckboxField,
-  argTypes: {
-    error: { control: 'text' },
-    helperText: { control: 'text' },
-  },
+  argTypes: { error: { control: 'text' }, helperText: { control: 'text' } },
 };
 export default meta;
 
 type Story = StoryObj<typeof CheckboxField>;
 
 export const Default: Story = {
-  render: (args) => {
-    const [checked, setChecked] = useState(false);
-    return (
-      <CheckboxField
-        {...args}
-        checked={checked}
-        onChange={(e) => setChecked(e.target.checked)}
-      />
-    );
-  },
-  args: { id: 'agree', label: 'I agree', helperText: 'Required to continue' },
+  render: (args) => <CheckboxField {...args} />,
+  args: { id: 'agree', label: 'I agree', helperText: 'Required to continue', checked: false, onChange: () => {} },
 };
 
-export const WithError: Story = {
+export const WithReactHookForm: Story = {
   render: (args) => {
-    const [checked, setChecked] = useState(false);
+    const { register, handleSubmit, formState: { errors } } = useForm<{ agree: boolean }>();
     return (
-      <CheckboxField
-        {...args}
-        checked={checked}
-        onChange={(e) => setChecked(e.target.checked)}
-        error="You must agree"
-      />
+      <form onSubmit={handleSubmit(() => {})} className="space-y-2">
+        <CheckboxField
+          {...args}
+          {...register('agree', { required: 'Required' })}
+          error={errors.agree?.message}
+        />
+        <button type="submit" className="btn">Submit</button>
+      </form>
     );
   },
-  args: { id: 'agree2', label: 'I agree' },
+  args: { id: 'agree', label: 'I agree', checked: false, onChange: () => {} },
 };
