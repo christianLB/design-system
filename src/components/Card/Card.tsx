@@ -1,17 +1,19 @@
 import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
+import { useMicroInteraction } from '../../hooks';
 
 const Card = React.forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
-  ({ className, ...props }, ref) => (
-    <motion.div
-      ref={ref}
-      className={`card ${className || ''}`}
-      initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      transition={{ duration: 0.4 }}
-      {...props}
-    />
-  ),
+  ({ className, ...props }, ref) => {
+    const micro = useMicroInteraction('card');
+    return (
+      <motion.div
+        ref={ref}
+        className={`card ${className || ''}`}
+        {...micro}
+        {...props}
+      />
+    );
+  },
 );
 Card.displayName = 'Card';
 

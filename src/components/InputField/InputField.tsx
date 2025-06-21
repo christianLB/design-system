@@ -1,5 +1,7 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Label } from '../Label';
+import { useMicroInteraction } from '../../hooks';
 
 export interface InputFieldProps
   extends Omit<
@@ -38,11 +40,12 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
       .filter(Boolean)
       .join(' ');
     const errorId = error ? `${id}-error` : undefined;
+    const micro = useMicroInteraction('input');
 
     return (
       <div className={wrapperClasses}>
         <Label htmlFor={id}>{label}</Label>
-        <input
+        <motion.input
           ref={ref}
           id={id}
           className={`input ${error ? 'input--error' : ''}`}
@@ -52,6 +55,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
           aria-invalid={Boolean(error)}
           aria-describedby={errorId}
           disabled={disabled}
+          {...micro}
           {...props}
         />
         {error && (

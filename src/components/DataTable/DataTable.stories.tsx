@@ -80,3 +80,7 @@ export const WithRowActions: Story = {
     rowActions: (row: Row) => <Button size="sm">Edit {row.name}</Button>,
   },
 };
+
+export const RowHover: Story = {
+  args: { hover: true },
+};

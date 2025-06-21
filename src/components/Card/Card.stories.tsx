@@ -29,3 +29,11 @@ export const WithClass: Story = {
     </Card>
   ),
 };
+
+export const AnimatedEntry: Story = {
+  render: (args) => (
+    <Card {...args}>
+      <CardContent>Animated card</CardContent>
+    </Card>
+  ),
+};
