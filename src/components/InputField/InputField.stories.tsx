@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { InputField } from './InputField';
 
 const meta: Meta<typeof InputField> = {
-  title: 'Components/InputField',
+  title: 'Inputs/InputField',
   component: InputField,
   argTypes: {
     layout: { control: 'select', options: ['vertical', 'inline'] },

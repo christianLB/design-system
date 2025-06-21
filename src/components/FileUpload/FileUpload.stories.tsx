@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FileUpload } from './FileUpload';
 
 const meta: Meta<typeof FileUpload> = {
-  title: 'Components/FileUpload',
+  title: 'Inputs/FileUpload',
   component: FileUpload,
   argTypes: { onFileChange: { action: 'changed' } },
   args: { files: [] },

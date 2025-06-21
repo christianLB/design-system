@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { TextField } from './TextField';
 
 const meta: Meta<typeof TextField> = {
-  title: 'Components/TextField',
+  title: 'Inputs/TextField',
   component: TextField,
   argTypes: { error: { control: 'text' } },
 };
@@ -34,4 +34,12 @@ export const WithReactHookForm: Story = {
     );
   },
   args: { id: 'name', label: 'Name' },
+};
+
+export const Disabled: Story = {
+  args: { id: 'disabled', label: 'Disabled', disabled: true },
+};
+
+export const WithError: Story = {
+  args: { id: 'error', label: 'Error field', error: 'Required' },
 };

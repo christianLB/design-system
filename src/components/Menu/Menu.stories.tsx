@@ -4,7 +4,7 @@ import { Menu } from './Menu';
 import { Button } from '../Button/Button';
 
 const meta: Meta<typeof Menu> = {
-  title: 'Components/Menu',
+  title: 'Navigation/Menu',
   component: Menu,
   args: {
     trigger: <Button>Open</Button>,

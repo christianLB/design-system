@@ -4,7 +4,7 @@ import { TableToolbar } from './TableToolbar';
 import { Button } from '../Button/Button';
 
 const meta: Meta<typeof TableToolbar> = {
-  title: 'Components/TableToolbar',
+  title: 'Data Display/TableToolbar',
   component: TableToolbar,
   argTypes: {
     onSearch: { action: 'search' },

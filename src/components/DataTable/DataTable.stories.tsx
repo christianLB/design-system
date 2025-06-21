@@ -23,7 +23,7 @@ const data: Row[] = [
 ];
 
 const meta: Meta<typeof DataTable<Row>> = {
-  title: 'Components/DataTable',
+  title: 'Data Display/DataTable',
   component: DataTable,
   args: {
     columns,
@@ -64,5 +64,15 @@ export const WithPaginationAndSelection: Story = {
         />
       </div>
     );
+  },
+};
+
+export const Sortable: Story = {
+  args: { sortable: true },
+};
+
+export const WithRowActions: Story = {
+  args: {
+    rowActions: (row: Row) => <Button size="sm">Edit {row.name}</Button>,
   },
 };
