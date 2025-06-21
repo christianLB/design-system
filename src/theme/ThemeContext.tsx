@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-export type Theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark' | 'futuristic';
 const THEME_KEY = 'vite-ui-theme';
 
 interface ThemeProviderState {
@@ -13,7 +13,7 @@ const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undef
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
     const stored = localStorage.getItem(THEME_KEY) as Theme | null;
-    if (stored === 'light' || stored === 'dark') {
+    if (stored === 'light' || stored === 'dark' || stored === 'futuristic') {
       return stored;
     }
     return window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -23,15 +23,14 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const root = window.document.documentElement;
-    const isDark = theme === 'dark';
 
     // Remove old theme classes and data-theme attribute
-    root.classList.remove('light', 'dark');
+    root.classList.remove('light', 'dark', 'futuristic');
     root.removeAttribute('data-theme');
 
-    if (isDark) {
-      root.classList.add('dark');
-      root.setAttribute('data-theme', 'dark');
+    if (theme === 'dark' || theme === 'futuristic') {
+      root.classList.add(theme);
+      root.setAttribute('data-theme', theme);
     } else {
       root.classList.add('light');
     }

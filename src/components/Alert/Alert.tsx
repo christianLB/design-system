@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
@@ -9,7 +10,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: () => void;
 }
 
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+const Alert = React.forwardRef<HTMLDivElement, HTMLMotionProps<'div'> & AlertProps>(
   (
     {
       className,
@@ -27,10 +28,13 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     const variantClass = `alert-${variant}`;
 
     return (
-      <div
+      <motion.div
         ref={ref}
         role="alert"
         className={`alert ${variantClass} ${className || ''}`}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.2 }}
         {...props}
       >
         {icon && <span className="alert-icon">{icon}</span>}
@@ -52,7 +56,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             &times;
           </button>
         )}
-      </div>
+      </motion.div>
     );
   }
 );

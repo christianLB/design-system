@@ -37,6 +37,9 @@
   --ring: #020817;
   --radius: 0.5rem;
   --font-family-base: system-ui, sans-serif;
+  --font-family-body: var(--font-family-base);
+  --font-family-heading: var(--font-family-base);
+  --font-family-mono: monospace;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
@@ -89,6 +92,37 @@
   --border: #27272a;
   --input: #27272a;
   --ring: #fafafa;
+}
+
+[data-theme='futuristic'] {
+  --background: #0F0F1A;
+  --foreground: #ffffffcc;
+  --card: #1F1F2B;
+  --card-foreground: #ffffffcc;
+  --popover: #1F1F2B;
+  --popover-foreground: #ffffffcc;
+  --primary: #7F5AF0;
+  --primary-foreground: #0F0F1A;
+  --secondary: #2CB67D;
+  --secondary-foreground: #0F0F1A;
+  --muted: #1F1F2B;
+  --muted-foreground: #ffffffcc;
+  --accent: #2CB67D;
+  --accent-foreground: #0F0F1A;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --success: #2CB67D;
+  --success-foreground: #0F0F1A;
+  --warning: #facc15;
+  --warning-foreground: #78350f;
+  --info: #7F5AF0;
+  --info-foreground: #ffffff;
+  --border: #7F5AF0;
+  --input: #7F5AF0;
+  --ring: #7F5AF0;
+  --font-family-body: 'Inter', 'IBM Plex Sans', sans-serif;
+  --font-family-heading: 'Geist', 'Satoshi', sans-serif;
+  --font-family-mono: 'SF Mono', monospace;
 }
 
 body {
@@ -344,6 +378,21 @@ p {
   background-color: #17a2b8;
   border-color: #4dd3e9;
   color: #d1ecf1;
+}
+[data-theme='futuristic'] .alert-success {
+  background-color: #2CB67D;
+  border-color: #2CB67D;
+  color: #0F0F1A;
+}
+[data-theme='futuristic'] .alert-warning {
+  background-color: #7F5AF0;
+  border-color: #7F5AF0;
+  color: #ffffff;
+}
+[data-theme='futuristic'] .alert-info {
+  background-color: #1F1F2B;
+  border-color: #7F5AF0;
+  color: #ffffffcc;
 }
 
 /* Avatar */
@@ -1654,7 +1703,7 @@ p {
 }
 /* Text */
 .text {
-  font-family: var(--font-family-base);
+  font-family: var(--font-family-body);
   line-height: 1.5;
 }
 .text--xs {
@@ -1696,7 +1745,7 @@ p {
 
 /* Heading */
 .heading {
-  font-family: var(--font-family-base);
+  font-family: var(--font-family-heading);
   font-weight: 700;
   line-height: 1.2;
 }
