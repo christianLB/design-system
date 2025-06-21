@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import {
   ColumnDef,
   flexRender,
@@ -117,7 +118,12 @@ export function DataTable<TData extends { id: React.Key }>({
   const colLength = table.getVisibleLeafColumns().length;
 
   return (
-    <div className={clsx('overflow-x-auto', className)}>
+    <motion.div
+      className={clsx('overflow-x-auto', className)}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
       <table className="w-full border-collapse mb-4">
         <thead>
           {headers.map((headerGroup) => (
@@ -199,7 +205,7 @@ export function DataTable<TData extends { id: React.Key }>({
           />
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }
 

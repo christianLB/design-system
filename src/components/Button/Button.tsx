@@ -49,7 +49,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={classes}
         aria-disabled={disabled}
         whileHover={{ scale: disabled ? 1 : 1.02 }}
-        whileFocus={{ scale: disabled ? 1 : 1.02 }}
+        whileFocus={{ scale: disabled ? 1 : 1.02, boxShadow: disabled ? 'none' : '0 0 0 4px var(--ring)' }}
         transition={{ duration: 0.15 }}
         disabled={disabled}
         {...props}

@@ -4,8 +4,16 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'selector'
   theme: {
     extend: {
-      // Extend Tailwind's default theme here
-      // colors: { primary: '#...' },
+      colors: {
+        background: 'var(--background)',
+        primary: 'var(--primary)',
+        accent: 'var(--accent)',
+      },
+      fontFamily: {
+        body: 'var(--font-family-body)',
+        heading: 'var(--font-family-heading)',
+        mono: 'var(--font-family-mono)',
+      },
     },
   },
   plugins: [

@@ -4,7 +4,7 @@ import type { Preview, StoryFn, Decorator, StoryContext } from '@storybook/react
 import { ThemeProvider, useTheme } from '@/theme/ThemeContext';
 import React from 'react';
 
-const ThemeWrapper = ({ theme, children }: { theme: 'light' | 'dark'; children: React.ReactNode }) => {
+const ThemeWrapper = ({ theme, children }: { theme: 'light' | 'dark' | 'futuristic'; children: React.ReactNode }) => {
   const { setTheme } = useTheme();
   React.useEffect(() => {
     setTheme(theme);
@@ -26,6 +26,7 @@ const preview: Preview = {
         items: [
           { value: 'light', title: 'Light' },
           { value: 'dark', title: 'Dark' },
+          { value: 'futuristic', title: 'Futuristic' },
         ],
       },
     },
@@ -36,7 +37,7 @@ export const decorators: Decorator[] = [
   (Story: StoryFn, context: StoryContext) => (
     <ThemeProvider>
       <div style={{ padding: '1rem' }}>
-        <ThemeWrapper theme={context.globals.theme as 'light' | 'dark'}>
+        <ThemeWrapper theme={context.globals.theme as 'light' | 'dark' | 'futuristic'}>
           <Story {...context.args} />
         </ThemeWrapper>
       </div>
