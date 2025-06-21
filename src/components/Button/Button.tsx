@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
+import { useMicroInteraction } from '../../hooks';
 import clsx from 'clsx';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
@@ -22,6 +23,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
+    const micro = useMicroInteraction('button');
     const base = clsx(
       'inline-flex items-center justify-center rounded-[var(--radius)]',
       'border border-[var(--border)]',
@@ -48,16 +50,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={classes}
         aria-disabled={disabled}
-        whileHover={{
-          scale: disabled ? 1 : 1.05,
-          boxShadow: disabled ? 'none' : '0 0 0 4px var(--ring)',
-          filter: disabled ? 'none' : 'brightness(1.1)',
-        }}
-        whileFocus={{
-          scale: disabled ? 1 : 1.05,
-          boxShadow: disabled ? 'none' : '0 0 0 4px var(--ring)',
-        }}
-        transition={{ duration: 0.15 }}
+        whileHover={disabled ? undefined : micro.whileHover}
+        whileTap={disabled ? undefined : micro.whileTap}
+        whileFocus={disabled ? undefined : micro.whileFocus}
+        transition={micro.transition}
         disabled={disabled}
         {...props}
       >

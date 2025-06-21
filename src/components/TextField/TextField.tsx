@@ -1,9 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 import { FormField, FormFieldProps } from '../FormField/FormField';
+import { useMicroInteraction } from '../../hooks';
 
 export interface TextFieldProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id'>,
+  extends Omit<HTMLMotionProps<'input'>, 'id'>,
     Pick<FormFieldProps, 'id' | 'label' | 'description' | 'error' | 'required'> {
   wrapperClassName?: string;
 }
@@ -26,6 +28,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     },
     ref,
   ) => {
+    const micro = useMicroInteraction('input');
     return (
       <FormField
         id={id}
@@ -35,7 +38,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
         required={required}
         className={wrapperClassName}
       >
-        <input
+        <motion.input
           ref={ref}
           type={type}
           className={clsx(
@@ -43,6 +46,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             'focus:outline-none focus:border-[var(--ring)]',
             className,
           )}
+          {...micro}
           {...props}
         />
       </FormField>
