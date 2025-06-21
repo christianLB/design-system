@@ -117,6 +117,7 @@ export function DataTable<TData extends { id: React.Key }>({
   const headers = table.getHeaderGroups();
   const rows = table.getRowModel().rows;
   const colLength = table.getVisibleLeafColumns().length;
+  const rowMicro = useMicroInteraction('table-row');
 
   return (
     <motion.div
@@ -172,7 +173,6 @@ export function DataTable<TData extends { id: React.Key }>({
             </tr>
           ) : (
             rows.map((row) => {
-              const micro = useMicroInteraction('table-row');
               return (
                 <motion.tr
                   key={row.id}
@@ -183,11 +183,11 @@ export function DataTable<TData extends { id: React.Key }>({
                   )}
                   aria-rowindex={row.index + 1}
                   aria-selected={row.getIsSelected() || undefined}
-                  whileHover={hover ? micro.whileHover : undefined}
-                  whileTap={micro.whileTap}
-                  initial={micro.initial}
-                  animate={micro.animate}
-                  transition={micro.transition}
+                  whileHover={hover ? rowMicro.whileHover : undefined}
+                  whileTap={rowMicro.whileTap}
+                  initial={rowMicro.initial}
+                  animate={rowMicro.animate}
+                  transition={rowMicro.transition}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <td

@@ -1,11 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 import { FormField, FormFieldProps } from '../FormField/FormField';
 import { useMicroInteraction } from '../../hooks';
 
 export interface TextFieldProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id'>,
+  extends Omit<HTMLMotionProps<'input'>, 'id'>,
     Pick<FormFieldProps, 'id' | 'label' | 'description' | 'error' | 'required'> {
   wrapperClassName?: string;
 }

@@ -1,13 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 import { Label } from '../Label';
 import { useMicroInteraction } from '../../hooks';
 
 export interface InputFieldProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'onChange' | 'value'
-  > {
+  extends Omit<HTMLMotionProps<'input'>, 'onChange' | 'value'> {
   id: string;
   label: string;
   value: string;
