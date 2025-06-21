@@ -12,7 +12,7 @@ import {
   CardTitle,
   CardContent,
   CardFooter,
-} from '@/components/Card';
+} from '@/components/Card/Card';
 import { DataTable } from '@/components/DataTable';
 import { Alert } from '@/components/Alert';
 import Button from '@/components/Button/Button';
