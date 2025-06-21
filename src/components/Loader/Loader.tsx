@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { motion } from 'framer-motion';
 
 
 export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -70,11 +71,13 @@ const Loader = React.forwardRef<HTMLDivElement, LoaderProps>((
       {...ariaProps}
       {...props}
     >
-      <div 
+      <motion.div
         className={`loader loader--${size} loader--${variant}`}
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, ease: 'linear', duration: 1 }}
       >
         {/* The sr-only text was removed as aria-label on the container is sufficient */}
-      </div>
+      </motion.div>
     </div>
   );
 });

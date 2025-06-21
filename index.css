@@ -125,6 +125,55 @@
   --font-family-mono: 'SF Mono', monospace;
 }
 
+/* Futuristic theme visuals */
+.futuristic-wrap {
+  position: relative;
+}
+
+.futuristic-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(127, 90, 240, 0.25), transparent 70%);
+  animation: futuristic-pan 12s ease-in-out infinite alternate;
+}
+
+@keyframes futuristic-pan {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.4);
+  }
+}
+
+.skeleton-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  animation: skeleton-glow 1.5s infinite;
+}
+
+@keyframes skeleton-glow {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes alert-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
 body {
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
@@ -303,10 +352,13 @@ p {
   width: 100%;
   border-radius: var(--radius);
   border: 1px solid;
+  box-shadow: 0 0 8px rgba(127, 90, 240, 0.3);
   padding: 1rem;
   margin-bottom: 1rem;
   display: flex;
   align-items: flex-start;
+  opacity: 0;
+  animation: alert-fade-in 0.3s forwards;
 }
 
 .alert-title {

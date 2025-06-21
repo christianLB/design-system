@@ -8,6 +8,7 @@ import type {
 } from '@storybook/react';
 import { ThemeProvider, useTheme, type Theme } from '@/theme/ThemeContext';
 import React from 'react';
+import clsx from 'clsx';
 
 const ThemeWrapper = ({
   theme,
@@ -21,6 +22,16 @@ const ThemeWrapper = ({
     setTheme(theme);
   }, [theme, setTheme]);
   return <>{children}</>;
+};
+
+const FuturisticDecorator = ({ children }: { children: React.ReactNode }) => {
+  const { theme } = useTheme();
+  return (
+    <div className={clsx(theme === 'futuristic' && 'futuristic-wrap')}>
+      {theme === 'futuristic' && <div className="futuristic-bg" aria-hidden />}
+      {children}
+    </div>
+  );
 };
 
 const preview: Preview = {
@@ -49,7 +60,9 @@ export const decorators: Decorator[] = [
     <ThemeProvider>
       <div style={{ padding: '1rem' }}>
         <ThemeWrapper theme={context.globals.theme as Theme}>
-          <Story {...context.args} />
+          <FuturisticDecorator>
+            <Story {...context.args} />
+          </FuturisticDecorator>
         </ThemeWrapper>
       </div>
     </ThemeProvider>

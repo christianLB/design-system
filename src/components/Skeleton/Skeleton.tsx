@@ -14,7 +14,7 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
       <div
         ref={ref}
         className={clsx(
-          'animate-pulse rounded-[var(--radius)] bg-[var(--muted)]',
+          'animate-pulse rounded-[var(--radius)] bg-[var(--muted)] skeleton-glow',
           className,
         )}
         style={inlineStyle}
