@@ -15,7 +15,7 @@ A comprehensive design system built with React, TypeScript, and CSS. This system
 ```
 design-system/
 ├── components/           # Componentes de UI reutilizables
-│   ├── Button/          
+│   ├── Button/
 │   │   ├── Button.tsx    # Componente Button
 │   │   └── Button.css    # Estilos del componente Button
 │   └── ...              # Otros componentes
@@ -33,6 +33,7 @@ Para más detalles sobre la estructura, consulta [PROJECT_STRUCTURE.md](./PROJEC
 ## 🛠 Instalación
 
 1. Clona el repositorio:
+
    ```bash
    git clone [URL_DEL_REPOSITORIO]
    cd design-system
@@ -43,13 +44,12 @@ Para más detalles sobre la estructura, consulta [PROJECT_STRUCTURE.md](./PROJEC
    pnpm install
    ```
 
-
 ## 🧩 Componentes
 
 ### Componentes Disponibles
 
 - **Button** - Botón versátil para diversas acciones
-- *Más componentes serán agregados...*
+- _Más componentes serán agregados..._
 
 ## 📚 Documentación
 
@@ -149,6 +149,10 @@ module.exports = {
 };
 ```
 
+### Themes in Storybook
+
+Storybook includes **light**, **dark**, and **futuristic** themes. Use the theme selector in the Storybook toolbar to switch between them. Your selection is stored in local storage so it persists while navigating between stories.
+
 ### Migration Guide
 
 If you're upgrading from a previous version, please see our [Migration Guide](./MIGRATION_GUIDE.md) for instructions on updating your components to use the new design tokens system.
@@ -158,11 +162,14 @@ If you're upgrading from a previous version, please see our [Migration Guide](./
 ### Installation
 
 To use this design system in your project, install it via npm or yarn.
+
 ```
 bash
 npm install my-design-system
 ```
+
 or
+
 ```
 bash
 yarn add my-design-system
@@ -192,6 +199,7 @@ import '@k2600x/design-system/style.css';
 ```
 
 Import the components you need from the package:
+
 ```
 typescript
 import { Button, Input } from 'my-design-system';
@@ -206,6 +214,7 @@ function MyComponent() {
 }
 
 ```
+
 ## Contributing
 
 Contributions are welcome! Please read our contributing guidelines for more information.

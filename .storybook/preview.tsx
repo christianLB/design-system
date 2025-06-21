@@ -1,10 +1,21 @@
 // Import Tailwind CSS with design system styles
 import './tailwind.css';
-import type { Preview, StoryFn, Decorator, StoryContext } from '@storybook/react';
-import { ThemeProvider, useTheme } from '@/theme/ThemeContext';
+import type {
+  Preview,
+  StoryFn,
+  Decorator,
+  StoryContext,
+} from '@storybook/react';
+import { ThemeProvider, useTheme, type Theme } from '@/theme/ThemeContext';
 import React from 'react';
 
-const ThemeWrapper = ({ theme, children }: { theme: 'light' | 'dark' | 'futuristic'; children: React.ReactNode }) => {
+const ThemeWrapper = ({
+  theme,
+  children,
+}: {
+  theme: Theme;
+  children: React.ReactNode;
+}) => {
   const { setTheme } = useTheme();
   React.useEffect(() => {
     setTheme(theme);
@@ -37,7 +48,7 @@ export const decorators: Decorator[] = [
   (Story: StoryFn, context: StoryContext) => (
     <ThemeProvider>
       <div style={{ padding: '1rem' }}>
-        <ThemeWrapper theme={context.globals.theme as 'light' | 'dark' | 'futuristic'}>
+        <ThemeWrapper theme={context.globals.theme as Theme}>
           <Story {...context.args} />
         </ThemeWrapper>
       </div>

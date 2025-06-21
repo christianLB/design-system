@@ -29,3 +29,14 @@ export const InitialDark: Story = {
     );
   },
 };
+
+export const InitialFuturistic: Story = {
+  render: () => {
+    localStorage.setItem('vite-ui-theme', 'futuristic');
+    return (
+      <ThemeProvider>
+        <DarkThemeToggle />
+      </ThemeProvider>
+    );
+  },
+};
