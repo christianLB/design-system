@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Docs/Guia de uso" />
+
+# Guía de uso del Design System
+
+Esta guía resume cómo contribuir con nuevas historias y buenas prácticas.
+
+## Cómo contribuir
+
+1. Agrega tu componente en `src/components` con sus pruebas.
+2. Crea su historia bajo la misma carpeta.
+3. Asegúrate de exportar un `meta` con `title` y `component`.
+
+## Criterios de accesibilidad
+
+- Usa atributos ARIA cuando corresponda.
+- Verifica la navegación por teclado.
+- Asegura contraste suficiente en modo claro y oscuro.
+
+## Convenciones de nomenclatura
+
+- Componentes en _PascalCase_.
+- Archivos de historia terminan en `.stories.tsx` o `.stories.mdx`.
+
+## Ejemplo de estructura ideal
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from './Button';
+
+const meta: Meta<typeof Button> = {
+  title: 'Inputs/Button',
+  component: Button,
+};
+export default meta;
+
+export const Primary: StoryObj<typeof Button> = {
+  args: { children: 'Enviar' },
+};
+```

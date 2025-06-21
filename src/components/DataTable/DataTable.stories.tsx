@@ -22,7 +22,7 @@ const data: Row[] = [
   { id: 3, name: 'Charlie', age: 28 },
 ];
 
-const meta: Meta<typeof DataTable<Row>> = {
+const meta: Meta<typeof DataTable> = {
   title: 'Data Display/DataTable',
   component: DataTable,
   args: {
@@ -32,7 +32,7 @@ const meta: Meta<typeof DataTable<Row>> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof DataTable<Row>>;
+type Story = StoryObj<typeof DataTable>;
 
 export const WithData: Story = {};
 

@@ -19,4 +19,9 @@ describe('DataTable', () => {
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
+
+  it('renders rows based on provided data', () => {
+    const { getByText } = render(<DataTable columns={columns} data={data} />);
+    expect(getByText('Alice')).toBeInTheDocument();
+  });
 });
