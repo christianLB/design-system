@@ -4,7 +4,7 @@ import { Label } from '../Label';
 import { useMicroInteraction } from '../../hooks';
 
 export interface InputFieldProps
-  extends Omit<HTMLMotionProps<'input'>, 'onChange' | 'value'> {
+  extends Omit<HTMLMotionProps<'input'>, 'onChange' | 'value' | 'layout'> {
   id: string;
   label: string;
   value: string;
