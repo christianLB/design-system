@@ -1,7 +1,11 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
-  stories: ['../src/components/**/*.stories.@(ts|tsx|mdx)', '../src/docs/**/*.stories.@(mdx|tsx)'],
+  stories: [
+    '../src/components/**/*.stories.@(ts|tsx|mdx)',
+    '../src/docs/**/*.stories.@(mdx|tsx)',
+    '../src/examples/**/*.stories.@(ts|tsx|mdx)',
+  ],
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
@@ -10,10 +14,10 @@ const config: StorybookConfig = {
 
   framework: {
     name: '@storybook/react-vite',
-    options: {}
+    options: {},
   },
   docs: {
-    autodocs: 'tag'
+    autodocs: 'tag',
   },
   features: {
     // @ts-ignore - The Storybook types for Vite do not seem to include this valid option
