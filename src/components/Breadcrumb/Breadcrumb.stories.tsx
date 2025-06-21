@@ -4,7 +4,7 @@ void React;
 import { Breadcrumb } from './Breadcrumb';
 
 const meta: Meta<typeof Breadcrumb> = {
-  title: 'Components/Breadcrumb',
+  title: 'Navigation/Breadcrumbs',
   component: Breadcrumb,
   args: {
     items: [

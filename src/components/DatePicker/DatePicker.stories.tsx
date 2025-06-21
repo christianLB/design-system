@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { DatePicker } from './DatePicker';
 
 const meta: Meta<typeof DatePicker> = {
-  title: 'Components/DatePicker',
+  title: 'Inputs/DatePicker',
   component: DatePicker,
   argTypes: { onDateChange: { action: 'changed' } },
 };

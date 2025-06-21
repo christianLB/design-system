@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { DateField } from './DateField';
 
 const meta: Meta<typeof DateField> = {
-  title: 'Components/DateField',
+  title: 'Inputs/DateField',
   component: DateField,
   argTypes: { error: { control: 'text' } },
 };

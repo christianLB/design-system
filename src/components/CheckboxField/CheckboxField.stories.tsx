@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { CheckboxField } from './CheckboxField';
 
 const meta: Meta<typeof CheckboxField> = {
-  title: 'Components/CheckboxField',
+  title: 'Inputs/CheckboxField',
   component: CheckboxField,
   argTypes: { error: { control: 'text' }, description: { control: 'text' } },
 };

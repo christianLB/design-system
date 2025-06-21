@@ -9,7 +9,7 @@ const options = [
 ];
 
 const meta: Meta<typeof MultiSelect> = {
-  title: 'Components/MultiSelect',
+  title: 'Inputs/MultiSelect',
   component: MultiSelect,
   args: { options },
 };

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { SelectField } from './SelectField';
 
 const meta: Meta<typeof SelectField> = {
-  title: 'Components/SelectField',
+  title: 'Inputs/SelectField',
   component: SelectField,
   argTypes: { error: { control: 'text' } },
 };

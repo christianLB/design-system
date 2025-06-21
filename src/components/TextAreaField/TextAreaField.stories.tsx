@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { TextAreaField } from './TextAreaField';
 
 const meta: Meta<typeof TextAreaField> = {
-  title: 'Components/TextAreaField',
+  title: 'Inputs/TextAreaField',
   component: TextAreaField,
   argTypes: { error: { control: 'text' }, autoGrow: { control: 'boolean' } },
 };

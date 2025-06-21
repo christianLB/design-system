@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Switch } from './Switch';
 
 const meta: Meta<typeof Switch> = {
-  title: 'Components/Switch',
+  title: 'Inputs/Switch',
   component: Switch,
 };
 export default meta;

@@ -4,7 +4,7 @@ import { Navbar } from './Navbar';
 import { Button } from '../Button/Button';
 
 const meta: Meta<typeof Navbar> = {
-  title: 'Components/Navbar',
+  title: 'Navigation/Navbar',
   component: Navbar,
   args: {
     items: [
