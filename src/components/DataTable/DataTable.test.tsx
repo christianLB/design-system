@@ -3,13 +3,14 @@ import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { describe, it, expect } from 'vitest';
 import { DataTable } from './DataTable';
+import type { ColumnDef } from '@tanstack/react-table';
 
 interface Row {
   id: number;
   name: string;
 }
 
-const columns = [{ accessorKey: 'name', header: 'Name' }] as const;
+const columns: ColumnDef<Row>[] = [{ accessorKey: 'name', header: 'Name' }];
 
 const data: Row[] = [{ id: 1, name: 'Alice' }];
 

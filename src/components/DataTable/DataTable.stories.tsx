@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { fn } from '@storybook/test';
 import { DataTable } from './DataTable';
 import type { DataTablePagination } from './DataTable';
+import type { ColumnDef } from '@tanstack/react-table';
 import { TableToolbar } from './TableToolbar';
 import { Button } from '../Button/Button';
 
@@ -12,10 +13,10 @@ interface Row {
   age: number;
 }
 
-const columns = [
+const columns: ColumnDef<Row>[] = [
   { accessorKey: 'name', header: 'Name' },
   { accessorKey: 'age', header: 'Age' },
-] as const;
+];
 
 const data: Row[] = [
   { id: 1, name: 'Alice', age: 30 },
@@ -23,7 +24,7 @@ const data: Row[] = [
   { id: 3, name: 'Charlie', age: 28 },
 ];
 
-const meta: Meta<typeof DataTable> = {
+const meta: Meta<typeof DataTable<Row>> = {
   title: 'Data Display/DataTable',
   component: DataTable,
   args: {
@@ -35,7 +36,7 @@ const meta: Meta<typeof DataTable> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof DataTable>;
+type Story = StoryObj<typeof DataTable<Row>>;
 
 export const WithData: Story = {};
 

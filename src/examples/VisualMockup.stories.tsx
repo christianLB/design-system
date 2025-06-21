@@ -19,6 +19,7 @@ import Button from '@/components/Button/Button';
 import { Stack } from '@/components/Stack';
 import { Grid } from '@/components/Grid';
 import { useTheme } from '@/theme/ThemeContext';
+import type { ColumnDef } from '@tanstack/react-table';
 
 interface Row {
   id: number;
@@ -26,10 +27,10 @@ interface Row {
   visits: number;
 }
 
-const columns = [
+const columns: ColumnDef<Row>[] = [
   { accessorKey: 'name', header: 'Name' },
   { accessorKey: 'visits', header: 'Visits' },
-] as const;
+];
 
 const data: Row[] = [
   { id: 1, name: 'Alice', visits: 120 },

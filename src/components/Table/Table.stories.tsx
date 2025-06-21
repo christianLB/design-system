@@ -9,7 +9,7 @@ interface Row {
   age: number;
 }
 
-const columns = [
+const columns: { accessorKey: keyof Row; header: string }[] = [
   { accessorKey: 'name', header: 'Name' },
   { accessorKey: 'age', header: 'Age' },
 ];
