@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import { useMicroInteraction } from '../../hooks';
 import {
   ColumnDef,
   flexRender,
@@ -170,28 +171,35 @@ export function DataTable<TData extends { id: React.Key }>({
               </td>
             </tr>
           ) : (
-            rows.map((row) => (
-              <tr
-                key={row.id}
-                onClick={() => onRowClick?.(row.original)}
-                className={clsx(
-                  onRowClick && 'cursor-pointer',
-                  striped && 'even:bg-[var(--muted)]',
-                  hover && 'hover:bg-[var(--accent)]'
-                )}
-                aria-rowindex={row.index + 1}
-                aria-selected={row.getIsSelected() || undefined}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <td
-                    key={cell.id}
-                    className="border border-[var(--border)] px-[var(--spacing-md)] py-[var(--spacing-sm)]"
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))
+            rows.map((row) => {
+              const micro = useMicroInteraction('table-row');
+              return (
+                <motion.tr
+                  key={row.id}
+                  onClick={() => onRowClick?.(row.original)}
+                  className={clsx(
+                    onRowClick && 'cursor-pointer',
+                    striped && 'even:bg-[var(--muted)]'
+                  )}
+                  aria-rowindex={row.index + 1}
+                  aria-selected={row.getIsSelected() || undefined}
+                  whileHover={hover ? micro.whileHover : undefined}
+                  whileTap={micro.whileTap}
+                  initial={micro.initial}
+                  animate={micro.animate}
+                  transition={micro.transition}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <td
+                      key={cell.id}
+                      className="border border-[var(--border)] px-[var(--spacing-md)] py-[var(--spacing-sm)]"
+                    >
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  ))}
+                </motion.tr>
+              );
+            })
           )}
         </tbody>
       </table>

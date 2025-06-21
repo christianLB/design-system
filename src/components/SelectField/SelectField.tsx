@@ -1,6 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import { FormField, FormFieldProps } from '../FormField/FormField';
+import { useMicroInteraction } from '../../hooks';
 
 export interface SelectFieldProps
   extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'id'>,
@@ -9,10 +11,11 @@ export interface SelectFieldProps
 }
 
 export const SelectField = React.forwardRef<HTMLSelectElement, SelectFieldProps>(
-  (
+  ( 
     { id, label, description, error, required, wrapperClassName, className, children, ...props },
     ref,
   ) => {
+    const micro = useMicroInteraction('input');
     return (
       <FormField
         id={id}
@@ -22,17 +25,18 @@ export const SelectField = React.forwardRef<HTMLSelectElement, SelectFieldProps>
         required={required}
         className={wrapperClassName}
       >
-        <select
+        <motion.select
           ref={ref}
           className={clsx(
             'w-full rounded-[var(--radius)] border border-[var(--input)] bg-[var(--background)] p-2 text-sm',
             'focus:outline-none focus:border-[var(--ring)]',
             className,
           )}
+          {...micro}
           {...props}
         >
           {children}
-        </select>
+        </motion.select>
       </FormField>
     );
   },

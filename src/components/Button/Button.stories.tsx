@@ -28,3 +28,7 @@ export const Ghost: Story = {
 export const Disabled: Story = {
   args: { disabled: true },
 };
+
+export const Interactive: Story = {
+  args: { variant: 'primary', children: 'Hover me' },
+};
