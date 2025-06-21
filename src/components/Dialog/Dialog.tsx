@@ -34,9 +34,9 @@ export const Dialog = ({ isOpen, onClose, children, className }: DialogProps) =>
       <motion.div
         className={`dialog-content ${className || ''}`}
         onClick={(e) => e.stopPropagation()}
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.2 }}
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
       >
         <button className="dialog-close" onClick={onClose} aria-label="Close">
           &times;

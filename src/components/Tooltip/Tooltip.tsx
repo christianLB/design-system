@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, forwardRef, HTMLAttributes, ReactNode } from 'react';
+import { motion } from 'framer-motion';
 
 export interface TooltipProps extends Omit<HTMLAttributes<HTMLDivElement>, 'content'> {
   content: ReactNode;
@@ -76,14 +77,17 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         {...props}
       >
         {children}
-        <div
+        <motion.div
           className={tooltipClasses}
           style={{ maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth }}
           role="tooltip"
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: show ? 1 : 0, y: show ? 0 : 4 }}
+          transition={{ duration: 0.2 }}
         >
           {content}
           {showArrow && <div className={arrowClasses} />}
-        </div>
+        </motion.div>
       </div>
     );
   }
