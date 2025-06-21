@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
+import { fn } from '@storybook/test';
 import { DataTable } from './DataTable';
 import type { DataTablePagination } from './DataTable';
 import { TableToolbar } from './TableToolbar';
@@ -28,6 +29,8 @@ const meta: Meta<typeof DataTable> = {
   args: {
     columns,
     data,
+    onRowClick: fn(),
+    onRowSelect: fn(),
   },
 };
 export default meta;
