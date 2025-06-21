@@ -20,5 +20,9 @@ export const Info: Story = {};
 export const Success: Story = { args: { variant: 'success' } };
 export const Destructive: Story = { args: { variant: 'destructive' } };
 export const WithAction: Story = {
-  args: { action: <button className="btn-sm">Undo</button> },
+  render: (args) => (
+    <Alert {...args}>
+      <button className="btn-sm">Undo</button>
+    </Alert>
+  ),
 };
