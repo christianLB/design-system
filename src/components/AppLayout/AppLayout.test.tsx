@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { describe, it, expect } from 'vitest';
 import { AppLayout } from './AppLayout';
+import { Header } from '../Header';
 import { Navbar } from '../Navbar';
 import { Sidebar } from '../Sidebar';
 import { ThemeProvider } from '../../theme/ThemeContext';
@@ -15,7 +16,11 @@ describe('AppLayout', () => {
     const { container } = render(
       <ThemeProvider>
         <AppLayout
-          navbar={<Navbar items={navItems} aria-label="main navigation" />}
+          header={
+            <Header>
+              <Navbar items={navItems} aria-label="main navigation" />
+            </Header>
+          }
           sidebar={<Sidebar items={sidebarItems} aria-label="sidebar" />}
         >
           <div>Content</div>
@@ -30,15 +35,19 @@ describe('AppLayout', () => {
     render(
       <ThemeProvider>
         <AppLayout
-          navbar={<Navbar items={navItems} data-testid="navbar" />}
+          header={
+            <Header data-testid="header">
+              <Navbar items={navItems} />
+            </Header>
+          }
           stickyHeader
         >
           <div>Content</div>
         </AppLayout>
       </ThemeProvider>,
     );
-    const navbarContainer = screen.getByTestId('navbar').parentElement;
-    expect(navbarContainer).toHaveStyle('position: sticky');
+    const headerContainer = screen.getByTestId('header').parentElement;
+    expect(headerContainer).toHaveStyle('position: sticky');
   });
 
   it('toggles the sidebar when the toggle button is clicked', () => {

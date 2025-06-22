@@ -24,6 +24,7 @@ import {
   DialogTitle,
   DialogFooter,
   Navbar,
+  Header,
 } from '@/components';
 import { Sidebar, type SidebarItem } from '@/components/Sidebar';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -90,7 +91,7 @@ const VisualMockupDemo = () => {
     >
       <AppLayout
         sidebar={<Sidebar items={sidebarItems} />}
-        navbar={<Navbar items={navItems} logo={<span>MyApp</span>} />}
+        header={<Header><Navbar items={navItems} logo={<span>MyApp</span>} /></Header>}
         stickyHeader
       >
         <Stack gap="lg">

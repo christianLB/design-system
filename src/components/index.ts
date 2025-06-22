@@ -44,6 +44,8 @@ export * from './Box';
 export * from './Container';
 export * from './Grid';
 export * from './Stack';
+export * from './Dialog';
+export * from './Header';
 export * from './Navbar';
 export * from './Sidebar';
 export * from './Menu';

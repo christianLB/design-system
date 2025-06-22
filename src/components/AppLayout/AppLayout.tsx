@@ -9,7 +9,7 @@ interface SidebarProps {
 }
 
 export interface AppLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
-  navbar?: React.ReactNode;
+  header?: React.ReactNode;
   sidebar?: React.ReactNode;
   sidebarInitiallyCollapsed?: boolean;
   stickyHeader?: boolean;
@@ -17,12 +17,12 @@ export interface AppLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Provides a basic application layout with optional navbar and sidebar.
+ * Provides a basic application layout with optional header and sidebar.
  */
 export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
   (
     {
-      navbar,
+      header,
       sidebar,
       children,
       className,
@@ -50,7 +50,7 @@ export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
           })
         : sidebar;
 
-    const navbarBoxStyles: React.CSSProperties = stickyHeader
+    const headerBoxStyles: React.CSSProperties = stickyHeader
       ? { position: 'sticky', top: 0, zIndex: 10 }
       : {};
 
@@ -62,7 +62,7 @@ export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
         className={className}
         {...props}
       >
-        {navbar && <Box style={navbarBoxStyles}>{navbar}</Box>}
+        {header && <Box style={headerBoxStyles}>{header}</Box>}
         <Stack direction="row" style={{ flex: 1, overflow: 'hidden' }}>
           {sidebar && <Box>{sidebarWithProps}</Box>}
           <Box

@@ -58,10 +58,9 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
           </button>
           <ul
             className={clsx(
-              'flex items-center gap-[var(--spacing-md)] list-none m-0 p-0',
-              open
-                ? 'flex-col w-full mt-[var(--spacing-sm)] md:flex-row md:w-auto md:mt-0'
-                : 'hidden md:flex',
+              'list-none m-0 p-0 gap-[var(--spacing-md)]',
+              open ? 'flex flex-col' : 'hidden', // Mobile behavior
+              'md:flex md:flex-row md:items-center' // Desktop override
             )}
           >
             {items.map((item) => (
