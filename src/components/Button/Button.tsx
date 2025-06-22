@@ -43,7 +43,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       lg: 'text-[var(--font-size-lg)] px-[var(--spacing-lg)] py-[var(--spacing-md)]',
     };
 
-    const classes = clsx(base, variantClasses[variant], sizeClasses[size], className);
+    const variantClass = `button--${variant}`;
+    const classes = clsx(
+      base,
+      variantClass,
+      variantClasses[variant],
+      sizeClasses[size],
+      className,
+    );
 
     return (
       <motion.button
