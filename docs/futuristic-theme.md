@@ -26,6 +26,7 @@ These components have been fully tested and styled for the futuristic theme.
 *   **Card**: Lifts and glows on hover for a more interactive feel.
 *   **DarkThemeToggle**: The primary component for switching between themes, including the futuristic theme.
 *   **Input**: Glows on focus to indicate the active field.
+*   **Table**: Features glowing headers and translucent rows with a hover effect.
 
 ### Partially Compatible
 
