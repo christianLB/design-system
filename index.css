@@ -288,28 +288,30 @@ p {
 [data-theme='futuristic'] .data-table {
   border-collapse: separate;
   border-spacing: 0;
+  width: 100%;
   border: 1px solid var(--primary);
   border-radius: var(--radius);
-  box-shadow: 0 0 10px rgba(127, 90, 240, 0.3);
+  box-shadow: 0 0 15px rgba(127, 90, 240, 0.4);
   overflow: hidden;
 }
 
 [data-theme='futuristic'] .data-table th {
-  background-color: rgba(127, 90, 240, 0.2);
+  background-color: rgba(127, 90, 240, 0.25);
   color: var(--foreground);
   text-transform: uppercase;
-  font-size: 0.875rem;
-  letter-spacing: 0.05em;
-  border-bottom-width: 2px;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  border-bottom: 2px solid var(--primary);
+  padding: 1rem 1.5rem;
 }
 
-[data-theme='futuristic'] .data-table th,
 [data-theme='futuristic'] .data-table td {
-  border-color: var(--primary);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(127, 90, 240, 0.2);
 }
 
 [data-theme='futuristic'] .data-table tbody tr:hover {
-  background-color: rgba(127, 90, 240, 0.1);
+  background-color: rgba(127, 90, 240, 0.15);
 }
 
 [data-theme='futuristic'] .data-table tbody tr:last-child td {
