@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import clsx from 'clsx';
+import { useTheme } from '../../theme/ThemeContext';
 
 export interface SidebarItem {
   label: string;
@@ -21,15 +22,38 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
     { items, collapsed = false, header, footer, onToggle, className, ...props },
     ref
   ) => {
+    const { theme } = useTheme();
+    const isFuturistic = theme === 'futuristic';
     const handleToggle = () => onToggle?.(!collapsed);
+
+    const renderLink = (item: SidebarItem, isSubItem = false) => {
+      const linkClasses = isFuturistic
+        ? clsx(
+            'block w-full text-left no-underline rounded-md transition-colors duration-200',
+            isSubItem ? 'px-2 py-1 text-sm' : 'px-3 py-2',
+            'text-p-200 hover:bg-p-500/10 hover:text-p-100',
+            collapsed && !isSubItem && 'whitespace-nowrap'
+          )
+        : clsx('no-underline text-inherit', isSubItem && 'text-sm');
+
+      if (isFuturistic) {
+        return (
+          <motion.a href={item.href} whileHover={{ x: 4 }} className={linkClasses}>
+            {item.label}
+          </motion.a>
+        );
+      }
+      return <a href={item.href} className={linkClasses}>{item.label}</a>;
+    };
 
     return (
       <motion.aside
         ref={ref}
         data-collapsed={collapsed}
         className={clsx(
-          'flex flex-col h-screen overflow-y-auto bg-[var(--neutral100)]',
-          className,
+          'flex flex-col h-screen overflow-y-auto',
+          isFuturistic ? 'bg-transparent' : 'bg-[var(--neutral100)]',
+          className
         )}
         animate={{ width: collapsed ? '3rem' : '16rem' }}
         {...props}
@@ -40,24 +64,15 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           onClick={handleToggle}
           aria-label="Toggle"
         />
-        <nav>
-          <ul className="list-none m-0 p-0">
+        <nav className="flex-grow p-2">
+          <ul className="list-none m-0 p-0 space-y-1">
             {items.map((item) => (
-              <li key={item.href} className="p-[var(--spacing-sm)] px-[var(--spacing-md)]">
-                <a
-                  href={item.href}
-                  className={clsx('no-underline text-inherit', collapsed && 'whitespace-nowrap')}
-                >
-                  {item.label}
-                </a>
-                {item.items && (
-                  <ul className="list-none m-0 p-0 pl-[var(--spacing-lg)]">
+              <li key={item.href}>
+                {renderLink(item)}
+                {item.items && !collapsed && (
+                  <ul className="list-none m-0 p-0 pl-[var(--spacing-md)] mt-1 space-y-1">
                     {item.items.map((sub) => (
-                      <li key={sub.href}>
-                        <a href={sub.href} className="no-underline text-inherit">
-                          {sub.label}
-                        </a>
-                      </li>
+                      <li key={sub.href}>{renderLink(sub, true)}</li>
                     ))}
                   </ul>
                 )}
@@ -65,7 +80,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
             ))}
           </ul>
         </nav>
-        {footer && <div className="p-[var(--spacing-md)]">{footer}</div>}
+        {footer && <div className="mt-auto p-[var(--spacing-md)]">{footer}</div>}
       </motion.aside>
     );
   }

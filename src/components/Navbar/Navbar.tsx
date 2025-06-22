@@ -58,9 +58,9 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
           </button>
           <ul
             className={clsx(
-              'gap-[var(--spacing-md)] list-none m-0 p-0',
+              'flex items-center gap-[var(--spacing-md)] list-none m-0 p-0',
               open
-                ? 'flex flex-col w-full mt-[var(--spacing-sm)] md:flex md:flex-row md:w-auto md:mt-0'
+                ? 'flex-col w-full mt-[var(--spacing-sm)] md:flex-row md:w-auto md:mt-0'
                 : 'hidden md:flex',
             )}
           >
