@@ -6,7 +6,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { motion } from 'framer-motion';
 import { AppLayout, Heading, Stack, Grid, Card, CardHeader, CardTitle, CardContent, CardFooter, DataTable, Alert, Button, Input, Label, Dialog, DialogHeader, DialogTitle, DialogFooter } from '@/components';
 import { Sidebar, type SidebarItem } from '@/components/Sidebar';
-import { useTheme } from '@/theme/ThemeContext';
 import type { ColumnDef } from '@tanstack/react-table';
 
 interface Row {
@@ -53,68 +52,60 @@ export const VisualMockup: Story = {
 };
 
 const VisualMockupDemo = () => {
-  const { theme } = useTheme();
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const shouldAnimate = theme === 'futuristic';
 
-  const content = (
-    <AppLayout sidebar={<Sidebar items={sidebarItems} />}>
-      <Stack gap="lg">
-        <Heading as="h1" size={1}>
-          Full-Page Showcase
-        </Heading>
-        <Grid columns={1} responsive={[2]} gap="lg">
-          <Card>
-            <CardHeader>
-              <CardTitle>User Settings</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Stack gap="md">
-                <div>
-                  <Label htmlFor="username">Username</Label>
-                  <Input id="username" placeholder="Enter your username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                </div>
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-              </Stack>
-            </CardContent>
-            <CardFooter>
-              <Button variant="primary">Save Changes</Button>
-            </CardFooter>
-          </Card>
-          <DataTable columns={columns} data={data} striped hover />
-        </Grid>
-        <Alert variant="info" title="System Update">
-          The futuristic theme is now live across all components.
-        </Alert>
-        <Button onClick={() => setIsDialogOpen(true)}>Open Modal</Button>
-        <Dialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
-          <DialogHeader>
-            <DialogTitle>Confirm Action</DialogTitle>
-          </DialogHeader>
-          <p>Are you sure you want to proceed with this action?</p>
-          <DialogFooter>
-            <Button variant="secondary" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
-            <Button onClick={() => setIsDialogOpen(false)}>Confirm</Button>
-          </DialogFooter>
-        </Dialog>
-      </Stack>
-    </AppLayout>
-  );
-
-  return shouldAnimate ? (
+  return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {content}
+      <AppLayout sidebar={<Sidebar items={sidebarItems} />}>
+        <Stack gap="lg">
+          <Heading as="h1" size={1}>
+            Full-Page Showcase
+          </Heading>
+          <Grid columns={1} responsive={[2]} gap="lg">
+            <Card>
+              <CardHeader>
+                <CardTitle>User Settings</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Stack gap="md">
+                  <div>
+                    <Label htmlFor="username">Username</Label>
+                    <Input id="username" placeholder="Enter your username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                  </div>
+                  <div>
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  </div>
+                </Stack>
+              </CardContent>
+              <CardFooter>
+                <Button variant="primary">Save Changes</Button>
+              </CardFooter>
+            </Card>
+            <DataTable columns={columns} data={data} striped hover />
+          </Grid>
+          <Alert variant="info" title="System Update">
+            The futuristic theme is now live across all components.
+          </Alert>
+          <Button onClick={() => setIsDialogOpen(true)}>Open Modal</Button>
+          <Dialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
+            <DialogHeader>
+              <DialogTitle>Confirm Action</DialogTitle>
+            </DialogHeader>
+            <p>Are you sure you want to proceed with this action?</p>
+            <DialogFooter>
+              <Button variant="secondary" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
+              <Button onClick={() => setIsDialogOpen(false)}>Confirm</Button>
+            </DialogFooter>
+          </Dialog>
+        </Stack>
+      </AppLayout>
     </motion.div>
-  ) : (
-    <div>{content}</div>
   );
 };
