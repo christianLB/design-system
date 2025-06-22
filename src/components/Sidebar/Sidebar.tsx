@@ -26,6 +26,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
     return (
       <motion.aside
         ref={ref}
+        data-collapsed={collapsed}
         className={clsx(
           'flex flex-col h-screen overflow-y-auto bg-[var(--neutral100)]',
           className,

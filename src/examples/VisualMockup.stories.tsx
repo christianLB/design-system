@@ -4,7 +4,27 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { motion } from 'framer-motion';
-import { AppLayout, Heading, Stack, Grid, Card, CardHeader, CardTitle, CardContent, CardFooter, DataTable, Alert, Button, Input, Label, Dialog, DialogHeader, DialogTitle, DialogFooter } from '@/components';
+import {
+  AppLayout,
+  Heading,
+  Stack,
+  Grid,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+  DataTable,
+  Alert,
+  Button,
+  Input,
+  Label,
+  Dialog,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  Navbar,
+} from '@/components';
 import { Sidebar, type SidebarItem } from '@/components/Sidebar';
 import type { ColumnDef } from '@tanstack/react-table';
 
@@ -19,16 +39,22 @@ const columns: ColumnDef<Row>[] = [
   { accessorKey: 'visits', header: 'Visits' },
 ];
 
-const data: Row[] = [
-  { id: 1, name: 'Alice', visits: 120 },
-  { id: 2, name: 'Bob', visits: 70 },
-  { id: 3, name: 'Charlie', visits: 32 },
-];
+const data: Row[] = Array.from({ length: 20 }, (_, i) => ({
+  id: i + 1,
+  name: `User ${i + 1}`,
+  visits: Math.floor(Math.random() * 200),
+}));
 
 const sidebarItems: SidebarItem[] = [
   { label: 'Dashboard', href: '#dashboard' },
   { label: 'Analytics', href: '#analytics' },
   { label: 'Settings', href: '#settings' },
+];
+
+const navItems = [
+  { label: 'Home', href: '#' },
+  { label: 'About', href: '#' },
+  { label: 'Contact', href: '#' },
 ];
 
 const meta: Meta = {
@@ -62,7 +88,11 @@ const VisualMockupDemo = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <AppLayout sidebar={<Sidebar items={sidebarItems} />}>
+      <AppLayout
+        sidebar={<Sidebar items={sidebarItems} />}
+        navbar={<Navbar items={navItems} logo={<span>MyApp</span>} />}
+        stickyHeader
+      >
         <Stack gap="lg">
           <Heading as="h1" size={1}>
             Full-Page Showcase
