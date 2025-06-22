@@ -23,6 +23,7 @@ These components have been fully tested and styled for the futuristic theme.
 
 *   **Alert**: Includes custom styles for `success`, `warning`, and `info` variants with futuristic colors and borders.
 *   **Button**: Features a glowing effect on primary and secondary variants.
+*   **DataTable**: Features glowing headers, striped and hover effects, and a futuristic aesthetic.
 *   **Card**: Lifts and glows on hover for a more interactive feel.
 *   **DarkThemeToggle**: The primary component for switching between themes, including the futuristic theme.
 *   **Input**: Glows on focus to indicate the active field.

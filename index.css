@@ -284,6 +284,42 @@ p {
 }
 
 /* Table */
+
+[data-theme='futuristic'] .data-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius);
+  box-shadow: 0 0 10px rgba(127, 90, 240, 0.3);
+  overflow: hidden;
+}
+
+[data-theme='futuristic'] .data-table th {
+  background-color: rgba(127, 90, 240, 0.2);
+  color: var(--foreground);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  border-bottom-width: 2px;
+}
+
+[data-theme='futuristic'] .data-table th,
+[data-theme='futuristic'] .data-table td {
+  border-color: var(--primary);
+}
+
+[data-theme='futuristic'] .data-table tbody tr:hover {
+  background-color: rgba(127, 90, 240, 0.1);
+}
+
+[data-theme='futuristic'] .data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+[data-theme='futuristic'] .data-table .even\:bg-\[var\(--muted\)\] {
+  background-color: rgba(127, 90, 240, 0.05);
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;

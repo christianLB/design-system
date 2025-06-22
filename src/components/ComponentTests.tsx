@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './Button/Button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './Card/Card';
-import { Table } from './Table/Table';
+import { DataTable } from './DataTable';
 import { Input } from './Input/Input';
 import { Badge } from './Badge/Badge';
 import { Alert } from './Alert/Alert';
@@ -122,8 +122,8 @@ const ComponentTests = () => {
 
       <hr style={{ margin: '2rem 0' }} />
 
-      <h2>Table</h2>
-      <Table columns={tableColumns} data={tableData} />
+      <h2>DataTable</h2>
+      <DataTable columns={tableColumns} data={tableData} />
 
       <hr style={{ margin: '2rem 0' }} />
 

@@ -29,7 +29,6 @@ export * from './EmptyState/index';
 export * from './RadioGroup/index';
 export * from './Select/index';
 export * from './Switch/index';
-export * from './Table/Table';
 export * from './Tabs/index';
 export * from './Textarea/index';
 export * from './Tooltip/index';
