@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { useTheme } from '../../theme/ThemeContext';
 
 export interface AppLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   navbar?: React.ReactNode;
@@ -12,7 +13,10 @@ export interface AppLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
  */
 export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
   ({ navbar, sidebar, children, className, ...props }, ref) => {
-    return (
+    const { theme } = useTheme();
+    const isFuturistic = theme === 'futuristic';
+
+    const layout = (
       <div
         ref={ref}
         className={clsx('flex flex-col min-h-screen', className)}
@@ -25,6 +29,17 @@ export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
         </div>
       </div>
     );
+
+    if (isFuturistic) {
+      return (
+        <div className="futuristic-wrap">
+          <div className="futuristic-bg" />
+          {layout}
+        </div>
+      );
+    }
+
+    return layout;
   }
 );
 

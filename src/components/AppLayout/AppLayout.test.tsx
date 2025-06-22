@@ -5,26 +5,29 @@ import { describe, it, expect } from 'vitest';
 import { AppLayout } from './AppLayout';
 import { Navbar } from '../Navbar';
 import { Sidebar } from '../Sidebar';
+import { ThemeProvider } from '../../theme/ThemeContext';
 
 describe('AppLayout', () => {
   it('renders without accessibility violations', async () => {
     const { container } = render(
-      <AppLayout
-        navbar={
-          <Navbar
-            items={[{ label: 'Home', href: '#' }]}
-            aria-label="main navigation"
-          />
-        }
-        sidebar={
-          <Sidebar
-            items={[{ label: 'Dashboard', href: '#' }]}
-            aria-label="sidebar"
-          />
-        }
-      >
-        <div>Content</div>
-      </AppLayout>
+      <ThemeProvider>
+        <AppLayout
+          navbar={
+            <Navbar
+              items={[{ label: 'Home', href: '#' }]}
+              aria-label="main navigation"
+            />
+          }
+          sidebar={
+            <Sidebar
+              items={[{ label: 'Dashboard', href: '#' }]}
+              aria-label="sidebar"
+            />
+          }
+        >
+          <div>Content</div>
+        </AppLayout>
+      </ThemeProvider>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
