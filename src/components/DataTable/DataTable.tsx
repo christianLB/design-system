@@ -126,7 +126,7 @@ export function DataTable<TData extends { id: React.Key }>({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <table className="w-full border-collapse mb-4">
+            <table className={clsx('data-table', 'w-full', 'border-collapse', 'mb-4')}>
         <thead>
           {headers.map((headerGroup) => (
             <tr key={headerGroup.id}>

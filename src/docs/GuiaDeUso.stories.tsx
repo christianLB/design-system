@@ -30,7 +30,7 @@ const meta: Meta = {
           <h2>Ejemplo de estructura ideal</h2>
           <pre>
             <code>{`import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
+import { Button } from '../components/Button/Button';
 
 const meta: Meta<typeof Button> = {
   title: 'Inputs/Button',
