@@ -15,10 +15,10 @@ const meta: Meta<typeof Menu> = {
   args: {
     trigger: <Button variant="secondary">Open Menu</Button>,
     items: [
-      { label: 'Profile', value: 'profile' },
-      { label: 'Settings', value: 'settings' },
-      { label: 'Help', value: 'help' },
-      { label: 'Logout', value: 'logout' },
+      { label: 'Profile', value: 'profile', icon: 'user' },
+      { label: 'Settings', value: 'settings', icon: 'settings' },
+      { label: 'Help', value: 'help', icon: 'help' },
+      { label: 'Logout', value: 'logout', icon: 'logout' },
     ],
   },
 };

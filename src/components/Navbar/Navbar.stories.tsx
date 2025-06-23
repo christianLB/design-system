@@ -41,8 +41,15 @@ export default meta;
 type Story = StoryObj<typeof Navbar>;
 
 export const RowLayout: Story = {
-  name: 'Layout: Row',
+  name: 'Layout: Row (Default)',
   decorators: [withLightBackground],
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default horizontal layout for desktop navigation.'
+      }
+    }
+  }
 };
 
 export const StackLayout: Story = {

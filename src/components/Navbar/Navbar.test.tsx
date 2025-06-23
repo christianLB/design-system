@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from '../../test-utils';
 import { axe } from 'jest-axe';
 import { describe, it, expect } from 'vitest';
 import { Navbar } from './Navbar';

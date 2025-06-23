@@ -7,6 +7,7 @@ import { Button } from '@/components/Button';
 export interface MenuItem {
   label: string;
   value: string;
+  icon?: string; // Optional icon name
 }
 
 export interface MenuProps
