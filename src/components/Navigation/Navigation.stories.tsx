@@ -1,10 +1,9 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box } from '@/components/Box';
-import { Navbar } from '@/components/Navbar';
-import { Header } from '@/components/Header';
-import { Sidebar } from '@/components/Sidebar';
-import { Link } from '@/components/Link';
+import { Box } from '../Box/Box';
+import { Navbar } from '../Navbar/Navbar';
+import { Header } from '../Header/Header';
+import { Sidebar } from '../Sidebar/Sidebar';
 import { navItems, logoElement, withTheme, withLightBackground } from './stories.utils';
 
 /**
@@ -34,21 +33,18 @@ export const StandardNavigation: Story = {
       <Header>
         <Navbar 
           logo={logoElement}
-          navItems={navItems.map(item => (
-            <Link key={item.label} href={item.href}>{item.label}</Link>
-          ))}
+          items={navItems}
           layout="row"
         />
       </Header>
       <div className="flex">
-        <Sidebar className="w-64">
-          <Box className="p-4">
-            {navItems.map(item => (
-              <Link key={item.label} href={item.href} className="block py-2">
-                {item.label}
-              </Link>
-            ))}
-          </Box>
+        <Sidebar 
+          className="w-64"
+          items={navItems.map(item => ({
+            ...item,
+            content: item.label
+          }))}
+        >          
         </Sidebar>
         <Box className="p-4 flex-grow">
           <h2 className="text-xl font-bold mb-4">Main Content Area</h2>
@@ -68,9 +64,7 @@ export const MobileNavigation: Story = {
       <Header>
         <Navbar 
           logo={logoElement}
-          navItems={navItems.map(item => (
-            <Link key={item.label} href={item.href}>{item.label}</Link>
-          ))}
+          items={navItems}
           layout="stack"
         />
       </Header>
