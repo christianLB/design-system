@@ -2,11 +2,16 @@ import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import clsx from 'clsx';
 import { useTheme } from '../../theme/ThemeContext';
+import { Box } from '@/components/Box';
+import { Stack } from '@/components/Stack';
+import { Button } from '@/components/Button';
+import { Link } from '@/components/Link';
 
 export interface SidebarItem {
   label: string;
   href: string;
   items?: SidebarItem[];
+  icon?: React.ReactNode;
 }
 
 export interface SidebarProps extends HTMLMotionProps<'aside'> {
@@ -27,23 +32,48 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
     const handleToggle = () => onToggle?.(!collapsed);
 
     const renderLink = (item: SidebarItem, isSubItem = false) => {
-      const linkClasses = isFuturistic
-        ? clsx(
-            'block w-full text-left no-underline rounded-md transition-colors duration-200',
-            isSubItem ? 'px-2 py-1 text-sm' : 'px-3 py-2',
-            'text-p-200 hover:bg-p-500/10 hover:text-p-100',
-            collapsed && !isSubItem && 'whitespace-nowrap'
-          )
-        : clsx('no-underline text-inherit', isSubItem && 'text-sm');
+      const linkContent = (
+        <Stack 
+          direction="row" 
+          align="center" 
+          gap="sm"
+        >
+          {item.icon && !isSubItem && (
+            <Box className={collapsed ? 'mx-auto' : ''}>{item.icon}</Box>
+          )}
+          {(!collapsed || isSubItem) && <span>{item.label}</span>}
+        </Stack>
+      );
 
+      // Use the design system Link component with proper variant
       if (isFuturistic) {
         return (
-          <motion.a href={item.href} whileHover={{ x: 4 }} className={linkClasses}>
-            {item.label}
-          </motion.a>
+          <motion.div whileHover={{ x: 4 }}>
+            <Link 
+              href={item.href} 
+              variant="nav" 
+              className={clsx(
+                isSubItem ? 'text-sm pl-6' : '',
+                collapsed && !isSubItem && 'whitespace-nowrap'
+              )}
+              fullWidth
+            >
+              {linkContent}
+            </Link>
+          </motion.div>
         );
       }
-      return <a href={item.href} className={linkClasses}>{item.label}</a>;
+      
+      return (
+        <Link 
+          href={item.href} 
+          variant={isSubItem ? 'subtle' : 'nav'}
+          className={clsx(isSubItem ? 'text-sm pl-6' : '')}
+          fullWidth
+        >
+          {linkContent}
+        </Link>
+      );
     };
 
     return (
@@ -52,35 +82,44 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
         data-collapsed={collapsed}
         className={clsx(
           'flex flex-col h-screen overflow-y-auto',
-          isFuturistic ? 'bg-transparent' : 'bg-[var(--neutral100)]',
+          isFuturistic ? 'bg-transparent' : 'bg-background',
           className
         )}
         animate={{ width: collapsed ? '3rem' : '16rem' }}
         {...props}
       >
-        {header && <div className="p-[var(--spacing-md)]">{header}</div>}
-        <button
-          className="self-end m-[var(--spacing-sm)] bg-transparent border-none"
+        {header && <Box p="md">{header}</Box>}
+        
+        <Button
+          variant="ghost"
+          className="self-end m-2"
           onClick={handleToggle}
-          aria-label="Toggle"
+          aria-label="Toggle Sidebar"
         />
-        <nav className="flex-grow p-2">
-          <ul className="list-none m-0 p-0 space-y-1">
+        
+        <Box className="flex-grow">
+          <Stack direction="column" gap="xs">
             {items.map((item) => (
-              <li key={item.href}>
+              <div key={item.href}>
                 {renderLink(item)}
+                
                 {item.items && !collapsed && (
-                  <ul className="list-none m-0 p-0 pl-[var(--spacing-md)] mt-1 space-y-1">
-                    {item.items.map((sub) => (
-                      <li key={sub.href}>{renderLink(sub, true)}</li>
-                    ))}
-                  </ul>
+                  <Box m="sm" style={{ marginTop: '4px' }}>
+                    <Stack direction="column" gap="xs">
+                      {item.items.map((sub) => (
+                        <div key={sub.href}>
+                          {renderLink(sub, true)}
+                        </div>
+                      ))}
+                    </Stack>
+                  </Box>
                 )}
-              </li>
+              </div>
             ))}
-          </ul>
-        </nav>
-        {footer && <div className="mt-auto p-[var(--spacing-md)]">{footer}</div>}
+          </Stack>
+        </Box>
+        
+        {footer && <Box p="md" className="mt-auto">{footer}</Box>}
       </motion.aside>
     );
   }

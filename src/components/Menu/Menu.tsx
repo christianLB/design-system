@@ -1,5 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import { Box } from '@/components/Box';
+import { Stack } from '@/components/Stack';
+import { Button } from '@/components/Button';
 
 export interface MenuItem {
   label: string;
@@ -27,40 +30,45 @@ const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
     };
 
     return (
-      <div
+      <Box
         ref={ref}
         className={clsx('relative inline-block', className)}
         {...props}
       >
-        <button
+        <Button
+          variant="ghost"
           onClick={toggle}
-          className="bg-transparent border-none"
           aria-haspopup="true"
           aria-expanded={open}
         >
           {trigger}
-        </button>
+        </Button>
         {open && (
-          <ul
+          <div
             className={clsx(
-              'absolute mt-[var(--spacing-xs)] list-none p-[var(--spacing-xs)] bg-[var(--neutral100)] border border-[var(--neutral900)] z-20',
-              align === 'right' ? 'right-0' : ''
+              'absolute mt-2 list-none rounded-md shadow-lg z-20',
+              align === 'right' ? 'right-0' : 'left-0'
             )}
             role="menu"
           >
-            {items.map((item) => (
-              <li key={item.value} role="menuitem">
-                <button
-                  className="block w-full text-left bg-transparent border-none px-[var(--spacing-md)] py-[var(--spacing-xs)] hover:bg-[var(--neutral900)] hover:text-[var(--primary-foreground)]"
-                  onClick={() => handleSelect(item.value)}
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
+            <Box p="xs" bg="background">
+              <Stack direction="column" gap="xs">
+                {items.map((item) => (
+                  <div key={item.value} role="menuitem">
+                    <Button
+                      variant="ghost"
+                      onClick={() => handleSelect(item.value)}
+                      className="justify-start w-full text-left"
+                    >
+                      {item.label}
+                    </Button>
+                  </div>
+                ))}
+              </Stack>
+            </Box>
+          </div>
         )}
-      </div>
+      </Box>
     );
   }
 );

@@ -53,3 +53,4 @@ export * from './DataTable';
 export * from './Skeleton';
 export * from './AppLayout';
 export * from './Login';
+export * from './Link';
