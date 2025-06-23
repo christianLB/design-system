@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   publish:
@@ -25,8 +26,14 @@ jobs:
         run: |
           PKG_VERSION=$(node -p "require('./package.json').version")
           TAG="${GITHUB_REF#refs/tags/}"
-          if [ "$PKG_VERSION" != "$TAG" ]; then
-            echo "Tag $TAG does not match package.json version $PKG_VERSION" >&2
+          # Remove 'v' prefix if present
+          if [[ "$TAG" == v* ]]; then
+            TAG_VERSION="${TAG#v}"
+          else
+            TAG_VERSION="$TAG"
+          fi
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "Tag $TAG (version $TAG_VERSION) does not match package.json version $PKG_VERSION" >&2
             exit 1
           fi
 
