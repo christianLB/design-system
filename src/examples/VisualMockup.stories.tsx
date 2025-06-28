@@ -311,7 +311,7 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <Grid columns={4} gap="md">
+            <Grid columns={4} gap="md" className="stagger-children">
             {visitStats.map((stat, i) => (
               <Card key={i} className={`${stat.status === 'success' ? 'glow-effect' : ''} transition-all hover:scale-105`}>
                 <CardContent>
@@ -375,7 +375,7 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
               </Stack>
             </CardHeader>
             <CardContent>
-              <Grid columns={4} gap="md">
+              <Grid columns={4} gap="md" className="stagger-children">
                 {systemMetrics.map((metric, i) => (
                   <Box key={i} className="p-4 rounded-lg bg-[var(--muted)] border border-[var(--border)]">
                     <Stack gap="sm">

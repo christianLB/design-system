@@ -91,7 +91,7 @@ const DemoFlow = () => {
   };
 
   return (
-    <Stack gap="xl" className="max-w-4xl mx-auto">
+    <Stack gap="xl" className="max-w-4xl mx-auto stagger-children">
       <Box className="text-center mb-8">
         <Text as="h1" size="lg" color="emphasis" className="mb-4 glow-effect text-2xl">
           Futuristic Interface Demo v3.3.0
@@ -246,7 +246,7 @@ const ComponentDemo = () => {
   const [inputValue, setInputValue] = React.useState('');
 
   return (
-    <Stack gap="xl" className="max-w-6xl mx-auto">
+    <Stack gap="xl" className="max-w-6xl mx-auto stagger-children">
       <Box className="text-center">
         <Text as="h1" size="lg" color="emphasis" className="mb-4 text-2xl">
           Component Showcase
@@ -338,7 +338,7 @@ const ComponentDemo = () => {
 
 const ProfessionalDemo = () => {
   return (
-    <Stack gap="xl" className="max-w-4xl mx-auto">
+    <Stack gap="xl" className="max-w-4xl mx-auto stagger-children">
       <Box className="text-center">
         <Text as="h1" size="lg" color="emphasis" className="mb-4 text-2xl">
           Professional Variant

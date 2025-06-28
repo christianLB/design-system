@@ -138,6 +138,7 @@
 @import url('./src/styles/futuristic-components.css');
 @import url('./src/styles/futuristic-responsive.css');
 @import url('./src/styles/futuristic-states.css');
+@import url('./src/styles/futuristic-enhanced-animations.css');
 
 /* Futuristic theme visuals */
 .futuristic-wrap {

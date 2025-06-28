@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
-import { useMicroInteraction } from '../../hooks';
+// import { useMicroInteraction } from '../../hooks'; // Using optimized framer-motion animations
 import clsx from 'clsx';
 import { Stack } from '../Stack/Stack';
 import { Icon, IconName, IconSize } from '../Icon/Icon';
@@ -59,7 +59,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const micro = useMicroInteraction('button');
+    // const micro = useMicroInteraction('button'); // Using optimized framer-motion animations instead
     // Calculate icon size based on button size if not explicitly provided
     const calculatedIconSize: IconSize =
       iconSize || (size === 'sm' ? 'sm' : size === 'lg' ? 'md' : 'sm');
@@ -88,10 +88,27 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={classes}
         aria-disabled={disabled}
-        whileHover={disabled ? undefined : whileHover || micro.whileHover}
-        whileTap={disabled ? undefined : whileTap || micro.whileTap}
-        {...{ whileFocus: disabled ? undefined : whileFocus || micro.whileFocus }}
-        transition={transition || micro.transition}
+        whileHover={disabled ? undefined : whileHover || {
+          scale: 1.02,
+          y: -1,
+          transition: { duration: 0.12, ease: [0.16, 1, 0.3, 1] }
+        }}
+        whileTap={disabled ? undefined : whileTap || {
+          scale: 0.98,
+          y: 0,
+          transition: { duration: 0.08, ease: [0.16, 1, 0.3, 1] }
+        }}
+        {...{ whileFocus: disabled ? undefined : whileFocus || {
+          scale: 1.01,
+          y: -0.5,
+          transition: { duration: 0.15, ease: [0.16, 1, 0.3, 1] }
+        }}}
+        transition={transition || {
+          type: "spring",
+          stiffness: 400,
+          damping: 25,
+          mass: 0.5
+        }}
         disabled={disabled}
         {...props}
       >
