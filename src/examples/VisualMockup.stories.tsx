@@ -1,5 +1,6 @@
 /**
- * A full-page example dashboard to validate component cohesion and theming.
+ * Enhanced full-page dashboard showcasing v3.3.0 futuristic theme improvements.
+ * Demonstrates professional aesthetics, performance optimizations, and complete component coverage.
  */
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -111,7 +112,7 @@ const meta: Meta<typeof VisualMockupDemo> = {
     docs: {
       description: {
         component:
-          'A full-page showcase using AppLayout, Sidebar, forms, and modals to test theme cohesion.',
+          'Enhanced full-page dashboard showcasing v3.3.0 futuristic theme with professional aesthetics, optimized performance, and comprehensive component integration.',
       },
     },
   },
@@ -121,27 +122,91 @@ export default meta;
 type Story = StoryObj;
 
 export const VisualMockup: Story = {
-  render: () => <VisualMockupDemo />,
+  render: () => (
+    <div data-theme="futuristic" className="futuristic-wrap">
+      <div className="futuristic-bg" />
+      <VisualMockupDemo />
+    </div>
+  ),
   parameters: {
     layout: 'fullscreen',
     backgrounds: {
-      default: 'dark'
+      default: 'futuristic',
+      values: [
+        { name: 'futuristic', value: '#0F172A' },
+        { name: 'dark', value: '#000000' },
+      ],
     },
   },
 };
 
-const VisualMockupDemo = () => {
+export const ProfessionalDashboard: Story = {
+  render: () => (
+    <div data-theme="futuristic" className="futuristic-wrap" style={{ filter: 'contrast(0.8)' } as React.CSSProperties}>
+      <div className="futuristic-bg" />
+      <VisualMockupDemo variant="professional" />
+    </div>
+  ),
+  parameters: {
+    layout: 'fullscreen',
+    backgrounds: {
+      default: 'futuristic'
+    },
+  },
+};
+
+export const HighContrastMode: Story = {
+  render: () => (
+    <div data-theme="futuristic" className="futuristic-wrap" style={{ filter: 'contrast(1.5)' } as React.CSSProperties}>
+      <div className="futuristic-bg" />
+      <VisualMockupDemo variant="high-contrast" />
+    </div>
+  ),
+  parameters: {
+    layout: 'fullscreen',
+    backgrounds: {
+      default: 'futuristic'
+    },
+  },
+};
+
+interface VisualMockupDemoProps {
+  variant?: 'default' | 'professional' | 'high-contrast';
+}
+
+const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [notifications] = React.useState(3);
+  const [systemStatus, setSystemStatus] = React.useState<'online' | 'maintenance' | 'error'>('online');
 
-  // Analytics mock data
+  // Enhanced analytics mock data
   const visitStats = [
-    { label: 'Today', count: 2456, change: +12.5 },
-    { label: 'Week', count: 12500, change: +7.2 },
-    { label: 'Month', count: 48200, change: -3.4 },
+    { label: 'Today', count: 2456, change: +12.5, icon: 'TrendingUp', status: 'success' },
+    { label: 'Week', count: 12500, change: +7.2, icon: 'BarChart3', status: 'success' },
+    { label: 'Month', count: 48200, change: -3.4, icon: 'Activity', status: 'warning' },
+    { label: 'Quarter', count: 145600, change: +15.8, icon: 'PieChart', status: 'success' },
   ];
+
+  const systemMetrics = [
+    { label: 'CPU Usage', value: '23%', status: 'success', trend: 'down' },
+    { label: 'Memory', value: '67%', status: 'warning', trend: 'up' },
+    { label: 'Storage', value: '45%', status: 'success', trend: 'stable' },
+    { label: 'Network', value: '12MB/s', status: 'success', trend: 'up' },
+  ];
+
+  const handleSystemAction = (action: string) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      if (action === 'refresh') {
+        setSystemStatus('online');
+      }
+    }, 1500);
+  };
   
   // Note: chartData would be used for a chart component in the future
   // Currently commented out to avoid linting errors
@@ -183,8 +248,13 @@ const VisualMockupDemo = () => {
               }
               cta={
                 <Stack direction="row" gap="sm">
-                  <Button variant="ghost" size="sm">
+                  <Button variant="ghost" size="sm" className="relative">
                     <Icon name="Bell" size="sm" />
+                    {notifications > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                        {notifications}
+                      </span>
+                    )}
                   </Button>
                   <Button variant="primary" size="sm">
                     <Icon name="User" size="sm" />
@@ -224,10 +294,14 @@ const VisualMockupDemo = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-            <Button variant="primary">
-              <Icon name="Plus" size="sm" />
-              <span className="ml-2">Add Widget</span>
-            </Button>
+            <Stack direction="row" gap="md">
+              <Button variant="outline" iconStart="Gauge">
+                System Health
+              </Button>
+              <Button variant="primary" glow iconStart="Plus">
+                Add Widget
+              </Button>
+            </Stack>
           </motion.div>
           </Stack>
 
@@ -237,35 +311,93 @@ const VisualMockupDemo = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <Grid columns={3} gap="md">
+            <Grid columns={4} gap="md" className="stagger-children">
             {visitStats.map((stat, i) => (
-              <Card key={i}>
+              <Card key={i} className={`${stat.status === 'success' ? 'glow-effect' : ''} transition-all hover:scale-105`}>
                 <CardContent>
-                  <Stack gap="xs">
-                    <Text color="subtle">{stat.label} Sessions</Text>
-                <Stack direction="row" align="center" gap="sm">
-                  <Heading as="h3" size={2}>
-                    {stat.count.toLocaleString()}
-                  </Heading>
-                  <Text 
-                    color={stat.change > 0 ? "success" : "error"} 
-                    size="sm"
-                    className="font-medium"
-                  >
-                    {stat.change > 0 ? '+' : ''}{stat.change}%
-                  </Text>
-                </Stack>
-                    <Text color={i === 0 ? 'success' : 'subtle'} size="sm">
-                      <Icon name={i === 0 ? 'ArrowUp' : 'ArrowRight'} size="sm" />
-                      <span className="ml-1">
-                        {i === 0 ? '+12%' : i === 1 ? '+8%' : '+3%'} from previous period
-                      </span>
-                    </Text>
+                  <Stack gap="md">
+                    <Stack direction="row" align="center" justify="between">
+                      <Icon name={stat.icon as 'TrendingUp' | 'BarChart3' | 'Activity' | 'PieChart'} size="lg" className={`text-${stat.status === 'success' ? 'green' : stat.status === 'warning' ? 'yellow' : 'blue'}-400`} />
+                      <div className={`px-2 py-1 rounded text-xs ${
+                        stat.status === 'success' ? 'bg-green-100 text-green-800' :
+                        stat.status === 'warning' ? 'bg-yellow-100 text-yellow-800' :
+                        'bg-blue-100 text-blue-800'
+                      }`}>
+                        {stat.status.toUpperCase()}
+                      </div>
+                    </Stack>
+                    <Stack gap="xs">
+                      <Text color="subtle" size="sm">{stat.label} Sessions</Text>
+                      <Heading as="h3" size={3} className="glow-text">
+                        {stat.count.toLocaleString()}
+                      </Heading>
+                      <Stack direction="row" align="center" gap="sm">
+                        <Icon name={stat.change > 0 ? 'TrendingUp' : 'TrendingDown'} size="sm" 
+                              className={stat.change > 0 ? 'text-green-400' : 'text-red-400'} />
+                        <Text 
+                          color={stat.change > 0 ? "success" : "error"} 
+                          size="sm"
+                          className="font-medium"
+                        >
+                          {stat.change > 0 ? '+' : ''}{stat.change}%
+                        </Text>
+                        <Text color="subtle" size="xs">vs last period</Text>
+                      </Stack>
+                    </Stack>
                   </Stack>
                 </CardContent>
               </Card>
             ))}
           </Grid>
+          
+          {/* System Health Metrics */}
+          <Card className="border-2 border-[var(--primary)] bg-gradient-to-r from-[var(--primary)]/5 to-transparent">
+            <CardHeader>
+              <Stack direction="row" align="center" justify="between">
+                <CardTitle className="flex items-center gap-2">
+                  <Icon name="Activity" size="md" className="text-primary" />
+                  System Health Monitor
+                </CardTitle>
+                <div className={`flex items-center gap-2 px-3 py-1 rounded-full ${
+                  systemStatus === 'online' ? 'bg-green-100 text-green-800' :
+                  systemStatus === 'maintenance' ? 'bg-yellow-100 text-yellow-800' :
+                  'bg-red-100 text-red-800'
+                }`}>
+                  <div className={`w-2 h-2 rounded-full ${
+                    systemStatus === 'online' ? 'bg-green-500' :
+                    systemStatus === 'maintenance' ? 'bg-yellow-500' :
+                    'bg-red-500'
+                  }`} />
+                  <Text size="sm" className="font-medium">
+                    {systemStatus.charAt(0).toUpperCase() + systemStatus.slice(1)}
+                  </Text>
+                </div>
+              </Stack>
+            </CardHeader>
+            <CardContent>
+              <Grid columns={4} gap="md" className="stagger-children">
+                {systemMetrics.map((metric, i) => (
+                  <Box key={i} className="p-4 rounded-lg bg-[var(--muted)] border border-[var(--border)]">
+                    <Stack gap="sm">
+                      <Text size="sm" color="subtle">{metric.label}</Text>
+                      <Stack direction="row" align="center" justify="between">
+                        <Text size="lg" className="font-mono font-bold">{metric.value}</Text>
+                        <Icon 
+                          name={metric.trend === 'up' ? 'ArrowUp' : metric.trend === 'down' ? 'ArrowDown' : 'Minus'} 
+                          size="sm" 
+                          className={`${
+                            metric.status === 'success' ? 'text-green-400' :
+                            metric.status === 'warning' ? 'text-yellow-400' :
+                            'text-red-400'
+                          }`}
+                        />
+                      </Stack>
+                    </Stack>
+                  </Box>
+                ))}
+              </Grid>
+            </CardContent>
+          </Card>
           </motion.div>
 
           {/* Main Dashboard Content */}
@@ -311,7 +443,8 @@ const VisualMockupDemo = () => {
                       id="username" 
                       placeholder="Enter your username" 
                       value={username} 
-                      onChange={(e) => setUsername(e.target.value)} 
+                      onChange={(e) => setUsername(e.target.value)}
+                      className={username ? 'success' : ''}
                     />
                   </div>
                   <div>
@@ -321,7 +454,8 @@ const VisualMockupDemo = () => {
                       type="email" 
                       placeholder="Enter your email" 
                       value={email} 
-                      onChange={(e) => setEmail(e.target.value)} 
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={email.includes('@') ? 'success' : email ? 'warning' : ''}
                     />
                   </div>
                   <div>
@@ -331,15 +465,55 @@ const VisualMockupDemo = () => {
                       type="password" 
                       placeholder="Enter new password" 
                       value={password} 
-                      onChange={(e) => setPassword(e.target.value)} 
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={password.length >= 8 ? 'success' : password.length > 0 ? 'warning' : ''}
                     />
+                    {password.length > 0 && (
+                      <Text size="xs" color={password.length >= 8 ? 'success' : 'warning'} className="mt-1">
+                        Password strength: {password.length >= 8 ? 'Strong' : 'Weak'}
+                      </Text>
+                    )}
                   </div>
+                  
+                  {/* Enhanced form section */}
+                  <Box className="p-4 rounded-lg bg-[var(--muted)] border border-[var(--border)]">
+                    <Text size="sm" className="mb-2 font-medium">Security Settings</Text>
+                    <Stack direction="row" gap="md" wrap>
+                      <label className="flex items-center gap-2">
+                        <input type="checkbox" className="rounded" defaultChecked />
+                        <Text size="sm">Two-factor authentication</Text>
+                      </label>
+                      <label className="flex items-center gap-2">
+                        <input type="checkbox" className="rounded" />
+                        <Text size="sm">Email notifications</Text>
+                      </label>
+                      <label className="flex items-center gap-2">
+                        <input type="checkbox" className="rounded" defaultChecked />
+                        <Text size="sm">Security alerts</Text>
+                      </label>
+                    </Stack>
+                  </Box>
                 </Stack>
               </CardContent>
               <CardFooter>
-                <Stack direction="row" gap="sm">
-                  <Button variant="secondary">Cancel</Button>
-                  <Button variant="primary">Save Changes</Button>
+                <Stack direction="row" gap="sm" justify="between" className="w-full">
+                  <Stack direction="row" gap="sm">
+                    <Button variant="outline" iconStart="RotateCcw">
+                      Reset
+                    </Button>
+                    <Button variant="secondary" iconStart="X">
+                      Cancel
+                    </Button>
+                  </Stack>
+                  <Button 
+                    variant="primary" 
+                    glow 
+                    iconStart="Save"
+                    disabled={!username || !email || !password}
+                    className={isLoading ? 'loading' : ''}
+                  >
+                    {isLoading ? 'Saving...' : 'Save Changes'}
+                  </Button>
                 </Stack>
               </CardFooter>
             </Card>
@@ -352,9 +526,23 @@ const VisualMockupDemo = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.5 }}
           >
-            <Alert variant="info" title="System Notification">
-              The futuristic theme has been applied across all components. New features available.
-            </Alert>
+            <Stack gap="md">
+              <Alert variant="success" title="System Updated" className="fade-in-up">
+                Futuristic theme v3.3.0 successfully applied! Enhanced performance and accessibility features are now active.
+              </Alert>
+              
+              {variant === 'professional' && (
+                <Alert variant="info" title="Professional Mode Active">
+                  Subtle effects enabled for corporate environments. Glow intensity reduced for productivity focus.
+                </Alert>
+              )}
+              
+              {variant === 'high-contrast' && (
+                <Alert variant="warning" title="High Contrast Mode">
+                  Enhanced contrast ratios active for improved accessibility compliance.
+                </Alert>
+              )}
+            </Stack>
           </motion.div>
 
           {/* System Actions */}
@@ -369,34 +557,123 @@ const VisualMockupDemo = () => {
             </CardHeader>
             <CardContent>
               <Stack direction="row" gap="md" wrap>
-                <Button onClick={() => setIsDialogOpen(true)} variant="primary">
-                  <Icon name="Settings" size="sm" />
-                  <span className="ml-2">Configure System</span>
+                <Button 
+                  onClick={() => setIsDialogOpen(true)} 
+                  variant="primary" 
+                  glow 
+                  iconStart="Settings"
+                >
+                  Configure System
                 </Button>
-                <Button variant="secondary">
-                  <Icon name="RefreshCw" size="sm" />
-                  <span className="ml-2">Refresh Data</span>
+                <Button 
+                  variant="secondary" 
+                  iconStart="RefreshCw"
+                  onClick={() => handleSystemAction('refresh')}
+                  disabled={isLoading}
+                  className={isLoading ? 'loading' : ''}
+                >
+                  {isLoading ? 'Refreshing...' : 'Refresh Data'}
                 </Button>
-                <Button variant="ghost">
-                  <Icon name="HelpCircle" size="sm" />
-                  <span className="ml-2">Help</span>
+                <Button variant="outline" iconStart="Download">
+                  Export Data
+                </Button>
+                <Button variant="ghost" iconStart="HelpCircle">
+                  Help
+                </Button>
+                <Button variant="destructive" iconStart="Power" size="sm">
+                  Shutdown
                 </Button>
               </Stack>
             </CardContent>
           </Card>
           </motion.div>
 
-          {/* Confirmation Dialog */}
+          {/* Enhanced Configuration Dialog */}
           <Dialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
             <DialogHeader>
-              <DialogTitle>System Configuration</DialogTitle>
+              <DialogTitle className="flex items-center gap-2">
+                <Icon name="Settings" size="md" />
+                Advanced System Configuration
+              </DialogTitle>
             </DialogHeader>
             <Box p="md">
-              <Text>Are you sure you want to modify system configuration settings? This action may require a system restart.</Text>
+              <Stack gap="lg">
+                <Alert variant="warning" title="Configuration Warning">
+                  Modifying these settings may affect system performance and require a restart.
+                </Alert>
+                
+                <Stack gap="md">
+                  <Text className="font-medium">Theme Configuration</Text>
+                  <Stack gap="sm">
+                    <label className="flex items-center justify-between p-3 rounded border border-[var(--border)]">
+                      <Stack gap="xs">
+                        <Text size="sm" className="font-medium">Professional Mode</Text>
+                        <Text size="xs" color="subtle">Reduces glow effects for corporate environments</Text>
+                      </Stack>
+                      <input type="checkbox" className="rounded" defaultChecked={variant === 'professional'} />
+                    </label>
+                    
+                    <label className="flex items-center justify-between p-3 rounded border border-[var(--border)]">
+                      <Stack gap="xs">
+                        <Text size="sm" className="font-medium">High Contrast</Text>
+                        <Text size="xs" color="subtle">Enhanced contrast for accessibility</Text>
+                      </Stack>
+                      <input type="checkbox" className="rounded" defaultChecked={variant === 'high-contrast'} />
+                    </label>
+                    
+                    <label className="flex items-center justify-between p-3 rounded border border-[var(--border)]">
+                      <Stack gap="xs">
+                        <Text size="sm" className="font-medium">Performance Mode</Text>
+                        <Text size="xs" color="subtle">Disables animations on low-power devices</Text>
+                      </Stack>
+                      <input type="checkbox" className="rounded" />
+                    </label>
+                  </Stack>
+                </Stack>
+                
+                <Stack gap="md">
+                  <Text className="font-medium">System Preferences</Text>
+                  <Stack gap="sm">
+                    <Box className="flex items-center justify-between p-3 rounded border border-[var(--border)]">
+                      <Text size="sm">Auto-save interval</Text>
+                      <select className="px-2 py-1 rounded border border-[var(--border)] bg-[var(--background)]">
+                        <option>30 seconds</option>
+                        <option>1 minute</option>
+                        <option>5 minutes</option>
+                      </select>
+                    </Box>
+                    <Box className="flex items-center justify-between p-3 rounded border border-[var(--border)]">
+                      <Text size="sm">Notification frequency</Text>
+                      <select className="px-2 py-1 rounded border border-[var(--border)] bg-[var(--background)]">
+                        <option>Real-time</option>
+                        <option>Every 5 minutes</option>
+                        <option>Hourly</option>
+                      </select>
+                    </Box>
+                  </Stack>
+                </Stack>
+              </Stack>
             </Box>
             <DialogFooter>
-              <Button variant="secondary" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
-              <Button onClick={() => setIsDialogOpen(false)}>Proceed</Button>
+              <Stack direction="row" gap="md">
+                <Button variant="outline" onClick={() => setIsDialogOpen(false)} iconStart="X">
+                  Cancel
+                </Button>
+                <Button variant="secondary" iconStart="RotateCcw">
+                  Reset to Defaults
+                </Button>
+                <Button 
+                  variant="primary" 
+                  glow 
+                  onClick={() => {
+                    handleSystemAction('configure');
+                    setIsDialogOpen(false);
+                  }} 
+                  iconStart="Check"
+                >
+                  Apply Changes
+                </Button>
+              </Stack>
             </DialogFooter>
           </Dialog>
         </Stack>

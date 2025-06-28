@@ -95,58 +95,54 @@
 }
 
 [data-theme='futuristic'] {
-  --background: #0F0F1A;
-  --foreground: #ffffffcc;
-  --card: #1A1A24;
-  --card-foreground: #ffffffcc;
-  --popover: #1F1F2B;
-  --popover-foreground: #ffffffcc;
-  --primary: #7F5AF0;
+  /* Enhanced professional color palette */
+  --background: #0F172A;
+  --foreground: #F8FAFC;
+  --card: #1E293B;
+  --card-foreground: #F8FAFC;
+  --popover: #334155;
+  --popover-foreground: #F8FAFC;
+  --primary: #6366F1;
   --primary-foreground: #ffffff;
-  --secondary: #2CB67D;
-  --secondary-foreground: #0F0F1A;
-  --muted: #1F1F2B;
-  --muted-foreground: #ffffff80;
-  --accent: #2CB67D;
-  --accent-foreground: #0F0F1A;
+  --secondary: #0F766E;
+  --secondary-foreground: #ffffff;
+  --muted: #475569;
+  --muted-foreground: #CBD5E1;
+  --accent: #0F766E;
+  --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --success: #2CB67D;
-  --success-foreground: #0F0F1A;
-  --warning: #facc15;
+  --success: #10B981;
+  --success-foreground: #ffffff;
+  --warning: #F59E0B;
   --warning-foreground: #78350f;
-  --info: #7F5AF0;
+  --info: #6366F1;
   --info-foreground: #ffffff;
-  --border: rgba(127, 90, 240, 0.4);
-  --input-border: rgba(127, 90, 240, 0.3);
-  --ring: #7F5AF0;
-  --radius: 0.8rem;
-  --font-family-body: 'Inter', 'IBM Plex Sans', sans-serif;
-  --font-family-heading: 'Geist', 'Satoshi', sans-serif;
-  --font-family-mono: 'SF Mono', monospace;
+  --border: rgba(99, 102, 241, 0.3);
+  --input-border: rgba(99, 102, 241, 0.25);
+  --ring: #6366F1;
+  --radius: 0.75rem;
+  --font-family-body: 'Inter Variable', 'SF Pro Display', system-ui, sans-serif;
+  --font-family-heading: 'Inter Display', 'SF Pro Display', sans-serif;
+  --font-family-mono: 'SF Mono', 'Cascadia Code', monospace;
+  
+  /* Glow effect variables */
+  --glow-small: 0 0 8px;
+  --glow-medium: 0 0 12px;
+  --glow-large: 0 0 16px;
+  --glow-focus: 0 0 0 3px;
 }
+
+/* Import optimized futuristic styles */
+@import url('./src/styles/futuristic-animations.css');
+@import url('./src/styles/futuristic-components.css');
+@import url('./src/styles/futuristic-responsive.css');
+@import url('./src/styles/futuristic-states.css');
+@import url('./src/styles/futuristic-enhanced-animations.css');
 
 /* Futuristic theme visuals */
 .futuristic-wrap {
   position: relative;
-}
-
-.futuristic-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(circle at center, rgba(127, 90, 240, 0.25), transparent 70%);
-  animation: futuristic-pan 12s ease-in-out infinite alternate;
-}
-
-@keyframes futuristic-pan {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.4);
-  }
 }
 
 /* Futuristic Button Enhancements */

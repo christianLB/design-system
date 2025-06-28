@@ -1,0 +1,245 @@
+/* Futuristic Theme - Enhanced Component Styles */
+
+/* Enhanced Futuristic Button Styles */
+[data-theme='futuristic'] .btn {
+  border-radius: var(--radius);
+  border-width: 1px;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme='futuristic'] .button--primary {
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.1) 0%, 
+    rgba(99, 102, 241, 0.05) 100%);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: var(--foreground);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme='futuristic'] .button--primary:hover {
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.15) 0%, 
+    rgba(99, 102, 241, 0.08) 100%);
+  border-color: rgba(99, 102, 241, 0.5);
+  transform: translateY(-1px);
+  filter: drop-shadow(var(--glow-medium) rgba(99, 102, 241, 0.25));
+}
+
+[data-theme='futuristic'] .button--primary:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 0.05s;
+}
+
+[data-theme='futuristic'] .button--secondary {
+  background: linear-gradient(135deg, 
+    rgba(15, 118, 110, 0.1) 0%, 
+    rgba(15, 118, 110, 0.05) 100%);
+  border-color: rgba(15, 118, 110, 0.3);
+  color: var(--foreground);
+}
+
+[data-theme='futuristic'] .button--secondary:hover {
+  background: linear-gradient(135deg, 
+    rgba(15, 118, 110, 0.15) 0%, 
+    rgba(15, 118, 110, 0.08) 100%);
+  border-color: rgba(15, 118, 110, 0.5);
+  transform: translateY(-1px);
+  filter: drop-shadow(var(--glow-medium) rgba(15, 118, 110, 0.25));
+}
+
+/* Button loading state */
+[data-theme='futuristic'] .button--loading {
+  color: transparent;
+  position: relative;
+}
+
+[data-theme='futuristic'] .button--loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  border-radius: inherit;
+  animation: subtle-pulse 1.5s infinite;
+}
+
+/* Enhanced Futuristic Card Styles */
+[data-theme='futuristic'] .card {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme='futuristic'] .card:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.12),
+    var(--glow-small) rgba(99, 102, 241, 0.1);
+  transform: translateY(-2px);
+}
+
+[data-theme='futuristic'] .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(99, 102, 241, 0.03),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+[data-theme='futuristic'] .card:hover::before {
+  left: 100%;
+}
+
+/* Enhanced Futuristic Input Styles */
+[data-theme='futuristic'] .input {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  backdrop-filter: blur(4px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--foreground);
+}
+
+[data-theme='futuristic'] .input:focus {
+  border-color: rgba(99, 102, 241, 0.4);
+  background: rgba(15, 23, 42, 0.8);
+  box-shadow: var(--glow-focus) rgba(99, 102, 241, 0.12);
+  outline: none;
+}
+
+[data-theme='futuristic'] .input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(15, 23, 42, 0.3);
+}
+
+[data-theme='futuristic'] .input::placeholder {
+  color: rgba(248, 250, 252, 0.4);
+}
+
+/* Enhanced Checkbox Styles */
+[data-theme='futuristic'] .checkbox {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='futuristic'] .checkbox:checked {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: var(--glow-small) rgba(99, 102, 241, 0.3);
+}
+
+[data-theme='futuristic'] .checkbox:focus {
+  box-shadow: var(--glow-focus) rgba(99, 102, 241, 0.12);
+}
+
+/* Enhanced Dialog Styles */
+[data-theme='futuristic'] .dialog {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  backdrop-filter: blur(24px);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.25),
+    var(--glow-large) rgba(99, 102, 241, 0.1);
+}
+
+[data-theme='futuristic'] .dialog-overlay {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+/* Enhanced Select Styles */
+[data-theme='futuristic'] .select-trigger {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  backdrop-filter: blur(4px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='futuristic'] .select-trigger:focus {
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: var(--glow-focus) rgba(99, 102, 241, 0.12);
+}
+
+[data-theme='futuristic'] .select-content {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  backdrop-filter: blur(16px);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.15),
+    var(--glow-medium) rgba(99, 102, 241, 0.1);
+}
+
+[data-theme='futuristic'] .select-item:hover {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+/* Enhanced Tabs Styles */
+[data-theme='futuristic'] .tabs-list {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme='futuristic'] .tabs-trigger {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='futuristic'] .tabs-trigger[data-state="active"] {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: var(--glow-small) rgba(99, 102, 241, 0.2);
+}
+
+/* Enhanced Tooltip Styles */
+[data-theme='futuristic'] .tooltip-content {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  backdrop-filter: blur(16px);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    var(--glow-small) rgba(99, 102, 241, 0.1);
+}
+
+/* Enhanced Alert Styles */
+[data-theme='futuristic'] .alert {
+  backdrop-filter: blur(8px);
+  border-width: 1px;
+}
+
+[data-theme='futuristic'] .alert--success {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10B981;
+}
+
+[data-theme='futuristic'] .alert--warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #F59E0B;
+}
+
+[data-theme='futuristic'] .alert--error {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #EF4444;
+}
+
+[data-theme='futuristic'] .alert--info {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #6366F1;
+}

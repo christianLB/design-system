@@ -4,7 +4,7 @@ import Button from './Button';
 import { Stack } from '../Stack';
 import { Box } from '../Box';
 import { Text } from '../Text';
-import { Icon } from '../Icon';
+// import { Icon } from '../Icon'; // Legacy icon usage - now using iconStart/iconEnd props
 
 const meta: Meta<typeof Button> = {
   title: 'Inputs/Button',
@@ -62,7 +62,35 @@ export const Link: Story = {
 };
 
 export const WithIcon: Story = {
-  args: { children: <><Icon name="Plus" size="sm" /> Create New</> },
+  args: { 
+    iconStart: 'Plus',
+    children: 'Create New' 
+  },
+};
+
+export const WithIconEnd: Story = {
+  args: { 
+    iconEnd: 'ChevronRight',
+    children: 'Continue',
+    variant: 'outline'
+  },
+};
+
+export const IconOnly: Story = {
+  args: { 
+    iconStart: 'Settings',
+    'aria-label': 'Settings',
+    variant: 'ghost'
+  },
+};
+
+export const LoadingState: Story = {
+  args: { 
+    iconStart: 'Loader',
+    children: 'Loading...',
+    disabled: true,
+    className: 'loading'
+  },
 };
 
 export const Disabled: Story = {
@@ -130,44 +158,89 @@ export const AllVariants: Story = {
 
       <Box>
         <Text as="h2" size="lg" color="emphasis" className="mb-3">With Icons</Text>
-        <Stack direction="row" gap="md" wrap align="center">
-          <Button variant="primary">
-            <Icon name="Plus" size="sm" />
-            <span>Create</span>
-          </Button>
-          <Button variant="secondary">
-            <Icon name="Download" size="sm" />
-            <span>Download</span>
-          </Button>
-          <Button variant="ghost">
-            <Icon name="Settings" size="sm" />
-            <span>Settings</span>
-          </Button>
-          <Button variant="destructive">
-            <Icon name="Trash" size="sm" />
-            <span>Delete</span>
-          </Button>
+        <Stack direction="column" gap="lg">
+          <Stack direction="row" gap="md" wrap align="center">
+            <Button variant="primary" iconStart="Plus">
+              Create
+            </Button>
+            <Button variant="secondary" iconStart="Download">
+              Download
+            </Button>
+            <Button variant="ghost" iconStart="Settings">
+              Settings
+            </Button>
+            <Button variant="destructive" iconStart="Trash">
+              Delete
+            </Button>
+          </Stack>
+          
+          <Stack direction="row" gap="md" wrap align="center">
+            <Button variant="outline" iconEnd="ChevronRight">
+              Continue
+            </Button>
+            <Button variant="link" iconEnd="ExternalLink">
+              Open Link
+            </Button>
+            <Button variant="primary" iconStart="Save" iconEnd="ChevronDown">
+              Save Options
+            </Button>
+          </Stack>
+          
+          <Stack direction="row" gap="md" wrap align="center">
+            <Button variant="ghost" iconStart="Settings" aria-label="Settings" />
+            <Button variant="primary" iconStart="Plus" aria-label="Add new item" />
+            <Button variant="destructive" iconStart="Trash" aria-label="Delete item" />
+          </Stack>
         </Stack>
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Button States</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">Interactive States</Text>
         <Stack direction="column" gap="lg">
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="w-20">Default:</Text>
+            <Text size="sm" className="min-w-[80px]">Default:</Text>
             <Button variant="primary">Default</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="outline">Outline</Button>
           </Stack>
+          
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="w-20">Hover:</Text>
-            <Button variant="primary" className="hover:bg-[var(--primary-hover)]" id="hover-button">Hover</Button>
+            <Text size="sm" className="min-w-[80px]">Loading:</Text>
+            <Button variant="primary" iconStart="Loader" disabled className="loading">
+              Loading...
+            </Button>
+            <Button variant="secondary" className="loading skeleton">
+              Processing
+            </Button>
           </Stack>
+          
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="w-20">Focus:</Text>
-            <Button variant="primary" className="focus:ring-2 ring-[var(--primary)]" id="focus-button">Focus</Button>
+            <Text size="sm" className="min-w-[80px]">Success:</Text>
+            <Button variant="success" iconStart="Check" className="success">
+              Completed
+            </Button>
+            <Button variant="primary" iconStart="CheckCircle">
+              Success
+            </Button>
           </Stack>
+          
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="w-20">Disabled:</Text>
+            <Text size="sm" className="min-w-[80px]">Error:</Text>
+            <Button variant="destructive" iconStart="AlertTriangle" className="error">
+              Error State
+            </Button>
+          </Stack>
+          
+          <Stack direction="row" gap="md" align="center">
+            <Text size="sm" className="min-w-[80px]">Disabled:</Text>
             <Button variant="primary" disabled>Disabled</Button>
+            <Button variant="secondary" disabled iconStart="Lock">Locked</Button>
+          </Stack>
+          
+          <Stack direction="row" gap="md" align="center">
+            <Text size="sm" className="min-w-[80px]">Active:</Text>
+            <Button variant="primary" className="active">Active</Button>
+            <Button variant="outline" className="selected">Selected</Button>
           </Stack>
         </Stack>
       </Box>
@@ -219,20 +292,61 @@ export const AllVariants: Story = {
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Futuristic Theme</Text>
-        <Stack direction="row" gap="md" wrap align="center">
-          <Box className="p-3">
-            <Button variant="primary" glow>Primary Glow</Button>
-          </Box>
-          <Box className="p-3">
-            <Button variant="secondary" glow>Secondary Glow</Button>
-          </Box>
-          <Box className="p-3">
-            <Button variant="destructive" glow>Danger Glow</Button>
-          </Box>
-          <Box className="p-3">
-            <Button variant="success" glow>Success Glow</Button>
-          </Box>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">Futuristic Theme Enhanced</Text>
+        <Stack direction="column" gap="lg">
+          <Stack direction="row" gap="md" wrap align="center">
+            <Box className="p-3">
+              <Button variant="primary" glow iconStart="Zap">
+                Primary Glow
+              </Button>
+            </Box>
+            <Box className="p-3">
+              <Button variant="secondary" glow iconStart="Star">
+                Secondary Glow
+              </Button>
+            </Box>
+            <Box className="p-3">
+              <Button variant="destructive" glow iconStart="AlertTriangle">
+                Danger Glow
+              </Button>
+            </Box>
+            <Box className="p-3">
+              <Button variant="success" glow iconStart="CheckCircle">
+                Success Glow
+              </Button>
+            </Box>
+          </Stack>
+          
+          <Stack direction="row" gap="md" wrap align="center">
+            <Box className="p-3">
+              <Button variant="primary" elevated iconStart="Rocket">
+                Elevated
+              </Button>
+            </Box>
+            <Box className="p-3">
+              <Button variant="ghost" glow iconStart="Sparkles">
+                Ghost Glow
+              </Button>
+            </Box>
+            <Box className="p-3">
+              <Button variant="outline" elevated iconEnd="ArrowRight">
+                Outline Elevated
+              </Button>
+            </Box>
+          </Stack>
+          
+          <Stack direction="row" gap="md" wrap align="center">
+            <Box className="p-3">
+              <Button variant="primary" glow className="loading" iconStart="Loader">
+                Future Loading
+              </Button>
+            </Box>
+            <Box className="p-3">
+              <Button variant="secondary" className="notification" iconStart="Bell">
+                Notification
+              </Button>
+            </Box>
+          </Stack>
         </Stack>
       </Box>
     </Stack>

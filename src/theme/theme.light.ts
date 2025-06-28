@@ -21,6 +21,7 @@ export interface ThemeTokens {
     md: string;
     lg: string;
     xl: string;
+    '2xl'?: string;
   };
   motion: {
     duration: {
@@ -30,6 +31,8 @@ export interface ThemeTokens {
     };
     easing: {
       inOut: string;
+      default?: string;
+      bounce?: string;
     };
   };
   breakpoints: {
@@ -46,7 +49,7 @@ export interface ThemeTokens {
     popover: number;
     tooltip: number;
   };
-  borders: {
+  borders?: {
     color: string;
   };
 }
