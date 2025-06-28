@@ -1,0 +1,186 @@
+/* Futuristic Theme - Responsive Optimizations */
+
+/* Mobile-first approach for performance */
+@media (max-width: 768px) {
+  /* Disable heavy effects on mobile for performance */
+  [data-theme='futuristic'] .glow-effect,
+  [data-theme='futuristic'] .card:hover,
+  [data-theme='futuristic'] .button--primary:hover,
+  [data-theme='futuristic'] .button--secondary:hover {
+    filter: none;
+    box-shadow: none;
+    transform: none;
+  }
+  
+  /* Simplify background on mobile */
+  .futuristic-bg {
+    background: rgba(99, 102, 241, 0.03);
+    animation: none;
+  }
+  
+  /* Reduce blur effects */
+  [data-theme='futuristic'] .card,
+  [data-theme='futuristic'] .dialog,
+  [data-theme='futuristic'] .select-content,
+  [data-theme='futuristic'] .tooltip-content {
+    backdrop-filter: blur(4px);
+  }
+  
+  /* Simplify button interactions */
+  [data-theme='futuristic'] .button--primary:active,
+  [data-theme='futuristic'] .button--secondary:active {
+    transform: scale(0.95);
+  }
+  
+  /* Adjust spacing for mobile */
+  [data-theme='futuristic'] .card {
+    padding: 1rem;
+  }
+  
+  /* Simplify animations */
+  [data-theme='futuristic'] * {
+    animation-duration: 0.2s !important;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Reduced intensity effects for tablets */
+  [data-theme='futuristic'] .glow-effect {
+    filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.15));
+  }
+  
+  [data-theme='futuristic'] .card:hover {
+    transform: translateY(-1px);
+  }
+  
+  .futuristic-bg {
+    animation-duration: 15s;
+  }
+}
+
+/* Desktop and larger screens - full effects */
+@media (min-width: 1025px) {
+  /* Enhanced effects for powerful devices */
+  [data-theme='futuristic'] .card:hover {
+    transform: translateY(-3px) scale(1.01);
+  }
+  
+  /* Additional hover effects for desktop */
+  [data-theme='futuristic'] .button--primary:hover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(99, 102, 241, 0.1) 50%,
+      transparent 70%
+    );
+    animation: shimmer 0.6s ease-out;
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+}
+
+/* High refresh rate displays */
+@media (min-resolution: 120dpi) {
+  [data-theme='futuristic'] * {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='futuristic'] .card::before,
+  [data-theme='futuristic'] .button--primary::before,
+  .futuristic-bg,
+  .loading-shimmer {
+    animation: none !important;
+  }
+  
+  [data-theme='futuristic'] .card:hover,
+  [data-theme='futuristic'] .button--primary:hover,
+  [data-theme='futuristic'] .button--secondary:hover {
+    transform: none !important;
+  }
+  
+  [data-theme='futuristic'] * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  [data-theme='futuristic'] .btn {
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  [data-theme='futuristic'] .checkbox {
+    min-width: 24px;
+    min-height: 24px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  [data-theme='futuristic'] .card:hover,
+  [data-theme='futuristic'] .button--primary:hover,
+  [data-theme='futuristic'] .button--secondary:hover,
+  [data-theme='futuristic'] .select-item:hover {
+    background: inherit;
+    transform: none;
+    filter: none;
+    box-shadow: inherit;
+  }
+  
+  /* Focus states for touch */
+  [data-theme='futuristic'] .btn:focus,
+  [data-theme='futuristic'] .input:focus,
+  [data-theme='futuristic'] .select-trigger:focus {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.4);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  [data-theme='futuristic'] {
+    --primary: #A855F7;
+    --secondary: #10B981;
+    --foreground: #FFFFFF;
+    --border: rgba(168, 85, 247, 0.6);
+  }
+  
+  [data-theme='futuristic'] .card,
+  [data-theme='futuristic'] .dialog,
+  [data-theme='futuristic'] .input {
+    border-width: 2px;
+  }
+}
+
+/* Dark mode preference alignment */
+@media (prefers-color-scheme: dark) {
+  [data-theme='futuristic'] {
+    --background: #0A0F1C;
+    --card: #1A1F2E;
+  }
+}
+
+/* Print styles */
+@media print {
+  [data-theme='futuristic'] * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+  
+  .futuristic-bg {
+    display: none;
+  }
+}
