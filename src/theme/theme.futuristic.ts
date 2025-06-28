@@ -33,6 +33,7 @@ export const futuristicTheme: ThemeTokens = {
       slow: '0.3s',
     },
     easing: {
+      inOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
       default: 'cubic-bezier(0.4, 0, 0.2, 1)',
       bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
     },
@@ -65,8 +66,8 @@ export const futuristicThemeHighContrast: ThemeTokens = {
     primary: '#A855F7', // Higher contrast purple
     secondary: '#10B981', // Brighter green
     neutral900: '#FFFFFF', // Pure white
-    borders: {
-      color: '#C4B5FD', // Lighter border for better visibility
-    },
+  },
+  borders: {
+    color: '#C4B5FD', // Lighter border for better visibility
   },
 } as const;
