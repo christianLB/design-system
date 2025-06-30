@@ -28,8 +28,8 @@ export const SelectField = React.forwardRef<HTMLSelectElement, SelectFieldProps>
         <motion.select
           ref={ref}
           className={clsx(
-            'w-full rounded-[var(--radius)] border border-[var(--input)] bg-[var(--background)] p-2 text-sm',
-            'focus:outline-none focus:border-[var(--ring)]',
+            'input',
+            error && 'input--error',
             className,
           )}
           {...micro}
