@@ -61,11 +61,20 @@ const Select = ({ children, value: valueProp, defaultValue, onValueChange }: Sel
   };
 
   const childrenMap = new Map<string, ReactNode>();
-  React.Children.forEach(children, child => {
-    if (React.isValidElement(child) && child.type === SelectItem) {
-      childrenMap.set(child.props.value, child.props.children);
-    }
-  });
+  
+  const buildChildrenMap = (children: ReactNode) => {
+    React.Children.forEach(children, child => {
+      if (React.isValidElement(child)) {
+        if (child.type === SelectItem) {
+          childrenMap.set(child.props.value, child.props.children);
+        } else if (child.props?.children) {
+          buildChildrenMap(child.props.children);
+        }
+      }
+    });
+  };
+  
+  buildChildrenMap(children);
 
   return (
     <SelectContext.Provider value={{ isOpen, setIsOpen, value, onValueChange: handleValueChange, childrenMap }}>
