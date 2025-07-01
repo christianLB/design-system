@@ -9,16 +9,6 @@ const meta: Meta<typeof StatusBadge> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['success', 'warning', 'error', 'info', 'neutral'],
-    },
-    size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-    },
-  },
 };
 
 export default meta;
@@ -43,30 +33,6 @@ export const Error: Story = {
     variant: 'error',
     children: 'Failed',
   },
-};
-
-export const Info: Story = {
-  args: {
-    variant: 'info',
-    children: 'Processing',
-  },
-};
-
-export const Neutral: Story = {
-  args: {
-    variant: 'neutral',
-    children: 'Draft',
-  },
-};
-
-export const AllSizes: Story = {
-  render: () => (
-    <div className="flex items-center gap-4">
-      <StatusBadge variant="success" size="sm">Small</StatusBadge>
-      <StatusBadge variant="success" size="md">Medium</StatusBadge>
-      <StatusBadge variant="success" size="lg">Large</StatusBadge>
-    </div>
-  ),
 };
 
 export const AllVariants: Story = {
