@@ -58,7 +58,8 @@ function getChangedComponents(baseRef = 'origin/main') {
       const parts = file.split('/');
       if (parts.length >= 3) {
         const component = parts[2];
-        if (!file.includes('.stories.')) {
+        // Skip main index.ts file and files that already include stories
+        if (!file.includes('.stories.') && component !== 'index.ts') {
           components.add(component);
         }
       }

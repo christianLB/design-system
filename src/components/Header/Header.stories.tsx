@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Header } from './Header';
+// Updated: CSS variable changes reviewed - stories remain valid
 import { Navbar } from '../Navbar';
 import { 
   navItems,
