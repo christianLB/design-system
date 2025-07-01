@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { AppLayout } from '../../AppLayout/AppLayout';
-import { Header } from '../../Header/Header';
-import { Navbar } from '../../Navbar/Navbar';
+import { SimpleHeader } from '../../SimpleHeader/SimpleHeader';
 import { Sidebar } from '../../Sidebar/Sidebar';
 import { Breadcrumb } from '../Breadcrumb';
 import { NavigationTabs } from '../NavigationTabs';
@@ -57,7 +56,7 @@ const DashboardContent = () => {
   const getContentForTab = () => {
     const style = {
       padding: '2rem',
-      backgroundColor: '#f8f9fa',
+      backgroundColor: 'var(--muted)',
       borderRadius: '0.5rem',
       margin: '1rem 0',
       minHeight: '400px',
@@ -70,17 +69,17 @@ const DashboardContent = () => {
             <h2>Traffic Analytics</h2>
             <p>Real-time website traffic data and user behavior analysis.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '2rem' }}>
-              <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '0.25rem' }}>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', border: '1px solid var(--border)' }}>
                 <h3>Page Views</h3>
-                <p style={{ fontSize: '2rem', margin: 0, color: '#059669' }}>24,567</p>
+                <p style={{ fontSize: '2rem', margin: 0, color: 'var(--success)' }}>24,567</p>
               </div>
-              <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '0.25rem' }}>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', border: '1px solid var(--border)' }}>
                 <h3>Unique Visitors</h3>
-                <p style={{ fontSize: '2rem', margin: 0, color: '#0369a1' }}>8,123</p>
+                <p style={{ fontSize: '2rem', margin: 0, color: 'var(--primary)' }}>8,123</p>
               </div>
-              <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '0.25rem' }}>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', border: '1px solid var(--border)' }}>
                 <h3>Bounce Rate</h3>
-                <p style={{ fontSize: '2rem', margin: 0, color: '#dc2626' }}>32.1%</p>
+                <p style={{ fontSize: '2rem', margin: 0, color: 'var(--destructive)' }}>32.1%</p>
               </div>
             </div>
           </div>
@@ -91,22 +90,22 @@ const DashboardContent = () => {
             <h2>Conversion Funnel</h2>
             <p>Track user journey and conversion optimization metrics.</p>
             <div style={{ marginTop: '2rem' }}>
-              <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '0.25rem', marginBottom: '1rem' }}>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', marginBottom: '1rem', border: '1px solid var(--border)' }}>
                 <h4>Landing Page → Signup: 15.3%</h4>
-                <div style={{ width: '100%', height: '8px', backgroundColor: '#e5e7eb', borderRadius: '4px' }}>
-                  <div style={{ width: '15.3%', height: '100%', backgroundColor: '#10b981', borderRadius: '4px' }}></div>
+                <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--muted)', borderRadius: '4px' }}>
+                  <div style={{ width: '15.3%', height: '100%', backgroundColor: 'var(--success)', borderRadius: '4px' }}></div>
                 </div>
               </div>
-              <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '0.25rem', marginBottom: '1rem' }}>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', marginBottom: '1rem', border: '1px solid var(--border)' }}>
                 <h4>Signup → Trial: 68.7%</h4>
-                <div style={{ width: '100%', height: '8px', backgroundColor: '#e5e7eb', borderRadius: '4px' }}>
-                  <div style={{ width: '68.7%', height: '100%', backgroundColor: '#3b82f6', borderRadius: '4px' }}></div>
+                <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--muted)', borderRadius: '4px' }}>
+                  <div style={{ width: '68.7%', height: '100%', backgroundColor: 'var(--primary)', borderRadius: '4px' }}></div>
                 </div>
               </div>
-              <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '0.25rem' }}>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', border: '1px solid var(--border)' }}>
                 <h4>Trial → Purchase: 23.8%</h4>
-                <div style={{ width: '100%', height: '8px', backgroundColor: '#e5e7eb', borderRadius: '4px' }}>
-                  <div style={{ width: '23.8%', height: '100%', backgroundColor: '#8b5cf6', borderRadius: '4px' }}></div>
+                <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--muted)', borderRadius: '4px' }}>
+                  <div style={{ width: '23.8%', height: '100%', backgroundColor: 'var(--accent)', borderRadius: '4px' }}></div>
                 </div>
               </div>
             </div>
@@ -118,15 +117,15 @@ const DashboardContent = () => {
             <h2>Revenue Analytics</h2>
             <p>Financial performance and revenue tracking dashboard.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginTop: '2rem' }}>
-              <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '0.25rem' }}>
+              <div style={{ padding: '1.5rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', border: '1px solid var(--border)' }}>
                 <h3>Monthly Revenue</h3>
-                <p style={{ fontSize: '2.5rem', margin: '0.5rem 0', color: '#059669' }}>$45,231</p>
-                <p style={{ color: '#059669', fontSize: '0.875rem' }}>↑ 12.3% from last month</p>
+                <p style={{ fontSize: '2.5rem', margin: '0.5rem 0', color: 'var(--success)' }}>$45,231</p>
+                <p style={{ color: 'var(--success)', fontSize: '0.875rem' }}>↑ 12.3% from last month</p>
               </div>
-              <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '0.25rem' }}>
+              <div style={{ padding: '1.5rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', border: '1px solid var(--border)' }}>
                 <h3>Average Order Value</h3>
-                <p style={{ fontSize: '2.5rem', margin: '0.5rem 0', color: '#0369a1' }}>$156</p>
-                <p style={{ color: '#0369a1', fontSize: '0.875rem' }}>↑ 5.7% from last month</p>
+                <p style={{ fontSize: '2.5rem', margin: '0.5rem 0', color: 'var(--primary)' }}>$156</p>
+                <p style={{ color: 'var(--primary)', fontSize: '0.875rem' }}>↑ 5.7% from last month</p>
               </div>
             </div>
           </div>
@@ -137,19 +136,19 @@ const DashboardContent = () => {
             <h2>Analytics Overview</h2>
             <p>Comprehensive view of your website performance and key metrics.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '2rem' }}>
-              <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '0.25rem' }}>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', border: '1px solid var(--border)' }}>
                 <h4>Total Users</h4>
                 <p style={{ fontSize: '2rem', margin: 0 }}>12,847</p>
               </div>
-              <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '0.25rem' }}>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', border: '1px solid var(--border)' }}>
                 <h4>Sessions</h4>
                 <p style={{ fontSize: '2rem', margin: 0 }}>18,293</p>
               </div>
-              <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '0.25rem' }}>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', border: '1px solid var(--border)' }}>
                 <h4>Conversion Rate</h4>
                 <p style={{ fontSize: '2rem', margin: 0 }}>3.2%</p>
               </div>
-              <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '0.25rem' }}>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--background)', borderRadius: '0.25rem', border: '1px solid var(--border)' }}>
                 <h4>Revenue</h4>
                 <p style={{ fontSize: '2rem', margin: 0 }}>$45,231</p>
               </div>
@@ -213,54 +212,50 @@ export const CorporateDashboard: Story = {
   render: () => (
     <AppLayout
       variant="dashboard"
-      headerBehavior="sticky"
-      sidebarBehavior="fixed"
-      enableVerticalScroll={false}
+      headerBehavior="static"
+      enableVerticalScroll={true}
       contentPadding="lg"
       header={
-        <Header variant="compact" backdrop="blur" shadow>
-          <Navbar
-            variant="corporate"
-            items={[
-              { label: 'Dashboard', href: '#dashboard', active: true },
-              { label: 'Analytics', href: '#analytics' },
-              { label: 'Reports', href: '#reports' },
-              { label: 'Users', href: '#users' },
-            ]}
-            logo={
-              <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>
-                📊 AnalyticsPro
+        <SimpleHeader
+          left={
+            <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>
+              📊 AnalyticsPro
+            </div>
+          }
+          navigation={[
+            { label: 'Dashboard', href: '#dashboard', active: true },
+            { label: 'Analytics', href: '#analytics' },
+            { label: 'Reports', href: '#reports' },
+            { label: 'Users', href: '#users' },
+          ]}
+          right={
+            <Stack direction="row" align="center" gap="sm">
+              <button style={{ 
+                padding: '0.5rem', 
+                backgroundColor: 'transparent',
+                border: '1px solid var(--border)',
+                borderRadius: '0.5rem',
+                cursor: 'pointer'
+              }}>
+                <Icon name="Bell" size="sm" />
+              </button>
+              <div style={{ 
+                width: '2rem', 
+                height: '2rem', 
+                backgroundColor: 'var(--primary)', 
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                fontSize: '0.875rem',
+                fontWeight: 'bold'
+              }}>
+                JD
               </div>
-            }
-            cta={
-              <Stack direction="row" align="center" gap="sm">
-                <button style={{ 
-                  padding: '0.5rem', 
-                  backgroundColor: 'transparent',
-                  border: '1px solid #d1d5db',
-                  borderRadius: '0.5rem',
-                  cursor: 'pointer'
-                }}>
-                  <Icon name="Bell" size="sm" />
-                </button>
-                <div style={{ 
-                  width: '2rem', 
-                  height: '2rem', 
-                  backgroundColor: '#3b82f6', 
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'white',
-                  fontSize: '0.875rem',
-                  fontWeight: 'bold'
-                }}>
-                  JD
-                </div>
-              </Stack>
-            }
-          />
-        </Header>
+            </Stack>
+          }
+        />
       }
       sidebar={
         <Sidebar
@@ -314,22 +309,18 @@ export const CompactDashboard: Story = {
   render: () => (
     <AppLayout
       variant="dashboard"
-      headerBehavior="sticky"
-      sidebarBehavior="fixed"
-      enableVerticalScroll={false}
+      headerBehavior="static"
+      enableVerticalScroll={true}
       contentPadding="md"
       header={
-        <Header variant="compact" backdrop="solid">
-          <Navbar
-            variant="dashboard"
-            items={[
-              { label: 'Dashboard', href: '#dashboard', active: true },
-              { label: 'Analytics', href: '#analytics' },
-              { label: 'Reports', href: '#reports' },
-            ]}
-            logo={<div style={{ fontWeight: 'bold' }}>📊 Analytics</div>}
-          />
-        </Header>
+        <SimpleHeader
+          left={<div style={{ fontWeight: 'bold' }}>📊 Analytics</div>}
+          navigation={[
+            { label: 'Dashboard', href: '#dashboard', active: true },
+            { label: 'Analytics', href: '#analytics' },
+            { label: 'Reports', href: '#reports' },
+          ]}
+        />
       }
       sidebar={
         <Sidebar

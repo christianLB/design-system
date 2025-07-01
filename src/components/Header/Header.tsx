@@ -116,13 +116,13 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(
       switch (backdrop) {
         case 'blur':
           return {
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            backgroundColor: 'var(--background-blur, rgba(15, 23, 42, 0.95))',
             backdropFilter: 'blur(8px)',
             WebkitBackdropFilter: 'blur(8px)',
           };
         case 'solid':
           return {
-            backgroundColor: 'var(--background-emphasis, #ffffff)',
+            backgroundColor: 'var(--background-emphasis, var(--background))',
           };
         default:
           return {

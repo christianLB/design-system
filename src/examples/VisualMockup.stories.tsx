@@ -24,8 +24,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-  Navbar,
-  Header,
+  SimpleHeader,
+  StatusBadge,
+  MetricCard,
+  NotificationBadge,
+  StatusIndicator,
+  FormSection,
   Box,
   Text,
   Icon,
@@ -44,7 +48,22 @@ interface Row {
 
 const columns: ColumnDef<Row>[] = [
   { accessorKey: 'name', header: 'User' },
-  { accessorKey: 'status', header: 'Status' },
+  { 
+    accessorKey: 'status', 
+    header: 'Status',
+    cell: ({ row }) => (
+      <StatusBadge 
+        variant={
+          row.original.status === 'Active' ? 'success' :
+          row.original.status === 'Idle' ? 'warning' :
+          'neutral'
+        }
+        size="sm"
+      >
+        {row.original.status}
+      </StatusBadge>
+    )
+  },
   { accessorKey: 'lastLogin', header: 'Last Login' },
   { accessorKey: 'visits', header: 'Sessions' },
 ];
@@ -52,7 +71,8 @@ const columns: ColumnDef<Row>[] = [
 const statuses = ['Active', 'Idle', 'Offline'];
 const dates = ['Today', 'Yesterday', '3 days ago', 'Last week', '2 weeks ago'];
 
-const data: Row[] = Array.from({ length: 10 }, (_, i) => ({
+// Generate more data for pagination
+const allData: Row[] = Array.from({ length: 47 }, (_, i) => ({
   id: i + 1,
   name: `User ${i + 1}`,
   status: statuses[Math.floor(Math.random() * statuses.length)],
@@ -98,12 +118,6 @@ const sidebarItems: SidebarItem[] = [
   },
 ];
 
-const navItems = [
-  { label: 'Dashboard', href: '#', icon: <Icon name="Home" size="sm" /> },
-  { label: 'Analytics', href: '#/analytics', icon: <Icon name="BarChart2" size="sm" /> },
-  { label: 'Support', href: '#/support', icon: <Icon name="HelpCircle" size="sm" /> },
-  { label: 'Documentation', href: '#/docs', icon: <Icon name="BookOpen" size="sm" /> },
-];
 
 const meta: Meta<typeof VisualMockupDemo> = {
   title: 'Examples/VisualMockup',
@@ -182,6 +196,16 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
   const [isLoading, setIsLoading] = React.useState(false);
   const [notifications] = React.useState(3);
   const [systemStatus, setSystemStatus] = React.useState<'online' | 'maintenance' | 'error'>('online');
+  
+  // Pagination state
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(allData.length / itemsPerPage);
+  
+  // Calculate current page data
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = allData.slice(startIndex, endIndex);
 
   // Enhanced analytics mock data
   const visitStats = [
@@ -227,45 +251,35 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
       className="min-h-screen"
     >
       <AppLayout
-        sidebar={<Sidebar items={sidebarItems} header={
-          <Box p="md">
-            <Stack direction="row" align="center" gap="sm">
-              <Icon name="Zap" size="lg" />
-              <Text weight="bold">FutureDash</Text>
-            </Stack>
-          </Box>
-        } />}
+        sidebar={<Sidebar items={sidebarItems} />}
         header={
-          <Header padding="md">
-            <Navbar 
-              layout="row"
-              items={navItems} 
-              logo={
-                <Stack direction="row" align="center" gap="sm">
-                  <Icon name="Zap" size="lg" />
-                  <Text weight="bold" className="text-lg">FutureDash</Text>
-                </Stack>
-              }
-              cta={
-                <Stack direction="row" gap="sm">
-                  <Button variant="ghost" size="sm" className="relative">
+          <SimpleHeader
+            left={
+              <Stack direction="row" align="center" gap="sm">
+                <Icon name="Zap" size="lg" />
+                <Text weight="bold" className="text-lg">FutureDash</Text>
+              </Stack>
+            }
+            navigation={[
+              { label: 'Dashboard', href: '#', icon: <Icon name="Home" size="sm" />, active: true },
+              { label: 'Analytics', href: '#/analytics', icon: <Icon name="BarChart2" size="sm" /> },
+              { label: 'Support', href: '#/support', icon: <Icon name="HelpCircle" size="sm" /> },
+              { label: 'Documentation', href: '#/docs', icon: <Icon name="BookOpen" size="sm" /> },
+            ]}
+            right={
+              <Stack direction="row" gap="sm">
+                <NotificationBadge count={notifications}>
+                  <Button variant="ghost" size="sm">
                     <Icon name="Bell" size="sm" />
-                    {notifications > 0 && (
-                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                        {notifications}
-                      </span>
-                    )}
                   </Button>
-                  <Button variant="primary" size="sm">
-                    <Icon name="User" size="sm" />
-                    <span className="ml-2">Profile</span>
-                  </Button>
-                </Stack>
-              }
-            />
-          </Header>
+                </NotificationBadge>
+                <Button variant="primary" size="sm" iconStart="User">
+                  Profile
+                </Button>
+              </Stack>
+            }
+          />
         }
-        stickyHeader
         className="bg-background"
       >
         <Stack gap="lg" className="p-6">
@@ -313,40 +327,16 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
           >
             <Grid columns={4} gap="md" className="stagger-children">
             {visitStats.map((stat, i) => (
-              <Card key={i} className={`${stat.status === 'success' ? 'glow-effect' : ''} transition-all hover:scale-105`}>
-                <CardContent>
-                  <Stack gap="md">
-                    <Stack direction="row" align="center" justify="between">
-                      <Icon name={stat.icon as 'TrendingUp' | 'BarChart3' | 'Activity' | 'PieChart'} size="lg" className={`text-${stat.status === 'success' ? 'green' : stat.status === 'warning' ? 'yellow' : 'blue'}-400`} />
-                      <div className={`px-2 py-1 rounded text-xs ${
-                        stat.status === 'success' ? 'bg-green-100 text-green-800' :
-                        stat.status === 'warning' ? 'bg-yellow-100 text-yellow-800' :
-                        'bg-blue-100 text-blue-800'
-                      }`}>
-                        {stat.status.toUpperCase()}
-                      </div>
-                    </Stack>
-                    <Stack gap="xs">
-                      <Text color="subtle" size="sm">{stat.label} Sessions</Text>
-                      <Heading as="h3" size={3} className="glow-text">
-                        {stat.count.toLocaleString()}
-                      </Heading>
-                      <Stack direction="row" align="center" gap="sm">
-                        <Icon name={stat.change > 0 ? 'TrendingUp' : 'TrendingDown'} size="sm" 
-                              className={stat.change > 0 ? 'text-green-400' : 'text-red-400'} />
-                        <Text 
-                          color={stat.change > 0 ? "success" : "error"} 
-                          size="sm"
-                          className="font-medium"
-                        >
-                          {stat.change > 0 ? '+' : ''}{stat.change}%
-                        </Text>
-                        <Text color="subtle" size="xs">vs last period</Text>
-                      </Stack>
-                    </Stack>
-                  </Stack>
-                </CardContent>
-              </Card>
+              <MetricCard
+                key={i}
+                title={`${stat.label} Sessions`}
+                value={stat.count}
+                change={stat.change}
+                icon={stat.icon}
+                status={stat.status as 'success' | 'warning' | 'neutral'}
+                trend={stat.change > 0 ? 'up' : 'down'}
+                showGlow={stat.status === 'success'}
+              />
             ))}
           </Grid>
           
@@ -358,20 +348,11 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
                   <Icon name="Activity" size="md" className="text-primary" />
                   System Health Monitor
                 </CardTitle>
-                <div className={`flex items-center gap-2 px-3 py-1 rounded-full ${
-                  systemStatus === 'online' ? 'bg-green-100 text-green-800' :
-                  systemStatus === 'maintenance' ? 'bg-yellow-100 text-yellow-800' :
-                  'bg-red-100 text-red-800'
-                }`}>
-                  <div className={`w-2 h-2 rounded-full ${
-                    systemStatus === 'online' ? 'bg-green-500' :
-                    systemStatus === 'maintenance' ? 'bg-yellow-500' :
-                    'bg-red-500'
-                  }`} />
-                  <Text size="sm" className="font-medium">
-                    {systemStatus.charAt(0).toUpperCase() + systemStatus.slice(1)}
-                  </Text>
-                </div>
+                <StatusIndicator 
+                  status={systemStatus}
+                  withLabel
+                  animated
+                />
               </Stack>
             </CardHeader>
             <CardContent>
@@ -422,10 +403,33 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
                   </Stack>
                 </CardHeader>
                 <CardContent>
-                  <DataTable columns={columns} data={data} striped hover />
+                  <DataTable 
+                    columns={columns} 
+                    data={currentData} 
+                    striped 
+                    hover 
+                    rowActions={() => (
+                      <Stack direction="row" gap="xs">
+                        <Button variant="ghost" size="sm">
+                          <Icon name="Edit" size="sm" />
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <Icon name="Trash" size="sm" />
+                        </Button>
+                      </Stack>
+                    )}
+                    pagination={{
+                      currentPage,
+                      pageCount: totalPages,
+                      itemsPerPage,
+                      onPageChange: setCurrentPage,
+                    }}
+                  />
                 </CardContent>
                 <CardFooter>
-                  <Text size="sm" color="subtle">Showing {data.length} of {data.length} users</Text>
+                  <Text size="sm" color="subtle">
+                    Showing {startIndex + 1}-{Math.min(endIndex, allData.length)} of {allData.length} users
+                  </Text>
                 </CardFooter>
               </Card>
             </Box>
@@ -476,8 +480,10 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
                   </div>
                   
                   {/* Enhanced form section */}
-                  <Box className="p-4 rounded-lg bg-[var(--muted)] border border-[var(--border)]">
-                    <Text size="sm" className="mb-2 font-medium">Security Settings</Text>
+                  <FormSection 
+                    title="Security Settings"
+                    description="Configure your account security preferences"
+                  >
                     <Stack direction="row" gap="md" wrap>
                       <label className="flex items-center gap-2">
                         <input type="checkbox" className="rounded" defaultChecked />
@@ -492,7 +498,7 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
                         <Text size="sm">Security alerts</Text>
                       </label>
                     </Stack>
-                  </Box>
+                  </FormSection>
                 </Stack>
               </CardContent>
               <CardFooter>

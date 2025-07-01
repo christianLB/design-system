@@ -1,7 +1,6 @@
 import {
   useReducedMotion,
   type MotionProps,
-  type TargetAndTransition,
 } from 'framer-motion';
 
 export type MicroInteractionType =
@@ -17,32 +16,64 @@ export interface MicroInteractionProps
     'whileHover' | 'whileTap' | 'whileFocus' | 'initial' | 'animate' | 'transition'
   > {}
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function useMicroInteraction(_type?: MicroInteractionType): MotionProps {
+export function useMicroInteraction(type: MicroInteractionType = 'button'): MotionProps {
   const reduce = useReducedMotion();
 
-  const hover = (
-    reduce ? {} : { scale: 1.02, filter: 'drop-shadow(0 0 4px var(--ring))' }
-  ) as TargetAndTransition;
-  const tap = (
-    reduce ? {} : { scale: 0.98, boxShadow: 'inset 0 0 4px rgba(0,0,0,0.2)' }
-  ) as TargetAndTransition;
-  const focus = (
-    reduce ? {} : { boxShadow: '0 0 0 2px var(--ring)', outlineOffset: '2px' }
-  ) as TargetAndTransition;
-  const initial = (reduce ? {} : { opacity: 0, y: 8 }) as TargetAndTransition;
-  const animate = (reduce ? {} : { opacity: 1, y: 0 }) as TargetAndTransition;
+  if (reduce) {
+    return {
+      transition: { duration: 0.01 },
+    } as MotionProps;
+  }
 
-  const props = {
-    whileHover: hover,
-    whileTap: tap,
-    whileFocus: focus,
+  // Ultra-fast and subtle configurations per component type
+  const configs = {
+    button: {
+      hover: { scale: 1.005, y: -0.5 },
+      tap: { scale: 0.995, y: 0 },
+      focus: { boxShadow: '0 0 0 2px var(--ring)', outlineOffset: '2px' },
+      transition: { duration: 0.08, ease: 'easeOut' },
+    },
+    card: {
+      hover: { scale: 1.002, y: -1 },
+      tap: { scale: 0.998, y: 0 },
+      focus: { boxShadow: '0 0 0 2px var(--ring)', outlineOffset: '2px' },
+      transition: { duration: 0.1, ease: 'easeOut' },
+    },
+    'table-row': {
+      hover: { backgroundColor: 'var(--muted)' },
+      tap: { backgroundColor: 'var(--accent)' },
+      focus: { boxShadow: '0 0 0 1px var(--ring)' },
+      transition: { duration: 0.1, ease: 'easeOut' },
+    },
+    input: {
+      hover: { borderColor: 'var(--ring)' },
+      tap: { scale: 1.005 },
+      focus: { 
+        borderColor: 'var(--ring)', 
+        boxShadow: '0 0 0 2px rgba(99, 102, 241, 0.12)' 
+      },
+      transition: { duration: 0.1, ease: 'easeOut' },
+    },
+    'nav-item': {
+      hover: { backgroundColor: 'var(--muted)', x: 2 },
+      tap: { backgroundColor: 'var(--accent)', x: 1 },
+      focus: { boxShadow: '0 0 0 2px var(--ring)' },
+      transition: { duration: 0.1, ease: 'easeOut' },
+    },
+  };
+
+  const config = configs[type];
+  const initial = type === 'card' ? { opacity: 0, y: 4 } : {};
+  const animate = type === 'card' ? { opacity: 1, y: 0 } : {};
+
+  return {
+    whileHover: config.hover,
+    whileTap: config.tap,
+    whileFocus: config.focus,
     initial,
     animate,
-    transition: { duration: 0.2, ease: 'easeInOut' },
+    transition: config.transition,
   } as MotionProps;
-
-  return props;
 }
 
 export default useMicroInteraction;

@@ -1,12 +1,18 @@
 /* Enhanced Futuristic Animations - Ultra-Fast & Fluid Microinteractions */
 
-/* Advanced timing functions for snappy interactions */
+/* Ultra-responsive timing functions for instant feedback */
 :root {
-  /* Ultra-fast timings for instant feedback */
-  --ultra-fast: 0.08s;
-  --super-fast: 0.12s;
-  --lightning: 0.15s;
-  --quick: 0.18s;
+  /* Instant timings for immediate response */
+  --ultra-fast: 0.05s;
+  --super-fast: 0.08s;
+  --lightning: 0.1s;
+  --quick: 0.12s;
+}
+
+/* Futuristic theme background variables */
+[data-theme='futuristic'] {
+  --background-blur: rgba(15, 23, 42, 0.95);
+  --background-emphasis: rgba(15, 23, 42, 0.98);
   
   /* Advanced easing curves for natural motion */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -18,37 +24,32 @@
 
 /* ENHANCED BUTTON ANIMATIONS */
 
-/* Base button with optimized transitions */
+/* Ultra-responsive button with minimal effects */
 [data-theme='futuristic'] .btn {
   transition: 
-    transform var(--ultra-fast) var(--ease-out-expo),
-    background-color var(--super-fast) var(--ease-out-circ),
-    border-color var(--super-fast) var(--ease-out-circ),
-    box-shadow var(--lightning) var(--ease-out-expo),
-    filter var(--quick) var(--ease-out-expo);
-  will-change: transform, background-color, border-color, box-shadow, filter;
+    transform var(--ultra-fast) ease-out,
+    background-color var(--ultra-fast) ease-out,
+    border-color var(--ultra-fast) ease-out;
+  will-change: transform;
   transform-origin: center;
 }
 
-/* Ultra-responsive hover states */
+/* Micro hover - barely visible but instant */
 [data-theme='futuristic'] .btn:hover {
-  transform: translateY(-1px) scale(1.02);
-  transition-duration: var(--super-fast);
-  animation: button-glow-pulse 1.2s var(--ease-out-expo) infinite alternate;
+  transform: translateY(-0.5px);
+  transition-duration: var(--ultra-fast);
 }
 
 /* Instant press feedback */
 [data-theme='futuristic'] .btn:active {
-  transform: translateY(0) scale(0.98);
+  transform: translateY(0);
   transition-duration: var(--ultra-fast);
-  animation: none;
 }
 
-/* Enhanced focus with immediate response */
+/* Instant focus feedback */
 [data-theme='futuristic'] .btn:focus-visible {
-  transform: translateY(-0.5px) scale(1.01);
-  transition-duration: var(--lightning);
-  animation: focus-ring-pulse 0.6s var(--ease-out-expo) infinite alternate;
+  transform: translateY(-0.5px);
+  transition-duration: var(--ultra-fast);
 }
 
 /* Button variant specific optimizations */
@@ -72,54 +73,69 @@
     drop-shadow(0 0 16px rgba(15, 118, 110, 0.2));
 }
 
-/* ENHANCED CARD ANIMATIONS */
+/* OPTIMIZED CARD ANIMATIONS - Performance Enhanced */
 
-/* Ultra-fluid card interactions */
+/* Ultra-subtle card interactions for instant feedback */
 [data-theme='futuristic'] .card {
   transition: 
-    transform var(--quick) var(--ease-out-expo),
-    border-color var(--lightning) var(--ease-out-circ),
-    box-shadow var(--lightning) var(--ease-out-expo),
-    backdrop-filter var(--super-fast) var(--ease-out-circ);
-  will-change: transform, border-color, box-shadow, backdrop-filter;
-  transform-origin: center bottom;
+    transform var(--super-fast) ease-out,
+    border-color var(--ultra-fast) ease-out,
+    box-shadow var(--ultra-fast) ease-out;
+  will-change: transform;
+  transform-origin: center;
+  contain: layout style;
 }
 
-/* Dynamic hover with stagger effect */
+/* Micro hover effect - barely perceptible but responsive */
 [data-theme='futuristic'] .card:hover {
-  transform: translateY(-4px) scale(1.01) rotateX(1deg);
-  border-color: rgba(99, 102, 241, 0.4);
-  backdrop-filter: blur(16px);
+  transform: translateY(-1px);
+  border-color: rgba(99, 102, 241, 0.25);
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.15),
-    0 0 16px rgba(99, 102, 241, 0.15),
-    0 0 32px rgba(99, 102, 241, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  animation: card-glow-wave 2s var(--ease-out-expo) infinite;
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 0 4px rgba(99, 102, 241, 0.08);
 }
 
-/* Enhanced shimmer effect with faster sweep */
+/* Removed shimmer effect for better performance */
 [data-theme='futuristic'] .card::before {
-  transition: transform var(--super-fast) var(--ease-out-expo);
-  background: linear-gradient(
-    110deg,
-    transparent 25%,
-    rgba(99, 102, 241, 0.1) 50%,
-    rgba(99, 102, 241, 0.05) 55%,
-    transparent 75%
-  );
-  transform: translateX(-100%) skewX(-15deg);
+  content: none;
 }
 
-[data-theme='futuristic'] .card:hover::before {
-  transform: translateX(100%) skewX(-15deg);
-  transition-duration: 0.6s;
-}
-
-/* Card press interaction */
+/* Quick press feedback */
 [data-theme='futuristic'] .card:active {
-  transform: translateY(-1px) scale(0.99);
+  transform: translateY(-1px);
   transition-duration: var(--ultra-fast);
+}
+
+/* TABLE-SPECIFIC OPTIMIZATIONS */
+
+/* Disable card transforms in table contexts to prevent layout shifts */
+[data-theme='futuristic'] .data-table .card {
+  transition: border-color var(--super-fast) var(--ease-out-circ);
+  will-change: border-color;
+}
+
+[data-theme='futuristic'] .data-table .card:hover {
+  transform: none;
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: none;
+}
+
+[data-theme='futuristic'] .data-table .card:active {
+  transform: none;
+}
+
+/* Optimized table row interactions */
+[data-theme='futuristic'] .data-table tr {
+  transition: background-color var(--super-fast) var(--ease-out-circ);
+  will-change: background-color;
+}
+
+[data-theme='futuristic'] .data-table tr:hover {
+  background-color: rgba(99, 102, 241, 0.05);
+}
+
+[data-theme='futuristic'] .data-table tr:active {
+  background-color: rgba(99, 102, 241, 0.08);
 }
 
 /* ENHANCED INPUT ANIMATIONS */
@@ -175,21 +191,7 @@
   }
 }
 
-/* Card glow wave - ambient animation */
-@keyframes card-glow-wave {
-  0%, 100% { 
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.15),
-      0 0 16px rgba(99, 102, 241, 0.15),
-      0 0 32px rgba(99, 102, 241, 0.05);
-  }
-  50% { 
-    box-shadow: 
-      0 12px 40px rgba(0, 0, 0, 0.2),
-      0 0 20px rgba(99, 102, 241, 0.2),
-      0 0 40px rgba(99, 102, 241, 0.08);
-  }
-}
+/* Removed heavy glow wave animation for better performance */
 
 /* Input breathing glow */
 @keyframes input-glow-breath {
@@ -274,25 +276,30 @@
   }
 }
 
-/* Mobile performance mode */
+/* Mobile performance mode - Instant feedback only */
 @media (max-width: 768px) {
   [data-theme='futuristic'] .btn,
   [data-theme='futuristic'] .card {
-    transition-duration: 0.1s !important;
-    animation-duration: 0.5s !important;
+    transition-duration: 0.05s !important;
+    animation: none !important;
+    will-change: auto !important;
   }
   
   [data-theme='futuristic'] .card:hover {
-    transform: translateY(-2px) !important;
-    animation: none !important;
+    transform: translateY(-0.5px) !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+  }
+  
+  [data-theme='futuristic'] .btn:hover {
+    transform: translateY(-0.25px) !important;
   }
 }
 
-/* High refresh rate displays (120Hz+) */
+/* High refresh rate displays (120Hz+) - Ultra-smooth */
 @media (min-resolution: 120dpi) {
   :root {
-    --ultra-fast: 0.06s;
-    --super-fast: 0.1s;
-    --lightning: 0.12s;
+    --ultra-fast: 0.03s;
+    --super-fast: 0.05s;
+    --lightning: 0.08s;
   }
 }
