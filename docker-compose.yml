@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  design-system:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-3000}:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.design-system.rule=Host(`${DOMAIN:-localhost}`)"
+      - "traefik.http.services.design-system.loadbalancer.server.port=80"
+    networks:
+      - design-system-network
+
+  # Optional: Add a reverse proxy if needed
+  # nginx-proxy:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./ssl:/etc/nginx/ssl:ro
+  #   depends_on:
+  #     - design-system
+  #   networks:
+  #     - design-system-network
+
+networks:
+  design-system-network:
+    driver: bridge
+
+volumes:
+  # Add any persistent volumes if needed in the future
+  design-system-data:
+    driver: local
