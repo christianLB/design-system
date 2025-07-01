@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { fn } from '@storybook/test';
 import { TableToolbar } from './TableToolbar';
 import { Button } from '../Button/Button';
 
@@ -19,5 +18,5 @@ type Story = StoryObj<typeof TableToolbar>;
 export const Default: Story = {};
 
 export const WithSearch: Story = {
-  args: { onSearch: fn() },
+  args: { onSearch: () => console.log('search') },
 };
