@@ -62,7 +62,7 @@ describe('AppLayout', () => {
     const sidebar = screen.getByRole('complementary');
     expect(sidebar).toHaveAttribute('data-collapsed', 'false');
 
-    const toggleButton = screen.getByLabelText('Toggle Sidebar');
+    const toggleButton = screen.getByRole('button');
     fireEvent.click(toggleButton);
 
     expect(sidebar).toHaveAttribute('data-collapsed', 'true');
