@@ -5,6 +5,7 @@ import { Stack } from '../Stack/Stack';
 import { 
   LayoutVariant, 
   HeaderBehavior, 
+  SidebarBehavior,
   SpacingToken, 
   ResponsiveConfig
 } from '../Navigation/types';
@@ -97,14 +98,16 @@ export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
       if (!breakpoints) return {};
       
       const styles: React.CSSProperties = {};
-      Object.entries(breakpoints).forEach(([breakpoint, config]) => {
-        // Apply responsive configuration
-        if (config) {
-          styles[`@media (min-width: var(--breakpoint-${breakpoint}))`] = {
-            // Add responsive styles based on config
-          };
-        }
-      });
+      // The following block is commented out because React.CSSProperties does not directly support media queries as keys.
+      // If responsive styles are needed, they should be applied differently, e.g., by dynamically selecting layout variants.
+      // Object.entries(breakpoints).forEach(([breakpoint, config]) => {
+      //   // Apply responsive configuration
+      //   if (config) {
+      //     styles[(`@media (min-width: var(--breakpoint-${breakpoint}))`) as keyof React.CSSProperties] = {
+      //       // Add responsive styles based on config
+      //     };
+      //   }
+      // });
       return styles;
     }, [breakpoints]);
 

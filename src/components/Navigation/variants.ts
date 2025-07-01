@@ -195,7 +195,7 @@ export const getVariantStyles = (variant: NavigationVariant) => {
 };
 
 // Helper function to merge responsive styles
-export const mergeResponsiveStyles = (baseStyles: React.CSSProperties, responsiveStyles: React.CSSProperties) => {
+export const mergeResponsiveStyles = (baseStyles: React.CSSProperties, responsiveStyles: React.CSSProperties): React.CSSProperties => {
   return {
     ...baseStyles,
     ...responsiveStyles,
