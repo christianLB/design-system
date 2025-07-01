@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
-import { fn } from '@storybook/test';
 import { DataTable } from './DataTable';
 import type { DataTablePagination } from './DataTable';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -30,8 +29,8 @@ const meta: Meta<typeof DataTable<Row>> = {
   args: {
     columns,
     data,
-    onRowClick: fn(),
-    onRowSelect: fn(),
+    onRowClick: () => console.log('row clicked'),
+    onRowSelect: () => console.log('row selected'),
   },
 };
 export default meta;
