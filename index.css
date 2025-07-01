@@ -1,4 +1,10 @@
 @import 'tailwindcss';
+/* Import optimized futuristic styles */
+@import url('./src/styles/futuristic-animations.css');
+@import url('./src/styles/futuristic-components.css');
+@import url('./src/styles/futuristic-responsive.css');
+@import url('./src/styles/futuristic-states.css');
+@import url('./src/styles/futuristic-enhanced-animations.css');
 /* Dark mode styles are applied via data-theme attribute */
 
 /* Basic Reset */
@@ -132,13 +138,6 @@
   --glow-large: 0 0 16px;
   --glow-focus: 0 0 0 3px;
 }
-
-/* Import optimized futuristic styles */
-@import url('./src/styles/futuristic-animations.css');
-@import url('./src/styles/futuristic-components.css');
-@import url('./src/styles/futuristic-responsive.css');
-@import url('./src/styles/futuristic-states.css');
-@import url('./src/styles/futuristic-enhanced-animations.css');
 
 /* Futuristic theme visuals */
 .futuristic-wrap {

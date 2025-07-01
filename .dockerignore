@@ -1,0 +1,22 @@
+# Git
+.git
+.github
+.husky
+.idea
+.vscode
+
+# Node
+node_modules
+dist
+storybook-static
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Misc
+.DS_Store
+.claude
+.nvmrc
