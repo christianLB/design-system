@@ -37,6 +37,19 @@ const FuturisticDecorator = ({ children }: { children: React.ReactNode }) => {
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
+    docs: {
+      toc: {
+        contentsSelector: '.sbdocs-content',
+        headingSelector: 'h1, h2, h3',
+        title: 'Table of Contents',
+        disable: false,
+        unsafeTocbotOptions: {
+          orderedList: false,
+        },
+      },
+    },
+    // Add version info to parameters - use global variable instead of process.env
+    version: (globalThis as any).__STORYBOOK_PACKAGE_VERSION__ || '3.3.2',
   },
   globalTypes: {
     theme: {
