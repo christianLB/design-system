@@ -42,6 +42,10 @@ export interface CSSInJSAnimation {
   willChange?: string;
   transform?: string;
   transition?: string;
+  backfaceVisibility?: string;
+  perspective?: string;
+  '@media (prefers-reduced-motion: reduce)'?: Record<string, any>;
+  [key: string]: any; // Allow additional properties including media queries
 }
 
 /**

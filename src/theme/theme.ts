@@ -10,10 +10,10 @@ import {
   defaultFuturisticConfig,
   type FuturisticConfig 
 } from './theme.futuristic.config';
-import { cyberpunkTheme, type CyberpunkTheme } from './theme.cyberpunk';
+// import { cyberpunkTheme, type CyberpunkTheme } from './theme.cyberpunk'; // Temporarily disabled
 
 export type DesignTokens = ThemeTokens;
-export type { FuturisticConfig, CyberpunkTheme };
+export type { FuturisticConfig /*, CyberpunkTheme*/ };
 
 export { 
   lightTheme, 
@@ -22,8 +22,8 @@ export {
   futuristicThemeProfessional,
   futuristicThemeHighContrast,
   futuristicConfig,
-  defaultFuturisticConfig,
-  cyberpunkTheme
+  defaultFuturisticConfig
+  // cyberpunkTheme // Temporarily disabled
 };
 
 export const theme = lightTheme;

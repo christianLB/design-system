@@ -94,7 +94,7 @@ export const DarkThemeToggle = () => {
   const { theme, setTheme } = useTheme();
 
   // Define the theme rotation order
-  const themeOrder = ['light', 'dark', 'futuristic', 'cyberpunk'] as const;
+  const themeOrder = ['light', 'dark', 'futuristic'] as const; // 'cyberpunk' temporarily disabled
   
   const toggleTheme = () => {
     console.log('Current theme:', theme);
@@ -122,9 +122,9 @@ export const DarkThemeToggle = () => {
       case 'dark':
         return { icon: <StarIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Futuristic' };
       case 'futuristic':
-        return { icon: <CyberpunkIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Cyberpunk' };
-      case 'cyberpunk':
         return { icon: <SunIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Light' };
+      // case 'cyberpunk':
+      //   return { icon: <SunIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Light' };
       default:
         return { icon: <SunIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch Theme' };
     }

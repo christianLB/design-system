@@ -148,9 +148,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {hasContent && (
             <span className="flex-1 text-center whitespace-nowrap">
               {/* Ensure we're only rendering valid React children */}
-              {typeof children === 'string' || typeof children === 'number' || React.isValidElement(children)
-                ? children
-                : React.Children.map(children, (child) => {
+{React.Children.map(children, (child) => {
                     if (React.isValidElement(child) || typeof child === 'string' || typeof child === 'number') {
                       return child;
                     }

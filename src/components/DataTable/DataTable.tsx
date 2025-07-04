@@ -10,7 +10,6 @@ import {
   SortingState,
   getSortedRowModel,
   RowSelectionState,
-  getColumnSizingInfoHeaders,
 } from '@tanstack/react-table';
 import { EmptyState } from '../EmptyState';
 import { Pagination } from '../Pagination';
