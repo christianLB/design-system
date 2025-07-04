@@ -359,3 +359,119 @@ export const AllVariants: Story = {
     }
   }
 };
+
+// Cyberpunk Variants
+export const CyberpunkMatrix: Story = {
+  args: { variant: 'cyberpunk-matrix', children: 'Matrix Button' },
+};
+
+export const CyberpunkDoom: Story = {
+  args: { variant: 'cyberpunk-doom', children: 'DOOM Button' },
+};
+
+export const CyberpunkGhost: Story = {
+  args: { variant: 'cyberpunk-ghost', children: 'Ghost Button' },
+};
+
+export const CyberpunkNeon: Story = {
+  args: { variant: 'cyberpunk-neon', children: 'Neon Button' },
+};
+
+export const CyberpunkWithEffects: Story = {
+  args: { 
+    variant: 'cyberpunk-matrix', 
+    children: 'Matrix Glow',
+    cyberpunkGlow: 'intense',
+    scanlines: true,
+    iconStart: 'Zap'
+  },
+};
+
+// Cyberpunk Showcase
+export const CyberpunkShowcase: Story = {
+  render: () => (
+    <Stack gap="xl">
+      <Box>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">Cyberpunk Button Variants</Text>
+        <Stack direction="row" gap="md" wrap align="center">
+          <Button variant="cyberpunk-matrix" iconStart="Zap">Matrix</Button>
+          <Button variant="cyberpunk-doom" iconStart="Target">DOOM</Button>
+          <Button variant="cyberpunk-ghost" iconStart="Ghost">Ghost</Button>
+          <Button variant="cyberpunk-neon" iconStart="Sparkles">Neon</Button>
+        </Stack>
+      </Box>
+
+      <Box>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">With Cyberpunk Effects</Text>
+        <Stack direction="row" gap="md" wrap align="center">
+          <Button variant="cyberpunk-matrix" cyberpunkGlow="intense" iconStart="Zap">
+            Intense Glow
+          </Button>
+          <Button variant="cyberpunk-doom" scanlines iconStart="Target">
+            Scanlines
+          </Button>
+          <Button variant="cyberpunk-ghost" matrixRain iconStart="Ghost">
+            Matrix Rain
+          </Button>
+          <Button variant="cyberpunk-neon" cyberpunkGlow="subtle" scanlines iconStart="Sparkles">
+            Subtle Glow + Scanlines
+          </Button>
+        </Stack>
+      </Box>
+
+      <Box>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">Cyberpunk Sizes</Text>
+        <Stack direction="row" gap="md" align="center">
+          <Button variant="cyberpunk-matrix" size="sm" cyberpunkGlow="normal">Small</Button>
+          <Button variant="cyberpunk-doom" size="md" cyberpunkGlow="normal">Medium</Button>
+          <Button variant="cyberpunk-neon" size="lg" cyberpunkGlow="normal">Large</Button>
+        </Stack>
+      </Box>
+
+      <Box>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">Cyberpunk Interactive States</Text>
+        <Stack direction="column" gap="lg">
+          <Stack direction="row" gap="md" align="center">
+            <Text size="sm" className="min-w-[80px]">Default:</Text>
+            <Button variant="cyberpunk-matrix">Matrix</Button>
+            <Button variant="cyberpunk-doom">DOOM</Button>
+            <Button variant="cyberpunk-neon">Neon</Button>
+          </Stack>
+          
+          <Stack direction="row" gap="md" align="center">
+            <Text size="sm" className="min-w-[80px]">With Icons:</Text>
+            <Button variant="cyberpunk-matrix" iconStart="Zap" cyberpunkGlow="intense">
+              Matrix Power
+            </Button>
+            <Button variant="cyberpunk-doom" iconStart="Target" scanlines>
+              DOOM Target
+            </Button>
+            <Button variant="cyberpunk-neon" iconStart="Sparkles" cyberpunkGlow="normal">
+              Neon Sparkle
+            </Button>
+          </Stack>
+          
+          <Stack direction="row" gap="md" align="center">
+            <Text size="sm" className="min-w-[80px]">Full Effects:</Text>
+            <Button variant="cyberpunk-matrix" cyberpunkGlow="intense" scanlines matrixRain iconStart="Zap">
+              Ultimate Matrix
+            </Button>
+            <Button variant="cyberpunk-doom" cyberpunkGlow="intense" scanlines iconStart="Target">
+              Ultimate DOOM
+            </Button>
+            <Button variant="cyberpunk-neon" cyberpunkGlow="intense" scanlines iconStart="Sparkles">
+              Ultimate Neon
+            </Button>
+          </Stack>
+        </Stack>
+      </Box>
+    </Stack>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A comprehensive showcase of all cyberpunk button variants with effects and interactive states.'
+      }
+    }
+  }
+};

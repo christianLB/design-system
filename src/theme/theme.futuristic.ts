@@ -1,17 +1,9 @@
 import { lightTheme, ThemeTokens } from './theme.light';
+import { futuristicColorTokens } from './tokens/colors';
 
 // Enhanced futuristic theme with improved accessibility and professional aesthetics
 export const futuristicTheme: ThemeTokens = {
-  colors: {
-    // Professional indigo instead of vibrant purple
-    primary: '#6366F1',
-    primaryForeground: '#FFFFFF',
-    secondary: '#0F766E', // Elegant teal instead of bright green
-    secondaryForeground: '#FFFFFF',
-    // Improved contrast ratios for WCAG AA compliance
-    neutral100: '#0F172A', // Warmer dark background
-    neutral900: '#F8FAFC', // Pure white for better contrast
-  },
+  colors: futuristicColorTokens,
   typography: {
     fontFamily: "'Inter Variable', 'SF Pro Display', system-ui, sans-serif",
     fontSize: lightTheme.typography.fontSize,
@@ -42,7 +34,7 @@ export const futuristicTheme: ThemeTokens = {
   radius: '0.75rem', // Slightly more rounded for modern feel
   zIndex: lightTheme.zIndex,
   borders: {
-    color: '#6366F1',
+    color: futuristicColorTokens.border,
   },
 } as const;
 
@@ -50,10 +42,16 @@ export const futuristicTheme: ThemeTokens = {
 export const futuristicThemeProfessional: ThemeTokens = {
   ...futuristicTheme,
   colors: {
-    ...futuristicTheme.colors,
-    primary: '#4F46E5', // Slightly darker for corporate feel
-    secondary: '#059669', // Professional green
-    neutral100: '#1E293B', // Lighter background for less contrast
+    ...futuristicColorTokens,
+    primary: {
+      ...futuristicColorTokens.primary,
+      DEFAULT: '#4F46E5', // Slightly darker for corporate feel
+    },
+    secondary: {
+      ...futuristicColorTokens.secondary,
+      DEFAULT: '#059669', // Professional green
+    },
+    background: '#1E293B', // Lighter background for less contrast
   },
   radius: '0.5rem', // More conservative border radius
 } as const;
@@ -62,10 +60,16 @@ export const futuristicThemeProfessional: ThemeTokens = {
 export const futuristicThemeHighContrast: ThemeTokens = {
   ...futuristicTheme,
   colors: {
-    ...futuristicTheme.colors,
-    primary: '#A855F7', // Higher contrast purple
-    secondary: '#10B981', // Brighter green
-    neutral900: '#FFFFFF', // Pure white
+    ...futuristicColorTokens,
+    primary: {
+      ...futuristicColorTokens.primary,
+      DEFAULT: '#A855F7', // Higher contrast purple
+    },
+    secondary: {
+      ...futuristicColorTokens.secondary,
+      DEFAULT: '#10B981', // Brighter green
+    },
+    foreground: '#FFFFFF', // Pure white
   },
   borders: {
     color: '#C4B5FD', // Lighter border for better visibility

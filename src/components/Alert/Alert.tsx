@@ -1,13 +1,20 @@
 import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
+import clsx from 'clsx';
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   description?: React.ReactNode;
-  variant?: 'default' | 'destructive' | 'success' | 'warning' | 'info';
+  variant?: 'default' | 'destructive' | 'success' | 'warning' | 'info' | 'cyberpunk-matrix' | 'cyberpunk-doom' | 'cyberpunk-ghost' | 'cyberpunk-neon';
   icon?: React.ReactNode;
   dismissible?: boolean;
   onClose?: () => void;
+  /** Cyberpunk glow intensity */
+  cyberpunkGlow?: 'subtle' | 'normal' | 'intense';
+  /** Adds cyberpunk scanline effects */
+  scanlines?: boolean;
+  /** Adds Matrix-style digital rain effect */
+  matrixRain?: boolean;
 }
 
 const Alert = React.forwardRef<HTMLDivElement, HTMLMotionProps<'div'> & AlertProps>(
@@ -21,17 +28,28 @@ const Alert = React.forwardRef<HTMLDivElement, HTMLMotionProps<'div'> & AlertPro
       icon,
       dismissible = false,
       onClose,
+      cyberpunkGlow,
+      scanlines = false,
+      matrixRain = false,
       ...props
     },
     ref
   ) => {
-    const variantClass = `alert-${variant}`;
+    const classes = clsx(
+      'alert',
+      `alert-${variant}`,
+      // Cyberpunk modifier classes
+      scanlines && 'cyber-scanlines',
+      matrixRain && 'cyber-matrix-overlay',
+      cyberpunkGlow && `cyber-glow-${cyberpunkGlow}`,
+      className
+    );
 
     return (
       <motion.div
         ref={ref}
         role="alert"
-        className={`alert ${variantClass} ${className || ''}`}
+        className={classes}
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.2 }}

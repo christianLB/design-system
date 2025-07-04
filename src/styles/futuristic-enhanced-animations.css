@@ -15,11 +15,11 @@
   --background-emphasis: rgba(15, 23, 42, 0.98);
   
   /* Advanced easing curves for natural motion */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-out-circ: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
-  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-out-expo: var(--easing-expo-out);
+  --ease-out-back: var(--easing-back);
+  --ease-out-circ: var(--easing-circ-out);
+  --ease-in-out-quart: var(--easing-quart-in-out);
+  --ease-spring: var(--easing-elastic);
 }
 
 /* ENHANCED BUTTON ANIMATIONS */

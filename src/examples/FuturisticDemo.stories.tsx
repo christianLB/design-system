@@ -23,7 +23,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Enhanced futuristic demo showcasing the new v3.3.0 theme improvements with professional aesthetics, performance optimizations, and comprehensive component coverage.',
+        component: 'Enhanced futuristic demo showcasing the new v3.5.0 theme improvements with professional aesthetics, performance optimizations, and comprehensive component coverage.',
       },
     },
     backgrounds: {
@@ -94,7 +94,7 @@ const DemoFlow = () => {
     <Stack gap="xl" className="max-w-4xl mx-auto stagger-children">
       <Box className="text-center mb-8">
         <Text as="h1" size="lg" color="emphasis" className="mb-4 glow-effect text-2xl">
-          Futuristic Interface Demo v3.3.0
+          Futuristic Interface Demo v3.5.0
         </Text>
         <Text color="muted" className="mb-6">
           Experience the enhanced futuristic theme with professional aesthetics and smooth animations
@@ -194,7 +194,7 @@ const DemoFlow = () => {
 
       {done && (
         <Alert variant="success" title="Mission Accomplished" className="fade-in-up">
-          <Text>The futuristic demo has completed successfully! All new v3.3.0 features are working perfectly.</Text>
+          <Text>The futuristic demo has completed successfully! All new v3.5.0 features are working perfectly.</Text>
         </Alert>
       )}
 
@@ -326,7 +326,7 @@ const ComponentDemo = () => {
           Heavy effects are automatically disabled on mobile devices.
         </Alert>
         <Alert variant="destructive" title="Critical Update">
-          Please upgrade to v3.3.0 for enhanced features.
+          Please upgrade to v3.5.0 for enhanced features.
         </Alert>
         <Alert variant="info" title="Pro Tip">
           Use the professional variant for corporate environments.

@@ -1,14 +1,64 @@
 import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import { useMicroInteraction } from '../../hooks';
+import clsx from 'clsx';
 
-const Card = React.forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
-  ({ className, ...props }, ref) => {
+export type CardVariant =
+  | 'default'
+  | 'cyberpunk-matrix'
+  | 'cyberpunk-doom'
+  | 'cyberpunk-ghost'
+  | 'cyberpunk-neon';
+
+export interface CardProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
+  /** React ref to the HTML div element */
+  ref?: React.Ref<HTMLDivElement>;
+  /** Card visual variant */
+  variant?: CardVariant;
+  /** Adds cyberpunk scanline effects */
+  scanlines?: boolean;
+  /** Adds Matrix-style digital rain effect */
+  matrixRain?: boolean;
+  /** Cyberpunk glow intensity */
+  cyberpunkGlow?: 'subtle' | 'normal' | 'intense';
+  /** Adds a subtle glow effect */
+  glow?: boolean;
+  /** Makes the card look elevated from the surface */
+  elevated?: boolean;
+}
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ 
+    className, 
+    variant = 'default',
+    scanlines = false,
+    matrixRain = false,
+    cyberpunkGlow,
+    glow = false,
+    elevated = false,
+    ...props 
+  }, ref) => {
     const micro = useMicroInteraction('card');
+    
+    const classes = clsx(
+      'card',
+      // Variant classes
+      variant !== 'default' && `card--${variant}`,
+      // State and modifier classes
+      elevated && 'card--elevated',
+      glow && 'card--glow',
+      // Cyberpunk modifier classes
+      scanlines && 'cyber-scanlines',
+      matrixRain && 'cyber-matrix-overlay',
+      cyberpunkGlow && `cyber-glow-${cyberpunkGlow}`,
+      // Custom class name passed as prop
+      className
+    );
+    
     return (
       <motion.div
         ref={ref}
-        className={`card ${className || ''}`}
+        className={classes}
         {...micro}
         {...props}
       />
