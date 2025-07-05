@@ -3,8 +3,8 @@
  * Comprehensive animation system with durations, easings, and keyframes
  */
 
-// Import cyberpunk animation tokens - temporarily disabled
-// export * from './cyberpunk-animations';
+// Import cyberpunk animation tokens
+export * from './cyberpunk-animations';
 
 /**
  * Animation duration tokens

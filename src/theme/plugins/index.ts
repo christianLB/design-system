@@ -29,33 +29,33 @@ export {
   performancePlugin 
 } from './performance';
 
-// Cyberpunk plugins temporarily disabled for build compatibility
-// export * from './cyberpunk-glow';
-// export { 
-//   createCyberpunkGlowPlugin, 
-//   cyberpunkGlowPlugin 
-// } from './cyberpunk-glow';
+// Cyberpunk plugins
+export * from './cyberpunk-glow';
+export { 
+  createCyberpunkGlowPlugin, 
+  cyberpunkGlowPlugin 
+} from './cyberpunk-glow';
 
-// export * from './cyberpunk-scanline';
-// export { 
-//   createCyberpunkScanlinePlugin, 
-//   cyberpunkScanlinePlugin 
-// } from './cyberpunk-scanline';
+export * from './cyberpunk-scanline';
+export { 
+  createCyberpunkScanlinePlugin, 
+  cyberpunkScanlinePlugin 
+} from './cyberpunk-scanline';
 
-// export * from './cyberpunk-matrix';
-// export { 
-//   createCyberpunkMatrixPlugin, 
-//   cyberpunkMatrixPlugin,
-//   generateMatrixCharacters
-// } from './cyberpunk-matrix';
+export * from './cyberpunk-matrix';
+export { 
+  createCyberpunkMatrixPlugin, 
+  cyberpunkMatrixPlugin,
+  generateMatrixCharacters
+} from './cyberpunk-matrix';
 
-// export * from './cyberpunk-registry';
-// export { 
-//   CyberpunkPluginRegistry,
-//   defaultCyberpunkRegistry,
-//   getCyberpunkPlugins,
-//   createCyberpunkRegistry
-// } from './cyberpunk-registry';
+export * from './cyberpunk-registry';
+export { 
+  CyberpunkPluginRegistry,
+  defaultCyberpunkRegistry,
+  getCyberpunkPlugins,
+  createCyberpunkRegistry
+} from './cyberpunk-registry';
 
 // Plugin utilities
 export { PluginUtils } from './types';

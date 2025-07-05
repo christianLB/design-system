@@ -117,7 +117,7 @@ export class CyberpunkPluginRegistry {
    */
   getPluginsByPriority(): AnimationPlugin[] {
     const plugins = this.getAllPlugins();
-    const priorityOrder = { high: 3, normal: 2, low: 1 };
+    const priorityOrder = { critical: 4, high: 3, normal: 2, low: 1 };
     
     return plugins.sort((a, b) => {
       const aPriority = priorityOrder[a.priority] || 0;

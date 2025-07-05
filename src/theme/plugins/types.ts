@@ -65,6 +65,8 @@ export interface PluginContext {
     userAgent?: string;
     viewportSize?: { width: number; height: number };
   };
+  config?: any;
+  previousTheme?: BuiltTheme;
 }
 
 /**
@@ -79,6 +81,7 @@ export interface PluginResult {
     theme?: Partial<BuiltTheme>;
     animations?: Partial<AnimationTokens>;
     cssVariables?: Record<string, string>;
+    keyframes?: Record<string, any>;
   };
 }
 
@@ -269,7 +272,11 @@ export interface AnimationPlugin extends ThemePlugin {
     gestureAnimations?: boolean;
     parallaxEffects?: boolean;
     morphingAnimations?: boolean;
+    customKeyframes?: boolean;
   };
+  config?: any;
+  validate?: (config: any) => { valid: boolean; errors?: string[] };
+  getPerformanceHints?: () => string[];
 }
 
 /**

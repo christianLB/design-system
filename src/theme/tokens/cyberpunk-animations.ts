@@ -33,6 +33,7 @@ interface CyberpunkKeyframeTokens extends AnimationKeyframeTokens {
   powerUp: Record<string, any>;
   staticNoise: Record<string, any>;
   glitchText: Record<string, any>;
+  cyberFlicker: Record<string, any>;
 }
 
 interface CyberpunkConfigTokens extends AnimationConfigTokens {

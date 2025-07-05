@@ -69,7 +69,7 @@ import { generateColorScale, generateSemanticColors } from '../utils/colorScale'
 import { lightTheme } from '../theme.light';
 import { darkTheme } from '../theme.dark';
 import { futuristicTheme } from '../theme.futuristic';
-// import { cyberpunkTheme } from '../theme.cyberpunk'; // Temporarily disabled for build
+import { cyberpunkTheme } from '../theme.cyberpunk';
 
 /**
  * Default theme builder configuration
@@ -146,7 +146,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
   /**
    * Start with a base theme
    */
-  extends(baseTheme: ThemeTokens | BuiltTheme | 'light' | 'dark' | 'futuristic'): ThemeBuilder {
+  extends(baseTheme: ThemeTokens | BuiltTheme | 'light' | 'dark' | 'futuristic' | 'cyberpunk'): ThemeBuilder {
     if (typeof baseTheme === 'string') {
       switch (baseTheme) {
         case 'light':
@@ -158,9 +158,9 @@ export class ThemeBuilder extends SimpleEventEmitter {
         case 'futuristic':
           this.baseTheme = this.createDefaultTheme(futuristicTheme);
           break;
-        // case 'cyberpunk':
-        //   this.baseTheme = this.createDefaultTheme(cyberpunkTheme);
-        //   break;
+        case 'cyberpunk':
+          this.baseTheme = this.createDefaultTheme(cyberpunkTheme);
+          break;
         default:
           throw new Error(`Unknown base theme: ${baseTheme}`);
       }
@@ -477,8 +477,11 @@ export class ThemeBuilder extends SimpleEventEmitter {
       name: theme.meta?.name || 'Custom Theme',
       version: '1.0.0',
       baseTheme: this.baseTheme ? (typeof this.baseTheme === 'string' ? this.baseTheme : this.baseTheme.meta?.name) : undefined,
+      variant: 'custom',
+      compositionMode: this.config.compositionMode || 'merge',
+      customizations: {},
       createdAt: new Date().toISOString(),
-      builtAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
 
     // Store the built theme
@@ -638,7 +641,11 @@ export class ThemeBuilder extends SimpleEventEmitter {
         name: this.name,
         version: '1.0.0',
         baseTheme: this.baseTheme ? (typeof this.baseTheme === 'string' ? this.baseTheme : this.baseTheme.meta?.name) : undefined,
+        variant: 'custom',
+        compositionMode: this.config.compositionMode || 'merge',
+        customizations: {},
         createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
         plugins: this.plugins.map(p => p.name),
       },
       colors,
@@ -650,8 +657,8 @@ export class ThemeBuilder extends SimpleEventEmitter {
     };
   }
 
-  private buildColors(): ThemeColors {
-    let colors = this.baseTheme?.colors || {} as ThemeColors;
+  private buildColors(): SemanticColorTokens {
+    let colors = this.baseTheme?.colors || {} as SemanticColorTokens;
     
     // Apply color overrides
     if (this.colorOverrides) {
@@ -663,8 +670,37 @@ export class ThemeBuilder extends SimpleEventEmitter {
 
   private buildAnimations(): AnimationTokens {
     const base = this.baseTheme?.animations || {
-      duration: { fast: '150ms', normal: '300ms', slow: '500ms' },
-      easing: { inOut: 'ease-in-out' },
+      duration: { 
+        instant: '75ms',
+        fast: '150ms', 
+        normal: '300ms', 
+        slow: '500ms',
+        slower: '700ms',
+        slowest: '1000ms'
+      },
+      easing: { 
+        linear: 'linear',
+        ease: 'ease',
+        easeIn: 'ease-in',
+        easeOut: 'ease-out',
+        easeInOut: 'ease-in-out',
+        sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
+        bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+        elastic: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+        back: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+        circIn: 'cubic-bezier(0.6, 0.04, 0.98, 0.335)',
+        circOut: 'cubic-bezier(0.075, 0.82, 0.165, 1)',
+        circInOut: 'cubic-bezier(0.785, 0.135, 0.15, 0.86)',
+        quartIn: 'cubic-bezier(0.895, 0.03, 0.685, 0.22)',
+        quartOut: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
+        quartInOut: 'cubic-bezier(0.77, 0, 0.175, 1)',
+        quintIn: 'cubic-bezier(0.755, 0.05, 0.855, 0.06)',
+        quintOut: 'cubic-bezier(0.23, 1, 0.32, 1)',
+        quintInOut: 'cubic-bezier(0.86, 0, 0.07, 1)',
+        expoIn: 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
+        expoOut: 'cubic-bezier(0.19, 1, 0.22, 1)',
+        expoInOut: 'cubic-bezier(1, 0, 0, 1)'
+      },
       keyframes: {},
       config: {},
       motion: { respectReducedMotion: true },
@@ -1000,7 +1036,7 @@ export function createThemeBuilder(config?: Partial<ThemeBuilderConfig>): ThemeB
 /**
  * Quick theme builder with common presets
  */
-export function quickTheme(preset: 'light' | 'dark' | 'futuristic' | 'high-contrast'): ThemeBuilder {
+export function quickTheme(preset: 'light' | 'dark' | 'futuristic' | 'cyberpunk' | 'high-contrast'): ThemeBuilder {
   const builder = new ThemeBuilder();
   
   switch (preset) {
@@ -1010,8 +1046,8 @@ export function quickTheme(preset: 'light' | 'dark' | 'futuristic' | 'high-contr
       return builder.extends('dark');
     case 'futuristic':
       return builder.extends('futuristic');
-    // case 'cyberpunk':
-    //   return builder.extends('cyberpunk');
+    case 'cyberpunk':
+      return builder.extends('cyberpunk');
     case 'high-contrast':
       return builder.extends('light').withVariant('high-contrast');
     default:

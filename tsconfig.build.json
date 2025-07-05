@@ -6,13 +6,5 @@
     "outDir": "dist/types"
   },
   "include": ["src"],
-  "exclude": [
-    "**/__tests__/**", 
-    "**/*.test.tsx", 
-    "**/*.test.ts", 
-    "**/*.stories.tsx",
-    "src/theme/theme.cyberpunk.ts",
-    "src/theme/tokens/cyberpunk-animations.ts",
-    "src/theme/plugins/cyberpunk-*.ts"
-  ]
+  "exclude": ["**/__tests__/**", "**/*.test.tsx", "**/*.test.ts", "**/*.stories.tsx"]
 }

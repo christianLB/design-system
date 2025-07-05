@@ -1,4 +1,4 @@
-export { theme, lightTheme, darkTheme, futuristicTheme /*, cyberpunkTheme*/ } from './theme';
+export { theme, lightTheme, darkTheme, futuristicTheme, cyberpunkTheme } from './theme';
 export type { DesignTokens } from './theme';
 export { ThemeProvider, useTheme } from './ThemeContext';
 export type { Theme } from './ThemeContext';
@@ -83,7 +83,7 @@ export {
   lightColorTokens,
   darkColorTokens,
   futuristicColorTokens,
-  // cyberpunkColorTokens, // Temporarily disabled
+  cyberpunkColorTokens,
   colorTokens
 } from './tokens/colors';
 

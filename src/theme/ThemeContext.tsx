@@ -3,7 +3,7 @@ import type { BuiltTheme, ThemeVariant } from './builder/types';
 import { ThemeBuilder } from './builder/ThemeBuilder';
 import { getVariantClassNames, getVariantCSSProperties } from './builder/variants';
 
-export type Theme = 'light' | 'dark' | 'futuristic'; // 'cyberpunk' temporarily disabled
+export type Theme = 'light' | 'dark' | 'futuristic' | 'cyberpunk';
 const THEME_KEY = 'vite-ui-theme';
 const THEME_VARIANT_KEY = 'vite-ui-theme-variant';
 const CUSTOM_THEME_KEY = 'vite-ui-custom-theme';
@@ -27,7 +27,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   // Initialize base theme
   const [theme, setThemeState] = useState<Theme>(() => {
     const stored = localStorage.getItem(THEME_KEY) as Theme | null;
-    if (stored === 'light' || stored === 'dark' || stored === 'futuristic') {
+    if (stored === 'light' || stored === 'dark' || stored === 'futuristic' || stored === 'cyberpunk') {
       return stored;
     }
     return window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -73,7 +73,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const root = window.document.documentElement;
 
     // Remove old theme classes and data-theme attribute
-    root.classList.remove('light', 'dark', 'futuristic');
+    root.classList.remove('light', 'dark', 'futuristic', 'cyberpunk');
     root.removeAttribute('data-theme');
     
     // Remove old variant classes
@@ -81,7 +81,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     root.classList.remove(...oldVariantClasses);
 
     // Apply base theme
-    if (theme === 'dark' || theme === 'futuristic') {
+    if (theme === 'dark' || theme === 'futuristic' || theme === 'cyberpunk') {
       root.classList.add(theme);
       root.setAttribute('data-theme', theme);
     } else {
@@ -118,7 +118,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   // Theme management functions
   const setTheme = (newTheme: Theme) => {
     // Validate that newTheme is a valid theme name
-    const validThemes: Theme[] = ['light', 'dark', 'futuristic'];
+    const validThemes: Theme[] = ['light', 'dark', 'futuristic', 'cyberpunk'];
     if (typeof newTheme !== 'string' || !validThemes.includes(newTheme)) {
       console.error(`Invalid theme: ${newTheme}. Expected one of: ${validThemes.join(', ')}`);
       return;
