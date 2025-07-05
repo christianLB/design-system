@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "pnpm run generate:css-variables && tsc -p tsconfig.build.json && vite build",
+    "build": "pnpm run generate:css-variables && vite build",
     "type-check": "tsc --noEmit",
     "clean": "rimraf dist",
     "generate:css-variables": "tsx scripts/generate-css-variables.ts",
