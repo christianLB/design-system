@@ -582,19 +582,19 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
             <Stack gap="md">
               {isCyberpunk ? (
                 <Alert variant="success" title="Neural Interface Online" className="fade-in-up">
-                  Cyberpunk theme v3.5.0 active. Matrix protocols loaded. All systems operational.
+                  Cyberpunk theme v3.5.1 active. Matrix protocols loaded. All systems operational.
                 </Alert>
               ) : isFuturistic ? (
                 <Alert variant="success" title="Quantum Core Online" className="fade-in-up">
-                  Futuristic theme v3.5.0 successfully applied! Advanced quantum processing and neural networks are now active.
+                  Futuristic theme v3.5.1 successfully applied! Advanced quantum processing and neural networks are now active.
                 </Alert>
               ) : theme?.meta?.name?.toLowerCase().includes('dark') ? (
                 <Alert variant="success" title="Dark Mode Active" className="fade-in-up">
-                  Dark theme v3.5.0 enabled. Reduced eye strain mode activated. Enhanced readability in low-light conditions.
+                  Dark theme v3.5.1 enabled. Reduced eye strain mode activated. Enhanced readability in low-light conditions.
                 </Alert>
               ) : (
                 <Alert variant="success" title="Light Mode Active" className="fade-in-up">
-                  Light theme v3.5.0 active. Professional interface optimized for daylight viewing and productivity.
+                  Light theme v3.5.1 active. Professional interface optimized for daylight viewing and productivity.
                 </Alert>
               )}
               
