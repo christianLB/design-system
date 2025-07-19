@@ -49,6 +49,7 @@ function generateThemeCSS(): string {
   const lightVariables = generateCSSVariables(colorTokens.light);
   const darkVariables = generateCSSVariables(colorTokens.dark);
   const futuristicVariables = generateCSSVariables(colorTokens.futuristic);
+  const alienVariables = generateCSSVariables(colorTokens.alien);
   
   return `/**
  * Design System CSS Variables
@@ -71,6 +72,11 @@ ${darkVariables}
 ${futuristicVariables}
 }
 
+/* Alien Theme Variables */
+:root[data-theme="alien"] {
+${alienVariables}
+}
+
 /* Utility Classes for Theme Variables */
 .theme-light {
 ${lightVariables}
@@ -82,6 +88,10 @@ ${darkVariables}
 
 .theme-futuristic {
 ${futuristicVariables}
+}
+
+.theme-alien {
+${alienVariables}
 }
 
 /* CSS Custom Properties for JavaScript Access */
@@ -96,6 +106,10 @@ ${futuristicVariables}
 
 :root[data-theme="futuristic"] {
   --theme-mode: "futuristic";
+}
+
+:root[data-theme="alien"] {
+  --theme-mode: "alien";
 }
 
 /* Color scale utilities */
@@ -194,7 +208,7 @@ export function removeCSSVariable(name: CSSVariableName): void {
  * Generate accessibility report for color tokens
  */
 function generateAccessibilityReport(): string {
-  const themes = ['light', 'dark', 'futuristic'] as const;
+  const themes = ['light', 'dark', 'futuristic', 'alien'] as const;
   const reports = themes.map(theme => {
     const tokens = colorTokens[theme];
     const validation = validateColorPalette(tokens);
@@ -287,7 +301,7 @@ function main(): void {
     
     // Print accessibility summary
     console.log('\\n=== Accessibility Summary ===');
-    const themes = ['light', 'dark', 'futuristic'] as const;
+    const themes = ['light', 'dark', 'futuristic', 'alien'] as const;
     themes.forEach(theme => {
       const validation = validateColorPalette(colorTokens[theme]);
       console.log(`${theme.toUpperCase()} Theme: ${validation.valid ? '✅ VALID' : '❌ INVALID'}`);

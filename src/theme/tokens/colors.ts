@@ -33,6 +33,13 @@ export const baseColors = {
   cyberYellow: '#ffff00',
   hotPink: '#ff1493',
   voidBlack: '#000000',
+  
+  // Alien biomechanical colors
+  steelOrganic: '#708090',
+  pulsingLife: '#e56e47',
+  adrenaline: '#d4552f',
+  ancientBlood: '#6b7280',
+  primordialVoid: '#0d1117',
 } as const;
 
 /**
@@ -63,6 +70,13 @@ export const colorScales = {
   cyberYellow: generateColorScale(baseColors.cyberYellow),
   hotPink: generateColorScale(baseColors.hotPink),
   voidBlack: generateColorScale(baseColors.voidBlack),
+  
+  // Alien biomechanical color scales
+  steelOrganic: generateColorScale(baseColors.steelOrganic),
+  pulsingLife: generateColorScale(baseColors.pulsingLife),
+  adrenaline: generateColorScale(baseColors.adrenaline),
+  ancientBlood: generateColorScale(baseColors.ancientBlood),
+  primordialVoid: generateColorScale(baseColors.primordialVoid),
 } as const;
 
 /**
@@ -686,6 +700,121 @@ export const cyberpunkColorTokens: SemanticColorTokens = {
 };
 
 /**
+ * Alien biomechanical theme color tokens
+ */
+export const alienColorTokens: SemanticColorTokens = {
+  primary: {
+    50: colorScales.steelOrganic['50'],
+    100: colorScales.steelOrganic['100'],
+    200: colorScales.steelOrganic['200'],
+    300: colorScales.steelOrganic['300'],
+    400: colorScales.steelOrganic['400'],
+    500: colorScales.steelOrganic['500'],
+    600: colorScales.steelOrganic['600'],
+    700: colorScales.steelOrganic['700'],
+    800: colorScales.steelOrganic['800'],
+    900: colorScales.steelOrganic['900'],
+    950: colorScales.steelOrganic['950'],
+    DEFAULT: baseColors.steelOrganic,
+    foreground: '#f6f7f8',
+    background: '#1a1d20',
+    border: baseColors.ancientBlood,
+    muted: '#323740',
+    accent: baseColors.pulsingLife,
+  },
+  secondary: {
+    50: colorScales.pulsingLife['50'],
+    100: colorScales.pulsingLife['100'],
+    200: colorScales.pulsingLife['200'],
+    300: colorScales.pulsingLife['300'],
+    400: colorScales.pulsingLife['400'],
+    500: colorScales.pulsingLife['500'],
+    600: colorScales.pulsingLife['600'],
+    700: colorScales.pulsingLife['700'],
+    800: colorScales.pulsingLife['800'],
+    900: colorScales.pulsingLife['900'],
+    950: colorScales.pulsingLife['950'],
+    DEFAULT: baseColors.pulsingLife,
+    foreground: '#f6f7f8',
+    background: '#3d1509',
+    border: baseColors.pulsingLife,
+    muted: '#752d1b',
+    accent: '#e56e47',
+  },
+  destructive: {
+    50: colorScales.adrenaline['50'],
+    100: colorScales.adrenaline['100'],
+    200: colorScales.adrenaline['200'],
+    300: colorScales.adrenaline['300'],
+    400: colorScales.adrenaline['400'],
+    500: colorScales.adrenaline['500'],
+    600: colorScales.adrenaline['600'],
+    700: colorScales.adrenaline['700'],
+    800: colorScales.adrenaline['800'],
+    900: colorScales.adrenaline['900'],
+    950: colorScales.adrenaline['950'],
+    DEFAULT: baseColors.adrenaline,
+    foreground: '#ffffff',
+    background: '#b13f26',
+    border: baseColors.adrenaline,
+    muted: '#8f3520',
+    accent: '#d4552f',
+  },
+  success: {
+    50: colorScales.pulsingLife['50'],
+    100: colorScales.pulsingLife['100'],
+    200: colorScales.pulsingLife['200'],
+    300: colorScales.pulsingLife['300'],
+    400: colorScales.pulsingLife['400'],
+    500: colorScales.pulsingLife['500'],
+    600: colorScales.pulsingLife['600'],
+    700: colorScales.pulsingLife['700'],
+    800: colorScales.pulsingLife['800'],
+    900: colorScales.pulsingLife['900'],
+    950: colorScales.pulsingLife['950'],
+    DEFAULT: baseColors.pulsingLife,
+    foreground: '#f6f7f8',
+    background: '#3d1509',
+    border: baseColors.pulsingLife,
+    muted: '#752d1b',
+    accent: '#e56e47',
+  },
+  warning: {
+    50: '#fef8f3',
+    100: '#fdeee3',
+    200: '#fad8c0',
+    300: '#f6bb93',
+    400: '#f19066',
+    500: '#e56e47',
+    600: '#d4552f',
+    700: '#b13f26',
+    800: '#8f3520',
+    900: '#752d1b',
+    950: '#3d1509',
+    DEFAULT: '#f6bb93',
+    foreground: '#ffffff',
+    background: '#8f3520',
+    border: '#f6bb93',
+    muted: '#752d1b',
+    accent: '#f19066',
+  },
+  // Alien biomechanical surface colors
+  background: '#0d1117',         // Primordial void
+  foreground: '#f6f7f8',         // Text
+  card: '#1f2328',              // Surface cavity
+  cardForeground: '#f6f7f8',
+  popover: '#323740',           // Surface organ
+  popoverForeground: '#f6f7f8',
+  border: '#6b7280',            // Ancient blood
+  input: '#454a52',             // Surface tissue
+  ring: baseColors.pulsingLife,
+  muted: '#565d67',             // Surface membrane
+  mutedForeground: '#a8aeb5',   // Text muted
+  accent: '#e56e47',            // Pulsing life
+  accentForeground: '#f6f7f8',
+};
+
+/**
  * Export all color tokens
  */
 export const colorTokens = {
@@ -693,6 +822,7 @@ export const colorTokens = {
   dark: darkColorTokens,
   futuristic: futuristicColorTokens,
   cyberpunk: cyberpunkColorTokens,
+  alien: alienColorTokens,
   scales: colorScales,
   base: baseColors,
 } as const;

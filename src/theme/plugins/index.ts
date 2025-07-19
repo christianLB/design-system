@@ -57,6 +57,40 @@ export {
   createCyberpunkRegistry
 } from './cyberpunk-registry';
 
+// Alien plugins
+export * from './alien-atmospheric';
+export { 
+  createAlienAtmosphericPlugin, 
+  alienAtmosphericPlugin 
+} from './alien-atmospheric';
+
+export * from './alien-neural';
+export { 
+  createAlienNeuralPlugin, 
+  alienNeuralPlugin 
+} from './alien-neural';
+
+export * from './alien-biomechanical';
+export { 
+  createAlienBiomechanicalPlugin, 
+  alienBiomechanicalPlugin 
+} from './alien-biomechanical';
+
+export * from './alien-vital';
+export { 
+  createAlienVitalPlugin, 
+  alienVitalPlugin 
+} from './alien-vital';
+
+export * from './alien-registry';
+export { 
+  AlienPluginRegistry,
+  defaultAlienRegistry,
+  getAlienPlugins,
+  createAlienRegistry,
+  createAlienEffectRegistry
+} from './alien-registry';
+
 // Plugin utilities
 export { PluginUtils } from './types';
 

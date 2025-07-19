@@ -19,6 +19,8 @@ const meta: Meta<typeof Button> = {
     fullWidth: { control: 'boolean' },
     glow: { control: 'boolean' },
     elevated: { control: 'boolean' },
+    vital: { control: 'boolean' },
+    atmospheric: { control: 'boolean' },
   },
   parameters: {
     docs: {
@@ -377,6 +379,19 @@ export const CyberpunkNeon: Story = {
   args: { variant: 'cyberpunk-neon', children: 'Neon Button' },
 };
 
+// Alien Theme Variants
+export const Membrane: Story = {
+  args: { variant: 'membrane', children: 'Membrane Interface', atmospheric: true },
+};
+
+export const Vessel: Story = {
+  args: { variant: 'vessel', children: 'Vital Function', vital: true, atmospheric: true },
+};
+
+export const Neural: Story = {
+  args: { variant: 'neural', children: 'Neural Network', atmospheric: true },
+};
+
 export const CyberpunkWithEffects: Story = {
   args: { 
     variant: 'cyberpunk-matrix', 
@@ -471,6 +486,119 @@ export const CyberpunkShowcase: Story = {
     docs: {
       description: {
         story: 'A comprehensive showcase of all cyberpunk button variants with effects and interactive states.'
+      }
+    }
+  }
+};
+
+// Alien Theme Showcase
+export const AlienShowcase: Story = {
+  render: () => (
+    <Stack gap="xl">
+      <Box>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">Alien Theme Button Variants</Text>
+        <Stack direction="row" gap="md" wrap align="center">
+          <Button variant="membrane" atmospheric iconStart="Layers">
+            Membrane
+          </Button>
+          <Button variant="vessel" vital atmospheric iconStart="Heart">
+            Vessel
+          </Button>
+          <Button variant="neural" atmospheric iconStart="Zap">
+            Neural
+          </Button>
+        </Stack>
+      </Box>
+
+      <Box>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">With Vital Effects</Text>
+        <Stack direction="row" gap="md" wrap align="center">
+          <Button variant="membrane" vital atmospheric iconStart="Layers">
+            Breathing Membrane
+          </Button>
+          <Button variant="vessel" vital atmospheric iconStart="Heart">
+            Pulsing Vessel
+          </Button>
+          <Button variant="neural" vital atmospheric iconStart="Zap">
+            Active Neural
+          </Button>
+        </Stack>
+      </Box>
+
+      <Box>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">Alien Sizes</Text>
+        <Stack direction="row" gap="md" align="center">
+          <Button variant="membrane" size="sm" atmospheric>Small</Button>
+          <Button variant="vessel" size="md" vital atmospheric>Medium</Button>
+          <Button variant="neural" size="lg" atmospheric>Large</Button>
+        </Stack>
+      </Box>
+
+      <Box>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">Alien Interactive States</Text>
+        <Stack direction="column" gap="lg">
+          <Stack direction="row" gap="md" align="center">
+            <Text size="sm" className="min-w-[80px]">Default:</Text>
+            <Button variant="membrane" atmospheric>Membrane</Button>
+            <Button variant="vessel" atmospheric>Vessel</Button>
+            <Button variant="neural" atmospheric>Neural</Button>
+          </Stack>
+          
+          <Stack direction="row" gap="md" align="center">
+            <Text size="sm" className="min-w-[80px]">With Icons:</Text>
+            <Button variant="membrane" atmospheric iconStart="Layers">
+              Membrane Layer
+            </Button>
+            <Button variant="vessel" vital atmospheric iconStart="Heart">
+              Vital Vessel
+            </Button>
+            <Button variant="neural" atmospheric iconStart="Zap">
+              Neural Path
+            </Button>
+          </Stack>
+          
+          <Stack direction="row" gap="md" align="center">
+            <Text size="sm" className="min-w-[80px]">Full Effects:</Text>
+            <Button variant="membrane" vital atmospheric iconStart="Layers">
+              Living Membrane
+            </Button>
+            <Button variant="vessel" vital atmospheric iconStart="Heart">
+              Beating Vessel
+            </Button>
+            <Button variant="neural" vital atmospheric iconStart="Zap">
+              Synaptic Neural
+            </Button>
+          </Stack>
+
+          <Stack direction="row" gap="md" align="center">
+            <Text size="sm" className="min-w-[80px]">Disabled:</Text>
+            <Button variant="membrane" atmospheric disabled>Dormant</Button>
+            <Button variant="vessel" atmospheric disabled iconStart="Heart">Inactive</Button>
+            <Button variant="neural" atmospheric disabled>Offline</Button>
+          </Stack>
+        </Stack>
+      </Box>
+
+      <Box>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">Combined with Other Effects</Text>
+        <Stack direction="row" gap="md" wrap align="center">
+          <Button variant="membrane" atmospheric glow iconStart="Layers">
+            Glowing Membrane
+          </Button>
+          <Button variant="vessel" vital atmospheric elevated iconStart="Heart">
+            Elevated Vessel
+          </Button>
+          <Button variant="neural" atmospheric fullWidth iconStart="Zap" iconEnd="ArrowRight">
+            Full Width Neural
+          </Button>
+        </Stack>
+      </Box>
+    </Stack>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A comprehensive showcase of all alien theme button variants with vital, atmospheric, and interactive effects.'
       }
     }
   }

@@ -18,7 +18,10 @@ export type ButtonVariant =
   | 'cyberpunk-matrix'
   | 'cyberpunk-doom'
   | 'cyberpunk-ghost'
-  | 'cyberpunk-neon';
+  | 'cyberpunk-neon'
+  | 'membrane'
+  | 'vessel'
+  | 'neural';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 // Use HTMLMotionProps as the base type for our Button
@@ -38,6 +41,10 @@ export interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'ref'> {
   matrixRain?: boolean;
   /** Cyberpunk glow intensity */
   cyberpunkGlow?: 'subtle' | 'normal' | 'intense';
+  /** Adds pulsing/breathing effects for alien theme variants */
+  vital?: boolean;
+  /** Adds neural pathway effects for alien theme variants */
+  atmospheric?: boolean;
   /** Icon to display before button content */
   iconStart?: IconName;
   /** Icon to display after button content */
@@ -60,6 +67,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       scanlines = false,
       matrixRain = false,
       cyberpunkGlow,
+      vital = false,
+      atmospheric = false,
       iconStart,
       iconEnd,
       iconSize,
@@ -93,6 +102,22 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       scanlines && 'cyber-scanlines',
       matrixRain && 'cyber-matrix-overlay',
       cyberpunkGlow && `cyber-glow-${cyberpunkGlow}`,
+      // Alien theme modifier classes
+      atmospheric && 'atmospheric-interactive neural-pathways',
+      vital && 'vital-element active',
+      // Specific alien variant classes
+      variant === 'membrane' && [
+        'atmospheric-membrane atmospheric-border-vessel atmospheric-depth-membrane',
+        vital && 'atmospheric-breathe'
+      ],
+      variant === 'vessel' && [
+        'atmospheric-vessel atmospheric-border-organ atmospheric-depth-organ atmospheric-vessel-pulse',
+        vital && 'atmospheric-pulse'
+      ],
+      variant === 'neural' && [
+        'atmospheric-neural-grid atmospheric-border-cell atmospheric-neural-shadow',
+        vital && 'atmospheric-neural'
+      ],
       // Custom class name passed as prop
       className
     );

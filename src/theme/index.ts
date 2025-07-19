@@ -1,5 +1,6 @@
-export { theme, lightTheme, darkTheme, futuristicTheme, cyberpunkTheme } from './theme';
-export type { DesignTokens } from './theme';
+export { theme, lightTheme, darkTheme, futuristicTheme, cyberpunkTheme, alienTheme } from './theme';
+export { alienEffects } from './theme.alien';
+export type { DesignTokens, AlienTheme } from './theme';
 export { ThemeProvider, useTheme } from './ThemeContext';
 export type { Theme } from './ThemeContext';
 
@@ -84,6 +85,7 @@ export {
   darkColorTokens,
   futuristicColorTokens,
   cyberpunkColorTokens,
+  alienColorTokens,
   colorTokens
 } from './tokens/colors';
 

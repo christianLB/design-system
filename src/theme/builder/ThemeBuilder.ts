@@ -70,6 +70,7 @@ import { lightTheme } from '../theme.light';
 import { darkTheme } from '../theme.dark';
 import { futuristicTheme } from '../theme.futuristic';
 import { cyberpunkTheme } from '../theme.cyberpunk';
+import { alienTheme } from '../theme.alien';
 
 /**
  * Default theme builder configuration
@@ -146,7 +147,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
   /**
    * Start with a base theme
    */
-  extends(baseTheme: ThemeTokens | BuiltTheme | 'light' | 'dark' | 'futuristic' | 'cyberpunk'): ThemeBuilder {
+  extends(baseTheme: ThemeTokens | BuiltTheme | 'light' | 'dark' | 'futuristic' | 'cyberpunk' | 'alien'): ThemeBuilder {
     if (typeof baseTheme === 'string') {
       switch (baseTheme) {
         case 'light':
@@ -160,6 +161,9 @@ export class ThemeBuilder extends SimpleEventEmitter {
           break;
         case 'cyberpunk':
           this.baseTheme = this.createDefaultTheme(cyberpunkTheme);
+          break;
+        case 'alien':
+          this.baseTheme = this.createDefaultTheme(alienTheme);
           break;
         default:
           throw new Error(`Unknown base theme: ${baseTheme}`);
@@ -1036,7 +1040,7 @@ export function createThemeBuilder(config?: Partial<ThemeBuilderConfig>): ThemeB
 /**
  * Quick theme builder with common presets
  */
-export function quickTheme(preset: 'light' | 'dark' | 'futuristic' | 'cyberpunk' | 'high-contrast'): ThemeBuilder {
+export function quickTheme(preset: 'light' | 'dark' | 'futuristic' | 'cyberpunk' | 'alien' | 'high-contrast'): ThemeBuilder {
   const builder = new ThemeBuilder();
   
   switch (preset) {
@@ -1048,6 +1052,8 @@ export function quickTheme(preset: 'light' | 'dark' | 'futuristic' | 'cyberpunk'
       return builder.extends('futuristic');
     case 'cyberpunk':
       return builder.extends('cyberpunk');
+    case 'alien':
+      return builder.extends('alien');
     case 'high-contrast':
       return builder.extends('light').withVariant('high-contrast');
     default:

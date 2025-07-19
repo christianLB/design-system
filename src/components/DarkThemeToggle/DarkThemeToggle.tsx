@@ -90,11 +90,39 @@ const CyberpunkIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const AlienIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    {/* Alien head outline */}
+    <ellipse cx="12" cy="10" rx="6" ry="8" />
+    {/* Large alien eyes */}
+    <ellipse cx="9" cy="9" rx="1.5" ry="2" fill="currentColor" />
+    <ellipse cx="15" cy="9" rx="1.5" ry="2" fill="currentColor" />
+    {/* Small mouth */}
+    <line x1="12" y1="13" x2="12" y2="14" />
+    {/* Tentacle-like extensions */}
+    <path d="M6 16 Q4 18 5 20" />
+    <path d="M18 16 Q20 18 19 20" />
+    <path d="M8 17 Q6 19 7 21" />
+    <path d="M16 17 Q18 19 17 21" />
+  </svg>
+);
+
 export const DarkThemeToggle = () => {
   const { theme, setTheme } = useTheme();
 
   // Define the theme rotation order
-  const themeOrder = ['light', 'dark', 'futuristic', 'cyberpunk'] as const;
+  const themeOrder = ['light', 'dark', 'futuristic', 'cyberpunk', 'alien'] as const;
   
   const toggleTheme = () => {
     console.log('Current theme:', theme);
@@ -124,6 +152,8 @@ export const DarkThemeToggle = () => {
       case 'futuristic':
         return { icon: <CyberpunkIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Cyberpunk' };
       case 'cyberpunk':
+        return { icon: <AlienIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Alien' };
+      case 'alien':
         return { icon: <SunIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Light' };
       default:
         return { icon: <SunIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch Theme' };

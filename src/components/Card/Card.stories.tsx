@@ -157,7 +157,7 @@ export const CyberpunkWithEffects: Story = {
 
 // All Cyberpunk Card Variants Showcase
 export const CyberpunkShowcase: Story = {
-  render: (args) => (
+  render: () => (
     <div className="space-y-8">
       <div>
         <h2 className="text-2xl font-bold mb-4 text-green-400">Cyberpunk Card Variants</h2>
@@ -322,6 +322,308 @@ export const CyberpunkShowcase: Story = {
     docs: {
       description: {
         story: 'A comprehensive showcase of all cyberpunk card variants, effects, and real-world usage examples.'
+      }
+    }
+  }
+};
+
+// Alien Theme Card Variants
+export const AlienChamber: Story = {
+  render: (args) => (
+    <div className="theme-atmospheric p-8">
+      <Card {...args} variant="alien-chamber" atmospheric vital>
+        <CardHeader>
+          <CardTitle className="atmospheric-text-vital">Chamber Interface</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>Deep organ chamber with atmospheric breathing effects.</p>
+          <p>Status: <span className="atmospheric-text-vital">VITAL</span></p>
+        </CardContent>
+        <CardFooter>
+          <p className="text-sm atmospheric-text-ghost">Breathing cycle: ACTIVE</p>
+        </CardFooter>
+      </Card>
+    </div>
+  ),
+};
+
+export const AlienOrgan: Story = {
+  render: (args) => (
+    <div className="theme-atmospheric p-8">
+      <Card {...args} variant="alien-organ" atmospheric neural>
+        <CardHeader>
+          <CardTitle className="atmospheric-text-vital">Organ System</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>Biomechanical organ with neural pathways.</p>
+          <p>Function: <span className="atmospheric-text-vital">OPTIMAL</span></p>
+        </CardContent>
+        <CardFooter>
+          <p className="text-sm atmospheric-text-ghost">Neural activity: SYNCING</p>
+        </CardFooter>
+      </Card>
+    </div>
+  ),
+};
+
+export const AlienMembrane: Story = {
+  render: (args) => (
+    <div className="theme-atmospheric p-8">
+      <Card {...args} variant="alien-membrane" atmospheric>
+        <CardHeader>
+          <CardTitle className="atmospheric-text-vital">Membrane Layer</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>Protective membrane interface with organic feel.</p>
+          <p>Integrity: <span className="atmospheric-text-vital">98%</span></p>
+        </CardContent>
+        <CardFooter>
+          <p className="text-sm atmospheric-text-ghost">Permeability: SELECTIVE</p>
+        </CardFooter>
+      </Card>
+    </div>
+  ),
+};
+
+export const AlienCavity: Story = {
+  render: (args) => (
+    <div className="theme-atmospheric p-8">
+      <Card {...args} variant="alien-cavity" atmospheric vital neural>
+        <CardHeader>
+          <CardTitle className="atmospheric-text-vital">Body Cavity</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>Deep internal cavity with full atmospheric effects.</p>
+          <p>Pressure: <span className="atmospheric-text-vital">STABLE</span></p>
+        </CardContent>
+        <CardFooter>
+          <p className="text-sm atmospheric-text-ghost">Internal environment: CONTROLLED</p>
+        </CardFooter>
+      </Card>
+    </div>
+  ),
+};
+
+// Alien Cards with Different Effects
+export const AlienWithEffects: Story = {
+  render: (args) => (
+    <div className="theme-atmospheric space-y-8 p-8">
+      <div>
+        <h2 className="text-2xl font-bold mb-4 atmospheric-text-vital">Alien Atmospheric Effects</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card {...args} variant="alien-chamber" atmospheric vital>
+            <CardHeader>
+              <CardTitle>Chamber + Vital</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Chamber with breathing and atmospheric effects.</p>
+              <p>Life signs: <span className="atmospheric-text-vital">STRONG</span></p>
+            </CardContent>
+          </Card>
+          
+          <Card {...args} variant="alien-organ" atmospheric neural>
+            <CardHeader>
+              <CardTitle>Organ + Neural</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Organ system with neural pathway integration.</p>
+              <p>Synaptic activity: <span className="atmospheric-text-vital">ACTIVE</span></p>
+            </CardContent>
+          </Card>
+          
+          <Card {...args} variant="alien-membrane" atmospheric>
+            <CardHeader>
+              <CardTitle>Membrane Interface</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Protective membrane with atmospheric circulation.</p>
+              <p>Permeability: <span className="atmospheric-text-vital">SELECTIVE</span></p>
+            </CardContent>
+          </Card>
+          
+          <Card {...args} variant="alien-cavity" atmospheric vital neural>
+            <CardHeader>
+              <CardTitle>Full Alien Stack</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Complete alien effects: vital + neural + atmospheric.</p>
+              <p>System status: <span className="atmospheric-text-vital">TRANSCENDENT</span></p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+// Complete Alien Showcase
+export const AlienShowcase: Story = {
+  render: () => (
+    <div className="theme-atmospheric space-y-8 p-8">
+      <div>
+        <h2 className="text-2xl font-bold mb-4 atmospheric-text-vital">Alien Biomechanical Variants</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Card variant="alien-chamber" atmospheric>
+            <CardHeader>
+              <CardTitle>Chamber</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Deep organ chamber</p>
+              <p>Status: <span className="atmospheric-text-vital">BREATHING</span></p>
+            </CardContent>
+          </Card>
+          
+          <Card variant="alien-organ" atmospheric>
+            <CardHeader>
+              <CardTitle>Organ</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Biomechanical organ</p>
+              <p>Function: <span className="atmospheric-text-vital">OPTIMAL</span></p>
+            </CardContent>
+          </Card>
+          
+          <Card variant="alien-membrane" atmospheric>
+            <CardHeader>
+              <CardTitle>Membrane</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Protective barrier</p>
+              <p>Integrity: <span className="atmospheric-text-vital">INTACT</span></p>
+            </CardContent>
+          </Card>
+          
+          <Card variant="alien-cavity" atmospheric>
+            <CardHeader>
+              <CardTitle>Cavity</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Internal space</p>
+              <p>Pressure: <span className="atmospheric-text-vital">STABLE</span></p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+      
+      <div>
+        <h2 className="text-2xl font-bold mb-4 atmospheric-text-vital">Vital Systems</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card variant="alien-chamber" atmospheric vital>
+            <CardHeader>
+              <CardTitle>Respiratory Chamber</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span>Oxygen Flow</span>
+                  <span className="atmospheric-text-vital">92%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Pressure</span>
+                  <span className="atmospheric-text-vital">1.2 ATM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Temperature</span>
+                  <span className="atmospheric-text-vital">37.2°C</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card variant="alien-organ" atmospheric neural>
+            <CardHeader>
+              <CardTitle>Neural Center</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span>Synaptic Rate</span>
+                  <span className="atmospheric-text-vital">847 Hz</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Neural Load</span>
+                  <span className="atmospheric-text-vital">73%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Coherence</span>
+                  <span className="atmospheric-text-vital">HIGH</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card variant="alien-cavity" atmospheric vital neural>
+            <CardHeader>
+              <CardTitle>Core Systems</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span>Life Force</span>
+                  <span className="atmospheric-text-vital">STRONG</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Integration</span>
+                  <span className="atmospheric-text-vital">COMPLETE</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Evolution</span>
+                  <span className="atmospheric-text-vital">ACTIVE</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+      
+      <div>
+        <h2 className="text-2xl font-bold mb-4 atmospheric-text-vital">Interactive Hover Effects</h2>
+        <p className="mb-4 atmospheric-text-ghost">Hover over the cards below to see the atmospheric interactions</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card variant="alien-chamber" atmospheric vital neural>
+            <CardHeader>
+              <CardTitle>Ultimate Chamber</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Full alien experience:</p>
+              <ul className="list-disc list-inside text-sm">
+                <li>Atmospheric breathing</li>
+                <li>Neural pathways</li>
+                <li>Vital signs</li>
+                <li>Organic interactions</li>
+              </ul>
+            </CardContent>
+            <CardFooter>
+              <p className="text-xs atmospheric-text-ghost">Hover to awaken</p>
+            </CardFooter>
+          </Card>
+          
+          <Card variant="alien-cavity" atmospheric vital neural>
+            <CardHeader>
+              <CardTitle>Ultimate Cavity</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Deep internal experience:</p>
+              <ul className="list-disc list-inside text-sm">
+                <li>Deep atmospheric shadows</li>
+                <li>Complex neural networks</li>
+                <li>Vital breathing rhythms</li>
+                <li>Organic transformation</li>
+              </ul>
+            </CardContent>
+            <CardFooter>
+              <p className="text-xs atmospheric-text-ghost">Enter the organism</p>
+            </CardFooter>
+          </Card>
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story: 'A comprehensive showcase of all alien biomechanical card variants with atmospheric effects, vital systems, and neural pathways. Experience the organic, living interface inspired by H.R. Giger\'s biomechanical aesthetic.'
       }
     }
   }

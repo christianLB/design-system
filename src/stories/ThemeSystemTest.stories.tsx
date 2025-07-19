@@ -19,9 +19,9 @@ const meta: Meta = {
 
 This story tests the orthogonal theme and variant system to ensure:
 
-1. **Theme Switching Works**: All 4 themes (light, dark, futuristic, cyberpunk) load correctly
+1. **Theme Switching Works**: All 5 themes (light, dark, futuristic, cyberpunk, alien) load correctly
 2. **Variant Application**: All 4 variants (default, compact, comfortable, high-contrast) apply correctly  
-3. **Orthogonal Combinations**: Any theme can be combined with any variant (16 total combinations)
+3. **Orthogonal Combinations**: Any theme can be combined with any variant (20 total combinations)
 4. **Type Safety**: No TypeScript errors in theme/variant handling
 5. **Backward Compatibility**: Existing component variants still work
 
@@ -39,6 +39,7 @@ This story tests the orthogonal theme and variant system to ensure:
   - \`dark\` - Reduced eye strain for low-light
   - \`futuristic\` - High-tech interface with cool colors  
   - \`cyberpunk\` - Immersive digital reality with neon effects
+  - \`alien\` - Biomechanical atmospheric interface
 
 - **Variants**: Define functional modifications (spacing, contrast, typography adjustments)
   - \`default\` - Standard spacing and typography
@@ -63,6 +64,7 @@ const ThemeVariantDisplay = () => {
     { id: 'dark' as const, name: 'Dark', icon: '🌙', description: 'Reduced Eye Strain' },
     { id: 'futuristic' as const, name: 'Futuristic', icon: '🚀', description: 'High-tech Interface' },
     { id: 'cyberpunk' as const, name: 'Cyberpunk', icon: '⚡', description: 'Digital Reality' },
+    { id: 'alien' as const, name: 'Alien', icon: '👽', description: 'Biomechanical Interface' },
   ];
 
   const variants = [
@@ -109,7 +111,7 @@ const ThemeVariantDisplay = () => {
           <CardTitle>Theme Selection (Visual Identity)</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
             {themes.map((themeOption) => (
               <Button
                 key={themeOption.id}
@@ -132,7 +134,7 @@ const ThemeVariantDisplay = () => {
           <CardTitle>Variant Selection (Functional Modifications)</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
             {variants.map((variantOption) => (
               <Button
                 key={variantOption.id}
@@ -258,7 +260,7 @@ export const CombinationMatrix: Story = {
   render: () => {
     const [selectedCombination, setSelectedCombination] = useState<{theme: string, variant: string} | null>(null);
     
-    const themes = ['light', 'dark', 'futuristic', 'cyberpunk'];
+    const themes = ['light', 'dark', 'futuristic', 'cyberpunk', 'alien'];
     const variants = ['default', 'compact', 'comfortable', 'high-contrast'];
     
     return (
@@ -268,7 +270,7 @@ export const CombinationMatrix: Story = {
             <div className="text-center">
               <h1 className="text-3xl font-bold mb-4">Theme × Variant Combination Matrix</h1>
               <p className="text-muted-foreground">
-                All 16 possible combinations of themes and variants
+                All 20 possible combinations of themes and variants
               </p>
             </div>
 
@@ -340,7 +342,7 @@ export const CombinationMatrix: Story = {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-green-600 mb-2">16/16</div>
+                    <div className="text-3xl font-bold text-green-600 mb-2">20/20</div>
                     <div className="text-sm">Combinations Working</div>
                   </div>
                   <div className="text-center">
@@ -363,7 +365,7 @@ export const CombinationMatrix: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Matrix view of all 16 possible theme and variant combinations to verify orthogonal system works correctly.'
+        story: 'Matrix view of all 20 possible theme and variant combinations to verify orthogonal system works correctly.'
       }
     }
   }

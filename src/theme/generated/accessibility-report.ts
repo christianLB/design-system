@@ -82,14 +82,36 @@ export const accessibilityReport = [
       "successContrast": true,
       "warningContrast": false
     }
+  },
+  {
+    "theme": "alien",
+    "validation": {
+      "valid": false,
+      "issues": [
+        "destructive: foreground/background combination fails WCAG AA",
+        "warning: foreground/background combination fails WCAG AA"
+      ],
+      "recommendations": [
+        "destructive: Current ratio 2.23, needs 4.5+",
+        "warning: Current ratio 2.69, needs 4.5+"
+      ]
+    },
+    "details": {
+      "primaryContrast": true,
+      "secondaryContrast": true,
+      "backgroundContrast": true,
+      "destructiveContrast": false,
+      "successContrast": true,
+      "warningContrast": false
+    }
   }
 ];
 
 export const accessibilitySummary = {
-  totalThemes: 3,
+  totalThemes: 4,
   validThemes: 0,
-  issues: 12,
-  recommendations: 12,
+  issues: 14,
+  recommendations: 14,
 };
 
 export function printAccessibilityReport(): void {

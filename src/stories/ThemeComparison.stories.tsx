@@ -20,9 +20,9 @@ const meta: Meta = {
     docs: {
       description: {
         component: `
-# Theme Comparison - Light vs Dark vs Futuristic vs Cyberpunk
+# Theme Comparison - Light vs Dark vs Futuristic vs Cyberpunk vs Alien
 
-This showcase demonstrates how the same components look and behave across all four supported themes:
+This showcase demonstrates how the same components look and behave across all five supported themes:
 
 ## Theme Overview
 
@@ -49,6 +49,12 @@ This showcase demonstrates how the same components look and behave across all fo
 - **Colors**: Neon greens, reds, and pinks with matrix-inspired elements
 - **Typography**: Monospace fonts with glow effects
 - **Use Cases**: Gaming interfaces, cyberpunk apps, immersive experiences
+
+### 👽 Alien Theme
+- **Purpose**: Biomechanical atmospheric interfaces with organic feel
+- **Colors**: Steel grays with vital orange/red accents and organic textures
+- **Typography**: Inter with atmospheric spacing and breathing effects
+- **Use Cases**: Sci-fi applications, atmospheric interfaces, living system dashboards
 
 ## Component Behavior Across Themes
 
@@ -140,6 +146,13 @@ export const CompleteComparison: Story = {
         icon: '⚡', 
         description: 'Digital Reality',
         bgClass: 'bg-black text-green-400'
+      },
+      { 
+        id: 'alien', 
+        name: 'Alien', 
+        icon: '👽', 
+        description: 'Biomechanical Interface',
+        bgClass: 'bg-gray-900 text-orange-200'
       },
     ];
 
@@ -298,7 +311,7 @@ export const CompleteComparison: Story = {
           {/* Theme Grid */}
           <div className="p-6">
             <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-5 gap-6">
                 {themes.map((theme) => (
                   <ThemeDemo key={theme.id} theme={theme} />
                 ))}
@@ -330,6 +343,7 @@ export const InteractiveComparison: Story = {
       { id: 'dark', name: 'Dark', icon: '🌙' },
       { id: 'futuristic', name: 'Futuristic', icon: '🚀' },
       { id: 'cyberpunk', name: 'Cyberpunk', icon: '⚡' },
+      { id: 'alien', name: 'Alien', icon: '👽' },
     ];
 
     const componentTypes = [
@@ -498,7 +512,7 @@ export const InteractiveComparison: Story = {
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-1">
                   <h3 className="font-semibold mb-3">Select Theme</h3>
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-5 gap-2">
                     {themes.map((theme) => (
                       <Button
                         key={theme.id}
@@ -515,7 +529,7 @@ export const InteractiveComparison: Story = {
                 
                 <div className="flex-1">
                   <h3 className="font-semibold mb-3">Select Component Type</h3>
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-5 gap-2">
                     {componentTypes.map((type) => (
                       <Button
                         key={type.id}
