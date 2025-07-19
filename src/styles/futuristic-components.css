@@ -5,7 +5,7 @@
   border-radius: var(--radius);
   border-width: 1px;
   font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s var(--easing-futuristic);
   backdrop-filter: blur(8px);
 }
 
@@ -70,7 +70,7 @@
   background: rgba(30, 41, 59, 0.8);
   border: 1px solid rgba(99, 102, 241, 0.15);
   backdrop-filter: blur(12px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s var(--easing-futuristic);
   position: relative;
   overflow: hidden;
 }
@@ -105,35 +105,48 @@
 
 /* Enhanced Futuristic Input Styles */
 [data-theme='futuristic'] .input {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  backdrop-filter: blur(4px);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s var(--easing-futuristic);
   color: var(--foreground);
+  box-shadow: 0 0 0 0 transparent;
 }
 
 [data-theme='futuristic'] .input:focus {
-  border-color: rgba(99, 102, 241, 0.4);
-  background: rgba(15, 23, 42, 0.8);
-  box-shadow: var(--glow-focus) rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.6);
+  background: rgba(15, 23, 42, 0.9);
+  box-shadow: var(--glow-focus) rgba(99, 102, 241, 0.2);
   outline: none;
 }
 
 [data-theme='futuristic'] .input:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background: rgba(15, 23, 42, 0.3);
+  background: rgba(15, 23, 42, 0.4);
+  border-color: rgba(99, 102, 241, 0.1);
+  color: rgba(248, 250, 252, 0.5);
 }
 
 [data-theme='futuristic'] .input::placeholder {
-  color: rgba(248, 250, 252, 0.4);
+  color: rgba(248, 250, 252, 0.5);
+}
+
+[data-theme='futuristic'] .input--error {
+  border-color: rgba(239, 68, 68, 0.6);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+[data-theme='futuristic'] .input--error:focus {
+  border-color: rgba(239, 68, 68, 0.8);
+  box-shadow: var(--glow-focus) rgba(239, 68, 68, 0.2);
 }
 
 /* Enhanced Checkbox Styles */
 [data-theme='futuristic'] .checkbox {
   background: rgba(15, 23, 42, 0.6);
   border: 1px solid rgba(99, 102, 241, 0.2);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s var(--easing-futuristic);
 }
 
 [data-theme='futuristic'] .checkbox:checked {
@@ -166,7 +179,7 @@
   background: rgba(15, 23, 42, 0.6);
   border: 1px solid rgba(99, 102, 241, 0.2);
   backdrop-filter: blur(4px);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s var(--easing-futuristic);
 }
 
 [data-theme='futuristic'] .select-trigger:focus {
@@ -195,7 +208,7 @@
 }
 
 [data-theme='futuristic'] .tabs-trigger {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s var(--easing-futuristic);
 }
 
 [data-theme='futuristic'] .tabs-trigger[data-state="active"] {

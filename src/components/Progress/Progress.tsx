@@ -1,13 +1,20 @@
 import React from 'react';
+import clsx from 'clsx';
 
 export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
   value?: number;
   maxValue?: number;
-  variant?: 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
+  variant?: 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'cyberpunk-matrix' | 'cyberpunk-doom' | 'cyberpunk-ghost' | 'cyberpunk-neon';
   size?: 'sm' | 'md' | 'lg';
   showLabel?: boolean;
   labelFormat?: (value: number, maxValue: number) => string;
   isIndeterminate?: boolean;
+  /** Cyberpunk glow intensity */
+  cyberpunkGlow?: 'subtle' | 'normal' | 'intense';
+  /** Adds cyberpunk scanline effects */
+  scanlines?: boolean;
+  /** Adds Matrix-style digital rain effect */
+  matrixRain?: boolean;
 }
 
 const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
@@ -20,6 +27,9 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       showLabel = true,
       labelFormat = (val, max) => `${Math.round((val / max) * 100)}%`,
       isIndeterminate = false,
+      cyberpunkGlow,
+      scanlines = false,
+      matrixRain = false,
       className,
       ...props
     },
@@ -33,22 +43,31 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       ? 'Loading...'
       : labelFormat(clampedValue, maxValue);
 
-    const trackClasses = [
+    const containerClasses = clsx(
+      'progress-bar-container',
+      // Cyberpunk modifier classes
+      scanlines && 'cyber-scanlines',
+      matrixRain && 'cyber-matrix-overlay',
+      cyberpunkGlow && `cyber-glow-${cyberpunkGlow}`,
+      className
+    );
+
+    const trackClasses = clsx(
       'progress-bar-track',
       `progress-bar-track--${size}`,
-      `progress-bar-track--${variant}`,
-    ].join(' ');
+      `progress-bar-track--${variant}`
+    );
 
-    const indicatorClasses = [
+    const indicatorClasses = clsx(
       'progress-bar-indicator',
       `progress-bar-indicator--${variant}`,
-      isIndeterminate ? 'progress-bar-indicator--indeterminate' : '',
-    ].join(' ');
+      isIndeterminate && 'progress-bar-indicator--indeterminate'
+    );
 
     return (
       <div
         ref={ref}
-        className={`progress-bar-container ${className || ''}`}
+        className={containerClasses}
         role="progressbar"
         aria-label="progress"
         aria-valuenow={isIndeterminate ? undefined : clampedValue}

@@ -1,11 +1,22 @@
 @import 'tailwindcss';
-/* Import optimized futuristic styles */
-@import url('./src/styles/futuristic-animations.css');
+
+/* 
+ * CSS Loading Order for Theme System Scalability:
+ * 1. Tailwind CSS (reset and utilities)
+ * 2. Base CSS variables (defined below)
+ * 3. Theme-specific component styles
+ * 4. Enhanced animations and effects
+ * 5. Responsive overrides
+ */
+
+/* Import theme-specific styles in dependency order */
 @import url('./src/styles/futuristic-components.css');
-@import url('./src/styles/futuristic-responsive.css');
-@import url('./src/styles/futuristic-states.css');
+@import url('./src/styles/futuristic-animations.css');
 @import url('./src/styles/futuristic-enhanced-animations.css');
-/* Dark mode styles are applied via data-theme attribute */
+@import url('./src/styles/futuristic-states.css');
+@import url('./src/styles/futuristic-responsive.css');
+@import url('./src/styles/cyberpunk.css');
+@import url('./src/styles/alien.css');
 
 /* Basic Reset */
 * {
@@ -41,6 +52,12 @@
   --border: #e4e4e7;
   --input: #e4e4e7;
   --ring: #020817;
+  --ring-rgb: 2, 8, 23;
+  --destructive-rgb: 239, 68, 68;
+  --primary-rgb: 9, 9, 11;
+  --success-rgb: 22, 163, 74;
+  --warning-rgb: 245, 158, 11;
+  --info-rgb: 14, 165, 233;
   --radius: 0.5rem;
   --font-family-base: system-ui, sans-serif;
   --font-family-body: var(--font-family-base);
@@ -69,7 +86,34 @@
   --duration-fast: 150ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
-  --easing-in-out: ease-in-out;
+  --duration-slower: 750ms;
+  --duration-slowest: 1000ms;
+  
+  /* Consolidated easing functions for scalability */
+  --easing-linear: linear;
+  --easing-ease: ease;
+  --easing-ease-in: ease-in;
+  --easing-ease-out: ease-out;
+  --easing-ease-in-out: ease-in-out;
+  --easing-sharp: cubic-bezier(0.4, 0.0, 0.6, 1.0);
+  --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --easing-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --easing-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --easing-circ-in: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  --easing-circ-out: cubic-bezier(0.075, 0.82, 0.165, 1);
+  --easing-circ-in-out: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --easing-quart-in: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  --easing-quart-out: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --easing-quart-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --easing-expo-in: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --easing-expo-out: cubic-bezier(0.19, 1, 0.22, 1);
+  --easing-expo-in-out: cubic-bezier(1, 0, 0, 1);
+  
+  /* Theme-specific easing functions */
+  --easing-futuristic: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-cyberpunk: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --easing-cyberpunk-glitch: steps(10, end);
+  --easing-cyberpunk-pulse: cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 [data-theme='dark'] {
@@ -87,7 +131,7 @@
   --muted-foreground: #a1a1aa;
   --accent: #18181b;
   --accent-foreground: #fafafa;
-  --destructive: #7f1d1d;
+  --destructive: #ef4444;
   --destructive-foreground: #fafafa;
   --success: #15803d;
   --success-foreground: #dcfce7;
@@ -97,7 +141,13 @@
   --info-foreground: #bae6fd;
   --border: #27272a;
   --input: #27272a;
-  --ring: #fafafa;
+  --ring: #6366f1;
+  --ring-rgb: 99, 102, 241;
+  --destructive-rgb: 239, 68, 68;
+  --primary-rgb: 250, 250, 250;
+  --success-rgb: 21, 128, 61;
+  --warning-rgb: 202, 138, 4;
+  --info-rgb: 3, 105, 161;
 }
 
 [data-theme='futuristic'] {
@@ -127,6 +177,12 @@
   --border: rgba(99, 102, 241, 0.3);
   --input-border: rgba(99, 102, 241, 0.25);
   --ring: #6366F1;
+  --ring-rgb: 99, 102, 241;
+  --destructive-rgb: 239, 68, 68;
+  --primary-rgb: 99, 102, 241;
+  --success-rgb: 16, 185, 129;
+  --warning-rgb: 245, 158, 11;
+  --info-rgb: 99, 102, 241;
   --radius: 0.75rem;
   --font-family-body: 'Inter Variable', 'SF Pro Display', system-ui, sans-serif;
   --font-family-heading: 'Inter Display', 'SF Pro Display', sans-serif;
@@ -137,6 +193,70 @@
   --glow-medium: 0 0 12px;
   --glow-large: 0 0 16px;
   --glow-focus: 0 0 0 3px;
+}
+
+/* Cyberpunk theme - base variables for scalable theme system */
+[data-theme='cyberpunk'] {
+  /* Base cyberpunk color palette */
+  --background: #000000;
+  --foreground: #39ff14;
+  --card: #0a0a0a;
+  --card-foreground: #39ff14;
+  --popover: #1a1a1a;
+  --popover-foreground: #39ff14;
+  --primary: #39ff14;
+  --primary-foreground: #000000;
+  --secondary: #ff0000;
+  --secondary-foreground: #000000;
+  --muted: #2a2a2a;
+  --muted-foreground: #3a3a3a;
+  --accent: #00ffff;
+  --accent-foreground: #000000;
+  --destructive: #ff0000;
+  --destructive-foreground: #000000;
+  --success: #39ff14;
+  --success-foreground: #000000;
+  --warning: #ff6600;
+  --warning-foreground: #000000;
+  --info: #00ffff;
+  --info-foreground: #000000;
+  --border: #3a3a3a;
+  --input: #1a1a1a;
+  --input-border: #3a3a3a;
+  --ring: #39ff14;
+  --ring-rgb: 57, 255, 20;
+  --destructive-rgb: 255, 0, 0;
+  --primary-rgb: 57, 255, 20;
+  --success-rgb: 57, 255, 20;
+  --warning-rgb: 255, 102, 0;
+  --info-rgb: 0, 255, 255;
+  
+  /* Cyberpunk-specific variables for effects */
+  --cyber-matrix-green: #39ff14;
+  --cyber-doom-red: #ff0000;
+  --cyber-swordfish-cyan: #00ffff;
+  --cyber-neon-pink: #ff1493;
+  --cyber-tech-orange: #ff6600;
+  --cyber-void-black: #000000;
+  --cyber-dark-charcoal: #1a1a1a;
+  --cyber-medium-charcoal: #2a2a2a;
+  --cyber-light-charcoal: #3a3a3a;
+  
+  /* Font families for cyberpunk */
+  --font-family-body: 'Fira Code', 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
+  --font-family-heading: 'Orbitron', 'Exo 2', 'Rajdhani', sans-serif;
+  --font-family-mono: 'Fira Code', 'JetBrains Mono', monospace;
+  
+  /* Glow effects for cyberpunk */
+  --glow-green-sm: 0 0 5px rgba(57, 255, 20, 0.5);
+  --glow-green-md: 0 0 10px rgba(57, 255, 20, 0.6), 0 0 20px rgba(57, 255, 20, 0.3);
+  --glow-green-lg: 0 0 15px rgba(57, 255, 20, 0.7), 0 0 30px rgba(57, 255, 20, 0.4);
+  --glow-red-sm: 0 0 5px rgba(255, 0, 0, 0.5);
+  --glow-red-md: 0 0 10px rgba(255, 0, 0, 0.6), 0 0 20px rgba(255, 0, 0, 0.3);
+  --glow-cyan-sm: 0 0 5px rgba(0, 255, 255, 0.5);
+  --glow-cyan-md: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.3);
+  --glow-pink-sm: 0 0 5px rgba(255, 20, 147, 0.5);
+  --glow-pink-md: 0 0 10px rgba(255, 20, 147, 0.6), 0 0 20px rgba(255, 20, 147, 0.3);
 }
 
 /* Futuristic theme visuals */
@@ -150,7 +270,7 @@
   border-width: 2px;
   font-weight: 600;
   /* Padding is handled by size classes in the component */
-  transition: all 0.3s ease;
+  transition: all var(--duration-normal) var(--easing-cyberpunk);
 }
 
 [data-theme='futuristic'] .button--primary {
@@ -181,6 +301,119 @@
   background-color: var(--glow-color);
   color: var(--secondary-foreground);
   box-shadow: 0 0 15px var(--glow-color), inset 0 0 8px var(--glow-color);
+}
+
+/* Cyberpunk Button Base Styles - Scalable for future themes */
+[data-theme='cyberpunk'] .button--cyberpunk-matrix {
+  background: linear-gradient(135deg, rgba(57, 255, 20, 0.1), rgba(57, 255, 20, 0.05));
+  border: 1px solid var(--cyber-matrix-green);
+  color: var(--cyber-matrix-green);
+  text-shadow: 0 0 5px var(--cyber-matrix-green);
+  box-shadow: var(--glow-green-sm);
+  transition: all var(--duration-normal) var(--easing-cyberpunk);
+  font-family: var(--font-family-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='cyberpunk'] .button--cyberpunk-matrix:hover {
+  background: linear-gradient(135deg, rgba(57, 255, 20, 0.2), rgba(57, 255, 20, 0.1));
+  box-shadow: var(--glow-green-md);
+  text-shadow: 0 0 8px var(--cyber-matrix-green);
+  transform: translateY(-1px);
+}
+
+[data-theme='cyberpunk'] .button--cyberpunk-doom {
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.05));
+  border: 1px solid var(--cyber-doom-red);
+  color: var(--cyber-doom-red);
+  text-shadow: 0 0 5px var(--cyber-doom-red);
+  box-shadow: var(--glow-red-sm);
+  transition: all var(--duration-normal) var(--easing-cyberpunk);
+  font-family: var(--font-family-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='cyberpunk'] .button--cyberpunk-doom:hover {
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0.1));
+  box-shadow: var(--glow-red-md);
+  text-shadow: 0 0 8px var(--cyber-doom-red);
+  transform: translateY(-1px);
+}
+
+[data-theme='cyberpunk'] .button--cyberpunk-ghost {
+  background: rgba(58, 58, 58, 0.2);
+  border: 1px solid var(--cyber-light-charcoal);
+  color: var(--cyber-light-charcoal);
+  text-shadow: 0 0 3px var(--cyber-light-charcoal);
+  transition: all var(--duration-normal) var(--easing-cyberpunk);
+  font-family: var(--font-family-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='cyberpunk'] .button--cyberpunk-ghost:hover {
+  background: rgba(58, 58, 58, 0.4);
+  color: var(--foreground);
+  text-shadow: 0 0 5px var(--foreground);
+  transform: translateY(-1px);
+}
+
+[data-theme='cyberpunk'] .button--cyberpunk-neon {
+  background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(255, 20, 147, 0.05));
+  border: 1px solid var(--cyber-neon-pink);
+  color: var(--cyber-neon-pink);
+  text-shadow: 0 0 5px var(--cyber-neon-pink);
+  box-shadow: var(--glow-pink-sm);
+  transition: all var(--duration-normal) var(--easing-cyberpunk);
+  font-family: var(--font-family-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme='cyberpunk'] .button--cyberpunk-neon:hover {
+  background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(255, 20, 147, 0.1));
+  box-shadow: var(--glow-pink-md);
+  text-shadow: 0 0 8px var(--cyber-neon-pink);
+  transform: translateY(-1px);
+}
+
+/* Cyberpunk Glow Effect Utility Classes - Scalable for future themes */
+.cyber-glow-subtle {
+  box-shadow: var(--glow-green-sm);
+  text-shadow: 0 0 3px var(--cyber-matrix-green);
+}
+
+.cyber-glow-normal {
+  box-shadow: var(--glow-green-md);
+  text-shadow: 0 0 5px var(--cyber-matrix-green);
+}
+
+.cyber-glow-intense {
+  box-shadow: var(--glow-green-lg);
+  text-shadow: 0 0 10px var(--cyber-matrix-green);
+}
+
+/* Color-specific glow variants for future extensibility */
+.cyber-glow-matrix {
+  box-shadow: var(--glow-green-md);
+  text-shadow: 0 0 5px var(--cyber-matrix-green);
+}
+
+.cyber-glow-doom {
+  box-shadow: var(--glow-red-md);
+  text-shadow: 0 0 5px var(--cyber-doom-red);
+}
+
+.cyber-glow-neon {
+  box-shadow: var(--glow-pink-md);
+  text-shadow: 0 0 5px var(--cyber-neon-pink);
+}
+
+.cyber-glow-swordfish {
+  box-shadow: var(--glow-cyan-md);
+  text-shadow: 0 0 5px var(--cyber-swordfish-cyan);
 }
 
 .skeleton-glow {
@@ -426,6 +659,246 @@ p {
   box-shadow: 0 0 30px rgba(127, 90, 240, 0.3);
 }
 
+/* Futuristic theme progress bar enhancements */
+[data-theme='futuristic'] .progress-bar-track {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='futuristic'] .progress-bar-track--primary {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+[data-theme='futuristic'] .progress-bar-track--success {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+[data-theme='futuristic'] .progress-bar-track--warning {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+[data-theme='futuristic'] .progress-bar-track--danger {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+[data-theme='futuristic'] .progress-bar-track--info {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+[data-theme='futuristic'] .progress-bar-indicator {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.8), rgba(99, 102, 241, 0.6));
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+  position: relative;
+}
+
+[data-theme='futuristic'] .progress-bar-indicator::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: progress-shine 2s infinite;
+}
+
+[data-theme='futuristic'] .progress-bar-indicator--primary {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.8), rgba(99, 102, 241, 0.6));
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+}
+
+[data-theme='futuristic'] .progress-bar-indicator--success {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.8), rgba(16, 185, 129, 0.6));
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+[data-theme='futuristic'] .progress-bar-indicator--warning {
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.8), rgba(245, 158, 11, 0.6));
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+[data-theme='futuristic'] .progress-bar-indicator--danger {
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.8), rgba(239, 68, 68, 0.6));
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+}
+
+[data-theme='futuristic'] .progress-bar-indicator--info {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.8), rgba(99, 102, 241, 0.6));
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+}
+
+@keyframes progress-shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Cyberpunk theme progress bar enhancements */
+[data-theme='cyberpunk'] .progress-bar-track {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.3),
+    0 0 4px rgba(0, 255, 255, 0.1);
+}
+
+[data-theme='cyberpunk'] .progress-bar-track--cyberpunk-matrix {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(0, 255, 65, 0.4);
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.3),
+    0 0 6px rgba(0, 255, 65, 0.2);
+}
+
+[data-theme='cyberpunk'] .progress-bar-track--cyberpunk-doom {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 0, 0, 0.4);
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.3),
+    0 0 6px rgba(255, 0, 0, 0.2);
+}
+
+[data-theme='cyberpunk'] .progress-bar-track--cyberpunk-ghost {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(147, 51, 234, 0.4);
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.3),
+    0 0 6px rgba(147, 51, 234, 0.2);
+}
+
+[data-theme='cyberpunk'] .progress-bar-track--cyberpunk-neon {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 20, 147, 0.4);
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.3),
+    0 0 6px rgba(255, 20, 147, 0.2);
+}
+
+[data-theme='cyberpunk'] .progress-bar-indicator--cyberpunk-matrix {
+  background: linear-gradient(90deg, #00ff41, #00ff41);
+  box-shadow: 
+    0 0 8px rgba(0, 255, 65, 0.8),
+    0 0 16px rgba(0, 255, 65, 0.4);
+  animation: cyberpunk-pulse 2s infinite;
+}
+
+[data-theme='cyberpunk'] .progress-bar-indicator--cyberpunk-doom {
+  background: linear-gradient(90deg, #ff0000, #ff4444);
+  box-shadow: 
+    0 0 8px rgba(255, 0, 0, 0.8),
+    0 0 16px rgba(255, 0, 0, 0.4);
+  animation: cyberpunk-pulse 2s infinite;
+}
+
+[data-theme='cyberpunk'] .progress-bar-indicator--cyberpunk-ghost {
+  background: linear-gradient(90deg, #9333ea, #a855f7);
+  box-shadow: 
+    0 0 8px rgba(147, 51, 234, 0.8),
+    0 0 16px rgba(147, 51, 234, 0.4);
+  animation: cyberpunk-pulse 2s infinite;
+}
+
+[data-theme='cyberpunk'] .progress-bar-indicator--cyberpunk-neon {
+  background: linear-gradient(90deg, #ff1493, #ff69b4);
+  box-shadow: 
+    0 0 8px rgba(255, 20, 147, 0.8),
+    0 0 16px rgba(255, 20, 147, 0.4);
+  animation: cyberpunk-pulse 2s infinite;
+}
+
+/* Cyberpunk special effects */
+.cyber-scanlines .progress-bar-track::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    transparent 50%,
+    rgba(0, 255, 255, 0.03) 50%,
+    rgba(0, 255, 255, 0.03) 51%,
+    transparent 51%
+  );
+  background-size: 100% 2px;
+  pointer-events: none;
+}
+
+.cyber-glow-subtle .progress-bar-indicator {
+  box-shadow: 0 0 4px currentColor !important;
+}
+
+.cyber-glow-normal .progress-bar-indicator {
+  box-shadow: 0 0 8px currentColor !important;
+}
+
+.cyber-glow-intense .progress-bar-indicator {
+  box-shadow: 0 0 16px currentColor, 0 0 32px currentColor !important;
+}
+
+@keyframes cyberpunk-pulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+/* Matrix rain effect for progress bars */
+.cyber-matrix-overlay .progress-bar-track::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 40% 20%, rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 60% 80%, rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 80% 30%, rgba(0, 255, 65, 0.1) 1px, transparent 1px);
+  background-size: 8px 8px;
+  animation: matrix-rain 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes matrix-rain {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+/* Enhanced indeterminate animation for cyberpunk */
+[data-theme='cyberpunk'] .progress-bar-indicator--indeterminate {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 255, 0.8),
+    rgba(0, 255, 255, 0.4),
+    transparent
+  );
+  background-size: 50% 100%;
+  animation: cyberpunk-indeterminate 1.5s infinite ease-in-out;
+  box-shadow: 
+    0 0 8px rgba(0, 255, 255, 0.6),
+    0 0 16px rgba(0, 255, 255, 0.3);
+}
+
+@keyframes cyberpunk-indeterminate {
+  0% { background-position: -50% 0; }
+  100% { background-position: 150% 0; }
+}
+
 .card {
   border-radius: var(--radius);
   border: 1px solid var(--border);
@@ -506,29 +979,81 @@ p {
   border-radius: var(--radius);
   border: 1px solid var(--input);
   background-color: var(--background);
+  color: var(--foreground);
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .input:focus {
   outline: none;
   border-color: var(--ring);
+  box-shadow: 0 0 0 2px rgba(var(--ring-rgb, 2, 8, 23), 0.1);
 }
 
-[data-theme='futuristic'] .input {
-  background-color: transparent;
-  border: 2px solid var(--input-border);
-  border-radius: var(--radius);
+.input::placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
+}
+
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--muted);
+}
+
+.input--error {
+  border-color: var(--destructive);
+}
+
+.input--error:focus {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 2px rgba(var(--destructive-rgb, 239, 68, 68), 0.1);
+}
+
+/* Dark theme input overrides */
+[data-theme='dark'] .input {
+  background-color: var(--background);
+  border-color: var(--input);
   color: var(--foreground);
-  padding: 0.75rem 1rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-[data-theme='futuristic'] .input:focus {
-  outline: none;
+[data-theme='dark'] .input:focus {
   border-color: var(--ring);
-  box-shadow: 0 0 10px var(--ring);
+  box-shadow: 0 0 0 2px rgba(var(--ring-rgb), 0.2);
 }
+
+[data-theme='dark'] .input::placeholder {
+  color: var(--muted-foreground);
+}
+
+[data-theme='dark'] .input:disabled {
+  background-color: var(--muted);
+  border-color: var(--muted);
+  color: var(--muted-foreground);
+}
+
+/* Dark theme progress bar enhancements */
+[data-theme='dark'] .progress-bar-track--default {
+  background-color: var(--muted);
+}
+[data-theme='dark'] .progress-bar-track--primary {
+  background-color: rgba(var(--primary-rgb, 250, 250, 250), 0.2);
+}
+[data-theme='dark'] .progress-bar-track--success {
+  background-color: rgba(21, 128, 61, 0.3);
+}
+[data-theme='dark'] .progress-bar-track--warning {
+  background-color: rgba(202, 138, 4, 0.3);
+}
+[data-theme='dark'] .progress-bar-track--danger {
+  background-color: rgba(239, 68, 68, 0.3);
+}
+[data-theme='dark'] .progress-bar-track--info {
+  background-color: rgba(3, 105, 161, 0.3);
+}
+
+/* Futuristic input styles are in futuristic-components.css */
 
 /* Badge */
 .badge {
@@ -1436,6 +1961,7 @@ p {
   border-radius: 9999px; /* rounded-full */
   overflow: hidden;
   background-color: var(--muted);
+  position: relative;
 }
 
 .progress-bar-indicator {
@@ -1443,6 +1969,7 @@ p {
   border-radius: 9999px; /* rounded-full */
   transition: width 0.3s ease-in-out;
   background-color: var(--primary);
+  position: relative;
 }
 
 /* Sizes */
@@ -1457,23 +1984,47 @@ p {
 }
 
 /* Variants - Track */
+.progress-bar-track--default {
+  background-color: var(--muted);
+}
 .progress-bar-track--primary {
-  background-color: rgba(var(--primary-rgb), 0.2);
+  background-color: rgba(var(--primary-rgb, 99, 102, 241), 0.2);
 }
 .progress-bar-track--success {
-  background-color: rgba(var(--success-rgb), 0.2);
+  background-color: rgba(22, 163, 74, 0.2);
 }
 .progress-bar-track--warning {
-  background-color: rgba(var(--warning-rgb), 0.2);
+  background-color: rgba(245, 158, 11, 0.2);
 }
 .progress-bar-track--danger {
-  background-color: rgba(var(--destructive-rgb), 0.2);
+  background-color: rgba(239, 68, 68, 0.2);
 }
 .progress-bar-track--info {
-  background-color: rgba(var(--info-rgb), 0.2);
+  background-color: rgba(14, 165, 233, 0.2);
+}
+
+/* Cyberpunk variants - Track */
+.progress-bar-track--cyberpunk-matrix {
+  background-color: rgba(0, 255, 65, 0.1);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+}
+.progress-bar-track--cyberpunk-doom {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+.progress-bar-track--cyberpunk-ghost {
+  background-color: rgba(147, 51, 234, 0.1);
+  border: 1px solid rgba(147, 51, 234, 0.3);
+}
+.progress-bar-track--cyberpunk-neon {
+  background-color: rgba(255, 20, 147, 0.1);
+  border: 1px solid rgba(255, 20, 147, 0.3);
 }
 
 /* Variants - Indicator */
+.progress-bar-indicator--default {
+  background-color: var(--primary);
+}
 .progress-bar-indicator--primary {
   background-color: var(--primary);
 }
@@ -1488,6 +2039,24 @@ p {
 }
 .progress-bar-indicator--info {
   background-color: var(--info);
+}
+
+/* Cyberpunk variants - Indicator */
+.progress-bar-indicator--cyberpunk-matrix {
+  background: linear-gradient(90deg, #00ff41, #00ff41);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+}
+.progress-bar-indicator--cyberpunk-doom {
+  background: linear-gradient(90deg, #ff0000, #ff4444);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+.progress-bar-indicator--cyberpunk-ghost {
+  background: linear-gradient(90deg, #9333ea, #a855f7);
+  box-shadow: 0 0 8px rgba(147, 51, 234, 0.6);
+}
+.progress-bar-indicator--cyberpunk-neon {
+  background: linear-gradient(90deg, #ff1493, #ff69b4);
+  box-shadow: 0 0 8px rgba(255, 20, 147, 0.6);
 }
 
 /* Indeterminate */
@@ -2086,18 +2655,7 @@ p {
   font-size: var(--font-size-lg);
 }
 
-[data-theme='futuristic'] .input {
-  background-color: var(--neutral100, #0F0F1A);
-  border-color: var(--primary);
-  box-shadow: 0 0 0 1px transparent;
-  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
-}
-
-[data-theme='futuristic'] .input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 1px var(--primary), 0 0 8px var(--primary);
-  outline: none;
-}
+/* Futuristic input styles moved to futuristic-components.css */
 
 /* Input wrapper */
 .input-wrapper {

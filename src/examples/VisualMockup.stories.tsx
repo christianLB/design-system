@@ -1,10 +1,12 @@
 /**
- * Enhanced full-page dashboard showcasing v3.3.0 futuristic theme improvements.
+ * Enhanced full-page dashboard showcasing theme system responsiveness.
+ * Automatically adapts to any theme (light, dark, futuristic, cyberpunk).
  * Demonstrates professional aesthetics, performance optimizations, and complete component coverage.
  */
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/theme/ThemeContext';
 import {
   AppLayout,
   Heading,
@@ -36,6 +38,7 @@ import {
 } from '@/components';
 import { Link } from '@/components/Link';
 import { Sidebar, type SidebarItem } from '@/components/Sidebar';
+import { DarkThemeToggle } from '@/components/DarkThemeToggle';
 import type { ColumnDef } from '@tanstack/react-table';
 
 interface Row {
@@ -47,10 +50,17 @@ interface Row {
 }
 
 const columns: ColumnDef<Row>[] = [
-  { accessorKey: 'name', header: 'User' },
+  { 
+    accessorKey: 'name', 
+    header: 'User',
+    size: 250, // ~35%
+    minSize: 180,
+  },
   { 
     accessorKey: 'status', 
     header: 'Status',
+    size: 130, // ~18%
+    minSize: 100,
     cell: ({ row }) => (
       <StatusBadge 
         variant={
@@ -64,8 +74,18 @@ const columns: ColumnDef<Row>[] = [
       </StatusBadge>
     )
   },
-  { accessorKey: 'lastLogin', header: 'Last Login' },
-  { accessorKey: 'visits', header: 'Sessions' },
+  { 
+    accessorKey: 'lastLogin', 
+    header: 'Last Login',
+    size: 200, // ~28%
+    minSize: 150,
+  },
+  { 
+    accessorKey: 'visits', 
+    header: 'Sessions',
+    size: 140, // ~19%
+    minSize: 100,
+  },
 ];
 
 const statuses = ['Active', 'Idle', 'Offline'];
@@ -126,7 +146,7 @@ const meta: Meta<typeof VisualMockupDemo> = {
     docs: {
       description: {
         component:
-          'Enhanced full-page dashboard showcasing v3.3.0 futuristic theme with professional aesthetics, optimized performance, and comprehensive component integration.',
+          'Enhanced full-page dashboard that automatically adapts to any theme. **Click the theme toggle button** in the header (next to notifications) to cycle through light → dark → futuristic → cyberpunk themes and see dynamic theming in action. Features professional aesthetics, optimized performance, and comprehensive component integration.',
       },
     },
   },
@@ -135,52 +155,62 @@ export default meta;
 
 type Story = StoryObj;
 
+// Theme-responsive wrapper component
+const ThemeResponsiveWrapper = ({ children }: { children: React.ReactNode }) => {
+  const { theme } = useTheme();
+  
+  // Determine theme name from theme object
+  const themeName = theme?.meta?.name?.toLowerCase().includes('cyberpunk') ? 'cyberpunk' :
+                   theme?.meta?.name?.toLowerCase().includes('futuristic') ? 'futuristic' :
+                   theme?.meta?.name?.toLowerCase().includes('dark') ? 'dark' : 'light';
+  
+  return (
+    <div 
+      data-theme={themeName}
+      className={`${themeName}-wrap`}
+    >
+      {/* Dynamic background effects based on theme */}
+      {themeName === 'futuristic' && <div className="futuristic-bg" aria-hidden />}
+      {themeName === 'cyberpunk' && <div className="cyberpunk-bg" aria-hidden />}
+      {children}
+    </div>
+  );
+};
+
 export const VisualMockup: Story = {
   render: () => (
-    <div data-theme="futuristic" className="futuristic-wrap">
-      <div className="futuristic-bg" />
+    <ThemeResponsiveWrapper>
       <VisualMockupDemo />
-    </div>
+    </ThemeResponsiveWrapper>
   ),
   parameters: {
     layout: 'fullscreen',
-    backgrounds: {
-      default: 'futuristic',
-      values: [
-        { name: 'futuristic', value: '#0F172A' },
-        { name: 'dark', value: '#000000' },
-      ],
-    },
   },
 };
 
 export const ProfessionalDashboard: Story = {
   render: () => (
-    <div data-theme="futuristic" className="futuristic-wrap" style={{ filter: 'contrast(0.8)' } as React.CSSProperties}>
-      <div className="futuristic-bg" />
-      <VisualMockupDemo variant="professional" />
-    </div>
+    <ThemeResponsiveWrapper>
+      <div style={{ filter: 'contrast(0.8)' } as React.CSSProperties}>
+        <VisualMockupDemo variant="professional" />
+      </div>
+    </ThemeResponsiveWrapper>
   ),
   parameters: {
     layout: 'fullscreen',
-    backgrounds: {
-      default: 'futuristic'
-    },
   },
 };
 
 export const HighContrastMode: Story = {
   render: () => (
-    <div data-theme="futuristic" className="futuristic-wrap" style={{ filter: 'contrast(1.5)' } as React.CSSProperties}>
-      <div className="futuristic-bg" />
-      <VisualMockupDemo variant="high-contrast" />
-    </div>
+    <ThemeResponsiveWrapper>
+      <div style={{ filter: 'contrast(1.5)' } as React.CSSProperties}>
+        <VisualMockupDemo variant="high-contrast" />
+      </div>
+    </ThemeResponsiveWrapper>
   ),
   parameters: {
     layout: 'fullscreen',
-    backgrounds: {
-      default: 'futuristic'
-    },
   },
 };
 
@@ -189,6 +219,7 @@ interface VisualMockupDemoProps {
 }
 
 const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) => {
+  const { theme } = useTheme();
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -196,6 +227,10 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
   const [isLoading, setIsLoading] = React.useState(false);
   const [notifications] = React.useState(3);
   const [systemStatus, setSystemStatus] = React.useState<'online' | 'maintenance' | 'error'>('online');
+  
+  // Determine if cyberpunk theme is active
+  const isCyberpunk = theme?.meta?.name?.toLowerCase().includes('cyberpunk');
+  const isFuturistic = theme?.meta?.name?.toLowerCase().includes('futuristic');
   
   // Pagination state
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -256,8 +291,10 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
           <SimpleHeader
             left={
               <Stack direction="row" align="center" gap="sm">
-                <Icon name="Zap" size="lg" />
-                <Text weight="bold" className="text-lg">FutureDash</Text>
+                <Icon name={isCyberpunk ? "Cpu" : "Zap"} size="lg" />
+                <Text weight="bold" className="text-lg">
+                  {isCyberpunk ? "CyberDash" : isFuturistic ? "FutureDash" : "Dashboard"}
+                </Text>
               </Stack>
             }
             navigation={[
@@ -268,6 +305,7 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
             ]}
             right={
               <Stack direction="row" gap="sm">
+                <DarkThemeToggle />
                 <NotificationBadge count={notifications}>
                   <Button variant="ghost" size="sm">
                     <Icon name="Bell" size="sm" />
@@ -292,7 +330,7 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 <Heading as="h1" size={1}>
-                  Dashboard Overview
+                  {isCyberpunk ? "Neural Interface" : "Dashboard Overview"}
                 </Heading>
               </motion.div>
               <motion.div
@@ -300,7 +338,16 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
               >
-                <Text color="subtle">Welcome back, Admin. Here&apos;s your latest analytics.</Text>
+                <Text color="subtle">
+                  {isCyberpunk 
+                    ? "System online. Neural link established. Data streams active." 
+                    : isFuturistic
+                    ? "Quantum systems operational. Advanced protocols engaged."
+                    : theme?.meta?.name?.toLowerCase().includes('dark')
+                    ? "Welcome back, Admin. Night mode active."
+                    : "Welcome back, Admin. Here's your latest analytics."
+                  }
+                </Text>
               </motion.div>
             </Stack>
             <motion.div
@@ -346,7 +393,7 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
               <Stack direction="row" align="center" justify="between">
                 <CardTitle className="flex items-center gap-2">
                   <Icon name="Activity" size="md" className="text-primary" />
-                  System Health Monitor
+                  {isCyberpunk ? "Neural Network Status" : "System Health Monitor"}
                 </CardTitle>
                 <StatusIndicator 
                   status={systemStatus}
@@ -533,9 +580,29 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
             transition={{ delay: 0.7, duration: 0.5 }}
           >
             <Stack gap="md">
-              <Alert variant="success" title="System Updated" className="fade-in-up">
-                Futuristic theme v3.3.0 successfully applied! Enhanced performance and accessibility features are now active.
-              </Alert>
+              {isCyberpunk ? (
+                <Alert variant="success" title="Neural Interface Online" className="fade-in-up">
+                  Cyberpunk theme v3.5.1 active. Matrix protocols loaded. All systems operational.
+                </Alert>
+              ) : isFuturistic ? (
+                <Alert variant="success" title="Quantum Core Online" className="fade-in-up">
+                  Futuristic theme v3.5.1 successfully applied! Advanced quantum processing and neural networks are now active.
+                </Alert>
+              ) : theme?.meta?.name?.toLowerCase().includes('dark') ? (
+                <Alert variant="success" title="Dark Mode Active" className="fade-in-up">
+                  Dark theme v3.5.1 enabled. Reduced eye strain mode activated. Enhanced readability in low-light conditions.
+                </Alert>
+              ) : (
+                <Alert variant="success" title="Light Mode Active" className="fade-in-up">
+                  Light theme v3.5.1 active. Professional interface optimized for daylight viewing and productivity.
+                </Alert>
+              )}
+              
+              {isCyberpunk && (
+                <Alert variant="info" title="Security Protocol">
+                  Quantum encryption active. Neural firewall enabled. Unauthorized access blocked.
+                </Alert>
+              )}
               
               {variant === 'professional' && (
                 <Alert variant="info" title="Professional Mode Active">

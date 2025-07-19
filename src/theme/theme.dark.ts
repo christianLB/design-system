@@ -1,14 +1,8 @@
 import { lightTheme, ThemeTokens } from './theme.light';
+import { darkColorTokens } from './tokens/colors';
 
 export const darkTheme: ThemeTokens = {
-  colors: {
-    primary: '#fafafa',
-    primaryForeground: '#09090b',
-    secondary: '#18181b',
-    secondaryForeground: '#fafafa',
-    neutral100: '#0a0a0a',
-    neutral900: '#fafafa',
-  },
+  colors: darkColorTokens,
   typography: lightTheme.typography,
   spacing: lightTheme.spacing,
   motion: lightTheme.motion,
@@ -16,6 +10,6 @@ export const darkTheme: ThemeTokens = {
   radius: '0.5rem',
   zIndex: lightTheme.zIndex,
   borders: {
-    color: '#27272a',
+    color: darkColorTokens.border,
   },
 } as const;

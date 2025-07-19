@@ -1,0 +1,542 @@
+/* Animaciones Atmosféricas - Tema Biomecánico */
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.005);
+  }
+}
+
+@keyframes flow {
+  0% {
+    transform: translateX(-100%) scaleX(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0%) scaleX(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes synaptic {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(229, 110, 71, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(229, 110, 71, 0.4),
+      0 0 30px rgba(229, 110, 71, 0.2);
+  }
+}
+
+/* Clases Utilitarias Atmosféricas */
+
+.atmospheric-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.atmospheric-flow {
+  animation: flow 8s linear infinite;
+}
+
+.atmospheric-neural {
+  animation: synaptic 2s ease-in-out infinite alternate;
+}
+
+.atmospheric-pulse {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Gradientes Atmosféricos */
+
+.atmospheric-membrane {
+  background: linear-gradient(
+    135deg,
+    rgba(50, 55, 64, 0.8) 0%,
+    rgba(31, 35, 40, 0.9) 50%,
+    rgba(13, 17, 23, 1) 100%
+  );
+}
+
+.atmospheric-vessel {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(69, 74, 82, 0.6) 0%,
+    rgba(50, 55, 64, 0.8) 40%,
+    rgba(31, 35, 40, 0.95) 100%
+  );
+}
+
+.atmospheric-organ {
+  background: conic-gradient(
+    from 45deg,
+    rgba(31, 35, 40, 1) 0deg,
+    rgba(50, 55, 64, 0.9) 120deg,
+    rgba(69, 74, 82, 0.7) 240deg,
+    rgba(31, 35, 40, 1) 360deg
+  );
+}
+
+/* Bordes Orgánicos */
+
+.atmospheric-border-cell {
+  border-radius: 0.125rem;
+}
+
+.atmospheric-border-vessel {
+  border-radius: 0.25rem 0.5rem;
+}
+
+.atmospheric-border-organ {
+  border-radius: 0.375rem 0.75rem 0.25rem 0.625rem;
+}
+
+.atmospheric-border-cavity {
+  border-radius: 0.5rem 1rem 0.375rem 0.875rem;
+}
+
+/* Efectos de Profundidad */
+
+.atmospheric-depth-membrane {
+  box-shadow:
+    0 1px 3px rgba(13, 17, 23, 0.8),
+    inset 0 1px 0 rgba(246, 247, 248, 0.03);
+}
+
+.atmospheric-depth-organ {
+  box-shadow:
+    0 4px 12px rgba(13, 17, 23, 0.9),
+    inset 0 1px 0 rgba(246, 247, 248, 0.05);
+}
+
+.atmospheric-depth-cavity {
+  box-shadow:
+    0 8px 24px rgba(13, 17, 23, 0.95),
+    inset 0 2px 4px rgba(13, 17, 23, 0.8);
+}
+
+/* Tema Base */
+
+.theme-atmospheric {
+  background: #0d1117;
+  color: #f6f7f8;
+  font-family:
+    'Inter',
+    -apple-system,
+    system-ui,
+    sans-serif;
+}
+
+.theme-atmospheric * {
+  transition: all 0.2s ease;
+}
+
+/* Estados Vitales */
+
+.vital-element {
+  position: relative;
+}
+
+.vital-element::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(229, 110, 71, 0.05) 30%,
+    rgba(229, 110, 71, 0.1) 50%,
+    rgba(229, 110, 71, 0.05) 70%,
+    transparent 100%
+  );
+  opacity: 0;
+  animation: flow 6s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.vital-element.active::before {
+  opacity: 1;
+}
+
+/* Efectos de Hover Atmosféricos */
+
+.atmospheric-interactive:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 8px 25px rgba(13, 17, 23, 0.9),
+    0 0 15px rgba(229, 110, 71, 0.1);
+}
+
+.atmospheric-interactive:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Neural Pathways - Efectos decorativos */
+
+.neural-pathways {
+  position: relative;
+  overflow: hidden;
+}
+
+.neural-pathways::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(107, 114, 128, 0.3),
+    transparent
+  );
+  animation: flow 12s linear infinite;
+}
+
+.neural-pathways::before {
+  content: '';
+  position: absolute;
+  bottom: 30%;
+  right: 15%;
+  width: 1px;
+  height: 25%;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(107, 114, 128, 0.2),
+    transparent
+  );
+  animation: flow 15s linear infinite reverse;
+}
+
+/* Additional Atmospheric Effects */
+
+.atmospheric-circulation {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(229, 110, 71, 0.1) 30%,
+    rgba(229, 110, 71, 0.2) 50%,
+    rgba(229, 110, 71, 0.1) 70%,
+    transparent 100%
+  );
+  animation: flow 8s linear infinite;
+}
+
+.atmospheric-neural-grid {
+  background: radial-gradient(
+    circle at 30% 70%,
+    rgba(107, 114, 128, 0.1) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    circle at 70% 30%,
+    rgba(168, 174, 181, 0.05) 0%,
+    transparent 50%
+  );
+}
+
+/* Vessel Effects */
+
+.atmospheric-vessel-pulse {
+  box-shadow:
+    0 2px 8px rgba(229, 110, 71, 0.1),
+    inset 0 1px 2px rgba(13, 17, 23, 0.6);
+}
+
+.atmospheric-neural-shadow {
+  box-shadow:
+    inset 0 2px 8px rgba(13, 17, 23, 0.9),
+    0 1px 0 rgba(246, 247, 248, 0.02);
+}
+
+/* Organism Border Radius */
+
+.atmospheric-border-organism {
+  border-radius: 50%;
+}
+
+/* Enhanced Depth Effects */
+
+.atmospheric-depth-pulse {
+  box-shadow:
+    0 0 20px rgba(229, 110, 71, 0.2),
+    0 0 40px rgba(229, 110, 71, 0.1);
+}
+
+/* Biomechanical Texture Effects */
+
+.atmospheric-texture-membrane {
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(229, 110, 71, 0.02) 0%, transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(107, 114, 128, 0.01) 0%, transparent 30%),
+    linear-gradient(135deg, transparent 0%, rgba(50, 55, 64, 0.05) 50%, transparent 100%);
+}
+
+.atmospheric-texture-organ {
+  background-image:
+    conic-gradient(from 45deg, rgba(31, 35, 40, 0.8) 0deg, rgba(50, 55, 64, 0.6) 120deg, rgba(69, 74, 82, 0.4) 240deg, rgba(31, 35, 40, 0.8) 360deg),
+    radial-gradient(ellipse at center, rgba(13, 17, 23, 0.2) 0%, transparent 70%);
+}
+
+/* Breathing Text Effects */
+
+.atmospheric-text-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.atmospheric-text-vital {
+  color: #e56e47;
+  text-shadow: 0 0 10px rgba(229, 110, 71, 0.3);
+}
+
+.atmospheric-text-ghost {
+  color: #6b7280;
+  opacity: 0.7;
+}
+
+/* Responsive Organism Effects */
+
+@media (max-width: 768px) {
+  .atmospheric-depth-cavity {
+    box-shadow:
+      0 4px 12px rgba(13, 17, 23, 0.9),
+      inset 0 1px 2px rgba(13, 17, 23, 0.6);
+  }
+  
+  .atmospheric-interactive:hover {
+    transform: translateY(-1px) scale(1.005);
+  }
+}
+
+/* Focus States for Accessibility */
+
+.atmospheric-focus:focus-visible {
+  outline: 2px solid rgba(229, 110, 71, 0.5);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(229, 110, 71, 0.1);
+}
+
+/* Loading States */
+
+.atmospheric-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.atmospheric-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(229, 110, 71, 0.1),
+    transparent
+  );
+  animation: flow 2s linear infinite;
+}
+
+/* Utility Classes for Spacing */
+
+.atmospheric-spacing-synapse {
+  padding: 0.125rem;
+}
+
+.atmospheric-spacing-membrane {
+  padding: 0.25rem;
+}
+
+.atmospheric-spacing-vessel {
+  padding: 0.5rem;
+}
+
+.atmospheric-spacing-organ {
+  padding: 1rem;
+}
+
+.atmospheric-spacing-cavity {
+  padding: 1.5rem;
+}
+
+.atmospheric-spacing-chamber {
+  padding: 2rem;
+}
+
+.atmospheric-spacing-system {
+  padding: 3rem;
+}
+
+.atmospheric-spacing-organism {
+  padding: 4rem;
+}
+
+/* Typography Variants */
+
+.atmospheric-font-organic {
+  font-family: 'Crimson Text', Georgia, serif;
+}
+
+.atmospheric-font-neural {
+  font-family: 'Space Mono', 'Courier New', monospace;
+}
+
+.atmospheric-text-whisper {
+  font-size: 0.625rem;
+}
+
+.atmospheric-text-pulse {
+  font-size: 0.75rem;
+}
+
+.atmospheric-text-breath {
+  font-size: 0.875rem;
+}
+
+.atmospheric-text-heartbeat {
+  font-size: 1rem;
+}
+
+.atmospheric-text-circulation {
+  font-size: 1.125rem;
+}
+
+.atmospheric-text-respiration {
+  font-size: 1.25rem;
+}
+
+.atmospheric-text-consciousness {
+  font-size: 1.5rem;
+}
+
+.atmospheric-text-awakening {
+  font-size: 1.875rem;
+}
+
+.atmospheric-text-transcendence {
+  font-size: 2.25rem;
+}
+
+/* Line Heights */
+
+.atmospheric-leading-compressed {
+  line-height: 1.2;
+}
+
+.atmospheric-leading-natural {
+  line-height: 1.5;
+}
+
+.atmospheric-leading-expanded {
+  line-height: 1.8;
+}
+
+/* State Modifiers */
+
+.atmospheric-state-dormant {
+  opacity: 0.6;
+  animation: none;
+}
+
+.atmospheric-state-active {
+  opacity: 1;
+}
+
+.atmospheric-state-vital {
+  opacity: 1;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.atmospheric-state-neural {
+  animation: synaptic 2s ease-in-out infinite alternate;
+}
+
+/* Complex Biomechanical Patterns */
+
+.atmospheric-pattern-ribcage {
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgba(107, 114, 128, 0.03) 8px,
+      rgba(107, 114, 128, 0.03) 9px
+    );
+}
+
+.atmospheric-pattern-spine {
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 16px,
+      rgba(107, 114, 128, 0.02) 16px,
+      rgba(107, 114, 128, 0.02) 18px
+    );
+}
+
+/* Atmospheric Containers */
+
+.atmospheric-container-chamber {
+  background: linear-gradient(
+    135deg,
+    rgba(50, 55, 64, 0.8) 0%,
+    rgba(31, 35, 40, 0.9) 50%,
+    rgba(13, 17, 23, 1) 100%
+  );
+  border-radius: 0.5rem 1rem 0.375rem 0.875rem;
+  box-shadow:
+    0 8px 24px rgba(13, 17, 23, 0.95),
+    inset 0 2px 4px rgba(13, 17, 23, 0.8);
+}
+
+.atmospheric-container-organ {
+  background: conic-gradient(
+    from 45deg,
+    rgba(31, 35, 40, 1) 0deg,
+    rgba(50, 55, 64, 0.9) 120deg,
+    rgba(69, 74, 82, 0.7) 240deg,
+    rgba(31, 35, 40, 1) 360deg
+  );
+  border-radius: 0.375rem 0.75rem 0.25rem 0.625rem;
+  box-shadow:
+    0 4px 12px rgba(13, 17, 23, 0.9),
+    inset 0 1px 0 rgba(246, 247, 248, 0.05);
+}
+
+.atmospheric-container-vessel {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(69, 74, 82, 0.6) 0%,
+    rgba(50, 55, 64, 0.8) 40%,
+    rgba(31, 35, 40, 0.95) 100%
+  );
+  border-radius: 0.25rem 0.5rem;
+  box-shadow:
+    0 1px 3px rgba(13, 17, 23, 0.8),
+    inset 0 1px 0 rgba(246, 247, 248, 0.03);
+}

@@ -60,3 +60,5 @@ export * from './Skeleton';
 export * from './AppLayout';
 export * from './Login';
 export * from './Link';
+export * from './Terminal';
+export * from './HUD';

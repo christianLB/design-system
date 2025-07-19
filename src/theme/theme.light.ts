@@ -1,12 +1,7 @@
+import { lightColorTokens, type SemanticColorTokens } from './tokens/colors';
+
 export interface ThemeTokens {
-  colors: {
-    primary: string;
-    primaryForeground: string;
-    secondary: string;
-    secondaryForeground: string;
-    neutral100: string;
-    neutral900: string;
-  };
+  colors: SemanticColorTokens;
   typography: {
     fontFamily: string;
     fontSize: {
@@ -55,14 +50,7 @@ export interface ThemeTokens {
 }
 
 export const lightTheme: ThemeTokens = {
-  colors: {
-    primary: '#1e40af',
-    primaryForeground: '#ffffff',
-    secondary: '#4b5563',
-    secondaryForeground: '#ffffff',
-    neutral100: '#f4f4f5',
-    neutral900: '#171717',
-  },
+  colors: lightColorTokens,
   typography: {
     fontFamily: 'system-ui, sans-serif',
     fontSize: {
@@ -103,7 +91,7 @@ export const lightTheme: ThemeTokens = {
     tooltip: 1500,
   },
   borders: {
-    color: '#e4e4e7',
+    color: lightColorTokens.border,
   },
 } as const;
 

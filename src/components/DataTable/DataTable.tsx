@@ -105,6 +105,8 @@ export function DataTable<TData extends { id: React.Key }>({
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: sortable ? getSortedRowModel() : undefined,
     enableSorting: sortable,
+    enableColumnResizing: false,
+    columnResizeMode: 'onChange',
   });
 
   React.useEffect(() => {
@@ -126,7 +128,10 @@ export function DataTable<TData extends { id: React.Key }>({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-            <table className={clsx('data-table', 'w-full', 'border-collapse', 'mb-4')}>
+            <table 
+              className={clsx('data-table', 'w-full', 'border-collapse', 'mb-4')}
+              style={{ tableLayout: 'fixed' }}
+            >
         <thead>
           {headers.map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -147,6 +152,10 @@ export function DataTable<TData extends { id: React.Key }>({
                       'border border-[var(--border)] bg-[var(--secondary)] px-[var(--spacing-md)] py-[var(--spacing-sm)] text-left',
                       sortable && header.column.getCanSort() && 'cursor-pointer select-none'
                     )}
+                    style={{
+                      width: header.getSize(),
+                      minWidth: header.column.columnDef.minSize,
+                    }}
                   >
                     {header.isPlaceholder
                       ? null
@@ -193,6 +202,10 @@ export function DataTable<TData extends { id: React.Key }>({
                     <td
                       key={cell.id}
                       className="border border-[var(--border)] px-[var(--spacing-md)] py-[var(--spacing-sm)]"
+                      style={{
+                        width: cell.column.getSize(),
+                        minWidth: cell.column.columnDef.minSize,
+                      }}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>

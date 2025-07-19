@@ -14,7 +14,14 @@ export type ButtonVariant =
   | 'destructive'
   | 'success'
   | 'outline'
-  | 'link';
+  | 'link'
+  | 'cyberpunk-matrix'
+  | 'cyberpunk-doom'
+  | 'cyberpunk-ghost'
+  | 'cyberpunk-neon'
+  | 'membrane'
+  | 'vessel'
+  | 'neural';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 // Use HTMLMotionProps as the base type for our Button
@@ -28,6 +35,16 @@ export interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'ref'> {
   glow?: boolean;
   /** Makes the button look like it's elevated from the surface */
   elevated?: boolean;
+  /** Adds cyberpunk scanline effects */
+  scanlines?: boolean;
+  /** Adds Matrix-style digital rain effect */
+  matrixRain?: boolean;
+  /** Cyberpunk glow intensity */
+  cyberpunkGlow?: 'subtle' | 'normal' | 'intense';
+  /** Adds pulsing/breathing effects for alien theme variants */
+  vital?: boolean;
+  /** Adds neural pathway effects for alien theme variants */
+  atmospheric?: boolean;
   /** Icon to display before button content */
   iconStart?: IconName;
   /** Icon to display after button content */
@@ -47,6 +64,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth = false,
       glow = false,
       elevated = false,
+      scanlines = false,
+      matrixRain = false,
+      cyberpunkGlow,
+      vital = false,
+      atmospheric = false,
       iconStart,
       iconEnd,
       iconSize,
@@ -76,6 +98,26 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth && 'button--full-width',
       elevated && 'button--elevated',
       glow && 'button--glow',
+      // Cyberpunk modifier classes
+      scanlines && 'cyber-scanlines',
+      matrixRain && 'cyber-matrix-overlay',
+      cyberpunkGlow && `cyber-glow-${cyberpunkGlow}`,
+      // Alien theme modifier classes
+      atmospheric && 'atmospheric-interactive neural-pathways',
+      vital && 'vital-element active',
+      // Specific alien variant classes
+      variant === 'membrane' && [
+        'atmospheric-membrane atmospheric-border-vessel atmospheric-depth-membrane',
+        vital && 'atmospheric-breathe'
+      ],
+      variant === 'vessel' && [
+        'atmospheric-vessel atmospheric-border-organ atmospheric-depth-organ atmospheric-vessel-pulse',
+        vital && 'atmospheric-pulse'
+      ],
+      variant === 'neural' && [
+        'atmospheric-neural-grid atmospheric-border-cell atmospheric-neural-shadow',
+        vital && 'atmospheric-neural'
+      ],
       // Custom class name passed as prop
       className
     );
@@ -131,9 +173,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {hasContent && (
             <span className="flex-1 text-center whitespace-nowrap">
               {/* Ensure we're only rendering valid React children */}
-              {typeof children === 'string' || React.isValidElement(children)
-                ? children
-                : String(children)}
+              {React.isValidElement(children) || typeof children === 'string' || typeof children === 'number' ? children : null}
             </span>
           )}
 
