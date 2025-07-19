@@ -10,7 +10,7 @@ import type { ThemePlugin } from '../plugins/types';
 /**
  * Theme variant types for different UI densities and accessibility needs
  */
-export type ThemeVariant = 'default' | 'compact' | 'comfortable' | 'high-contrast';
+export type ThemeVariant = 'default' | 'compact' | 'comfortable' | 'high-contrast' | 'custom';
 
 /**
  * Theme composition modes
@@ -236,7 +236,7 @@ export interface ThemeCustomization {
 /**
  * Built theme with all tokens resolved
  */
-export interface BuiltTheme extends Omit<ThemeTokens, 'radius' | 'zIndex'> {
+export interface BuiltTheme extends Omit<ThemeTokens, 'radius'> {
   // Extended properties for the theme builder
   meta: {
     name: string;
@@ -251,13 +251,13 @@ export interface BuiltTheme extends Omit<ThemeTokens, 'radius' | 'zIndex'> {
     createdAt: string;
     updatedAt: string;
   };
-  
+
   // Enhanced typing for colors
   colors: SemanticColorTokens;
-  
+
   // Animation system integration
   animations?: AnimationTokens;
-  
+
   // Additional theme tokens
   shadows?: {
     xs: string;
@@ -269,7 +269,7 @@ export interface BuiltTheme extends Omit<ThemeTokens, 'radius' | 'zIndex'> {
     inner: string;
     none: string;
   };
-  
+
   // Enhanced radius with more options (overrides ThemeTokens.radius)
   radius: {
     none: string;
@@ -282,7 +282,7 @@ export interface BuiltTheme extends Omit<ThemeTokens, 'radius' | 'zIndex'> {
     '3xl': string;
     full: string;
   };
-  
+
   // Enhanced z-index with more layers (overrides ThemeTokens.zIndex)
   zIndex: {
     hide: number;
@@ -354,12 +354,13 @@ export interface ThemeBuilderConfig {
   enableAnimations: boolean;
   enablePlugins: boolean;
   pluginTimeout: number;
+  compositionMode?: CompositionMode;
 }
 
 /**
  * Theme builder event types
  */
-export type ThemeBuilderEvent = 
+export type ThemeBuilderEvent =
   | { type: 'theme-built'; theme: BuiltTheme }
   | { type: 'validation-error'; errors: ThemeValidationError[] }
   | { type: 'validation-warning'; warnings: ThemeValidationWarning[] }

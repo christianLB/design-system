@@ -1,0 +1,14 @@
+[
+  {
+    "name": "CJS Bundle",
+    "path": "dist/index.cjs.js",
+    "limit": "2 MB",
+    "gzip": true
+  },
+  {
+    "name": "ESM Bundle",
+    "path": "dist/index.es.js",
+    "limit": "2 MB",
+    "gzip": true
+  }
+]

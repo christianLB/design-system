@@ -70,7 +70,7 @@ export const variantConfigs: Record<ThemeVariant, VariantConfig> = {
       blurMultiplier: 1,
     },
   },
-  
+
   compact: {
     spacing: {
       multiplier: 0.75,
@@ -99,7 +99,7 @@ export const variantConfigs: Record<ThemeVariant, VariantConfig> = {
       blurMultiplier: 0.75,
     },
   },
-  
+
   comfortable: {
     spacing: {
       multiplier: 1.25,
@@ -128,7 +128,7 @@ export const variantConfigs: Record<ThemeVariant, VariantConfig> = {
       blurMultiplier: 1.25,
     },
   },
-  
+
   'high-contrast': {
     spacing: {
       multiplier: 1.1,
@@ -157,6 +157,35 @@ export const variantConfigs: Record<ThemeVariant, VariantConfig> = {
       blurMultiplier: 0.5,
     },
   },
+
+  custom: {
+    spacing: {
+      multiplier: 1,
+      baseUnit: 'rem',
+    },
+    typography: {
+      sizeMultiplier: 1,
+      lineHeightMultiplier: 1,
+      fontWeightAdjustment: 0,
+    },
+    colors: {
+      contrastMultiplier: 1,
+      saturationMultiplier: 1,
+      brightnessAdjustment: 0,
+    },
+    motion: {
+      speedMultiplier: 1,
+      enableAnimations: true,
+    },
+    borders: {
+      widthMultiplier: 1,
+      radiusMultiplier: 1,
+    },
+    shadows: {
+      intensityMultiplier: 1,
+      blurMultiplier: 1,
+    },
+  },
 };
 
 /**
@@ -165,56 +194,53 @@ export const variantConfigs: Record<ThemeVariant, VariantConfig> = {
 export function applyVariant(
   baseTheme: BuiltTheme,
   variant: ThemeVariant,
-  customConfig?: Partial<VariantConfig>
+  customConfig?: Partial<VariantConfig>,
 ): BuiltTheme {
-  const config = customConfig 
+  const config = customConfig
     ? mergeVariantConfig(variantConfigs[variant], customConfig)
     : variantConfigs[variant];
-  
+
   const result = JSON.parse(JSON.stringify(baseTheme)) as BuiltTheme;
-  
+
   // Apply spacing modifications
   result.spacing = applySpacingVariant(result.spacing, config.spacing);
-  
+
   // Apply typography modifications
   result.typography = applyTypographyVariant(result.typography, config.typography);
-  
+
   // Apply color modifications
   result.colors = applyColorVariant(result.colors, config.colors);
-  
+
   // Apply motion modifications
   result.motion = applyMotionVariant(result.motion, config.motion);
-  
+
   // Apply radius modifications
   result.radius = applyRadiusVariant(result.radius, config.borders);
-  
+
   // Apply shadow modifications
   if (result.shadows) {
     result.shadows = applyShadowVariant(result.shadows, config.shadows);
   }
-  
+
   // Apply z-index modifications for high-contrast (ensure proper layering)
   if (variant === 'high-contrast') {
     result.zIndex = applyHighContrastZIndex(result.zIndex);
   }
-  
+
   // Update metadata
   result.meta = {
     ...result.meta,
     variant,
     updatedAt: new Date().toISOString(),
   };
-  
+
   return result;
 }
 
 /**
  * Merge variant configurations
  */
-function mergeVariantConfig(
-  base: VariantConfig,
-  custom: Partial<VariantConfig>
-): VariantConfig {
+function mergeVariantConfig(base: VariantConfig, custom: Partial<VariantConfig>): VariantConfig {
   return {
     spacing: { ...base.spacing, ...custom.spacing },
     typography: { ...base.typography, ...custom.typography },
@@ -228,13 +254,10 @@ function mergeVariantConfig(
 /**
  * Apply spacing variant modifications
  */
-function applySpacingVariant(
-  spacing: any,
-  config: VariantConfig['spacing']
-): any {
+function applySpacingVariant(spacing: any, config: VariantConfig['spacing']): any {
   const result = { ...spacing };
-  
-  Object.keys(result).forEach(key => {
+
+  Object.keys(result).forEach((key) => {
     const value = result[key];
     if (typeof value === 'string' && value.includes('rem')) {
       const numericValue = parseFloat(value);
@@ -243,22 +266,19 @@ function applySpacingVariant(
       }
     }
   });
-  
+
   return result;
 }
 
 /**
  * Apply typography variant modifications
  */
-function applyTypographyVariant(
-  typography: any,
-  config: VariantConfig['typography']
-): any {
+function applyTypographyVariant(typography: any, config: VariantConfig['typography']): any {
   const result = { ...typography };
-  
+
   // Apply font size modifications
   if (result.fontSize) {
-    Object.keys(result.fontSize).forEach(key => {
+    Object.keys(result.fontSize).forEach((key) => {
       const value = result.fontSize[key];
       if (typeof value === 'string' && value.includes('rem')) {
         const numericValue = parseFloat(value);
@@ -268,97 +288,95 @@ function applyTypographyVariant(
       }
     });
   }
-  
+
   // Apply font weight modifications
   if (result.fontWeight) {
-    Object.keys(result.fontWeight).forEach(key => {
+    Object.keys(result.fontWeight).forEach((key) => {
       const value = result.fontWeight[key];
       if (typeof value === 'number') {
         result.fontWeight[key] = Math.min(900, Math.max(100, value + config.fontWeightAdjustment));
       }
     });
   }
-  
+
   // Apply line height modifications
   if (result.lineHeight) {
-    Object.keys(result.lineHeight).forEach(key => {
+    Object.keys(result.lineHeight).forEach((key) => {
       const value = result.lineHeight[key];
       if (typeof value === 'number') {
         result.lineHeight[key] = value * config.lineHeightMultiplier;
       }
     });
   }
-  
+
   return result;
 }
 
 /**
  * Apply color variant modifications
  */
-function applyColorVariant(
-  colors: any,
-  config: VariantConfig['colors']
-): any {
+function applyColorVariant(colors: any, config: VariantConfig['colors']): any {
   let result = { ...colors };
-  
+
   // Apply contrast and saturation modifications
   if (config.contrastMultiplier !== 1 || config.saturationMultiplier !== 1) {
     const colorGroups = ['primary', 'secondary', 'destructive', 'success', 'warning'];
-    
-    colorGroups.forEach(group => {
+
+    colorGroups.forEach((group) => {
       if (result[group] && typeof result[group] === 'object') {
         result[group] = adjustColorGroup(result[group], config);
       }
     });
-    
+
     // Adjust surface colors
-    const surfaceColors = ['background', 'foreground', 'card', 'cardForeground', 'popover', 'popoverForeground'];
-    
-    surfaceColors.forEach(colorName => {
+    const surfaceColors = [
+      'background',
+      'foreground',
+      'card',
+      'cardForeground',
+      'popover',
+      'popoverForeground',
+    ];
+
+    surfaceColors.forEach((colorName) => {
       if (result[colorName] && typeof result[colorName] === 'string') {
         result[colorName] = adjustSingleColor(result[colorName], config);
       }
     });
   }
-  
+
   // Ensure high contrast accessibility
   if (config.contrastMultiplier > 1.2) {
     result = ensureHighContrastAccessibility(result);
   }
-  
+
   return result;
 }
 
 /**
  * Adjust a color group (primary, secondary, etc.)
  */
-function adjustColorGroup(
-  colorGroup: any,
-  config: VariantConfig['colors']
-): any {
+function adjustColorGroup(colorGroup: any, config: VariantConfig['colors']): any {
   const result = { ...colorGroup };
-  
+
   // Adjust individual color values
-  Object.keys(result).forEach(key => {
+  Object.keys(result).forEach((key) => {
     if (typeof result[key] === 'string') {
       result[key] = adjustSingleColor(result[key], config);
     }
   });
-  
+
   return result;
 }
 
 /**
  * Adjust a single color value
  */
-function adjustSingleColor(
-  color: string,
-  config: VariantConfig['colors']
-): string {
+function adjustSingleColor(color: string, config: VariantConfig['colors']): string {
   try {
     const colorObj = colord(color);
     let adjustedColor = colorObj;
-    
+
     // Apply saturation adjustment
     if (config.saturationMultiplier !== 1) {
       const hsl = adjustedColor.toHsl();
@@ -368,7 +386,7 @@ function adjustSingleColor(
         l: hsl.l,
       });
     }
-    
+
     // Apply brightness adjustment
     if (config.brightnessAdjustment !== 0) {
       const hsl = adjustedColor.toHsl();
@@ -378,7 +396,7 @@ function adjustSingleColor(
         l: Math.min(100, Math.max(0, hsl.l + config.brightnessAdjustment * 100)),
       });
     }
-    
+
     return adjustedColor.toHex();
   } catch {
     return color; // Return original if color parsing fails
@@ -390,7 +408,7 @@ function adjustSingleColor(
  */
 function ensureHighContrastAccessibility(colors: any): any {
   const result = { ...colors };
-  
+
   // Ensure strong contrast for text colors
   const textColorPairs = [
     ['foreground', 'background'],
@@ -399,7 +417,7 @@ function ensureHighContrastAccessibility(colors: any): any {
     ['mutedForeground', 'muted'],
     ['accentForeground', 'accent'],
   ];
-  
+
   textColorPairs.forEach(([foreground, background]) => {
     if (result[foreground] && result[background]) {
       if (!isAccessible(result[foreground], result[background], 'AAA')) {
@@ -409,11 +427,11 @@ function ensureHighContrastAccessibility(colors: any): any {
       }
     }
   });
-  
+
   // Ensure semantic colors have high contrast
   const semanticGroups = ['primary', 'secondary', 'destructive', 'success', 'warning'];
-  
-  semanticGroups.forEach(group => {
+
+  semanticGroups.forEach((group) => {
     if (result[group] && typeof result[group] === 'object') {
       const colorGroup = result[group];
       if (colorGroup.foreground && colorGroup.background) {
@@ -424,22 +442,19 @@ function ensureHighContrastAccessibility(colors: any): any {
       }
     }
   });
-  
+
   return result;
 }
 
 /**
  * Apply motion variant modifications
  */
-function applyMotionVariant(
-  motion: any,
-  config: VariantConfig['motion']
-): any {
+function applyMotionVariant(motion: any, config: VariantConfig['motion']): any {
   const result = { ...motion };
-  
+
   // Apply duration modifications
   if (result.duration) {
-    Object.keys(result.duration).forEach(key => {
+    Object.keys(result.duration).forEach((key) => {
       const value = result.duration[key];
       if (typeof value === 'string' && value.includes('ms')) {
         const numericValue = parseFloat(value);
@@ -449,7 +464,7 @@ function applyMotionVariant(
       }
     });
   }
-  
+
   // Disable animations for high-contrast/accessibility
   if (!config.enableAnimations) {
     result.duration = {
@@ -458,17 +473,14 @@ function applyMotionVariant(
       slow: '0ms',
     };
   }
-  
+
   return result;
 }
 
 /**
  * Apply radius variant modifications
  */
-function applyRadiusVariant(
-  radius: any,
-  config: VariantConfig['borders']
-): any {
+function applyRadiusVariant(radius: any, config: VariantConfig['borders']): any {
   if (typeof radius === 'string') {
     const numericValue = parseFloat(radius);
     if (!isNaN(numericValue)) {
@@ -476,11 +488,11 @@ function applyRadiusVariant(
     }
     return radius;
   }
-  
+
   if (typeof radius === 'object') {
     const result = { ...radius };
-    
-    Object.keys(result).forEach(key => {
+
+    Object.keys(result).forEach((key) => {
       const value = result[key];
       if (typeof value === 'string' && value.includes('rem')) {
         const numericValue = parseFloat(value);
@@ -489,45 +501,39 @@ function applyRadiusVariant(
         }
       }
     });
-    
+
     return result;
   }
-  
+
   return radius;
 }
 
 /**
  * Apply shadow variant modifications
  */
-function applyShadowVariant(
-  shadows: any,
-  config: VariantConfig['shadows']
-): any {
+function applyShadowVariant(shadows: any, config: VariantConfig['shadows']): any {
   const result = { ...shadows };
-  
-  Object.keys(result).forEach(key => {
+
+  Object.keys(result).forEach((key) => {
     const value = result[key];
     if (typeof value === 'string' && key !== 'none') {
       result[key] = adjustShadow(value, config);
     }
   });
-  
+
   return result;
 }
 
 /**
  * Adjust shadow values
  */
-function adjustShadow(
-  shadow: string,
-  config: VariantConfig['shadows']
-): string {
+function adjustShadow(shadow: string, config: VariantConfig['shadows']): string {
   // Simple shadow adjustment - in a real implementation, you'd parse the shadow string
   // and adjust blur and opacity values
   if (config.intensityMultiplier === 0 || shadow === 'none') {
     return 'none';
   }
-  
+
   // For high contrast, simplify shadows
   if (config.intensityMultiplier > 1 && config.blurMultiplier < 1) {
     return shadow.replace(/rgba\(([^)]+)\)/g, (match, rgba) => {
@@ -540,7 +546,7 @@ function adjustShadow(
       return match;
     });
   }
-  
+
   return shadow;
 }
 
@@ -549,12 +555,12 @@ function adjustShadow(
  */
 function applyHighContrastZIndex(zIndex: any): any {
   const result = { ...zIndex };
-  
+
   // Ensure clear layering for high contrast
   result.modal = Math.max(result.modal, 2000);
   result.popover = Math.max(result.popover, 1500);
   result.tooltip = Math.max(result.tooltip, 2500);
-  
+
   return result;
 }
 
@@ -563,7 +569,7 @@ function applyHighContrastZIndex(zIndex: any): any {
  */
 export function getVariantClassNames(variant: ThemeVariant): string[] {
   const baseClasses = [`theme-${variant}`];
-  
+
   switch (variant) {
     case 'compact':
       return [...baseClasses, 'theme-compact', 'theme-dense'];
@@ -581,7 +587,7 @@ export function getVariantClassNames(variant: ThemeVariant): string[] {
  */
 export function getVariantCSSProperties(variant: ThemeVariant): Record<string, string> {
   const config = variantConfigs[variant];
-  
+
   // Fallback to default config if variant is not found
   if (!config) {
     console.warn(`Variant '${variant}' not found in variantConfigs, using default`);
@@ -595,7 +601,7 @@ export function getVariantCSSProperties(variant: ThemeVariant): Record<string, s
       '--theme-animations-enabled': defaultConfig.motion.enableAnimations ? '1' : '0',
     };
   }
-  
+
   return {
     '--theme-variant': variant,
     '--theme-spacing-multiplier': config.spacing.multiplier.toString(),
@@ -625,14 +631,14 @@ export function getRecommendedVariant(preferences: {
   if (preferences.prefersHighContrast) {
     return 'high-contrast';
   }
-  
+
   if (preferences.prefersCompactUI) {
     return 'compact';
   }
-  
+
   if (preferences.prefersLargeText) {
     return 'comfortable';
   }
-  
+
   return 'default';
 }

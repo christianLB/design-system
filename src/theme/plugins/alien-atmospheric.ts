@@ -32,27 +32,26 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
   version: '1.0.0',
   category: 'animation',
   priority: 'normal',
-  
+
   description: 'Advanced breathing patterns and atmospheric effects for alien theme',
-  
+
   features: {
     customKeyframes: true,
-    performanceOptimizations: true,
     gestureAnimations: false,
     advancedKeyframes: true,
   },
-  
+
   config: defaultConfig,
-  
+
   hooks: {
     afterThemeBuild: (context: PluginContext): PluginResult => {
       const config = { ...defaultConfig, ...context.config } as AlienAtmosphericConfig;
-      
+
       // Only apply to alien theme
       if (context.theme?.meta?.name !== 'alien') {
         return { success: true };
       }
-      
+
       const intensityConfig = {
         subtle: {
           opacity: 0.3,
@@ -73,40 +72,40 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
           speed: 3000,
         },
       }[config.intensity || 'normal'];
-      
+
       const colors = {
         primary: config.customColors?.primary || alienColors.textVital,
         secondary: config.customColors?.secondary || alienColors.ancientBlood,
         mist: config.customColors?.mist || 'rgba(229, 110, 71, 0.2)',
       };
-      
+
       const cssVariables: Record<string, string> = {
         // Atmospheric configuration
         '--alien-atm-opacity': intensityConfig.opacity.toString(),
         '--alien-atm-scale': intensityConfig.scale.toString(),
         '--alien-atm-blur': intensityConfig.blur,
         '--alien-atm-speed': `${intensityConfig.speed}ms`,
-        
+
         // Colors
         '--alien-atm-primary': colors.primary,
         '--alien-atm-secondary': colors.secondary,
         '--alien-atm-mist': colors.mist,
-        
+
         // Feature toggles
         '--alien-breathing-enabled': config.breathingEnabled ? '1' : '0',
         '--alien-mist-enabled': config.mistEnabled ? '1' : '0',
         '--alien-flow-enabled': config.atmosphericFlowEnabled ? '1' : '0',
       };
-      
+
       // Add reduced motion support
       if (config.respectReducedMotion) {
         cssVariables['--alien-reduced-atm-speed'] = '0s';
         cssVariables['--alien-reduced-atm-opacity'] = '0.2';
       }
-      
+
       // Generate keyframes for atmospheric animations
       const keyframes: Record<string, Record<string, any>> = {};
-      
+
       if (config.breathingEnabled) {
         keyframes['alien-atmospheric-breathe'] = {
           '0%, 100%': {
@@ -120,7 +119,7 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
             filter: `blur(${parseInt(intensityConfig.blur) / 2}px)`,
           },
         };
-        
+
         keyframes['alien-ambient-pulse'] = {
           '0%, 100%': {
             backgroundColor: `rgba(229, 110, 71, ${intensityConfig.opacity * 0.3})`,
@@ -132,7 +131,7 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.mistEnabled) {
         keyframes['alien-vital-mist'] = {
           '0%': {
@@ -150,7 +149,7 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
             opacity: '0',
           },
         };
-        
+
         keyframes['alien-mist-flow'] = {
           '0%': {
             backgroundPosition: '0% 50%',
@@ -166,7 +165,7 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.atmosphericFlowEnabled) {
         keyframes['alien-atmospheric-flow'] = {
           '0%': {
@@ -190,7 +189,7 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
             transform: 'rotate(0deg)',
           },
         };
-        
+
         keyframes['alien-membrane-ripple'] = {
           '0%': {
             transform: 'scale(1) rotateZ(0deg)',
@@ -214,7 +213,7 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       // Generate utility classes
       const utilityClasses: Record<string, Record<string, any>> = {
         '.alien-atmospheric': {
@@ -222,12 +221,12 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
           overflow: 'hidden',
           animation: 'alien-atmospheric-breathe var(--alien-atm-speed) ease-in-out infinite',
         },
-        
+
         '.alien-breathing': {
           animation: 'alien-atmospheric-breathe var(--alien-atm-speed) ease-in-out infinite',
           opacity: 'calc(var(--alien-breathing-enabled) * var(--alien-atm-opacity))',
         },
-        
+
         '.alien-ambient': {
           position: 'relative',
           animation: 'alien-ambient-pulse var(--alien-atm-speed) ease-in-out infinite',
@@ -248,7 +247,7 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
             opacity: 'calc(var(--alien-breathing-enabled) * 0.5)',
           },
         },
-        
+
         '.alien-mist-overlay': {
           position: 'relative',
           '&::after': {
@@ -272,7 +271,7 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
             opacity: 'calc(var(--alien-mist-enabled) * 1)',
           },
         },
-        
+
         '.alien-atmospheric-flow': {
           position: 'relative',
           background: `
@@ -281,10 +280,11 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
             radial-gradient(circle at 40% 80%, var(--alien-atm-primary) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px, 80px 80px, 60px 60px',
-          animation: 'alien-atmospheric-flow calc(var(--alien-atm-speed) * 2.5) ease-in-out infinite',
+          animation:
+            'alien-atmospheric-flow calc(var(--alien-atm-speed) * 2.5) ease-in-out infinite',
           opacity: 'calc(var(--alien-flow-enabled) * var(--alien-atm-opacity))',
         },
-        
+
         '.alien-membrane': {
           position: 'relative',
           background: `
@@ -294,10 +294,11 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
               rgba(13, 17, 23, 0.8) 100%
             )
           `,
-          animation: 'alien-membrane-ripple calc(var(--alien-atm-speed) * 1.5) ease-in-out infinite',
+          animation:
+            'alien-membrane-ripple calc(var(--alien-atm-speed) * 1.5) ease-in-out infinite',
           backdropFilter: 'blur(var(--alien-atm-blur))',
         },
-        
+
         '.alien-atmospheric-container': {
           position: 'relative',
           '&::before': {
@@ -319,40 +320,40 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
             opacity: 'calc(var(--alien-flow-enabled) * 0.3)',
           },
         },
-        
+
         '.alien-breathing-text': {
-          animation: 'alien-atmospheric-breathe calc(var(--alien-atm-speed) * 0.8) ease-in-out infinite',
+          animation:
+            'alien-atmospheric-breathe calc(var(--alien-atm-speed) * 0.8) ease-in-out infinite',
           textShadow: `0 0 10px var(--alien-atm-primary)`,
         },
       };
-      
+
       // Reduced motion support
       if (config.respectReducedMotion) {
         utilityClasses['@media (prefers-reduced-motion: reduce)'] = {
-          '.alien-atmospheric, .alien-breathing, .alien-ambient, .alien-mist-overlay, .alien-atmospheric-flow, .alien-membrane, .alien-atmospheric-container, .alien-breathing-text': {
-            animation: 'none !important',
-          },
+          '.alien-atmospheric, .alien-breathing, .alien-ambient, .alien-mist-overlay, .alien-atmospheric-flow, .alien-membrane, .alien-atmospheric-container, .alien-breathing-text':
+            {
+              animation: 'none !important',
+            },
           '.alien-atmospheric-container::before, .alien-mist-overlay::after': {
             animation: 'none !important',
             opacity: 'var(--alien-reduced-atm-opacity) !important',
           },
         };
       }
-      
+
       return {
         success: true,
         modifications: {
           cssVariables,
           keyframes,
-          utilityClasses,
         },
       };
     },
-    
+
     onThemeChange: (context: PluginContext): PluginResult => {
       // Cleanup atmospheric effects when switching away from alien
-      if (context.previousTheme?.meta?.name === 'alien' && 
-          context.theme?.meta?.name !== 'alien') {
+      if (context.previousTheme?.meta?.name === 'alien' && context.theme?.meta?.name !== 'alien') {
         return {
           success: true,
           modifications: {
@@ -365,41 +366,42 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       return { success: true };
     },
   },
-  
+
   // Plugin validation
   validate: (config: any): { valid: boolean; errors: string[] } => {
     const errors: string[] = [];
-    
+
     if (config.intensity && !['subtle', 'normal', 'intense'].includes(config.intensity)) {
       errors.push('intensity must be "subtle", "normal", or "intense"');
     }
-    
+
     if (config.customColors) {
-      const colorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\(\d+,\s*\d+,\s*\d+(?:,\s*[\d.]+)?\)$/;
-      
+      const colorRegex =
+        /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\(\d+,\s*\d+,\s*\d+(?:,\s*[\d.]+)?\)$/;
+
       if (config.customColors.primary && !colorRegex.test(config.customColors.primary)) {
         errors.push('customColors.primary must be a valid hex or rgba color');
       }
-      
+
       if (config.customColors.secondary && !colorRegex.test(config.customColors.secondary)) {
         errors.push('customColors.secondary must be a valid hex or rgba color');
       }
-      
+
       if (config.customColors.mist && !colorRegex.test(config.customColors.mist)) {
         errors.push('customColors.mist must be a valid hex or rgba color');
       }
     }
-    
+
     return {
       valid: errors.length === 0,
       errors,
     };
   },
-  
+
   // Performance optimization hints
   getPerformanceHints: () => [
     'Use transform and opacity for smooth animations instead of changing layout properties',
@@ -412,7 +414,9 @@ export const alienAtmosphericPlugin: AnimationPlugin = {
 };
 
 // Convenience function to create atmospheric plugin with custom config
-export const createAlienAtmosphericPlugin = (config: Partial<AlienAtmosphericConfig> = {}): AnimationPlugin => ({
+export const createAlienAtmosphericPlugin = (
+  config: Partial<AlienAtmosphericConfig> = {},
+): AnimationPlugin => ({
   ...alienAtmosphericPlugin,
   config: { ...defaultConfig, ...config },
 });

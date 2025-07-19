@@ -58,19 +58,19 @@ export class CyberpunkPluginRegistry {
 
   private registerDefaultPlugins(): void {
     // Register glow plugin
-    const glowPlugin = this.config.glow 
+    const glowPlugin = this.config.glow
       ? createCyberpunkGlowPlugin(this.config.glow)
       : cyberpunkGlowPlugin;
     this.plugins.set('glow', glowPlugin);
 
     // Register scanline plugin
-    const scanlinePlugin = this.config.scanline 
+    const scanlinePlugin = this.config.scanline
       ? createCyberpunkScanlinePlugin(this.config.scanline)
       : cyberpunkScanlinePlugin;
     this.plugins.set('scanline', scanlinePlugin);
 
     // Register matrix plugin
-    const matrixPlugin = this.config.matrix 
+    const matrixPlugin = this.config.matrix
       ? createCyberpunkMatrixPlugin(this.config.matrix)
       : cyberpunkMatrixPlugin;
     this.plugins.set('matrix', matrixPlugin);
@@ -118,7 +118,7 @@ export class CyberpunkPluginRegistry {
   getPluginsByPriority(): AnimationPlugin[] {
     const plugins = this.getAllPlugins();
     const priorityOrder = { critical: 4, high: 3, normal: 2, low: 1 };
-    
+
     return plugins.sort((a, b) => {
       const aPriority = priorityOrder[a.priority] || 0;
       const bPriority = priorityOrder[b.priority] || 0;
@@ -137,7 +137,7 @@ export class CyberpunkPluginRegistry {
       if (plugin.validate) {
         const result = plugin.validate(plugin.config);
         if (!result.valid) {
-          errors[name] = result.errors;
+          errors[name] = result.errors || [];
           allValid = false;
         }
       }
@@ -164,7 +164,9 @@ export class CyberpunkPluginRegistry {
   /**
    * Create a preset configuration for different use cases
    */
-  static createPreset(preset: 'minimal' | 'standard' | 'full' | 'performance'): CyberpunkPluginConfig {
+  static createPreset(
+    preset: 'minimal' | 'standard' | 'full' | 'performance',
+  ): CyberpunkPluginConfig {
     switch (preset) {
       case 'minimal':
         return {
@@ -288,7 +290,9 @@ export const getCyberpunkPlugins = (config?: CyberpunkPluginConfig): AnimationPl
   return defaultCyberpunkRegistry.getAllPlugins();
 };
 
-export const createCyberpunkRegistry = (preset: 'minimal' | 'standard' | 'full' | 'performance'): CyberpunkPluginRegistry => {
+export const createCyberpunkRegistry = (
+  preset: 'minimal' | 'standard' | 'full' | 'performance',
+): CyberpunkPluginRegistry => {
   const config = CyberpunkPluginRegistry.createPreset(preset);
   return new CyberpunkPluginRegistry(config);
 };

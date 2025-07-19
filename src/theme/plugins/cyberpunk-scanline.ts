@@ -32,27 +32,26 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
   version: '1.0.0',
   category: 'animation',
   priority: 'normal',
-  
+
   description: 'CRT-style scanline effects for cyberpunk theme',
-  
+
   features: {
     customKeyframes: true,
-    performanceOptimizations: true,
     gestureAnimations: false,
     advancedKeyframes: true,
   },
-  
+
   config: defaultConfig,
-  
+
   hooks: {
     afterThemeBuild: (context: PluginContext): PluginResult => {
       const config = { ...defaultConfig, ...context.config } as CyberpunkScanlineConfig;
-      
+
       // Only apply to cyberpunk theme
       if (context.theme?.meta?.name !== 'cyberpunk') {
         return { success: true };
       }
-      
+
       const animationSpeeds = {
         slow: {
           scanline: '8s',
@@ -70,39 +69,39 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
           noise: '0.2s',
         },
       }[config.animationSpeed || 'normal'];
-      
+
       const colors = {
         scanline: config.customColors?.scanlineColor || 'rgba(57, 255, 20, 0.1)',
         noise: config.customColors?.noiseColor || 'rgba(255, 255, 255, 0.03)',
       };
-      
+
       const cssVariables: Record<string, string> = {
         // Scanline configuration
         '--cyber-scanline-spacing': `${config.lineSpacing}px`,
         '--cyber-scanline-opacity': config.lineOpacity?.toString() || '0.15',
         '--cyber-scanline-color': colors.scanline,
         '--cyber-noise-color': colors.noise,
-        
+
         // Animation speeds
         '--cyber-scanline-speed': animationSpeeds.scanline,
         '--cyber-flicker-speed': animationSpeeds.flicker,
         '--cyber-noise-speed': animationSpeeds.noise,
-        
+
         // Feature toggles
         '--cyber-flicker-enabled': config.enableFlicker ? '1' : '0',
         '--cyber-noise-enabled': config.enableNoise ? '1' : '0',
       };
-      
+
       // Add reduced motion support
       if (config.respectReducedMotion) {
         cssVariables['--cyber-reduced-scanline-speed'] = '0s';
         cssVariables['--cyber-reduced-flicker-speed'] = '0s';
         cssVariables['--cyber-reduced-noise-speed'] = '0s';
       }
-      
+
       // Generate keyframes for scanline animations
       const keyframes: Record<string, Record<string, any>> = {};
-      
+
       // Moving scanline effect
       keyframes['cyber-scanline-sweep'] = {
         '0%': {
@@ -112,7 +111,7 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
           transform: 'translateY(100vh)',
         },
       };
-      
+
       // CRT flicker effect
       if (config.enableFlicker) {
         keyframes['cyber-crt-flicker'] = {
@@ -137,7 +136,7 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
             filter: 'brightness(1) contrast(1)',
           },
         };
-        
+
         // Subtle screen shake
         keyframes['cyber-crt-shake'] = {
           '0%, 100%': {
@@ -160,7 +159,7 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       // Static noise effect
       if (config.enableNoise) {
         keyframes['cyber-static-noise'] = {
@@ -210,7 +209,7 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       // Generate utility classes
       const utilityClasses: Record<string, Record<string, any>> = {
         '.cyber-scanlines': {
@@ -234,7 +233,7 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
             opacity: 'var(--cyber-scanline-opacity)',
           },
         },
-        
+
         '.cyber-scanline-sweep': {
           position: 'relative',
           overflow: 'hidden',
@@ -245,13 +244,14 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
             left: '0',
             right: '0',
             height: '2px',
-            background: 'linear-gradient(90deg, transparent, var(--cyber-scanline-color), transparent)',
+            background:
+              'linear-gradient(90deg, transparent, var(--cyber-scanline-color), transparent)',
             animation: 'cyber-scanline-sweep var(--cyber-scanline-speed) linear infinite',
             pointerEvents: 'none',
             zIndex: '1001',
           },
         },
-        
+
         '.cyber-crt-screen': {
           position: 'relative',
           '&::before': {
@@ -273,20 +273,20 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
           },
         },
       };
-      
+
       // Add flicker effects
       if (config.enableFlicker) {
         utilityClasses['.cyber-crt-flicker'] = {
           animation: `cyber-crt-flicker var(--cyber-flicker-speed) ease-in-out infinite, 
                      cyber-crt-shake calc(var(--cyber-flicker-speed) * 2) ease-in-out infinite`,
         };
-        
+
         utilityClasses['.cyber-crt-screen'] = {
           ...utilityClasses['.cyber-crt-screen'],
           animation: 'cyber-crt-flicker var(--cyber-flicker-speed) ease-in-out infinite',
         };
       }
-      
+
       // Add noise effects
       if (config.enableNoise) {
         utilityClasses['.cyber-static-noise'] = {
@@ -312,7 +312,7 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       // Combined CRT effect
       utilityClasses['.cyber-crt-full'] = {
         ...utilityClasses['.cyber-crt-screen'],
@@ -320,7 +320,7 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
           ...(utilityClasses['.cyber-scanline-sweep'] as any)['&::after'],
         },
       };
-      
+
       // Reduced motion support
       if (config.respectReducedMotion) {
         utilityClasses['@media (prefers-reduced-motion: reduce)'] = {
@@ -336,21 +336,22 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       return {
         success: true,
         modifications: {
           cssVariables,
           keyframes,
-          utilityClasses,
         },
       };
     },
-    
+
     onThemeChange: (context: PluginContext): PluginResult => {
       // Cleanup scanline effects when switching away from cyberpunk
-      if (context.previousTheme?.meta?.name === 'cyberpunk' && 
-          context.theme?.meta?.name !== 'cyberpunk') {
+      if (
+        context.previousTheme?.meta?.name === 'cyberpunk' &&
+        context.theme?.meta?.name !== 'cyberpunk'
+      ) {
         return {
           success: true,
           modifications: {
@@ -362,45 +363,49 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       return { success: true };
     },
   },
-  
+
   // Plugin validation
   validate: (config: any): { valid: boolean; errors: string[] } => {
     const errors: string[] = [];
-    
+
     if (config.lineSpacing && (config.lineSpacing < 1 || config.lineSpacing > 20)) {
       errors.push('lineSpacing must be between 1 and 20 pixels');
     }
-    
+
     if (config.lineOpacity && (config.lineOpacity < 0 || config.lineOpacity > 1)) {
       errors.push('lineOpacity must be between 0 and 1');
     }
-    
+
     if (config.animationSpeed && !['slow', 'normal', 'fast'].includes(config.animationSpeed)) {
       errors.push('animationSpeed must be "slow", "normal", or "fast"');
     }
-    
+
     if (config.customColors) {
-      const colorRegex = /^rgba?\(\d+,\s*\d+,\s*\d+(?:,\s*[\d.]+)?\)$|^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
-      
-      if (config.customColors.scanlineColor && !colorRegex.test(config.customColors.scanlineColor)) {
+      const colorRegex =
+        /^rgba?\(\d+,\s*\d+,\s*\d+(?:,\s*[\d.]+)?\)$|^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+
+      if (
+        config.customColors.scanlineColor &&
+        !colorRegex.test(config.customColors.scanlineColor)
+      ) {
         errors.push('customColors.scanlineColor must be a valid hex or rgba color');
       }
-      
+
       if (config.customColors.noiseColor && !colorRegex.test(config.customColors.noiseColor)) {
         errors.push('customColors.noiseColor must be a valid hex or rgba color');
       }
     }
-    
+
     return {
       valid: errors.length === 0,
       errors,
     };
   },
-  
+
   // Performance optimization hints
   getPerformanceHints: () => [
     'Use transform properties instead of changing position for better performance',
@@ -412,7 +417,9 @@ export const cyberpunkScanlinePlugin: AnimationPlugin = {
 };
 
 // Convenience function to create scanline plugin with custom config
-export const createCyberpunkScanlinePlugin = (config: Partial<CyberpunkScanlineConfig> = {}): AnimationPlugin => ({
+export const createCyberpunkScanlinePlugin = (
+  config: Partial<CyberpunkScanlineConfig> = {},
+): AnimationPlugin => ({
   ...cyberpunkScanlinePlugin,
   config: { ...defaultConfig, ...config },
 });

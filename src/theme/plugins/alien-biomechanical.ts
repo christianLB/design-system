@@ -35,27 +35,26 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
   version: '1.0.0',
   category: 'animation',
   priority: 'normal',
-  
+
   description: 'Organic growth animations and cellular effects for alien theme',
-  
+
   features: {
     customKeyframes: true,
-    performanceOptimizations: true,
     gestureAnimations: true,
     advancedKeyframes: true,
   },
-  
+
   config: defaultConfig,
-  
+
   hooks: {
     afterThemeBuild: (context: PluginContext): PluginResult => {
       const config = { ...defaultConfig, ...context.config } as AlienBiomechanicalConfig;
-      
+
       // Only apply to alien theme
       if (context.theme?.meta?.name !== 'alien') {
         return { success: true };
       }
-      
+
       const intensityConfig = {
         subtle: {
           scale: 1.02,
@@ -76,43 +75,43 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
           blur: '2px',
         },
       }[config.intensity || 'normal'];
-      
+
       const colors = {
         organic: config.customColors?.organic || alienColors.connectiveTissue,
         cellular: config.customColors?.cellular || alienColors.innerSkin,
         tissue: config.customColors?.tissue || alienColors.paleCartilage,
         mechanical: config.customColors?.mechanical || alienColors.steelOrganic,
       };
-      
+
       const cssVariables: Record<string, string> = {
         // Biomechanical configuration
         '--alien-bio-scale': intensityConfig.scale.toString(),
         '--alien-bio-rotate': `${intensityConfig.rotate}deg`,
         '--alien-bio-speed': `${intensityConfig.speed}ms`,
         '--alien-bio-blur': intensityConfig.blur,
-        
+
         // Colors
         '--alien-bio-organic': colors.organic,
         '--alien-bio-cellular': colors.cellular,
         '--alien-bio-tissue': colors.tissue,
         '--alien-bio-mechanical': colors.mechanical,
-        
+
         // Feature toggles
         '--alien-growth-enabled': config.growthEnabled ? '1' : '0',
         '--alien-cellular-enabled': config.cellularEnabled ? '1' : '0',
         '--alien-tissue-enabled': config.tissueEnabled ? '1' : '0',
         '--alien-mechanical-enabled': config.mechanicalEnabled ? '1' : '0',
       };
-      
+
       // Add reduced motion support
       if (config.respectReducedMotion) {
         cssVariables['--alien-reduced-bio-speed'] = '0s';
         cssVariables['--alien-reduced-bio-scale'] = '1';
       }
-      
+
       // Generate keyframes for biomechanical animations
       const keyframes: Record<string, Record<string, any>> = {};
-      
+
       if (config.growthEnabled) {
         keyframes['alien-organic-growth'] = {
           '0%': {
@@ -141,7 +140,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
             filter: `blur(${intensityConfig.blur})`,
           },
         };
-        
+
         keyframes['alien-growth-expand'] = {
           '0%': {
             clipPath: 'polygon(45% 45%, 55% 45%, 55% 55%, 45% 55%)',
@@ -157,7 +156,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.cellularEnabled) {
         keyframes['alien-cellular-division'] = {
           '0%': {
@@ -186,7 +185,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
             backgroundColor: colors.organic,
           },
         };
-        
+
         keyframes['alien-cellular-pulse'] = {
           '0%, 100%': {
             boxShadow: `inset 0 0 10px ${colors.cellular}`,
@@ -198,7 +197,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.tissueEnabled) {
         keyframes['alien-tissue-expansion'] = {
           '0%': {
@@ -217,7 +216,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
             backgroundSize: '30px 30px',
           },
         };
-        
+
         keyframes['alien-tissue-weave'] = {
           '0%': {
             backgroundPosition: '0% 0%',
@@ -237,7 +236,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.mechanicalEnabled) {
         keyframes['alien-biomechanical-move'] = {
           '0%': {
@@ -266,7 +265,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
             backgroundColor: colors.mechanical,
           },
         };
-        
+
         keyframes['alien-mechanical-gear'] = {
           '0%': {
             transform: 'rotate(0deg) scale(1)',
@@ -290,25 +289,25 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       // Generate utility classes
       const utilityClasses: Record<string, Record<string, any>> = {
         '.alien-biomechanical-container': {
           position: 'relative',
           overflow: 'hidden',
         },
-        
+
         '.alien-organic-growth': {
           animation: 'alien-organic-growth var(--alien-bio-speed) ease-in-out infinite',
           opacity: 'calc(var(--alien-growth-enabled) * 1)',
           transformOrigin: 'center center',
         },
-        
+
         '.alien-growth-expand': {
           animation: 'alien-growth-expand calc(var(--alien-bio-speed) * 0.8) ease-out forwards',
           overflow: 'hidden',
         },
-        
+
         '.alien-cellular': {
           position: 'relative',
           animation: 'alien-cellular-pulse calc(var(--alien-bio-speed) * 0.6) ease-in-out infinite',
@@ -326,7 +325,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
             opacity: '0.6',
           },
         },
-        
+
         '.alien-tissue': {
           position: 'relative',
           background: `
@@ -345,10 +344,11 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
               var(--alien-bio-organic) 15px
             )
           `,
-          animation: 'alien-tissue-expansion calc(var(--alien-bio-speed) * 1.2) ease-in-out infinite, alien-tissue-weave calc(var(--alien-bio-speed) * 2) linear infinite',
+          animation:
+            'alien-tissue-expansion calc(var(--alien-bio-speed) * 1.2) ease-in-out infinite, alien-tissue-weave calc(var(--alien-bio-speed) * 2) linear infinite',
           opacity: 'calc(var(--alien-tissue-enabled) * 0.8)',
         },
-        
+
         '.alien-biomechanical': {
           position: 'relative',
           animation: 'alien-biomechanical-move var(--alien-bio-speed) ease-in-out infinite',
@@ -359,7 +359,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
           `,
           backgroundSize: '20px 20px, 15px 15px',
         },
-        
+
         '.alien-mechanical-gear': {
           position: 'relative',
           animation: 'alien-mechanical-gear calc(var(--alien-bio-speed) * 0.5) linear infinite',
@@ -397,7 +397,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
             transform: 'translate(-50%, -50%)',
           },
         },
-        
+
         '.alien-bio-interactive': {
           cursor: 'pointer',
           transition: 'all 300ms ease',
@@ -406,7 +406,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
             transform: 'scale(1.02)',
           },
         },
-        
+
         '.alien-bio-text': {
           position: 'relative',
           background: `linear-gradient(90deg, var(--alien-bio-organic), var(--alien-bio-tissue))`,
@@ -415,7 +415,7 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
           color: 'transparent',
           animation: 'alien-tissue-weave calc(var(--alien-bio-speed) * 1.5) linear infinite',
         },
-        
+
         '.alien-bio-surface': {
           position: 'relative',
           background: `
@@ -443,40 +443,41 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
               )
             `,
             opacity: '0.3',
-            animation: 'alien-mechanical-gear calc(var(--alien-bio-speed) * 4) linear infinite reverse',
+            animation:
+              'alien-mechanical-gear calc(var(--alien-bio-speed) * 4) linear infinite reverse',
           },
         },
       };
-      
+
       // Reduced motion support
       if (config.respectReducedMotion) {
         utilityClasses['@media (prefers-reduced-motion: reduce)'] = {
-          '.alien-organic-growth, .alien-growth-expand, .alien-cellular, .alien-tissue, .alien-biomechanical, .alien-mechanical-gear, .alien-bio-text, .alien-bio-surface': {
-            animation: 'none !important',
-          },
-          '.alien-cellular::before, .alien-mechanical-gear::before, .alien-mechanical-gear::after, .alien-bio-surface::before': {
-            animation: 'none !important',
-          },
+          '.alien-organic-growth, .alien-growth-expand, .alien-cellular, .alien-tissue, .alien-biomechanical, .alien-mechanical-gear, .alien-bio-text, .alien-bio-surface':
+            {
+              animation: 'none !important',
+            },
+          '.alien-cellular::before, .alien-mechanical-gear::before, .alien-mechanical-gear::after, .alien-bio-surface::before':
+            {
+              animation: 'none !important',
+            },
           '.alien-organic-growth, .alien-cellular, .alien-tissue, .alien-biomechanical': {
             transform: 'scale(var(--alien-reduced-bio-scale)) !important',
           },
         };
       }
-      
+
       return {
         success: true,
         modifications: {
           cssVariables,
           keyframes,
-          utilityClasses,
         },
       };
     },
-    
+
     onThemeChange: (context: PluginContext): PluginResult => {
       // Cleanup biomechanical effects when switching away from alien
-      if (context.previousTheme?.meta?.name === 'alien' && 
-          context.theme?.meta?.name !== 'alien') {
+      if (context.previousTheme?.meta?.name === 'alien' && context.theme?.meta?.name !== 'alien') {
         return {
           success: true,
           modifications: {
@@ -490,22 +491,23 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       return { success: true };
     },
   },
-  
+
   // Plugin validation
   validate: (config: any): { valid: boolean; errors: string[] } => {
     const errors: string[] = [];
-    
+
     if (config.intensity && !['subtle', 'normal', 'intense'].includes(config.intensity)) {
       errors.push('intensity must be "subtle", "normal", or "intense"');
     }
-    
+
     if (config.customColors) {
-      const colorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\(\d+,\s*\d+,\s*\d+(?:,\s*[\d.]+)?\)$/;
-      
+      const colorRegex =
+        /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\(\d+,\s*\d+,\s*\d+(?:,\s*[\d.]+)?\)$/;
+
       const colorFields = ['organic', 'cellular', 'tissue', 'mechanical'];
       for (const field of colorFields) {
         if (config.customColors[field] && !colorRegex.test(config.customColors[field])) {
@@ -513,13 +515,13 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
         }
       }
     }
-    
+
     return {
       valid: errors.length === 0,
       errors,
     };
   },
-  
+
   // Performance optimization hints
   getPerformanceHints: () => [
     'Biomechanical effects with complex gradients can impact performance - use selectively',
@@ -534,7 +536,9 @@ export const alienBiomechanicalPlugin: AnimationPlugin = {
 };
 
 // Convenience function to create biomechanical plugin with custom config
-export const createAlienBiomechanicalPlugin = (config: Partial<AlienBiomechanicalConfig> = {}): AnimationPlugin => ({
+export const createAlienBiomechanicalPlugin = (
+  config: Partial<AlienBiomechanicalConfig> = {},
+): AnimationPlugin => ({
   ...alienBiomechanicalPlugin,
   config: { ...defaultConfig, ...config },
 });

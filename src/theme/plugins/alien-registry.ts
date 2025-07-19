@@ -78,25 +78,25 @@ export class AlienPluginRegistry {
 
   private registerDefaultPlugins(): void {
     // Register atmospheric plugin
-    const atmosphericPlugin = this.config.atmospheric 
+    const atmosphericPlugin = this.config.atmospheric
       ? createAlienAtmosphericPlugin(this.config.atmospheric)
       : alienAtmosphericPlugin;
     this.plugins.set('atmospheric', atmosphericPlugin);
 
     // Register neural plugin
-    const neuralPlugin = this.config.neural 
+    const neuralPlugin = this.config.neural
       ? createAlienNeuralPlugin(this.config.neural)
       : alienNeuralPlugin;
     this.plugins.set('neural', neuralPlugin);
 
     // Register biomechanical plugin
-    const biomechanicalPlugin = this.config.biomechanical 
+    const biomechanicalPlugin = this.config.biomechanical
       ? createAlienBiomechanicalPlugin(this.config.biomechanical)
       : alienBiomechanicalPlugin;
     this.plugins.set('biomechanical', biomechanicalPlugin);
 
     // Register vital plugin
-    const vitalPlugin = this.config.vital 
+    const vitalPlugin = this.config.vital
       ? createAlienVitalPlugin(this.config.vital)
       : alienVitalPlugin;
     this.plugins.set('vital', vitalPlugin);
@@ -144,7 +144,7 @@ export class AlienPluginRegistry {
   getPluginsByPriority(): AnimationPlugin[] {
     const plugins = this.getAllPlugins();
     const priorityOrder = { critical: 4, high: 3, normal: 2, low: 1 };
-    
+
     return plugins.sort((a, b) => {
       const aPriority = priorityOrder[a.priority] || 0;
       const bPriority = priorityOrder[b.priority] || 0;
@@ -163,7 +163,7 @@ export class AlienPluginRegistry {
       if (plugin.validate) {
         const result = plugin.validate(plugin.config);
         if (!result.valid) {
-          errors[name] = result.errors;
+          errors[name] = result.errors || [];
           allValid = false;
         }
       }
@@ -344,7 +344,9 @@ export class AlienPluginRegistry {
   /**
    * Get effect combinations for specific scenarios
    */
-  static createEffectCombination(scenario: 'immersive' | 'interactive' | 'ambient' | 'focused'): AlienPluginConfig {
+  static createEffectCombination(
+    scenario: 'immersive' | 'interactive' | 'ambient' | 'focused',
+  ): AlienPluginConfig {
     switch (scenario) {
       case 'immersive':
         // Full sensory experience
@@ -548,7 +550,7 @@ export class AlienPluginRegistry {
     if (constraints.reducedMotion) {
       // Respect reduced motion preferences
       const config = { ...baseConfig };
-      Object.keys(config).forEach(key => {
+      Object.keys(config).forEach((key) => {
         if (config[key as keyof AlienPluginConfig]) {
           (config[key as keyof AlienPluginConfig] as any).respectReducedMotion = true;
         }
@@ -572,12 +574,16 @@ export const getAlienPlugins = (config?: AlienPluginConfig): AnimationPlugin[] =
   return defaultAlienRegistry.getAllPlugins();
 };
 
-export const createAlienRegistry = (preset: 'minimal' | 'standard' | 'full' | 'performance'): AlienPluginRegistry => {
+export const createAlienRegistry = (
+  preset: 'minimal' | 'standard' | 'full' | 'performance',
+): AlienPluginRegistry => {
   const config = AlienPluginRegistry.createPreset(preset);
   return new AlienPluginRegistry(config);
 };
 
-export const createAlienEffectRegistry = (scenario: 'immersive' | 'interactive' | 'ambient' | 'focused'): AlienPluginRegistry => {
+export const createAlienEffectRegistry = (
+  scenario: 'immersive' | 'interactive' | 'ambient' | 'focused',
+): AlienPluginRegistry => {
   const config = AlienPluginRegistry.createEffectCombination(scenario);
   return new AlienPluginRegistry(config);
 };
