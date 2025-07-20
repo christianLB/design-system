@@ -9,7 +9,7 @@ const options = [
 ];
 
 const meta: Meta<typeof MultiSelect> = {
-  title: 'Inputs/MultiSelect',
+  title: 'Core Components/Forms/Multi Select',
   component: MultiSelect,
   args: { options },
 };
@@ -20,17 +20,13 @@ type Story = StoryObj<typeof MultiSelect>;
 export const Primary: Story = {
   render: (args) => {
     const [ids, setIds] = useState<Array<number | string>>([]);
-    return (
-      <MultiSelect {...args} selectedIds={ids} onChange={setIds} />
-    );
+    return <MultiSelect {...args} selectedIds={ids} onChange={setIds} />;
   },
 };
 
 export const Disabled: Story = {
   render: (args) => {
     const [ids, setIds] = useState<Array<number | string>>([]);
-    return (
-      <MultiSelect {...args} selectedIds={ids} onChange={setIds} disabled />
-    );
+    return <MultiSelect {...args} selectedIds={ids} onChange={setIds} disabled />;
   },
 };

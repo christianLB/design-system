@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Text } from './Text';
 
 const meta: Meta<typeof Text> = {
-  title: 'Components/Text',
+  title: 'Core Components/Foundations/Text',
   component: Text,
   args: {
     children: 'Sample text',
@@ -10,8 +10,7 @@ const meta: Meta<typeof Text> = {
   parameters: {
     docs: {
       description: {
-        component:
-          'Typography sizes and weights use values from theme tokens.',
+        component: 'Typography sizes and weights use values from theme tokens.',
       },
     },
   },

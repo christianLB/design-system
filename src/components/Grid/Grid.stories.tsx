@@ -5,7 +5,7 @@ import { Box } from '../Box';
 import { ResponsiveProvider } from '../../hooks/responsive';
 
 const meta: Meta<typeof Grid> = {
-  title: 'Layout/Grid',
+  title: 'Core Components/Layout/Grid',
   component: Grid,
   args: { columns: 3, gap: 'sm' },
 };

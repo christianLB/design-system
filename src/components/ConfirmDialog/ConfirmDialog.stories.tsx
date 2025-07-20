@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ConfirmDialog } from './ConfirmDialog';
 
 const meta: Meta<typeof ConfirmDialog> = {
-  title: 'Components/ConfirmDialog',
+  title: 'Core Components/Overlays/Confirm Dialog',
   component: ConfirmDialog,
   args: {
     title: 'Delete item',

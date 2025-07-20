@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { StatusIndicator } from './StatusIndicator';
 
 const meta: Meta<typeof StatusIndicator> = {
-  title: 'Components/StatusIndicator',
+  title: 'Core Components/Data Display/Status Indicator',
   component: StatusIndicator,
   parameters: {
     layout: 'centered',

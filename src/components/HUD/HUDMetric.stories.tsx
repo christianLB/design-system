@@ -4,21 +4,32 @@ import { action } from '@storybook/addon-actions';
 import HUDMetric from './HUDMetric';
 
 const meta: Meta<typeof HUDMetric> = {
-  title: 'Cyberpunk/HUD/HUDMetric',
+  title: 'Themes/Cyberpunk/Components/HUD Metric',
   component: HUDMetric,
   parameters: {
     layout: 'centered',
     backgrounds: { default: 'dark' },
     docs: {
       description: {
-        component: 'Data display components for health, shields, ammo, and other vital statistics with real-time animations and threshold monitoring.',
+        component:
+          'Data display components for health, shields, ammo, and other vital statistics with real-time animations and threshold monitoring.',
       },
     },
   },
   argTypes: {
     type: {
       control: 'select',
-      options: ['health', 'shields', 'energy', 'ammo', 'armor', 'oxygen', 'temperature', 'speed', 'custom'],
+      options: [
+        'health',
+        'shields',
+        'energy',
+        'ammo',
+        'armor',
+        'oxygen',
+        'temperature',
+        'speed',
+        'custom',
+      ],
       description: 'Metric type (affects icon and default styling)',
     },
     variant: {
@@ -64,8 +75,14 @@ export const Default: Story = {
 
 export const AllTypes: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
-      {([
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        gap: 16,
+      }}
+    >
+      {[
         { type: 'health' as const, value: 85, label: 'Health', maxValue: 100 },
         { type: 'shields' as const, value: 42, label: 'Shields', maxValue: 100 },
         { type: 'energy' as const, value: 73, label: 'Energy', maxValue: 100 },
@@ -74,7 +91,7 @@ export const AllTypes: Story = {
         { type: 'oxygen' as const, value: 91, label: 'Oxygen', maxValue: 100 },
         { type: 'temperature' as const, value: 38, maxValue: 50, label: 'Temperature' },
         { type: 'speed' as const, value: 120, maxValue: 200, label: 'Speed' },
-      ]).map((metric) => (
+      ].map((metric) => (
         <HUDMetric
           key={metric.type}
           label={metric.label}
@@ -92,8 +109,14 @@ export const AllTypes: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
-      {(['matrix', 'doom', 'swordfish', 'neon', 'ghost'] as const).map(variant => (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        gap: 16,
+      }}
+    >
+      {(['matrix', 'doom', 'swordfish', 'neon', 'ghost'] as const).map((variant) => (
         <HUDMetric
           key={variant}
           label={`${variant.charAt(0).toUpperCase() + variant.slice(1)} Health`}
@@ -103,7 +126,7 @@ export const AllVariants: Story = {
           showProgressBar
           showPercentage
           animation={{
-            enablePulse: variant === 'neon'
+            enablePulse: variant === 'neon',
           }}
         />
       ))}
@@ -113,7 +136,13 @@ export const AllVariants: Story = {
 
 export const Formats: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        gap: 16,
+      }}
+    >
       <HUDMetric
         label="Percentage"
         value={75}
@@ -129,13 +158,7 @@ export const Formats: Story = {
         format="fraction"
         showProgressBar
       />
-      <HUDMetric
-        label="Decimal"
-        value={73.4}
-        variant="matrix"
-        format="decimal"
-        showProgressBar
-      />
+      <HUDMetric label="Decimal" value={73.4} variant="matrix" format="decimal" showProgressBar />
       <HUDMetric
         label="Integer"
         value={156}
@@ -166,7 +189,13 @@ export const Formats: Story = {
 
 export const ThresholdStates: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        gap: 16,
+      }}
+    >
       <HUDMetric
         label="Critical State"
         value={12}
@@ -202,7 +231,13 @@ export const ThresholdStates: Story = {
 
 export const WithSparklines: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+        gap: 16,
+      }}
+    >
       <HUDMetric
         label="CPU Usage"
         value={73}
@@ -268,7 +303,7 @@ export const Orientations: Story = {
           />
         </div>
       </div>
-      
+
       <div>
         <h3 style={{ color: '#39ff14', marginBottom: 16 }}>Horizontal</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -301,7 +336,7 @@ export const Orientations: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, alignItems: 'center' }}>
-      {(['sm', 'md', 'lg', 'xl'] as const).map(size => (
+      {(['sm', 'md', 'lg', 'xl'] as const).map((size) => (
         <HUDMetric
           key={size}
           label={`${size.toUpperCase()} Health`}
@@ -325,9 +360,9 @@ export const AnimatedCounter: Story = {
 
     useEffect(() => {
       const interval = setInterval(() => {
-        setHealth(prev => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 10)));
-        setShields(prev => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 15)));
-        setAmmo(prev => Math.max(0, Math.min(30, prev + (Math.random() - 0.5) * 3)));
+        setHealth((prev) => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 10)));
+        setShields((prev) => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 15)));
+        setAmmo((prev) => Math.max(0, Math.min(30, prev + (Math.random() - 0.5) * 3)));
       }, 2000);
 
       return () => clearInterval(interval);
@@ -338,8 +373,14 @@ export const AnimatedCounter: Story = {
         <div style={{ color: '#39ff14', marginBottom: 10 }}>
           Values update every 2 seconds with animated counters
         </div>
-        
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: 16,
+          }}
+        >
           <HUDMetric
             label="Health"
             value={health}
@@ -357,7 +398,7 @@ export const AnimatedCounter: Story = {
             }}
             onValueChange={action('health-changed')}
           />
-          
+
           <HUDMetric
             label="Shields"
             value={shields}
@@ -374,7 +415,7 @@ export const AnimatedCounter: Story = {
             warning={shields < 30}
             critical={shields < 15}
           />
-          
+
           <HUDMetric
             label="Ammunition"
             value={ammo}
@@ -394,33 +435,63 @@ export const AnimatedCounter: Story = {
         </div>
 
         <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
-          <button 
+          <button
             onClick={() => setHealth(Math.max(0, health - 20))}
-            style={{ padding: '8px 16px', background: '#ff0000', color: '#fff', border: 'none', cursor: 'pointer' }}
+            style={{
+              padding: '8px 16px',
+              background: '#ff0000',
+              color: '#fff',
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
             Damage
           </button>
-          <button 
+          <button
             onClick={() => setHealth(Math.min(100, health + 25))}
-            style={{ padding: '8px 16px', background: '#39ff14', color: '#000', border: 'none', cursor: 'pointer' }}
+            style={{
+              padding: '8px 16px',
+              background: '#39ff14',
+              color: '#000',
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
             Heal
           </button>
-          <button 
+          <button
             onClick={() => setShields(Math.max(0, shields - 30))}
-            style={{ padding: '8px 16px', background: '#ff6600', color: '#fff', border: 'none', cursor: 'pointer' }}
+            style={{
+              padding: '8px 16px',
+              background: '#ff6600',
+              color: '#fff',
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
             Shield Hit
           </button>
-          <button 
+          <button
             onClick={() => setAmmo(Math.max(0, ammo - 1))}
-            style={{ padding: '8px 16px', background: '#666', color: '#fff', border: 'none', cursor: 'pointer' }}
+            style={{
+              padding: '8px 16px',
+              background: '#666',
+              color: '#fff',
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
             Fire
           </button>
-          <button 
+          <button
             onClick={() => setAmmo(30)}
-            style={{ padding: '8px 16px', background: '#0066ff', color: '#fff', border: 'none', cursor: 'pointer' }}
+            style={{
+              padding: '8px 16px',
+              background: '#0066ff',
+              color: '#fff',
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
             Reload
           </button>
@@ -432,7 +503,13 @@ export const AnimatedCounter: Story = {
 
 export const CustomFormatting: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        gap: 16,
+      }}
+    >
       <HUDMetric
         label="Temperature"
         value={37.6}
@@ -444,7 +521,7 @@ export const CustomFormatting: Story = {
         unit="°C"
         thresholds={{ critical: 45, warning: 40 }}
       />
-      
+
       <HUDMetric
         label="Bandwidth"
         value={847}
@@ -455,7 +532,7 @@ export const CustomFormatting: Story = {
         formatFunction={(value) => `${(value / 1000).toFixed(2)} Gbps`}
         showProgressBar
       />
-      
+
       <HUDMetric
         label="Coordinates"
         value={127.453}
@@ -466,7 +543,7 @@ export const CustomFormatting: Story = {
         showProgressBar={false}
         showValue
       />
-      
+
       <HUDMetric
         label="Pressure"
         value={1013.25}

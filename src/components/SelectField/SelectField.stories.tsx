@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { SelectField } from './SelectField';
 
 const meta: Meta<typeof SelectField> = {
-  title: 'Inputs/SelectField',
+  title: 'Core Components/Forms/Select Field',
   component: SelectField,
   argTypes: { error: { control: 'text' } },
 };
@@ -24,7 +24,11 @@ export const Default: Story = {
 
 export const WithReactHookForm: Story = {
   render: (args) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<{ num: string }>();
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<{ num: string }>();
     return (
       <form onSubmit={handleSubmit(() => {})} className="space-y-2">
         <SelectField
@@ -35,7 +39,9 @@ export const WithReactHookForm: Story = {
           <option value="1">One</option>
           <option value="2">Two</option>
         </SelectField>
-        <button type="submit" className="btn">Submit</button>
+        <button type="submit" className="btn">
+          Submit
+        </button>
       </form>
     );
   },

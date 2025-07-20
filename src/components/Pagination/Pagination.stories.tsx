@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Pagination } from './Pagination';
 
 const meta: Meta<typeof Pagination> = {
-  title: 'Navigation/Pagination',
+  title: 'Core Components/Navigation/Pagination',
   component: Pagination,
   args: {
     totalItems: 100,
@@ -17,9 +17,7 @@ type Story = StoryObj<typeof Pagination>;
 export const Primary: Story = {
   render: (args) => {
     const [page, setPage] = useState(1);
-    return (
-      <Pagination {...args} currentPage={page} onPageChange={setPage} />
-    );
+    return <Pagination {...args} currentPage={page} onPageChange={setPage} />;
   },
 };
 

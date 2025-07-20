@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Terminal, TerminalCommand } from './Terminal';
 
 const meta: Meta<typeof Terminal> = {
-  title: 'Components/Terminal',
+  title: 'Core Components/Specialized/Terminal',
   component: Terminal,
   parameters: {
     layout: 'padded',
@@ -373,7 +373,7 @@ drwxr-xr-x  2 user  staff   64 Oct 24 14:30 downloads/
         newCommand.status = 'error';
       }
 
-      setCommands(prev => [...prev, newCommand]);
+      setCommands((prev) => [...prev, newCommand]);
     };
 
     const handleClear = () => {
@@ -521,13 +521,7 @@ export const AllVariants: Story = {
       </div>
       <div>
         <h3 className="text-lg font-semibold mb-2 text-red-400">DOOM</h3>
-        <Terminal
-          {...args}
-          variant="doom"
-          title="DOOM TERMINAL"
-          height="250px"
-          prompt="DOOM> "
-        />
+        <Terminal {...args} variant="doom" title="DOOM TERMINAL" height="250px" prompt="DOOM> " />
       </div>
       <div>
         <h3 className="text-lg font-semibold mb-2 text-cyan-400">Swordfish</h3>
@@ -541,13 +535,7 @@ export const AllVariants: Story = {
       </div>
       <div>
         <h3 className="text-lg font-semibold mb-2 text-pink-400">Neon</h3>
-        <Terminal
-          {...args}
-          variant="neon"
-          title="NEON TERMINAL"
-          height="250px"
-          prompt="◉ "
-        />
+        <Terminal {...args} variant="neon" title="NEON TERMINAL" height="250px" prompt="◉ " />
       </div>
     </div>
   ),

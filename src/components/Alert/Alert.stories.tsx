@@ -3,7 +3,7 @@ import React from 'react';
 import { Alert } from './Alert';
 
 const meta: Meta<typeof Alert> = {
-  title: 'Feedback/Alert',
+  title: 'Core Components/Feedback/Alert',
   component: Alert,
   args: {
     title: 'Heads up!',

@@ -4,7 +4,7 @@ import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogFooter } fr
 import { Button } from '../Button/Button';
 
 const meta: Meta<typeof Dialog> = {
-  title: 'Components/Dialog',
+  title: 'Core Components/Overlays/Dialog',
   component: Dialog,
 };
 export default meta;

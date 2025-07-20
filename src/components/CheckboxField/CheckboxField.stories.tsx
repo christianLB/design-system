@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { CheckboxField } from './CheckboxField';
 
 const meta: Meta<typeof CheckboxField> = {
-  title: 'Inputs/CheckboxField',
+  title: 'Core Components/Forms/Checkbox Field',
   component: CheckboxField,
   argTypes: { error: { control: 'text' }, description: { control: 'text' } },
 };
@@ -25,7 +25,11 @@ export const Default: Story = {
 
 export const WithReactHookForm: Story = {
   render: (args) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<{ agree: boolean }>();
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<{ agree: boolean }>();
     return (
       <form onSubmit={handleSubmit(() => {})} className="space-y-2">
         <CheckboxField
@@ -33,7 +37,9 @@ export const WithReactHookForm: Story = {
           {...register('agree', { required: 'Required' })}
           error={errors.agree?.message}
         />
-        <button type="submit" className="btn">Submit</button>
+        <button type="submit" className="btn">
+          Submit
+        </button>
       </form>
     );
   },

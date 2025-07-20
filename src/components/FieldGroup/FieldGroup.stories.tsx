@@ -4,7 +4,7 @@ import { FieldGroup } from './FieldGroup';
 import { InputField } from '../InputField/InputField';
 
 const meta: Meta<typeof FieldGroup> = {
-  title: 'Components/FieldGroup',
+  title: 'Core Components/Forms/Field Group',
   component: FieldGroup,
   argTypes: {
     direction: { control: 'select', options: ['column', 'row'] },

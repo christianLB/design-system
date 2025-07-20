@@ -1,18 +1,15 @@
 // Import Tailwind CSS with design system styles
 import './tailwind.css';
 import './cyberpunk-fix.css';
-import type {
-  Preview,
-  StoryFn,
-  Decorator,
-  StoryContext,
-} from '@storybook/react';
+import type { Preview, StoryFn, Decorator, StoryContext } from '@storybook/react';
 // Import real ThemeProvider for scalability and component compatibility
 import { ThemeProvider, useTheme } from '../src/theme/ThemeContext';
 import { lightTheme } from '../src/theme/theme.light';
 import { darkTheme } from '../src/theme/theme.dark';
 import { futuristicTheme } from '../src/theme/theme.futuristic';
 import { cyberpunkTheme } from '../src/theme/theme.cyberpunk';
+import { alienTheme } from '../src/theme/theme.alien';
+import { mirthaTheme } from '../src/theme/theme.mirtha';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -22,6 +19,8 @@ const STORYBOOK_THEME_MAP = {
   dark: darkTheme,
   futuristic: futuristicTheme,
   cyberpunk: cyberpunkTheme,
+  alien: alienTheme,
+  mirtha: mirthaTheme,
 } as const;
 
 export type StorybookTheme = keyof typeof STORYBOOK_THEME_MAP;
@@ -36,13 +35,13 @@ const StorybookThemeManager = ({
 }) => {
   const { theme, setTheme, setVariant } = useTheme();
   const [isLocalControl, setIsLocalControl] = React.useState(false);
-  
+
   React.useEffect(() => {
     // Only sync from Storybook if we're not in local control mode
     if (!isLocalControl) {
       // Pass theme name directly to setTheme - it expects a string, not an object
       setTheme(storybookTheme);
-      
+
       // Set appropriate variant for theme extensibility
       // Note: Themes are not variants. Keep variant as 'default' for all themes
       setVariant('default');
@@ -53,12 +52,12 @@ const StorybookThemeManager = ({
   React.useEffect(() => {
     if (theme !== storybookTheme) {
       setIsLocalControl(true);
-      
+
       // Reset local control after 5 seconds to allow Storybook to take over again
       const timeout = setTimeout(() => {
         setIsLocalControl(false);
       }, 5000);
-      
+
       return () => clearTimeout(timeout);
     }
   }, [theme, storybookTheme]);
@@ -69,18 +68,20 @@ const StorybookThemeManager = ({
 // Enhanced Theme Decorator with background effects and scalable architecture
 const ThemeDecorator = ({ children }: { children: React.ReactNode }) => {
   const { variant, theme } = useTheme();
-  
+
   // Determine theme name from theme object
   const themeName = theme?.meta?.name?.toLowerCase() || 'light';
-  
+
   return (
-    <div 
+    <div
       className={clsx(
         // Base theme wrapper classes
         'storybook-theme-wrapper',
         // Theme-specific wrapper classes for future extensibility
         themeName.includes('futuristic') && 'futuristic-wrap',
         themeName.includes('cyberpunk') && 'cyberpunk-wrap',
+        themeName.includes('alien') && 'alien-wrap',
+        themeName.includes('mirtha') && 'mirtha-wrap',
         // Data attributes for CSS targeting
       )}
       data-theme={themeName}
@@ -89,6 +90,8 @@ const ThemeDecorator = ({ children }: { children: React.ReactNode }) => {
       {/* Background effects for immersive themes */}
       {themeName.includes('futuristic') && <div className="futuristic-bg" aria-hidden />}
       {themeName.includes('cyberpunk') && <div className="cyberpunk-bg" aria-hidden />}
+      {themeName.includes('alien') && <div className="alien-bg" aria-hidden />}
+      {themeName.includes('mirtha') && <div className="mirtha-bg" aria-hidden />}
       {children}
     </div>
   );
@@ -123,6 +126,8 @@ const preview: Preview = {
           { value: 'dark', title: 'Dark' },
           { value: 'futuristic', title: 'Futuristic' },
           { value: 'cyberpunk', title: 'Cyberpunk' },
+          { value: 'alien', title: 'Alien' },
+          { value: 'mirtha', title: 'Mirtha Legrand' },
         ],
       },
     },

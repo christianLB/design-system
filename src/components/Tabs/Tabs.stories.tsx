@@ -3,7 +3,7 @@ import React from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
 
 const meta: Meta<typeof Tabs> = {
-  title: 'Navigation/Tabs',
+  title: 'Core Components/Navigation/Tabs',
   component: Tabs,
   args: { defaultValue: 'tab1' },
 };

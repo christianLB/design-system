@@ -34,27 +34,26 @@ export const alienNeuralPlugin: AnimationPlugin = {
   version: '1.0.0',
   category: 'animation',
   priority: 'high',
-  
+
   description: 'Interactive synaptic connections and neural pathways for alien theme',
-  
+
   features: {
     customKeyframes: true,
-    performanceOptimizations: true,
     gestureAnimations: true,
     advancedKeyframes: true,
   },
-  
+
   config: defaultConfig,
-  
+
   hooks: {
     afterThemeBuild: (context: PluginContext): PluginResult => {
       const config = { ...defaultConfig, ...context.config } as AlienNeuralConfig;
-      
+
       // Only apply to alien theme
       if (context.theme?.meta?.name !== 'alien') {
         return { success: true };
       }
-      
+
       const intensityConfig = {
         subtle: {
           opacity: 0.4,
@@ -75,41 +74,41 @@ export const alienNeuralPlugin: AnimationPlugin = {
           frequency: 2,
         },
       }[config.intensity || 'normal'];
-      
+
       const colors = {
         synaptic: config.customColors?.synaptic || alienColors.ancientBlood,
         pathway: config.customColors?.pathway || alienColors.textMuted,
         network: config.customColors?.network || alienColors.borderVessel,
       };
-      
+
       const cssVariables: Record<string, string> = {
         // Neural configuration
         '--alien-neural-opacity': intensityConfig.opacity.toString(),
         '--alien-neural-scale': intensityConfig.scale.toString(),
         '--alien-neural-speed': `${intensityConfig.speed}ms`,
         '--alien-neural-frequency': intensityConfig.frequency.toString(),
-        
+
         // Colors
         '--alien-neural-synaptic': colors.synaptic,
         '--alien-neural-pathway': colors.pathway,
         '--alien-neural-network': colors.network,
-        
+
         // Feature toggles
         '--alien-synaptic-enabled': config.synapticEnabled ? '1' : '0',
         '--alien-pathway-enabled': config.pathwayEnabled ? '1' : '0',
         '--alien-network-enabled': config.networkEnabled ? '1' : '0',
         '--alien-brainwave-enabled': config.brainwaveEnabled ? '1' : '0',
       };
-      
+
       // Add reduced motion support
       if (config.respectReducedMotion) {
         cssVariables['--alien-reduced-neural-speed'] = '0s';
         cssVariables['--alien-reduced-neural-opacity'] = '0.2';
       }
-      
+
       // Generate keyframes for neural animations
       const keyframes: Record<string, Record<string, any>> = {};
-      
+
       if (config.synapticEnabled) {
         keyframes['alien-synaptic-fire'] = {
           '0%': {
@@ -133,7 +132,7 @@ export const alienNeuralPlugin: AnimationPlugin = {
             filter: 'brightness(1)',
           },
         };
-        
+
         keyframes['alien-synaptic-pulse'] = {
           '0%, 100%': {
             borderColor: `rgba(107, 114, 128, ${intensityConfig.opacity * 0.3})`,
@@ -145,7 +144,7 @@ export const alienNeuralPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.pathwayEnabled) {
         keyframes['alien-neural-pathway'] = {
           '0%': {
@@ -163,7 +162,7 @@ export const alienNeuralPlugin: AnimationPlugin = {
             opacity: intensityConfig.opacity * 0.3,
           },
         };
-        
+
         keyframes['alien-pathway-glow'] = {
           '0%, 100%': {
             filter: `drop-shadow(0 0 2px rgba(107, 114, 128, ${intensityConfig.opacity * 0.3}))`,
@@ -173,7 +172,7 @@ export const alienNeuralPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.networkEnabled) {
         keyframes['alien-neural-network'] = {
           '0%': {
@@ -193,7 +192,7 @@ export const alienNeuralPlugin: AnimationPlugin = {
             opacity: intensityConfig.opacity * 0.3,
           },
         };
-        
+
         keyframes['alien-network-connection'] = {
           '0%': {
             transform: 'scaleX(0)',
@@ -209,7 +208,7 @@ export const alienNeuralPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.brainwaveEnabled) {
         keyframes['alien-brainwave'] = {
           '0%': {
@@ -233,7 +232,7 @@ export const alienNeuralPlugin: AnimationPlugin = {
             opacity: intensityConfig.opacity * 0.5,
           },
         };
-        
+
         keyframes['alien-neural-wave'] = {
           '0%': {
             clipPath: 'polygon(0% 50%, 0% 50%, 0% 50%, 0% 50%)',
@@ -252,14 +251,14 @@ export const alienNeuralPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       // Generate utility classes
       const utilityClasses: Record<string, Record<string, any>> = {
         '.alien-neural-container': {
           position: 'relative',
           overflow: 'hidden',
         },
-        
+
         '.alien-synaptic': {
           position: 'relative',
           animation: 'alien-synaptic-pulse var(--alien-neural-speed) ease-in-out infinite',
@@ -274,10 +273,11 @@ export const alienNeuralPlugin: AnimationPlugin = {
             borderRadius: '50%',
             backgroundColor: 'var(--alien-neural-synaptic)',
             transform: 'translate(-50%, -50%)',
-            animation: 'alien-synaptic-fire calc(var(--alien-neural-speed) * var(--alien-neural-frequency)) ease-out infinite',
+            animation:
+              'alien-synaptic-fire calc(var(--alien-neural-speed) * var(--alien-neural-frequency)) ease-out infinite',
           },
         },
-        
+
         '.alien-neural-pathway': {
           position: 'relative',
           '&::after': {
@@ -299,7 +299,7 @@ export const alienNeuralPlugin: AnimationPlugin = {
             pointerEvents: 'none',
           },
         },
-        
+
         '.alien-neural-network': {
           position: 'relative',
           background: `
@@ -310,7 +310,8 @@ export const alienNeuralPlugin: AnimationPlugin = {
             radial-gradient(circle at 50% 50%, var(--alien-neural-network) 1px, transparent 1px)
           `,
           backgroundSize: '40px 40px, 60px 60px, 50px 50px, 70px 70px, 30px 30px',
-          animation: 'alien-neural-network calc(var(--alien-neural-speed) * 2) ease-in-out infinite',
+          animation:
+            'alien-neural-network calc(var(--alien-neural-speed) * 2) ease-in-out infinite',
           opacity: 'calc(var(--alien-network-enabled) * var(--alien-neural-opacity))',
           '&::before': {
             content: '""',
@@ -320,7 +321,8 @@ export const alienNeuralPlugin: AnimationPlugin = {
             right: '0',
             height: '1px',
             background: `linear-gradient(90deg, transparent, var(--alien-neural-network), transparent)`,
-            animation: 'alien-network-connection calc(var(--alien-neural-speed) * 1.5) ease-in-out infinite',
+            animation:
+              'alien-network-connection calc(var(--alien-neural-speed) * 1.5) ease-in-out infinite',
             transform: 'translateY(-50%)',
           },
           '&::after': {
@@ -331,12 +333,13 @@ export const alienNeuralPlugin: AnimationPlugin = {
             left: '50%',
             width: '1px',
             background: `linear-gradient(0deg, transparent, var(--alien-neural-network), transparent)`,
-            animation: 'alien-network-connection calc(var(--alien-neural-speed) * 1.8) ease-in-out infinite',
+            animation:
+              'alien-network-connection calc(var(--alien-neural-speed) * 1.8) ease-in-out infinite',
             animationDelay: '0.5s',
             transform: 'translateX(-50%)',
           },
         },
-        
+
         '.alien-brainwave': {
           position: 'relative',
           animation: 'alien-brainwave var(--alien-neural-speed) ease-in-out infinite',
@@ -353,7 +356,7 @@ export const alienNeuralPlugin: AnimationPlugin = {
             opacity: '0.6',
           },
         },
-        
+
         '.alien-neural-interactive': {
           position: 'relative',
           cursor: 'pointer',
@@ -367,7 +370,7 @@ export const alienNeuralPlugin: AnimationPlugin = {
             },
           },
         },
-        
+
         '.alien-neural-text': {
           position: 'relative',
           color: 'var(--alien-neural-pathway)',
@@ -380,10 +383,11 @@ export const alienNeuralPlugin: AnimationPlugin = {
             right: '0',
             height: '1px',
             background: 'var(--alien-neural-pathway)',
-            animation: 'alien-network-connection calc(var(--alien-neural-speed) * 1.2) ease-in-out infinite',
+            animation:
+              'alien-network-connection calc(var(--alien-neural-speed) * 1.2) ease-in-out infinite',
           },
         },
-        
+
         '.alien-neural-grid': {
           position: 'relative',
           '&::before': {
@@ -404,34 +408,34 @@ export const alienNeuralPlugin: AnimationPlugin = {
           },
         },
       };
-      
+
       // Reduced motion support
       if (config.respectReducedMotion) {
         utilityClasses['@media (prefers-reduced-motion: reduce)'] = {
-          '.alien-synaptic, .alien-neural-pathway, .alien-neural-network, .alien-brainwave, .alien-neural-text, .alien-neural-grid': {
-            animation: 'none !important',
-          },
-          '.alien-synaptic::before, .alien-neural-pathway::after, .alien-neural-network::before, .alien-neural-network::after, .alien-brainwave::before, .alien-neural-text::after, .alien-neural-grid::before': {
-            animation: 'none !important',
-            opacity: 'var(--alien-reduced-neural-opacity) !important',
-          },
+          '.alien-synaptic, .alien-neural-pathway, .alien-neural-network, .alien-brainwave, .alien-neural-text, .alien-neural-grid':
+            {
+              animation: 'none !important',
+            },
+          '.alien-synaptic::before, .alien-neural-pathway::after, .alien-neural-network::before, .alien-neural-network::after, .alien-brainwave::before, .alien-neural-text::after, .alien-neural-grid::before':
+            {
+              animation: 'none !important',
+              opacity: 'var(--alien-reduced-neural-opacity) !important',
+            },
         };
       }
-      
+
       return {
         success: true,
         modifications: {
           cssVariables,
           keyframes,
-          utilityClasses,
         },
       };
     },
-    
+
     onThemeChange: (context: PluginContext): PluginResult => {
       // Cleanup neural effects when switching away from alien
-      if (context.previousTheme?.meta?.name === 'alien' && 
-          context.theme?.meta?.name !== 'alien') {
+      if (context.previousTheme?.meta?.name === 'alien' && context.theme?.meta?.name !== 'alien') {
         return {
           success: true,
           modifications: {
@@ -445,41 +449,42 @@ export const alienNeuralPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       return { success: true };
     },
   },
-  
+
   // Plugin validation
   validate: (config: any): { valid: boolean; errors: string[] } => {
     const errors: string[] = [];
-    
+
     if (config.intensity && !['subtle', 'normal', 'intense'].includes(config.intensity)) {
       errors.push('intensity must be "subtle", "normal", or "intense"');
     }
-    
+
     if (config.customColors) {
-      const colorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\(\d+,\s*\d+,\s*\d+(?:,\s*[\d.]+)?\)$/;
-      
+      const colorRegex =
+        /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\(\d+,\s*\d+,\s*\d+(?:,\s*[\d.]+)?\)$/;
+
       if (config.customColors.synaptic && !colorRegex.test(config.customColors.synaptic)) {
         errors.push('customColors.synaptic must be a valid hex or rgba color');
       }
-      
+
       if (config.customColors.pathway && !colorRegex.test(config.customColors.pathway)) {
         errors.push('customColors.pathway must be a valid hex or rgba color');
       }
-      
+
       if (config.customColors.network && !colorRegex.test(config.customColors.network)) {
         errors.push('customColors.network must be a valid hex or rgba color');
       }
     }
-    
+
     return {
       valid: errors.length === 0,
       errors,
     };
   },
-  
+
   // Performance optimization hints
   getPerformanceHints: () => [
     'Neural effects can be CPU intensive - use sparingly on complex layouts',
@@ -493,7 +498,9 @@ export const alienNeuralPlugin: AnimationPlugin = {
 };
 
 // Convenience function to create neural plugin with custom config
-export const createAlienNeuralPlugin = (config: Partial<AlienNeuralConfig> = {}): AnimationPlugin => ({
+export const createAlienNeuralPlugin = (
+  config: Partial<AlienNeuralConfig> = {},
+): AnimationPlugin => ({
   ...alienNeuralPlugin,
   config: { ...defaultConfig, ...config },
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta = {
-  title: 'Docs/Guia de uso',
+  title: 'Documentation/Guia de Uso',
   parameters: {
     viewMode: 'docs',
     docs: {
@@ -12,9 +12,14 @@ const meta: Meta = {
           <p>Esta guía resume cómo contribuir con nuevas historias y buenas prácticas.</p>
           <h2>Cómo contribuir</h2>
           <ol>
-            <li>Agrega tu componente en <code>src/components</code> con sus pruebas.</li>
+            <li>
+              Agrega tu componente en <code>src/components</code> con sus pruebas.
+            </li>
             <li>Crea su historia bajo la misma carpeta.</li>
-            <li>Asegúrate de exportar un <code>meta</code> con <code>title</code> y <code>component</code>.</li>
+            <li>
+              Asegúrate de exportar un <code>meta</code> con <code>title</code> y{' '}
+              <code>component</code>.
+            </li>
           </ol>
           <h2>Criterios de accesibilidad</h2>
           <ul>
@@ -24,8 +29,13 @@ const meta: Meta = {
           </ul>
           <h2>Convenciones de nomenclatura</h2>
           <ul>
-            <li>Componentes en <em>PascalCase</em>.</li>
-            <li>Archivos de historia terminan en <code>.stories.tsx</code> o <code>.stories.mdx</code>.</li>
+            <li>
+              Componentes en <em>PascalCase</em>.
+            </li>
+            <li>
+              Archivos de historia terminan en <code>.stories.tsx</code> o <code>.stories.mdx</code>
+              .
+            </li>
           </ul>
           <h2>Ejemplo de estructura ideal</h2>
           <pre>

@@ -8,12 +8,13 @@ import { Progress } from '../components/Progress/Progress';
 import { Badge } from '../components/Badge/Badge';
 
 const meta: Meta = {
-  title: 'Alien/Terminal',
+  title: 'Themes/Alien/Terminal',
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
-        component: 'Alien biomechanical terminal interfaces with consciousness connection protocols and organic command systems.',
+        component:
+          'Alien biomechanical terminal interfaces with consciousness connection protocols and organic command systems.',
       },
     },
   },
@@ -23,13 +24,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // Biomechanical terminal placeholder component
-const BiomechanicalTerminal = ({ 
-  variant = 'chamber', 
-  title = 'BIOMECHANICAL INTERFACE', 
+const BiomechanicalTerminal = ({
+  variant = 'chamber',
+  title = 'BIOMECHANICAL INTERFACE',
   consciousness = false,
-  neural = false
-}: { 
-  variant?: string; 
+  neural = false,
+}: {
+  variant?: string;
   title?: string;
   consciousness?: boolean;
   neural?: boolean;
@@ -41,9 +42,13 @@ const BiomechanicalTerminal = ({
   useEffect(() => {
     const interval = setInterval(() => {
       if (consciousness) {
-        setPulseRate(prev => Math.max(60, Math.min(120, prev + (Math.random() - 0.5) * 8)));
-        setSynapticActivity(prev => Math.max(400, Math.min(1200, prev + (Math.random() - 0.5) * 100)));
-        setMembraneIntegrity(prev => Math.max(85, Math.min(100, prev + (Math.random() - 0.5) * 3)));
+        setPulseRate((prev) => Math.max(60, Math.min(120, prev + (Math.random() - 0.5) * 8)));
+        setSynapticActivity((prev) =>
+          Math.max(400, Math.min(1200, prev + (Math.random() - 0.5) * 100)),
+        );
+        setMembraneIntegrity((prev) =>
+          Math.max(85, Math.min(100, prev + (Math.random() - 0.5) * 3)),
+        );
       }
     }, 2000);
 
@@ -51,37 +56,51 @@ const BiomechanicalTerminal = ({
   }, [consciousness]);
 
   return (
-    <div className={`
+    <div
+      className={`
       bg-gradient-to-br from-black via-gray-900/30 to-black
-      atmospheric-border-${variant === 'chamber' ? 'vessel' : 
-                           variant === 'organ' ? 'organ' :
-                           variant === 'membrane' ? 'cell' : 'cavity'}
+      atmospheric-border-${
+        variant === 'chamber'
+          ? 'vessel'
+          : variant === 'organ'
+            ? 'organ'
+            : variant === 'membrane'
+              ? 'cell'
+              : 'cavity'
+      }
       rounded-lg p-6 font-mono text-sm
       ${consciousness ? 'atmospheric-breathe' : ''}
       ${neural ? 'atmospheric-neural' : ''}
       min-h-[400px] relative overflow-hidden
-    `}>
-      
+    `}
+    >
       {/* Background Effects */}
       {consciousness && <div className="atmospheric-membrane opacity-20 pointer-events-none" />}
       {neural && <div className="neural-pathways opacity-15 pointer-events-none" />}
-      
+
       {/* Terminal Header */}
       <div className="flex items-center justify-between atmospheric-border-vessel border-b pb-3 mb-4">
         <h3 className="atmospheric-text-vital font-bold">{title}</h3>
         <div className="flex items-center gap-2">
-          <div className={`w-3 h-3 rounded-full ${consciousness ? 'bg-green-400 atmospheric-pulse' : 'bg-gray-600'}`} />
-          <div className={`w-3 h-3 rounded-full ${neural ? 'bg-blue-400 atmospheric-neural' : 'bg-gray-600'}`} />
-          <div className={`w-3 h-3 rounded-full ${membraneIntegrity > 95 ? 'bg-orange-400' : 'bg-gray-600'}`} />
+          <div
+            className={`w-3 h-3 rounded-full ${consciousness ? 'bg-green-400 atmospheric-pulse' : 'bg-gray-600'}`}
+          />
+          <div
+            className={`w-3 h-3 rounded-full ${neural ? 'bg-blue-400 atmospheric-neural' : 'bg-gray-600'}`}
+          />
+          <div
+            className={`w-3 h-3 rounded-full ${membraneIntegrity > 95 ? 'bg-orange-400' : 'bg-gray-600'}`}
+          />
         </div>
       </div>
 
       {/* Terminal Content */}
       <div className="space-y-3 atmospheric-text-vital">
         <div className="text-xs atmospheric-text-ghost">
-          $ biomech-init --variant={variant} {consciousness ? '--consciousness' : ''} {neural ? '--neural-link' : ''}
+          $ biomech-init --variant={variant} {consciousness ? '--consciousness' : ''}{' '}
+          {neural ? '--neural-link' : ''}
         </div>
-        
+
         <div className="space-y-1">
           <div>Initializing {variant} bio-interface...</div>
           <div>Loading organic protocols...</div>
@@ -101,16 +120,24 @@ const BiomechanicalTerminal = ({
               </div>
               <div>
                 <span className="atmospheric-text-ghost">Synaptic:</span>
-                <span className="atmospheric-text-vital ml-2">{Math.floor(synapticActivity)} Hz</span>
+                <span className="atmospheric-text-vital ml-2">
+                  {Math.floor(synapticActivity)} Hz
+                </span>
               </div>
               <div>
                 <span className="atmospheric-text-ghost">Membrane:</span>
-                <span className="atmospheric-text-vital ml-2">{Math.floor(membraneIntegrity)}%</span>
+                <span className="atmospheric-text-vital ml-2">
+                  {Math.floor(membraneIntegrity)}%
+                </span>
               </div>
               <div>
                 <span className="atmospheric-text-ghost">Status:</span>
                 <span className="atmospheric-text-vital ml-2">
-                  {consciousness && neural ? 'TRANSCENDENT' : consciousness ? 'AWAKENED' : 'DORMANT'}
+                  {consciousness && neural
+                    ? 'TRANSCENDENT'
+                    : consciousness
+                      ? 'AWAKENED'
+                      : 'DORMANT'}
                 </span>
               </div>
             </div>
@@ -154,7 +181,6 @@ export const BioChamberTerminal: Story = {
   render: () => (
     <div className="theme-atmospheric min-h-screen p-8 bg-black text-white">
       <div className="max-w-4xl mx-auto space-y-8">
-        
         {/* Header */}
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold atmospheric-text-vital atmospheric-breathe">
@@ -166,8 +192,8 @@ export const BioChamberTerminal: Story = {
         </div>
 
         {/* Terminal */}
-        <BiomechanicalTerminal 
-          variant="chamber" 
+        <BiomechanicalTerminal
+          variant="chamber"
           title="BIO-CHAMBER INTERFACE v4.7.2"
           consciousness={true}
           neural={false}
@@ -231,8 +257,8 @@ export const ConsciousnessTerminal: Story = {
     useEffect(() => {
       const interval = setInterval(() => {
         if (neuralConnected) {
-          setConsciousnessLevel(prev => Math.min(100, prev + Math.random() * 2));
-          setLinkDepth(prev => Math.min(100, prev + Math.random() * 3));
+          setConsciousnessLevel((prev) => Math.min(100, prev + Math.random() * 2));
+          setLinkDepth((prev) => Math.min(100, prev + Math.random() * 3));
         }
       }, 1000);
 
@@ -244,9 +270,8 @@ export const ConsciousnessTerminal: Story = {
         {/* Background Effects */}
         <div className="neural-pathways opacity-20 pointer-events-none" />
         <div className="atmospheric-neural opacity-15 pointer-events-none" />
-        
+
         <div className="max-w-6xl mx-auto space-y-8">
-          
           {/* Header */}
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-bold atmospheric-text-vital atmospheric-neural">
@@ -258,7 +283,6 @@ export const ConsciousnessTerminal: Story = {
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-            
             {/* Control Panel */}
             <div className="xl:col-span-1 space-y-6">
               <Container alienVariant="organ" atmospheric neural={neuralConnected} className="p-4">
@@ -273,14 +297,16 @@ export const ConsciousnessTerminal: Story = {
                   >
                     {neuralConnected ? 'NEURAL LINK ACTIVE' : 'ESTABLISH NEURAL LINK'}
                   </Button>
-                  
+
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="atmospheric-text-ghost">Consciousness:</span>
-                      <span className="atmospheric-text-vital">{Math.floor(consciousnessLevel)}%</span>
+                      <span className="atmospheric-text-vital">
+                        {Math.floor(consciousnessLevel)}%
+                      </span>
                     </div>
                     <Progress value={consciousnessLevel} className="h-2 atmospheric-neural" />
-                    
+
                     <div className="flex justify-between text-sm">
                       <span className="atmospheric-text-ghost">Link Depth:</span>
                       <span className="atmospheric-text-vital">{Math.floor(linkDepth)}%</span>
@@ -288,9 +314,9 @@ export const ConsciousnessTerminal: Story = {
                     <Progress value={linkDepth} className="h-2 atmospheric-breathe" />
                   </div>
 
-                  <Badge 
-                    variant="neural" 
-                    atmospheric 
+                  <Badge
+                    variant="neural"
+                    atmospheric
                     className={neuralConnected ? 'atmospheric-pulse' : ''}
                   >
                     {neuralConnected ? 'CONSCIOUS ENTITY DETECTED' : 'NO CONSCIOUSNESS DETECTED'}
@@ -307,7 +333,9 @@ export const ConsciousnessTerminal: Story = {
                     <div className="flex justify-between">
                       <span>Synaptic Rate:</span>
                       <span className="atmospheric-text-vital">
-                        {neuralConnected ? `${Math.floor(600 + consciousnessLevel * 4)} Hz` : '0 Hz'}
+                        {neuralConnected
+                          ? `${Math.floor(600 + consciousnessLevel * 4)} Hz`
+                          : '0 Hz'}
                       </span>
                     </div>
                     <div className="flex justify-between">
@@ -329,21 +357,18 @@ export const ConsciousnessTerminal: Story = {
 
             {/* Main Terminal */}
             <div className="xl:col-span-2 space-y-6">
-              <BiomechanicalTerminal 
-                variant="neural" 
+              <BiomechanicalTerminal
+                variant="neural"
                 title="CONSCIOUSNESS BRIDGE PROTOCOL v3.14"
                 consciousness={neuralConnected}
                 neural={neuralConnected}
               />
 
               {/* Consciousness Visualization */}
-              <Container 
-                alienVariant="cavity" 
-                atmospheric 
-                neural={neuralConnected} 
-                className="p-6"
-              >
-                <h3 className="font-bold atmospheric-text-vital mb-4">CONSCIOUSNESS VISUALIZATION</h3>
+              <Container alienVariant="cavity" atmospheric neural={neuralConnected} className="p-6">
+                <h3 className="font-bold atmospheric-text-vital mb-4">
+                  CONSCIOUSNESS VISUALIZATION
+                </h3>
                 <div className="h-40 relative atmospheric-border-organ rounded bg-black/30 overflow-hidden">
                   {neuralConnected && (
                     <>
@@ -351,31 +376,42 @@ export const ConsciousnessTerminal: Story = {
                       <div className="atmospheric-neural opacity-20" />
                     </>
                   )}
-                  
+
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div 
+                    <div
                       className={`text-6xl transition-all duration-1000 ${
-                        neuralConnected ? 'atmospheric-text-vital atmospheric-neural' : 'text-gray-600'
+                        neuralConnected
+                          ? 'atmospheric-text-vital atmospheric-neural'
+                          : 'text-gray-600'
                       }`}
                       style={{
-                        transform: `scale(${neuralConnected ? 1 + (consciousnessLevel / 500) : 0.8})`,
-                        filter: `drop-shadow(0 0 ${consciousnessLevel / 2}px rgba(139, 69, 19, 0.8))`
+                        transform: `scale(${neuralConnected ? 1 + consciousnessLevel / 500 : 0.8})`,
+                        filter: `drop-shadow(0 0 ${consciousnessLevel / 2}px rgba(139, 69, 19, 0.8))`,
                       }}
                     >
-                      {consciousnessLevel > 90 ? '🧠✨' : 
-                       consciousnessLevel > 70 ? '🧠⚡' : 
-                       consciousnessLevel > 50 ? '🧠💭' : 
-                       neuralConnected ? '🧠🔗' : '🧠💤'}
+                      {consciousnessLevel > 90
+                        ? '🧠✨'
+                        : consciousnessLevel > 70
+                          ? '🧠⚡'
+                          : consciousnessLevel > 50
+                            ? '🧠💭'
+                            : neuralConnected
+                              ? '🧠🔗'
+                              : '🧠💤'}
                     </div>
                   </div>
-                  
+
                   <div className="absolute bottom-2 left-2 text-xs atmospheric-text-ghost">
-                    Entity Status: {
-                      consciousnessLevel > 90 ? 'TRANSCENDENT' :
-                      consciousnessLevel > 70 ? 'AWAKENED' :
-                      consciousnessLevel > 50 ? 'CONSCIOUS' :
-                      neuralConnected ? 'LINKING' : 'DORMANT'
-                    }
+                    Entity Status:{' '}
+                    {consciousnessLevel > 90
+                      ? 'TRANSCENDENT'
+                      : consciousnessLevel > 70
+                        ? 'AWAKENED'
+                        : consciousnessLevel > 50
+                          ? 'CONSCIOUS'
+                          : neuralConnected
+                            ? 'LINKING'
+                            : 'DORMANT'}
                   </div>
                 </div>
               </Container>
@@ -393,8 +429,8 @@ export const OrganicCommandInterface: Story = {
     const [systemStatus, setSystemStatus] = useState('INITIALIZING');
 
     const executeCommand = (command: string) => {
-      setActiveCommands(prev => [...prev, command].slice(-5)); // Keep last 5 commands
-      
+      setActiveCommands((prev) => [...prev, command].slice(-5)); // Keep last 5 commands
+
       // Simulate system state changes
       if (command.includes('membrane')) {
         setSystemStatus('MEMBRANE_ACTIVE');
@@ -408,9 +444,8 @@ export const OrganicCommandInterface: Story = {
     return (
       <div className="theme-atmospheric min-h-screen p-8 bg-black text-white">
         <div className="atmospheric-organ opacity-15 pointer-events-none" />
-        
+
         <div className="max-w-7xl mx-auto space-y-8">
-          
           {/* Header */}
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-bold atmospheric-text-vital atmospheric-breathe">
@@ -422,7 +457,6 @@ export const OrganicCommandInterface: Story = {
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-            
             {/* Command Palette */}
             <div className="xl:col-span-1 space-y-6">
               <Container alienVariant="membrane" atmospheric className="p-4">
@@ -460,19 +494,28 @@ export const OrganicCommandInterface: Story = {
                 <CardContent>
                   <div className="space-y-2">
                     <div className="text-center">
-                      <div className={`text-2xl ${
-                        systemStatus === 'ORGANISM_AWAKENED' ? 'atmospheric-text-vital atmospheric-pulse' :
-                        systemStatus === 'NEURAL_LINKED' ? 'atmospheric-text-vital atmospheric-neural' :
-                        systemStatus === 'MEMBRANE_ACTIVE' ? 'atmospheric-text-vital atmospheric-breathe' :
-                        'text-gray-500'
-                      }`}>
-                        {systemStatus === 'ORGANISM_AWAKENED' ? '👁️' :
-                         systemStatus === 'NEURAL_LINKED' ? '🧠' :
-                         systemStatus === 'MEMBRANE_ACTIVE' ? '🧬' : '💤'}
+                      <div
+                        className={`text-2xl ${
+                          systemStatus === 'ORGANISM_AWAKENED'
+                            ? 'atmospheric-text-vital atmospheric-pulse'
+                            : systemStatus === 'NEURAL_LINKED'
+                              ? 'atmospheric-text-vital atmospheric-neural'
+                              : systemStatus === 'MEMBRANE_ACTIVE'
+                                ? 'atmospheric-text-vital atmospheric-breathe'
+                                : 'text-gray-500'
+                        }`}
+                      >
+                        {systemStatus === 'ORGANISM_AWAKENED'
+                          ? '👁️'
+                          : systemStatus === 'NEURAL_LINKED'
+                            ? '🧠'
+                            : systemStatus === 'MEMBRANE_ACTIVE'
+                              ? '🧬'
+                              : '💤'}
                       </div>
                       <div className="text-xs atmospheric-text-vital mt-1">{systemStatus}</div>
                     </div>
-                    
+
                     <div className="text-xs atmospheric-text-ghost">
                       Last {activeCommands.length} commands executed
                     </div>
@@ -483,11 +526,10 @@ export const OrganicCommandInterface: Story = {
 
             {/* Main Terminal Grid */}
             <div className="xl:col-span-3 grid grid-cols-1 lg:grid-cols-2 gap-6">
-              
               {/* Primary Terminal */}
               <div className="lg:col-span-2">
-                <BiomechanicalTerminal 
-                  variant="organ" 
+                <BiomechanicalTerminal
+                  variant="organ"
                   title="ORGANIC COMMAND INTERFACE v5.2.1"
                   consciousness={systemStatus !== 'INITIALIZING'}
                   neural={systemStatus === 'NEURAL_LINKED' || systemStatus === 'ORGANISM_AWAKENED'}
@@ -506,9 +548,13 @@ export const OrganicCommandInterface: Story = {
                         <div className="atmospheric-membrane opacity-40" />
                       )}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className={`text-3xl ${
-                          systemStatus.includes('MEMBRANE') ? 'atmospheric-text-vital atmospheric-breathe' : 'text-gray-600'
-                        }`}>
+                        <div
+                          className={`text-3xl ${
+                            systemStatus.includes('MEMBRANE')
+                              ? 'atmospheric-text-vital atmospheric-breathe'
+                              : 'text-gray-600'
+                          }`}
+                        >
                           🫧
                         </div>
                       </div>
@@ -543,9 +589,13 @@ export const OrganicCommandInterface: Story = {
                         <div className="neural-pathways opacity-40" />
                       )}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className={`text-3xl ${
-                          systemStatus.includes('NEURAL') ? 'atmospheric-text-vital atmospheric-neural' : 'text-gray-600'
-                        }`}>
+                        <div
+                          className={`text-3xl ${
+                            systemStatus.includes('NEURAL')
+                              ? 'atmospheric-text-vital atmospheric-neural'
+                              : 'text-gray-600'
+                          }`}
+                        >
                           ⚡
                         </div>
                       </div>
@@ -598,9 +648,8 @@ export const AllTerminals: Story = {
     <div className="theme-atmospheric min-h-screen p-8 bg-black text-white">
       <div className="atmospheric-vessel opacity-10 pointer-events-none" />
       <div className="neural-pathways opacity-15 pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto space-y-8">
-        
         {/* Header */}
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold atmospheric-text-vital atmospheric-breathe">
@@ -613,12 +662,11 @@ export const AllTerminals: Story = {
 
         {/* Terminal Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
           {/* Bio-Chamber Terminal */}
           <div className="space-y-4">
             <h2 className="text-xl font-bold atmospheric-text-vital">Bio-Chamber Interface</h2>
-            <BiomechanicalTerminal 
-              variant="chamber" 
+            <BiomechanicalTerminal
+              variant="chamber"
               title="BIO-CHAMBER v4.7.2"
               consciousness={true}
               neural={false}
@@ -628,8 +676,8 @@ export const AllTerminals: Story = {
           {/* Neural Terminal */}
           <div className="space-y-4">
             <h2 className="text-xl font-bold atmospheric-text-vital">Neural Interface</h2>
-            <BiomechanicalTerminal 
-              variant="neural" 
+            <BiomechanicalTerminal
+              variant="neural"
               title="NEURAL-LINK v3.14"
               consciousness={true}
               neural={true}
@@ -639,8 +687,8 @@ export const AllTerminals: Story = {
           {/* Membrane Terminal */}
           <div className="space-y-4">
             <h2 className="text-xl font-bold atmospheric-text-vital">Membrane Interface</h2>
-            <BiomechanicalTerminal 
-              variant="membrane" 
+            <BiomechanicalTerminal
+              variant="membrane"
               title="MEMBRANE-CTRL v2.8"
               consciousness={false}
               neural={false}
@@ -650,8 +698,8 @@ export const AllTerminals: Story = {
           {/* Organism Terminal */}
           <div className="space-y-4">
             <h2 className="text-xl font-bold atmospheric-text-vital">Organism Interface</h2>
-            <BiomechanicalTerminal 
-              variant="organism" 
+            <BiomechanicalTerminal
+              variant="organism"
               title="ORGANISM-SYS v6.1"
               consciousness={true}
               neural={true}
@@ -661,7 +709,9 @@ export const AllTerminals: Story = {
 
         {/* Terminal Comparison */}
         <Container alienVariant="cavity" atmospheric vital neural className="p-6">
-          <h2 className="text-xl font-bold atmospheric-text-vital mb-6">Terminal Comparison Matrix</h2>
+          <h2 className="text-xl font-bold atmospheric-text-vital mb-6">
+            Terminal Comparison Matrix
+          </h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -675,10 +725,34 @@ export const AllTerminals: Story = {
               </thead>
               <tbody className="space-y-2">
                 {[
-                  { type: 'Bio-Chamber', consciousness: '✓', neural: '○', function: 'Life support monitoring', complexity: 'Medium' },
-                  { type: 'Neural Interface', consciousness: '✓', neural: '✓', function: 'Consciousness bridging', complexity: 'High' },
-                  { type: 'Membrane', consciousness: '○', neural: '○', function: 'Barrier control', complexity: 'Low' },
-                  { type: 'Organism', consciousness: '✓', neural: '✓', function: 'Complete integration', complexity: 'Maximum' },
+                  {
+                    type: 'Bio-Chamber',
+                    consciousness: '✓',
+                    neural: '○',
+                    function: 'Life support monitoring',
+                    complexity: 'Medium',
+                  },
+                  {
+                    type: 'Neural Interface',
+                    consciousness: '✓',
+                    neural: '✓',
+                    function: 'Consciousness bridging',
+                    complexity: 'High',
+                  },
+                  {
+                    type: 'Membrane',
+                    consciousness: '○',
+                    neural: '○',
+                    function: 'Barrier control',
+                    complexity: 'Low',
+                  },
+                  {
+                    type: 'Organism',
+                    consciousness: '✓',
+                    neural: '✓',
+                    function: 'Complete integration',
+                    complexity: 'Maximum',
+                  },
                 ].map((row, index) => (
                   <tr key={index} className="atmospheric-border-vessel/30 border-b">
                     <td className="p-3 atmospheric-text-vital font-semibold">{row.type}</td>

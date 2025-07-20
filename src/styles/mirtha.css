@@ -1,0 +1,387 @@
+/**
+ * Mirtha Legrand Theme CSS
+ * Elegant styles and animations for the sophisticated theme
+ */
+
+/* Import elegant fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;700&family=Crimson+Text:wght@400;600&display=swap');
+
+/* Root theme variables */
+.theme-mirtha {
+  /* Color variables - Más ricos y cálidos */
+  --mirtha-gold: #ffd700;
+  --mirtha-rose-gold: #f4c2c2;
+  --mirtha-champagne: #f7e7ce;
+  --mirtha-blush: #ffb6c1;
+  --mirtha-pearl: #fff8dc;
+  --mirtha-burgundy: #722f37;
+  --mirtha-ivory: #fffff0;
+  --mirtha-charcoal: #36454f;
+
+  /* Backgrounds más lujosos */
+  --mirtha-background: #fbf7f0;
+  --mirtha-surface: #fdf9f3;
+  --mirtha-surface-elevated: #fefaf6;
+  --mirtha-border: #e6dcc9;
+  --mirtha-border-accent: #c9a96e;
+
+  /* Gradient variables */
+  --mirtha-gradient-gold: linear-gradient(135deg, #ffd700 0%, #f7e7ce 50%, #ffd700 100%);
+  --mirtha-gradient-rose: linear-gradient(135deg, #f4c2c2 0%, #ffd700 50%, #f4c2c2 100%);
+  --mirtha-gradient-luxury: conic-gradient(from 0deg, #ffd700, #f4c2c2, #fff8dc, #ffd700);
+
+  /* Shadow variables */
+  --mirtha-shadow-elegant: 0 4px 14px 0 rgba(255, 215, 0, 0.15);
+  --mirtha-shadow-soft: 0 2px 8px 0 rgba(0, 0, 0, 0.05);
+  --mirtha-shadow-luxury: 0 8px 32px 0 rgba(255, 215, 0, 0.2);
+
+  /* Animation variables */
+  --mirtha-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --mirtha-hover-lift: translateY(-2px);
+  --mirtha-hover-scale: scale(1.02);
+}
+
+/* Base theme styles */
+body.theme-mirtha {
+  font-family:
+    'Montserrat',
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  /* Fondo más lujoso con gradiente sutil */
+  background: radial-gradient(ellipse at center, #fbf7f0 0%, #f8f3e8 40%, #f5efe2 100%);
+  color: var(--mirtha-charcoal);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Background alternativo para contenedores principales */
+.theme-mirtha {
+  background: var(--mirtha-background);
+}
+
+/* Typography */
+.theme-mirtha h1,
+.theme-mirtha h2,
+.theme-mirtha h3,
+.theme-mirtha h4,
+.theme-mirtha h5,
+.theme-mirtha h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--mirtha-charcoal);
+}
+
+.theme-mirtha .elegant-heading {
+  background: var(--mirtha-gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Buttons */
+.theme-mirtha .btn-mirtha {
+  background: linear-gradient(135deg, var(--mirtha-gold) 0%, var(--mirtha-champagne) 100%);
+  color: var(--mirtha-charcoal);
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: var(--mirtha-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-mirtha .btn-mirtha:hover {
+  transform: var(--mirtha-hover-lift);
+  box-shadow: var(--mirtha-shadow-luxury);
+}
+
+.theme-mirtha .btn-mirtha::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.theme-mirtha .btn-mirtha:hover::before {
+  left: 100%;
+}
+
+/* Cards */
+.theme-mirtha .card-mirtha {
+  background: linear-gradient(135deg, #ffffff 0%, #fffcf9 100%);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: var(--mirtha-shadow-soft);
+  transition: var(--mirtha-transition);
+  position: relative;
+}
+
+.theme-mirtha .card-mirtha:hover {
+  transform: var(--mirtha-hover-lift);
+  box-shadow: var(--mirtha-shadow-elegant);
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.theme-mirtha .card-mirtha.luxury {
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    var(--mirtha-gradient-luxury) border-box;
+  border: 2px solid transparent;
+}
+
+/* Input fields */
+.theme-mirtha input,
+.theme-mirtha textarea,
+.theme-mirtha select {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-family: 'Montserrat', sans-serif;
+  transition: var(--mirtha-transition);
+}
+
+.theme-mirtha input:focus,
+.theme-mirtha textarea:focus,
+.theme-mirtha select:focus {
+  outline: none;
+  border-color: var(--mirtha-gold);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+/* Animations */
+@keyframes mirtha-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes mirtha-sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes mirtha-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes mirtha-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+  }
+}
+
+/* Shimmer effect */
+.mirtha-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.mirtha-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -200%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 215, 0, 0.1) 20%,
+    rgba(255, 215, 0, 0.2) 50%,
+    rgba(255, 215, 0, 0.1) 80%,
+    transparent 100%
+  );
+  animation: mirtha-shimmer 3s ease-in-out infinite;
+}
+
+/* Sparkle container */
+.mirtha-sparkle-container {
+  position: relative;
+}
+
+.mirtha-sparkle-container::before,
+.mirtha-sparkle-container::after {
+  content: '✦';
+  position: absolute;
+  color: var(--mirtha-gold);
+  font-size: 0.75rem;
+  animation: mirtha-sparkle 2s ease-in-out infinite;
+}
+
+.mirtha-sparkle-container::before {
+  top: -5px;
+  right: -5px;
+  animation-delay: 0s;
+}
+
+.mirtha-sparkle-container::after {
+  bottom: -5px;
+  left: -5px;
+  animation-delay: 1s;
+}
+
+/* Golden frame */
+.mirtha-golden-frame {
+  position: relative;
+  padding: 2rem;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    var(--mirtha-gradient-gold) border-box;
+  border: 3px solid transparent;
+  border-radius: 1rem;
+}
+
+/* Elegant divider */
+.mirtha-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--mirtha-gold), transparent);
+  margin: 2rem 0;
+}
+
+.mirtha-divider::before {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--mirtha-gold);
+  background: var(--mirtha-ivory);
+  padding: 0 1rem;
+  font-size: 1rem;
+}
+
+/* Luxury badge */
+.mirtha-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  background: var(--mirtha-gradient-gold);
+  color: var(--mirtha-charcoal);
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: var(--mirtha-shadow-soft);
+}
+
+/* Elegant list */
+.mirtha-list {
+  list-style: none;
+  padding: 0;
+}
+
+.mirtha-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.mirtha-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--mirtha-gold);
+}
+
+/* Quote block */
+.mirtha-quote {
+  position: relative;
+  padding: 2rem 3rem;
+  background: rgba(255, 215, 0, 0.05);
+  border-left: 4px solid var(--mirtha-gold);
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--mirtha-burgundy);
+}
+
+.mirtha-quote::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 4rem;
+  color: var(--mirtha-gold);
+  font-family: 'Dancing Script', cursive;
+  line-height: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-mirtha h1 {
+    font-size: 2rem;
+  }
+
+  .theme-mirtha .btn-mirtha {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.875rem;
+  }
+
+  .theme-mirtha .card-mirtha {
+    padding: 1.5rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .mirtha-shimmer::after,
+  .mirtha-sparkle-container::before,
+  .mirtha-sparkle-container::after {
+    display: none;
+  }
+
+  .theme-mirtha {
+    background: white;
+    color: black;
+  }
+}
+
+/* Accessibility - Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .theme-mirtha * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .mirtha-shimmer::after {
+    display: none;
+  }
+
+  .theme-mirtha .btn-mirtha::before {
+    display: none;
+  }
+}

@@ -28,7 +28,7 @@ class SimpleEventEmitter {
   emit(event: string, data?: any): boolean {
     const eventListeners = this.listeners.get(event);
     if (eventListeners) {
-      eventListeners.forEach(listener => listener(data));
+      eventListeners.forEach((listener) => listener(data));
       return true;
     }
     return false;
@@ -45,20 +45,25 @@ class SimpleEventEmitter {
 import { colord } from 'colord';
 import type { ThemeTokens } from '../theme.light';
 import type { SemanticColorTokens } from '../tokens/colors';
-import type { 
-  BuiltTheme, 
-  ThemeCustomization, 
-  ThemeVariant, 
-  CompositionMode, 
+import type {
+  BuiltTheme,
+  ThemeCustomization,
+  ThemeVariant,
+  CompositionMode,
   ThemeBuilderConfig,
   ThemeBuilderEvent,
   ThemeBuilderEventListener,
   ThemeValidationResult,
   ConflictResolutionConfig,
   SerializedTheme,
-  AnimationCustomization
+  AnimationCustomization,
 } from './types';
-import { AnimationTokens, animationTokens } from '../tokens/animation';
+import {
+  AnimationTokens,
+  animationTokens,
+  animationKeyframeTokens,
+  animationConfigTokens,
+} from '../tokens/animation';
 import { AnimationBuilder, createAnimation } from '../animation/AnimationBuilder';
 import { PluginManager, createPluginManager } from '../plugins/PluginManager';
 import { ThemePlugin, PluginUtils } from '../plugins/types';
@@ -71,6 +76,7 @@ import { darkTheme } from '../theme.dark';
 import { futuristicTheme } from '../theme.futuristic';
 import { cyberpunkTheme } from '../theme.cyberpunk';
 import { alienTheme } from '../theme.alien';
+import { mirthaTheme } from '../theme.mirtha';
 
 /**
  * Default theme builder configuration
@@ -102,7 +108,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
   private validationResult: ThemeValidationResult | null = null;
   private animationBuilder: AnimationBuilder | null = null;
   private pluginManager: PluginManager | null = null;
-  
+
   // Missing properties identified by validation
   private name: string = 'Custom Theme';
   private plugins: ThemePlugin[] = [];
@@ -115,18 +121,18 @@ export class ThemeBuilder extends SimpleEventEmitter {
     super();
     this.config = { ...defaultThemeBuilderConfig, ...config };
     this.conflictResolution = defaultConflictResolutionConfig;
-    
+
     // Initialize with light theme as default
     this.baseTheme = this.createDefaultTheme(lightTheme);
-    
+
     // Sync variant properties
     this.currentVariant = this.variant;
-    
+
     // Initialize animation system if enabled
     if (this.config.enableAnimations) {
       this.animationBuilder = createAnimation(animationTokens);
     }
-    
+
     // Initialize plugin system if enabled
     if (this.config.enablePlugins) {
       this.pluginManager = createPluginManager({
@@ -147,7 +153,17 @@ export class ThemeBuilder extends SimpleEventEmitter {
   /**
    * Start with a base theme
    */
-  extends(baseTheme: ThemeTokens | BuiltTheme | 'light' | 'dark' | 'futuristic' | 'cyberpunk' | 'alien'): ThemeBuilder {
+  extends(
+    baseTheme:
+      | ThemeTokens
+      | BuiltTheme
+      | 'light'
+      | 'dark'
+      | 'futuristic'
+      | 'cyberpunk'
+      | 'alien'
+      | 'mirtha',
+  ): ThemeBuilder {
     if (typeof baseTheme === 'string') {
       switch (baseTheme) {
         case 'light':
@@ -165,6 +181,9 @@ export class ThemeBuilder extends SimpleEventEmitter {
         case 'alien':
           this.baseTheme = this.createDefaultTheme(alienTheme);
           break;
+        case 'mirtha':
+          this.baseTheme = this.createDefaultTheme(mirthaTheme);
+          break;
         default:
           throw new Error(`Unknown base theme: ${baseTheme}`);
       }
@@ -173,7 +192,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
     } else {
       this.baseTheme = this.createDefaultTheme(baseTheme);
     }
-    
+
     return this;
   }
 
@@ -240,7 +259,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
 
     // Register animation plugins
     if (this.pluginManager && animations.plugins) {
-      animations.plugins.forEach(plugin => {
+      animations.plugins.forEach((plugin) => {
         this.registerPlugin(plugin);
       });
     }
@@ -260,7 +279,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
     try {
       await this.pluginManager.register(plugin);
       this.registeredPlugins.push(plugin);
-      
+
       // Emit plugin registered event
       this.emit('plugin-registered', { type: 'plugin-registered', plugin });
     } catch (error) {
@@ -280,8 +299,8 @@ export class ThemeBuilder extends SimpleEventEmitter {
 
     try {
       await this.pluginManager.unregister(pluginName);
-      this.registeredPlugins = this.registeredPlugins.filter(p => p.name !== pluginName);
-      
+      this.registeredPlugins = this.registeredPlugins.filter((p) => p.name !== pluginName);
+
       // Emit plugin unregistered event
       this.emit('plugin-unregistered', { type: 'plugin-unregistered', pluginName });
     } catch (error) {
@@ -439,10 +458,10 @@ export class ThemeBuilder extends SimpleEventEmitter {
    */
   async build(): Promise<BuiltTheme> {
     const theme = await this.buildInternal(true);
-    
+
     // Emit theme built event
     this.emit('theme-built', { type: 'theme-built', theme });
-    
+
     return theme;
   }
 
@@ -457,7 +476,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
 
     // Start with a copy of the base theme
     let theme = JSON.parse(JSON.stringify(this.baseTheme)) as BuiltTheme;
-    
+
     // Apply customizations if they exist
     if (Object.keys(this.customizations).length > 0) {
       theme = applyCustomizations(theme, this.customizations);
@@ -472,7 +491,9 @@ export class ThemeBuilder extends SimpleEventEmitter {
     if (this.compositionMode !== 'merge') {
       // For sync build, we'll use merge mode as fallback
       // Advanced composition modes require the full async build process
-      console.warn('Advanced composition modes require async build. Using merge mode for sync build.');
+      console.warn(
+        'Advanced composition modes require async build. Using merge mode for sync build.',
+      );
     }
 
     // Update metadata
@@ -480,7 +501,11 @@ export class ThemeBuilder extends SimpleEventEmitter {
       ...theme.meta,
       name: theme.meta?.name || 'Custom Theme',
       version: '1.0.0',
-      baseTheme: this.baseTheme ? (typeof this.baseTheme === 'string' ? this.baseTheme : this.baseTheme.meta?.name) : undefined,
+      baseTheme: this.baseTheme
+        ? typeof this.baseTheme === 'string'
+          ? this.baseTheme
+          : this.baseTheme.meta?.name
+        : undefined,
       variant: 'custom',
       compositionMode: this.config.compositionMode || 'merge',
       customizations: {},
@@ -490,7 +515,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
 
     // Store the built theme
     this.builtTheme = theme;
-    
+
     return theme;
   }
 
@@ -500,7 +525,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
   async buildAndValidate(): Promise<{ theme: BuiltTheme; validation: ThemeValidationResult }> {
     const theme = await this.build();
     const validation = await this.validate(theme);
-    
+
     return { theme, validation };
   }
 
@@ -508,29 +533,29 @@ export class ThemeBuilder extends SimpleEventEmitter {
    * Validate the current theme
    */
   async validate(theme?: BuiltTheme): Promise<ThemeValidationResult> {
-    const targetTheme = theme || this.builtTheme || await this.preview();
-    
+    const targetTheme = theme || this.builtTheme || (await this.preview());
+
     this.validationResult = validateTheme(targetTheme, {
       ...defaultValidationConfig,
       strictMode: this.config.strictMode,
       wcagLevel: this.config.accessibilityChecks ? 'AA' : 'AA',
     });
-    
+
     // Emit validation events
     if (this.validationResult.errors.length > 0) {
-      this.emit('validation-error', { 
-        type: 'validation-error', 
-        errors: this.validationResult.errors 
+      this.emit('validation-error', {
+        type: 'validation-error',
+        errors: this.validationResult.errors,
       });
     }
-    
+
     if (this.validationResult.warnings.length > 0) {
-      this.emit('validation-warning', { 
-        type: 'validation-warning', 
-        warnings: this.validationResult.warnings 
+      this.emit('validation-warning', {
+        type: 'validation-warning',
+        warnings: this.validationResult.warnings,
       });
     }
-    
+
     return this.validationResult;
   }
 
@@ -572,7 +597,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
    */
   serialize(theme?: BuiltTheme): SerializedTheme {
     const targetTheme = theme || this.builtTheme || this.buildSync();
-    
+
     return {
       version: '1.0.0',
       theme: targetTheme,
@@ -586,16 +611,16 @@ export class ThemeBuilder extends SimpleEventEmitter {
    */
   static deserialize(data: SerializedTheme): ThemeBuilder {
     const builder = new ThemeBuilder();
-    
+
     // Verify checksum
     const expectedChecksum = builder.generateChecksum(data.theme);
     if (data.checksum !== expectedChecksum) {
       throw new Error('Invalid theme data: checksum mismatch');
     }
-    
+
     builder.baseTheme = data.theme;
     builder.builtTheme = data.theme;
-    
+
     return builder;
   }
 
@@ -604,7 +629,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
    */
   generateCSSVariables(theme?: BuiltTheme): Record<string, string> {
     const targetTheme = theme || this.builtTheme || this.buildSync();
-    
+
     return this.generateCSSVariablesFromTheme(targetTheme);
   }
 
@@ -630,7 +655,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
       // No plugins, build synchronously
       return this.buildThemeTokens();
     }
-    
+
     // Has plugins, build asynchronously
     return this.buildInternalAsync(cache);
   }
@@ -639,22 +664,49 @@ export class ThemeBuilder extends SimpleEventEmitter {
     // Build theme without plugins
     const colors = this.buildColors();
     const animations = this.buildAnimations();
-    
+
     return {
       meta: {
         name: this.name,
         version: '1.0.0',
-        baseTheme: this.baseTheme ? (typeof this.baseTheme === 'string' ? this.baseTheme : this.baseTheme.meta?.name) : undefined,
+        baseTheme: this.baseTheme
+          ? typeof this.baseTheme === 'string'
+            ? this.baseTheme
+            : this.baseTheme.meta?.name
+          : undefined,
         variant: 'custom',
         compositionMode: this.config.compositionMode || 'merge',
         customizations: {},
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-        plugins: this.plugins.map(p => p.name),
+        plugins: this.plugins.map((p) => p.name),
       },
       colors,
-      typography: this.baseTheme?.typography || { fontFamily: 'system-ui', fontSize: { sm: '14px', md: '16px', lg: '18px' } },
-      spacing: this.baseTheme?.spacing || { xs: '4px', sm: '8px', md: '16px', lg: '24px', xl: '32px' },
+      typography: this.baseTheme?.typography || {
+        fontFamily: 'system-ui',
+        fontSize: { sm: '14px', md: '16px', lg: '18px' },
+      },
+      spacing: this.baseTheme?.spacing || {
+        xs: '4px',
+        sm: '8px',
+        md: '16px',
+        lg: '24px',
+        xl: '32px',
+      },
+      motion: this.baseTheme?.motion || {
+        duration: { fast: '150ms', normal: '300ms', slow: '500ms' },
+        easing: {
+          inOut: 'ease-in-out',
+          default: 'ease',
+          bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+        },
+      },
+      breakpoints: this.baseTheme?.breakpoints || {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+      },
       radius: this.baseTheme?.radius || '4px',
       zIndex: this.baseTheme?.zIndex || { modal: 1000, dropdown: 500, tooltip: 1200 },
       animations,
@@ -662,27 +714,27 @@ export class ThemeBuilder extends SimpleEventEmitter {
   }
 
   private buildColors(): SemanticColorTokens {
-    let colors = this.baseTheme?.colors || {} as SemanticColorTokens;
-    
+    let colors = this.baseTheme?.colors || ({} as SemanticColorTokens);
+
     // Apply color overrides
     if (this.colorOverrides) {
       colors = { ...colors, ...this.colorOverrides };
     }
-    
+
     return colors;
   }
 
   private buildAnimations(): AnimationTokens {
     const base = this.baseTheme?.animations || {
-      duration: { 
+      duration: {
         instant: '75ms',
-        fast: '150ms', 
-        normal: '300ms', 
+        fast: '150ms',
+        normal: '300ms',
         slow: '500ms',
         slower: '700ms',
-        slowest: '1000ms'
+        slowest: '1000ms',
       },
-      easing: { 
+      easing: {
         linear: 'linear',
         ease: 'ease',
         easeIn: 'ease-in',
@@ -703,13 +755,18 @@ export class ThemeBuilder extends SimpleEventEmitter {
         quintInOut: 'cubic-bezier(0.86, 0, 0.07, 1)',
         expoIn: 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
         expoOut: 'cubic-bezier(0.19, 1, 0.22, 1)',
-        expoInOut: 'cubic-bezier(1, 0, 0, 1)'
+        expoInOut: 'cubic-bezier(1, 0, 0, 1)',
       },
-      keyframes: {},
-      config: {},
-      motion: { respectReducedMotion: true },
+      keyframes: animationKeyframeTokens,
+      config: animationConfigTokens,
+      motion: {
+        respectsReducedMotion: true,
+        reducedMotionDuration: '0.01ms',
+        reducedMotionEasing: 'linear',
+        fallbackDuration: '150ms',
+      },
     };
-    
+
     // Apply animation overrides
     if (this.animationOverrides) {
       return {
@@ -720,7 +777,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
         motion: { ...base.motion, ...this.animationOverrides.motion },
       };
     }
-    
+
     return base;
   }
 
@@ -730,85 +787,90 @@ export class ThemeBuilder extends SimpleEventEmitter {
     }
 
     let theme = JSON.parse(JSON.stringify(this.baseTheme)) as BuiltTheme;
-    
+
     // Execute beforeThemeBuild plugins
     if (this.pluginManager && this.config.enablePlugins) {
       const context = PluginUtils.createPluginContext(theme, {
         animations: this.animationBuilder ? animationTokens : undefined,
       });
-      
+
       await this.pluginManager.executeHooks('beforeThemeBuild', context);
     }
-    
+
     // Apply customizations
     if (Object.keys(this.customizations).length > 0) {
       theme = applyCustomizations(theme, this.customizations);
-      
+
       // Emit customization applied event
-      this.emit('customization-applied', { 
-        type: 'customization-applied', 
-        customization: this.customizations 
+      this.emit('customization-applied', {
+        type: 'customization-applied',
+        customization: this.customizations,
       });
     }
-    
+
     // Apply variant
     if (this.variant !== 'default') {
       theme = applyVariant(theme, this.variant);
     }
-    
+
     // Add animation tokens if enabled
     if (this.config.enableAnimations && this.animationBuilder) {
-      theme.animations = this.customizations.animations?.tokens 
+      theme.animations = this.customizations.animations?.tokens
         ? { ...animationTokens, ...this.customizations.animations.tokens }
         : animationTokens;
     }
-    
+
     // Update metadata
     theme.meta = {
       ...theme.meta,
       variant: this.variant,
       compositionMode: this.compositionMode,
       customizations: this.customizations,
-      plugins: this.registeredPlugins.map(p => p.name),
+      plugins: this.registeredPlugins.map((p) => p.name),
       updatedAt: new Date().toISOString(),
     };
-    
+
     // Execute afterThemeBuild plugins
     if (this.pluginManager && this.config.enablePlugins) {
       const context = PluginUtils.createPluginContext(theme, {
         animations: theme.animations,
         cssVariables: this.generateCSSVariablesFromTheme(theme),
       });
-      
+
       const results = await this.pluginManager.executeHooks('afterThemeBuild', context);
-      
+
       // Apply plugin modifications
-      Object.values(results).forEach(result => {
+      Object.values(results).forEach((result) => {
         if (result.success && result.modifications) {
           if (result.modifications.theme) {
             theme = { ...theme, ...result.modifications.theme };
           }
-          if (result.modifications.animations) {
-            theme.animations = { ...theme.animations, ...result.modifications.animations };
+          if (result.modifications.animations && theme.animations) {
+            theme.animations = {
+              ...theme.animations,
+              ...result.modifications.animations,
+            } as AnimationTokens;
           }
         }
       });
     }
-    
+
     // Validate if enabled
     if (this.config.enableValidation) {
       await this.validate(theme);
-      
+
       // Throw error in strict mode if validation fails
       if (this.config.strictMode && this.validationResult && !this.validationResult.valid) {
-        throw new Error(`Theme validation failed: ${this.validationResult.errors.map(e => e.message).join(', ')}`);
+        throw new Error(
+          `Theme validation failed: ${this.validationResult.errors.map((e) => e.message).join(', ')}`,
+        );
       }
     }
-    
+
     if (cache) {
       this.builtTheme = theme;
     }
-    
+
     return theme;
   }
 
@@ -836,17 +898,20 @@ export class ThemeBuilder extends SimpleEventEmitter {
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       },
-      radius: typeof themeTokens.radius === 'string' ? {
-        none: '0',
-        xs: '0.125rem',
-        sm: '0.25rem',
-        md: themeTokens.radius,
-        lg: '0.75rem',
-        xl: '1rem',
-        '2xl': '1.5rem',
-        '3xl': '2rem',
-        full: '9999px',
-      } : themeTokens.radius,
+      radius:
+        typeof themeTokens.radius === 'string'
+          ? {
+              none: '0',
+              xs: '0.125rem',
+              sm: '0.25rem',
+              md: themeTokens.radius,
+              lg: '0.75rem',
+              xl: '1rem',
+              '2xl': '1.5rem',
+              '3xl': '2rem',
+              full: '9999px',
+            }
+          : themeTokens.radius,
       shadows: {
         xs: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
         sm: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
@@ -880,10 +945,10 @@ export class ThemeBuilder extends SimpleEventEmitter {
    */
   private generateCSSVariablesFromTheme(theme: BuiltTheme): Record<string, string> {
     const variables: Record<string, string> = {};
-    
+
     // Generate color variables
     this.generateColorVariables(theme.colors, variables);
-    
+
     // Generate typography variables
     if (theme.typography?.fontSize && typeof theme.typography.fontSize === 'object') {
       Object.entries(theme.typography.fontSize).forEach(([key, value]) => {
@@ -892,7 +957,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
         }
       });
     }
-    
+
     // Generate spacing variables
     if (theme.spacing && typeof theme.spacing === 'object') {
       Object.entries(theme.spacing).forEach(([key, value]) => {
@@ -901,7 +966,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
         }
       });
     }
-    
+
     // Generate motion variables
     if (theme.motion?.duration && typeof theme.motion.duration === 'object') {
       Object.entries(theme.motion.duration).forEach(([key, value]) => {
@@ -910,7 +975,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
         }
       });
     }
-    
+
     if (theme.motion?.easing && typeof theme.motion.easing === 'object') {
       Object.entries(theme.motion.easing).forEach(([key, value]) => {
         if (value != null) {
@@ -930,7 +995,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
         });
       }
 
-      // Animation easing tokens  
+      // Animation easing tokens
       if (theme.animations.easing && typeof theme.animations.easing === 'object') {
         Object.entries(theme.animations.easing).forEach(([key, value]) => {
           if (value != null) {
@@ -949,11 +1014,15 @@ export class ThemeBuilder extends SimpleEventEmitter {
       }
 
       // Motion preferences
-      variables['--animation-respects-reduced-motion'] = theme.animations.motion.respectsReducedMotion ? '1' : '0';
-      variables['--animation-reduced-motion-duration'] = theme.animations.motion.reducedMotionDuration;
+      variables['--animation-respects-reduced-motion'] = theme.animations.motion
+        .respectsReducedMotion
+        ? '1'
+        : '0';
+      variables['--animation-reduced-motion-duration'] =
+        theme.animations.motion.reducedMotionDuration;
       variables['--animation-reduced-motion-easing'] = theme.animations.motion.reducedMotionEasing;
     }
-    
+
     // Generate radius variables
     if (typeof theme.radius === 'object') {
       Object.entries(theme.radius).forEach(([key, value]) => {
@@ -962,7 +1031,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
     } else {
       variables['--radius'] = theme.radius;
     }
-    
+
     // Generate shadow variables
     if (theme.shadows && typeof theme.shadows === 'object') {
       Object.entries(theme.shadows).forEach(([key, value]) => {
@@ -971,7 +1040,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
         }
       });
     }
-    
+
     // Generate z-index variables
     if (theme.zIndex && typeof theme.zIndex === 'object') {
       Object.entries(theme.zIndex).forEach(([key, value]) => {
@@ -980,14 +1049,17 @@ export class ThemeBuilder extends SimpleEventEmitter {
         }
       });
     }
-    
+
     return variables;
   }
 
   /**
    * Generate color CSS variables
    */
-  private generateColorVariables(colors: SemanticColorTokens, variables: Record<string, string>): void {
+  private generateColorVariables(
+    colors: SemanticColorTokens,
+    variables: Record<string, string>,
+  ): void {
     // Guard against undefined/null colors
     if (!colors || typeof colors !== 'object') {
       console.warn('generateColorVariables: colors is undefined or not an object', colors);
@@ -999,7 +1071,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
       if (!obj || typeof obj !== 'object') {
         return;
       }
-      
+
       Object.entries(obj).forEach(([key, value]) => {
         if (typeof value === 'string') {
           const varName = prefix ? `--${prefix}-${key}` : `--${key}`;
@@ -1009,7 +1081,7 @@ export class ThemeBuilder extends SimpleEventEmitter {
         }
       });
     }
-    
+
     flattenColors(colors);
   }
 
@@ -1019,13 +1091,13 @@ export class ThemeBuilder extends SimpleEventEmitter {
   private generateChecksum(theme: BuiltTheme): string {
     const themeString = JSON.stringify(theme, Object.keys(theme).sort());
     let hash = 0;
-    
+
     for (let i = 0; i < themeString.length; i++) {
       const char = themeString.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
+      hash = (hash << 5) - hash + char;
       hash = hash & hash; // Convert to 32-bit integer
     }
-    
+
     return hash.toString(16);
   }
 }
@@ -1040,9 +1112,11 @@ export function createThemeBuilder(config?: Partial<ThemeBuilderConfig>): ThemeB
 /**
  * Quick theme builder with common presets
  */
-export function quickTheme(preset: 'light' | 'dark' | 'futuristic' | 'cyberpunk' | 'alien' | 'high-contrast'): ThemeBuilder {
+export function quickTheme(
+  preset: 'light' | 'dark' | 'futuristic' | 'cyberpunk' | 'alien' | 'mirtha' | 'high-contrast',
+): ThemeBuilder {
   const builder = new ThemeBuilder();
-  
+
   switch (preset) {
     case 'light':
       return builder.extends('light');
@@ -1054,6 +1128,8 @@ export function quickTheme(preset: 'light' | 'dark' | 'futuristic' | 'cyberpunk'
       return builder.extends('cyberpunk');
     case 'alien':
       return builder.extends('alien');
+    case 'mirtha':
+      return builder.extends('mirtha');
     case 'high-contrast':
       return builder.extends('light').withVariant('high-contrast');
     default:

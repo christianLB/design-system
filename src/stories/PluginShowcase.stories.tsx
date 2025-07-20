@@ -13,7 +13,7 @@ import { Progress } from '../components/Progress';
 import { ThemeProvider } from '../theme';
 
 const meta: Meta = {
-  title: 'Cyberpunk/Plugin System',
+  title: 'Themes/Cyberpunk/Plugin System',
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -100,7 +100,13 @@ export const PluginConfigurator: Story = {
     const [reducedMotion, setReducedMotion] = useState(false);
 
     // Sample component to demonstrate effects
-    const DemoComponent = ({ variant, children }: { variant: string; children: React.ReactNode }) => (
+    const DemoComponent = ({
+      variant,
+      children,
+    }: {
+      variant: string;
+      children: React.ReactNode;
+    }) => (
       <Card
         variant={variant as any}
         cyberpunkGlow={glowEnabled ? glowIntensity : undefined}
@@ -108,9 +114,7 @@ export const PluginConfigurator: Story = {
         matrixRain={matrixRainEnabled}
         className={`${pulseEnabled ? 'cyber-pulse' : ''} ${reducedMotion ? 'reduced-motion' : ''}`}
       >
-        <CardContent className="text-center py-8">
-          {children}
-        </CardContent>
+        <CardContent className="text-center py-8">{children}</CardContent>
       </Card>
     );
 
@@ -118,7 +122,6 @@ export const PluginConfigurator: Story = {
       <ThemeProvider>
         <div className="min-h-screen bg-black text-white p-6">
           <div className="max-w-7xl mx-auto">
-            
             {/* Header */}
             <div className="text-center mb-8">
               <h1 className="text-4xl font-bold text-green-400 cyber-text-glow mb-4">
@@ -130,26 +133,26 @@ export const PluginConfigurator: Story = {
             </div>
 
             <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-              
               {/* Control Panel */}
-              <Card variant="cyberpunk-matrix" cyberpunkGlow="normal" scanlines className="xl:col-span-1">
+              <Card
+                variant="cyberpunk-matrix"
+                cyberpunkGlow="normal"
+                scanlines
+                className="xl:col-span-1"
+              >
                 <CardHeader>
                   <CardTitle>Plugin Controls</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  
                   {/* Glow Effects */}
                   <div>
                     <h3 className="text-green-400 font-semibold mb-3">Glow Effects</h3>
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
                         <span className="text-sm">Enable Glow</span>
-                        <Switch
-                          checked={glowEnabled}
-                          onCheckedChange={setGlowEnabled}
-                        />
+                        <Switch checked={glowEnabled} onCheckedChange={setGlowEnabled} />
                       </div>
-                      
+
                       {glowEnabled && (
                         <div>
                           <label className="text-sm text-green-300 block mb-2">Intensity</label>
@@ -157,7 +160,11 @@ export const PluginConfigurator: Story = {
                             {(['subtle', 'normal', 'intense'] as const).map((intensity) => (
                               <Button
                                 key={intensity}
-                                variant={glowIntensity === intensity ? 'cyberpunk-matrix' : 'cyberpunk-ghost'}
+                                variant={
+                                  glowIntensity === intensity
+                                    ? 'cyberpunk-matrix'
+                                    : 'cyberpunk-ghost'
+                                }
                                 cyberpunkGlow={glowIntensity === intensity ? 'normal' : undefined}
                                 size="sm"
                                 onClick={() => setGlowIntensity(intensity)}
@@ -176,14 +183,9 @@ export const PluginConfigurator: Story = {
                     <h3 className="text-green-400 font-semibold mb-3">Scanlines</h3>
                     <div className="flex items-center justify-between">
                       <span className="text-sm">Enable Scanlines</span>
-                      <Switch
-                        checked={scanlinesEnabled}
-                        onCheckedChange={setScanlinesEnabled}
-                      />
+                      <Switch checked={scanlinesEnabled} onCheckedChange={setScanlinesEnabled} />
                     </div>
-                    <p className="text-xs text-green-300 mt-2">
-                      Retro CRT monitor effect
-                    </p>
+                    <p className="text-xs text-green-300 mt-2">Retro CRT monitor effect</p>
                   </div>
 
                   {/* Matrix Rain */}
@@ -191,14 +193,9 @@ export const PluginConfigurator: Story = {
                     <h3 className="text-green-400 font-semibold mb-3">Matrix Rain</h3>
                     <div className="flex items-center justify-between">
                       <span className="text-sm">Enable Matrix Rain</span>
-                      <Switch
-                        checked={matrixRainEnabled}
-                        onCheckedChange={setMatrixRainEnabled}
-                      />
+                      <Switch checked={matrixRainEnabled} onCheckedChange={setMatrixRainEnabled} />
                     </div>
-                    <p className="text-xs text-green-300 mt-2">
-                      Digital rain background overlay
-                    </p>
+                    <p className="text-xs text-green-300 mt-2">Digital rain background overlay</p>
                   </div>
 
                   {/* Pulse Animation */}
@@ -206,14 +203,9 @@ export const PluginConfigurator: Story = {
                     <h3 className="text-green-400 font-semibold mb-3">Animations</h3>
                     <div className="flex items-center justify-between">
                       <span className="text-sm">Pulse Effect</span>
-                      <Switch
-                        checked={pulseEnabled}
-                        onCheckedChange={setPulseEnabled}
-                      />
+                      <Switch checked={pulseEnabled} onCheckedChange={setPulseEnabled} />
                     </div>
-                    <p className="text-xs text-green-300 mt-2">
-                      Breathing glow animation
-                    </p>
+                    <p className="text-xs text-green-300 mt-2">Breathing glow animation</p>
                   </div>
 
                   {/* Accessibility */}
@@ -221,10 +213,7 @@ export const PluginConfigurator: Story = {
                     <h3 className="text-green-400 font-semibold mb-3">Accessibility</h3>
                     <div className="flex items-center justify-between">
                       <span className="text-sm">Reduced Motion</span>
-                      <Switch
-                        checked={reducedMotion}
-                        onCheckedChange={setReducedMotion}
-                      />
+                      <Switch checked={reducedMotion} onCheckedChange={setReducedMotion} />
                     </div>
                     <p className="text-xs text-green-300 mt-2">
                       Disable animations for accessibility
@@ -252,7 +241,6 @@ export const PluginConfigurator: Story = {
 
               {/* Demo Area */}
               <div className="xl:col-span-3 space-y-6">
-                
                 {/* Current Configuration Display */}
                 <Card variant="cyberpunk-ghost" cyberpunkGlow="subtle">
                   <CardHeader>
@@ -323,7 +311,9 @@ export const PluginConfigurator: Story = {
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <h4 className="text-pink-300 font-semibold mb-3">Buttons with Current Effects</h4>
+                        <h4 className="text-pink-300 font-semibold mb-3">
+                          Buttons with Current Effects
+                        </h4>
                         <div className="space-y-3">
                           <Button
                             variant="cyberpunk-matrix"
@@ -363,15 +353,24 @@ export const PluginConfigurator: Story = {
                         <div className="space-y-4">
                           <div>
                             <div className="text-sm text-green-300 mb-1">Matrix Loading</div>
-                            <Progress value={67} className={`cyber-glow ${scanlinesEnabled ? 'cyber-scanlines' : ''}`} />
+                            <Progress
+                              value={67}
+                              className={`cyber-glow ${scanlinesEnabled ? 'cyber-scanlines' : ''}`}
+                            />
                           </div>
                           <div>
                             <div className="text-sm text-red-300 mb-1">Combat Status</div>
-                            <Progress value={89} className={`cyber-glow-red ${scanlinesEnabled ? 'cyber-scanlines' : ''}`} />
+                            <Progress
+                              value={89}
+                              className={`cyber-glow-red ${scanlinesEnabled ? 'cyber-scanlines' : ''}`}
+                            />
                           </div>
                           <div>
                             <div className="text-sm text-pink-300 mb-1">Neural Load</div>
-                            <Progress value={45} className={`cyber-glow ${scanlinesEnabled ? 'cyber-scanlines' : ''}`} />
+                            <Progress
+                              value={45}
+                              className={`cyber-glow ${scanlinesEnabled ? 'cyber-scanlines' : ''}`}
+                            />
                           </div>
                         </div>
                       </div>
@@ -421,10 +420,11 @@ All systems operational.`,
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Interactive plugin configurator allowing real-time testing of all cyberpunk effects and their combinations.'
-      }
-    }
-  }
+        story:
+          'Interactive plugin configurator allowing real-time testing of all cyberpunk effects and their combinations.',
+      },
+    },
+  },
 };
 
 // Individual Plugin Demonstrations
@@ -433,7 +433,6 @@ export const GlowEffectsShowcase: Story = {
     <ThemeProvider>
       <div className="min-h-screen bg-black text-white p-6">
         <div className="max-w-6xl mx-auto space-y-8">
-          
           <div className="text-center">
             <h1 className="text-3xl font-bold text-green-400 cyber-text-glow mb-4">
               GLOW EFFECTS PLUGIN
@@ -557,17 +556,25 @@ export const GlowEffectsShowcase: Story = {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center space-y-4">
                   <h4 className="text-pink-300">Pulse Effect</h4>
-                  <Button variant="cyberpunk-matrix" cyberpunkGlow="normal" className="cyber-pulse" fullWidth>
+                  <Button
+                    variant="cyberpunk-matrix"
+                    cyberpunkGlow="normal"
+                    className="cyber-pulse"
+                    fullWidth
+                  >
                     Pulsing Glow
                   </Button>
-                  <p className="text-xs text-pink-400">
-                    Breathing animation that draws attention
-                  </p>
+                  <p className="text-xs text-pink-400">Breathing animation that draws attention</p>
                 </div>
 
                 <div className="text-center space-y-4">
                   <h4 className="text-pink-300">Intense Pulse</h4>
-                  <Button variant="cyberpunk-doom" cyberpunkGlow="intense" className="cyber-pulse-intense" fullWidth>
+                  <Button
+                    variant="cyberpunk-doom"
+                    cyberpunkGlow="intense"
+                    className="cyber-pulse-intense"
+                    fullWidth
+                  >
                     Intense Pulse
                   </Button>
                   <p className="text-xs text-pink-400">
@@ -577,12 +584,15 @@ export const GlowEffectsShowcase: Story = {
 
                 <div className="text-center space-y-4">
                   <h4 className="text-pink-300">Rainbow Cycle</h4>
-                  <Button variant="cyberpunk-neon" cyberpunkGlow="normal" className="cyber-rainbow" fullWidth>
+                  <Button
+                    variant="cyberpunk-neon"
+                    cyberpunkGlow="normal"
+                    className="cyber-rainbow"
+                    fullWidth
+                  >
                     Color Cycle
                   </Button>
-                  <p className="text-xs text-pink-400">
-                    Cycles through multiple glow colors
-                  </p>
+                  <p className="text-xs text-pink-400">Cycles through multiple glow colors</p>
                 </div>
               </div>
             </CardContent>
@@ -593,9 +603,9 @@ export const GlowEffectsShowcase: Story = {
             <div className="text-green-400">
               <strong>Performance Optimization</strong>
               <p className="text-sm mt-2">
-                Glow effects use CSS box-shadow and filters for hardware acceleration. 
-                The plugin automatically adjusts intensity based on device capabilities 
-                and respects reduced motion preferences for accessibility.
+                Glow effects use CSS box-shadow and filters for hardware acceleration. The plugin
+                automatically adjusts intensity based on device capabilities and respects reduced
+                motion preferences for accessibility.
               </p>
             </div>
           </Alert>
@@ -607,10 +617,11 @@ export const GlowEffectsShowcase: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Comprehensive demonstration of the glow effects plugin with all intensity levels, colors, and animation options.'
-      }
-    }
-  }
+        story:
+          'Comprehensive demonstration of the glow effects plugin with all intensity levels, colors, and animation options.',
+      },
+    },
+  },
 };
 
 export const ScanlineEffectsShowcase: Story = {
@@ -618,7 +629,6 @@ export const ScanlineEffectsShowcase: Story = {
     <ThemeProvider>
       <div className="min-h-screen bg-black text-white p-6">
         <div className="max-w-6xl mx-auto space-y-8">
-          
           <div className="text-center">
             <h1 className="text-3xl font-bold text-green-400 cyber-text-glow mb-4">
               SCANLINE EFFECTS PLUGIN
@@ -749,8 +759,8 @@ Perfect for cyberpunk interfaces!`,
               <div className="text-center py-8">
                 <div className="text-red-400 text-2xl mb-4">⚡ MAXIMUM CYBERPUNK ⚡</div>
                 <p className="text-red-300 mb-6">
-                  Combining intense glow effects with retro scanlines creates 
-                  the ultimate cyberpunk aesthetic
+                  Combining intense glow effects with retro scanlines creates the ultimate cyberpunk
+                  aesthetic
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <Button variant="cyberpunk-doom" cyberpunkGlow="intense" scanlines fullWidth>
@@ -831,10 +841,11 @@ Perfect for cyberpunk interfaces!`,
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Complete demonstration of the scanline effects plugin showing CRT-style scanlines across all components and variants.'
-      }
-    }
-  }
+        story:
+          'Complete demonstration of the scanline effects plugin showing CRT-style scanlines across all components and variants.',
+      },
+    },
+  },
 };
 
 export const MatrixRainShowcase: Story = {
@@ -845,18 +856,17 @@ export const MatrixRainShowcase: Story = {
     return (
       <ThemeProvider>
         <div className="min-h-screen bg-black text-white relative">
-          {rainEnabled && <div className="cyber-matrix-overlay opacity-30 pointer-events-none"></div>}
-          
+          {rainEnabled && (
+            <div className="cyber-matrix-overlay opacity-30 pointer-events-none"></div>
+          )}
+
           <div className="relative z-10 p-6">
             <div className="max-w-6xl mx-auto space-y-8">
-              
               <div className="text-center">
                 <h1 className="text-3xl font-bold text-green-400 cyber-text-glow mb-4">
                   MATRIX RAIN PLUGIN
                 </h1>
-                <p className="text-green-300">
-                  Iconic digital rain effect inspired by The Matrix
-                </p>
+                <p className="text-green-300">Iconic digital rain effect inspired by The Matrix</p>
               </div>
 
               {/* Controls */}
@@ -868,17 +878,22 @@ export const MatrixRainShowcase: Story = {
                   <div className="flex items-center gap-6">
                     <div className="flex items-center gap-2">
                       <span className="text-sm">Enable Matrix Rain</span>
-                      <Switch
-                        checked={rainEnabled}
-                        onCheckedChange={setRainEnabled}
-                      />
+                      <Switch checked={rainEnabled} onCheckedChange={setRainEnabled} />
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-sm">Background Rain Speed: {rainSpeed}</span>
                       <Button
                         variant="cyberpunk-ghost"
                         size="sm"
-                        onClick={() => setRainSpeed(rainSpeed === 'slow' ? 'normal' : rainSpeed === 'normal' ? 'fast' : 'slow')}
+                        onClick={() =>
+                          setRainSpeed(
+                            rainSpeed === 'slow'
+                              ? 'normal'
+                              : rainSpeed === 'normal'
+                                ? 'fast'
+                                : 'slow',
+                          )
+                        }
                       >
                         Change Speed
                       </Button>
@@ -897,10 +912,10 @@ export const MatrixRainShowcase: Story = {
                     <div className="h-64 bg-green-500/5 border border-green-500/30 rounded relative flex items-center justify-center">
                       <div className="text-center">
                         <div className="text-green-400 text-xl mb-2">Standard Background</div>
-                        <div className="text-green-300 text-sm">Clean interface without effects</div>
-                        <div className="text-green-400 mt-4">
-                          No digital rain overlay
+                        <div className="text-green-300 text-sm">
+                          Clean interface without effects
                         </div>
+                        <div className="text-green-400 mt-4">No digital rain overlay</div>
                       </div>
                     </div>
                   </CardContent>
@@ -915,9 +930,7 @@ export const MatrixRainShowcase: Story = {
                       <div className="text-center">
                         <div className="text-green-400 text-xl mb-2">Matrix Background</div>
                         <div className="text-green-300 text-sm">Digital rain effect active</div>
-                        <div className="text-green-400 mt-4">
-                          Authentic Matrix atmosphere
-                        </div>
+                        <div className="text-green-400 mt-4">Authentic Matrix atmosphere</div>
                       </div>
                     </div>
                   </CardContent>
@@ -992,9 +1005,7 @@ Nothing more.`,
                     <div className="text-center py-4">
                       <div className="text-green-400 text-2xl mb-2">👁️</div>
                       <div className="text-green-300">Neo Anderson</div>
-                      <div className="text-green-400 text-sm mt-2">
-                        "There is no spoon"
-                      </div>
+                      <div className="text-green-400 text-sm mt-2">"There is no spoon"</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -1007,9 +1018,7 @@ Nothing more.`,
                     <div className="text-center py-4">
                       <div className="text-green-400 text-2xl mb-2">🕴️</div>
                       <div className="text-green-300">The Virus</div>
-                      <div className="text-green-400 text-sm mt-2">
-                        "Mr. Anderson..."
-                      </div>
+                      <div className="text-green-400 text-sm mt-2">"Mr. Anderson..."</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -1022,9 +1031,7 @@ Nothing more.`,
                     <div className="text-center py-4">
                       <div className="text-green-400 text-2xl mb-2">🔮</div>
                       <div className="text-green-300">The Captain</div>
-                      <div className="text-green-400 text-sm mt-2">
-                        "Welcome to the real world"
-                      </div>
+                      <div className="text-green-400 text-sm mt-2">"Welcome to the real world"</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -1092,11 +1099,17 @@ Nothing more.`,
               </Card>
 
               {/* Famous Matrix Quotes */}
-              <Card variant="cyberpunk-matrix" matrixRain cyberpunkGlow="normal" className="cyber-pulse">
+              <Card
+                variant="cyberpunk-matrix"
+                matrixRain
+                cyberpunkGlow="normal"
+                className="cyber-pulse"
+              >
                 <CardContent>
                   <div className="text-center py-8">
                     <blockquote className="text-green-400 text-xl italic mb-4">
-                      "Unfortunately, no one can be told what the Matrix is. You have to see it for yourself."
+                      "Unfortunately, no one can be told what the Matrix is. You have to see it for
+                      yourself."
                     </blockquote>
                     <cite className="text-green-300">— Morpheus</cite>
                   </div>
@@ -1112,8 +1125,9 @@ Nothing more.`,
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Complete demonstration of the Matrix rain plugin with interactive controls and Matrix-themed examples.'
-      }
-    }
-  }
+        story:
+          'Complete demonstration of the Matrix rain plugin with interactive controls and Matrix-themed examples.',
+      },
+    },
+  },
 };

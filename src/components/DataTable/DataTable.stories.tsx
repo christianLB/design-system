@@ -24,7 +24,7 @@ const data: Row[] = [
 ];
 
 const meta: Meta<typeof DataTable<Row>> = {
-  title: 'Data Display/DataTable',
+  title: 'Core Components/Data Display/Data Table',
   component: DataTable,
   args: {
     columns,

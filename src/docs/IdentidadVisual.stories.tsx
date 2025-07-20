@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta = {
-  title: 'Docs/Identidad Visual',
+  title: 'Documentation/Identidad Visual',
   parameters: {
     viewMode: 'docs',
     docs: {
@@ -18,8 +18,8 @@ const meta: Meta = {
             <li>Texto: #FFFFFFCC</li>
           </ul>
           <p>
-            Los encabezados emplean fuentes como Geist o Satoshi mientras que el
-            cuerpo utiliza Inter o IBM Plex Sans.
+            Los encabezados emplean fuentes como Geist o Satoshi mientras que el cuerpo utiliza
+            Inter o IBM Plex Sans.
           </p>
         </>
       ),

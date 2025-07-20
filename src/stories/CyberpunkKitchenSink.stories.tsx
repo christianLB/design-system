@@ -14,7 +14,7 @@ import { Alert } from '../components/Alert';
 import { ThemeProvider } from '../theme';
 
 const meta: Meta = {
-  title: 'Cyberpunk/Kitchen Sink',
+  title: 'Themes/Cyberpunk/Kitchen Sink',
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -153,7 +153,7 @@ export const GamingDashboard: Story = {
     useEffect(() => {
       const interval = setInterval(() => {
         if (isInCombat) {
-          setCombatData(prev => ({
+          setCombatData((prev) => ({
             ...prev,
             health: Math.max(10, prev.health - Math.random() * 5),
             armor: Math.max(0, prev.armor - Math.random() * 8),
@@ -162,7 +162,7 @@ export const GamingDashboard: Story = {
         } else {
           setCombatData(generateCombatData);
         }
-        setMissionProgress(prev => Math.min(100, prev + Math.random() * 2));
+        setMissionProgress((prev) => Math.min(100, prev + Math.random() * 2));
       }, 1500);
 
       return () => clearInterval(interval);
@@ -219,7 +219,13 @@ export const GamingDashboard: Story = {
             theme={{ variant: 'doom', glow: true, pulseEffect: true }}
             visible
           >
-            <HUDPanel title="COMBAT SYSTEMS" size="lg" variant="doom" showStatus status={isInCombat ? 'warning' : 'online'}>
+            <HUDPanel
+              title="COMBAT SYSTEMS"
+              size="lg"
+              variant="doom"
+              showStatus
+              status={isInCombat ? 'warning' : 'online'}
+            >
               <div className="grid grid-cols-2 gap-4">
                 <HUDMetric
                   label="Primary Ammo"
@@ -302,7 +308,11 @@ export const GamingDashboard: Story = {
 
           {/* Central Game Area */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <Card variant="cyberpunk-neon" cyberpunkGlow="intense" className="text-center min-w-[300px]">
+            <Card
+              variant="cyberpunk-neon"
+              cyberpunkGlow="intense"
+              className="text-center min-w-[300px]"
+            >
               <CardHeader>
                 <CardTitle className="text-2xl text-pink-400">CYBERPUNK COMBAT</CardTitle>
               </CardHeader>
@@ -351,10 +361,11 @@ export const GamingDashboard: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Complete gaming dashboard with real-time combat HUD, tactical radar, mission status, and interactive elements.'
-      }
-    }
-  }
+        story:
+          'Complete gaming dashboard with real-time combat HUD, tactical radar, mission status, and interactive elements.',
+      },
+    },
+  },
 };
 
 // Hacker Terminal Story
@@ -368,7 +379,7 @@ export const HackerTerminal: Story = {
       const interval = setInterval(() => {
         setMetrics(generateMetrics);
         if (isHacking) {
-          setIntrusion(prev => Math.min(100, prev + Math.random() * 8));
+          setIntrusion((prev) => Math.min(100, prev + Math.random() * 8));
         }
       }, 2000);
 
@@ -395,15 +406,18 @@ export const HackerTerminal: Story = {
                   STEALTH MODE
                 </Badge>
                 <div className="text-xs text-green-400">
-                  <div>STATUS: <span className="text-green-300">CONNECTED</span></div>
-                  <div>SECURITY: <span className="text-red-400">BYPASSED</span></div>
+                  <div>
+                    STATUS: <span className="text-green-300">CONNECTED</span>
+                  </div>
+                  <div>
+                    SECURITY: <span className="text-red-400">BYPASSED</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="p-4 grid grid-cols-1 lg:grid-cols-3 gap-4 h-[calc(100vh-100px)]">
-            
             {/* Main Terminal */}
             <div className="lg:col-span-2 space-y-4">
               <Terminal
@@ -416,7 +430,7 @@ export const HackerTerminal: Story = {
                 enableTypewriter
                 prompt="root@target:~# "
               />
-              
+
               <Terminal
                 variant="doom"
                 title="SECURITY BYPASS CONSOLE"
@@ -441,7 +455,6 @@ export const HackerTerminal: Story = {
 
             {/* Side Panel - System Status */}
             <div className="space-y-4">
-              
               {/* Target System Metrics */}
               <Card variant="cyberpunk-matrix" cyberpunkGlow="normal" scanlines>
                 <CardHeader>
@@ -454,13 +467,13 @@ export const HackerTerminal: Story = {
                       <span className="text-green-400">{metrics.cpu}%</span>
                     </div>
                     <Progress value={metrics.cpu} className="cyber-glow h-2" />
-                    
+
                     <div className="flex justify-between text-sm">
                       <span>Memory Usage:</span>
                       <span className="text-green-400">{metrics.memory}%</span>
                     </div>
                     <Progress value={metrics.memory} className="cyber-glow h-2" />
-                    
+
                     <div className="flex justify-between text-sm">
                       <span>Network Activity:</span>
                       <span className="text-green-400">{metrics.network}%</span>
@@ -482,7 +495,7 @@ export const HackerTerminal: Story = {
                       <span className="text-red-400">{Math.floor(intrusion)}%</span>
                     </div>
                     <Progress value={intrusion} className="cyber-glow-red h-3" />
-                    
+
                     <div className="text-xs space-y-1">
                       <div className="flex justify-between">
                         <span>Root Access:</span>
@@ -503,7 +516,7 @@ export const HackerTerminal: Story = {
                         </span>
                       </div>
                     </div>
-                    
+
                     <Button
                       variant={isHacking ? 'cyberpunk-doom' : 'cyberpunk-matrix'}
                       cyberpunkGlow="intense"
@@ -527,16 +540,17 @@ export const HackerTerminal: Story = {
                     <div className="absolute inset-0 border border-gray-500/30 rounded">
                       <div className="grid grid-cols-3 grid-rows-3 h-full">
                         {Array.from({ length: 9 }).map((_, i) => (
-                          <div 
-                            key={i} 
+                          <div
+                            key={i}
                             className={`border border-gray-600/20 flex items-center justify-center text-xs ${
-                              [0, 4, 8].includes(i) ? 'bg-green-500/20 text-green-400' :
-                              [1, 5].includes(i) ? 'bg-red-500/20 text-red-400' :
-                              'bg-gray-500/10 text-gray-500'
+                              [0, 4, 8].includes(i)
+                                ? 'bg-green-500/20 text-green-400'
+                                : [1, 5].includes(i)
+                                  ? 'bg-red-500/20 text-red-400'
+                                  : 'bg-gray-500/10 text-gray-500'
                             }`}
                           >
-                            {[0, 4, 8].includes(i) ? '●' : 
-                             [1, 5].includes(i) ? '⚠' : '○'}
+                            {[0, 4, 8].includes(i) ? '●' : [1, 5].includes(i) ? '⚠' : '○'}
                           </div>
                         ))}
                       </div>
@@ -568,7 +582,6 @@ export const HackerTerminal: Story = {
                   </p>
                 </div>
               </Alert>
-
             </div>
           </div>
         </div>
@@ -579,10 +592,11 @@ export const HackerTerminal: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Complete hacker interface with multiple terminals, system monitoring, network topology, and real-time intrusion progress.'
-      }
-    }
-  }
+        story:
+          'Complete hacker interface with multiple terminals, system monitoring, network topology, and real-time intrusion progress.',
+      },
+    },
+  },
 };
 
 // Data Operations Center Story
@@ -590,9 +604,24 @@ export const DataOperationsCenter: Story = {
   render: () => {
     const [systemMetrics, setSystemMetrics] = useState(generateMetrics);
     const [alerts, setAlerts] = useState([
-      { id: 1, type: 'warning', message: 'Unusual network traffic detected on subnet 192.168.1.0/24', time: '14:23:45' },
-      { id: 2, type: 'error', message: 'Database connection timeout on server DB-PROD-03', time: '14:22:12' },
-      { id: 3, type: 'info', message: 'Backup completed successfully for all critical systems', time: '14:20:00' },
+      {
+        id: 1,
+        type: 'warning',
+        message: 'Unusual network traffic detected on subnet 192.168.1.0/24',
+        time: '14:23:45',
+      },
+      {
+        id: 2,
+        type: 'error',
+        message: 'Database connection timeout on server DB-PROD-03',
+        time: '14:22:12',
+      },
+      {
+        id: 3,
+        type: 'info',
+        message: 'Backup completed successfully for all critical systems',
+        time: '14:20:00',
+      },
     ]);
 
     useEffect(() => {
@@ -613,12 +642,18 @@ export const DataOperationsCenter: Story = {
                 <h1 className="text-3xl font-bold text-cyan-400 cyber-text-glow">
                   CORPORATE DATA OPERATIONS CENTER
                 </h1>
-                <p className="text-cyan-300">Real-time Infrastructure Monitoring • Security Operations • Data Analytics</p>
+                <p className="text-cyan-300">
+                  Real-time Infrastructure Monitoring • Security Operations • Data Analytics
+                </p>
               </div>
               <div className="flex items-center gap-6">
                 <div className="text-right text-sm">
-                  <div className="text-cyan-400">THREAT LEVEL: <span className="text-yellow-400">ELEVATED</span></div>
-                  <div className="text-cyan-400">SYSTEMS: <span className="text-green-400">OPERATIONAL</span></div>
+                  <div className="text-cyan-400">
+                    THREAT LEVEL: <span className="text-yellow-400">ELEVATED</span>
+                  </div>
+                  <div className="text-cyan-400">
+                    SYSTEMS: <span className="text-green-400">OPERATIONAL</span>
+                  </div>
                 </div>
                 <div className="text-cyan-400 text-xl">🏢</div>
               </div>
@@ -626,10 +661,8 @@ export const DataOperationsCenter: Story = {
           </div>
 
           <div className="p-6 grid grid-cols-1 xl:grid-cols-4 gap-6">
-            
             {/* Main Dashboard */}
             <div className="xl:col-span-3 space-y-6">
-              
               {/* System Overview Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Card variant="cyberpunk-matrix" cyberpunkGlow="normal" scanlines>
@@ -639,7 +672,7 @@ export const DataOperationsCenter: Story = {
                     <Progress value={systemMetrics.cpu} className="mt-2 h-2" />
                   </CardContent>
                 </Card>
-                
+
                 <Card variant="cyberpunk-neon" cyberpunkGlow="normal" scanlines>
                   <CardContent className="text-center">
                     <div className="text-2xl text-pink-400 mb-2">{systemMetrics.memory}%</div>
@@ -647,7 +680,7 @@ export const DataOperationsCenter: Story = {
                     <Progress value={systemMetrics.memory} className="mt-2 h-2" />
                   </CardContent>
                 </Card>
-                
+
                 <Card variant="cyberpunk-doom" cyberpunkGlow="normal" elevated>
                   <CardContent className="text-center">
                     <div className="text-2xl text-red-400 mb-2">{systemMetrics.temperature}°C</div>
@@ -655,7 +688,7 @@ export const DataOperationsCenter: Story = {
                     <Progress value={(systemMetrics.temperature / 80) * 100} className="mt-2 h-2" />
                   </CardContent>
                 </Card>
-                
+
                 <Card variant="cyberpunk-ghost" cyberpunkGlow="normal">
                   <CardContent className="text-center">
                     <div className="text-2xl text-gray-400 mb-2">{systemMetrics.power}%</div>
@@ -711,24 +744,57 @@ export const DataOperationsCenter: Story = {
                       </thead>
                       <tbody>
                         {[
-                          { src: '192.168.1.100', dst: 'corporate.db.local:5432', proto: 'TCP', status: 'ESTABLISHED', bw: '2.3 MB/s' },
-                          { src: '10.0.0.45', dst: 'api.payment.com:443', proto: 'HTTPS', status: 'ESTABLISHED', bw: '1.1 MB/s' },
-                          { src: '172.16.0.23', dst: 'backup.storage.net:22', proto: 'SSH', status: 'ESTABLISHED', bw: '0.8 MB/s' },
-                          { src: '192.168.1.200', dst: 'unknown.external.ip:80', proto: 'HTTP', status: 'SUSPICIOUS', bw: '5.2 MB/s' },
+                          {
+                            src: '192.168.1.100',
+                            dst: 'corporate.db.local:5432',
+                            proto: 'TCP',
+                            status: 'ESTABLISHED',
+                            bw: '2.3 MB/s',
+                          },
+                          {
+                            src: '10.0.0.45',
+                            dst: 'api.payment.com:443',
+                            proto: 'HTTPS',
+                            status: 'ESTABLISHED',
+                            bw: '1.1 MB/s',
+                          },
+                          {
+                            src: '172.16.0.23',
+                            dst: 'backup.storage.net:22',
+                            proto: 'SSH',
+                            status: 'ESTABLISHED',
+                            bw: '0.8 MB/s',
+                          },
+                          {
+                            src: '192.168.1.200',
+                            dst: 'unknown.external.ip:80',
+                            proto: 'HTTP',
+                            status: 'SUSPICIOUS',
+                            bw: '5.2 MB/s',
+                          },
                         ].map((conn, i) => (
                           <tr key={i} className="border-b border-gray-700/50">
                             <td className="py-2 text-cyan-400 font-mono">{conn.src}</td>
                             <td className="py-2 text-gray-300 font-mono">{conn.dst}</td>
                             <td className="py-2">
-                              <Badge variant={conn.proto === 'HTTPS' ? 'cyberpunk-matrix' : 'cyberpunk-ghost'}>
+                              <Badge
+                                variant={
+                                  conn.proto === 'HTTPS' ? 'cyberpunk-matrix' : 'cyberpunk-ghost'
+                                }
+                              >
                                 {conn.proto}
                               </Badge>
                             </td>
                             <td className="py-2">
-                              <span className={
-                                conn.status === 'ESTABLISHED' ? 'text-green-400' :
-                                conn.status === 'SUSPICIOUS' ? 'text-red-400' : 'text-yellow-400'
-                              }>
+                              <span
+                                className={
+                                  conn.status === 'ESTABLISHED'
+                                    ? 'text-green-400'
+                                    : conn.status === 'SUSPICIOUS'
+                                      ? 'text-red-400'
+                                      : 'text-yellow-400'
+                                }
+                              >
                                 {conn.status}
                               </span>
                             </td>
@@ -744,7 +810,6 @@ export const DataOperationsCenter: Story = {
 
             {/* Side Panel */}
             <div className="space-y-6">
-              
               {/* System Status */}
               <Card variant="cyberpunk-neon" cyberpunkGlow="normal" elevated>
                 <CardHeader>
@@ -763,11 +828,15 @@ export const DataOperationsCenter: Story = {
                         <span className="text-sm">{service.name}</span>
                         <div className="flex items-center gap-2">
                           <span className="text-xs text-gray-400">{service.count}</span>
-                          <div className={`w-2 h-2 rounded-full ${
-                            service.status === 'online' ? 'bg-green-400' :
-                            service.status === 'warning' ? 'bg-yellow-400' :
-                            'bg-red-400'
-                          } cyber-pulse`}></div>
+                          <div
+                            className={`w-2 h-2 rounded-full ${
+                              service.status === 'online'
+                                ? 'bg-green-400'
+                                : service.status === 'warning'
+                                  ? 'bg-yellow-400'
+                                  : 'bg-red-400'
+                            } cyber-pulse`}
+                          ></div>
                         </div>
                       </div>
                     ))}
@@ -785,11 +854,15 @@ export const DataOperationsCenter: Story = {
                     {alerts.map((alert) => (
                       <div key={alert.id} className="border-l-2 border-red-500/50 pl-3 py-2">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className={`text-xs px-2 py-1 rounded ${
-                            alert.type === 'error' ? 'bg-red-500/20 text-red-400' :
-                            alert.type === 'warning' ? 'bg-yellow-500/20 text-yellow-400' :
-                            'bg-cyan-500/20 text-cyan-400'
-                          }`}>
+                          <span
+                            className={`text-xs px-2 py-1 rounded ${
+                              alert.type === 'error'
+                                ? 'bg-red-500/20 text-red-400'
+                                : alert.type === 'warning'
+                                  ? 'bg-yellow-500/20 text-yellow-400'
+                                  : 'bg-cyan-500/20 text-cyan-400'
+                            }`}
+                          >
                             {alert.type.toUpperCase()}
                           </span>
                           <span className="text-xs text-gray-400">{alert.time}</span>
@@ -846,13 +919,14 @@ export const DataOperationsCenter: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Corporate data operations center with comprehensive system monitoring, network analysis, security alerts, and administrative controls.'
-      }
-    }
-  }
+        story:
+          'Corporate data operations center with comprehensive system monitoring, network analysis, security alerts, and administrative controls.',
+      },
+    },
+  },
 };
 
-// Night City Interface Story  
+// Night City Interface Story
 export const NightCityInterface: Story = {
   render: () => {
     const [cityMetrics, setCityMetrics] = useState({
@@ -866,7 +940,7 @@ export const NightCityInterface: Story = {
 
     useEffect(() => {
       const interval = setInterval(() => {
-        setCityMetrics(prev => ({
+        setCityMetrics((prev) => ({
           ...prev,
           trafficFlow: Math.floor(Math.random() * 30) + 70,
           powerGrid: Math.floor(Math.random() * 20) + 80,
@@ -893,20 +967,25 @@ export const NightCityInterface: Story = {
                 <h1 className="text-4xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
                   NIGHT CITY MANAGEMENT SYSTEM
                 </h1>
-                <p className="text-pink-300 text-lg">Cyberpunk 2077 Inspired City Operations • Neural Network Monitoring</p>
+                <p className="text-pink-300 text-lg">
+                  Cyberpunk 2077 Inspired City Operations • Neural Network Monitoring
+                </p>
               </div>
               <div className="text-right">
                 <div className="text-2xl text-pink-400 mb-2">🌃</div>
                 <div className="text-sm text-pink-300">
-                  <div>Time: <span className="text-pink-400">23:47:32</span></div>
-                  <div>Sector: <span className="text-pink-400">City Center</span></div>
+                  <div>
+                    Time: <span className="text-pink-400">23:47:32</span>
+                  </div>
+                  <div>
+                    Sector: <span className="text-pink-400">City Center</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="relative z-10 p-6">
-            
             {/* Top Row - City Overview */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
               <Card variant="cyberpunk-neon" cyberpunkGlow="intense" className="lg:col-span-2">
@@ -919,10 +998,18 @@ export const NightCityInterface: Story = {
                   </div>
                   <div className="text-sm text-pink-300">Active Neural Implants</div>
                   <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
-                    <div>Corporate: <span className="text-cyan-400">34%</span></div>
-                    <div>Street: <span className="text-yellow-400">45%</span></div>
-                    <div>Nomad: <span className="text-green-400">12%</span></div>
-                    <div>Unknown: <span className="text-red-400">9%</span></div>
+                    <div>
+                      Corporate: <span className="text-cyan-400">34%</span>
+                    </div>
+                    <div>
+                      Street: <span className="text-yellow-400">45%</span>
+                    </div>
+                    <div>
+                      Nomad: <span className="text-green-400">12%</span>
+                    </div>
+                    <div>
+                      Unknown: <span className="text-red-400">9%</span>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -962,7 +1049,6 @@ export const NightCityInterface: Story = {
 
             {/* Main Content Grid */}
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-              
               {/* Central District Map */}
               <div className="xl:col-span-2">
                 <Card variant="cyberpunk-neon" cyberpunkGlow="intense" className="h-96">
@@ -972,37 +1058,53 @@ export const NightCityInterface: Story = {
                   <CardContent>
                     <div className="relative h-64 border border-pink-500/30 rounded bg-black/50 overflow-hidden">
                       <div className="cyber-scanlines opacity-20"></div>
-                      
+
                       {/* Simulated City Map */}
                       <div className="absolute inset-0 p-4">
                         <div className="grid grid-cols-4 grid-rows-4 h-full gap-1">
                           {Array.from({ length: 16 }).map((_, i) => {
                             const districts = [
-                              'Corporate Plaza', 'Japantown', 'Little China', 'City Center',
-                              'Westbrook', 'Heywood', 'Santo Domingo', 'Pacifica',
-                              'Watson', 'Kabuki', 'Arroyo', 'Glen',
-                              'Charter Hill', 'Corpo Plaza', 'Wellsprings', 'Rancho Coronado'
+                              'Corporate Plaza',
+                              'Japantown',
+                              'Little China',
+                              'City Center',
+                              'Westbrook',
+                              'Heywood',
+                              'Santo Domingo',
+                              'Pacifica',
+                              'Watson',
+                              'Kabuki',
+                              'Arroyo',
+                              'Glen',
+                              'Charter Hill',
+                              'Corpo Plaza',
+                              'Wellsprings',
+                              'Rancho Coronado',
                             ];
                             const colors = [
-                              'bg-cyan-500/40', 'bg-pink-500/40', 'bg-yellow-500/40', 'bg-purple-500/40',
-                              'bg-green-500/40', 'bg-red-500/40', 'bg-blue-500/40', 'bg-orange-500/40'
+                              'bg-cyan-500/40',
+                              'bg-pink-500/40',
+                              'bg-yellow-500/40',
+                              'bg-purple-500/40',
+                              'bg-green-500/40',
+                              'bg-red-500/40',
+                              'bg-blue-500/40',
+                              'bg-orange-500/40',
                             ];
-                            
+
                             return (
                               <div
                                 key={i}
                                 className={`${colors[i % 8]} border border-white/20 rounded flex items-center justify-center text-xs text-center p-1 cursor-pointer hover:border-white/50 transition-all`}
                                 title={districts[i]}
                               >
-                                <div className="text-white/80">
-                                  {districts[i].split(' ')[0]}
-                                </div>
+                                <div className="text-white/80">{districts[i].split(' ')[0]}</div>
                               </div>
                             );
                           })}
                         </div>
                       </div>
-                      
+
                       {/* Active Incidents Overlay */}
                       <div className="absolute top-4 right-4 space-y-1">
                         <div className="flex items-center gap-1 text-xs">
@@ -1019,7 +1121,7 @@ export const NightCityInterface: Story = {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
                       <div className="text-center">
                         <div className="text-pink-400 font-semibold">CORPO</div>
@@ -1040,7 +1142,6 @@ export const NightCityInterface: Story = {
 
               {/* Side Panel */}
               <div className="space-y-4">
-                
                 {/* Corporate Activity */}
                 <Card variant="cyberpunk-doom" cyberpunkGlow="normal" elevated>
                   <CardHeader>
@@ -1059,10 +1160,13 @@ export const NightCityInterface: Story = {
                             <div className="text-sm font-semibold">{corp.corp}</div>
                             <div className="text-xs text-gray-400">Activity: {corp.activity}%</div>
                           </div>
-                          <Badge 
+                          <Badge
                             variant={
-                              corp.threat === 'HIGH' ? 'cyberpunk-doom' :
-                              corp.threat === 'MED' ? 'cyberpunk-neon' : 'cyberpunk-matrix'
+                              corp.threat === 'HIGH'
+                                ? 'cyberpunk-doom'
+                                : corp.threat === 'MED'
+                                  ? 'cyberpunk-neon'
+                                  : 'cyberpunk-matrix'
                             }
                             glow
                           >
@@ -1110,7 +1214,13 @@ Reputation: "Reliable Solo"`,
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
-                      <Button variant="cyberpunk-doom" cyberpunkGlow="intense" size="sm" fullWidth className="cyber-pulse">
+                      <Button
+                        variant="cyberpunk-doom"
+                        cyberpunkGlow="intense"
+                        size="sm"
+                        fullWidth
+                        className="cyber-pulse"
+                      >
                         🚨 LOCKDOWN CITY
                       </Button>
                       <Button variant="cyberpunk-neon" cyberpunkGlow="normal" size="sm" fullWidth>
@@ -1154,8 +1264,9 @@ Reputation: "Reliable Solo"`,
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Night City management interface inspired by Cyberpunk 2077, featuring district monitoring, corporate surveillance, street activities, and futuristic city operations.'
-      }
-    }
-  }
+        story:
+          'Night City management interface inspired by Cyberpunk 2077, featuring district monitoring, corporate surveillance, street activities, and futuristic city operations.',
+      },
+    },
+  },
 };

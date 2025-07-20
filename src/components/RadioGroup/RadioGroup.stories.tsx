@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { RadioGroup } from './RadioGroup';
 
 const meta: Meta<typeof RadioGroup> = {
-  title: 'Inputs/RadioGroup',
+  title: 'Core Components/Forms/Radio Group',
   component: RadioGroup,
   argTypes: {
     error: { control: 'text' },

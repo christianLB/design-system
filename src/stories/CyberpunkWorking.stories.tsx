@@ -4,7 +4,7 @@ import { Button } from '../components/Button/Button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../components/Card/Card';
 
 const meta: Meta = {
-  title: 'Cyberpunk/Working Examples',
+  title: 'Themes/Cyberpunk/Examples',
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -26,47 +26,57 @@ export const BasicButtons: Story = {
     }, []);
 
     return (
-      <div style={{ 
-        padding: '2rem', 
-        backgroundColor: '#0a0a0a', 
-        minHeight: '100vh',
-        color: '#ffffff'
-      }}>
-        <h2 style={{ 
-          color: '#39ff14', 
-          fontFamily: 'monospace', 
-          marginBottom: '2rem',
-          fontSize: '1.5rem'
-        }}>
+      <div
+        style={{
+          padding: '2rem',
+          backgroundColor: '#0a0a0a',
+          minHeight: '100vh',
+          color: '#ffffff',
+        }}
+      >
+        <h2
+          style={{
+            color: '#39ff14',
+            fontFamily: 'monospace',
+            marginBottom: '2rem',
+            fontSize: '1.5rem',
+          }}
+        >
           Cyberpunk Buttons - All Variants
         </h2>
-        
-        <div style={{ 
-          display: 'grid', 
-          gap: '1rem', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          marginBottom: '2rem'
-        }}>
+
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            marginBottom: '2rem',
+          }}
+        >
           <Button variant="cyberpunk-matrix">Matrix Terminal</Button>
           <Button variant="cyberpunk-doom">DOOM Protocol</Button>
           <Button variant="cyberpunk-ghost">Ghost Mode</Button>
           <Button variant="cyberpunk-neon">Night City</Button>
         </div>
 
-        <h3 style={{ 
-          color: '#00ffff', 
-          fontFamily: 'monospace', 
-          marginBottom: '1rem',
-          fontSize: '1.2rem'
-        }}>
+        <h3
+          style={{
+            color: '#00ffff',
+            fontFamily: 'monospace',
+            marginBottom: '1rem',
+            fontSize: '1.2rem',
+          }}
+        >
           With Cyberpunk Effects
         </h3>
-        
-        <div style={{ 
-          display: 'grid', 
-          gap: '1rem', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))'
-        }}>
+
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          }}
+        >
           <Button variant="cyberpunk-matrix" scanlines={true}>
             Matrix + Scanlines
           </Button>
@@ -76,11 +86,7 @@ export const BasicButtons: Story = {
           <Button variant="cyberpunk-ghost" matrixRain={true}>
             Ghost + Matrix Rain
           </Button>
-          <Button 
-            variant="cyberpunk-neon" 
-            scanlines={true} 
-            cyberpunkGlow="normal"
-          >
+          <Button variant="cyberpunk-neon" scanlines={true} cyberpunkGlow="normal">
             Neon + All Effects
           </Button>
         </div>
@@ -100,26 +106,32 @@ export const BasicCards: Story = {
     }, []);
 
     return (
-      <div style={{ 
-        padding: '2rem', 
-        backgroundColor: '#0a0a0a', 
-        minHeight: '100vh',
-        color: '#ffffff'
-      }}>
-        <h2 style={{ 
-          color: '#39ff14', 
-          fontFamily: 'monospace', 
-          marginBottom: '2rem',
-          fontSize: '1.5rem'
-        }}>
+      <div
+        style={{
+          padding: '2rem',
+          backgroundColor: '#0a0a0a',
+          minHeight: '100vh',
+          color: '#ffffff',
+        }}
+      >
+        <h2
+          style={{
+            color: '#39ff14',
+            fontFamily: 'monospace',
+            marginBottom: '2rem',
+            fontSize: '1.5rem',
+          }}
+        >
           Cyberpunk Cards - All Variants
         </h2>
-        
-        <div style={{ 
-          display: 'grid', 
-          gap: '1.5rem', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'
-        }}>
+
+        <div
+          style={{
+            display: 'grid',
+            gap: '1.5rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          }}
+        >
           <Card variant="cyberpunk-matrix">
             <CardHeader>
               <CardTitle>Neural Interface</CardTitle>
@@ -131,7 +143,9 @@ export const BasicCards: Story = {
               <p>🔹 Security: AES-256</p>
             </CardContent>
             <CardFooter>
-              <Button variant="cyberpunk-matrix" size="sm">Access Matrix</Button>
+              <Button variant="cyberpunk-matrix" size="sm">
+                Access Matrix
+              </Button>
             </CardFooter>
           </Card>
 
@@ -146,7 +160,9 @@ export const BasicCards: Story = {
               <p>⚠️ Action: TERMINATE</p>
             </CardContent>
             <CardFooter>
-              <Button variant="cyberpunk-doom" size="sm">Neutralize</Button>
+              <Button variant="cyberpunk-doom" size="sm">
+                Neutralize
+              </Button>
             </CardFooter>
           </Card>
 
@@ -161,7 +177,9 @@ export const BasicCards: Story = {
               <p>💭 Location: UNKNOWN</p>
             </CardContent>
             <CardFooter>
-              <Button variant="cyberpunk-ghost" size="sm">Ghost Mode</Button>
+              <Button variant="cyberpunk-ghost" size="sm">
+                Ghost Mode
+              </Button>
             </CardFooter>
           </Card>
 
@@ -176,7 +194,9 @@ export const BasicCards: Story = {
               <p>🏙️ Heat Level: LOW</p>
             </CardContent>
             <CardFooter>
-              <Button variant="cyberpunk-neon" size="sm">Enter City</Button>
+              <Button variant="cyberpunk-neon" size="sm">
+                Enter City
+              </Button>
             </CardFooter>
           </Card>
         </div>
@@ -196,28 +216,34 @@ export const EffectsShowcase: Story = {
     }, []);
 
     return (
-      <div style={{ 
-        padding: '2rem', 
-        backgroundColor: '#0a0a0a', 
-        minHeight: '100vh',
-        color: '#ffffff'
-      }}>
-        <h2 style={{ 
-          color: '#39ff14', 
-          fontFamily: 'monospace', 
-          marginBottom: '2rem',
-          fontSize: '1.5rem'
-        }}>
+      <div
+        style={{
+          padding: '2rem',
+          backgroundColor: '#0a0a0a',
+          minHeight: '100vh',
+          color: '#ffffff',
+        }}
+      >
+        <h2
+          style={{
+            color: '#39ff14',
+            fontFamily: 'monospace',
+            marginBottom: '2rem',
+            fontSize: '1.5rem',
+          }}
+        >
           Cyberpunk Effects Showcase
         </h2>
-        
+
         <section style={{ marginBottom: '3rem' }}>
-          <h3 style={{ 
-            color: '#ff0040', 
-            fontFamily: 'monospace', 
-            marginBottom: '1rem',
-            fontSize: '1.2rem'
-          }}>
+          <h3
+            style={{
+              color: '#ff0040',
+              fontFamily: 'monospace',
+              marginBottom: '1rem',
+              fontSize: '1.2rem',
+            }}
+          >
             Glow Effects (3 Intensities)
           </h3>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -234,12 +260,14 @@ export const EffectsShowcase: Story = {
         </section>
 
         <section style={{ marginBottom: '3rem' }}>
-          <h3 style={{ 
-            color: '#00ffff', 
-            fontFamily: 'monospace', 
-            marginBottom: '1rem',
-            fontSize: '1.2rem'
-          }}>
+          <h3
+            style={{
+              color: '#00ffff',
+              fontFamily: 'monospace',
+              marginBottom: '1rem',
+              fontSize: '1.2rem',
+            }}
+          >
             Scanline Effects (CRT Style)
           </h3>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -256,57 +284,57 @@ export const EffectsShowcase: Story = {
         </section>
 
         <section style={{ marginBottom: '3rem' }}>
-          <h3 style={{ 
-            color: '#ff1493', 
-            fontFamily: 'monospace', 
-            marginBottom: '1rem',
-            fontSize: '1.2rem'
-          }}>
+          <h3
+            style={{
+              color: '#ff1493',
+              fontFamily: 'monospace',
+              marginBottom: '1rem',
+              fontSize: '1.2rem',
+            }}
+          >
             Combined Effects (Ultimate Cyberpunk)
           </h3>
-          <div style={{ 
-            display: 'grid', 
-            gap: '1rem', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))'
-          }}>
-            <Button 
-              variant="cyberpunk-matrix" 
-              cyberpunkGlow="intense" 
-              scanlines={true} 
+          <div
+            style={{
+              display: 'grid',
+              gap: '1rem',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            }}
+          >
+            <Button
+              variant="cyberpunk-matrix"
+              cyberpunkGlow="intense"
+              scanlines={true}
               matrixRain={true}
             >
               🔹 FULL MATRIX PROTOCOL
             </Button>
-            
-            <Button 
-              variant="cyberpunk-doom" 
-              cyberpunkGlow="intense" 
-              scanlines={true}
-            >
+
+            <Button variant="cyberpunk-doom" cyberpunkGlow="intense" scanlines={true}>
               ⚡ COMBAT SYSTEM ONLINE
             </Button>
           </div>
         </section>
 
         <section>
-          <h3 style={{ 
-            color: '#ffffff', 
-            fontFamily: 'monospace', 
-            marginBottom: '1rem',
-            fontSize: '1.2rem'
-          }}>
+          <h3
+            style={{
+              color: '#ffffff',
+              fontFamily: 'monospace',
+              marginBottom: '1rem',
+              fontSize: '1.2rem',
+            }}
+          >
             Cards with Combined Effects
           </h3>
-          <div style={{ 
-            display: 'grid', 
-            gap: '1.5rem', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))'
-          }}>
-            <Card 
-              variant="cyberpunk-matrix" 
-              cyberpunkGlow="intense" 
-              scanlines={true}
-            >
+          <div
+            style={{
+              display: 'grid',
+              gap: '1.5rem',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            }}
+          >
+            <Card variant="cyberpunk-matrix" cyberpunkGlow="intense" scanlines={true}>
               <CardHeader>
                 <CardTitle>🔹 ENHANCED NEURAL LINK</CardTitle>
               </CardHeader>
@@ -318,11 +346,7 @@ export const EffectsShowcase: Story = {
               </CardContent>
             </Card>
 
-            <Card 
-              variant="cyberpunk-neon" 
-              cyberpunkGlow="normal" 
-              scanlines={true}
-            >
+            <Card variant="cyberpunk-neon" cyberpunkGlow="normal" scanlines={true}>
               <CardHeader>
                 <CardTitle>🌈 NIGHT CITY PREMIUM</CardTitle>
               </CardHeader>
@@ -342,4 +366,3 @@ export const EffectsShowcase: Story = {
     backgrounds: { default: 'dark' },
   },
 };
-

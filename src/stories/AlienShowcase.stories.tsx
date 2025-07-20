@@ -5,12 +5,13 @@ import { Container } from '../components/Container/Container';
 import { Button } from '../components/Button/Button';
 
 const meta: Meta = {
-  title: 'Themes/Alien Showcase',
+  title: 'Themes/Alien/Overview',
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
-        component: 'A comprehensive showcase of the alien biomechanical theme inspired by H.R. Giger\'s aesthetic. Features atmospheric breathing effects, neural pathways, and organic interfaces.',
+        component:
+          "A comprehensive showcase of the alien biomechanical theme inspired by H.R. Giger's aesthetic. Features atmospheric breathing effects, neural pathways, and organic interfaces.",
       },
     },
   },
@@ -30,9 +31,10 @@ export const AlienThemeOverview: Story = {
               Alien Biomechanical Theme
             </h1>
             <p className="text-lg atmospheric-text-ghost max-w-3xl mx-auto">
-              Experience the organic interface inspired by H.R. Giger's biomechanical aesthetic. 
-              This theme creates an immersive environment that evokes the sensation of inhabiting 
-              a living structure with breathing effects, neural pathways, and atmospheric interactions.
+              Experience the organic interface inspired by H.R. Giger's biomechanical aesthetic.
+              This theme creates an immersive environment that evokes the sensation of inhabiting a
+              living structure with breathing effects, neural pathways, and atmospheric
+              interactions.
             </p>
           </div>
 
@@ -42,29 +44,37 @@ export const AlienThemeOverview: Story = {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Container alienVariant="organism" atmospheric className="p-6 min-h-32">
                 <h3 className="font-semibold atmospheric-text-vital mb-2">Organism</h3>
-                <p className="text-sm atmospheric-text-ghost">Circular organic shape with deep shadows</p>
+                <p className="text-sm atmospheric-text-ghost">
+                  Circular organic shape with deep shadows
+                </p>
               </Container>
-              
+
               <Container alienVariant="chamber" atmospheric className="p-6 min-h-32">
                 <h3 className="font-semibold atmospheric-text-vital mb-2">Chamber</h3>
-                <p className="text-sm atmospheric-text-ghost">Deep organ chamber with complex gradients</p>
+                <p className="text-sm atmospheric-text-ghost">
+                  Deep organ chamber with complex gradients
+                </p>
               </Container>
-              
+
               <Container alienVariant="organ" atmospheric className="p-6 min-h-32">
                 <h3 className="font-semibold atmospheric-text-vital mb-2">Organ</h3>
-                <p className="text-sm atmospheric-text-ghost">Biomechanical organ with conic gradients</p>
+                <p className="text-sm atmospheric-text-ghost">
+                  Biomechanical organ with conic gradients
+                </p>
               </Container>
-              
+
               <Container alienVariant="membrane" atmospheric className="p-6 min-h-32">
                 <h3 className="font-semibold atmospheric-text-vital mb-2">Membrane</h3>
                 <p className="text-sm atmospheric-text-ghost">Protective vessel-like membrane</p>
               </Container>
-              
+
               <Container alienVariant="cavity" atmospheric className="p-6 min-h-32">
                 <h3 className="font-semibold atmospheric-text-vital mb-2">Cavity</h3>
-                <p className="text-sm atmospheric-text-ghost">Internal cavity with membrane effects</p>
+                <p className="text-sm atmospheric-text-ghost">
+                  Internal cavity with membrane effects
+                </p>
               </Container>
-              
+
               <Container alienVariant="organism" atmospheric vital neural className="p-6 min-h-32">
                 <h3 className="font-semibold atmospheric-text-vital mb-2">Full Effects</h3>
                 <p className="text-sm atmospheric-text-ghost">All atmospheric effects combined</p>
@@ -85,7 +95,7 @@ export const AlienThemeOverview: Story = {
                   <p className="text-xs atmospheric-text-vital mt-2">Status: BREATHING</p>
                 </CardContent>
               </Card>
-              
+
               <Card variant="alien-organ" atmospheric>
                 <CardHeader>
                   <CardTitle>Organ</CardTitle>
@@ -95,7 +105,7 @@ export const AlienThemeOverview: Story = {
                   <p className="text-xs atmospheric-text-vital mt-2">Function: OPTIMAL</p>
                 </CardContent>
               </Card>
-              
+
               <Card variant="alien-membrane" atmospheric>
                 <CardHeader>
                   <CardTitle>Membrane</CardTitle>
@@ -105,7 +115,7 @@ export const AlienThemeOverview: Story = {
                   <p className="text-xs atmospheric-text-vital mt-2">Integrity: INTACT</p>
                 </CardContent>
               </Card>
-              
+
               <Card variant="alien-cavity" atmospheric>
                 <CardHeader>
                   <CardTitle>Cavity</CardTitle>
@@ -143,7 +153,7 @@ export const AlienThemeOverview: Story = {
                   <p className="text-xs atmospheric-text-ghost">Breathing cycle active</p>
                 </CardFooter>
               </Card>
-              
+
               <Card variant="alien-organ" atmospheric neural>
                 <CardHeader>
                   <CardTitle>Neural + Atmospheric</CardTitle>
@@ -165,7 +175,7 @@ export const AlienThemeOverview: Story = {
                   <p className="text-xs atmospheric-text-ghost">Neural activity syncing</p>
                 </CardFooter>
               </Card>
-              
+
               <Card variant="alien-cavity" atmospheric vital neural>
                 <CardHeader>
                   <CardTitle>Complete Integration</CardTitle>
@@ -193,8 +203,10 @@ export const AlienThemeOverview: Story = {
           {/* Interactive Demo */}
           <section className="space-y-6">
             <h2 className="text-2xl font-bold atmospheric-text-vital">Interactive Elements</h2>
-            <p className="atmospheric-text-ghost">Hover over the elements below to experience the organic interactions</p>
-            
+            <p className="atmospheric-text-ghost">
+              Hover over the elements below to experience the organic interactions
+            </p>
+
             <div className="space-y-8">
               {/* Button Examples */}
               <div className="space-y-4">
@@ -221,7 +233,9 @@ export const AlienThemeOverview: Story = {
                       <CardTitle>Living Chamber</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm mb-4">A fully integrated alien interface with all atmospheric effects</p>
+                      <p className="text-sm mb-4">
+                        A fully integrated alien interface with all atmospheric effects
+                      </p>
                       <ul className="text-xs space-y-1">
                         <li>• Atmospheric breathing patterns</li>
                         <li>• Neural pathway visualization</li>
@@ -230,10 +244,12 @@ export const AlienThemeOverview: Story = {
                       </ul>
                     </CardContent>
                     <CardFooter>
-                      <p className="text-xs atmospheric-text-ghost">Hover to experience the awakening</p>
+                      <p className="text-xs atmospheric-text-ghost">
+                        Hover to experience the awakening
+                      </p>
                     </CardFooter>
                   </Card>
-                  
+
                   <Card variant="alien-cavity" atmospheric vital neural>
                     <CardHeader>
                       <CardTitle>Deep Organism</CardTitle>
@@ -269,7 +285,9 @@ export const AlienThemeOverview: Story = {
             <h2 className="text-2xl font-bold atmospheric-text-vital">Available CSS Classes</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <Container alienVariant="membrane" atmospheric className="p-4">
-                <h4 className="font-semibold atmospheric-text-vital text-sm mb-2">Animation Classes</h4>
+                <h4 className="font-semibold atmospheric-text-vital text-sm mb-2">
+                  Animation Classes
+                </h4>
                 <ul className="text-xs atmospheric-text-ghost space-y-1">
                   <li>• atmospheric-breathe</li>
                   <li>• atmospheric-neural</li>
@@ -277,9 +295,11 @@ export const AlienThemeOverview: Story = {
                   <li>• atmospheric-flow</li>
                 </ul>
               </Container>
-              
+
               <Container alienVariant="membrane" atmospheric className="p-4">
-                <h4 className="font-semibold atmospheric-text-vital text-sm mb-2">Background Classes</h4>
+                <h4 className="font-semibold atmospheric-text-vital text-sm mb-2">
+                  Background Classes
+                </h4>
                 <ul className="text-xs atmospheric-text-ghost space-y-1">
                   <li>• atmospheric-membrane</li>
                   <li>• atmospheric-vessel</li>
@@ -287,9 +307,11 @@ export const AlienThemeOverview: Story = {
                   <li>• neural-pathways</li>
                 </ul>
               </Container>
-              
+
               <Container alienVariant="membrane" atmospheric className="p-4">
-                <h4 className="font-semibold atmospheric-text-vital text-sm mb-2">Border Classes</h4>
+                <h4 className="font-semibold atmospheric-text-vital text-sm mb-2">
+                  Border Classes
+                </h4>
                 <ul className="text-xs atmospheric-text-ghost space-y-1">
                   <li>• atmospheric-border-cell</li>
                   <li>• atmospheric-border-vessel</li>
@@ -297,7 +319,7 @@ export const AlienThemeOverview: Story = {
                   <li>• atmospheric-border-cavity</li>
                 </ul>
               </Container>
-              
+
               <Container alienVariant="membrane" atmospheric className="p-4">
                 <h4 className="font-semibold atmospheric-text-vital text-sm mb-2">Depth Classes</h4>
                 <ul className="text-xs atmospheric-text-ghost space-y-1">
@@ -307,7 +329,7 @@ export const AlienThemeOverview: Story = {
                   <li>• atmospheric-interactive</li>
                 </ul>
               </Container>
-              
+
               <Container alienVariant="membrane" atmospheric className="p-4">
                 <h4 className="font-semibold atmospheric-text-vital text-sm mb-2">Text Classes</h4>
                 <ul className="text-xs atmospheric-text-ghost space-y-1">
@@ -317,7 +339,7 @@ export const AlienThemeOverview: Story = {
                   <li>• atmospheric-font-organic</li>
                 </ul>
               </Container>
-              
+
               <Container alienVariant="membrane" atmospheric className="p-4">
                 <h4 className="font-semibold atmospheric-text-vital text-sm mb-2">State Classes</h4>
                 <ul className="text-xs atmospheric-text-ghost space-y-1">
@@ -337,16 +359,20 @@ export const AlienThemeOverview: Story = {
               <h3 className="font-semibold atmospheric-text-vital mb-4">Code Examples</h3>
               <div className="space-y-4 atmospheric-font-neural">
                 <div className="space-y-2">
-                  <h4 className="text-sm font-semibold atmospheric-text-vital">Card with Alien Theme:</h4>
+                  <h4 className="text-sm font-semibold atmospheric-text-vital">
+                    Card with Alien Theme:
+                  </h4>
                   <code className="block p-3 bg-black/30 rounded text-xs atmospheric-text-ghost">
                     {`<Card variant="alien-chamber" atmospheric vital>
   <CardContent>Living interface</CardContent>
 </Card>`}
                   </code>
                 </div>
-                
+
                 <div className="space-y-2">
-                  <h4 className="text-sm font-semibold atmospheric-text-vital">Container with Organic Shape:</h4>
+                  <h4 className="text-sm font-semibold atmospheric-text-vital">
+                    Container with Organic Shape:
+                  </h4>
                   <code className="block p-3 bg-black/30 rounded text-xs atmospheric-text-ghost">
                     {`<Container 
   alienVariant="organism" 
@@ -358,9 +384,11 @@ export const AlienThemeOverview: Story = {
 </Container>`}
                   </code>
                 </div>
-                
+
                 <div className="space-y-2">
-                  <h4 className="text-sm font-semibold atmospheric-text-vital">Theme Application:</h4>
+                  <h4 className="text-sm font-semibold atmospheric-text-vital">
+                    Theme Application:
+                  </h4>
                   <code className="block p-3 bg-black/30 rounded text-xs atmospheric-text-ghost">
                     {`<div className="theme-atmospheric">
   <!-- All content gets alien theme -->
@@ -377,7 +405,8 @@ export const AlienThemeOverview: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Complete overview of the alien biomechanical theme showcasing all components, effects, and usage patterns. This immersive interface creates the sensation of inhabiting a living organism with breathing effects, neural pathways, and organic interactions.',
+        story:
+          'Complete overview of the alien biomechanical theme showcasing all components, effects, and usage patterns. This immersive interface creates the sensation of inhabiting a living organism with breathing effects, neural pathways, and organic interactions.',
       },
     },
   },
@@ -448,7 +477,7 @@ export const AlienComponentGallery: Story = {
                   </div>
                 </CardFooter>
               </Card>
-              
+
               <div className="space-y-4">
                 <Card variant="alien-organ" atmospheric neural>
                   <CardHeader>
@@ -459,7 +488,7 @@ export const AlienComponentGallery: Story = {
                     <p className="text-xs atmospheric-text-vital">Status: SYNCING</p>
                   </CardContent>
                 </Card>
-                
+
                 <Card variant="alien-membrane" atmospheric>
                   <CardHeader>
                     <CardTitle className="text-sm">Protective Barriers</CardTitle>
@@ -469,7 +498,7 @@ export const AlienComponentGallery: Story = {
                     <p className="text-xs atmospheric-text-vital">Status: INTACT</p>
                   </CardContent>
                 </Card>
-                
+
                 <Card variant="alien-cavity" atmospheric vital>
                   <CardHeader>
                     <CardTitle className="text-sm">Internal Chambers</CardTitle>
@@ -502,7 +531,7 @@ export const AlienComponentGallery: Story = {
                     </Button>
                   </div>
                 </div>
-                
+
                 <div className="space-y-4">
                   <h3 className="font-semibold atmospheric-text-vital">Neural Interface</h3>
                   <div className="space-y-2">
@@ -517,7 +546,7 @@ export const AlienComponentGallery: Story = {
                     </Button>
                   </div>
                 </div>
-                
+
                 <div className="space-y-4">
                   <h3 className="font-semibold atmospheric-text-vital">System Control</h3>
                   <div className="space-y-2">
@@ -583,12 +612,12 @@ export const AlienComponentGallery: Story = {
                       <span className="atmospheric-text-vital">ACTIVE</span>
                     </div>
                   </div>
-                  
+
                   <div className="pt-4 border-t border-gray-700/30">
                     <p className="text-xs atmospheric-text-ghost">
-                      The organism continues to evolve, integrating biological and mechanical systems 
-                      into a unified consciousness. Neural pathways strengthen with each interaction, 
-                      creating deeper levels of atmospheric awareness.
+                      The organism continues to evolve, integrating biological and mechanical
+                      systems into a unified consciousness. Neural pathways strengthen with each
+                      interaction, creating deeper levels of atmospheric awareness.
                     </p>
                   </div>
                 </div>
@@ -607,7 +636,8 @@ export const AlienComponentGallery: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A complete gallery showcasing alien theme components in realistic application scenarios including dashboards, control interfaces, and data visualization with full atmospheric integration.',
+        story:
+          'A complete gallery showcasing alien theme components in realistic application scenarios including dashboards, control interfaces, and data visualization with full atmospheric integration.',
       },
     },
   },

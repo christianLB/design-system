@@ -11,7 +11,7 @@ import { DarkThemeToggle } from '../components/DarkThemeToggle';
 import { ThemeProvider } from '../theme';
 
 const meta: Meta = {
-  title: 'Cyberpunk/Overview',
+  title: 'Themes/Cyberpunk/Overview',
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -124,11 +124,11 @@ export const CyberpunkOverview: Story = {
 
     useEffect(() => {
       const interval = setInterval(() => {
-        setHealth(prev => Math.max(20, Math.min(100, prev + (Math.random() - 0.5) * 10)));
-        setShields(prev => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 15)));
-        setAmmo(prev => Math.max(0, Math.min(500, prev + (Math.random() - 0.5) * 20)));
+        setHealth((prev) => Math.max(20, Math.min(100, prev + (Math.random() - 0.5) * 10)));
+        setShields((prev) => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 15)));
+        setAmmo((prev) => Math.max(0, Math.min(500, prev + (Math.random() - 0.5) * 20)));
       }, 2000);
-      
+
       return () => clearInterval(interval);
     }, []);
 
@@ -137,7 +137,7 @@ export const CyberpunkOverview: Story = {
         <div className="min-h-screen bg-black text-white relative overflow-hidden">
           {/* Matrix Rain Background */}
           <div className="cyber-matrix-overlay opacity-20 pointer-events-none"></div>
-          
+
           {/* Header */}
           <div className="relative z-10 p-6 border-b border-green-500/30">
             <div className="max-w-7xl mx-auto">
@@ -146,15 +146,17 @@ export const CyberpunkOverview: Story = {
                   <h1 className="text-4xl font-bold text-green-400 cyber-text-glow">
                     CYBERPUNK DESIGN SYSTEM
                   </h1>
-                  <p className="text-lg text-green-300 mt-2">
-                    v3.5.0 - Digital Reality Interface
-                  </p>
+                  <p className="text-lg text-green-300 mt-2">v3.5.0 - Digital Reality Interface</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <DarkThemeToggle />
                   <div className="text-xs text-green-400">
-                    <div>SYSTEM STATUS: <span className="text-green-300">ONLINE</span></div>
-                    <div>SECURITY: <span className="text-green-300">MAXIMUM</span></div>
+                    <div>
+                      SYSTEM STATUS: <span className="text-green-300">ONLINE</span>
+                    </div>
+                    <div>
+                      SECURITY: <span className="text-green-300">MAXIMUM</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -188,13 +190,12 @@ export const CyberpunkOverview: Story = {
           {/* Main Content */}
           <div className="relative z-10 p-6">
             <div className="max-w-7xl mx-auto">
-              
               {/* Components Demo */}
               {activeDemo === 'components' && (
                 <div className="space-y-8">
                   <div>
                     <h2 className="text-2xl font-bold text-green-400 mb-6">Cyberpunk Components</h2>
-                    
+
                     {/* Button Variants */}
                     <div className="mb-8">
                       <h3 className="text-xl text-green-300 mb-4">Button Variants</h3>
@@ -208,7 +209,11 @@ export const CyberpunkOverview: Story = {
                         <Button variant="cyberpunk-ghost" iconStart="Ghost">
                           Ghost Mode
                         </Button>
-                        <Button variant="cyberpunk-neon" cyberpunkGlow="normal" iconStart="Sparkles">
+                        <Button
+                          variant="cyberpunk-neon"
+                          cyberpunkGlow="normal"
+                          iconStart="Sparkles"
+                        >
                           Neon Style
                         </Button>
                       </div>
@@ -223,38 +228,54 @@ export const CyberpunkOverview: Story = {
                             <CardTitle>Matrix</CardTitle>
                           </CardHeader>
                           <CardContent>
-                            <p>CPU: <span className="text-green-400">73%</span></p>
-                            <p>RAM: <span className="text-green-400">8.2GB</span></p>
+                            <p>
+                              CPU: <span className="text-green-400">73%</span>
+                            </p>
+                            <p>
+                              RAM: <span className="text-green-400">8.2GB</span>
+                            </p>
                           </CardContent>
                         </Card>
-                        
+
                         <Card variant="cyberpunk-doom" cyberpunkGlow="normal" elevated>
                           <CardHeader>
                             <CardTitle>DOOM</CardTitle>
                           </CardHeader>
                           <CardContent>
-                            <p>Health: <span className="text-red-400">{health}%</span></p>
-                            <p>Armor: <span className="text-red-400">{shields}%</span></p>
+                            <p>
+                              Health: <span className="text-red-400">{health}%</span>
+                            </p>
+                            <p>
+                              Armor: <span className="text-red-400">{shields}%</span>
+                            </p>
                           </CardContent>
                         </Card>
-                        
+
                         <Card variant="cyberpunk-ghost" cyberpunkGlow="subtle">
                           <CardHeader>
                             <CardTitle>Ghost</CardTitle>
                           </CardHeader>
                           <CardContent>
-                            <p>Stealth: <span className="text-gray-400">ACTIVE</span></p>
-                            <p>Visibility: <span className="text-gray-400">12%</span></p>
+                            <p>
+                              Stealth: <span className="text-gray-400">ACTIVE</span>
+                            </p>
+                            <p>
+                              Visibility: <span className="text-gray-400">12%</span>
+                            </p>
                           </CardContent>
                         </Card>
-                        
+
                         <Card variant="cyberpunk-neon" cyberpunkGlow="normal" scanlines>
                           <CardHeader>
                             <CardTitle>Neon</CardTitle>
                           </CardHeader>
                           <CardContent>
-                            <p>Neural: <span className="text-pink-400">89%</span></p>
-                            <p>Bandwidth: <span className="text-pink-400">1.2GB/s</span></p>
+                            <p>
+                              Neural: <span className="text-pink-400">89%</span>
+                            </p>
+                            <p>
+                              Bandwidth: <span className="text-pink-400">1.2GB/s</span>
+                            </p>
                           </CardContent>
                         </Card>
                       </div>
@@ -266,8 +287,10 @@ export const CyberpunkOverview: Story = {
               {/* HUD Demo */}
               {activeDemo === 'hud' && (
                 <div className="relative min-h-[600px]">
-                  <h2 className="text-2xl font-bold text-green-400 mb-6">HUD System Demonstration</h2>
-                  
+                  <h2 className="text-2xl font-bold text-green-400 mb-6">
+                    HUD System Demonstration
+                  </h2>
+
                   {/* Main HUD */}
                   <HUD
                     layout={{ position: 'top-left', padding: 20 }}
@@ -354,7 +377,7 @@ export const CyberpunkOverview: Story = {
               {activeDemo === 'terminal' && (
                 <div className="space-y-6">
                   <h2 className="text-2xl font-bold text-green-400 mb-6">Terminal Interface</h2>
-                  
+
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <Terminal
                       variant="matrix"
@@ -365,7 +388,7 @@ export const CyberpunkOverview: Story = {
                       initialCommands={sampleTerminalCommands}
                       enableTypewriter
                     />
-                    
+
                     <Terminal
                       variant="doom"
                       title="DOOM TERMINAL"
@@ -389,19 +412,31 @@ export const CyberpunkOverview: Story = {
               {/* Effects Demo */}
               {activeDemo === 'effects' && (
                 <div className="space-y-8">
-                  <h2 className="text-2xl font-bold text-green-400 mb-6">Visual Effects Showcase</h2>
-                  
+                  <h2 className="text-2xl font-bold text-green-400 mb-6">
+                    Visual Effects Showcase
+                  </h2>
+
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <Card variant="cyberpunk-matrix" cyberpunkGlow="intense" className="cyber-pulse">
+                    <Card
+                      variant="cyberpunk-matrix"
+                      cyberpunkGlow="intense"
+                      className="cyber-pulse"
+                    >
                       <CardHeader>
                         <CardTitle>Glow Effects</CardTitle>
                       </CardHeader>
                       <CardContent>
                         <p className="mb-4">Configurable neon glow with 3 intensity levels:</p>
                         <div className="space-y-2">
-                          <Button variant="cyberpunk-matrix" cyberpunkGlow="subtle" size="sm">Subtle</Button>
-                          <Button variant="cyberpunk-matrix" cyberpunkGlow="normal" size="sm">Normal</Button>
-                          <Button variant="cyberpunk-matrix" cyberpunkGlow="intense" size="sm">Intense</Button>
+                          <Button variant="cyberpunk-matrix" cyberpunkGlow="subtle" size="sm">
+                            Subtle
+                          </Button>
+                          <Button variant="cyberpunk-matrix" cyberpunkGlow="normal" size="sm">
+                            Normal
+                          </Button>
+                          <Button variant="cyberpunk-matrix" cyberpunkGlow="intense" size="sm">
+                            Intense
+                          </Button>
                         </div>
                       </CardContent>
                     </Card>
@@ -486,10 +521,11 @@ export const CyberpunkOverview: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Complete overview of the Cyberpunk Design System with interactive demonstrations of all components, effects, and themes.'
-      }
-    }
-  }
+        story:
+          'Complete overview of the Cyberpunk Design System with interactive demonstrations of all components, effects, and themes.',
+      },
+    },
+  },
 };
 
 // Quick Start Guide
@@ -498,7 +534,9 @@ export const QuickStart: Story = {
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       <div className="text-center">
         <h1 className="text-3xl font-bold text-green-400 mb-4">Quick Start Guide</h1>
-        <p className="text-green-300 text-lg">Get started with the Cyberpunk Design System in minutes</p>
+        <p className="text-green-300 text-lg">
+          Get started with the Cyberpunk Design System in minutes
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -510,7 +548,7 @@ export const QuickStart: Story = {
             <div>
               <h4 className="font-semibold text-green-300 mb-2">Button with Cyberpunk Variant:</h4>
               <pre className="bg-black p-3 rounded text-xs text-green-400 overflow-x-auto">
-{`<Button 
+                {`<Button 
   variant="cyberpunk-matrix"
   cyberpunkGlow="normal"
   iconStart="Zap"
@@ -533,7 +571,7 @@ export const QuickStart: Story = {
             <div>
               <h4 className="font-semibold text-red-300 mb-2">Card with Scanlines:</h4>
               <pre className="bg-black p-3 rounded text-xs text-red-400 overflow-x-auto">
-{`<Card 
+                {`<Card 
   variant="cyberpunk-doom"
   scanlines
   cyberpunkGlow="normal"
@@ -555,7 +593,7 @@ export const QuickStart: Story = {
             <div>
               <h4 className="font-semibold text-gray-300 mb-2">Theme Provider Setup:</h4>
               <pre className="bg-black p-3 rounded text-xs text-gray-400 overflow-x-auto">
-{`<ThemeProvider>
+                {`<ThemeProvider>
   <DarkThemeToggle />
   <YourApp />
 </ThemeProvider>`}
@@ -575,7 +613,7 @@ export const QuickStart: Story = {
             <div>
               <h4 className="font-semibold text-pink-300 mb-2">Multiple Effects:</h4>
               <pre className="bg-black p-3 rounded text-xs text-pink-400 overflow-x-auto">
-{`<Card 
+                {`<Card 
   variant="cyberpunk-neon"
   cyberpunkGlow="intense"
   scanlines
@@ -611,8 +649,9 @@ export const QuickStart: Story = {
     layout: 'padded',
     docs: {
       description: {
-        story: 'Quick start guide showing basic usage patterns and code examples for the Cyberpunk Design System.'
-      }
-    }
-  }
+        story:
+          'Quick start guide showing basic usage patterns and code examples for the Cyberpunk Design System.',
+      },
+    },
+  },
 };

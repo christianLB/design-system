@@ -38,27 +38,26 @@ export const alienVitalPlugin: AnimationPlugin = {
   version: '1.0.0',
   category: 'animation',
   priority: 'high',
-  
+
   description: 'Pulse, circulation, and life force visualizations for alien theme',
-  
+
   features: {
     customKeyframes: true,
-    performanceOptimizations: true,
     gestureAnimations: true,
     advancedKeyframes: true,
   },
-  
+
   config: defaultConfig,
-  
+
   hooks: {
     afterThemeBuild: (context: PluginContext): PluginResult => {
       const config = { ...defaultConfig, ...context.config } as AlienVitalConfig;
-      
+
       // Only apply to alien theme
       if (context.theme?.meta?.name !== 'alien') {
         return { success: true };
       }
-      
+
       const intensityConfig = {
         subtle: {
           opacity: 0.4,
@@ -82,7 +81,7 @@ export const alienVitalPlugin: AnimationPlugin = {
           pulse: 1.0,
         },
       }[config.intensity || 'normal'];
-      
+
       const colors = {
         heartbeat: config.customColors?.heartbeat || alienColors.textVital,
         circulation: config.customColors?.circulation || alienColors.arterialPulse,
@@ -90,7 +89,7 @@ export const alienVitalPlugin: AnimationPlugin = {
         vitalGlow: config.customColors?.vitalGlow || alienColors.heartbeat,
         lifeForce: config.customColors?.lifeForce || alienColors.adrenaline,
       };
-      
+
       const cssVariables: Record<string, string> = {
         // Vital configuration
         '--alien-vital-opacity': intensityConfig.opacity.toString(),
@@ -98,14 +97,14 @@ export const alienVitalPlugin: AnimationPlugin = {
         '--alien-vital-glow': intensityConfig.glow,
         '--alien-vital-speed': `${intensityConfig.speed}ms`,
         '--alien-vital-pulse': intensityConfig.pulse.toString(),
-        
+
         // Colors
         '--alien-vital-heartbeat': colors.heartbeat,
         '--alien-vital-circulation': colors.circulation,
         '--alien-vital-blood': colors.bloodPulse,
-        '--alien-vital-glow': colors.vitalGlow,
+        '--alien-vital-glow-color': colors.vitalGlow,
         '--alien-vital-life': colors.lifeForce,
-        
+
         // Feature toggles
         '--alien-heartbeat-enabled': config.heartbeatEnabled ? '1' : '0',
         '--alien-circulation-enabled': config.circulationEnabled ? '1' : '0',
@@ -113,16 +112,16 @@ export const alienVitalPlugin: AnimationPlugin = {
         '--alien-glow-enabled': config.vitalGlowEnabled ? '1' : '0',
         '--alien-life-enabled': config.lifeForceEnabled ? '1' : '0',
       };
-      
+
       // Add reduced motion support
       if (config.respectReducedMotion) {
         cssVariables['--alien-reduced-vital-speed'] = '0s';
         cssVariables['--alien-reduced-vital-opacity'] = '0.3';
       }
-      
+
       // Generate keyframes for vital animations
       const keyframes: Record<string, Record<string, any>> = {};
-      
+
       if (config.heartbeatEnabled) {
         keyframes['alien-heartbeat'] = {
           '0%, 60%, 100%': {
@@ -146,7 +145,7 @@ export const alienVitalPlugin: AnimationPlugin = {
             opacity: intensityConfig.opacity * 0.7,
           },
         };
-        
+
         keyframes['alien-vital-pulse'] = {
           '0%, 100%': {
             boxShadow: `0 0 ${intensityConfig.glow} ${colors.heartbeat}`,
@@ -158,7 +157,7 @@ export const alienVitalPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.circulationEnabled) {
         keyframes['alien-circulation-flow'] = {
           '0%': {
@@ -180,7 +179,7 @@ export const alienVitalPlugin: AnimationPlugin = {
             opacity: '0',
           },
         };
-        
+
         keyframes['alien-vessel-flow'] = {
           '0%': {
             backgroundPosition: '0% 50%',
@@ -196,7 +195,7 @@ export const alienVitalPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.bloodPulseEnabled) {
         keyframes['alien-blood-pulse'] = {
           '0%, 100%': {
@@ -225,7 +224,7 @@ export const alienVitalPlugin: AnimationPlugin = {
             filter: 'brightness(1)',
           },
         };
-        
+
         keyframes['alien-blood-drop'] = {
           '0%': {
             transform: 'translateY(-100%) scale(0.5)',
@@ -252,7 +251,7 @@ export const alienVitalPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.vitalGlowEnabled) {
         keyframes['alien-vital-glow'] = {
           '0%, 100%': {
@@ -264,7 +263,7 @@ export const alienVitalPlugin: AnimationPlugin = {
             filter: 'brightness(1.2)',
           },
         };
-        
+
         keyframes['alien-glow-ripple'] = {
           '0%': {
             transform: 'scale(0.8)',
@@ -283,7 +282,7 @@ export const alienVitalPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       if (config.lifeForceEnabled) {
         keyframes['alien-life-force'] = {
           '0%': {
@@ -312,7 +311,7 @@ export const alienVitalPlugin: AnimationPlugin = {
             filter: 'hue-rotate(0deg)',
           },
         };
-        
+
         keyframes['alien-energy-spiral'] = {
           '0%': {
             transform: 'rotate(0deg) scale(0.5)',
@@ -330,32 +329,32 @@ export const alienVitalPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       // Generate utility classes
       const utilityClasses: Record<string, Record<string, any>> = {
         '.alien-vital-container': {
           position: 'relative',
           overflow: 'hidden',
         },
-        
+
         '.alien-heartbeat': {
           animation: 'alien-heartbeat var(--alien-vital-speed) ease-in-out infinite',
           opacity: 'calc(var(--alien-heartbeat-enabled) * var(--alien-vital-opacity))',
           transformOrigin: 'center center',
         },
-        
+
         '.alien-vital-pulse': {
           animation: 'alien-vital-pulse calc(var(--alien-vital-speed) * 0.8) ease-in-out infinite',
           border: `1px solid var(--alien-vital-heartbeat)`,
         },
-        
+
         '.alien-circulation': {
           position: 'relative',
           background: `linear-gradient(90deg, transparent, var(--alien-vital-circulation), transparent)`,
           animation: 'alien-circulation-flow calc(var(--alien-vital-speed) * 1.5) linear infinite',
           opacity: 'calc(var(--alien-circulation-enabled) * 1)',
         },
-        
+
         '.alien-vessel': {
           position: 'relative',
           background: `
@@ -372,13 +371,13 @@ export const alienVitalPlugin: AnimationPlugin = {
           height: '4px',
           borderRadius: '2px',
         },
-        
+
         '.alien-blood-pulse': {
           animation: 'alien-blood-pulse var(--alien-vital-speed) ease-in-out infinite',
           opacity: 'calc(var(--alien-blood-enabled) * 1)',
           border: `1px solid var(--alien-vital-blood)`,
         },
-        
+
         '.alien-blood-drop': {
           position: 'relative',
           '&::before': {
@@ -392,7 +391,7 @@ export const alienVitalPlugin: AnimationPlugin = {
             transform: 'translateX(-50%)',
           },
         },
-        
+
         '.alien-vital-glow': {
           animation: 'alien-vital-glow calc(var(--alien-vital-speed) * 1.2) ease-in-out infinite',
           opacity: 'calc(var(--alien-glow-enabled) * 1)',
@@ -411,7 +410,7 @@ export const alienVitalPlugin: AnimationPlugin = {
             pointerEvents: 'none',
           },
         },
-        
+
         '.alien-life-force': {
           position: 'relative',
           animation: 'alien-life-force calc(var(--alien-vital-speed) * 3) ease-in-out infinite',
@@ -441,7 +440,7 @@ export const alienVitalPlugin: AnimationPlugin = {
             opacity: '0.5',
           },
         },
-        
+
         '.alien-vital-interactive': {
           cursor: 'pointer',
           transition: 'all 300ms ease',
@@ -450,13 +449,13 @@ export const alienVitalPlugin: AnimationPlugin = {
             '--alien-vital-pulse': 'calc(var(--alien-vital-pulse) * 1.5)',
           },
         },
-        
+
         '.alien-vital-text': {
           color: 'var(--alien-vital-heartbeat)',
           textShadow: `0 0 ${intensityConfig.glow} var(--alien-vital-heartbeat)`,
           animation: 'alien-vital-glow calc(var(--alien-vital-speed) * 1.5) ease-in-out infinite',
         },
-        
+
         '.alien-vital-network': {
           position: 'relative',
           '&::before': {
@@ -479,36 +478,37 @@ export const alienVitalPlugin: AnimationPlugin = {
           },
         },
       };
-      
+
       // Reduced motion support
       if (config.respectReducedMotion) {
         utilityClasses['@media (prefers-reduced-motion: reduce)'] = {
-          '.alien-heartbeat, .alien-vital-pulse, .alien-circulation, .alien-vessel, .alien-blood-pulse, .alien-vital-glow, .alien-life-force, .alien-vital-text, .alien-vital-network': {
-            animation: 'none !important',
-          },
-          '.alien-blood-drop::before, .alien-vital-glow::after, .alien-life-force::before, .alien-vital-network::before': {
-            animation: 'none !important',
-          },
-          '.alien-heartbeat, .alien-circulation, .alien-blood-pulse, .alien-vital-glow, .alien-life-force': {
-            opacity: 'var(--alien-reduced-vital-opacity) !important',
-          },
+          '.alien-heartbeat, .alien-vital-pulse, .alien-circulation, .alien-vessel, .alien-blood-pulse, .alien-vital-glow, .alien-life-force, .alien-vital-text, .alien-vital-network':
+            {
+              animation: 'none !important',
+            },
+          '.alien-blood-drop::before, .alien-vital-glow::after, .alien-life-force::before, .alien-vital-network::before':
+            {
+              animation: 'none !important',
+            },
+          '.alien-heartbeat, .alien-circulation, .alien-blood-pulse, .alien-vital-glow, .alien-life-force':
+            {
+              opacity: 'var(--alien-reduced-vital-opacity) !important',
+            },
         };
       }
-      
+
       return {
         success: true,
         modifications: {
           cssVariables,
           keyframes,
-          utilityClasses,
         },
       };
     },
-    
+
     onThemeChange: (context: PluginContext): PluginResult => {
       // Cleanup vital effects when switching away from alien
-      if (context.previousTheme?.meta?.name === 'alien' && 
-          context.theme?.meta?.name !== 'alien') {
+      if (context.previousTheme?.meta?.name === 'alien' && context.theme?.meta?.name !== 'alien') {
         return {
           success: true,
           modifications: {
@@ -523,22 +523,23 @@ export const alienVitalPlugin: AnimationPlugin = {
           },
         };
       }
-      
+
       return { success: true };
     },
   },
-  
+
   // Plugin validation
   validate: (config: any): { valid: boolean; errors: string[] } => {
     const errors: string[] = [];
-    
+
     if (config.intensity && !['subtle', 'normal', 'intense'].includes(config.intensity)) {
       errors.push('intensity must be "subtle", "normal", or "intense"');
     }
-    
+
     if (config.customColors) {
-      const colorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\(\d+,\s*\d+,\s*\d+(?:,\s*[\d.]+)?\)$/;
-      
+      const colorRegex =
+        /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$|^rgba?\(\d+,\s*\d+,\s*\d+(?:,\s*[\d.]+)?\)$/;
+
       const colorFields = ['heartbeat', 'circulation', 'bloodPulse', 'vitalGlow', 'lifeForce'];
       for (const field of colorFields) {
         if (config.customColors[field] && !colorRegex.test(config.customColors[field])) {
@@ -546,13 +547,13 @@ export const alienVitalPlugin: AnimationPlugin = {
         }
       }
     }
-    
+
     return {
       valid: errors.length === 0,
       errors,
     };
   },
-  
+
   // Performance optimization hints
   getPerformanceHints: () => [
     'Vital effects with complex animations can impact battery life - use judiciously',
@@ -568,7 +569,9 @@ export const alienVitalPlugin: AnimationPlugin = {
 };
 
 // Convenience function to create vital plugin with custom config
-export const createAlienVitalPlugin = (config: Partial<AlienVitalConfig> = {}): AnimationPlugin => ({
+export const createAlienVitalPlugin = (
+  config: Partial<AlienVitalConfig> = {},
+): AnimationPlugin => ({
   ...alienVitalPlugin,
   config: { ...defaultConfig, ...config },
 });

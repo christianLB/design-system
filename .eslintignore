@@ -1,12 +1,24 @@
-backup-migrated-files/
-docs/
-scripts/
+# Dependencies
+node_modules/
+
+# Build outputs
 dist/
-src/compatibility/
-src/test/
-tests/
-test-types.ts
-tailwind.config.js
-tailwind.preset.js
-generate-docs.js
+build/
+.next/
+out/
 storybook-static/
+
+# Testing
+coverage/
+
+# Config files
+*.config.js
+*.config.ts
+vite.config.ts
+tailwind.config.js
+
+# Generated files
+src/theme/generated/
+
+# Scripts
+scripts/

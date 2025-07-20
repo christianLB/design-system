@@ -4,7 +4,7 @@ void React;
 import { ProgressBar } from './ProgressBar';
 
 const meta: Meta<typeof ProgressBar> = {
-  title: 'Components/ProgressBar',
+  title: 'Core Components/Feedback/Progress Bar',
   component: ProgressBar,
   args: {
     value: 40,

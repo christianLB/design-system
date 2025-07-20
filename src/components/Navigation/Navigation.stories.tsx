@@ -8,13 +8,13 @@ import { navItems, logoElement, withTheme, withLightBackground } from './stories
 
 /**
  * Navigation components collection
- * 
+ *
  * This is a showcase of all navigation components that are part of the design system.
  * It doesn't represent a component itself but demonstrates how to use the navigation-related
  * components together.
  */
 const meta: Meta = {
-  title: 'Navigation/Overview',
+  title: 'Core Components/Navigation/Navigation System',
   parameters: {
     layout: 'fullscreen',
   },
@@ -31,21 +31,16 @@ export const StandardNavigation: Story = {
   render: () => (
     <div className="min-h-[300px]">
       <Header>
-        <Navbar 
-          logo={logoElement}
-          items={navItems}
-          layout="row"
-        />
+        <Navbar logo={logoElement} items={navItems} layout="row" />
       </Header>
       <div className="flex">
-        <Sidebar 
+        <Sidebar
           className="w-64"
-          items={navItems.map(item => ({
+          items={navItems.map((item) => ({
             ...item,
-            content: item.label
+            content: item.label,
           }))}
-        >          
-        </Sidebar>
+        ></Sidebar>
         <Box className="p-4 flex-grow">
           <h2 className="text-xl font-bold mb-4">Main Content Area</h2>
           <p>This is a demonstration of the Navigation components working together.</p>
@@ -62,11 +57,7 @@ export const MobileNavigation: Story = {
   render: () => (
     <div className="min-h-[300px]">
       <Header>
-        <Navbar 
-          logo={logoElement}
-          items={navItems}
-          layout="stack"
-        />
+        <Navbar logo={logoElement} items={navItems} layout="stack" />
       </Header>
       <Box className="p-4">
         <h2 className="text-xl font-bold mb-4">Mobile Content Area</h2>

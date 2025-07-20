@@ -5,7 +5,7 @@ import { Box } from '../Box';
 import { ResponsiveProvider } from '../../hooks/responsive';
 
 const meta: Meta<typeof Stack> = {
-  title: 'Layout/Stack',
+  title: 'Core Components/Layout/Stack',
   component: Stack,
   args: { direction: 'row', gap: 'sm' },
 };

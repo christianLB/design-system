@@ -9,21 +9,21 @@ export const baseColors = {
   indigo: '#4f46e5',
   purple: '#7c3aed',
   pink: '#db2777',
-  
+
   // Secondary colors
   green: '#059669',
   teal: '#0d9488',
   cyan: '#0891b2',
   orange: '#ea580c',
   red: '#dc2626',
-  
+
   // Neutral colors
   gray: '#64748b',
   slate: '#475569',
   zinc: '#52525b',
   neutral: '#525252',
   stone: '#57534e',
-  
+
   // Cyberpunk colors
   matrixGreen: '#39ff14',
   doomRed: '#ff0000',
@@ -33,7 +33,7 @@ export const baseColors = {
   cyberYellow: '#ffff00',
   hotPink: '#ff1493',
   voidBlack: '#000000',
-  
+
   // Alien biomechanical colors
   steelOrganic: '#708090',
   pulsingLife: '#e56e47',
@@ -60,7 +60,7 @@ export const colorScales = {
   zinc: generateColorScale(baseColors.zinc),
   neutral: generateColorScale(baseColors.neutral),
   stone: generateColorScale(baseColors.stone),
-  
+
   // Cyberpunk color scales
   matrixGreen: generateColorScale(baseColors.matrixGreen),
   doomRed: generateColorScale(baseColors.doomRed),
@@ -70,7 +70,7 @@ export const colorScales = {
   cyberYellow: generateColorScale(baseColors.cyberYellow),
   hotPink: generateColorScale(baseColors.hotPink),
   voidBlack: generateColorScale(baseColors.voidBlack),
-  
+
   // Alien biomechanical color scales
   steelOrganic: generateColorScale(baseColors.steelOrganic),
   pulsingLife: generateColorScale(baseColors.pulsingLife),
@@ -103,7 +103,7 @@ export interface SemanticColorTokens {
     muted: string;
     accent: string;
   };
-  
+
   // Secondary colors
   secondary: {
     50: string;
@@ -124,7 +124,7 @@ export interface SemanticColorTokens {
     muted: string;
     accent: string;
   };
-  
+
   // Destructive/Error colors
   destructive: {
     50: string;
@@ -145,7 +145,7 @@ export interface SemanticColorTokens {
     muted: string;
     accent: string;
   };
-  
+
   // Success colors
   success: {
     50: string;
@@ -166,7 +166,7 @@ export interface SemanticColorTokens {
     muted: string;
     accent: string;
   };
-  
+
   // Warning colors
   warning: {
     50: string;
@@ -187,7 +187,7 @@ export interface SemanticColorTokens {
     muted: string;
     accent: string;
   };
-  
+
   // Surface colors
   background: string;
   foreground: string;
@@ -195,12 +195,12 @@ export interface SemanticColorTokens {
   cardForeground: string;
   popover: string;
   popoverForeground: string;
-  
+
   // Border colors
   border: string;
   input: string;
   ring: string;
-  
+
   // Text colors
   muted: string;
   mutedForeground: string;
@@ -216,20 +216,20 @@ function generateSemanticTokens(
   secondaryColor: string,
   destructiveColor: string,
   successColor: string,
-  warningColor: string
+  warningColor: string,
 ): SemanticColorTokens {
   const primaryScale = generateColorScale(primaryColor);
   const primarySemantic = generateSemanticColors(primaryColor);
-  
+
   const secondaryScale = generateColorScale(secondaryColor);
   const secondarySemantic = generateSemanticColors(secondaryColor);
-  
+
   const destructiveScale = generateColorScale(destructiveColor);
   const destructiveSemantic = generateSemanticColors(destructiveColor);
-  
+
   const successScale = generateColorScale(successColor);
   const successSemantic = generateSemanticColors(successColor);
-  
+
   const warningScale = generateColorScale(warningColor);
   const warningSemantic = generateSemanticColors(warningColor);
 
@@ -349,11 +349,11 @@ function generateSemanticTokens(
  * Light theme color tokens
  */
 export const lightColorTokens = generateSemanticTokens(
-  baseColors.blue,      // primary
-  baseColors.slate,     // secondary
-  baseColors.red,       // destructive
-  baseColors.green,     // success
-  baseColors.orange     // warning
+  baseColors.blue, // primary
+  baseColors.slate, // secondary
+  baseColors.red, // destructive
+  baseColors.green, // success
+  baseColors.orange, // warning
 );
 
 /**
@@ -684,18 +684,18 @@ export const cyberpunkColorTokens: SemanticColorTokens = {
     accent: '#ff8533',
   },
   // Cyberpunk-specific surface colors
-  background: '#000000',        // Deep void
-  foreground: '#ffffff',        // Pure white
-  card: '#0a0a0a',             // Almost black
+  background: '#000000', // Deep void
+  foreground: '#ffffff', // Pure white
+  card: '#0a0a0a', // Almost black
   cardForeground: '#ffffff',
-  popover: '#1a1a1a',          // Dark charcoal
+  popover: '#1a1a1a', // Dark charcoal
   popoverForeground: '#ffffff',
-  border: '#3a3a3a',           // Light charcoal
-  input: '#2a2a2a',            // Medium charcoal  
+  border: '#3a3a3a', // Light charcoal
+  input: '#2a2a2a', // Medium charcoal
   ring: baseColors.matrixGreen,
-  muted: '#1a1a1a',            // Dark charcoal
-  mutedForeground: '#999999',  // Medium gray
-  accent: '#2a2a2a',           // Medium charcoal
+  muted: '#1a1a1a', // Dark charcoal
+  mutedForeground: '#999999', // Medium gray
+  accent: '#2a2a2a', // Medium charcoal
   accentForeground: '#ffffff',
 };
 
@@ -799,30 +799,36 @@ export const alienColorTokens: SemanticColorTokens = {
     accent: '#f19066',
   },
   // Alien biomechanical surface colors
-  background: '#0d1117',         // Primordial void
-  foreground: '#f6f7f8',         // Text
-  card: '#1f2328',              // Surface cavity
+  background: '#0d1117', // Primordial void
+  foreground: '#f6f7f8', // Text
+  card: '#1f2328', // Surface cavity
   cardForeground: '#f6f7f8',
-  popover: '#323740',           // Surface organ
+  popover: '#323740', // Surface organ
   popoverForeground: '#f6f7f8',
-  border: '#6b7280',            // Ancient blood
-  input: '#454a52',             // Surface tissue
+  border: '#6b7280', // Ancient blood
+  input: '#454a52', // Surface tissue
   ring: baseColors.pulsingLife,
-  muted: '#565d67',             // Surface membrane
-  mutedForeground: '#a8aeb5',   // Text muted
-  accent: '#e56e47',            // Pulsing life
+  muted: '#565d67', // Surface membrane
+  mutedForeground: '#a8aeb5', // Text muted
+  accent: '#e56e47', // Pulsing life
   accentForeground: '#f6f7f8',
 };
 
 /**
  * Export all color tokens
  */
+// Import Mirtha color tokens
+import { mirthaColorTokens } from './mirtha-colors';
+
+export { mirthaColorTokens };
+
 export const colorTokens = {
   light: lightColorTokens,
   dark: darkColorTokens,
   futuristic: futuristicColorTokens,
   cyberpunk: cyberpunkColorTokens,
   alien: alienColorTokens,
+  mirtha: mirthaColorTokens,
   scales: colorScales,
   base: baseColors,
 } as const;

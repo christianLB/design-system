@@ -3,7 +3,7 @@ import React from 'react';
 import { FormField } from './FormField';
 
 const meta: Meta<typeof FormField> = {
-  title: 'Components/FormField',
+  title: 'Core Components/Forms/Form Field',
   component: FormField,
 };
 export default meta;
