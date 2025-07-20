@@ -4,15 +4,16 @@ import { DarkThemeToggle } from './DarkThemeToggle';
 import { ThemeProvider } from '../../theme';
 
 const meta: Meta<typeof DarkThemeToggle> = {
-  title: 'Components/ThemeRotator',
+  title: 'Core Components/Specialized/Theme Rotator',
   component: DarkThemeToggle,
   parameters: {
     docs: {
       description: {
-        component: 'A theme rotation component that cycles through all 4 available themes: Light → Dark → Futuristic → Cyberpunk. Click the button to switch themes dynamically.'
-      }
-    }
-  }
+        component:
+          'A theme rotation component that cycles through all 4 available themes: Light → Dark → Futuristic → Cyberpunk. Click the button to switch themes dynamically.',
+      },
+    },
+  },
 };
 export default meta;
 
@@ -63,15 +64,15 @@ export const InitialCyberpunk: Story = {
 export const FourThemeCycle: Story = {
   render: () => {
     const [currentTheme, setCurrentTheme] = React.useState('light');
-    
+
     const themes = ['light', 'dark', 'futuristic', 'cyberpunk'];
     const themeDescriptions = {
       light: 'Clean, minimal light theme for everyday use',
       dark: 'Professional dark theme with reduced eye strain',
       futuristic: 'High-tech theme with glowing elements and animations',
-      cyberpunk: 'Matrix-inspired theme with neon colors and digital effects'
+      cyberpunk: 'Matrix-inspired theme with neon colors and digital effects',
     };
-    
+
     const cycleTheme = () => {
       const currentIndex = themes.indexOf(currentTheme);
       const nextIndex = (currentIndex + 1) % themes.length;
@@ -89,7 +90,8 @@ export const FourThemeCycle: Story = {
           </p>
           <div className="p-4 border rounded-lg bg-background">
             <div className="mb-4">
-              <strong>Current Theme:</strong> {currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1)}
+              <strong>Current Theme:</strong>{' '}
+              {currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1)}
             </div>
             <div className="mb-4 text-sm">
               {themeDescriptions[currentTheme as keyof typeof themeDescriptions]}
@@ -97,7 +99,7 @@ export const FourThemeCycle: Story = {
             <ThemeProvider>
               <div className="flex items-center justify-center gap-4">
                 <DarkThemeToggle />
-                <button 
+                <button
                   onClick={cycleTheme}
                   className="px-4 py-2 border rounded-md hover:bg-accent"
                 >
@@ -107,15 +109,13 @@ export const FourThemeCycle: Story = {
             </ThemeProvider>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {themes.map((theme) => (
-            <div 
-              key={theme} 
+            <div
+              key={theme}
               className={`p-4 border rounded-lg cursor-pointer transition-all ${
-                currentTheme === theme 
-                  ? 'ring-2 ring-primary bg-accent' 
-                  : 'hover:bg-accent/50'
+                currentTheme === theme ? 'ring-2 ring-primary bg-accent' : 'hover:bg-accent/50'
               }`}
               onClick={() => {
                 setCurrentTheme(theme);
@@ -124,12 +124,17 @@ export const FourThemeCycle: Story = {
             >
               <div className="text-center">
                 <div className="font-semibold capitalize mb-2">{theme}</div>
-                <div className={`w-full h-8 rounded mb-2 ${
-                  theme === 'light' ? 'bg-gradient-to-r from-gray-100 to-white border' :
-                  theme === 'dark' ? 'bg-gradient-to-r from-gray-800 to-gray-900' :
-                  theme === 'futuristic' ? 'bg-gradient-to-r from-blue-900 to-cyan-900' :
-                  'bg-gradient-to-r from-green-900 to-red-900'
-                }`}></div>
+                <div
+                  className={`w-full h-8 rounded mb-2 ${
+                    theme === 'light'
+                      ? 'bg-gradient-to-r from-gray-100 to-white border'
+                      : theme === 'dark'
+                        ? 'bg-gradient-to-r from-gray-800 to-gray-900'
+                        : theme === 'futuristic'
+                          ? 'bg-gradient-to-r from-blue-900 to-cyan-900'
+                          : 'bg-gradient-to-r from-green-900 to-red-900'
+                  }`}
+                ></div>
                 <div className="text-xs text-muted-foreground">
                   {theme === 'light' && '☀️ Bright & Clean'}
                   {theme === 'dark' && '🌙 Professional'}

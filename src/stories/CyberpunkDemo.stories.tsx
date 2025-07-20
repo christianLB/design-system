@@ -4,12 +4,13 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../compone
 import { DarkThemeToggle } from '../components/DarkThemeToggle/DarkThemeToggle';
 
 const meta: Meta = {
-  title: 'Cyberpunk/Demo',
+  title: 'Themes/Cyberpunk/Demo',
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
-        component: 'Cyberpunk theme showcase for v3.5.0 - demonstrating all cyberpunk variants and effects.',
+        component:
+          'Cyberpunk theme showcase for v3.5.0 - demonstrating all cyberpunk variants and effects.',
       },
     },
   },
@@ -24,23 +25,50 @@ export const CyberpunkButtons: Story = {
       <h2 style={{ color: '#39ff14', fontFamily: 'monospace', marginBottom: '2rem' }}>
         Cyberpunk Button Variants
       </h2>
-      
-      <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+
+      <div
+        style={{
+          display: 'grid',
+          gap: '1rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        }}
+      >
         <Button variant="cyberpunk-matrix">Matrix Button</Button>
         <Button variant="cyberpunk-doom">DOOM Button</Button>
         <Button variant="cyberpunk-ghost">Ghost Button</Button>
         <Button variant="cyberpunk-neon">Neon Button</Button>
       </div>
 
-      <h3 style={{ color: '#39ff14', fontFamily: 'monospace', marginTop: '2rem', marginBottom: '1rem' }}>
+      <h3
+        style={{
+          color: '#39ff14',
+          fontFamily: 'monospace',
+          marginTop: '2rem',
+          marginBottom: '1rem',
+        }}
+      >
         With Effects
       </h3>
-      
-      <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
-        <Button variant="cyberpunk-matrix" scanlines={true}>With Scanlines</Button>
-        <Button variant="cyberpunk-doom" cyberpunkGlow="intense">Intense Glow</Button>
-        <Button variant="cyberpunk-ghost" matrixRain={true}>Matrix Rain</Button>
-        <Button variant="cyberpunk-neon" scanlines={true} cyberpunkGlow="normal">All Effects</Button>
+
+      <div
+        style={{
+          display: 'grid',
+          gap: '1rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        }}
+      >
+        <Button variant="cyberpunk-matrix" scanlines={true}>
+          With Scanlines
+        </Button>
+        <Button variant="cyberpunk-doom" cyberpunkGlow="intense">
+          Intense Glow
+        </Button>
+        <Button variant="cyberpunk-ghost" matrixRain={true}>
+          Matrix Rain
+        </Button>
+        <Button variant="cyberpunk-neon" scanlines={true} cyberpunkGlow="normal">
+          All Effects
+        </Button>
       </div>
     </div>
   ),
@@ -55,8 +83,14 @@ export const CyberpunkCards: Story = {
       <h2 style={{ color: '#39ff14', fontFamily: 'monospace', marginBottom: '2rem' }}>
         Cyberpunk Card Variants
       </h2>
-      
-      <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+
+      <div
+        style={{
+          display: 'grid',
+          gap: '1rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        }}
+      >
         <Card variant="cyberpunk-matrix">
           <CardHeader>
             <CardTitle>Matrix Protocol</CardTitle>
@@ -67,7 +101,9 @@ export const CyberpunkCards: Story = {
             <p>Last sync: 2 minutes ago</p>
           </CardContent>
           <CardFooter>
-            <Button variant="cyberpunk-matrix" size="sm">Access</Button>
+            <Button variant="cyberpunk-matrix" size="sm">
+              Access
+            </Button>
           </CardFooter>
         </Card>
 
@@ -81,7 +117,9 @@ export const CyberpunkCards: Story = {
             <p>Action required: IMMEDIATE</p>
           </CardContent>
           <CardFooter>
-            <Button variant="cyberpunk-doom" size="sm">Neutralize</Button>
+            <Button variant="cyberpunk-doom" size="sm">
+              Neutralize
+            </Button>
           </CardFooter>
         </Card>
 
@@ -95,7 +133,9 @@ export const CyberpunkCards: Story = {
             <p>Location: UNKNOWN</p>
           </CardContent>
           <CardFooter>
-            <Button variant="cyberpunk-ghost" size="sm">Disconnect</Button>
+            <Button variant="cyberpunk-ghost" size="sm">
+              Disconnect
+            </Button>
           </CardFooter>
         </Card>
 
@@ -109,7 +149,9 @@ export const CyberpunkCards: Story = {
             <p>Eddies: 12,500</p>
           </CardContent>
           <CardFooter>
-            <Button variant="cyberpunk-neon" size="sm">Enter</Button>
+            <Button variant="cyberpunk-neon" size="sm">
+              Enter
+            </Button>
           </CardFooter>
         </Card>
       </div>
@@ -126,7 +168,7 @@ export const ThemeSelector: Story = {
       <h2 style={{ color: '#39ff14', fontFamily: 'monospace', marginBottom: '2rem' }}>
         Theme Selector (4 Themes)
       </h2>
-      
+
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
         <span style={{ color: '#ffffff', fontFamily: 'monospace' }}>Toggle through themes:</span>
         <DarkThemeToggle />
@@ -148,13 +190,18 @@ export const ThemeSelector: Story = {
 export const AllTogether: Story = {
   render: () => (
     <div style={{ padding: '2rem', backgroundColor: '#0a0a0a', minHeight: '100vh' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <h1 style={{ color: '#39ff14', fontFamily: 'monospace' }}>
-          Cyberpunk v3.5.0 Showcase
-        </h1>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '2rem',
+        }}
+      >
+        <h1 style={{ color: '#39ff14', fontFamily: 'monospace' }}>Cyberpunk v3.5.0 Showcase</h1>
         <DarkThemeToggle />
       </div>
-      
+
       <div style={{ display: 'grid', gap: '2rem' }}>
         {/* Buttons Section */}
         <section>
@@ -162,10 +209,18 @@ export const AllTogether: Story = {
             Interactive Controls
           </h3>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <Button variant="cyberpunk-matrix" cyberpunkGlow="normal">Access Matrix</Button>
-            <Button variant="cyberpunk-doom" scanlines={true}>Emergency Protocol</Button>
-            <Button variant="cyberpunk-ghost" matrixRain={true}>Ghost Mode</Button>
-            <Button variant="cyberpunk-neon" cyberpunkGlow="intense">Night City</Button>
+            <Button variant="cyberpunk-matrix" cyberpunkGlow="normal">
+              Access Matrix
+            </Button>
+            <Button variant="cyberpunk-doom" scanlines={true}>
+              Emergency Protocol
+            </Button>
+            <Button variant="cyberpunk-ghost" matrixRain={true}>
+              Ghost Mode
+            </Button>
+            <Button variant="cyberpunk-neon" cyberpunkGlow="intense">
+              Night City
+            </Button>
           </div>
         </section>
 
@@ -174,7 +229,13 @@ export const AllTogether: Story = {
           <h3 style={{ color: '#ff0040', fontFamily: 'monospace', marginBottom: '1rem' }}>
             System Panels
           </h3>
-          <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
+          <div
+            style={{
+              display: 'grid',
+              gap: '1rem',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            }}
+          >
             <Card variant="cyberpunk-matrix" cyberpunkGlow="subtle">
               <CardHeader>
                 <CardTitle>Neural Link</CardTitle>

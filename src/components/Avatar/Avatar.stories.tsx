@@ -4,7 +4,7 @@ void React;
 import { Avatar } from './Avatar';
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Data Display/Avatar',
+  title: 'Core Components/Data Display/Avatar',
   component: Avatar,
   args: {
     alt: 'JD',

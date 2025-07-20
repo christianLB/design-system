@@ -5,7 +5,7 @@ import { Input } from '../Input/Input';
 import { Label } from '../Label/Label';
 
 const meta: Meta<typeof FormSection> = {
-  title: 'Components/FormSection',
+  title: 'Core Components/Forms/Form Section',
   component: FormSection,
   parameters: {
     layout: 'centered',

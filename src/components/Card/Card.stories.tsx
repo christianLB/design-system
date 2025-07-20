@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './Card';
 
 const meta: Meta<typeof Card> = {
-  title: 'Components/Card',
+  title: 'Core Components/Foundations/Card',
   component: Card,
 };
 export default meta;
@@ -47,7 +47,9 @@ export const CyberpunkMatrix: Story = {
       </CardHeader>
       <CardContent>
         <p>Access the digital reality through the Matrix interface.</p>
-        <p>Status: <span className="text-green-400">ONLINE</span></p>
+        <p>
+          Status: <span className="text-green-400">ONLINE</span>
+        </p>
       </CardContent>
       <CardFooter>
         <p className="text-sm text-green-300">Last sync: 2024-10-24 14:30:00</p>
@@ -64,8 +66,12 @@ export const CyberpunkDoom: Story = {
       </CardHeader>
       <CardContent>
         <p>High-intensity combat systems activated.</p>
-        <p>Armor: <span className="text-red-400">67%</span></p>
-        <p>Ammunition: <span className="text-red-400">234/500</span></p>
+        <p>
+          Armor: <span className="text-red-400">67%</span>
+        </p>
+        <p>
+          Ammunition: <span className="text-red-400">234/500</span>
+        </p>
       </CardContent>
       <CardFooter>
         <p className="text-sm text-red-300">Threat level: EXTREME</p>
@@ -82,7 +88,9 @@ export const CyberpunkGhost: Story = {
       </CardHeader>
       <CardContent>
         <p>Stealth systems engaged. Operating in shadow mode.</p>
-        <p>Visibility: <span className="text-gray-400">12%</span></p>
+        <p>
+          Visibility: <span className="text-gray-400">12%</span>
+        </p>
       </CardContent>
       <CardFooter>
         <p className="text-sm text-gray-300">Stealth mode: ACTIVE</p>
@@ -99,7 +107,9 @@ export const CyberpunkNeon: Story = {
       </CardHeader>
       <CardContent>
         <p>Welcome to Night City. Neural interface online.</p>
-        <p>Cyberware: <span className="text-pink-400">89%</span></p>
+        <p>
+          Cyberware: <span className="text-pink-400">89%</span>
+        </p>
       </CardContent>
       <CardFooter>
         <p className="text-sm text-pink-300">Jack-in status: CONNECTED</p>
@@ -118,37 +128,45 @@ export const CyberpunkWithEffects: Story = {
         </CardHeader>
         <CardContent>
           <p>Intense glow effect with retro CRT scanlines.</p>
-          <p>Visual enhancement: <span className="text-green-400">MAXIMUM</span></p>
+          <p>
+            Visual enhancement: <span className="text-green-400">MAXIMUM</span>
+          </p>
         </CardContent>
       </Card>
-      
+
       <Card {...args} variant="cyberpunk-doom" cyberpunkGlow="normal" elevated>
         <CardHeader>
           <CardTitle>DOOM Elevated</CardTitle>
         </CardHeader>
         <CardContent>
           <p>Elevated surface with normal glow intensity.</p>
-          <p>Combat readiness: <span className="text-red-400">ACTIVE</span></p>
+          <p>
+            Combat readiness: <span className="text-red-400">ACTIVE</span>
+          </p>
         </CardContent>
       </Card>
-      
+
       <Card {...args} variant="cyberpunk-ghost" matrixRain>
         <CardHeader>
           <CardTitle>Ghost Matrix Rain</CardTitle>
         </CardHeader>
         <CardContent>
           <p>Digital rain effect overlaying ghost protocol.</p>
-          <p>Stealth level: <span className="text-gray-400">PHANTOM</span></p>
+          <p>
+            Stealth level: <span className="text-gray-400">PHANTOM</span>
+          </p>
         </CardContent>
       </Card>
-      
+
       <Card {...args} variant="cyberpunk-neon" cyberpunkGlow="subtle" scanlines elevated>
         <CardHeader>
           <CardTitle>Neon Complete</CardTitle>
         </CardHeader>
         <CardContent>
           <p>Full cyberpunk effects stack activated.</p>
-          <p>Neural load: <span className="text-pink-400">OPTIMAL</span></p>
+          <p>
+            Neural load: <span className="text-pink-400">OPTIMAL</span>
+          </p>
         </CardContent>
       </Card>
     </div>
@@ -168,42 +186,50 @@ export const CyberpunkShowcase: Story = {
             </CardHeader>
             <CardContent>
               <p>Green digital aesthetic</p>
-              <p>Status: <span className="text-green-400">ONLINE</span></p>
+              <p>
+                Status: <span className="text-green-400">ONLINE</span>
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card variant="cyberpunk-doom" cyberpunkGlow="normal">
             <CardHeader>
               <CardTitle>DOOM</CardTitle>
             </CardHeader>
             <CardContent>
               <p>Red combat interface</p>
-              <p>Mode: <span className="text-red-400">COMBAT</span></p>
+              <p>
+                Mode: <span className="text-red-400">COMBAT</span>
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card variant="cyberpunk-ghost" cyberpunkGlow="normal">
             <CardHeader>
               <CardTitle>Ghost</CardTitle>
             </CardHeader>
             <CardContent>
               <p>Stealth gray theme</p>
-              <p>Status: <span className="text-gray-400">HIDDEN</span></p>
+              <p>
+                Status: <span className="text-gray-400">HIDDEN</span>
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card variant="cyberpunk-neon" cyberpunkGlow="normal">
             <CardHeader>
               <CardTitle>Neon</CardTitle>
             </CardHeader>
             <CardContent>
               <p>Pink cyber aesthetic</p>
-              <p>Jack-in: <span className="text-pink-400">ACTIVE</span></p>
+              <p>
+                Jack-in: <span className="text-pink-400">ACTIVE</span>
+              </p>
             </CardContent>
           </Card>
         </div>
       </div>
-      
+
       <div>
         <h2 className="text-2xl font-bold mb-4 text-cyan-400">Interactive Effects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -224,7 +250,7 @@ export const CyberpunkShowcase: Story = {
               <p className="text-xs text-green-300">Hover to see effects</p>
             </CardFooter>
           </Card>
-          
+
           <Card variant="cyberpunk-doom" cyberpunkGlow="intense" scanlines elevated>
             <CardHeader>
               <CardTitle>Ultimate DOOM</CardTitle>
@@ -244,7 +270,7 @@ export const CyberpunkShowcase: Story = {
           </Card>
         </div>
       </div>
-      
+
       <div>
         <h2 className="text-2xl font-bold mb-4 text-purple-400">Content Showcase</h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -269,7 +295,7 @@ export const CyberpunkShowcase: Story = {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card variant="cyberpunk-doom" cyberpunkGlow="normal" elevated>
             <CardHeader>
               <CardTitle>Combat Status</CardTitle>
@@ -291,7 +317,7 @@ export const CyberpunkShowcase: Story = {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card variant="cyberpunk-neon" cyberpunkGlow="normal" scanlines>
             <CardHeader>
               <CardTitle>Neural Interface</CardTitle>
@@ -321,10 +347,11 @@ export const CyberpunkShowcase: Story = {
     layout: 'padded',
     docs: {
       description: {
-        story: 'A comprehensive showcase of all cyberpunk card variants, effects, and real-world usage examples.'
-      }
-    }
-  }
+        story:
+          'A comprehensive showcase of all cyberpunk card variants, effects, and real-world usage examples.',
+      },
+    },
+  },
 };
 
 // Alien Theme Card Variants
@@ -337,7 +364,9 @@ export const AlienChamber: Story = {
         </CardHeader>
         <CardContent>
           <p>Deep organ chamber with atmospheric breathing effects.</p>
-          <p>Status: <span className="atmospheric-text-vital">VITAL</span></p>
+          <p>
+            Status: <span className="atmospheric-text-vital">VITAL</span>
+          </p>
         </CardContent>
         <CardFooter>
           <p className="text-sm atmospheric-text-ghost">Breathing cycle: ACTIVE</p>
@@ -356,7 +385,9 @@ export const AlienOrgan: Story = {
         </CardHeader>
         <CardContent>
           <p>Biomechanical organ with neural pathways.</p>
-          <p>Function: <span className="atmospheric-text-vital">OPTIMAL</span></p>
+          <p>
+            Function: <span className="atmospheric-text-vital">OPTIMAL</span>
+          </p>
         </CardContent>
         <CardFooter>
           <p className="text-sm atmospheric-text-ghost">Neural activity: SYNCING</p>
@@ -375,7 +406,9 @@ export const AlienMembrane: Story = {
         </CardHeader>
         <CardContent>
           <p>Protective membrane interface with organic feel.</p>
-          <p>Integrity: <span className="atmospheric-text-vital">98%</span></p>
+          <p>
+            Integrity: <span className="atmospheric-text-vital">98%</span>
+          </p>
         </CardContent>
         <CardFooter>
           <p className="text-sm atmospheric-text-ghost">Permeability: SELECTIVE</p>
@@ -394,7 +427,9 @@ export const AlienCavity: Story = {
         </CardHeader>
         <CardContent>
           <p>Deep internal cavity with full atmospheric effects.</p>
-          <p>Pressure: <span className="atmospheric-text-vital">STABLE</span></p>
+          <p>
+            Pressure: <span className="atmospheric-text-vital">STABLE</span>
+          </p>
         </CardContent>
         <CardFooter>
           <p className="text-sm atmospheric-text-ghost">Internal environment: CONTROLLED</p>
@@ -409,7 +444,9 @@ export const AlienWithEffects: Story = {
   render: (args) => (
     <div className="theme-atmospheric space-y-8 p-8">
       <div>
-        <h2 className="text-2xl font-bold mb-4 atmospheric-text-vital">Alien Atmospheric Effects</h2>
+        <h2 className="text-2xl font-bold mb-4 atmospheric-text-vital">
+          Alien Atmospheric Effects
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card {...args} variant="alien-chamber" atmospheric vital>
             <CardHeader>
@@ -417,37 +454,45 @@ export const AlienWithEffects: Story = {
             </CardHeader>
             <CardContent>
               <p>Chamber with breathing and atmospheric effects.</p>
-              <p>Life signs: <span className="atmospheric-text-vital">STRONG</span></p>
+              <p>
+                Life signs: <span className="atmospheric-text-vital">STRONG</span>
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card {...args} variant="alien-organ" atmospheric neural>
             <CardHeader>
               <CardTitle>Organ + Neural</CardTitle>
             </CardHeader>
             <CardContent>
               <p>Organ system with neural pathway integration.</p>
-              <p>Synaptic activity: <span className="atmospheric-text-vital">ACTIVE</span></p>
+              <p>
+                Synaptic activity: <span className="atmospheric-text-vital">ACTIVE</span>
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card {...args} variant="alien-membrane" atmospheric>
             <CardHeader>
               <CardTitle>Membrane Interface</CardTitle>
             </CardHeader>
             <CardContent>
               <p>Protective membrane with atmospheric circulation.</p>
-              <p>Permeability: <span className="atmospheric-text-vital">SELECTIVE</span></p>
+              <p>
+                Permeability: <span className="atmospheric-text-vital">SELECTIVE</span>
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card {...args} variant="alien-cavity" atmospheric vital neural>
             <CardHeader>
               <CardTitle>Full Alien Stack</CardTitle>
             </CardHeader>
             <CardContent>
               <p>Complete alien effects: vital + neural + atmospheric.</p>
-              <p>System status: <span className="atmospheric-text-vital">TRANSCENDENT</span></p>
+              <p>
+                System status: <span className="atmospheric-text-vital">TRANSCENDENT</span>
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -461,7 +506,9 @@ export const AlienShowcase: Story = {
   render: () => (
     <div className="theme-atmospheric space-y-8 p-8">
       <div>
-        <h2 className="text-2xl font-bold mb-4 atmospheric-text-vital">Alien Biomechanical Variants</h2>
+        <h2 className="text-2xl font-bold mb-4 atmospheric-text-vital">
+          Alien Biomechanical Variants
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Card variant="alien-chamber" atmospheric>
             <CardHeader>
@@ -469,42 +516,50 @@ export const AlienShowcase: Story = {
             </CardHeader>
             <CardContent>
               <p>Deep organ chamber</p>
-              <p>Status: <span className="atmospheric-text-vital">BREATHING</span></p>
+              <p>
+                Status: <span className="atmospheric-text-vital">BREATHING</span>
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card variant="alien-organ" atmospheric>
             <CardHeader>
               <CardTitle>Organ</CardTitle>
             </CardHeader>
             <CardContent>
               <p>Biomechanical organ</p>
-              <p>Function: <span className="atmospheric-text-vital">OPTIMAL</span></p>
+              <p>
+                Function: <span className="atmospheric-text-vital">OPTIMAL</span>
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card variant="alien-membrane" atmospheric>
             <CardHeader>
               <CardTitle>Membrane</CardTitle>
             </CardHeader>
             <CardContent>
               <p>Protective barrier</p>
-              <p>Integrity: <span className="atmospheric-text-vital">INTACT</span></p>
+              <p>
+                Integrity: <span className="atmospheric-text-vital">INTACT</span>
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card variant="alien-cavity" atmospheric>
             <CardHeader>
               <CardTitle>Cavity</CardTitle>
             </CardHeader>
             <CardContent>
               <p>Internal space</p>
-              <p>Pressure: <span className="atmospheric-text-vital">STABLE</span></p>
+              <p>
+                Pressure: <span className="atmospheric-text-vital">STABLE</span>
+              </p>
             </CardContent>
           </Card>
         </div>
       </div>
-      
+
       <div>
         <h2 className="text-2xl font-bold mb-4 atmospheric-text-vital">Vital Systems</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -529,7 +584,7 @@ export const AlienShowcase: Story = {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card variant="alien-organ" atmospheric neural>
             <CardHeader>
               <CardTitle>Neural Center</CardTitle>
@@ -551,7 +606,7 @@ export const AlienShowcase: Story = {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card variant="alien-cavity" atmospheric vital neural>
             <CardHeader>
               <CardTitle>Core Systems</CardTitle>
@@ -575,10 +630,14 @@ export const AlienShowcase: Story = {
           </Card>
         </div>
       </div>
-      
+
       <div>
-        <h2 className="text-2xl font-bold mb-4 atmospheric-text-vital">Interactive Hover Effects</h2>
-        <p className="mb-4 atmospheric-text-ghost">Hover over the cards below to see the atmospheric interactions</p>
+        <h2 className="text-2xl font-bold mb-4 atmospheric-text-vital">
+          Interactive Hover Effects
+        </h2>
+        <p className="mb-4 atmospheric-text-ghost">
+          Hover over the cards below to see the atmospheric interactions
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card variant="alien-chamber" atmospheric vital neural>
             <CardHeader>
@@ -597,7 +656,7 @@ export const AlienShowcase: Story = {
               <p className="text-xs atmospheric-text-ghost">Hover to awaken</p>
             </CardFooter>
           </Card>
-          
+
           <Card variant="alien-cavity" atmospheric vital neural>
             <CardHeader>
               <CardTitle>Ultimate Cavity</CardTitle>
@@ -623,8 +682,9 @@ export const AlienShowcase: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'A comprehensive showcase of all alien biomechanical card variants with atmospheric effects, vital systems, and neural pathways. Experience the organic, living interface inspired by H.R. Giger\'s biomechanical aesthetic.'
-      }
-    }
-  }
+        story:
+          "A comprehensive showcase of all alien biomechanical card variants with atmospheric effects, vital systems, and neural pathways. Experience the organic, living interface inspired by H.R. Giger's biomechanical aesthetic.",
+      },
+    },
+  },
 };

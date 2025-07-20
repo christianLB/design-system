@@ -2,14 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { Menu } from './Menu';
 import { Button } from '@/components/Button';
-import { 
-  withTheme,
-  withLightBackground,
-  withDarkBackground
-} from '../Navigation/stories.utils';
+import { withTheme, withLightBackground, withDarkBackground } from '../Navigation/stories.utils';
 
 const meta: Meta<typeof Menu> = {
-  title: 'Navigation/Menu',
+  title: 'Core Components/Navigation/Menu',
   component: Menu,
   decorators: [withTheme],
   args: {
@@ -27,21 +23,21 @@ export default meta;
 type Story = StoryObj<typeof Menu>;
 
 export const Primary: Story = {
-  decorators: [withLightBackground]
+  decorators: [withLightBackground],
 };
 
 export const AlignRight: Story = {
   args: { align: 'right' },
-  decorators: [withLightBackground]
+  decorators: [withLightBackground],
 };
 
 export const DarkTheme: Story = {
-  decorators: [withDarkBackground]
+  decorators: [withDarkBackground],
 };
 
 export const WithCustomTrigger: Story = {
   args: {
-    trigger: <Button variant="primary">Custom Trigger</Button>
+    trigger: <Button variant="primary">Custom Trigger</Button>,
   },
-  decorators: [withLightBackground]
+  decorators: [withLightBackground],
 };

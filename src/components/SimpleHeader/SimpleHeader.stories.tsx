@@ -6,7 +6,7 @@ import { Icon } from '../Icon/Icon';
 import { Stack } from '../Stack/Stack';
 
 const meta: Meta<typeof SimpleHeader> = {
-  title: 'Navigation/SimpleHeader',
+  title: 'Core Components/Navigation/Simple Header',
   component: SimpleHeader,
   parameters: {
     layout: 'fullscreen',
@@ -46,7 +46,12 @@ export const WithIcons: Story = {
       </Stack>
     ),
     navigation: [
-      { label: 'Dashboard', href: '#dashboard', icon: <Icon name="Home" size="sm" />, active: true },
+      {
+        label: 'Dashboard',
+        href: '#dashboard',
+        icon: <Icon name="Home" size="sm" />,
+        active: true,
+      },
       { label: 'Analytics', href: '#analytics', icon: <Icon name="BarChart2" size="sm" /> },
       { label: 'Users', href: '#users', icon: <Icon name="Users" size="sm" /> },
       { label: 'Settings', href: '#settings', icon: <Icon name="Settings" size="sm" /> },
@@ -59,18 +64,20 @@ export const WithIcons: Story = {
         <Button variant="ghost" size="sm">
           <Icon name="Bell" size="sm" />
         </Button>
-        <div style={{ 
-          width: '2rem', 
-          height: '2rem', 
-          backgroundColor: 'var(--primary)', 
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'white',
-          fontSize: '0.875rem',
-          fontWeight: 'bold'
-        }}>
+        <div
+          style={{
+            width: '2rem',
+            height: '2rem',
+            backgroundColor: 'var(--primary)',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            fontSize: '0.875rem',
+            fontWeight: 'bold',
+          }}
+        >
           JD
         </div>
       </Stack>
@@ -97,6 +104,10 @@ export const CompactHeight: Story = {
       { label: 'Dashboard', href: '#dashboard', active: true },
       { label: 'Analytics', href: '#analytics' },
     ],
-    right: <Button variant="primary" size="sm">Action</Button>,
+    right: (
+      <Button variant="primary" size="sm">
+        Action
+      </Button>
+    ),
   },
 };

@@ -10,13 +10,14 @@ import { HUDNotificationManager } from './HUDNotification';
 import type { HUDNotificationData, RadarContact } from './index';
 
 const meta: Meta<typeof HUD> = {
-  title: 'Cyberpunk/HUD/HUD Container',
+  title: 'Themes/Cyberpunk/Components/HUD System',
   component: HUD,
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
-        component: 'Main HUD container component providing immersive cyberpunk interface capabilities with floating overlay system, real-time data updates, and advanced effects.',
+        component:
+          'Main HUD container component providing immersive cyberpunk interface capabilities with floating overlay system, real-time data updates, and advanced effects.',
       },
     },
   },
@@ -126,13 +127,7 @@ export const Default: Story = {
             critical
             variant="matrix"
           />
-          <HUDMetric
-            label="Energy"
-            value={73}
-            type="energy"
-            showProgressBar
-            variant="matrix"
-          />
+          <HUDMetric label="Energy" value={73} type="energy" showProgressBar variant="matrix" />
         </HUDPanel>
       </HUD>
     </div>
@@ -175,7 +170,7 @@ export const GamingHUD: Story = {
               variant="matrix"
               thresholds={{
                 critical: 20,
-                warning: 40
+                warning: 40,
               }}
             />
             <HUDMetric
@@ -247,7 +242,15 @@ export const GamingHUD: Story = {
         />
 
         {/* Control buttons for demo */}
-        <div style={{ position: 'fixed', top: 20, left: '50%', transform: 'translateX(-50%)', zIndex: 10000 }}>
+        <div
+          style={{
+            position: 'fixed',
+            top: 20,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 10000,
+          }}
+        >
           <div style={{ display: 'flex', gap: 10 }}>
             <button onClick={() => setHealth(Math.max(0, health - 10))}>Damage</button>
             <button onClick={() => setHealth(Math.min(100, health + 10))}>Heal</button>
@@ -325,12 +328,12 @@ export const CyberpunkStyle: Story = {
   render: (args) => (
     <div style={{ minHeight: '100vh', background: '#000', position: 'relative' }}>
       <HUD {...args}>
-        <HUDPanel 
-          title="Neural Interface" 
+        <HUDPanel
+          title="Neural Interface"
           subtitle="v2.4.7"
-          size="xl" 
-          variant="neon" 
-          showStatus 
+          size="xl"
+          variant="neon"
+          showStatus
           status="online"
           enablePulse
         >
@@ -345,7 +348,7 @@ export const CyberpunkStyle: Story = {
                 showPercentage
                 variant="neon"
                 animation={{
-                  enablePulse: true
+                  enablePulse: true,
                 }}
                 showSparkline
                 sparklineData={[65, 70, 68, 75, 73]}
@@ -433,34 +436,38 @@ export const InteractiveDemo: Story = {
   },
   render: (args) => {
     const [hudVisible, setHudVisible] = useState(true);
-    const [activeVariant, setActiveVariant] = useState<'matrix' | 'doom' | 'swordfish' | 'neon' | 'ghost'>('matrix');
+    const [activeVariant, setActiveVariant] = useState<
+      'matrix' | 'doom' | 'swordfish' | 'neon' | 'ghost'
+    >('matrix');
 
     return (
       <div style={{ minHeight: '100vh', background: '#000', position: 'relative' }}>
         {/* Controls */}
-        <div style={{ 
-          position: 'fixed', 
-          top: 20, 
-          left: '50%', 
-          transform: 'translateX(-50%)', 
-          zIndex: 10000,
-          display: 'flex',
-          gap: 10,
-          flexWrap: 'wrap'
-        }}>
+        <div
+          style={{
+            position: 'fixed',
+            top: 20,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 10000,
+            display: 'flex',
+            gap: 10,
+            flexWrap: 'wrap',
+          }}
+        >
           <button onClick={() => setHudVisible(!hudVisible)}>
             {hudVisible ? 'Hide HUD' : 'Show HUD'}
           </button>
-          {(['matrix', 'doom', 'swordfish', 'neon', 'ghost'] as const).map(variant => (
+          {(['matrix', 'doom', 'swordfish', 'neon', 'ghost'] as const).map((variant) => (
             <button
               key={variant}
               onClick={() => setActiveVariant(variant)}
-              style={{ 
+              style={{
                 background: activeVariant === variant ? '#39ff14' : 'transparent',
                 color: activeVariant === variant ? '#000' : '#39ff14',
                 border: '1px solid #39ff14',
                 padding: '4px 8px',
-                cursor: 'pointer'
+                cursor: 'pointer',
               }}
             >
               {variant}
@@ -475,13 +482,7 @@ export const InteractiveDemo: Story = {
           onDrag={action('hud-dragged')}
           onResize={action('hud-resized')}
         >
-          <HUDPanel 
-            title="Interactive HUD" 
-            size="md" 
-            variant={activeVariant}
-            draggable
-            collapsible
-          >
+          <HUDPanel title="Interactive HUD" size="md" variant={activeVariant} draggable collapsible>
             <HUDMetric
               label="System Load"
               value={Math.random() * 100}

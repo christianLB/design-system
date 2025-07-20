@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Input } from './Input';
 
 const meta: Meta<typeof Input> = {
-  title: 'Inputs/Input',
+  title: 'Core Components/Forms/Input',
   component: Input,
   parameters: {
     docs: {
@@ -22,23 +22,18 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
-  render: args => {
+  render: (args) => {
     const [value, setValue] = useState('');
-    return <Input {...args} value={value} onChange={e => setValue(e.target.value)} />;
+    return <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
   },
   args: { label: 'Name', id: 'name' },
 };
 
 export const WithError: Story = {
-  render: args => {
+  render: (args) => {
     const [value, setValue] = useState('');
     return (
-      <Input
-        {...args}
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        error="Required"
-      />
+      <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} error="Required" />
     );
   },
   args: { label: 'Email', id: 'email' },

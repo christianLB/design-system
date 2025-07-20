@@ -3,7 +3,7 @@ import { InteractiveTutorial } from './InteractiveTutorial';
 import { basicComponentsTutorial } from './basic-components-tutorial';
 
 const meta: Meta<typeof InteractiveTutorial> = {
-  title: 'Tutorials/Interactive Tutorial',
+  title: 'Documentation/Tutorials/Interactive Tutorial',
   component: InteractiveTutorial,
   parameters: {
     layout: 'fullscreen',

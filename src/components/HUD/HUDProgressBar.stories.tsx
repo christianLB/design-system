@@ -4,14 +4,15 @@ import { action } from '@storybook/addon-actions';
 import HUDProgressBar from './HUDProgressBar';
 
 const meta: Meta<typeof HUDProgressBar> = {
-  title: 'Cyberpunk/HUD/HUDProgressBar',
+  title: 'Themes/Cyberpunk/Components/HUD Progress Bar',
   component: HUDProgressBar,
   parameters: {
     layout: 'centered',
     backgrounds: { default: 'dark' },
     docs: {
       description: {
-        component: 'Cyberpunk-styled progress bars with glow effects, animated fills, threshold markers, and advanced visual effects.',
+        component:
+          'Cyberpunk-styled progress bars with glow effects, animated fills, threshold markers, and advanced visual effects.',
       },
     },
   },
@@ -69,7 +70,7 @@ export const Default: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: 400 }}>
-      {(['matrix', 'doom', 'swordfish', 'neon', 'ghost'] as const).map(variant => (
+      {(['matrix', 'doom', 'swordfish', 'neon', 'ghost'] as const).map((variant) => (
         <HUDProgressBar
           key={variant}
           value={65}
@@ -88,7 +89,7 @@ export const AllVariants: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: 400 }}>
-      {(['sm', 'md', 'lg', 'xl'] as const).map(size => (
+      {(['sm', 'md', 'lg', 'xl'] as const).map((size) => (
         <HUDProgressBar
           key={size}
           value={65}
@@ -136,7 +137,7 @@ export const Orientations: Story = {
           />
         </div>
       </div>
-      
+
       <div>
         <h4 style={{ color: '#39ff14', marginBottom: 16 }}>Vertical</h4>
         <div style={{ display: 'flex', gap: 16 }}>
@@ -189,7 +190,7 @@ export const Modes: Story = {
           enableDataStream
         />
       </div>
-      
+
       <div>
         <h4 style={{ color: '#00ffff', marginBottom: 10 }}>Indeterminate</h4>
         <HUDProgressBar
@@ -200,7 +201,7 @@ export const Modes: Story = {
           loading
         />
       </div>
-      
+
       <div>
         <h4 style={{ color: '#ff6600', marginBottom: 10 }}>Buffer</h4>
         <HUDProgressBar
@@ -213,7 +214,7 @@ export const Modes: Story = {
           enableGlow
         />
       </div>
-      
+
       <div>
         <h4 style={{ color: '#ff1493', marginBottom: 10 }}>Query</h4>
         <HUDProgressBar
@@ -245,7 +246,7 @@ export const WithThresholds: Story = {
           optimalThreshold={80}
         />
       </div>
-      
+
       <div>
         <h4 style={{ color: '#ff6600', marginBottom: 10 }}>Warning State (25%)</h4>
         <HUDProgressBar
@@ -259,7 +260,7 @@ export const WithThresholds: Story = {
           optimalThreshold={80}
         />
       </div>
-      
+
       <div>
         <h4 style={{ color: '#ff0000', marginBottom: 10 }}>Critical State (15%)</h4>
         <HUDProgressBar
@@ -296,7 +297,7 @@ export const WithSegments: Story = {
           enableGlow
         />
       </div>
-      
+
       <div>
         <h4 style={{ color: '#00ffff', marginBottom: 10 }}>Resource Allocation</h4>
         <HUDProgressBar
@@ -328,7 +329,7 @@ export const WithGradients: Story = {
         enableGradient
         enableGlow
       />
-      
+
       <HUDProgressBar
         value={60}
         label="Custom Gradient"
@@ -338,7 +339,7 @@ export const WithGradients: Story = {
         gradientColors={['#ff1493', '#6a0dad', '#00ffff']}
         enableGlow
       />
-      
+
       <HUDProgressBar
         value={45}
         label="Fire Gradient"
@@ -348,7 +349,7 @@ export const WithGradients: Story = {
         gradientColors={['#ff0000', '#ff6600', '#ffff00']}
         enableGlow
       />
-      
+
       <HUDProgressBar
         value={85}
         label="Ocean Gradient"
@@ -372,9 +373,9 @@ export const AnimatedDemo: Story = {
     // Auto-update values
     useEffect(() => {
       const interval = setInterval(() => {
-        setHealth(prev => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 5)));
-        setShields(prev => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 8)));
-        setEnergy(prev => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 10)));
+        setHealth((prev) => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 5)));
+        setShields((prev) => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 8)));
+        setEnergy((prev) => Math.max(0, Math.min(100, prev + (Math.random() - 0.5) * 10)));
       }, 2000);
 
       return () => clearInterval(interval);
@@ -388,7 +389,7 @@ export const AnimatedDemo: Story = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: 400 }}>
         <h4 style={{ color: '#39ff14', marginBottom: 10 }}>Real-time Animated Progress</h4>
-        
+
         <HUDProgressBar
           value={health}
           label="Health"
@@ -402,7 +403,7 @@ export const AnimatedDemo: Story = {
           critical={health <= 20}
           onProgressChange={action('health-changed')}
         />
-        
+
         <HUDProgressBar
           value={shields}
           label="Shields"
@@ -415,7 +416,7 @@ export const AnimatedDemo: Story = {
           warningThreshold={30}
           critical={shields <= 15}
         />
-        
+
         <HUDProgressBar
           value={energy}
           label="Energy"
@@ -428,7 +429,7 @@ export const AnimatedDemo: Story = {
           warningThreshold={50}
           critical={energy <= 25}
         />
-        
+
         <HUDProgressBar
           label="System Scan"
           variant="doom"
@@ -440,39 +441,63 @@ export const AnimatedDemo: Story = {
         />
 
         <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
-          <button 
+          <button
             onClick={() => setHealth(Math.max(0, health - 20))}
-            style={{ padding: '8px 16px', background: '#ff0000', color: '#fff', border: 'none', cursor: 'pointer' }}
+            style={{
+              padding: '8px 16px',
+              background: '#ff0000',
+              color: '#fff',
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
             Damage
           </button>
-          <button 
+          <button
             onClick={() => setHealth(Math.min(100, health + 25))}
-            style={{ padding: '8px 16px', background: '#39ff14', color: '#000', border: 'none', cursor: 'pointer' }}
+            style={{
+              padding: '8px 16px',
+              background: '#39ff14',
+              color: '#000',
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
             Heal
           </button>
-          <button 
+          <button
             onClick={() => setShields(0)}
-            style={{ padding: '8px 16px', background: '#ff6600', color: '#fff', border: 'none', cursor: 'pointer' }}
+            style={{
+              padding: '8px 16px',
+              background: '#ff6600',
+              color: '#fff',
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
             Shield Down
           </button>
-          <button 
+          <button
             onClick={() => setShields(100)}
-            style={{ padding: '8px 16px', background: '#00ffff', color: '#000', border: 'none', cursor: 'pointer' }}
+            style={{
+              padding: '8px 16px',
+              background: '#00ffff',
+              color: '#000',
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
             Shield Up
           </button>
-          <button 
+          <button
             onClick={simulateLoading}
             disabled={loading}
-            style={{ 
-              padding: '8px 16px', 
-              background: loading ? '#666' : '#6a0dad', 
-              color: '#fff', 
-              border: 'none', 
-              cursor: loading ? 'not-allowed' : 'pointer' 
+            style={{
+              padding: '8px 16px',
+              background: loading ? '#666' : '#6a0dad',
+              color: '#fff',
+              border: 'none',
+              cursor: loading ? 'not-allowed' : 'pointer',
             }}
           >
             {loading ? 'Scanning...' : 'Start Scan'}
@@ -494,7 +519,7 @@ export const CustomFormatting: Story = {
         formatValue={(value, max) => `${value.toFixed(1)}GB / ${max.toFixed(1)}GB`}
         enableGlow
       />
-      
+
       <HUDProgressBar
         value={847}
         maxValue={1000}
@@ -504,7 +529,7 @@ export const CustomFormatting: Story = {
         enableGlow
         enableDataStream
       />
-      
+
       <HUDProgressBar
         value={185}
         maxValue={300}
@@ -517,7 +542,7 @@ export const CustomFormatting: Story = {
         }}
         enableGlow
       />
-      
+
       <HUDProgressBar
         value={73.6}
         maxValue={100}

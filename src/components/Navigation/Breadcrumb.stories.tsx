@@ -4,7 +4,7 @@ import { Breadcrumb } from './Breadcrumb';
 import { Icon } from '@/components/Icon';
 
 const meta: Meta<typeof Breadcrumb> = {
-  title: 'Navigation/Breadcrumb',
+  title: 'Core Components/Navigation/Breadcrumb',
   component: Breadcrumb,
   parameters: {
     layout: 'centered',
@@ -49,20 +49,20 @@ const longItems = [
 ];
 
 const itemsWithIcons = [
-  { 
-    label: 'Dashboard', 
+  {
+    label: 'Dashboard',
     href: '/dashboard',
-    icon: <Icon name="Home" size="sm" />
+    icon: <Icon name="Home" size="sm" />,
   },
-  { 
-    label: 'Products', 
+  {
+    label: 'Products',
     href: '/products',
-    icon: <Icon name="Package" size="sm" />
+    icon: <Icon name="Package" size="sm" />,
   },
-  { 
-    label: 'Electronics', 
+  {
+    label: 'Electronics',
     href: '/products/electronics',
-    icon: <Icon name="Zap" size="sm" />
+    icon: <Icon name="Zap" size="sm" />,
   },
   { label: 'Smartphones' },
 ];

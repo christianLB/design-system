@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Card } from '../../components/Card/Card';
 
 const meta: Meta<typeof Card> = {
-  title: 'Generated/Card',
+  title: 'Examples/Generated/Card',
   component: Card,
   parameters: {
     layout: 'centered',

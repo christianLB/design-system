@@ -5,14 +5,15 @@ import HUDRadar from './HUDRadar';
 import type { RadarContact, RadarZone } from './HUDRadar';
 
 const meta: Meta<typeof HUDRadar> = {
-  title: 'Cyberpunk/HUD/HUDRadar',
+  title: 'Themes/Cyberpunk/Components/HUD Radar',
   component: HUDRadar,
   parameters: {
     layout: 'centered',
     backgrounds: { default: 'dark' },
     docs: {
       description: {
-        component: 'Circular radar/minimap component with rotating sweep animation, contact tracking, and tactical zone display.',
+        component:
+          'Circular radar/minimap component with rotating sweep animation, contact tracking, and tactical zone display.',
       },
     },
   },
@@ -147,8 +148,14 @@ export const Default: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 20 }}>
-      {(['matrix', 'doom', 'swordfish', 'neon', 'ghost'] as const).map(variant => (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+        gap: 20,
+      }}
+    >
+      {(['matrix', 'doom', 'swordfish', 'neon', 'ghost'] as const).map((variant) => (
         <HUDRadar
           key={variant}
           contacts={sampleContacts.slice(0, 3)}
@@ -167,7 +174,7 @@ export const AllVariants: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 20, alignItems: 'center', justifyContent: 'center' }}>
-      {(['sm', 'md', 'lg', 'xl'] as const).map(size => (
+      {(['sm', 'md', 'lg', 'xl'] as const).map((size) => (
         <div key={size} style={{ textAlign: 'center' }}>
           <h4 style={{ color: '#39ff14', marginBottom: 10 }}>{size.toUpperCase()}</h4>
           <HUDRadar
@@ -201,7 +208,7 @@ export const Modes: Story = {
           active
         />
       </div>
-      
+
       <div style={{ textAlign: 'center' }}>
         <h4 style={{ color: '#00ffff', marginBottom: 10 }}>Pulse Mode</h4>
         <HUDRadar
@@ -216,7 +223,7 @@ export const Modes: Story = {
           active
         />
       </div>
-      
+
       <div style={{ textAlign: 'center' }}>
         <h4 style={{ color: '#ff0000', marginBottom: 10 }}>Scan Mode</h4>
         <HUDRadar
@@ -230,7 +237,7 @@ export const Modes: Story = {
           active
         />
       </div>
-      
+
       <div style={{ textAlign: 'center' }}>
         <h4 style={{ color: '#ff1493', marginBottom: 10 }}>Static Mode</h4>
         <HUDRadar
@@ -273,7 +280,15 @@ export const ContactTypes: Story = {
           active
           onContactClick={action('contact-clicked')}
         />
-        <div style={{ marginTop: 20, display: 'flex', justifyContent: 'center', gap: 20, flexWrap: 'wrap' }}>
+        <div
+          style={{
+            marginTop: 20,
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 20,
+            flexWrap: 'wrap',
+          }}
+        >
           <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#39ff14' }} />
             <span style={{ color: '#fff', fontSize: '0.875rem' }}>Friendly</span>
@@ -318,17 +333,49 @@ export const WithZones: Story = {
         active
         onContactClick={action('contact-clicked')}
       />
-      <div style={{ marginTop: 20, display: 'flex', justifyContent: 'center', gap: 20, flexWrap: 'wrap' }}>
+      <div
+        style={{
+          marginTop: 20,
+          display: 'flex',
+          justifyContent: 'center',
+          gap: 20,
+          flexWrap: 'wrap',
+        }}
+      >
         <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <div style={{ width: 12, height: 12, border: '2px solid #ff0000', borderRadius: '50%', opacity: 0.6 }} />
+          <div
+            style={{
+              width: 12,
+              height: 12,
+              border: '2px solid #ff0000',
+              borderRadius: '50%',
+              opacity: 0.6,
+            }}
+          />
           <span style={{ color: '#fff', fontSize: '0.875rem' }}>Danger Zone</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <div style={{ width: 12, height: 12, border: '2px solid #39ff14', borderRadius: '50%', opacity: 0.6 }} />
+          <div
+            style={{
+              width: 12,
+              height: 12,
+              border: '2px solid #39ff14',
+              borderRadius: '50%',
+              opacity: 0.6,
+            }}
+          />
           <span style={{ color: '#fff', fontSize: '0.875rem' }}>Safe Zone</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <div style={{ width: 12, height: 12, border: '2px solid #00ffff', borderRadius: '50%', opacity: 0.6 }} />
+          <div
+            style={{
+              width: 12,
+              height: 12,
+              border: '2px solid #00ffff',
+              borderRadius: '50%',
+              opacity: 0.6,
+            }}
+          />
           <span style={{ color: '#fff', fontSize: '0.875rem' }}>Patrol Zone</span>
         </div>
       </div>
@@ -362,20 +409,24 @@ export const InteractiveDemo: Story = {
   render: () => {
     const [contacts, setContacts] = useState<RadarContact[]>(sampleContacts);
     const [mode, setMode] = useState<'sweep' | 'pulse' | 'scan' | 'static'>('sweep');
-    const [variant, setVariant] = useState<'matrix' | 'doom' | 'swordfish' | 'neon' | 'ghost'>('matrix');
+    const [variant, setVariant] = useState<'matrix' | 'doom' | 'swordfish' | 'neon' | 'ghost'>(
+      'matrix',
+    );
     const [showLabels, setShowLabels] = useState(false);
     const [jammed, setJammed] = useState(false);
 
     // Simulate moving contacts
     useEffect(() => {
       if (mode === 'static') return;
-      
+
       const interval = setInterval(() => {
-        setContacts(prev => prev.map(contact => ({
-          ...contact,
-          x: Math.max(-1, Math.min(1, contact.x + (Math.random() - 0.5) * 0.1)),
-          y: Math.max(-1, Math.min(1, contact.y + (Math.random() - 0.5) * 0.1)),
-        })));
+        setContacts((prev) =>
+          prev.map((contact) => ({
+            ...contact,
+            x: Math.max(-1, Math.min(1, contact.x + (Math.random() - 0.5) * 0.1)),
+            y: Math.max(-1, Math.min(1, contact.y + (Math.random() - 0.5) * 0.1)),
+          })),
+        );
       }, 2000);
 
       return () => clearInterval(interval);
@@ -390,19 +441,19 @@ export const InteractiveDemo: Story = {
         label: `Contact ${contacts.length + 1}`,
         strength: Math.random(),
       };
-      setContacts(prev => [...prev, newContact]);
+      setContacts((prev) => [...prev, newContact]);
     };
 
     const removeContact = () => {
-      setContacts(prev => prev.slice(0, -1));
+      setContacts((prev) => prev.slice(0, -1));
     };
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
         {/* Controls */}
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
-          <select 
-            value={mode} 
+          <select
+            value={mode}
             onChange={(e) => setMode(e.target.value as any)}
             style={{ padding: 4, background: '#333', color: '#fff', border: '1px solid #555' }}
           >
@@ -411,9 +462,9 @@ export const InteractiveDemo: Story = {
             <option value="scan">Scan</option>
             <option value="static">Static</option>
           </select>
-          
-          <select 
-            value={variant} 
+
+          <select
+            value={variant}
             onChange={(e) => setVariant(e.target.value as any)}
             style={{ padding: 4, background: '#333', color: '#fff', border: '1px solid #555' }}
           >
@@ -425,28 +476,42 @@ export const InteractiveDemo: Story = {
           </select>
 
           <label style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: 4 }}>
-            <input 
-              type="checkbox" 
-              checked={showLabels} 
-              onChange={(e) => setShowLabels(e.target.checked)} 
+            <input
+              type="checkbox"
+              checked={showLabels}
+              onChange={(e) => setShowLabels(e.target.checked)}
             />
             Show Labels
           </label>
 
           <label style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: 4 }}>
-            <input 
-              type="checkbox" 
-              checked={jammed} 
-              onChange={(e) => setJammed(e.target.checked)} 
-            />
+            <input type="checkbox" checked={jammed} onChange={(e) => setJammed(e.target.checked)} />
             Jammed
           </label>
 
-          <button onClick={addContact} style={{ padding: '4px 8px', background: '#39ff14', color: '#000', border: 'none', cursor: 'pointer' }}>
+          <button
+            onClick={addContact}
+            style={{
+              padding: '4px 8px',
+              background: '#39ff14',
+              color: '#000',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
             Add Contact
           </button>
-          
-          <button onClick={removeContact} style={{ padding: '4px 8px', background: '#ff0000', color: '#fff', border: 'none', cursor: 'pointer' }}>
+
+          <button
+            onClick={removeContact}
+            style={{
+              padding: '4px 8px',
+              background: '#ff0000',
+              color: '#fff',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
             Remove Contact
           </button>
         </div>

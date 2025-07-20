@@ -8,12 +8,13 @@ import { Badge } from '../components/Badge/Badge';
 import { Alert } from '../components/Alert/Alert';
 
 const meta: Meta = {
-  title: 'Alien/Working Examples',
+  title: 'Themes/Alien/Examples',
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
-        component: 'Working alien theme examples with practical development scenarios and real-world applications',
+        component:
+          'Working alien theme examples with practical development scenarios and real-world applications',
       },
     },
   },
@@ -32,9 +33,8 @@ export const BasicComponents: Story = {
     return (
       <div className="theme-atmospheric min-h-screen p-8 bg-black text-white">
         <div className="atmospheric-membrane opacity-20 pointer-events-none" />
-        
+
         <div className="max-w-6xl mx-auto space-y-8">
-          
           {/* Header */}
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-bold atmospheric-text-vital atmospheric-breathe">
@@ -63,7 +63,7 @@ export const BasicComponents: Story = {
                   Organism System
                 </Button>
               </div>
-              
+
               <div className="mt-6 space-y-3">
                 <h3 className="text-lg font-semibold atmospheric-text-vital">Different Sizes</h3>
                 <div className="flex flex-wrap gap-3 items-center">
@@ -73,7 +73,12 @@ export const BasicComponents: Story = {
                   <Button variant="vessel" vital atmospheric size="sm">
                     Small
                   </Button>
-                  <Button variant="neural" atmospheric size="default" className="atmospheric-neural">
+                  <Button
+                    variant="neural"
+                    atmospheric
+                    size="default"
+                    className="atmospheric-neural"
+                  >
                     Default
                   </Button>
                   <Button variant="organism" atmospheric vital size="lg">
@@ -103,7 +108,6 @@ export const BasicComponents: Story = {
           <section className="space-y-4">
             <h2 className="text-2xl font-bold atmospheric-text-vital">Card Variants</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              
               <Card variant="alien-chamber" atmospheric>
                 <CardHeader>
                   <CardTitle>🫁 Bio Chamber</CardTitle>
@@ -136,7 +140,8 @@ export const BasicComponents: Story = {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm atmospheric-text-ghost">
-                    Biomechanical organ system with integrated vital sign monitoring and cellular regeneration.
+                    Biomechanical organ system with integrated vital sign monitoring and cellular
+                    regeneration.
                   </p>
                   <div className="mt-3 space-y-2">
                     <div className="flex justify-between text-xs">
@@ -162,7 +167,8 @@ export const BasicComponents: Story = {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm atmospheric-text-ghost">
-                    Protective membrane barrier with selective permeability and adaptive molecular transport.
+                    Protective membrane barrier with selective permeability and adaptive molecular
+                    transport.
                   </p>
                   <div className="mt-3 space-y-2">
                     <div className="flex justify-between text-xs">
@@ -188,7 +194,8 @@ export const BasicComponents: Story = {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm atmospheric-text-ghost">
-                    Internal body space with full atmospheric, vital, and neural integration systems.
+                    Internal body space with full atmospheric, vital, and neural integration
+                    systems.
                   </p>
                   <div className="mt-3 space-y-2">
                     <div className="flex justify-between text-xs">
@@ -202,7 +209,13 @@ export const BasicComponents: Story = {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button variant="neural" atmospheric size="sm" fullWidth className="atmospheric-neural">
+                  <Button
+                    variant="neural"
+                    atmospheric
+                    size="sm"
+                    fullWidth
+                    className="atmospheric-neural"
+                  >
                     Neural Interface
                   </Button>
                 </CardFooter>
@@ -214,14 +227,15 @@ export const BasicComponents: Story = {
           <section className="space-y-4">
             <h2 className="text-2xl font-bold atmospheric-text-vital">Container Variants</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              
               <Container alienVariant="organism" atmospheric className="p-6">
                 <h3 className="font-bold atmospheric-text-vital mb-3">Organism Container</h3>
                 <p className="text-sm atmospheric-text-ghost mb-4">
                   Circular organic shape with deep shadows and breathing effects
                 </p>
                 <div className="space-y-2">
-                  <Badge variant="membrane" atmospheric>Breathing Active</Badge>
+                  <Badge variant="membrane" atmospheric>
+                    Breathing Active
+                  </Badge>
                   <div className="text-xs atmospheric-text-ghost">
                     Perfect for displaying living systems and organic interfaces
                   </div>
@@ -234,7 +248,9 @@ export const BasicComponents: Story = {
                   Deep organ chamber with complex gradients and vital signs
                 </p>
                 <div className="space-y-2">
-                  <Badge variant="vessel" vital atmospheric>Vitals Online</Badge>
+                  <Badge variant="vessel" vital atmospheric>
+                    Vitals Online
+                  </Badge>
                   <div className="text-xs atmospheric-text-ghost">
                     Ideal for life support and monitoring systems
                   </div>
@@ -247,7 +263,9 @@ export const BasicComponents: Story = {
                   Protective vessel-like membrane with neural pathways
                 </p>
                 <div className="space-y-2">
-                  <Badge variant="neural" atmospheric className="atmospheric-neural">Neural Active</Badge>
+                  <Badge variant="neural" atmospheric className="atmospheric-neural">
+                    Neural Active
+                  </Badge>
                   <div className="text-xs atmospheric-text-ghost">
                     Great for neural interfaces and consciousness bridges
                   </div>
@@ -258,15 +276,18 @@ export const BasicComponents: Story = {
 
           {/* Progress and Status Indicators */}
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold atmospheric-text-vital">Progress & Status Indicators</h2>
+            <h2 className="text-2xl font-bold atmospheric-text-vital">
+              Progress & Status Indicators
+            </h2>
             <Container alienVariant="cavity" atmospheric vital className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
                 <div className="space-y-4">
                   <h3 className="font-semibold atmospheric-text-vital">Progress Bars</h3>
                   <div className="space-y-3">
                     <div>
-                      <label className="text-sm atmospheric-text-ghost">Life Force Integration</label>
+                      <label className="text-sm atmospheric-text-ghost">
+                        Life Force Integration
+                      </label>
                       <Progress value={87} className="h-3 atmospheric-breathe" />
                     </div>
                     <div>
@@ -284,13 +305,23 @@ export const BasicComponents: Story = {
                   <h3 className="font-semibold atmospheric-text-vital">Status Badges</h3>
                   <div className="space-y-3">
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="membrane" atmospheric>Membrane Active</Badge>
-                      <Badge variant="vessel" vital atmospheric>Vitals Online</Badge>
-                      <Badge variant="neural" atmospheric className="atmospheric-neural">Neural Linked</Badge>
+                      <Badge variant="membrane" atmospheric>
+                        Membrane Active
+                      </Badge>
+                      <Badge variant="vessel" vital atmospheric>
+                        Vitals Online
+                      </Badge>
+                      <Badge variant="neural" atmospheric className="atmospheric-neural">
+                        Neural Linked
+                      </Badge>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="organism" atmospheric vital>Organism Awake</Badge>
-                      <Badge variant="membrane" atmospheric className="atmospheric-pulse">System Alert</Badge>
+                      <Badge variant="organism" atmospheric vital>
+                        Organism Awake
+                      </Badge>
+                      <Badge variant="membrane" atmospheric className="atmospheric-pulse">
+                        System Alert
+                      </Badge>
                     </div>
                   </div>
                 </div>
@@ -303,12 +334,11 @@ export const BasicComponents: Story = {
             <h2 className="text-2xl font-bold atmospheric-text-vital">Code Examples</h2>
             <Container alienVariant="organ" atmospheric className="p-6">
               <div className="space-y-6">
-                
                 <div>
                   <h3 className="font-semibold atmospheric-text-vital mb-3">Basic Button Usage</h3>
                   <div className="bg-black/50 rounded-lg p-4 font-mono text-sm atmospheric-border-vessel">
                     <pre className="atmospheric-text-ghost">
-{`<Button variant="membrane" atmospheric>
+                      {`<Button variant="membrane" atmospheric>
   Membrane Interface
 </Button>
 
@@ -327,7 +357,7 @@ export const BasicComponents: Story = {
                   <h3 className="font-semibold atmospheric-text-vital mb-3">Card with Effects</h3>
                   <div className="bg-black/50 rounded-lg p-4 font-mono text-sm atmospheric-border-vessel">
                     <pre className="atmospheric-text-ghost">
-{`<Card variant="alien-chamber" atmospheric vital>
+                      {`<Card variant="alien-chamber" atmospheric vital>
   <CardHeader>
     <CardTitle>Bio System Monitor</CardTitle>
   </CardHeader>
@@ -345,10 +375,12 @@ export const BasicComponents: Story = {
                 </div>
 
                 <div>
-                  <h3 className="font-semibold atmospheric-text-vital mb-3">Container with Multiple Effects</h3>
+                  <h3 className="font-semibold atmospheric-text-vital mb-3">
+                    Container with Multiple Effects
+                  </h3>
                   <div className="bg-black/50 rounded-lg p-4 font-mono text-sm atmospheric-border-vessel">
                     <pre className="atmospheric-text-ghost">
-{`<Container 
+                      {`<Container 
   alienVariant="organism" 
   atmospheric 
   vital 
@@ -371,10 +403,11 @@ export const BasicComponents: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Complete showcase of all alien theme components with practical examples and code snippets ready for production use.'
-      }
-    }
-  }
+        story:
+          'Complete showcase of all alien theme components with practical examples and code snippets ready for production use.',
+      },
+    },
+  },
 };
 
 export const BiometricsWorkflow: Story = {
@@ -384,7 +417,7 @@ export const BiometricsWorkflow: Story = {
       oxygenLevel: 98,
       neuralActivity: 847,
       cellularRegeneration: 156,
-      membraneIntegrity: 94
+      membraneIntegrity: 94,
     });
 
     const [monitoringActive, setMonitoringActive] = useState(true);
@@ -393,18 +426,30 @@ export const BiometricsWorkflow: Story = {
     useEffect(() => {
       const interval = setInterval(() => {
         if (monitoringActive) {
-          setPatientData(prev => ({
+          setPatientData((prev) => ({
             heartRate: Math.max(60, Math.min(120, prev.heartRate + (Math.random() - 0.5) * 8)),
             oxygenLevel: Math.max(90, Math.min(100, prev.oxygenLevel + (Math.random() - 0.5) * 3)),
-            neuralActivity: Math.max(400, Math.min(1200, prev.neuralActivity + (Math.random() - 0.5) * 100)),
-            cellularRegeneration: Math.max(100, Math.min(200, prev.cellularRegeneration + (Math.random() - 0.5) * 10)),
-            membraneIntegrity: Math.max(80, Math.min(100, prev.membraneIntegrity + (Math.random() - 0.5) * 5))
+            neuralActivity: Math.max(
+              400,
+              Math.min(1200, prev.neuralActivity + (Math.random() - 0.5) * 100),
+            ),
+            cellularRegeneration: Math.max(
+              100,
+              Math.min(200, prev.cellularRegeneration + (Math.random() - 0.5) * 10),
+            ),
+            membraneIntegrity: Math.max(
+              80,
+              Math.min(100, prev.membraneIntegrity + (Math.random() - 0.5) * 5),
+            ),
           }));
 
           // Determine alert level
-          const newAlertLevel = 
-            patientData.heartRate > 100 || patientData.oxygenLevel < 95 ? 'critical' :
-            patientData.heartRate > 90 || patientData.oxygenLevel < 97 ? 'warning' : 'normal';
+          const newAlertLevel =
+            patientData.heartRate > 100 || patientData.oxygenLevel < 95
+              ? 'critical'
+              : patientData.heartRate > 90 || patientData.oxygenLevel < 97
+                ? 'warning'
+                : 'normal';
           setAlertLevel(newAlertLevel);
         }
       }, 2000);
@@ -421,9 +466,8 @@ export const BiometricsWorkflow: Story = {
         {/* Background Effects */}
         <div className="atmospheric-vessel opacity-15 pointer-events-none" />
         <div className="neural-pathways opacity-10 pointer-events-none" />
-        
+
         <div className="p-6 space-y-6">
-          
           {/* Header */}
           <div className="border-b atmospheric-border-vessel pb-4">
             <div className="flex items-center justify-between">
@@ -432,12 +476,19 @@ export const BiometricsWorkflow: Story = {
                   Biometric Monitoring System
                 </h1>
                 <p className="atmospheric-text-ghost">
-                  Advanced biomechanical patient monitoring • Real-time vital signs • Neural interface
+                  Advanced biomechanical patient monitoring • Real-time vital signs • Neural
+                  interface
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <Badge 
-                  variant={alertLevel === 'critical' ? 'vessel' : alertLevel === 'warning' ? 'membrane' : 'organism'}
+                <Badge
+                  variant={
+                    alertLevel === 'critical'
+                      ? 'vessel'
+                      : alertLevel === 'warning'
+                        ? 'membrane'
+                        : 'organism'
+                  }
                   vital={alertLevel === 'critical'}
                   atmospheric
                   className={alertLevel === 'critical' ? 'atmospheric-pulse' : ''}
@@ -457,10 +508,8 @@ export const BiometricsWorkflow: Story = {
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-            
             {/* Vital Signs Panel */}
             <div className="xl:col-span-1 space-y-6">
-              
               <Card variant="alien-chamber" atmospheric vital className="atmospheric-breathe">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -473,34 +522,42 @@ export const BiometricsWorkflow: Story = {
                     <div>
                       <div className="flex justify-between text-sm mb-1">
                         <span className="atmospheric-text-ghost">Heart Rate</span>
-                        <span className={`${
-                          patientData.heartRate > 100 ? 'text-red-400' :
-                          patientData.heartRate > 90 ? 'text-yellow-400' :
-                          'atmospheric-text-vital'
-                        }`}>
+                        <span
+                          className={`${
+                            patientData.heartRate > 100
+                              ? 'text-red-400'
+                              : patientData.heartRate > 90
+                                ? 'text-yellow-400'
+                                : 'atmospheric-text-vital'
+                          }`}
+                        >
                           {Math.floor(patientData.heartRate)} BPM
                         </span>
                       </div>
-                      <Progress 
-                        value={(patientData.heartRate / 120) * 100} 
-                        className="h-2 atmospheric-pulse" 
+                      <Progress
+                        value={(patientData.heartRate / 120) * 100}
+                        className="h-2 atmospheric-pulse"
                       />
                     </div>
-                    
+
                     <div>
                       <div className="flex justify-between text-sm mb-1">
                         <span className="atmospheric-text-ghost">Oxygen Level</span>
-                        <span className={`${
-                          patientData.oxygenLevel < 95 ? 'text-red-400' :
-                          patientData.oxygenLevel < 97 ? 'text-yellow-400' :
-                          'atmospheric-text-vital'
-                        }`}>
+                        <span
+                          className={`${
+                            patientData.oxygenLevel < 95
+                              ? 'text-red-400'
+                              : patientData.oxygenLevel < 97
+                                ? 'text-yellow-400'
+                                : 'atmospheric-text-vital'
+                          }`}
+                        >
                           {Math.floor(patientData.oxygenLevel)}%
                         </span>
                       </div>
-                      <Progress 
-                        value={patientData.oxygenLevel} 
-                        className="h-2 atmospheric-breathe" 
+                      <Progress
+                        value={patientData.oxygenLevel}
+                        className="h-2 atmospheric-breathe"
                       />
                     </div>
                   </div>
@@ -523,12 +580,12 @@ export const BiometricsWorkflow: Story = {
                           {Math.floor(patientData.neuralActivity)} Hz
                         </span>
                       </div>
-                      <Progress 
-                        value={(patientData.neuralActivity / 1200) * 100} 
-                        className="h-2 atmospheric-neural" 
+                      <Progress
+                        value={(patientData.neuralActivity / 1200) * 100}
+                        className="h-2 atmospheric-neural"
                       />
                     </div>
-                    
+
                     <div>
                       <div className="flex justify-between text-sm mb-1">
                         <span className="atmospheric-text-ghost">Consciousness</span>
@@ -536,9 +593,7 @@ export const BiometricsWorkflow: Story = {
                           {patientData.neuralActivity > 800 ? 'AWAKE' : 'DORMANT'}
                         </span>
                       </div>
-                      <div className="text-xs atmospheric-text-ghost">
-                        Neural coherence optimal
-                      </div>
+                      <div className="text-xs atmospheric-text-ghost">Neural coherence optimal</div>
                     </div>
                   </div>
                 </CardContent>
@@ -551,10 +606,9 @@ export const BiometricsWorkflow: Story = {
                       {alertLevel === 'critical' ? '🚨 CRITICAL ALERT' : '⚠️ WARNING'}
                     </strong>
                     <p className="text-sm mt-1 atmospheric-text-ghost">
-                      {alertLevel === 'critical' 
+                      {alertLevel === 'critical'
                         ? 'Patient vitals outside safe parameters. Immediate attention required.'
-                        : 'Patient vitals approaching warning thresholds. Monitor closely.'
-                      }
+                        : 'Patient vitals approaching warning thresholds. Monitor closely.'}
                     </p>
                   </div>
                 </Alert>
@@ -563,11 +617,10 @@ export const BiometricsWorkflow: Story = {
 
             {/* Main Monitoring Display */}
             <div className="xl:col-span-3 space-y-6">
-              
               {/* Patient Overview */}
-              <Container 
-                alienVariant="organism" 
-                atmospheric 
+              <Container
+                alienVariant="organism"
+                atmospheric
                 vital={monitoringActive}
                 neural={patientData.neuralActivity > 600}
                 className="p-6"
@@ -576,34 +629,50 @@ export const BiometricsWorkflow: Story = {
                   <h2 className="text-2xl font-bold atmospheric-text-vital">
                     Patient Bio-Integration Status
                   </h2>
-                  <div className={`text-6xl ${
-                    alertLevel === 'critical' ? 'text-red-400 atmospheric-pulse' :
-                    alertLevel === 'warning' ? 'text-yellow-400 atmospheric-breathe' :
-                    'atmospheric-text-vital atmospheric-breathe'
-                  }`}>
-                    {alertLevel === 'critical' ? '🚨' : 
-                     alertLevel === 'warning' ? '⚠️' : 
-                     monitoringActive ? '💚' : '💤'}
+                  <div
+                    className={`text-6xl ${
+                      alertLevel === 'critical'
+                        ? 'text-red-400 atmospheric-pulse'
+                        : alertLevel === 'warning'
+                          ? 'text-yellow-400 atmospheric-breathe'
+                          : 'atmospheric-text-vital atmospheric-breathe'
+                    }`}
+                  >
+                    {alertLevel === 'critical'
+                      ? '🚨'
+                      : alertLevel === 'warning'
+                        ? '⚠️'
+                        : monitoringActive
+                          ? '💚'
+                          : '💤'}
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
                     <div>
                       <div className="text-xs atmospheric-text-ghost">Heart Rate</div>
-                      <div className="text-xl atmospheric-text-vital">{Math.floor(patientData.heartRate)}</div>
+                      <div className="text-xl atmospheric-text-vital">
+                        {Math.floor(patientData.heartRate)}
+                      </div>
                       <div className="text-xs atmospheric-text-ghost">BPM</div>
                     </div>
                     <div>
                       <div className="text-xs atmospheric-text-ghost">Oxygen</div>
-                      <div className="text-xl atmospheric-text-vital">{Math.floor(patientData.oxygenLevel)}</div>
+                      <div className="text-xl atmospheric-text-vital">
+                        {Math.floor(patientData.oxygenLevel)}
+                      </div>
                       <div className="text-xs atmospheric-text-ghost">%</div>
                     </div>
                     <div>
                       <div className="text-xs atmospheric-text-ghost">Neural</div>
-                      <div className="text-xl atmospheric-text-vital">{Math.floor(patientData.neuralActivity)}</div>
+                      <div className="text-xl atmospheric-text-vital">
+                        {Math.floor(patientData.neuralActivity)}
+                      </div>
                       <div className="text-xs atmospheric-text-ghost">Hz</div>
                     </div>
                     <div>
                       <div className="text-xs atmospheric-text-ghost">Regeneration</div>
-                      <div className="text-xl atmospheric-text-vital">{Math.floor(patientData.cellularRegeneration)}</div>
+                      <div className="text-xl atmospheric-text-vital">
+                        {Math.floor(patientData.cellularRegeneration)}
+                      </div>
                       <div className="text-xs atmospheric-text-ghost">%</div>
                     </div>
                   </div>
@@ -612,7 +681,6 @@ export const BiometricsWorkflow: Story = {
 
               {/* Cellular Analysis */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
                 <Card variant="alien-membrane" atmospheric>
                   <CardHeader>
                     <CardTitle>🧬 Cellular Analysis</CardTitle>
@@ -626,12 +694,12 @@ export const BiometricsWorkflow: Story = {
                             {Math.floor(patientData.cellularRegeneration)}%
                           </span>
                         </div>
-                        <Progress 
-                          value={patientData.cellularRegeneration} 
-                          className="h-2 atmospheric-breathe" 
+                        <Progress
+                          value={patientData.cellularRegeneration}
+                          className="h-2 atmospheric-breathe"
                         />
                       </div>
-                      
+
                       <div>
                         <div className="flex justify-between text-sm mb-1">
                           <span className="atmospheric-text-ghost">Membrane Integrity</span>
@@ -639,16 +707,21 @@ export const BiometricsWorkflow: Story = {
                             {Math.floor(patientData.membraneIntegrity)}%
                           </span>
                         </div>
-                        <Progress 
-                          value={patientData.membraneIntegrity} 
-                          className="h-2" 
-                        />
+                        <Progress value={patientData.membraneIntegrity} className="h-2" />
                       </div>
 
                       <div className="text-xs atmospheric-text-ghost space-y-1">
-                        <div>• Cell division rate: {(patientData.cellularRegeneration * 2.4).toFixed(1)}M/sec</div>
-                        <div>• Protein synthesis: {patientData.cellularRegeneration > 150 ? 'Enhanced' : 'Normal'}</div>
-                        <div>• DNA repair: {patientData.membraneIntegrity > 90 ? 'Active' : 'Baseline'}</div>
+                        <div>
+                          • Cell division rate:{' '}
+                          {(patientData.cellularRegeneration * 2.4).toFixed(1)}M/sec
+                        </div>
+                        <div>
+                          • Protein synthesis:{' '}
+                          {patientData.cellularRegeneration > 150 ? 'Enhanced' : 'Normal'}
+                        </div>
+                        <div>
+                          • DNA repair: {patientData.membraneIntegrity > 90 ? 'Active' : 'Baseline'}
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -665,40 +738,29 @@ export const BiometricsWorkflow: Story = {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
-                      <Button 
-                        variant="vessel" 
-                        vital 
-                        atmospheric 
-                        size="sm" 
+                      <Button
+                        variant="vessel"
+                        vital
+                        atmospheric
+                        size="sm"
                         fullWidth
                         disabled={alertLevel === 'normal'}
                       >
                         Emergency Stabilization
                       </Button>
-                      <Button 
-                        variant="membrane" 
-                        atmospheric 
-                        size="sm" 
-                        fullWidth
-                      >
+                      <Button variant="membrane" atmospheric size="sm" fullWidth>
                         Enhance Regeneration
                       </Button>
-                      <Button 
-                        variant="neural" 
-                        atmospheric 
-                        size="sm" 
+                      <Button
+                        variant="neural"
+                        atmospheric
+                        size="sm"
                         fullWidth
                         className="atmospheric-neural"
                       >
                         Neural Interface Boost
                       </Button>
-                      <Button 
-                        variant="organism" 
-                        atmospheric 
-                        vital 
-                        size="sm" 
-                        fullWidth
-                      >
+                      <Button variant="organism" atmospheric vital size="sm" fullWidth>
                         Full System Integration
                       </Button>
                     </div>
@@ -719,10 +781,11 @@ export const BiometricsWorkflow: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Real-world biometric monitoring system using alien theme components with live data updates and interactive treatment options.'
-      }
-    }
-  }
+        story:
+          'Real-world biometric monitoring system using alien theme components with live data updates and interactive treatment options.',
+      },
+    },
+  },
 };
 
 export const LaboratoryInterface: Story = {
@@ -739,19 +802,21 @@ export const LaboratoryInterface: Story = {
 
     React.useEffect(() => {
       document.documentElement.setAttribute('data-theme', 'alien');
-      
+
       const interval = setInterval(() => {
-        setExperiments(prev => prev.map(exp => {
-          if (exp.status === 'running') {
-            const newProgress = Math.min(100, exp.progress + Math.random() * 5);
-            return {
-              ...exp,
-              progress: newProgress,
-              status: newProgress >= 100 ? 'completed' : 'running'
-            };
-          }
-          return exp;
-        }));
+        setExperiments((prev) =>
+          prev.map((exp) => {
+            if (exp.status === 'running') {
+              const newProgress = Math.min(100, exp.progress + Math.random() * 5);
+              return {
+                ...exp,
+                progress: newProgress,
+                status: newProgress >= 100 ? 'completed' : 'running',
+              };
+            }
+            return exp;
+          }),
+        );
       }, 3000);
 
       return () => clearInterval(interval);
@@ -759,11 +824,16 @@ export const LaboratoryInterface: Story = {
 
     const getStatusColor = (status: string) => {
       switch (status) {
-        case 'running': return 'atmospheric-text-vital';
-        case 'completed': return 'text-green-400';
-        case 'critical': return 'text-red-400';
-        case 'pending': return 'text-gray-400';
-        default: return 'atmospheric-text-ghost';
+        case 'running':
+          return 'atmospheric-text-vital';
+        case 'completed':
+          return 'text-green-400';
+        case 'critical':
+          return 'text-red-400';
+        case 'pending':
+          return 'text-gray-400';
+        default:
+          return 'atmospheric-text-ghost';
       }
     };
 
@@ -771,9 +841,8 @@ export const LaboratoryInterface: Story = {
       <div className="theme-atmospheric min-h-screen bg-black text-white">
         <div className="atmospheric-organ opacity-10 pointer-events-none" />
         <div className="neural-pathways opacity-15 pointer-events-none" />
-        
+
         <div className="p-6 space-y-6">
-          
           {/* Header */}
           <div className="border-b atmospheric-border-vessel pb-4">
             <div className="flex items-center justify-between">
@@ -797,15 +866,14 @@ export const LaboratoryInterface: Story = {
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-            
             {/* Experiment List */}
             <div className="xl:col-span-1 space-y-4">
               <h2 className="text-xl font-bold atmospheric-text-vital">Active Experiments</h2>
-              
+
               {experiments.map((experiment) => (
-                <Card 
+                <Card
                   key={experiment.id}
-                  variant="alien-chamber" 
+                  variant="alien-chamber"
                   atmospheric
                   vital={experiment.type === 'vital'}
                   neural={experiment.type === 'neural'}
@@ -825,11 +893,14 @@ export const LaboratoryInterface: Story = {
                           {experiment.status.toUpperCase()}
                         </span>
                       </div>
-                      <Progress 
-                        value={experiment.progress} 
+                      <Progress
+                        value={experiment.progress}
                         className={`h-2 ${
-                          experiment.type === 'neural' ? 'atmospheric-neural' :
-                          experiment.type === 'vital' ? 'atmospheric-breathe' : ''
+                          experiment.type === 'neural'
+                            ? 'atmospheric-neural'
+                            : experiment.type === 'vital'
+                              ? 'atmospheric-breathe'
+                              : ''
                         }`}
                       />
                       <div className="text-xs atmospheric-text-ghost">
@@ -843,17 +914,15 @@ export const LaboratoryInterface: Story = {
 
             {/* Main Lab Interface */}
             <div className="xl:col-span-3 space-y-6">
-              
               {/* Selected Experiment Details */}
-              <Container 
-                alienVariant="organism" 
-                atmospheric 
+              <Container
+                alienVariant="organism"
+                atmospheric
                 vital={selectedExperiment.type === 'vital'}
                 neural={selectedExperiment.type === 'neural'}
                 className="p-6"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  
                   <div className="space-y-4">
                     <h2 className="text-2xl font-bold atmospheric-text-vital">
                       {selectedExperiment.name}
@@ -861,15 +930,21 @@ export const LaboratoryInterface: Story = {
                     <div className="space-y-3">
                       <div className="flex justify-between">
                         <span className="atmospheric-text-ghost">Experiment ID:</span>
-                        <span className="atmospheric-text-vital">BIO-{selectedExperiment.id.toString().padStart(4, '0')}</span>
+                        <span className="atmospheric-text-vital">
+                          BIO-{selectedExperiment.id.toString().padStart(4, '0')}
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="atmospheric-text-ghost">Type:</span>
-                        <span className="atmospheric-text-vital">{selectedExperiment.type.toUpperCase()}</span>
+                        <span className="atmospheric-text-vital">
+                          {selectedExperiment.type.toUpperCase()}
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="atmospheric-text-ghost">Progress:</span>
-                        <span className="atmospheric-text-vital">{Math.floor(selectedExperiment.progress)}%</span>
+                        <span className="atmospheric-text-vital">
+                          {Math.floor(selectedExperiment.progress)}%
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="atmospheric-text-ghost">Status:</span>
@@ -881,7 +956,9 @@ export const LaboratoryInterface: Story = {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="text-lg font-semibold atmospheric-text-vital">Progress Visualization</h3>
+                    <h3 className="text-lg font-semibold atmospheric-text-vital">
+                      Progress Visualization
+                    </h3>
                     <div className="h-32 atmospheric-border-vessel rounded bg-black/30 relative overflow-hidden">
                       {selectedExperiment.type === 'neural' && (
                         <div className="neural-pathways opacity-40" />
@@ -889,26 +966,37 @@ export const LaboratoryInterface: Story = {
                       {selectedExperiment.type === 'vital' && (
                         <div className="atmospheric-membrane opacity-40" />
                       )}
-                      
+
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className={`text-4xl ${
-                          selectedExperiment.status === 'running' ? 'atmospheric-text-vital atmospheric-pulse' :
-                          selectedExperiment.status === 'completed' ? 'text-green-400' :
-                          selectedExperiment.status === 'critical' ? 'text-red-400 atmospheric-pulse' :
-                          'text-gray-500'
-                        }`}>
-                          {selectedExperiment.type === 'neural' ? '🧠' :
-                           selectedExperiment.type === 'vital' ? '🫀' :
-                           selectedExperiment.type === 'membrane' ? '🧬' :
-                           '👁️'}
+                        <div
+                          className={`text-4xl ${
+                            selectedExperiment.status === 'running'
+                              ? 'atmospheric-text-vital atmospheric-pulse'
+                              : selectedExperiment.status === 'completed'
+                                ? 'text-green-400'
+                                : selectedExperiment.status === 'critical'
+                                  ? 'text-red-400 atmospheric-pulse'
+                                  : 'text-gray-500'
+                          }`}
+                        >
+                          {selectedExperiment.type === 'neural'
+                            ? '🧠'
+                            : selectedExperiment.type === 'vital'
+                              ? '🫀'
+                              : selectedExperiment.type === 'membrane'
+                                ? '🧬'
+                                : '👁️'}
                         </div>
                       </div>
-                      
+
                       <div className="absolute bottom-2 left-2 text-xs atmospheric-text-ghost">
-                        {selectedExperiment.status === 'running' ? 'PROCESSING...' :
-                         selectedExperiment.status === 'completed' ? 'EXPERIMENT COMPLETE' :
-                         selectedExperiment.status === 'critical' ? 'REQUIRES ATTENTION' :
-                         'AWAITING INITIATION'}
+                        {selectedExperiment.status === 'running'
+                          ? 'PROCESSING...'
+                          : selectedExperiment.status === 'completed'
+                            ? 'EXPERIMENT COMPLETE'
+                            : selectedExperiment.status === 'critical'
+                              ? 'REQUIRES ATTENTION'
+                              : 'AWAITING INITIATION'}
                       </div>
                     </div>
                   </div>
@@ -917,7 +1005,6 @@ export const LaboratoryInterface: Story = {
 
               {/* Lab Controls */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                
                 <Card variant="alien-membrane" atmospheric>
                   <CardHeader>
                     <CardTitle className="text-sm">Genetic Sequencer</CardTitle>
@@ -963,7 +1050,13 @@ export const LaboratoryInterface: Story = {
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button variant="neural" atmospheric size="sm" fullWidth className="atmospheric-neural">
+                    <Button
+                      variant="neural"
+                      atmospheric
+                      size="sm"
+                      fullWidth
+                      className="atmospheric-neural"
+                    >
                       Neural Bridge
                     </Button>
                   </CardFooter>
@@ -989,9 +1082,10 @@ export const LaboratoryInterface: Story = {
 
               {/* Data Analysis */}
               <Container alienVariant="cavity" atmospheric className="p-6">
-                <h3 className="text-xl font-bold atmospheric-text-vital mb-4">Laboratory Analytics</h3>
+                <h3 className="text-xl font-bold atmospheric-text-vital mb-4">
+                  Laboratory Analytics
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  
                   <div className="space-y-3">
                     <h4 className="font-semibold atmospheric-text-vital">Success Rates</h4>
                     <div className="space-y-2">
@@ -1033,10 +1127,18 @@ export const LaboratoryInterface: Story = {
                   <div className="space-y-3">
                     <h4 className="font-semibold atmospheric-text-vital">Active Protocols</h4>
                     <div className="space-y-1 text-sm">
-                      <Badge variant="membrane" atmospheric size="sm">Sterile Environment</Badge>
-                      <Badge variant="vessel" vital atmospheric size="sm">Bio-Safety Level 4</Badge>
-                      <Badge variant="neural" atmospheric size="sm" className="atmospheric-neural">Neural Shielding</Badge>
-                      <Badge variant="organism" atmospheric vital size="sm">Life Support Active</Badge>
+                      <Badge variant="membrane" atmospheric size="sm">
+                        Sterile Environment
+                      </Badge>
+                      <Badge variant="vessel" vital atmospheric size="sm">
+                        Bio-Safety Level 4
+                      </Badge>
+                      <Badge variant="neural" atmospheric size="sm" className="atmospheric-neural">
+                        Neural Shielding
+                      </Badge>
+                      <Badge variant="organism" atmospheric vital size="sm">
+                        Life Support Active
+                      </Badge>
                     </div>
                   </div>
                 </div>
@@ -1050,10 +1152,11 @@ export const LaboratoryInterface: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Advanced laboratory interface for biomechanical research with real-time experiment monitoring and interactive equipment controls.'
-      }
-    }
-  }
+        story:
+          'Advanced laboratory interface for biomechanical research with real-time experiment monitoring and interactive equipment controls.',
+      },
+    },
+  },
 };
 
 export const ProductionDashboard: Story = {
@@ -1064,26 +1167,44 @@ export const ProductionDashboard: Story = {
       errorRate: 0.3,
       memoryUsage: 67,
       cpuLoad: 45,
-      activeConnections: 1247
+      activeConnections: 1247,
     });
 
     const [alerts] = useState([
-      { id: 1, level: 'warning', message: 'Neural pathway optimization recommended', timestamp: '2 min ago' },
-      { id: 2, level: 'info', message: 'Membrane integrity check completed', timestamp: '5 min ago' },
-      { id: 3, level: 'success', message: 'Cellular regeneration process enhanced', timestamp: '12 min ago' }
+      {
+        id: 1,
+        level: 'warning',
+        message: 'Neural pathway optimization recommended',
+        timestamp: '2 min ago',
+      },
+      {
+        id: 2,
+        level: 'info',
+        message: 'Membrane integrity check completed',
+        timestamp: '5 min ago',
+      },
+      {
+        id: 3,
+        level: 'success',
+        message: 'Cellular regeneration process enhanced',
+        timestamp: '12 min ago',
+      },
     ]);
 
     React.useEffect(() => {
       document.documentElement.setAttribute('data-theme', 'alien');
-      
+
       const interval = setInterval(() => {
-        setSystemMetrics(prev => ({
+        setSystemMetrics((prev) => ({
           uptime: Math.max(95, Math.min(100, prev.uptime + (Math.random() - 0.5) * 0.5)),
           throughput: Math.max(500, Math.min(1200, prev.throughput + (Math.random() - 0.5) * 100)),
           errorRate: Math.max(0, Math.min(5, prev.errorRate + (Math.random() - 0.5) * 0.2)),
           memoryUsage: Math.max(40, Math.min(90, prev.memoryUsage + (Math.random() - 0.5) * 5)),
           cpuLoad: Math.max(20, Math.min(80, prev.cpuLoad + (Math.random() - 0.5) * 10)),
-          activeConnections: Math.max(800, Math.min(1500, prev.activeConnections + Math.floor((Math.random() - 0.5) * 100)))
+          activeConnections: Math.max(
+            800,
+            Math.min(1500, prev.activeConnections + Math.floor((Math.random() - 0.5) * 100)),
+          ),
         }));
       }, 3000);
 
@@ -1093,9 +1214,8 @@ export const ProductionDashboard: Story = {
     return (
       <div className="theme-atmospheric min-h-screen bg-black text-white">
         <div className="atmospheric-vessel opacity-10 pointer-events-none" />
-        
+
         <div className="p-6 space-y-6">
-          
           {/* Header */}
           <div className="border-b atmospheric-border-vessel pb-4">
             <div className="flex items-center justify-between">
@@ -1108,12 +1228,7 @@ export const ProductionDashboard: Story = {
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <Badge 
-                  variant="organism" 
-                  atmospheric 
-                  vital
-                  className="atmospheric-pulse"
-                >
+                <Badge variant="organism" atmospheric vital className="atmospheric-pulse">
                   SYSTEM OPERATIONAL
                 </Badge>
                 <Button variant="vessel" vital atmospheric>
@@ -1125,7 +1240,6 @@ export const ProductionDashboard: Story = {
 
           {/* Key Metrics */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-            
             <Card variant="alien-chamber" atmospheric>
               <CardContent className="p-4 text-center">
                 <div className="text-xs atmospheric-text-ghost mb-1">System Uptime</div>
@@ -1149,11 +1263,15 @@ export const ProductionDashboard: Story = {
             <Card variant="alien-membrane" atmospheric>
               <CardContent className="p-4 text-center">
                 <div className="text-xs atmospheric-text-ghost mb-1">Error Rate</div>
-                <div className={`text-2xl font-bold ${
-                  systemMetrics.errorRate > 2 ? 'text-red-400' : 
-                  systemMetrics.errorRate > 1 ? 'text-yellow-400' : 
-                  'atmospheric-text-vital'
-                }`}>
+                <div
+                  className={`text-2xl font-bold ${
+                    systemMetrics.errorRate > 2
+                      ? 'text-red-400'
+                      : systemMetrics.errorRate > 1
+                        ? 'text-yellow-400'
+                        : 'atmospheric-text-vital'
+                  }`}
+                >
                   {systemMetrics.errorRate.toFixed(1)}%
                 </div>
                 <div className="text-xs atmospheric-text-ghost">Error threshold</div>
@@ -1163,11 +1281,15 @@ export const ProductionDashboard: Story = {
             <Card variant="alien-cavity" atmospheric neural>
               <CardContent className="p-4 text-center">
                 <div className="text-xs atmospheric-text-ghost mb-1">Memory Usage</div>
-                <div className={`text-2xl font-bold ${
-                  systemMetrics.memoryUsage > 80 ? 'text-red-400' : 
-                  systemMetrics.memoryUsage > 70 ? 'text-yellow-400' : 
-                  'atmospheric-text-vital'
-                }`}>
+                <div
+                  className={`text-2xl font-bold ${
+                    systemMetrics.memoryUsage > 80
+                      ? 'text-red-400'
+                      : systemMetrics.memoryUsage > 70
+                        ? 'text-yellow-400'
+                        : 'atmospheric-text-vital'
+                  }`}
+                >
                   {Math.floor(systemMetrics.memoryUsage)}%
                 </div>
                 <div className="text-xs atmospheric-text-ghost">Memory allocated</div>
@@ -1196,18 +1318,19 @@ export const ProductionDashboard: Story = {
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-            
             {/* Performance Charts */}
             <div className="xl:col-span-2 space-y-6">
-              
               <Container alienVariant="organism" atmospheric vital className="p-6">
-                <h2 className="text-xl font-bold atmospheric-text-vital mb-4">System Performance</h2>
+                <h2 className="text-xl font-bold atmospheric-text-vital mb-4">
+                  System Performance
+                </h2>
                 <div className="space-y-6">
-                  
                   <div>
                     <div className="flex justify-between text-sm mb-2">
                       <span className="atmospheric-text-ghost">CPU Load</span>
-                      <span className="atmospheric-text-vital">{Math.floor(systemMetrics.cpuLoad)}%</span>
+                      <span className="atmospheric-text-vital">
+                        {Math.floor(systemMetrics.cpuLoad)}%
+                      </span>
                     </div>
                     <Progress value={systemMetrics.cpuLoad} className="h-3 atmospheric-pulse" />
                   </div>
@@ -1215,17 +1338,27 @@ export const ProductionDashboard: Story = {
                   <div>
                     <div className="flex justify-between text-sm mb-2">
                       <span className="atmospheric-text-ghost">Memory Usage</span>
-                      <span className="atmospheric-text-vital">{Math.floor(systemMetrics.memoryUsage)}%</span>
+                      <span className="atmospheric-text-vital">
+                        {Math.floor(systemMetrics.memoryUsage)}%
+                      </span>
                     </div>
-                    <Progress value={systemMetrics.memoryUsage} className="h-3 atmospheric-breathe" />
+                    <Progress
+                      value={systemMetrics.memoryUsage}
+                      className="h-3 atmospheric-breathe"
+                    />
                   </div>
 
                   <div>
                     <div className="flex justify-between text-sm mb-2">
                       <span className="atmospheric-text-ghost">Network Throughput</span>
-                      <span className="atmospheric-text-vital">{Math.floor(systemMetrics.throughput)} req/s</span>
+                      <span className="atmospheric-text-vital">
+                        {Math.floor(systemMetrics.throughput)} req/s
+                      </span>
                     </div>
-                    <Progress value={(systemMetrics.throughput / 1200) * 100} className="h-3 atmospheric-neural" />
+                    <Progress
+                      value={(systemMetrics.throughput / 1200) * 100}
+                      className="h-3 atmospheric-neural"
+                    />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
@@ -1246,7 +1379,9 @@ export const ProductionDashboard: Story = {
               </Container>
 
               <Container alienVariant="cavity" atmospheric neural className="p-6">
-                <h2 className="text-xl font-bold atmospheric-text-vital mb-4">Neural Network Status</h2>
+                <h2 className="text-xl font-bold atmospheric-text-vital mb-4">
+                  Neural Network Status
+                </h2>
                 <div className="h-48 atmospheric-border-organ rounded bg-black/30 relative overflow-hidden">
                   <div className="neural-pathways opacity-30" />
                   <div className="grid grid-cols-8 grid-rows-6 h-full gap-1 p-4">
@@ -1257,14 +1392,20 @@ export const ProductionDashboard: Story = {
                         <div
                           key={i}
                           className={`rounded-full transition-all duration-1000 ${
-                            isActive && intensity > 0.7 ? 'bg-orange-400/80 atmospheric-pulse' :
-                            isActive && intensity > 0.4 ? 'bg-blue-400/60 atmospheric-breathe' :
-                            isActive ? 'bg-purple-400/40' :
-                            'bg-gray-600/20'
+                            isActive && intensity > 0.7
+                              ? 'bg-orange-400/80 atmospheric-pulse'
+                              : isActive && intensity > 0.4
+                                ? 'bg-blue-400/60 atmospheric-breathe'
+                                : isActive
+                                  ? 'bg-purple-400/40'
+                                  : 'bg-gray-600/20'
                           }`}
                           style={{
-                            animation: isActive && intensity > 0.5 ? 'atmospheric-neural 1.5s infinite' : 'none',
-                            animationDelay: `${i * 0.1}s`
+                            animation:
+                              isActive && intensity > 0.5
+                                ? 'atmospheric-neural 1.5s infinite'
+                                : 'none',
+                            animationDelay: `${i * 0.1}s`,
                           }}
                         />
                       );
@@ -1279,7 +1420,6 @@ export const ProductionDashboard: Story = {
 
             {/* Alerts and Controls */}
             <div className="space-y-6">
-              
               <Card variant="alien-membrane" atmospheric>
                 <CardHeader>
                   <CardTitle>System Alerts</CardTitle>
@@ -1287,18 +1427,31 @@ export const ProductionDashboard: Story = {
                 <CardContent>
                   <div className="space-y-3">
                     {alerts.map((alert) => (
-                      <div key={alert.id} className={`p-3 rounded atmospheric-border-vessel ${
-                        alert.level === 'warning' ? 'bg-yellow-400/10 border-yellow-400/30' :
-                        alert.level === 'info' ? 'bg-blue-400/10 border-blue-400/30' :
-                        'bg-green-400/10 border-green-400/30'
-                      }`}>
+                      <div
+                        key={alert.id}
+                        className={`p-3 rounded atmospheric-border-vessel ${
+                          alert.level === 'warning'
+                            ? 'bg-yellow-400/10 border-yellow-400/30'
+                            : alert.level === 'info'
+                              ? 'bg-blue-400/10 border-blue-400/30'
+                              : 'bg-green-400/10 border-green-400/30'
+                        }`}
+                      >
                         <div className="flex items-center gap-2 mb-1">
-                          <span className={
-                            alert.level === 'warning' ? 'text-yellow-400' :
-                            alert.level === 'info' ? 'text-blue-400' :
-                            'text-green-400'
-                          }>
-                            {alert.level === 'warning' ? '⚠️' : alert.level === 'info' ? 'ℹ️' : '✅'}
+                          <span
+                            className={
+                              alert.level === 'warning'
+                                ? 'text-yellow-400'
+                                : alert.level === 'info'
+                                  ? 'text-blue-400'
+                                  : 'text-green-400'
+                            }
+                          >
+                            {alert.level === 'warning'
+                              ? '⚠️'
+                              : alert.level === 'info'
+                                ? 'ℹ️'
+                                : '✅'}
                           </span>
                           <span className="text-xs atmospheric-text-ghost">{alert.timestamp}</span>
                         </div>
@@ -1326,7 +1479,13 @@ export const ProductionDashboard: Story = {
                     <Button variant="membrane" atmospheric size="sm" fullWidth>
                       Run Diagnostics
                     </Button>
-                    <Button variant="neural" atmospheric size="sm" fullWidth className="atmospheric-neural">
+                    <Button
+                      variant="neural"
+                      atmospheric
+                      size="sm"
+                      fullWidth
+                      className="atmospheric-neural"
+                    >
                       Neural Calibration
                     </Button>
                     <Button variant="organism" atmospheric vital size="sm" fullWidth>
@@ -1375,8 +1534,9 @@ export const ProductionDashboard: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Production-ready dashboard interface with real-time system monitoring, performance metrics, and operational controls using alien theme components.'
-      }
-    }
-  }
+        story:
+          'Production-ready dashboard interface with real-time system monitoring, performance metrics, and operational controls using alien theme components.',
+      },
+    },
+  },
 };

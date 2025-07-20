@@ -4,7 +4,7 @@ import { TableToolbar } from './TableToolbar';
 import { Button } from '../Button/Button';
 
 const meta: Meta<typeof TableToolbar> = {
-  title: 'Data Display/TableToolbar',
+  title: 'Core Components/Data Display/Table Toolbar',
   component: TableToolbar,
   args: {
     count: 3,

@@ -4,14 +4,15 @@ import { action } from '@storybook/addon-actions';
 import HUDPanel from './HUDPanel';
 
 const meta: Meta<typeof HUDPanel> = {
-  title: 'Cyberpunk/HUD/HUDPanel',
+  title: 'Themes/Cyberpunk/Components/HUD Panel',
   component: HUDPanel,
   parameters: {
     layout: 'centered',
     backgrounds: { default: 'dark' },
     docs: {
       description: {
-        component: 'Individual HUD panels/widgets with transparent glass-morphism styling, collapsible functionality, and cyberpunk visual effects.',
+        component:
+          'Individual HUD panels/widgets with transparent glass-morphism styling, collapsible functionality, and cyberpunk visual effects.',
       },
     },
   },
@@ -47,7 +48,14 @@ const SampleContent = () => (
     <p style={{ margin: '0 0 8px 0', color: '#fff', fontSize: '0.875rem' }}>
       Neural interface connection established. All systems operational.
     </p>
-    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: '#999' }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        fontSize: '0.75rem',
+        color: '#999',
+      }}
+    >
       <span>Uptime: 14:32:18</span>
       <span>Load: 67%</span>
     </div>
@@ -75,8 +83,14 @@ export const Default: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
-      {(['matrix', 'doom', 'swordfish', 'neon', 'ghost'] as const).map(variant => (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        gap: 20,
+      }}
+    >
+      {(['matrix', 'doom', 'swordfish', 'neon', 'ghost'] as const).map((variant) => (
         <HUDPanel
           key={variant}
           title={`${variant.charAt(0).toUpperCase() + variant.slice(1)} Panel`}
@@ -97,7 +111,7 @@ export const AllVariants: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, alignItems: 'center' }}>
-      {(['sm', 'md', 'lg', 'xl'] as const).map(size => (
+      {(['sm', 'md', 'lg', 'xl'] as const).map((size) => (
         <HUDPanel
           key={size}
           title={`${size.toUpperCase()} Panel`}
@@ -115,8 +129,14 @@ export const Sizes: Story = {
 
 export const StatusIndicators: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 16 }}>
-      {(['online', 'offline', 'warning', 'error', 'loading'] as const).map(status => (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+        gap: 16,
+      }}
+    >
+      {(['online', 'offline', 'warning', 'error', 'loading'] as const).map((status) => (
         <HUDPanel
           key={status}
           title={`${status.charAt(0).toUpperCase() + status.slice(1)} Status`}
@@ -138,7 +158,7 @@ export const StatusIndicators: Story = {
 export const Collapsible: Story = {
   render: () => {
     const [collapsed, setCollapsed] = useState(false);
-    
+
     return (
       <HUDPanel
         title="Collapsible Panel"
@@ -161,7 +181,9 @@ export const Collapsible: Story = {
             This content can be hidden when the panel is collapsed. The panel maintains its header
             while hiding the content area.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, fontSize: '0.75rem' }}>
+          <div
+            style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, fontSize: '0.75rem' }}
+          >
             <div style={{ color: '#999' }}>CPU Usage:</div>
             <div style={{ color: '#39ff14' }}>67%</div>
             <div style={{ color: '#999' }}>Memory:</div>
@@ -197,18 +219,22 @@ export const WithEffects: Story = {
             <span style={{ color: '#fff', fontSize: '0.875rem' }}>Synaptic Load</span>
             <span style={{ color: '#ff1493', fontSize: '0.875rem', fontWeight: 'bold' }}>89%</span>
           </div>
-          <div style={{ 
-            height: 4, 
-            background: '#333', 
-            borderRadius: 2, 
-            overflow: 'hidden' 
-          }}>
-            <div style={{ 
-              width: '89%', 
-              height: '100%', 
-              background: 'linear-gradient(90deg, #ff1493, #6a0dad)',
-              boxShadow: '0 0 8px #ff1493'
-            }} />
+          <div
+            style={{
+              height: 4,
+              background: '#333',
+              borderRadius: 2,
+              overflow: 'hidden',
+            }}
+          >
+            <div
+              style={{
+                width: '89%',
+                height: '100%',
+                background: 'linear-gradient(90deg, #ff1493, #6a0dad)',
+                boxShadow: '0 0 8px #ff1493',
+              }}
+            />
           </div>
         </div>
       </div>
@@ -236,7 +262,7 @@ export const CustomContent: Story = {
             Infiltrate enemy compound and extract valuable intelligence. Exercise extreme caution.
           </p>
         </div>
-        
+
         <div style={{ marginBottom: 16 }}>
           <h5 style={{ margin: '0 0 8px 0', color: '#ff0000', fontSize: '0.875rem' }}>
             Objectives:
@@ -249,15 +275,17 @@ export const CustomContent: Story = {
           </ul>
         </div>
 
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          padding: 8, 
-          background: 'rgba(255, 0, 0, 0.1)', 
-          border: '1px solid #ff0000',
-          borderRadius: 4,
-          fontSize: '0.75rem'
-        }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            padding: 8,
+            background: 'rgba(255, 0, 0, 0.1)',
+            border: '1px solid #ff0000',
+            borderRadius: 4,
+            fontSize: '0.75rem',
+          }}
+        >
           <span style={{ color: '#ff0000' }}>Time Limit:</span>
           <span style={{ color: '#fff', fontWeight: 'bold' }}>23:45:12</span>
         </div>
@@ -268,16 +296,20 @@ export const CustomContent: Story = {
 
 export const Interactive: Story = {
   render: () => {
-    const [variant, setVariant] = useState<'matrix' | 'doom' | 'swordfish' | 'neon' | 'ghost'>('matrix');
+    const [variant, setVariant] = useState<'matrix' | 'doom' | 'swordfish' | 'neon' | 'ghost'>(
+      'matrix',
+    );
     const [enableEffects, setEnableEffects] = useState(true);
-    const [status, setStatus] = useState<'online' | 'offline' | 'warning' | 'error' | 'loading'>('online');
+    const [status, setStatus] = useState<'online' | 'offline' | 'warning' | 'error' | 'loading'>(
+      'online',
+    );
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20, alignItems: 'center' }}>
         {/* Controls */}
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
-          <select 
-            value={variant} 
+          <select
+            value={variant}
             onChange={(e) => setVariant(e.target.value as any)}
             style={{ padding: 4, background: '#333', color: '#fff', border: '1px solid #555' }}
           >
@@ -287,9 +319,9 @@ export const Interactive: Story = {
             <option value="neon">Neon</option>
             <option value="ghost">Ghost</option>
           </select>
-          
-          <select 
-            value={status} 
+
+          <select
+            value={status}
             onChange={(e) => setStatus(e.target.value as any)}
             style={{ padding: 4, background: '#333', color: '#fff', border: '1px solid #555' }}
           >
@@ -301,10 +333,10 @@ export const Interactive: Story = {
           </select>
 
           <label style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: 4 }}>
-            <input 
-              type="checkbox" 
-              checked={enableEffects} 
-              onChange={(e) => setEnableEffects(e.target.checked)} 
+            <input
+              type="checkbox"
+              checked={enableEffects}
+              onChange={(e) => setEnableEffects(e.target.checked)}
             />
             Enable Effects
           </label>

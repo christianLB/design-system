@@ -14,7 +14,7 @@ import { DarkThemeToggle } from '../components/DarkThemeToggle';
 import { ThemeProvider } from '../theme';
 
 const meta: Meta = {
-  title: 'Cyberpunk/Theme Comparison',
+  title: 'Themes/Cyberpunk/Theme Comparison',
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -90,13 +90,13 @@ const sampleData = {
     { label: 'Network', value: 45, color: 'success' },
     { label: 'Storage', value: 67, color: 'info' },
   ],
-  
+
   notifications: [
     { type: 'success', title: 'System Update', message: 'All systems updated successfully' },
     { type: 'warning', title: 'High CPU Usage', message: 'CPU usage is above 80%' },
     { type: 'error', title: 'Connection Lost', message: 'Unable to connect to server' },
   ],
-  
+
   terminals: [
     {
       id: '1',
@@ -117,42 +117,42 @@ export const CompleteComparison: Story = {
   render: () => {
     const [activeTheme, setActiveTheme] = useState('light');
     const [showEffects, setShowEffects] = useState(true);
-    
+
     const themes = [
-      { 
-        id: 'light', 
-        name: 'Light', 
-        icon: '☀️', 
+      {
+        id: 'light',
+        name: 'Light',
+        icon: '☀️',
         description: 'Clean & Professional',
-        bgClass: 'bg-white text-black'
+        bgClass: 'bg-white text-black',
       },
-      { 
-        id: 'dark', 
-        name: 'Dark', 
-        icon: '🌙', 
+      {
+        id: 'dark',
+        name: 'Dark',
+        icon: '🌙',
         description: 'Reduced Eye Strain',
-        bgClass: 'bg-gray-900 text-white'
+        bgClass: 'bg-gray-900 text-white',
       },
-      { 
-        id: 'futuristic', 
-        name: 'Futuristic', 
-        icon: '🚀', 
+      {
+        id: 'futuristic',
+        name: 'Futuristic',
+        icon: '🚀',
         description: 'High-tech Interface',
-        bgClass: 'bg-blue-900 text-cyan-100'
+        bgClass: 'bg-blue-900 text-cyan-100',
       },
-      { 
-        id: 'cyberpunk', 
-        name: 'Cyberpunk', 
-        icon: '⚡', 
+      {
+        id: 'cyberpunk',
+        name: 'Cyberpunk',
+        icon: '⚡',
         description: 'Digital Reality',
-        bgClass: 'bg-black text-green-400'
+        bgClass: 'bg-black text-green-400',
       },
-      { 
-        id: 'alien', 
-        name: 'Alien', 
-        icon: '👽', 
+      {
+        id: 'alien',
+        name: 'Alien',
+        icon: '👽',
         description: 'Biomechanical Interface',
-        bgClass: 'bg-gray-900 text-orange-200'
+        bgClass: 'bg-gray-900 text-orange-200',
       },
     ];
 
@@ -163,7 +163,7 @@ export const CompleteComparison: Story = {
       </div>
     );
 
-    const ThemeDemo = ({ theme }: { theme: typeof themes[0] }) => (
+    const ThemeDemo = ({ theme }: { theme: (typeof themes)[0] }) => (
       <div className={`p-6 rounded-lg border ${theme.bgClass} transition-all duration-300`}>
         <div className="space-y-6">
           {/* Theme Header */}
@@ -176,7 +176,7 @@ export const CompleteComparison: Story = {
           {/* Buttons */}
           <DemoSection title="Buttons">
             <div className="grid grid-cols-2 gap-2">
-              <Button 
+              <Button
                 variant={theme.id === 'cyberpunk' ? 'cyberpunk-matrix' : 'primary'}
                 cyberpunkGlow={theme.id === 'cyberpunk' && showEffects ? 'normal' : undefined}
                 size="sm"
@@ -184,7 +184,7 @@ export const CompleteComparison: Story = {
               >
                 Primary
               </Button>
-              <Button 
+              <Button
                 variant={theme.id === 'cyberpunk' ? 'cyberpunk-doom' : 'secondary'}
                 cyberpunkGlow={theme.id === 'cyberpunk' && showEffects ? 'normal' : undefined}
                 size="sm"
@@ -192,7 +192,7 @@ export const CompleteComparison: Story = {
               >
                 Secondary
               </Button>
-              <Button 
+              <Button
                 variant={theme.id === 'cyberpunk' ? 'cyberpunk-ghost' : 'ghost'}
                 cyberpunkGlow={theme.id === 'cyberpunk' && showEffects ? 'subtle' : undefined}
                 size="sm"
@@ -200,7 +200,7 @@ export const CompleteComparison: Story = {
               >
                 Ghost
               </Button>
-              <Button 
+              <Button
                 variant={theme.id === 'cyberpunk' ? 'cyberpunk-neon' : 'outline'}
                 cyberpunkGlow={theme.id === 'cyberpunk' && showEffects ? 'normal' : undefined}
                 size="sm"
@@ -213,7 +213,7 @@ export const CompleteComparison: Story = {
 
           {/* Cards */}
           <DemoSection title="Cards">
-            <Card 
+            <Card
               variant={theme.id === 'cyberpunk' ? 'cyberpunk-matrix' : 'default'}
               cyberpunkGlow={theme.id === 'cyberpunk' && showEffects ? 'normal' : undefined}
               scanlines={theme.id === 'cyberpunk' && showEffects}
@@ -226,12 +226,17 @@ export const CompleteComparison: Story = {
                   {sampleData.metrics.slice(0, 2).map((metric, i) => (
                     <div key={i} className="flex justify-between items-center text-sm">
                       <span>{metric.label}</span>
-                      <span className={
-                        theme.id === 'cyberpunk' ? 'text-green-400' :
-                        theme.id === 'futuristic' ? 'text-cyan-400' :
-                        theme.id === 'dark' ? 'text-blue-400' :
-                        'text-blue-600'
-                      }>
+                      <span
+                        className={
+                          theme.id === 'cyberpunk'
+                            ? 'text-green-400'
+                            : theme.id === 'futuristic'
+                              ? 'text-cyan-400'
+                              : theme.id === 'dark'
+                                ? 'text-blue-400'
+                                : 'text-blue-600'
+                        }
+                      >
                         {metric.value}%
                       </span>
                     </div>
@@ -253,13 +258,19 @@ export const CompleteComparison: Story = {
                 </Badge>
               </div>
               <Alert variant={theme.id === 'cyberpunk' ? 'cyberpunk-matrix' : 'default'}>
-                <div className={
-                  theme.id === 'cyberpunk' ? 'text-green-400' :
-                  theme.id === 'futuristic' ? 'text-cyan-100' :
-                  ''
-                }>
+                <div
+                  className={
+                    theme.id === 'cyberpunk'
+                      ? 'text-green-400'
+                      : theme.id === 'futuristic'
+                        ? 'text-cyan-100'
+                        : ''
+                  }
+                >
                   <strong>Status Update</strong>
-                  <p className="text-sm mt-1">System operating normally in {theme.name.toLowerCase()} mode.</p>
+                  <p className="text-sm mt-1">
+                    System operating normally in {theme.name.toLowerCase()} mode.
+                  </p>
                 </div>
               </Alert>
             </div>
@@ -269,11 +280,9 @@ export const CompleteComparison: Story = {
           <DemoSection title="Progress">
             <div className="space-y-2">
               <div className="text-sm">Loading progress</div>
-              <Progress 
-                value={67} 
-                className={
-                  theme.id === 'cyberpunk' && showEffects ? 'cyber-glow' : ''
-                }
+              <Progress
+                value={67}
+                className={theme.id === 'cyberpunk' && showEffects ? 'cyber-glow' : ''}
               />
             </div>
           </DemoSection>
@@ -297,10 +306,7 @@ export const CompleteComparison: Story = {
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2">
                     <span className="text-sm">Effects</span>
-                    <Switch
-                      checked={showEffects}
-                      onCheckedChange={setShowEffects}
-                    />
+                    <Switch checked={showEffects} onCheckedChange={setShowEffects} />
                   </div>
                   <DarkThemeToggle />
                 </div>
@@ -326,10 +332,11 @@ export const CompleteComparison: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Side-by-side comparison of all four themes showing how the same components adapt to different visual contexts.'
-      }
-    }
-  }
+        story:
+          'Side-by-side comparison of all four themes showing how the same components adapt to different visual contexts.',
+      },
+    },
+  },
 };
 
 // Interactive Theme Switcher
@@ -337,7 +344,7 @@ export const InteractiveComparison: Story = {
   render: () => {
     const [selectedTheme, setSelectedTheme] = useState('cyberpunk');
     const [componentType, setComponentType] = useState('dashboard');
-    
+
     const themes = [
       { id: 'light', name: 'Light', icon: '☀️' },
       { id: 'dark', name: 'Dark', icon: '🌙' },
@@ -357,19 +364,24 @@ export const InteractiveComparison: Story = {
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {sampleData.metrics.slice(0, 3).map((metric, i) => (
-            <Card 
+            <Card
               key={i}
               variant={selectedTheme === 'cyberpunk' ? 'cyberpunk-matrix' : 'default'}
               cyberpunkGlow={selectedTheme === 'cyberpunk' ? 'normal' : undefined}
               scanlines={selectedTheme === 'cyberpunk'}
             >
               <CardContent className="text-center py-6">
-                <div className={`text-2xl mb-2 ${
-                  selectedTheme === 'cyberpunk' ? 'text-green-400' :
-                  selectedTheme === 'futuristic' ? 'text-cyan-400' :
-                  selectedTheme === 'dark' ? 'text-blue-400' :
-                  'text-blue-600'
-                }`}>
+                <div
+                  className={`text-2xl mb-2 ${
+                    selectedTheme === 'cyberpunk'
+                      ? 'text-green-400'
+                      : selectedTheme === 'futuristic'
+                        ? 'text-cyan-400'
+                        : selectedTheme === 'dark'
+                          ? 'text-blue-400'
+                          : 'text-blue-600'
+                  }`}
+                >
                   {metric.value}%
                 </div>
                 <div className="text-sm">{metric.label}</div>
@@ -378,8 +390,8 @@ export const InteractiveComparison: Story = {
             </Card>
           ))}
         </div>
-        
-        <Card 
+
+        <Card
           variant={selectedTheme === 'cyberpunk' ? 'cyberpunk-doom' : 'default'}
           cyberpunkGlow={selectedTheme === 'cyberpunk' ? 'normal' : undefined}
         >
@@ -390,12 +402,17 @@ export const InteractiveComparison: Story = {
             <div className="space-y-3">
               {sampleData.notifications.map((notif, i) => (
                 <div key={i} className="flex items-center gap-3 p-3 border rounded">
-                  <Badge variant={
-                    selectedTheme === 'cyberpunk' ? 
-                      (notif.type === 'success' ? 'cyberpunk-matrix' : 
-                       notif.type === 'error' ? 'cyberpunk-doom' : 'cyberpunk-neon') :
-                      'default'
-                  }>
+                  <Badge
+                    variant={
+                      selectedTheme === 'cyberpunk'
+                        ? notif.type === 'success'
+                          ? 'cyberpunk-matrix'
+                          : notif.type === 'error'
+                            ? 'cyberpunk-doom'
+                            : 'cyberpunk-neon'
+                        : 'default'
+                    }
+                  >
                     {notif.type}
                   </Badge>
                   <div>
@@ -412,7 +429,7 @@ export const InteractiveComparison: Story = {
 
     const TerminalDemo = () => (
       <Terminal
-        variant={selectedTheme === 'cyberpunk' ? 'matrix' : selectedTheme as any}
+        variant={selectedTheme === 'cyberpunk' ? 'matrix' : (selectedTheme as any)}
         title={`${selectedTheme.toUpperCase()} TERMINAL`}
         height="400px"
         enableScanlines={selectedTheme === 'cyberpunk'}
@@ -423,7 +440,7 @@ export const InteractiveComparison: Story = {
     );
 
     const FormsDemo = () => (
-      <Card 
+      <Card
         variant={selectedTheme === 'cyberpunk' ? 'cyberpunk-matrix' : 'default'}
         cyberpunkGlow={selectedTheme === 'cyberpunk' ? 'normal' : undefined}
       >
@@ -432,14 +449,14 @@ export const InteractiveComparison: Story = {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            <Button 
+            <Button
               variant={selectedTheme === 'cyberpunk' ? 'cyberpunk-matrix' : 'primary'}
               cyberpunkGlow={selectedTheme === 'cyberpunk' ? 'normal' : undefined}
               fullWidth
             >
               Save Changes
             </Button>
-            <Button 
+            <Button
               variant={selectedTheme === 'cyberpunk' ? 'cyberpunk-ghost' : 'secondary'}
               fullWidth
             >
@@ -478,15 +495,17 @@ export const InteractiveComparison: Story = {
             </Button>
           ))}
         </div>
-        
-        <Card 
+
+        <Card
           variant={selectedTheme === 'cyberpunk' ? 'cyberpunk-neon' : 'default'}
           cyberpunkGlow={selectedTheme === 'cyberpunk' ? 'normal' : undefined}
         >
           <CardContent className="py-4">
             <div className="text-center">
               <div className="text-sm opacity-75 mb-2">Current Section</div>
-              <div className="font-semibold">{componentType.charAt(0).toUpperCase() + componentType.slice(1)}</div>
+              <div className="font-semibold">
+                {componentType.charAt(0).toUpperCase() + componentType.slice(1)}
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -495,11 +514,16 @@ export const InteractiveComparison: Story = {
 
     const renderComponent = () => {
       switch (componentType) {
-        case 'dashboard': return <DashboardDemo />;
-        case 'terminal': return <TerminalDemo />;
-        case 'forms': return <FormsDemo />;
-        case 'navigation': return <NavigationDemo />;
-        default: return <DashboardDemo />;
+        case 'dashboard':
+          return <DashboardDemo />;
+        case 'terminal':
+          return <TerminalDemo />;
+        case 'forms':
+          return <FormsDemo />;
+        case 'navigation':
+          return <NavigationDemo />;
+        default:
+          return <DashboardDemo />;
       }
     };
 
@@ -526,7 +550,7 @@ export const InteractiveComparison: Story = {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="flex-1">
                   <h3 className="font-semibold mb-3">Select Component Type</h3>
                   <div className="grid grid-cols-5 gap-2">
@@ -551,24 +575,21 @@ export const InteractiveComparison: Story = {
           <div className="p-6">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
                 {/* Current Selection */}
                 <div className="lg:col-span-2">
                   <Card className="h-full">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <span className="text-2xl">
-                          {themes.find(t => t.id === selectedTheme)?.icon}
+                          {themes.find((t) => t.id === selectedTheme)?.icon}
                         </span>
-                        {themes.find(t => t.id === selectedTheme)?.name} Theme
+                        {themes.find((t) => t.id === selectedTheme)?.name} Theme
                         <span className="text-sm opacity-75">
-                          • {componentTypes.find(t => t.id === componentType)?.name}
+                          • {componentTypes.find((t) => t.id === componentType)?.name}
                         </span>
                       </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      {renderComponent()}
-                    </CardContent>
+                    <CardContent>{renderComponent()}</CardContent>
                   </Card>
                 </div>
 
@@ -581,13 +602,16 @@ export const InteractiveComparison: Story = {
                     <CardContent>
                       <div className="space-y-3 text-sm">
                         <div>
-                          <strong>Active Theme:</strong> {themes.find(t => t.id === selectedTheme)?.name}
+                          <strong>Active Theme:</strong>{' '}
+                          {themes.find((t) => t.id === selectedTheme)?.name}
                         </div>
                         <div>
-                          <strong>Component:</strong> {componentTypes.find(t => t.id === componentType)?.name}
+                          <strong>Component:</strong>{' '}
+                          {componentTypes.find((t) => t.id === componentType)?.name}
                         </div>
                         <div>
-                          <strong>Effects:</strong> {selectedTheme === 'cyberpunk' ? 'Enabled' : 'Disabled'}
+                          <strong>Effects:</strong>{' '}
+                          {selectedTheme === 'cyberpunk' ? 'Enabled' : 'Disabled'}
                         </div>
                         <div>
                           <strong>Accessibility:</strong> WCAG AA Compliant
@@ -603,7 +627,10 @@ export const InteractiveComparison: Story = {
                     <CardContent className="text-sm">
                       {selectedTheme === 'light' && (
                         <div>
-                          <p><strong>Light Theme</strong> provides a clean, professional appearance suitable for business applications and long reading sessions.</p>
+                          <p>
+                            <strong>Light Theme</strong> provides a clean, professional appearance
+                            suitable for business applications and long reading sessions.
+                          </p>
                           <ul className="mt-2 space-y-1 list-disc list-inside">
                             <li>High contrast text on light backgrounds</li>
                             <li>Subtle color accents</li>
@@ -613,7 +640,10 @@ export const InteractiveComparison: Story = {
                       )}
                       {selectedTheme === 'dark' && (
                         <div>
-                          <p><strong>Dark Theme</strong> reduces eye strain in low-light environments while maintaining professional aesthetics.</p>
+                          <p>
+                            <strong>Dark Theme</strong> reduces eye strain in low-light environments
+                            while maintaining professional aesthetics.
+                          </p>
                           <ul className="mt-2 space-y-1 list-disc list-inside">
                             <li>Dark backgrounds with light text</li>
                             <li>Reduced blue light emission</li>
@@ -623,7 +653,10 @@ export const InteractiveComparison: Story = {
                       )}
                       {selectedTheme === 'futuristic' && (
                         <div>
-                          <p><strong>Futuristic Theme</strong> combines modern aesthetics with subtle high-tech elements.</p>
+                          <p>
+                            <strong>Futuristic Theme</strong> combines modern aesthetics with subtle
+                            high-tech elements.
+                          </p>
                           <ul className="mt-2 space-y-1 list-disc list-inside">
                             <li>Cool color palette</li>
                             <li>Subtle glow effects</li>
@@ -633,7 +666,10 @@ export const InteractiveComparison: Story = {
                       )}
                       {selectedTheme === 'cyberpunk' && (
                         <div>
-                          <p><strong>Cyberpunk Theme</strong> creates an immersive digital reality experience with dramatic visual effects.</p>
+                          <p>
+                            <strong>Cyberpunk Theme</strong> creates an immersive digital reality
+                            experience with dramatic visual effects.
+                          </p>
                           <ul className="mt-2 space-y-1 list-disc list-inside">
                             <li>Neon glow effects</li>
                             <li>Matrix-inspired colors</li>
@@ -655,17 +691,18 @@ export const InteractiveComparison: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Interactive theme comparison tool allowing real-time switching between themes and component types to see how they adapt.'
-      }
-    }
-  }
+        story:
+          'Interactive theme comparison tool allowing real-time switching between themes and component types to see how they adapt.',
+      },
+    },
+  },
 };
 
 // Performance Comparison
 export const PerformanceComparison: Story = {
   render: () => {
     const [showMetrics, setShowMetrics] = useState(true);
-    
+
     const themePerformance = [
       {
         theme: 'Light',
@@ -675,7 +712,7 @@ export const PerformanceComparison: Story = {
         renderTime: '8ms',
         animationFrames: '60fps',
         features: ['Standard CSS', 'No effects', 'Minimal JS'],
-        score: 95
+        score: 95,
       },
       {
         theme: 'Dark',
@@ -685,7 +722,7 @@ export const PerformanceComparison: Story = {
         renderTime: '9ms',
         animationFrames: '60fps',
         features: ['Dark CSS vars', 'No effects', 'Minimal JS'],
-        score: 94
+        score: 94,
       },
       {
         theme: 'Futuristic',
@@ -695,7 +732,7 @@ export const PerformanceComparison: Story = {
         renderTime: '12ms',
         animationFrames: '60fps',
         features: ['Glow effects', 'CSS filters', 'Transitions'],
-        score: 87
+        score: 87,
       },
       {
         theme: 'Cyberpunk',
@@ -705,15 +742,14 @@ export const PerformanceComparison: Story = {
         renderTime: '15ms',
         animationFrames: '58fps',
         features: ['All effects', 'Animations', 'Complex CSS'],
-        score: 78
-      }
+        score: 78,
+      },
     ];
 
     return (
       <ThemeProvider>
         <div className="min-h-screen bg-background text-foreground p-6">
           <div className="max-w-7xl mx-auto space-y-8">
-            
             <div className="text-center">
               <h1 className="text-3xl font-bold mb-4">Theme Performance Comparison</h1>
               <p className="text-muted-foreground">
@@ -732,11 +768,9 @@ export const PerformanceComparison: Story = {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="text-3xl font-bold text-primary">
-                      {perf.score}
-                    </div>
+                    <div className="text-3xl font-bold text-primary">{perf.score}</div>
                     <div className="text-sm text-muted-foreground">Performance Score</div>
-                    
+
                     {showMetrics && (
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
@@ -757,7 +791,7 @@ export const PerformanceComparison: Story = {
                         </div>
                       </div>
                     )}
-                    
+
                     <Progress value={perf.score} className="h-2" />
                   </CardContent>
                 </Card>
@@ -769,10 +803,7 @@ export const PerformanceComparison: Story = {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Detailed Performance Metrics</CardTitle>
-                  <Switch
-                    checked={showMetrics}
-                    onCheckedChange={setShowMetrics}
-                  />
+                  <Switch checked={showMetrics} onCheckedChange={setShowMetrics} />
                 </div>
               </CardHeader>
               <CardContent>
@@ -834,11 +865,17 @@ export const PerformanceComparison: Story = {
                 <CardContent className="space-y-3 text-sm">
                   <div>
                     <strong className="text-green-600">✓ For Maximum Performance:</strong>
-                    <p>Use Light or Dark themes for business applications requiring optimal performance.</p>
+                    <p>
+                      Use Light or Dark themes for business applications requiring optimal
+                      performance.
+                    </p>
                   </div>
                   <div>
                     <strong className="text-blue-600">✓ For Balanced Experience:</strong>
-                    <p>Futuristic theme provides modern aesthetics with reasonable performance overhead.</p>
+                    <p>
+                      Futuristic theme provides modern aesthetics with reasonable performance
+                      overhead.
+                    </p>
                   </div>
                   <div>
                     <strong className="text-purple-600">✓ For Visual Impact:</strong>
@@ -893,9 +930,10 @@ export const PerformanceComparison: Story = {
               <div>
                 <strong>Performance Recommendations</strong>
                 <p className="text-sm mt-2">
-                  All themes are optimized for modern browsers and devices. The cyberpunk theme uses 
-                  hardware acceleration where possible and automatically reduces effects on lower-end devices. 
-                  Enable reduced motion preferences for users with vestibular disorders or performance constraints.
+                  All themes are optimized for modern browsers and devices. The cyberpunk theme uses
+                  hardware acceleration where possible and automatically reduces effects on
+                  lower-end devices. Enable reduced motion preferences for users with vestibular
+                  disorders or performance constraints.
                 </p>
               </div>
             </Alert>
@@ -908,8 +946,9 @@ export const PerformanceComparison: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Performance comparison showing resource usage, load times, and optimization recommendations for each theme.'
-      }
-    }
-  }
+        story:
+          'Performance comparison showing resource usage, load times, and optimization recommendations for each theme.',
+      },
+    },
+  },
 };

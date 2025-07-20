@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { InputField } from './InputField';
 
 const meta: Meta<typeof InputField> = {
-  title: 'Inputs/InputField',
+  title: 'Core Components/Forms/Input Field',
   component: InputField,
   argTypes: {
     layout: { control: 'select', options: ['vertical', 'inline'] },
@@ -17,13 +17,7 @@ type Story = StoryObj<typeof InputField>;
 export const Default: Story = {
   render: (args) => {
     const [val, setVal] = useState('');
-    return (
-      <InputField
-        {...args}
-        value={val}
-        onChange={(e) => setVal(e.target.value)}
-      />
-    );
+    return <InputField {...args} value={val} onChange={(e) => setVal(e.target.value)} />;
   },
   args: { id: 'name', label: 'Name', placeholder: 'Jane' },
 };
@@ -32,12 +26,7 @@ export const WithError: Story = {
   render: (args) => {
     const [val, setVal] = useState('');
     return (
-      <InputField
-        {...args}
-        value={val}
-        onChange={(e) => setVal(e.target.value)}
-        error="Required"
-      />
+      <InputField {...args} value={val} onChange={(e) => setVal(e.target.value)} error="Required" />
     );
   },
   args: { id: 'email', label: 'Email' },

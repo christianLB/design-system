@@ -3,13 +3,19 @@ import React from 'react';
 import { Carousel } from './Carousel';
 
 const items = [
-  <div className="p-4 bg-gray-200" key="1">Slide 1</div>,
-  <div className="p-4 bg-gray-300" key="2">Slide 2</div>,
-  <div className="p-4 bg-gray-400" key="3">Slide 3</div>,
+  <div className="p-4 bg-gray-200" key="1">
+    Slide 1
+  </div>,
+  <div className="p-4 bg-gray-300" key="2">
+    Slide 2
+  </div>,
+  <div className="p-4 bg-gray-400" key="3">
+    Slide 3
+  </div>,
 ];
 
 const meta: Meta<typeof Carousel> = {
-  title: 'Components/Carousel',
+  title: 'Core Components/Media/Carousel',
   component: Carousel,
   args: {
     items,

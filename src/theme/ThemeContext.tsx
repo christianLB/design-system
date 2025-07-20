@@ -3,7 +3,7 @@ import type { BuiltTheme, ThemeVariant } from './builder/types';
 import { ThemeBuilder } from './builder/ThemeBuilder';
 import { getVariantClassNames, getVariantCSSProperties } from './builder/variants';
 
-export type Theme = 'light' | 'dark' | 'futuristic' | 'cyberpunk' | 'alien';
+export type Theme = 'light' | 'dark' | 'futuristic' | 'cyberpunk' | 'alien' | 'mirtha';
 const THEME_KEY = 'vite-ui-theme';
 const THEME_VARIANT_KEY = 'vite-ui-theme-variant';
 const CUSTOM_THEME_KEY = 'vite-ui-custom-theme';
@@ -27,18 +27,28 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   // Initialize base theme
   const [theme, setThemeState] = useState<Theme>(() => {
     const stored = localStorage.getItem(THEME_KEY) as Theme | null;
-    if (stored === 'light' || stored === 'dark' || stored === 'futuristic' || stored === 'cyberpunk' || stored === 'alien') {
+    if (
+      stored === 'light' ||
+      stored === 'dark' ||
+      stored === 'futuristic' ||
+      stored === 'cyberpunk' ||
+      stored === 'alien' ||
+      stored === 'mirtha'
+    ) {
       return stored;
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
 
   // Initialize theme variant
   const [variant, setVariantState] = useState<ThemeVariant>(() => {
     const stored = localStorage.getItem(THEME_VARIANT_KEY) as ThemeVariant | null;
-    if (stored === 'default' || stored === 'compact' || stored === 'comfortable' || stored === 'high-contrast') {
+    if (
+      stored === 'default' ||
+      stored === 'compact' ||
+      stored === 'comfortable' ||
+      stored === 'high-contrast'
+    ) {
       return stored;
     }
     return 'default';
@@ -73,15 +83,29 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const root = window.document.documentElement;
 
     // Remove old theme classes and data-theme attribute
-    root.classList.remove('light', 'dark', 'futuristic', 'cyberpunk', 'alien');
+    root.classList.remove('light', 'dark', 'futuristic', 'cyberpunk', 'alien', 'mirtha');
     root.removeAttribute('data-theme');
-    
+
     // Remove old variant classes
-    const oldVariantClasses = ['theme-default', 'theme-compact', 'theme-comfortable', 'theme-high-contrast', 'theme-dense', 'theme-spacious', 'theme-accessible'];
+    const oldVariantClasses = [
+      'theme-default',
+      'theme-compact',
+      'theme-comfortable',
+      'theme-high-contrast',
+      'theme-dense',
+      'theme-spacious',
+      'theme-accessible',
+    ];
     root.classList.remove(...oldVariantClasses);
 
     // Apply base theme
-    if (theme === 'dark' || theme === 'futuristic' || theme === 'cyberpunk' || theme === 'alien') {
+    if (
+      theme === 'dark' ||
+      theme === 'futuristic' ||
+      theme === 'cyberpunk' ||
+      theme === 'alien' ||
+      theme === 'mirtha'
+    ) {
       root.classList.add(theme);
       root.setAttribute('data-theme', theme);
     } else {
@@ -118,12 +142,12 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   // Theme management functions
   const setTheme = (newTheme: Theme) => {
     // Validate that newTheme is a valid theme name
-    const validThemes: Theme[] = ['light', 'dark', 'futuristic', 'cyberpunk', 'alien'];
+    const validThemes: Theme[] = ['light', 'dark', 'futuristic', 'cyberpunk', 'alien', 'mirtha'];
     if (typeof newTheme !== 'string' || !validThemes.includes(newTheme)) {
       console.error(`Invalid theme: ${newTheme}. Expected one of: ${validThemes.join(', ')}`);
       return;
     }
-    
+
     localStorage.setItem(THEME_KEY, newTheme);
     setThemeState(newTheme);
   };
@@ -135,7 +159,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       console.error(`Invalid variant: ${newVariant}. Expected one of: ${validVariants.join(', ')}`);
       return;
     }
-    
+
     localStorage.setItem(THEME_VARIANT_KEY, newVariant);
     setVariantState(newVariant);
   };
@@ -167,8 +191,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     setTheme('light');
   };
 
-  const value = { 
-    theme, 
+  const value = {
+    theme,
     variant,
     customTheme,
     activeTheme,
@@ -177,14 +201,10 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     setVariant,
     setCustomTheme,
     applyThemeBuilder,
-    resetToDefault
+    resetToDefault,
   };
 
-  return (
-    <ThemeProviderContext.Provider value={value}>
-      {children}
-    </ThemeProviderContext.Provider>
-  );
+  return <ThemeProviderContext.Provider value={value}>{children}</ThemeProviderContext.Provider>;
 };
 
 export const useTheme = () => {

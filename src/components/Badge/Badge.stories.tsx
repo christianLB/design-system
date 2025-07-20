@@ -4,7 +4,7 @@ void React;
 import { Badge } from './Badge';
 
 const meta: Meta<typeof Badge> = {
-  title: 'Data Display/Badge',
+  title: 'Core Components/Data Display/Badge',
   component: Badge,
   args: {
     children: 'Badge',

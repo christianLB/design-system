@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { TextAreaField } from './TextAreaField';
 
 const meta: Meta<typeof TextAreaField> = {
-  title: 'Inputs/TextAreaField',
+  title: 'Core Components/Forms/Textarea Field',
   component: TextAreaField,
   argTypes: { error: { control: 'text' }, autoGrow: { control: 'boolean' } },
 };
@@ -19,7 +19,11 @@ export const Default: Story = {
 
 export const WithReactHookForm: Story = {
   render: (args) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<{ bio: string }>();
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<{ bio: string }>();
     return (
       <form onSubmit={handleSubmit(() => {})} className="space-y-2">
         <TextAreaField
@@ -27,7 +31,9 @@ export const WithReactHookForm: Story = {
           {...register('bio', { required: 'Required' })}
           error={errors.bio?.message}
         />
-        <button type="submit" className="btn">Submit</button>
+        <button type="submit" className="btn">
+          Submit
+        </button>
       </form>
     );
   },

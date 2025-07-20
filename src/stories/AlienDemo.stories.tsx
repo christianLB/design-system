@@ -10,7 +10,7 @@ import { Terminal } from '../components/Terminal/Terminal';
 import { HUD, HUDPanel, HUDMetric, HUDRadar } from '../components/HUD';
 
 const meta: Meta = {
-  title: 'Alien/Demo',
+  title: 'Themes/Alien/Demo',
   parameters: {
     layout: 'fullscreen',
     docs: {

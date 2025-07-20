@@ -118,27 +118,53 @@ const AlienIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const MirthaIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    {/* Crown for elegance */}
+    <path d="M5 6 L8 3 L12 5 L16 3 L19 6 L17 9 L7 9 Z" />
+    {/* Golden star */}
+    <polygon
+      points="12 10 13.5 13 17 13.5 14.5 16 15 19.5 12 18 9 19.5 9.5 16 7 13.5 10.5 13 12 10"
+      fill="currentColor"
+    />
+    {/* Elegant flourishes */}
+    <path d="M3 8 Q2 10 3 12" />
+    <path d="M21 8 Q22 10 21 12" />
+  </svg>
+);
+
 export const DarkThemeToggle = () => {
   const { theme, setTheme } = useTheme();
 
   // Define the theme rotation order
-  const themeOrder = ['light', 'dark', 'futuristic', 'cyberpunk', 'alien'] as const;
-  
+  const themeOrder = ['light', 'dark', 'futuristic', 'cyberpunk', 'alien', 'mirtha'] as const;
+
   const toggleTheme = () => {
     console.log('Current theme:', theme);
     console.log('Theme type:', typeof theme);
-    
+
     // Find current theme index and get next theme
-    const currentIndex = themeOrder.findIndex(t => t === theme);
+    const currentIndex = themeOrder.findIndex((t) => t === theme);
     console.log('Current index:', currentIndex);
-    
+
     const nextIndex = (currentIndex + 1) % themeOrder.length;
     const nextTheme = themeOrder[nextIndex];
-    
+
     console.log('Next index:', nextIndex);
     console.log('Next theme:', nextTheme);
     console.log('Theme order:', themeOrder);
-    
+
     setTheme(nextTheme);
   };
 
@@ -148,12 +174,23 @@ export const DarkThemeToggle = () => {
       case 'light':
         return { icon: <MoonIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Dark' };
       case 'dark':
-        return { icon: <StarIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Futuristic' };
+        return {
+          icon: <StarIcon className="h-[1.2rem] w-[1.2rem]" />,
+          label: 'Switch to Futuristic',
+        };
       case 'futuristic':
-        return { icon: <CyberpunkIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Cyberpunk' };
+        return {
+          icon: <CyberpunkIcon className="h-[1.2rem] w-[1.2rem]" />,
+          label: 'Switch to Cyberpunk',
+        };
       case 'cyberpunk':
         return { icon: <AlienIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Alien' };
       case 'alien':
+        return {
+          icon: <MirthaIcon className="h-[1.2rem] w-[1.2rem]" />,
+          label: 'Switch to Mirtha',
+        };
+      case 'mirtha':
         return { icon: <SunIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch to Light' };
       default:
         return { icon: <SunIcon className="h-[1.2rem] w-[1.2rem]" />, label: 'Switch Theme' };

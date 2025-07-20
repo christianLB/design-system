@@ -4,7 +4,7 @@ void React;
 import { Checkbox } from './Checkbox';
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'Inputs/Checkbox',
+  title: 'Core Components/Forms/Checkbox',
   component: Checkbox,
   args: {
     label: 'Accept terms',

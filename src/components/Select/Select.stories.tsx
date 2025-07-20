@@ -3,7 +3,7 @@ import React from 'react';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from './Select';
 
 const meta: Meta<typeof Select> = {
-  title: 'Inputs/Select',
+  title: 'Core Components/Forms/Select',
   component: Select,
 };
 export default meta;

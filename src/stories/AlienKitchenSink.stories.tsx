@@ -15,7 +15,7 @@ import { Alert } from '../components/Alert';
 import { ThemeProvider } from '../theme';
 
 const meta: Meta = {
-  title: 'Alien/Kitchen Sink',
+  title: 'Themes/Alien/Kitchen Sink',
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -67,7 +67,8 @@ const generateOrganismMetrics = () => ({
   membraneIntegrity: Math.floor(Math.random() * 10) + 90, // 90-100%
   coreTemperature: (Math.random() * 4 + 35).toFixed(1), // 35-39°C
   circulationFlow: (Math.random() * 2 + 4.5).toFixed(1), // 4.5-6.5 L/min
-  consciousnessLevel: Math.random() > 0.7 ? 'TRANSCENDENT' : Math.random() > 0.3 ? 'AWAKE' : 'DORMANT',
+  consciousnessLevel:
+    Math.random() > 0.7 ? 'TRANSCENDENT' : Math.random() > 0.3 ? 'AWAKE' : 'DORMANT',
 });
 
 const generateGeneticData = () => ({
@@ -89,10 +90,31 @@ const generateShipSystems = () => ({
 
 const generateNeuralNodes = () => [
   { id: '1', x: 0.3, y: -0.2, type: 'friendly' as const, label: 'Synaptic Core', status: 'active' },
-  { id: '2', x: -0.4, y: 0.3, type: 'hostile' as const, label: 'Neural Barrier', status: 'blocking' },
+  {
+    id: '2',
+    x: -0.4,
+    y: 0.3,
+    type: 'hostile' as const,
+    label: 'Neural Barrier',
+    status: 'blocking',
+  },
   { id: '3', x: 0.6, y: 0.2, type: 'neutral' as const, label: 'Memory Bank', status: 'accessing' },
-  { id: '4', x: -0.3, y: -0.5, type: 'objective' as const, label: 'Consciousness', status: 'linked' },
-  { id: '5', x: 0.2, y: 0.6, type: 'friendly' as const, label: 'Neural Bridge', status: 'synchronized' },
+  {
+    id: '4',
+    x: -0.3,
+    y: -0.5,
+    type: 'objective' as const,
+    label: 'Consciousness',
+    status: 'linked',
+  },
+  {
+    id: '5',
+    x: 0.2,
+    y: 0.6,
+    type: 'friendly' as const,
+    label: 'Neural Bridge',
+    status: 'synchronized',
+  },
 ];
 
 const biomedicalCommands = [
@@ -240,8 +262,8 @@ export const BiomedicalDashboard: Story = {
       const interval = setInterval(() => {
         if (isMonitoring) {
           setOrganismData(generateOrganismMetrics);
-          setEvolutionProgress(prev => Math.min(100, prev + Math.random() * 0.5));
-          setCellularActivity(prev => prev + Math.floor(Math.random() * 10000 - 5000));
+          setEvolutionProgress((prev) => Math.min(100, prev + Math.random() * 0.5));
+          setCellularActivity((prev) => prev + Math.floor(Math.random() * 10000 - 5000));
         }
       }, 2000);
 
@@ -269,7 +291,9 @@ export const BiomedicalDashboard: Story = {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="atmospheric-text-ghost">Respiratory Rate:</span>
-                    <span className="atmospheric-text-vital">{organismData.respiratoryRate} BPM</span>
+                    <span className="atmospheric-text-vital">
+                      {organismData.respiratoryRate} BPM
+                    </span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="atmospheric-text-ghost">Neural Activity:</span>
@@ -281,10 +305,15 @@ export const BiomedicalDashboard: Story = {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="atmospheric-text-ghost">Consciousness:</span>
-                    <span className={`text-sm ${
-                      organismData.consciousnessLevel === 'TRANSCENDENT' ? 'atmospheric-text-vital' :
-                      organismData.consciousnessLevel === 'AWAKE' ? 'text-green-400' : 'text-gray-400'
-                    }`}>
+                    <span
+                      className={`text-sm ${
+                        organismData.consciousnessLevel === 'TRANSCENDENT'
+                          ? 'atmospheric-text-vital'
+                          : organismData.consciousnessLevel === 'AWAKE'
+                            ? 'text-green-400'
+                            : 'text-gray-400'
+                      }`}
+                    >
                       {organismData.consciousnessLevel}
                     </span>
                   </div>
@@ -301,9 +330,7 @@ export const BiomedicalDashboard: Story = {
           >
             <Container alienVariant="organ" atmospheric neural className="min-w-[300px]">
               <div className="p-4 space-y-3">
-                <h3 className="text-lg font-bold atmospheric-text-vital">
-                  CELLULAR MATRIX
-                </h3>
+                <h3 className="text-lg font-bold atmospheric-text-vital">CELLULAR MATRIX</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between text-sm">
                     <span className="atmospheric-text-ghost">Cell Division:</span>
@@ -311,8 +338,8 @@ export const BiomedicalDashboard: Story = {
                       {(cellularActivity / 1000000).toFixed(1)}M ops/sec
                     </span>
                   </div>
-                  <Progress 
-                    value={organismData.membraneIntegrity} 
+                  <Progress
+                    value={organismData.membraneIntegrity}
                     className="h-2 atmospheric-breathe"
                   />
                   <div className="text-xs atmospheric-text-ghost">
@@ -320,7 +347,9 @@ export const BiomedicalDashboard: Story = {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="atmospheric-text-ghost">Circulation:</span>
-                    <span className="atmospheric-text-vital">{organismData.circulationFlow} L/min</span>
+                    <span className="atmospheric-text-vital">
+                      {organismData.circulationFlow} L/min
+                    </span>
                   </div>
                 </div>
               </div>
@@ -347,13 +376,21 @@ export const BiomedicalDashboard: Story = {
                   <div className="space-y-1 text-xs">
                     <div className="flex justify-between">
                       <span className="atmospheric-text-ghost">Adaptation:</span>
-                      <span className={evolutionProgress > 70 ? 'atmospheric-text-vital' : 'text-gray-400'}>
+                      <span
+                        className={
+                          evolutionProgress > 70 ? 'atmospheric-text-vital' : 'text-gray-400'
+                        }
+                      >
                         {evolutionProgress > 70 ? 'ACTIVE' : 'DORMANT'}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="atmospheric-text-ghost">Transcendence:</span>
-                      <span className={evolutionProgress > 85 ? 'atmospheric-text-vital' : 'text-gray-400'}>
+                      <span
+                        className={
+                          evolutionProgress > 85 ? 'atmospheric-text-vital' : 'text-gray-400'
+                        }
+                      >
                         {evolutionProgress > 85 ? 'IMMINENT' : 'PREPARING'}
                       </span>
                     </div>
@@ -383,13 +420,21 @@ export const BiomedicalDashboard: Story = {
 
           {/* Central Control Interface */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <Container alienVariant="organism" atmospheric vital neural className="min-w-[400px] max-w-[500px]">
+            <Container
+              alienVariant="organism"
+              atmospheric
+              vital
+              neural
+              className="min-w-[400px] max-w-[500px]"
+            >
               <div className="p-6 text-center space-y-4">
                 <h1 className="text-3xl font-bold atmospheric-text-vital atmospheric-breathe">
                   BIOMEDICAL COMMAND
                 </h1>
                 <div className="space-y-3">
-                  <div className={`text-2xl ${isMonitoring ? 'atmospheric-text-vital' : 'text-gray-400'}`}>
+                  <div
+                    className={`text-2xl ${isMonitoring ? 'atmospheric-text-vital' : 'text-gray-400'}`}
+                  >
                     {isMonitoring ? '🫀 ORGANISM ACTIVE' : '💤 ORGANISM DORMANT'}
                   </div>
                   <div className="flex gap-3 justify-center">
@@ -405,7 +450,7 @@ export const BiomedicalDashboard: Story = {
                     <Button
                       variant="neural"
                       atmospheric
-                      onClick={() => setEvolutionProgress(prev => Math.min(100, prev + 5))}
+                      onClick={() => setEvolutionProgress((prev) => Math.min(100, prev + 5))}
                     >
                       ACCELERATE EVOLUTION
                     </Button>
@@ -439,10 +484,11 @@ export const BiomedicalDashboard: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Complete biomedical dashboard monitoring a living organism with real-time vital signs, cellular activity, neural pathways, and evolution progress.'
-      }
-    }
-  }
+        story:
+          'Complete biomedical dashboard monitoring a living organism with real-time vital signs, cellular activity, neural pathways, and evolution progress.',
+      },
+    },
+  },
 };
 
 // Neural Interface Terminal Story
@@ -454,7 +500,7 @@ export const NeuralInterfaceTerminal: Story = {
       consciousness: 'EXPANDING',
       pathways: 2847,
       memoryAccess: 67,
-      cognition: 134
+      cognition: 134,
     });
     const [isLinked, setIsLinked] = useState(false);
     const [linkDepth, setLinkDepth] = useState(34);
@@ -462,16 +508,22 @@ export const NeuralInterfaceTerminal: Story = {
     useEffect(() => {
       const interval = setInterval(() => {
         if (isLinked) {
-          setNeuralMetrics(prev => ({
+          setNeuralMetrics((prev) => ({
             ...prev,
             synapticRate: Math.floor(Math.random() * 200) + 750,
             pathways: prev.pathways + Math.floor(Math.random() * 100 - 50),
             memoryAccess: Math.min(100, prev.memoryAccess + Math.random() * 3),
             cognition: Math.min(200, prev.cognition + Math.random() * 5),
-            coherence: prev.memoryAccess > 80 ? 'TRANSCENDENT' : prev.memoryAccess > 60 ? 'HIGH' : 'MODERATE',
-            consciousness: prev.cognition > 150 ? 'TRANSCENDENT' : prev.cognition > 120 ? 'EXPANDING' : 'AWAKE'
+            coherence:
+              prev.memoryAccess > 80
+                ? 'TRANSCENDENT'
+                : prev.memoryAccess > 60
+                  ? 'HIGH'
+                  : 'MODERATE',
+            consciousness:
+              prev.cognition > 150 ? 'TRANSCENDENT' : prev.cognition > 120 ? 'EXPANDING' : 'AWAKE',
           }));
-          setLinkDepth(prev => Math.min(100, prev + Math.random() * 2));
+          setLinkDepth((prev) => Math.min(100, prev + Math.random() * 2));
         }
       }, 1500);
 
@@ -492,25 +544,31 @@ export const NeuralInterfaceTerminal: Story = {
                 <h1 className="text-3xl font-bold atmospheric-text-vital atmospheric-breathe">
                   NEURAL INTERFACE TERMINAL
                 </h1>
-                <p className="atmospheric-text-ghost">Deep Consciousness Connection • Synaptic Manipulation Protocol</p>
+                <p className="atmospheric-text-ghost">
+                  Deep Consciousness Connection • Synaptic Manipulation Protocol
+                </p>
               </div>
               <div className="flex items-center gap-4">
                 <Badge variant="membrane" atmospheric vital={isLinked}>
                   {isLinked ? 'NEURAL LINK ACTIVE' : 'STANDBY MODE'}
                 </Badge>
                 <div className="text-xs atmospheric-text-ghost">
-                  <div>LINK DEPTH: <span className="atmospheric-text-vital">{Math.floor(linkDepth)}%</span></div>
-                  <div>COHERENCE: <span className="atmospheric-text-vital">{neuralMetrics.coherence}</span></div>
+                  <div>
+                    LINK DEPTH:{' '}
+                    <span className="atmospheric-text-vital">{Math.floor(linkDepth)}%</span>
+                  </div>
+                  <div>
+                    COHERENCE:{' '}
+                    <span className="atmospheric-text-vital">{neuralMetrics.coherence}</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="p-6 grid grid-cols-1 xl:grid-cols-3 gap-6 h-[calc(100vh-120px)]">
-            
             {/* Main Neural Interface */}
             <div className="xl:col-span-2 space-y-6">
-              
               {/* Primary Terminal */}
               <Terminal
                 variant="matrix"
@@ -522,10 +580,12 @@ export const NeuralInterfaceTerminal: Story = {
                 enableTypewriter
                 className="atmospheric-border-organ"
               />
-              
+
               {/* Secondary Neural Console */}
               <Container alienVariant="chamber" atmospheric neural className="h-64 p-4">
-                <h3 className="font-bold atmospheric-text-vital mb-4">SYNAPTIC ACTIVITY VISUALIZATION</h3>
+                <h3 className="font-bold atmospheric-text-vital mb-4">
+                  SYNAPTIC ACTIVITY VISUALIZATION
+                </h3>
                 <div className="h-40 relative atmospheric-border-cavity rounded bg-black/30 overflow-hidden">
                   <div className="neural-pathways opacity-40"></div>
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -536,12 +596,15 @@ export const NeuralInterfaceTerminal: Story = {
                           <div
                             key={i}
                             className={`rounded-full ${
-                              intensity > 0.7 ? 'bg-orange-400/80 atmospheric-pulse' :
-                              intensity > 0.4 ? 'bg-blue-400/60 atmospheric-breathe' :
-                              'bg-gray-600/40'
+                              intensity > 0.7
+                                ? 'bg-orange-400/80 atmospheric-pulse'
+                                : intensity > 0.4
+                                  ? 'bg-blue-400/60 atmospheric-breathe'
+                                  : 'bg-gray-600/40'
                             } transition-all duration-1000`}
                             style={{
-                              animation: intensity > 0.5 ? 'atmospheric-neural 2s infinite' : 'none'
+                              animation:
+                                intensity > 0.5 ? 'atmospheric-neural 2s infinite' : 'none',
                             }}
                           />
                         );
@@ -549,7 +612,8 @@ export const NeuralInterfaceTerminal: Story = {
                     </div>
                   </div>
                   <div className="absolute top-2 left-2 text-xs atmospheric-text-vital">
-                    Neural Activity: {neuralMetrics.synapticRate} Hz • {neuralMetrics.pathways} pathways active
+                    Neural Activity: {neuralMetrics.synapticRate} Hz • {neuralMetrics.pathways}{' '}
+                    pathways active
                   </div>
                 </div>
               </Container>
@@ -557,7 +621,6 @@ export const NeuralInterfaceTerminal: Story = {
 
             {/* Side Panel - Neural Status */}
             <div className="space-y-6">
-              
               {/* Consciousness Metrics */}
               <Container alienVariant="organ" atmospheric vital className="p-4">
                 <h3 className="font-bold atmospheric-text-vital mb-4">CONSCIOUSNESS STATE</h3>
@@ -566,19 +629,32 @@ export const NeuralInterfaceTerminal: Story = {
                     <span className="atmospheric-text-ghost">Synaptic Rate:</span>
                     <span className="atmospheric-text-vital">{neuralMetrics.synapticRate} Hz</span>
                   </div>
-                  <Progress value={(neuralMetrics.synapticRate / 1000) * 100} className="h-2 atmospheric-neural" />
-                  
+                  <Progress
+                    value={(neuralMetrics.synapticRate / 1000) * 100}
+                    className="h-2 atmospheric-neural"
+                  />
+
                   <div className="flex justify-between text-sm">
                     <span className="atmospheric-text-ghost">Memory Access:</span>
-                    <span className="atmospheric-text-vital">{Math.floor(neuralMetrics.memoryAccess)}%</span>
+                    <span className="atmospheric-text-vital">
+                      {Math.floor(neuralMetrics.memoryAccess)}%
+                    </span>
                   </div>
-                  <Progress value={neuralMetrics.memoryAccess} className="h-2 atmospheric-breathe" />
-                  
+                  <Progress
+                    value={neuralMetrics.memoryAccess}
+                    className="h-2 atmospheric-breathe"
+                  />
+
                   <div className="flex justify-between text-sm">
                     <span className="atmospheric-text-ghost">Cognition Level:</span>
-                    <span className="atmospheric-text-vital">{Math.floor(neuralMetrics.cognition)}%</span>
+                    <span className="atmospheric-text-vital">
+                      {Math.floor(neuralMetrics.cognition)}%
+                    </span>
                   </div>
-                  <Progress value={neuralMetrics.cognition > 100 ? 100 : neuralMetrics.cognition} className="h-2" />
+                  <Progress
+                    value={neuralMetrics.cognition > 100 ? 100 : neuralMetrics.cognition}
+                    className="h-2"
+                  />
                 </div>
               </Container>
 
@@ -588,19 +664,23 @@ export const NeuralInterfaceTerminal: Story = {
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-sm atmospheric-text-ghost">Connection:</span>
-                    <span className={`text-sm ${isLinked ? 'atmospheric-text-vital' : 'text-gray-400'}`}>
+                    <span
+                      className={`text-sm ${isLinked ? 'atmospheric-text-vital' : 'text-gray-400'}`}
+                    >
                       {isLinked ? 'DEEP LINK' : 'DISCONNECTED'}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm atmospheric-text-ghost">Consciousness:</span>
-                    <span className="text-sm atmospheric-text-vital">{neuralMetrics.consciousness}</span>
+                    <span className="text-sm atmospheric-text-vital">
+                      {neuralMetrics.consciousness}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm atmospheric-text-ghost">Link Depth:</span>
                     <span className="text-sm atmospheric-text-vital">{Math.floor(linkDepth)}%</span>
                   </div>
-                  
+
                   <Button
                     variant={isLinked ? 'vessel' : 'membrane'}
                     vital={isLinked}
@@ -621,16 +701,17 @@ export const NeuralInterfaceTerminal: Story = {
                   <div className="absolute inset-0 atmospheric-border-cell rounded">
                     <div className="grid grid-cols-4 grid-rows-4 h-full">
                       {Array.from({ length: 16 }).map((_, i) => (
-                        <div 
-                          key={i} 
+                        <div
+                          key={i}
                           className={`atmospheric-border-vessel/20 flex items-center justify-center text-xs ${
-                            [0, 5, 10, 15].includes(i) ? 'bg-orange-500/20 atmospheric-text-vital' :
-                            [1, 6, 11].includes(i) ? 'bg-blue-500/20 text-blue-400' :
-                            'bg-gray-500/10 atmospheric-text-ghost'
+                            [0, 5, 10, 15].includes(i)
+                              ? 'bg-orange-500/20 atmospheric-text-vital'
+                              : [1, 6, 11].includes(i)
+                                ? 'bg-blue-500/20 text-blue-400'
+                                : 'bg-gray-500/10 atmospheric-text-ghost'
                           }`}
                         >
-                          {[0, 5, 10, 15].includes(i) ? '◉' : 
-                           [1, 6, 11].includes(i) ? '◎' : '○'}
+                          {[0, 5, 10, 15].includes(i) ? '◉' : [1, 6, 11].includes(i) ? '◎' : '○'}
                         </div>
                       ))}
                     </div>
@@ -657,11 +738,11 @@ export const NeuralInterfaceTerminal: Story = {
                 <div className="atmospheric-text-vital">
                   <strong>CONSCIOUSNESS EXPANSION DETECTED</strong>
                   <p className="text-sm mt-1 atmospheric-text-ghost">
-                    Foreign neural patterns identified. Entity consciousness transcending baseline parameters.
+                    Foreign neural patterns identified. Entity consciousness transcending baseline
+                    parameters.
                   </p>
                 </div>
               </Alert>
-
             </div>
           </div>
         </div>
@@ -672,10 +753,11 @@ export const NeuralInterfaceTerminal: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Neural interface terminal for consciousness connection with synaptic monitoring, neural pathway visualization, and deep-link protocol controls.'
-      }
-    }
-  }
+        story:
+          'Neural interface terminal for consciousness connection with synaptic monitoring, neural pathway visualization, and deep-link protocol controls.',
+      },
+    },
+  },
 };
 
 // Genetic Engineering Lab Story
@@ -690,9 +772,9 @@ export const GeneticEngineeringLab: Story = {
       const interval = setInterval(() => {
         setGeneticData(generateGeneticData);
         if (isSequencing) {
-          setModificationProgress(prev => Math.min(100, prev + Math.random() * 3));
+          setModificationProgress((prev) => Math.min(100, prev + Math.random() * 3));
         }
-        setDnaHelixRotation(prev => (prev + 2) % 360);
+        setDnaHelixRotation((prev) => (prev + 2) % 360);
       }, 2000);
 
       return () => clearInterval(interval);
@@ -717,8 +799,12 @@ export const GeneticEngineeringLab: Story = {
               </div>
               <div className="flex items-center gap-6">
                 <div className="text-right text-sm">
-                  <div className="atmospheric-text-ghost">BIOHAZARD LEVEL: <span className="atmospheric-text-vital">TRANSCENDENT</span></div>
-                  <div className="atmospheric-text-ghost">CONTAINMENT: <span className="text-green-400">OPTIMAL</span></div>
+                  <div className="atmospheric-text-ghost">
+                    BIOHAZARD LEVEL: <span className="atmospheric-text-vital">TRANSCENDENT</span>
+                  </div>
+                  <div className="atmospheric-text-ghost">
+                    CONTAINMENT: <span className="text-green-400">OPTIMAL</span>
+                  </div>
                 </div>
                 <div className="text-4xl atmospheric-text-vital">🧬</div>
               </div>
@@ -726,10 +812,8 @@ export const GeneticEngineeringLab: Story = {
           </div>
 
           <div className="p-6 grid grid-cols-1 xl:grid-cols-4 gap-6">
-            
             {/* Main Lab Interface */}
             <div className="xl:col-span-3 space-y-6">
-              
               {/* DNA Sequence Visualization */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <Container alienVariant="chamber" atmospheric vital className="p-6 h-64">
@@ -737,41 +821,49 @@ export const GeneticEngineeringLab: Story = {
                   <div className="relative h-40 atmospheric-border-organ rounded bg-black/30 overflow-hidden">
                     <div className="atmospheric-neural opacity-30"></div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div 
+                      <div
                         className="text-6xl atmospheric-text-vital atmospheric-breathe"
-                        style={{ 
+                        style={{
                           transform: `rotate(${dnaHelixRotation}deg)`,
-                          transition: 'transform 2s linear'
+                          transition: 'transform 2s linear',
                         }}
                       >
                         🧬
                       </div>
                     </div>
                     <div className="absolute bottom-2 left-2 text-xs atmospheric-text-ghost">
-                      Helix Stability: {geneticData.helix}% • Rotation: {Math.floor(dnaHelixRotation)}°
+                      Helix Stability: {geneticData.helix}% • Rotation:{' '}
+                      {Math.floor(dnaHelixRotation)}°
                     </div>
                   </div>
                 </Container>
-                
+
                 <Container alienVariant="organ" atmospheric neural className="p-6 h-64">
                   <h3 className="font-bold atmospheric-text-vital mb-4">SEQUENCE ANALYSIS</h3>
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
                       <span className="atmospheric-text-ghost">Progress:</span>
-                      <span className="atmospheric-text-vital">{geneticData.sequenceProgress}%</span>
+                      <span className="atmospheric-text-vital">
+                        {geneticData.sequenceProgress}%
+                      </span>
                     </div>
-                    <Progress value={geneticData.sequenceProgress} className="h-3 atmospheric-breathe" />
-                    
+                    <Progress
+                      value={geneticData.sequenceProgress}
+                      className="h-3 atmospheric-breathe"
+                    />
+
                     <div className="flex justify-between text-sm">
                       <span className="atmospheric-text-ghost">Mutation Rate:</span>
                       <span className="atmospheric-text-vital">{geneticData.mutationRate}%</span>
                     </div>
-                    
+
                     <div className="flex justify-between text-sm">
                       <span className="atmospheric-text-ghost">Active Enzymes:</span>
-                      <span className="atmospheric-text-vital">{geneticData.enzymes.toLocaleString()}</span>
+                      <span className="atmospheric-text-vital">
+                        {geneticData.enzymes.toLocaleString()}
+                      </span>
                     </div>
-                    
+
                     <div className="flex justify-between text-sm">
                       <span className="atmospheric-text-ghost">Chromatin State:</span>
                       <span className="atmospheric-text-vital">{geneticData.chromatin}%</span>
@@ -782,10 +874,14 @@ export const GeneticEngineeringLab: Story = {
 
               {/* Genetic Modification Controls */}
               <Container alienVariant="cavity" atmospheric vital neural className="p-6">
-                <h3 className="font-bold atmospheric-text-vital mb-6">GENETIC MODIFICATION CONTROLS</h3>
+                <h3 className="font-bold atmospheric-text-vital mb-6">
+                  GENETIC MODIFICATION CONTROLS
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="space-y-4">
-                    <h4 className="font-semibold atmospheric-text-vital">Consciousness Enhancement</h4>
+                    <h4 className="font-semibold atmospheric-text-vital">
+                      Consciousness Enhancement
+                    </h4>
                     <div className="space-y-2">
                       <Button variant="membrane" atmospheric className="w-full">
                         Neural Density +45%
@@ -798,7 +894,7 @@ export const GeneticEngineeringLab: Story = {
                       </Button>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <h4 className="font-semibold atmospheric-text-vital">Physical Adaptation</h4>
                     <div className="space-y-2">
@@ -813,9 +909,11 @@ export const GeneticEngineeringLab: Story = {
                       </Button>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-4">
-                    <h4 className="font-semibold atmospheric-text-vital">Transcendence Protocols</h4>
+                    <h4 className="font-semibold atmospheric-text-vital">
+                      Transcendence Protocols
+                    </h4>
                     <div className="space-y-2">
                       <Button variant="membrane" atmospheric className="w-full">
                         Reality Perception
@@ -846,38 +944,51 @@ export const GeneticEngineeringLab: Story = {
 
             {/* Side Panel */}
             <div className="space-y-6">
-              
               {/* Modification Progress */}
               <Container alienVariant="membrane" atmospheric vital className="p-4">
                 <h3 className="font-bold atmospheric-text-vital mb-4">MODIFICATION STATUS</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between text-sm">
                     <span className="atmospheric-text-ghost">Progress:</span>
-                    <span className="atmospheric-text-vital">{Math.floor(modificationProgress)}%</span>
+                    <span className="atmospheric-text-vital">
+                      {Math.floor(modificationProgress)}%
+                    </span>
                   </div>
                   <Progress value={modificationProgress} className="h-3 atmospheric-neural" />
-                  
+
                   <div className="text-xs space-y-1">
                     <div className="flex justify-between">
                       <span className="atmospheric-text-ghost">Gene Expression:</span>
-                      <span className={modificationProgress > 25 ? 'atmospheric-text-vital' : 'text-gray-500'}>
+                      <span
+                        className={
+                          modificationProgress > 25 ? 'atmospheric-text-vital' : 'text-gray-500'
+                        }
+                      >
                         {modificationProgress > 25 ? 'ACTIVE' : 'DORMANT'}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="atmospheric-text-ghost">Protein Synthesis:</span>
-                      <span className={modificationProgress > 50 ? 'atmospheric-text-vital' : 'text-gray-500'}>
+                      <span
+                        className={
+                          modificationProgress > 50 ? 'atmospheric-text-vital' : 'text-gray-500'
+                        }
+                      >
                         {modificationProgress > 50 ? 'ENHANCED' : 'NORMAL'}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="atmospheric-text-ghost">Evolution Phase:</span>
-                      <span className={modificationProgress > 75 ? 'atmospheric-text-vital' : 'text-gray-500'}>
+                      <span
+                        className={
+                          modificationProgress > 75 ? 'atmospheric-text-vital' : 'text-gray-500'
+                        }
+                      >
                         {modificationProgress > 75 ? 'TRANSCENDENT' : 'PREPARATION'}
                       </span>
                     </div>
                   </div>
-                  
+
                   <Button
                     variant={isSequencing ? 'vessel' : 'membrane'}
                     vital={isSequencing}
@@ -906,12 +1017,17 @@ export const GeneticEngineeringLab: Story = {
                       <span className="text-sm atmospheric-text-ghost">{system.name}</span>
                       <div className="flex items-center gap-2">
                         <span className="text-xs atmospheric-text-ghost">{system.efficiency}</span>
-                        <div className={`w-2 h-2 rounded-full ${
-                          system.status === 'optimal' ? 'bg-green-400 atmospheric-pulse' :
-                          system.status === 'active' ? 'bg-blue-400 atmospheric-breathe' :
-                          system.status === 'enhanced' ? 'bg-purple-400 atmospheric-neural' :
-                          'bg-orange-400 atmospheric-breathe'
-                        }`}></div>
+                        <div
+                          className={`w-2 h-2 rounded-full ${
+                            system.status === 'optimal'
+                              ? 'bg-green-400 atmospheric-pulse'
+                              : system.status === 'active'
+                                ? 'bg-blue-400 atmospheric-breathe'
+                                : system.status === 'enhanced'
+                                  ? 'bg-purple-400 atmospheric-neural'
+                                  : 'bg-orange-400 atmospheric-breathe'
+                          }`}
+                        ></div>
                       </div>
                     </div>
                   ))}
@@ -939,7 +1055,14 @@ export const GeneticEngineeringLab: Story = {
               <Container alienVariant="cavity" atmospheric vital className="p-4">
                 <h3 className="font-bold atmospheric-text-vital mb-4">SAFETY PROTOCOLS</h3>
                 <div className="space-y-2">
-                  <Button variant="vessel" vital atmospheric size="sm" fullWidth className="atmospheric-pulse">
+                  <Button
+                    variant="vessel"
+                    vital
+                    atmospheric
+                    size="sm"
+                    fullWidth
+                    className="atmospheric-pulse"
+                  >
                     🔒 EMERGENCY CONTAINMENT
                   </Button>
                   <Button variant="neural" atmospheric size="sm" fullWidth>
@@ -960,13 +1083,14 @@ export const GeneticEngineeringLab: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Genetic engineering laboratory with DNA sequencing, molecular modification controls, genetic data visualization, and evolution monitoring systems.'
-      }
-    }
-  }
+        story:
+          'Genetic engineering laboratory with DNA sequencing, molecular modification controls, genetic data visualization, and evolution monitoring systems.',
+      },
+    },
+  },
 };
 
-// Alien Ship Bridge Story  
+// Alien Ship Bridge Story
 export const AlienShipBridge: Story = {
   render: () => {
     const [shipSystems, setShipSystems] = useState(generateShipSystems);
@@ -974,15 +1098,15 @@ export const AlienShipBridge: Story = {
     const [coordinates, setCoordinates] = useState({
       x: 'Sector 7G-X9',
       y: 'Deep Space',
-      z: '∞ Light Years'
+      z: '∞ Light Years',
     });
     const [consciousness, setConsciousness] = useState(87);
 
     useEffect(() => {
       const interval = setInterval(() => {
         setShipSystems(generateShipSystems);
-        setConsciousness(prev => Math.min(100, prev + Math.random() * 0.5));
-        
+        setConsciousness((prev) => Math.min(100, prev + Math.random() * 0.5));
+
         // Simulate different ship states
         const states = ['CRUISING', 'EXPLORING', 'ASCENDING', 'TRANSCENDING'];
         if (Math.random() > 0.9) {
@@ -1042,22 +1166,20 @@ export const AlienShipBridge: Story = {
           >
             <Container alienVariant="chamber" atmospheric neural className="min-w-[280px]">
               <div className="p-4 space-y-3">
-                <h3 className="text-lg font-bold atmospheric-text-vital">
-                  SHIP ORGANISM
-                </h3>
+                <h3 className="text-lg font-bold atmospheric-text-vital">SHIP ORGANISM</h3>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="atmospheric-text-ghost">Life Support:</span>
                     <span className="atmospheric-text-vital">{shipSystems.lifesupport}%</span>
                   </div>
                   <Progress value={shipSystems.lifesupport} className="h-2 atmospheric-breathe" />
-                  
+
                   <div className="flex justify-between text-sm">
                     <span className="atmospheric-text-ghost">Propulsion:</span>
                     <span className="atmospheric-text-vital">{shipSystems.propulsion}%</span>
                   </div>
                   <Progress value={shipSystems.propulsion} className="h-2" />
-                  
+
                   <div className="flex justify-between text-sm">
                     <span className="atmospheric-text-ghost">Biomechanics:</span>
                     <span className="atmospheric-text-vital">{shipSystems.biomechanics}%</span>
@@ -1085,23 +1207,29 @@ export const AlienShipBridge: Story = {
                     <span className="atmospheric-text-vital">{Math.floor(consciousness)}%</span>
                   </div>
                   <Progress value={consciousness} className="h-3 atmospheric-breathe" />
-                  
+
                   <div className="space-y-1 text-xs">
                     <div className="flex justify-between">
                       <span className="atmospheric-text-ghost">Self-Awareness:</span>
-                      <span className={consciousness > 70 ? 'atmospheric-text-vital' : 'text-gray-400'}>
+                      <span
+                        className={consciousness > 70 ? 'atmospheric-text-vital' : 'text-gray-400'}
+                      >
                         {consciousness > 70 ? 'ACHIEVED' : 'DEVELOPING'}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="atmospheric-text-ghost">Cosmic Awareness:</span>
-                      <span className={consciousness > 85 ? 'atmospheric-text-vital' : 'text-gray-400'}>
+                      <span
+                        className={consciousness > 85 ? 'atmospheric-text-vital' : 'text-gray-400'}
+                      >
                         {consciousness > 85 ? 'TRANSCENDENT' : 'EMERGING'}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="atmospheric-text-ghost">Unity:</span>
-                      <span className={consciousness > 95 ? 'atmospheric-text-vital' : 'text-gray-400'}>
+                      <span
+                        className={consciousness > 95 ? 'atmospheric-text-vital' : 'text-gray-400'}
+                      >
                         {consciousness > 95 ? 'COMPLETE' : 'EVOLVING'}
                       </span>
                     </div>
@@ -1119,10 +1247,38 @@ export const AlienShipBridge: Story = {
           >
             <HUDRadar
               contacts={[
-                { id: '1', x: 0.4, y: -0.3, type: 'friendly' as const, label: 'Origin Signal', status: 'distant' },
-                { id: '2', x: -0.6, y: 0.2, type: 'neutral' as const, label: 'Cosmic Entity', status: 'observing' },
-                { id: '3', x: 0.7, y: 0.4, type: 'objective' as const, label: 'Transcendence Gate', status: 'awaiting' },
-                { id: '4', x: -0.2, y: -0.7, type: 'hostile' as const, label: 'Void Fragment', status: 'avoided' },
+                {
+                  id: '1',
+                  x: 0.4,
+                  y: -0.3,
+                  type: 'friendly' as const,
+                  label: 'Origin Signal',
+                  status: 'distant',
+                },
+                {
+                  id: '2',
+                  x: -0.6,
+                  y: 0.2,
+                  type: 'neutral' as const,
+                  label: 'Cosmic Entity',
+                  status: 'observing',
+                },
+                {
+                  id: '3',
+                  x: 0.7,
+                  y: 0.4,
+                  type: 'objective' as const,
+                  label: 'Transcendence Gate',
+                  status: 'awaiting',
+                },
+                {
+                  id: '4',
+                  x: -0.2,
+                  y: -0.7,
+                  type: 'hostile' as const,
+                  label: 'Void Fragment',
+                  status: 'avoided',
+                },
               ]}
               variant="matrix"
               size="lg"
@@ -1136,17 +1292,26 @@ export const AlienShipBridge: Story = {
 
           {/* Central Command Interface */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <Container alienVariant="organism" atmospheric vital neural className="min-w-[450px] max-w-[600px]">
+            <Container
+              alienVariant="organism"
+              atmospheric
+              vital
+              neural
+              className="min-w-[450px] max-w-[600px]"
+            >
               <div className="p-8 text-center space-y-4">
                 <h1 className="text-4xl font-bold atmospheric-text-vital atmospheric-breathe">
                   BIOMECHANICAL BRIDGE
                 </h1>
                 <div className="space-y-4">
                   <div className={`text-3xl atmospheric-text-vital`}>
-                    {shipStatus === 'CRUISING' ? '🚀 CRUISING THROUGH COSMOS' :
-                     shipStatus === 'EXPLORING' ? '🔍 EXPLORING UNKNOWN REGIONS' :
-                     shipStatus === 'ASCENDING' ? '⬆️ ASCENDING TO HIGHER DIMENSION' :
-                     '✨ TRANSCENDING REALITY'}
+                    {shipStatus === 'CRUISING'
+                      ? '🚀 CRUISING THROUGH COSMOS'
+                      : shipStatus === 'EXPLORING'
+                        ? '🔍 EXPLORING UNKNOWN REGIONS'
+                        : shipStatus === 'ASCENDING'
+                          ? '⬆️ ASCENDING TO HIGHER DIMENSION'
+                          : '✨ TRANSCENDING REALITY'}
                   </div>
                   <div className="flex gap-4 justify-center flex-wrap">
                     <Button
@@ -1191,7 +1356,10 @@ export const AlienShipBridge: Story = {
                 { label: 'PROP', value: shipSystems.propulsion, icon: '🚀' },
                 { label: 'SENS', value: shipSystems.sensors, icon: '👁️' },
               ].map((system, i) => (
-                <div key={i} className="bg-black/60 backdrop-blur-sm atmospheric-border-vessel rounded-lg px-3 py-2 text-center">
+                <div
+                  key={i}
+                  className="bg-black/60 backdrop-blur-sm atmospheric-border-vessel rounded-lg px-3 py-2 text-center"
+                >
                   <div className="text-lg">{system.icon}</div>
                   <div className="text-xs atmospheric-text-ghost">{system.label}</div>
                   <div className="text-sm atmospheric-text-vital">{system.value}%</div>
@@ -1221,7 +1389,8 @@ export const AlienShipBridge: Story = {
                 SHIP STATUS: <span className="atmospheric-text-vital">{shipStatus}</span>
               </div>
               <div className="atmospheric-text-ghost text-sm">
-                CONSCIOUSNESS: <span className="atmospheric-text-vital">{Math.floor(consciousness)}%</span>
+                CONSCIOUSNESS:{' '}
+                <span className="atmospheric-text-vital">{Math.floor(consciousness)}%</span>
               </div>
               <div className="atmospheric-text-ghost text-sm">
                 SYMBIOSIS: <span className="atmospheric-text-vital">COMPLETE</span>
@@ -1236,8 +1405,9 @@ export const AlienShipBridge: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Alien ship bridge interface with biomechanical controls, cosmic navigation, ship consciousness monitoring, and pilot-vessel symbiosis systems.'
-      }
-    }
-  }
+        story:
+          'Alien ship bridge interface with biomechanical controls, cosmic navigation, ship consciousness monitoring, and pilot-vessel symbiosis systems.',
+      },
+    },
+  },
 };

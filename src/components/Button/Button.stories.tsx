@@ -7,7 +7,7 @@ import { Text } from '../Text';
 // import { Icon } from '../Icon'; // Legacy icon usage - now using iconStart/iconEnd props
 
 const meta: Meta<typeof Button> = {
-  title: 'Inputs/Button',
+  title: 'Core Components/Foundations/Button',
   component: Button,
   args: {
     children: 'Button',
@@ -25,7 +25,8 @@ const meta: Meta<typeof Button> = {
   parameters: {
     docs: {
       description: {
-        component: 'Interactive buttons for forms, dialogs, and more. Supports multiple variants, sizes, and states.',
+        component:
+          'Interactive buttons for forms, dialogs, and more. Supports multiple variants, sizes, and states.',
       },
     },
   },
@@ -64,34 +65,34 @@ export const Link: Story = {
 };
 
 export const WithIcon: Story = {
-  args: { 
+  args: {
     iconStart: 'Plus',
-    children: 'Create New' 
+    children: 'Create New',
   },
 };
 
 export const WithIconEnd: Story = {
-  args: { 
+  args: {
     iconEnd: 'ChevronRight',
     children: 'Continue',
-    variant: 'outline'
+    variant: 'outline',
   },
 };
 
 export const IconOnly: Story = {
-  args: { 
+  args: {
     iconStart: 'Settings',
     'aria-label': 'Settings',
-    variant: 'ghost'
+    variant: 'ghost',
   },
 };
 
 export const LoadingState: Story = {
-  args: { 
+  args: {
     iconStart: 'Loader',
     children: 'Loading...',
     disabled: true,
-    className: 'loading'
+    className: 'loading',
   },
 };
 
@@ -123,12 +124,14 @@ export const AllVariants: Story = {
   render: () => (
     <Stack gap="xl">
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Button Variants</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Button Variants
+        </Text>
         <Stack direction="row" gap="md" wrap align="center">
           <Box className="p-3">
             <Button variant="primary">Primary</Button>
           </Box>
-          <Box className="p-3">  
+          <Box className="p-3">
             <Button variant="secondary">Secondary</Button>
           </Box>
           <Box className="p-3 bg-[var(--background)]">
@@ -150,7 +153,9 @@ export const AllVariants: Story = {
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Button Sizes</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Button Sizes
+        </Text>
         <Stack direction="row" gap="md" align="center">
           <Button size="sm">Small</Button>
           <Button size="md">Medium</Button>
@@ -159,7 +164,9 @@ export const AllVariants: Story = {
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">With Icons</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          With Icons
+        </Text>
         <Stack direction="column" gap="lg">
           <Stack direction="row" gap="md" wrap align="center">
             <Button variant="primary" iconStart="Plus">
@@ -175,7 +182,7 @@ export const AllVariants: Story = {
               Delete
             </Button>
           </Stack>
-          
+
           <Stack direction="row" gap="md" wrap align="center">
             <Button variant="outline" iconEnd="ChevronRight">
               Continue
@@ -187,7 +194,7 @@ export const AllVariants: Story = {
               Save Options
             </Button>
           </Stack>
-          
+
           <Stack direction="row" gap="md" wrap align="center">
             <Button variant="ghost" iconStart="Settings" aria-label="Settings" />
             <Button variant="primary" iconStart="Plus" aria-label="Add new item" />
@@ -197,17 +204,23 @@ export const AllVariants: Story = {
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Interactive States</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Interactive States
+        </Text>
         <Stack direction="column" gap="lg">
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">Default:</Text>
+            <Text size="sm" className="min-w-[80px]">
+              Default:
+            </Text>
             <Button variant="primary">Default</Button>
             <Button variant="secondary">Secondary</Button>
             <Button variant="outline">Outline</Button>
           </Stack>
-          
+
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">Loading:</Text>
+            <Text size="sm" className="min-w-[80px]">
+              Loading:
+            </Text>
             <Button variant="primary" iconStart="Loader" disabled className="loading">
               Loading...
             </Button>
@@ -215,9 +228,11 @@ export const AllVariants: Story = {
               Processing
             </Button>
           </Stack>
-          
+
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">Success:</Text>
+            <Text size="sm" className="min-w-[80px]">
+              Success:
+            </Text>
             <Button variant="success" iconStart="Check" className="success">
               Completed
             </Button>
@@ -225,30 +240,46 @@ export const AllVariants: Story = {
               Success
             </Button>
           </Stack>
-          
+
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">Error:</Text>
+            <Text size="sm" className="min-w-[80px]">
+              Error:
+            </Text>
             <Button variant="destructive" iconStart="AlertTriangle" className="error">
               Error State
             </Button>
           </Stack>
-          
+
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">Disabled:</Text>
-            <Button variant="primary" disabled>Disabled</Button>
-            <Button variant="secondary" disabled iconStart="Lock">Locked</Button>
+            <Text size="sm" className="min-w-[80px]">
+              Disabled:
+            </Text>
+            <Button variant="primary" disabled>
+              Disabled
+            </Button>
+            <Button variant="secondary" disabled iconStart="Lock">
+              Locked
+            </Button>
           </Stack>
-          
+
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">Active:</Text>
-            <Button variant="primary" className="active">Active</Button>
-            <Button variant="outline" className="selected">Selected</Button>
+            <Text size="sm" className="min-w-[80px]">
+              Active:
+            </Text>
+            <Button variant="primary" className="active">
+              Active
+            </Button>
+            <Button variant="outline" className="selected">
+              Selected
+            </Button>
           </Stack>
         </Stack>
       </Box>
-      
+
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Special States</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Special States
+        </Text>
         <Stack direction="row" gap="md" wrap align="center">
           <Box className="p-3">
             <Button glow>Glowing</Button>
@@ -258,16 +289,20 @@ export const AllVariants: Story = {
           </Box>
         </Stack>
       </Box>
-      
+
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Full Width</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Full Width
+        </Text>
         <Box className="border border-dashed border-[var(--border)] p-2 mb-4">
           <Button fullWidth>Full Width Button</Button>
         </Box>
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Light & Dark Variants</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Light & Dark Variants
+        </Text>
         <Stack gap="md">
           <Box className="bg-[var(--background)] p-4 rounded">
             <Text className="mb-2">Light Background</Text>
@@ -279,7 +314,7 @@ export const AllVariants: Story = {
               <Button variant="link">Link</Button>
             </Stack>
           </Box>
-          
+
           <Box className="bg-[var(--background-emphasis)] p-4 rounded">
             <Text className="mb-2 text-[var(--foreground-emphasis)]">Dark Background</Text>
             <Stack direction="row" gap="md" wrap>
@@ -294,7 +329,9 @@ export const AllVariants: Story = {
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Futuristic Theme Enhanced</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Futuristic Theme Enhanced
+        </Text>
         <Stack direction="column" gap="lg">
           <Stack direction="row" gap="md" wrap align="center">
             <Box className="p-3">
@@ -318,7 +355,7 @@ export const AllVariants: Story = {
               </Button>
             </Box>
           </Stack>
-          
+
           <Stack direction="row" gap="md" wrap align="center">
             <Box className="p-3">
               <Button variant="primary" elevated iconStart="Rocket">
@@ -336,7 +373,7 @@ export const AllVariants: Story = {
               </Button>
             </Box>
           </Stack>
-          
+
           <Stack direction="row" gap="md" wrap align="center">
             <Box className="p-3">
               <Button variant="primary" glow className="loading" iconStart="Loader">
@@ -356,10 +393,10 @@ export const AllVariants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A comprehensive showcase of all button variants, sizes, states, and themes.'
-      }
-    }
-  }
+        story: 'A comprehensive showcase of all button variants, sizes, states, and themes.',
+      },
+    },
+  },
 };
 
 // Cyberpunk Variants
@@ -393,12 +430,12 @@ export const Neural: Story = {
 };
 
 export const CyberpunkWithEffects: Story = {
-  args: { 
-    variant: 'cyberpunk-matrix', 
+  args: {
+    variant: 'cyberpunk-matrix',
     children: 'Matrix Glow',
     cyberpunkGlow: 'intense',
     scanlines: true,
-    iconStart: 'Zap'
+    iconStart: 'Zap',
   },
 };
 
@@ -407,17 +444,29 @@ export const CyberpunkShowcase: Story = {
   render: () => (
     <Stack gap="xl">
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Cyberpunk Button Variants</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Cyberpunk Button Variants
+        </Text>
         <Stack direction="row" gap="md" wrap align="center">
-          <Button variant="cyberpunk-matrix" iconStart="Zap">Matrix</Button>
-          <Button variant="cyberpunk-doom" iconStart="Target">DOOM</Button>
-          <Button variant="cyberpunk-ghost" iconStart="Ghost">Ghost</Button>
-          <Button variant="cyberpunk-neon" iconStart="Sparkles">Neon</Button>
+          <Button variant="cyberpunk-matrix" iconStart="Zap">
+            Matrix
+          </Button>
+          <Button variant="cyberpunk-doom" iconStart="Target">
+            DOOM
+          </Button>
+          <Button variant="cyberpunk-ghost" iconStart="Ghost">
+            Ghost
+          </Button>
+          <Button variant="cyberpunk-neon" iconStart="Sparkles">
+            Neon
+          </Button>
         </Stack>
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">With Cyberpunk Effects</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          With Cyberpunk Effects
+        </Text>
         <Stack direction="row" gap="md" wrap align="center">
           <Button variant="cyberpunk-matrix" cyberpunkGlow="intense" iconStart="Zap">
             Intense Glow
@@ -435,26 +484,40 @@ export const CyberpunkShowcase: Story = {
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Cyberpunk Sizes</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Cyberpunk Sizes
+        </Text>
         <Stack direction="row" gap="md" align="center">
-          <Button variant="cyberpunk-matrix" size="sm" cyberpunkGlow="normal">Small</Button>
-          <Button variant="cyberpunk-doom" size="md" cyberpunkGlow="normal">Medium</Button>
-          <Button variant="cyberpunk-neon" size="lg" cyberpunkGlow="normal">Large</Button>
+          <Button variant="cyberpunk-matrix" size="sm" cyberpunkGlow="normal">
+            Small
+          </Button>
+          <Button variant="cyberpunk-doom" size="md" cyberpunkGlow="normal">
+            Medium
+          </Button>
+          <Button variant="cyberpunk-neon" size="lg" cyberpunkGlow="normal">
+            Large
+          </Button>
         </Stack>
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Cyberpunk Interactive States</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Cyberpunk Interactive States
+        </Text>
         <Stack direction="column" gap="lg">
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">Default:</Text>
+            <Text size="sm" className="min-w-[80px]">
+              Default:
+            </Text>
             <Button variant="cyberpunk-matrix">Matrix</Button>
             <Button variant="cyberpunk-doom">DOOM</Button>
             <Button variant="cyberpunk-neon">Neon</Button>
           </Stack>
-          
+
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">With Icons:</Text>
+            <Text size="sm" className="min-w-[80px]">
+              With Icons:
+            </Text>
             <Button variant="cyberpunk-matrix" iconStart="Zap" cyberpunkGlow="intense">
               Matrix Power
             </Button>
@@ -465,10 +528,18 @@ export const CyberpunkShowcase: Story = {
               Neon Sparkle
             </Button>
           </Stack>
-          
+
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">Full Effects:</Text>
-            <Button variant="cyberpunk-matrix" cyberpunkGlow="intense" scanlines matrixRain iconStart="Zap">
+            <Text size="sm" className="min-w-[80px]">
+              Full Effects:
+            </Text>
+            <Button
+              variant="cyberpunk-matrix"
+              cyberpunkGlow="intense"
+              scanlines
+              matrixRain
+              iconStart="Zap"
+            >
               Ultimate Matrix
             </Button>
             <Button variant="cyberpunk-doom" cyberpunkGlow="intense" scanlines iconStart="Target">
@@ -485,10 +556,11 @@ export const CyberpunkShowcase: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A comprehensive showcase of all cyberpunk button variants with effects and interactive states.'
-      }
-    }
-  }
+        story:
+          'A comprehensive showcase of all cyberpunk button variants with effects and interactive states.',
+      },
+    },
+  },
 };
 
 // Alien Theme Showcase
@@ -496,7 +568,9 @@ export const AlienShowcase: Story = {
   render: () => (
     <Stack gap="xl">
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Alien Theme Button Variants</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Alien Theme Button Variants
+        </Text>
         <Stack direction="row" gap="md" wrap align="center">
           <Button variant="membrane" atmospheric iconStart="Layers">
             Membrane
@@ -511,7 +585,9 @@ export const AlienShowcase: Story = {
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">With Vital Effects</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          With Vital Effects
+        </Text>
         <Stack direction="row" gap="md" wrap align="center">
           <Button variant="membrane" vital atmospheric iconStart="Layers">
             Breathing Membrane
@@ -526,26 +602,46 @@ export const AlienShowcase: Story = {
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Alien Sizes</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Alien Sizes
+        </Text>
         <Stack direction="row" gap="md" align="center">
-          <Button variant="membrane" size="sm" atmospheric>Small</Button>
-          <Button variant="vessel" size="md" vital atmospheric>Medium</Button>
-          <Button variant="neural" size="lg" atmospheric>Large</Button>
+          <Button variant="membrane" size="sm" atmospheric>
+            Small
+          </Button>
+          <Button variant="vessel" size="md" vital atmospheric>
+            Medium
+          </Button>
+          <Button variant="neural" size="lg" atmospheric>
+            Large
+          </Button>
         </Stack>
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Alien Interactive States</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Alien Interactive States
+        </Text>
         <Stack direction="column" gap="lg">
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">Default:</Text>
-            <Button variant="membrane" atmospheric>Membrane</Button>
-            <Button variant="vessel" atmospheric>Vessel</Button>
-            <Button variant="neural" atmospheric>Neural</Button>
+            <Text size="sm" className="min-w-[80px]">
+              Default:
+            </Text>
+            <Button variant="membrane" atmospheric>
+              Membrane
+            </Button>
+            <Button variant="vessel" atmospheric>
+              Vessel
+            </Button>
+            <Button variant="neural" atmospheric>
+              Neural
+            </Button>
           </Stack>
-          
+
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">With Icons:</Text>
+            <Text size="sm" className="min-w-[80px]">
+              With Icons:
+            </Text>
             <Button variant="membrane" atmospheric iconStart="Layers">
               Membrane Layer
             </Button>
@@ -556,9 +652,11 @@ export const AlienShowcase: Story = {
               Neural Path
             </Button>
           </Stack>
-          
+
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">Full Effects:</Text>
+            <Text size="sm" className="min-w-[80px]">
+              Full Effects:
+            </Text>
             <Button variant="membrane" vital atmospheric iconStart="Layers">
               Living Membrane
             </Button>
@@ -571,16 +669,26 @@ export const AlienShowcase: Story = {
           </Stack>
 
           <Stack direction="row" gap="md" align="center">
-            <Text size="sm" className="min-w-[80px]">Disabled:</Text>
-            <Button variant="membrane" atmospheric disabled>Dormant</Button>
-            <Button variant="vessel" atmospheric disabled iconStart="Heart">Inactive</Button>
-            <Button variant="neural" atmospheric disabled>Offline</Button>
+            <Text size="sm" className="min-w-[80px]">
+              Disabled:
+            </Text>
+            <Button variant="membrane" atmospheric disabled>
+              Dormant
+            </Button>
+            <Button variant="vessel" atmospheric disabled iconStart="Heart">
+              Inactive
+            </Button>
+            <Button variant="neural" atmospheric disabled>
+              Offline
+            </Button>
           </Stack>
         </Stack>
       </Box>
 
       <Box>
-        <Text as="h2" size="lg" color="emphasis" className="mb-3">Combined with Other Effects</Text>
+        <Text as="h2" size="lg" color="emphasis" className="mb-3">
+          Combined with Other Effects
+        </Text>
         <Stack direction="row" gap="md" wrap align="center">
           <Button variant="membrane" atmospheric glow iconStart="Layers">
             Glowing Membrane
@@ -598,8 +706,9 @@ export const AlienShowcase: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'A comprehensive showcase of all alien theme button variants with vital, atmospheric, and interactive effects.'
-      }
-    }
-  }
+        story:
+          'A comprehensive showcase of all alien theme button variants with vital, atmospheric, and interactive effects.',
+      },
+    },
+  },
 };

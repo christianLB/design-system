@@ -50,38 +50,40 @@ interface Row {
 }
 
 const columns: ColumnDef<Row>[] = [
-  { 
-    accessorKey: 'name', 
+  {
+    accessorKey: 'name',
     header: 'User',
     size: 250, // ~35%
     minSize: 180,
   },
-  { 
-    accessorKey: 'status', 
+  {
+    accessorKey: 'status',
     header: 'Status',
     size: 130, // ~18%
     minSize: 100,
     cell: ({ row }) => (
-      <StatusBadge 
+      <StatusBadge
         variant={
-          row.original.status === 'Active' ? 'success' :
-          row.original.status === 'Idle' ? 'warning' :
-          'neutral'
+          row.original.status === 'Active'
+            ? 'success'
+            : row.original.status === 'Idle'
+              ? 'warning'
+              : 'neutral'
         }
         size="sm"
       >
         {row.original.status}
       </StatusBadge>
-    )
+    ),
   },
-  { 
-    accessorKey: 'lastLogin', 
+  {
+    accessorKey: 'lastLogin',
     header: 'Last Login',
     size: 200, // ~28%
     minSize: 150,
   },
-  { 
-    accessorKey: 'visits', 
+  {
+    accessorKey: 'visits',
     header: 'Sessions',
     size: 140, // ~19%
     minSize: 100,
@@ -101,46 +103,45 @@ const allData: Row[] = Array.from({ length: 47 }, (_, i) => ({
 }));
 
 const sidebarItems: SidebarItem[] = [
-  { 
-    label: 'Dashboard', 
-    href: '#dashboard', 
-    icon: <Icon name="Home" size="sm" /> 
+  {
+    label: 'Dashboard',
+    href: '#dashboard',
+    icon: <Icon name="Home" size="sm" />,
   },
-  { 
-    label: 'Analytics', 
-    href: '#analytics', 
-    icon: <Icon name="BarChart2" size="sm" /> 
+  {
+    label: 'Analytics',
+    href: '#analytics',
+    icon: <Icon name="BarChart2" size="sm" />,
   },
-  { 
-    label: 'Users', 
+  {
+    label: 'Users',
     href: '#users',
     icon: <Icon name="Users" size="sm" />,
     items: [
       { label: 'User List', href: '#user-list' },
       { label: 'Add User', href: '#add-user' },
       { label: 'User Groups', href: '#user-groups' },
-    ] 
+    ],
   },
-  { 
-    label: 'Content', 
-    href: '#content', 
-    icon: <Icon name="FileText" size="sm" /> 
+  {
+    label: 'Content',
+    href: '#content',
+    icon: <Icon name="FileText" size="sm" />,
   },
-  { 
-    label: 'Reports', 
-    href: '#reports', 
-    icon: <Icon name="PieChart" size="sm" /> 
+  {
+    label: 'Reports',
+    href: '#reports',
+    icon: <Icon name="PieChart" size="sm" />,
   },
-  { 
-    label: 'Settings', 
-    href: '#settings', 
-    icon: <Icon name="Settings" size="sm" /> 
+  {
+    label: 'Settings',
+    href: '#settings',
+    icon: <Icon name="Settings" size="sm" />,
   },
 ];
 
-
 const meta: Meta<typeof VisualMockupDemo> = {
-  title: 'Examples/VisualMockup',
+  title: 'Examples/Visual Mockup',
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -158,17 +159,18 @@ type Story = StoryObj;
 // Theme-responsive wrapper component
 const ThemeResponsiveWrapper = ({ children }: { children: React.ReactNode }) => {
   const { theme } = useTheme();
-  
+
   // Determine theme name from theme object
-  const themeName = theme?.meta?.name?.toLowerCase().includes('cyberpunk') ? 'cyberpunk' :
-                   theme?.meta?.name?.toLowerCase().includes('futuristic') ? 'futuristic' :
-                   theme?.meta?.name?.toLowerCase().includes('dark') ? 'dark' : 'light';
-  
+  const themeName = theme?.meta?.name?.toLowerCase().includes('cyberpunk')
+    ? 'cyberpunk'
+    : theme?.meta?.name?.toLowerCase().includes('futuristic')
+      ? 'futuristic'
+      : theme?.meta?.name?.toLowerCase().includes('dark')
+        ? 'dark'
+        : 'light';
+
   return (
-    <div 
-      data-theme={themeName}
-      className={`${themeName}-wrap`}
-    >
+    <div data-theme={themeName} className={`${themeName}-wrap`}>
       {/* Dynamic background effects based on theme */}
       {themeName === 'futuristic' && <div className="futuristic-bg" aria-hidden />}
       {themeName === 'cyberpunk' && <div className="cyberpunk-bg" aria-hidden />}
@@ -226,17 +228,19 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
   const [password, setPassword] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const [notifications] = React.useState(3);
-  const [systemStatus, setSystemStatus] = React.useState<'online' | 'maintenance' | 'error'>('online');
-  
+  const [systemStatus, setSystemStatus] = React.useState<'online' | 'maintenance' | 'error'>(
+    'online',
+  );
+
   // Determine if cyberpunk theme is active
   const isCyberpunk = theme?.meta?.name?.toLowerCase().includes('cyberpunk');
   const isFuturistic = theme?.meta?.name?.toLowerCase().includes('futuristic');
-  
+
   // Pagination state
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 10;
   const totalPages = Math.ceil(allData.length / itemsPerPage);
-  
+
   // Calculate current page data
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -266,7 +270,7 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
       }
     }, 1500);
   };
-  
+
   // Note: chartData would be used for a chart component in the future
   // Currently commented out to avoid linting errors
   // const chartData = [
@@ -291,15 +295,19 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
           <SimpleHeader
             left={
               <Stack direction="row" align="center" gap="sm">
-                <Icon name={isCyberpunk ? "Cpu" : "Zap"} size="lg" />
+                <Icon name={isCyberpunk ? 'Cpu' : 'Zap'} size="lg" />
                 <Text weight="bold" className="text-lg">
-                  {isCyberpunk ? "CyberDash" : isFuturistic ? "FutureDash" : "Dashboard"}
+                  {isCyberpunk ? 'CyberDash' : isFuturistic ? 'FutureDash' : 'Dashboard'}
                 </Text>
               </Stack>
             }
             navigation={[
               { label: 'Dashboard', href: '#', icon: <Icon name="Home" size="sm" />, active: true },
-              { label: 'Analytics', href: '#/analytics', icon: <Icon name="BarChart2" size="sm" /> },
+              {
+                label: 'Analytics',
+                href: '#/analytics',
+                icon: <Icon name="BarChart2" size="sm" />,
+              },
               { label: 'Support', href: '#/support', icon: <Icon name="HelpCircle" size="sm" /> },
               { label: 'Documentation', href: '#/docs', icon: <Icon name="BookOpen" size="sm" /> },
             ]}
@@ -330,7 +338,7 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 <Heading as="h1" size={1}>
-                  {isCyberpunk ? "Neural Interface" : "Dashboard Overview"}
+                  {isCyberpunk ? 'Neural Interface' : 'Dashboard Overview'}
                 </Heading>
               </motion.div>
               <motion.div
@@ -339,14 +347,13 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
                 transition={{ delay: 0.4, duration: 0.5 }}
               >
                 <Text color="subtle">
-                  {isCyberpunk 
-                    ? "System online. Neural link established. Data streams active." 
+                  {isCyberpunk
+                    ? 'System online. Neural link established. Data streams active.'
                     : isFuturistic
-                    ? "Quantum systems operational. Advanced protocols engaged."
-                    : theme?.meta?.name?.toLowerCase().includes('dark')
-                    ? "Welcome back, Admin. Night mode active."
-                    : "Welcome back, Admin. Here's your latest analytics."
-                  }
+                      ? 'Quantum systems operational. Advanced protocols engaged.'
+                      : theme?.meta?.name?.toLowerCase().includes('dark')
+                        ? 'Welcome back, Admin. Night mode active.'
+                        : "Welcome back, Admin. Here's your latest analytics."}
                 </Text>
               </motion.div>
             </Stack>
@@ -355,15 +362,15 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-            <Stack direction="row" gap="md">
-              <Button variant="outline" iconStart="Gauge">
-                System Health
-              </Button>
-              <Button variant="primary" glow iconStart="Plus">
-                Add Widget
-              </Button>
-            </Stack>
-          </motion.div>
+              <Stack direction="row" gap="md">
+                <Button variant="outline" iconStart="Gauge">
+                  System Health
+                </Button>
+                <Button variant="primary" glow iconStart="Plus">
+                  Add Widget
+                </Button>
+              </Stack>
+            </motion.div>
           </Stack>
 
           {/* Stats Cards */}
@@ -373,59 +380,70 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
             transition={{ delay: 0.2, duration: 0.6 }}
           >
             <Grid columns={4} gap="md" className="stagger-children">
-            {visitStats.map((stat, i) => (
-              <MetricCard
-                key={i}
-                title={`${stat.label} Sessions`}
-                value={stat.count}
-                change={stat.change}
-                icon={stat.icon}
-                status={stat.status as 'success' | 'warning' | 'neutral'}
-                trend={stat.change > 0 ? 'up' : 'down'}
-                showGlow={stat.status === 'success'}
-              />
-            ))}
-          </Grid>
-          
-          {/* System Health Metrics */}
-          <Card className="border-2 border-[var(--primary)] bg-gradient-to-r from-[var(--primary)]/5 to-transparent">
-            <CardHeader>
-              <Stack direction="row" align="center" justify="between">
-                <CardTitle className="flex items-center gap-2">
-                  <Icon name="Activity" size="md" className="text-primary" />
-                  {isCyberpunk ? "Neural Network Status" : "System Health Monitor"}
-                </CardTitle>
-                <StatusIndicator 
-                  status={systemStatus}
-                  withLabel
-                  animated
+              {visitStats.map((stat, i) => (
+                <MetricCard
+                  key={i}
+                  title={`${stat.label} Sessions`}
+                  value={stat.count}
+                  change={stat.change}
+                  icon={stat.icon}
+                  status={stat.status as 'success' | 'warning' | 'neutral'}
+                  trend={stat.change > 0 ? 'up' : 'down'}
+                  showGlow={stat.status === 'success'}
                 />
-              </Stack>
-            </CardHeader>
-            <CardContent>
-              <Grid columns={4} gap="md" className="stagger-children">
-                {systemMetrics.map((metric, i) => (
-                  <Box key={i} className="p-4 rounded-lg bg-[var(--muted)] border border-[var(--border)]">
-                    <Stack gap="sm">
-                      <Text size="sm" color="subtle">{metric.label}</Text>
-                      <Stack direction="row" align="center" justify="between">
-                        <Text size="lg" className="font-mono font-bold">{metric.value}</Text>
-                        <Icon 
-                          name={metric.trend === 'up' ? 'ArrowUp' : metric.trend === 'down' ? 'ArrowDown' : 'Minus'} 
-                          size="sm" 
-                          className={`${
-                            metric.status === 'success' ? 'text-green-400' :
-                            metric.status === 'warning' ? 'text-yellow-400' :
-                            'text-red-400'
-                          }`}
-                        />
+              ))}
+            </Grid>
+
+            {/* System Health Metrics */}
+            <Card className="border-2 border-[var(--primary)] bg-gradient-to-r from-[var(--primary)]/5 to-transparent">
+              <CardHeader>
+                <Stack direction="row" align="center" justify="between">
+                  <CardTitle className="flex items-center gap-2">
+                    <Icon name="Activity" size="md" className="text-primary" />
+                    {isCyberpunk ? 'Neural Network Status' : 'System Health Monitor'}
+                  </CardTitle>
+                  <StatusIndicator status={systemStatus} withLabel animated />
+                </Stack>
+              </CardHeader>
+              <CardContent>
+                <Grid columns={4} gap="md" className="stagger-children">
+                  {systemMetrics.map((metric, i) => (
+                    <Box
+                      key={i}
+                      className="p-4 rounded-lg bg-[var(--muted)] border border-[var(--border)]"
+                    >
+                      <Stack gap="sm">
+                        <Text size="sm" color="subtle">
+                          {metric.label}
+                        </Text>
+                        <Stack direction="row" align="center" justify="between">
+                          <Text size="lg" className="font-mono font-bold">
+                            {metric.value}
+                          </Text>
+                          <Icon
+                            name={
+                              metric.trend === 'up'
+                                ? 'ArrowUp'
+                                : metric.trend === 'down'
+                                  ? 'ArrowDown'
+                                  : 'Minus'
+                            }
+                            size="sm"
+                            className={`${
+                              metric.status === 'success'
+                                ? 'text-green-400'
+                                : metric.status === 'warning'
+                                  ? 'text-yellow-400'
+                                  : 'text-red-400'
+                            }`}
+                          />
+                        </Stack>
                       </Stack>
-                    </Stack>
-                  </Box>
-                ))}
-              </Grid>
-            </CardContent>
-          </Card>
+                    </Box>
+                  ))}
+                </Grid>
+              </CardContent>
+            </Card>
           </motion.div>
 
           {/* Main Dashboard Content */}
@@ -435,142 +453,149 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
             transition={{ delay: 0.5, duration: 0.7 }}
           >
             <Grid columns={2} gap="lg">
-            {/* Data Table */}
-            <Box style={{ gridColumn: 'span 2' }}>
+              {/* Data Table */}
+              <Box style={{ gridColumn: 'span 2' }}>
+                <Card>
+                  <CardHeader>
+                    <Stack direction="row" align="center" justify="between" className="w-full">
+                      <CardTitle>Active Users</CardTitle>
+                      <Link href="#" variant="subtle">
+                        <Stack direction="row" align="center" gap="xs">
+                          <span>View All</span>
+                          <Icon name="ArrowRight" size="sm" />
+                        </Stack>
+                      </Link>
+                    </Stack>
+                  </CardHeader>
+                  <CardContent>
+                    <DataTable
+                      columns={columns}
+                      data={currentData}
+                      striped
+                      hover
+                      rowActions={() => (
+                        <Stack direction="row" gap="xs">
+                          <Button variant="ghost" size="sm">
+                            <Icon name="Edit" size="sm" />
+                          </Button>
+                          <Button variant="ghost" size="sm">
+                            <Icon name="Trash" size="sm" />
+                          </Button>
+                        </Stack>
+                      )}
+                      pagination={{
+                        currentPage,
+                        pageCount: totalPages,
+                        itemsPerPage,
+                        onPageChange: setCurrentPage,
+                      }}
+                    />
+                  </CardContent>
+                  <CardFooter>
+                    <Text size="sm" color="subtle">
+                      Showing {startIndex + 1}-{Math.min(endIndex, allData.length)} of{' '}
+                      {allData.length} users
+                    </Text>
+                  </CardFooter>
+                </Card>
+              </Box>
+
+              {/* Form Card */}
               <Card>
                 <CardHeader>
-                  <Stack direction="row" align="center" justify="between" className="w-full">
-                    <CardTitle>Active Users</CardTitle>
-                    <Link href="#" variant="subtle">
-                      <Stack direction="row" align="center" gap="xs">
-                        <span>View All</span>
-                        <Icon name="ArrowRight" size="sm" />
-                      </Stack>
-                    </Link>
-                  </Stack>
+                  <CardTitle>User Profile</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <DataTable 
-                    columns={columns} 
-                    data={currentData} 
-                    striped 
-                    hover 
-                    rowActions={() => (
-                      <Stack direction="row" gap="xs">
-                        <Button variant="ghost" size="sm">
-                          <Icon name="Edit" size="sm" />
-                        </Button>
-                        <Button variant="ghost" size="sm">
-                          <Icon name="Trash" size="sm" />
-                        </Button>
+                  <Stack gap="md">
+                    <div>
+                      <Label htmlFor="username">Username</Label>
+                      <Input
+                        id="username"
+                        placeholder="Enter your username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        className={username ? 'success' : ''}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="email">Email Address</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className={email.includes('@') ? 'success' : email ? 'warning' : ''}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="password">Password</Label>
+                      <Input
+                        id="password"
+                        type="password"
+                        placeholder="Enter new password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className={
+                          password.length >= 8 ? 'success' : password.length > 0 ? 'warning' : ''
+                        }
+                      />
+                      {password.length > 0 && (
+                        <Text
+                          size="xs"
+                          color={password.length >= 8 ? 'success' : 'warning'}
+                          className="mt-1"
+                        >
+                          Password strength: {password.length >= 8 ? 'Strong' : 'Weak'}
+                        </Text>
+                      )}
+                    </div>
+
+                    {/* Enhanced form section */}
+                    <FormSection
+                      title="Security Settings"
+                      description="Configure your account security preferences"
+                    >
+                      <Stack direction="row" gap="md" wrap>
+                        <label className="flex items-center gap-2">
+                          <input type="checkbox" className="rounded" defaultChecked />
+                          <Text size="sm">Two-factor authentication</Text>
+                        </label>
+                        <label className="flex items-center gap-2">
+                          <input type="checkbox" className="rounded" />
+                          <Text size="sm">Email notifications</Text>
+                        </label>
+                        <label className="flex items-center gap-2">
+                          <input type="checkbox" className="rounded" defaultChecked />
+                          <Text size="sm">Security alerts</Text>
+                        </label>
                       </Stack>
-                    )}
-                    pagination={{
-                      currentPage,
-                      pageCount: totalPages,
-                      itemsPerPage,
-                      onPageChange: setCurrentPage,
-                    }}
-                  />
+                    </FormSection>
+                  </Stack>
                 </CardContent>
                 <CardFooter>
-                  <Text size="sm" color="subtle">
-                    Showing {startIndex + 1}-{Math.min(endIndex, allData.length)} of {allData.length} users
-                  </Text>
-                </CardFooter>
-              </Card>
-            </Box>
-
-            {/* Form Card */}
-            <Card>
-              <CardHeader>
-                <CardTitle>User Profile</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Stack gap="md">
-                  <div>
-                    <Label htmlFor="username">Username</Label>
-                    <Input 
-                      id="username" 
-                      placeholder="Enter your username" 
-                      value={username} 
-                      onChange={(e) => setUsername(e.target.value)}
-                      className={username ? 'success' : ''}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder="Enter your email" 
-                      value={email} 
-                      onChange={(e) => setEmail(e.target.value)}
-                      className={email.includes('@') ? 'success' : email ? 'warning' : ''}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="password">Password</Label>
-                    <Input 
-                      id="password" 
-                      type="password" 
-                      placeholder="Enter new password" 
-                      value={password} 
-                      onChange={(e) => setPassword(e.target.value)}
-                      className={password.length >= 8 ? 'success' : password.length > 0 ? 'warning' : ''}
-                    />
-                    {password.length > 0 && (
-                      <Text size="xs" color={password.length >= 8 ? 'success' : 'warning'} className="mt-1">
-                        Password strength: {password.length >= 8 ? 'Strong' : 'Weak'}
-                      </Text>
-                    )}
-                  </div>
-                  
-                  {/* Enhanced form section */}
-                  <FormSection 
-                    title="Security Settings"
-                    description="Configure your account security preferences"
-                  >
-                    <Stack direction="row" gap="md" wrap>
-                      <label className="flex items-center gap-2">
-                        <input type="checkbox" className="rounded" defaultChecked />
-                        <Text size="sm">Two-factor authentication</Text>
-                      </label>
-                      <label className="flex items-center gap-2">
-                        <input type="checkbox" className="rounded" />
-                        <Text size="sm">Email notifications</Text>
-                      </label>
-                      <label className="flex items-center gap-2">
-                        <input type="checkbox" className="rounded" defaultChecked />
-                        <Text size="sm">Security alerts</Text>
-                      </label>
+                  <Stack direction="row" gap="sm" justify="between" className="w-full">
+                    <Stack direction="row" gap="sm">
+                      <Button variant="outline" iconStart="RotateCcw">
+                        Reset
+                      </Button>
+                      <Button variant="secondary" iconStart="X">
+                        Cancel
+                      </Button>
                     </Stack>
-                  </FormSection>
-                </Stack>
-              </CardContent>
-              <CardFooter>
-                <Stack direction="row" gap="sm" justify="between" className="w-full">
-                  <Stack direction="row" gap="sm">
-                    <Button variant="outline" iconStart="RotateCcw">
-                      Reset
-                    </Button>
-                    <Button variant="secondary" iconStart="X">
-                      Cancel
+                    <Button
+                      variant="primary"
+                      glow
+                      iconStart="Save"
+                      disabled={!username || !email || !password}
+                      className={isLoading ? 'loading' : ''}
+                    >
+                      {isLoading ? 'Saving...' : 'Save Changes'}
                     </Button>
                   </Stack>
-                  <Button 
-                    variant="primary" 
-                    glow 
-                    iconStart="Save"
-                    disabled={!username || !email || !password}
-                    className={isLoading ? 'loading' : ''}
-                  >
-                    {isLoading ? 'Saving...' : 'Save Changes'}
-                  </Button>
-                </Stack>
-              </CardFooter>
-            </Card>
-          </Grid>
+                </CardFooter>
+              </Card>
+            </Grid>
           </motion.div>
 
           {/* System Alert */}
@@ -586,30 +611,34 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
                 </Alert>
               ) : isFuturistic ? (
                 <Alert variant="success" title="Quantum Core Online" className="fade-in-up">
-                  Futuristic theme v3.5.1 successfully applied! Advanced quantum processing and neural networks are now active.
+                  Futuristic theme v3.5.1 successfully applied! Advanced quantum processing and
+                  neural networks are now active.
                 </Alert>
               ) : theme?.meta?.name?.toLowerCase().includes('dark') ? (
                 <Alert variant="success" title="Dark Mode Active" className="fade-in-up">
-                  Dark theme v3.5.1 enabled. Reduced eye strain mode activated. Enhanced readability in low-light conditions.
+                  Dark theme v3.5.1 enabled. Reduced eye strain mode activated. Enhanced readability
+                  in low-light conditions.
                 </Alert>
               ) : (
                 <Alert variant="success" title="Light Mode Active" className="fade-in-up">
-                  Light theme v3.5.1 active. Professional interface optimized for daylight viewing and productivity.
+                  Light theme v3.5.1 active. Professional interface optimized for daylight viewing
+                  and productivity.
                 </Alert>
               )}
-              
+
               {isCyberpunk && (
                 <Alert variant="info" title="Security Protocol">
                   Quantum encryption active. Neural firewall enabled. Unauthorized access blocked.
                 </Alert>
               )}
-              
+
               {variant === 'professional' && (
                 <Alert variant="info" title="Professional Mode Active">
-                  Subtle effects enabled for corporate environments. Glow intensity reduced for productivity focus.
+                  Subtle effects enabled for corporate environments. Glow intensity reduced for
+                  productivity focus.
                 </Alert>
               )}
-              
+
               {variant === 'high-contrast' && (
                 <Alert variant="warning" title="High Contrast Mode">
                   Enhanced contrast ratios active for improved accessibility compliance.
@@ -625,40 +654,40 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
             transition={{ delay: 0.8, duration: 0.5 }}
           >
             <Card>
-            <CardHeader>
-              <CardTitle>System Actions</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Stack direction="row" gap="md" wrap>
-                <Button 
-                  onClick={() => setIsDialogOpen(true)} 
-                  variant="primary" 
-                  glow 
-                  iconStart="Settings"
-                >
-                  Configure System
-                </Button>
-                <Button 
-                  variant="secondary" 
-                  iconStart="RefreshCw"
-                  onClick={() => handleSystemAction('refresh')}
-                  disabled={isLoading}
-                  className={isLoading ? 'loading' : ''}
-                >
-                  {isLoading ? 'Refreshing...' : 'Refresh Data'}
-                </Button>
-                <Button variant="outline" iconStart="Download">
-                  Export Data
-                </Button>
-                <Button variant="ghost" iconStart="HelpCircle">
-                  Help
-                </Button>
-                <Button variant="destructive" iconStart="Power" size="sm">
-                  Shutdown
-                </Button>
-              </Stack>
-            </CardContent>
-          </Card>
+              <CardHeader>
+                <CardTitle>System Actions</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Stack direction="row" gap="md" wrap>
+                  <Button
+                    onClick={() => setIsDialogOpen(true)}
+                    variant="primary"
+                    glow
+                    iconStart="Settings"
+                  >
+                    Configure System
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    iconStart="RefreshCw"
+                    onClick={() => handleSystemAction('refresh')}
+                    disabled={isLoading}
+                    className={isLoading ? 'loading' : ''}
+                  >
+                    {isLoading ? 'Refreshing...' : 'Refresh Data'}
+                  </Button>
+                  <Button variant="outline" iconStart="Download">
+                    Export Data
+                  </Button>
+                  <Button variant="ghost" iconStart="HelpCircle">
+                    Help
+                  </Button>
+                  <Button variant="destructive" iconStart="Power" size="sm">
+                    Shutdown
+                  </Button>
+                </Stack>
+              </CardContent>
+            </Card>
           </motion.div>
 
           {/* Enhanced Configuration Dialog */}
@@ -674,36 +703,56 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
                 <Alert variant="warning" title="Configuration Warning">
                   Modifying these settings may affect system performance and require a restart.
                 </Alert>
-                
+
                 <Stack gap="md">
                   <Text className="font-medium">Theme Configuration</Text>
                   <Stack gap="sm">
                     <label className="flex items-center justify-between p-3 rounded border border-[var(--border)]">
                       <Stack gap="xs">
-                        <Text size="sm" className="font-medium">Professional Mode</Text>
-                        <Text size="xs" color="subtle">Reduces glow effects for corporate environments</Text>
+                        <Text size="sm" className="font-medium">
+                          Professional Mode
+                        </Text>
+                        <Text size="xs" color="subtle">
+                          Reduces glow effects for corporate environments
+                        </Text>
                       </Stack>
-                      <input type="checkbox" className="rounded" defaultChecked={variant === 'professional'} />
+                      <input
+                        type="checkbox"
+                        className="rounded"
+                        defaultChecked={variant === 'professional'}
+                      />
                     </label>
-                    
+
                     <label className="flex items-center justify-between p-3 rounded border border-[var(--border)]">
                       <Stack gap="xs">
-                        <Text size="sm" className="font-medium">High Contrast</Text>
-                        <Text size="xs" color="subtle">Enhanced contrast for accessibility</Text>
+                        <Text size="sm" className="font-medium">
+                          High Contrast
+                        </Text>
+                        <Text size="xs" color="subtle">
+                          Enhanced contrast for accessibility
+                        </Text>
                       </Stack>
-                      <input type="checkbox" className="rounded" defaultChecked={variant === 'high-contrast'} />
+                      <input
+                        type="checkbox"
+                        className="rounded"
+                        defaultChecked={variant === 'high-contrast'}
+                      />
                     </label>
-                    
+
                     <label className="flex items-center justify-between p-3 rounded border border-[var(--border)]">
                       <Stack gap="xs">
-                        <Text size="sm" className="font-medium">Performance Mode</Text>
-                        <Text size="xs" color="subtle">Disables animations on low-power devices</Text>
+                        <Text size="sm" className="font-medium">
+                          Performance Mode
+                        </Text>
+                        <Text size="xs" color="subtle">
+                          Disables animations on low-power devices
+                        </Text>
                       </Stack>
                       <input type="checkbox" className="rounded" />
                     </label>
                   </Stack>
                 </Stack>
-                
+
                 <Stack gap="md">
                   <Text className="font-medium">System Preferences</Text>
                   <Stack gap="sm">
@@ -735,13 +784,13 @@ const VisualMockupDemo = ({ variant = 'default' }: VisualMockupDemoProps = {}) =
                 <Button variant="secondary" iconStart="RotateCcw">
                   Reset to Defaults
                 </Button>
-                <Button 
-                  variant="primary" 
-                  glow 
+                <Button
+                  variant="primary"
+                  glow
                   onClick={() => {
                     handleSystemAction('configure');
                     setIsDialogOpen(false);
-                  }} 
+                  }}
                   iconStart="Check"
                 >
                   Apply Changes

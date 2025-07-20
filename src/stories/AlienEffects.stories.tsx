@@ -7,12 +7,13 @@ import { Progress } from '../components/Progress/Progress';
 import { Badge } from '../components/Badge/Badge';
 
 const meta: Meta = {
-  title: 'Alien/Effects',
+  title: 'Themes/Alien/Effects',
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
-        component: 'Alien biomechanical effects plugin system demonstration with interactive controls and real-time performance monitoring',
+        component:
+          'Alien biomechanical effects plugin system demonstration with interactive controls and real-time performance monitoring',
       },
     },
   },
@@ -45,12 +46,16 @@ const PerformanceMonitor = ({ effectsActive }: { effectsActive: number }) => {
       <div className="space-y-3">
         <div className="flex justify-between text-sm">
           <span className="atmospheric-text-ghost">FPS:</span>
-          <span className={fps > 50 ? 'atmospheric-text-vital' : fps > 30 ? 'text-yellow-400' : 'text-red-400'}>
+          <span
+            className={
+              fps > 50 ? 'atmospheric-text-vital' : fps > 30 ? 'text-yellow-400' : 'text-red-400'
+            }
+          >
             {fps}
           </span>
         </div>
         <Progress value={(fps / 60) * 100} className="h-2" />
-        
+
         <div className="flex justify-between text-sm">
           <span className="atmospheric-text-ghost">Memory:</span>
           <span className={memoryUsage < 70 ? 'atmospheric-text-vital' : 'text-yellow-400'}>
@@ -58,7 +63,7 @@ const PerformanceMonitor = ({ effectsActive }: { effectsActive: number }) => {
           </span>
         </div>
         <Progress value={memoryUsage} className="h-2 atmospheric-breathe" />
-        
+
         <div className="flex justify-between text-sm">
           <span className="atmospheric-text-ghost">GPU Load:</span>
           <span className={gpuLoad < 60 ? 'atmospheric-text-vital' : 'text-yellow-400'}>
@@ -66,9 +71,16 @@ const PerformanceMonitor = ({ effectsActive }: { effectsActive: number }) => {
           </span>
         </div>
         <Progress value={gpuLoad} className="h-2 atmospheric-neural" />
-        
+
         <div className="text-xs atmospheric-text-ghost">
-          Active Effects: {effectsActive} • Impact: {effectsActive === 0 ? 'MINIMAL' : effectsActive < 3 ? 'LOW' : effectsActive < 6 ? 'MODERATE' : 'HIGH'}
+          Active Effects: {effectsActive} • Impact:{' '}
+          {effectsActive === 0
+            ? 'MINIMAL'
+            : effectsActive < 3
+              ? 'LOW'
+              : effectsActive < 6
+                ? 'MODERATE'
+                : 'HIGH'}
         </div>
       </div>
     </Container>
@@ -84,19 +96,18 @@ export const AtmosphericEffects: Story = {
     return (
       <div className="theme-atmospheric min-h-screen p-8 bg-black text-white">
         <div className="max-w-7xl mx-auto space-y-8">
-          
           {/* Header */}
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-bold atmospheric-text-vital atmospheric-breathe">
               Atmospheric Effects Plugin
             </h1>
             <p className="text-lg atmospheric-text-ghost max-w-3xl mx-auto">
-              Control the breathing patterns, membrane layers, and organic atmosphere of your biomechanical interfaces
+              Control the breathing patterns, membrane layers, and organic atmosphere of your
+              biomechanical interfaces
             </p>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-            
             {/* Controls Panel */}
             <div className="xl:col-span-1 space-y-6">
               <Container alienVariant="organ" atmospheric className="p-4">
@@ -116,7 +127,7 @@ export const AtmosphericEffects: Story = {
                       {atmosphericEnabled ? 'DISABLE' : 'ENABLE'}
                     </Button>
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm atmospheric-text-ghost mb-2">
                       Breathing Intensity: {breathingIntensity}%
@@ -130,7 +141,7 @@ export const AtmosphericEffects: Story = {
                       className="w-full atmospheric-slider"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm atmospheric-text-ghost mb-2">
                       Membrane Opacity: {membraneOpacity}%
@@ -152,26 +163,30 @@ export const AtmosphericEffects: Story = {
 
             {/* Demo Area */}
             <div className="xl:col-span-3 space-y-6">
-              <h3 className="text-xl font-bold atmospheric-text-vital">Atmospheric Effect Showcase</h3>
-              
+              <h3 className="text-xl font-bold atmospheric-text-vital">
+                Atmospheric Effect Showcase
+              </h3>
+
               {/* Background Effects Demo */}
-              <div 
+              <div
                 className="relative h-64 rounded-lg overflow-hidden atmospheric-border-vessel"
                 style={{
-                  background: atmosphericEnabled ? 'radial-gradient(circle at center, rgba(139, 69, 19, 0.1), rgba(0, 0, 0, 0.8))' : '#1a1a1a'
+                  background: atmosphericEnabled
+                    ? 'radial-gradient(circle at center, rgba(139, 69, 19, 0.1), rgba(0, 0, 0, 0.8))'
+                    : '#1a1a1a',
                 }}
               >
                 {atmosphericEnabled && (
                   <>
-                    <div 
+                    <div
                       className="atmospheric-membrane pointer-events-none"
                       style={{ opacity: membraneOpacity / 100 }}
                     />
-                    <div 
+                    <div
                       className="neural-pathways pointer-events-none"
-                      style={{ 
+                      style={{
                         opacity: breathingIntensity / 200,
-                        animationDuration: `${3 - (breathingIntensity / 50)}s`
+                        animationDuration: `${3 - breathingIntensity / 50}s`,
                       }}
                     />
                   </>
@@ -190,29 +205,33 @@ export const AtmosphericEffects: Story = {
 
               {/* Component Examples */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <Card 
-                  variant="alien-chamber" 
+                <Card
+                  variant="alien-chamber"
                   atmospheric={atmosphericEnabled}
                   style={{
-                    animationDuration: atmosphericEnabled ? `${3 - (breathingIntensity / 50)}s` : 'none'
+                    animationDuration: atmosphericEnabled
+                      ? `${3 - breathingIntensity / 50}s`
+                      : 'none',
                   }}
                 >
                   <CardHeader>
                     <CardTitle>Breathing Chamber</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm">Atmospheric breathing with {breathingIntensity}% intensity</p>
+                    <p className="text-sm">
+                      Atmospheric breathing with {breathingIntensity}% intensity
+                    </p>
                     <div className="mt-2 text-xs atmospheric-text-vital">
                       Status: {atmosphericEnabled ? 'LIVING' : 'STATIC'}
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card 
-                  variant="alien-membrane" 
+                <Card
+                  variant="alien-membrane"
                   atmospheric={atmosphericEnabled}
                   style={{
-                    opacity: atmosphericEnabled ? 0.7 + (membraneOpacity / 300) : 1
+                    opacity: atmosphericEnabled ? 0.7 + membraneOpacity / 300 : 1,
                   }}
                 >
                   <CardHeader>
@@ -226,8 +245,8 @@ export const AtmosphericEffects: Story = {
                   </CardContent>
                 </Card>
 
-                <Card 
-                  variant="alien-organ" 
+                <Card
+                  variant="alien-organ"
                   atmospheric={atmosphericEnabled}
                   className={atmosphericEnabled ? 'atmospheric-breathe' : ''}
                 >
@@ -247,22 +266,26 @@ export const AtmosphericEffects: Story = {
               <div className="space-y-4">
                 <h4 className="text-lg font-bold atmospheric-text-vital">Button Variations</h4>
                 <div className="flex flex-wrap gap-4">
-                  <Button 
-                    variant="membrane" 
+                  <Button
+                    variant="membrane"
                     atmospheric={atmosphericEnabled}
-                    className={atmosphericEnabled && breathingIntensity > 70 ? 'atmospheric-breathe' : ''}
+                    className={
+                      atmosphericEnabled && breathingIntensity > 70 ? 'atmospheric-breathe' : ''
+                    }
                   >
                     Membrane Interface
                   </Button>
-                  <Button 
-                    variant="vessel" 
+                  <Button
+                    variant="vessel"
                     atmospheric={atmosphericEnabled}
-                    className={atmosphericEnabled && membraneOpacity > 50 ? 'atmospheric-pulse' : ''}
+                    className={
+                      atmosphericEnabled && membraneOpacity > 50 ? 'atmospheric-pulse' : ''
+                    }
                   >
                     Vessel Control
                   </Button>
-                  <Button 
-                    variant="neural" 
+                  <Button
+                    variant="neural"
                     atmospheric={atmosphericEnabled}
                     className={atmosphericEnabled ? 'atmospheric-neural' : ''}
                   >
@@ -288,8 +311,8 @@ export const VitalEffects: Story = {
     useEffect(() => {
       const interval = setInterval(() => {
         if (vitalEnabled) {
-          setPulseRate(prev => Math.max(40, Math.min(120, prev + (Math.random() - 0.5) * 5)));
-          setOxygenLevel(prev => Math.max(85, Math.min(100, prev + (Math.random() - 0.5) * 2)));
+          setPulseRate((prev) => Math.max(40, Math.min(120, prev + (Math.random() - 0.5) * 5)));
+          setOxygenLevel((prev) => Math.max(85, Math.min(100, prev + (Math.random() - 0.5) * 2)));
         }
       }, 2000);
 
@@ -299,28 +322,25 @@ export const VitalEffects: Story = {
     return (
       <div className="theme-atmospheric min-h-screen p-8 bg-black text-white">
         <div className="max-w-7xl mx-auto space-y-8">
-          
           {/* Header */}
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-bold atmospheric-text-vital atmospheric-breathe">
               Vital Signs Effects Plugin
             </h1>
             <p className="text-lg atmospheric-text-ghost max-w-3xl mx-auto">
-              Monitor and control the life force indicators, pulse patterns, and vital energy flows in biomechanical systems
+              Monitor and control the life force indicators, pulse patterns, and vital energy flows
+              in biomechanical systems
             </p>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-            
             {/* Vital Controls */}
             <div className="xl:col-span-1 space-y-6">
               <Container alienVariant="chamber" atmospheric vital={vitalEnabled} className="p-4">
                 <h3 className="font-bold atmospheric-text-vital mb-4">VITAL CONTROLS</h3>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm atmospheric-text-ghost mb-2">
-                      Vital Signs
-                    </label>
+                    <label className="block text-sm atmospheric-text-ghost mb-2">Vital Signs</label>
                     <Button
                       variant={vitalEnabled ? 'vessel' : 'membrane'}
                       vital={vitalEnabled}
@@ -331,7 +351,7 @@ export const VitalEffects: Story = {
                       {vitalEnabled ? 'ALIVE' : 'DORMANT'}
                     </Button>
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm atmospheric-text-ghost mb-2">
                       Vital Intensity: {vitalIntensity}%
@@ -345,14 +365,14 @@ export const VitalEffects: Story = {
                       className="w-full atmospheric-slider"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="atmospheric-text-ghost">Pulse Rate:</span>
                       <span className="atmospheric-text-vital">{Math.floor(pulseRate)} BPM</span>
                     </div>
                     <Progress value={(pulseRate / 120) * 100} className="h-2 atmospheric-breathe" />
-                    
+
                     <div className="flex justify-between text-sm">
                       <span className="atmospheric-text-ghost">Oxygen Level:</span>
                       <span className="atmospheric-text-vital">{Math.floor(oxygenLevel)}%</span>
@@ -368,42 +388,49 @@ export const VitalEffects: Story = {
             {/* Vital Demo Area */}
             <div className="xl:col-span-3 space-y-6">
               <h3 className="text-xl font-bold atmospheric-text-vital">Vital Signs Monitoring</h3>
-              
+
               {/* Vital Status Display */}
-              <Container 
-                alienVariant="organism" 
-                atmospheric 
-                vital={vitalEnabled}
-                className="p-6"
-              >
+              <Container alienVariant="organism" atmospheric vital={vitalEnabled} className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="text-center">
-                    <div className={`text-6xl ${vitalEnabled ? 'atmospheric-text-vital atmospheric-pulse' : 'text-gray-600'}`}>
+                    <div
+                      className={`text-6xl ${vitalEnabled ? 'atmospheric-text-vital atmospheric-pulse' : 'text-gray-600'}`}
+                    >
                       💓
                     </div>
                     <div className="mt-2">
                       <div className="text-sm atmospheric-text-ghost">Heart Rate</div>
-                      <div className="text-xl atmospheric-text-vital">{Math.floor(pulseRate)} BPM</div>
+                      <div className="text-xl atmospheric-text-vital">
+                        {Math.floor(pulseRate)} BPM
+                      </div>
                     </div>
                   </div>
-                  
+
                   <div className="text-center">
-                    <div className={`text-6xl ${vitalEnabled ? 'atmospheric-text-vital atmospheric-breathe' : 'text-gray-600'}`}>
+                    <div
+                      className={`text-6xl ${vitalEnabled ? 'atmospheric-text-vital atmospheric-breathe' : 'text-gray-600'}`}
+                    >
                       🫁
                     </div>
                     <div className="mt-2">
                       <div className="text-sm atmospheric-text-ghost">Oxygen Level</div>
-                      <div className="text-xl atmospheric-text-vital">{Math.floor(oxygenLevel)}%</div>
+                      <div className="text-xl atmospheric-text-vital">
+                        {Math.floor(oxygenLevel)}%
+                      </div>
                     </div>
                   </div>
-                  
+
                   <div className="text-center">
-                    <div className={`text-6xl ${vitalEnabled ? 'atmospheric-text-vital atmospheric-neural' : 'text-gray-600'}`}>
+                    <div
+                      className={`text-6xl ${vitalEnabled ? 'atmospheric-text-vital atmospheric-neural' : 'text-gray-600'}`}
+                    >
                       🧠
                     </div>
                     <div className="mt-2">
                       <div className="text-sm atmospheric-text-ghost">Neural Activity</div>
-                      <div className="text-xl atmospheric-text-vital">{vitalEnabled ? 'ACTIVE' : 'DORMANT'}</div>
+                      <div className="text-xl atmospheric-text-vital">
+                        {vitalEnabled ? 'ACTIVE' : 'DORMANT'}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -412,25 +439,35 @@ export const VitalEffects: Story = {
               {/* Component Examples with Vital Effects */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
-                  { variant: 'alien-chamber', title: 'Vital Chamber', desc: 'Life support chamber' },
+                  {
+                    variant: 'alien-chamber',
+                    title: 'Vital Chamber',
+                    desc: 'Life support chamber',
+                  },
                   { variant: 'alien-organ', title: 'Living Organ', desc: 'Biomechanical organ' },
-                  { variant: 'alien-membrane', title: 'Vital Membrane', desc: 'Living tissue barrier' },
+                  {
+                    variant: 'alien-membrane',
+                    title: 'Vital Membrane',
+                    desc: 'Living tissue barrier',
+                  },
                   { variant: 'alien-cavity', title: 'Body Cavity', desc: 'Internal organ space' },
                 ].map((item, index) => (
-                  <Card 
+                  <Card
                     key={index}
-                    variant={item.variant as any} 
-                    atmospheric 
+                    variant={item.variant as any}
+                    atmospheric
                     vital={vitalEnabled}
                     className={vitalEnabled ? 'atmospheric-breathe' : ''}
                     style={{
                       animationDelay: `${index * 0.2}s`,
-                      opacity: vitalEnabled ? 0.8 + (vitalIntensity / 500) : 0.6
+                      opacity: vitalEnabled ? 0.8 + vitalIntensity / 500 : 0.6,
                     }}
                   >
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
-                        <span className={vitalEnabled ? 'atmospheric-text-vital' : 'text-gray-500'}>●</span>
+                        <span className={vitalEnabled ? 'atmospheric-text-vital' : 'text-gray-500'}>
+                          ●
+                        </span>
                         {item.title}
                       </CardTitle>
                     </CardHeader>
@@ -445,7 +482,9 @@ export const VitalEffects: Story = {
                         </div>
                         <div className="flex justify-between mt-1">
                           <span className="atmospheric-text-ghost">Status:</span>
-                          <span className={vitalEnabled ? 'atmospheric-text-vital' : 'text-gray-500'}>
+                          <span
+                            className={vitalEnabled ? 'atmospheric-text-vital' : 'text-gray-500'}
+                          >
                             {vitalEnabled ? 'LIVING' : 'INERT'}
                           </span>
                         </div>
@@ -465,7 +504,9 @@ export const VitalEffects: Story = {
                         <path
                           d={`M0,50 ${Array.from({ length: 20 }, (_, i) => {
                             const x = (i + 1) * 20;
-                            const y = 50 + Math.sin((i + Date.now() / 200) * 0.5) * 20 * (vitalIntensity / 100);
+                            const y =
+                              50 +
+                              Math.sin((i + Date.now() / 200) * 0.5) * 20 * (vitalIntensity / 100);
                             return `L${x},${y}`;
                           }).join(' ')}`}
                           stroke="var(--atmospheric-vital, #8B4513)"
@@ -501,9 +542,13 @@ export const NeuralEffects: Story = {
     useEffect(() => {
       const interval = setInterval(() => {
         if (neuralEnabled) {
-          setSynapticRate(prev => Math.max(400, Math.min(1200, prev + (Math.random() - 0.5) * 50)));
-          setCoherence(prev => Math.max(60, Math.min(100, prev + (Math.random() - 0.5) * 5)));
-          setNetworkActivity(prev => Math.max(30, Math.min(95, prev + (Math.random() - 0.5) * 10)));
+          setSynapticRate((prev) =>
+            Math.max(400, Math.min(1200, prev + (Math.random() - 0.5) * 50)),
+          );
+          setCoherence((prev) => Math.max(60, Math.min(100, prev + (Math.random() - 0.5) * 5)));
+          setNetworkActivity((prev) =>
+            Math.max(30, Math.min(95, prev + (Math.random() - 0.5) * 10)),
+          );
         }
       }, 1500);
 
@@ -513,19 +558,18 @@ export const NeuralEffects: Story = {
     return (
       <div className="theme-atmospheric min-h-screen p-8 bg-black text-white">
         <div className="max-w-7xl mx-auto space-y-8">
-          
           {/* Header */}
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-bold atmospheric-text-vital atmospheric-neural">
               Neural Network Effects Plugin
             </h1>
             <p className="text-lg atmospheric-text-ghost max-w-3xl mx-auto">
-              Control synaptic pathways, neural coherence, and consciousness network patterns in biomechanical systems
+              Control synaptic pathways, neural coherence, and consciousness network patterns in
+              biomechanical systems
             </p>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-            
             {/* Neural Controls */}
             <div className="xl:col-span-1 space-y-6">
               <Container alienVariant="organ" atmospheric neural={neuralEnabled} className="p-4">
@@ -545,20 +589,23 @@ export const NeuralEffects: Story = {
                       {neuralEnabled ? 'CONNECTED' : 'DISCONNECTED'}
                     </Button>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
                       <span className="atmospheric-text-ghost">Synaptic Rate:</span>
                       <span className="atmospheric-text-vital">{Math.floor(synapticRate)} Hz</span>
                     </div>
-                    <Progress value={(synapticRate / 1200) * 100} className="h-2 atmospheric-neural" />
-                    
+                    <Progress
+                      value={(synapticRate / 1200) * 100}
+                      className="h-2 atmospheric-neural"
+                    />
+
                     <div className="flex justify-between text-sm">
                       <span className="atmospheric-text-ghost">Coherence:</span>
                       <span className="atmospheric-text-vital">{Math.floor(coherence)}%</span>
                     </div>
                     <Progress value={coherence} className="h-2 atmospheric-breathe" />
-                    
+
                     <div className="flex justify-between text-sm">
                       <span className="atmospheric-text-ghost">Network Activity:</span>
                       <span className="atmospheric-text-vital">{Math.floor(networkActivity)}%</span>
@@ -573,41 +620,47 @@ export const NeuralEffects: Story = {
 
             {/* Neural Demo Area */}
             <div className="xl:col-span-3 space-y-6">
-              <h3 className="text-xl font-bold atmospheric-text-vital">Neural Network Visualization</h3>
-              
+              <h3 className="text-xl font-bold atmospheric-text-vital">
+                Neural Network Visualization
+              </h3>
+
               {/* Neural Pathway Grid */}
-              <Container 
-                alienVariant="cavity" 
-                atmospheric 
-                neural={neuralEnabled}
-                className="p-6"
-              >
+              <Container alienVariant="cavity" atmospheric neural={neuralEnabled} className="p-6">
                 <h4 className="font-bold atmospheric-text-vital mb-4">SYNAPTIC PATHWAY GRID</h4>
                 <div className="h-48 relative">
-                  {neuralEnabled && <div className="neural-pathways opacity-40 pointer-events-none" />}
+                  {neuralEnabled && (
+                    <div className="neural-pathways opacity-40 pointer-events-none" />
+                  )}
                   <div className="grid grid-cols-8 grid-rows-6 gap-1 h-full">
                     {Array.from({ length: 48 }).map((_, i) => {
-                      const isActive = neuralEnabled && Math.random() < (networkActivity / 100);
+                      const isActive = neuralEnabled && Math.random() < networkActivity / 100;
                       const intensity = Math.random();
                       return (
                         <div
                           key={i}
                           className={`rounded-full transition-all duration-500 ${
-                            isActive && intensity > 0.7 ? 'bg-orange-400/80 atmospheric-pulse' :
-                            isActive && intensity > 0.4 ? 'bg-blue-400/60 atmospheric-breathe' :
-                            isActive ? 'bg-purple-400/40' :
-                            'bg-gray-600/20'
+                            isActive && intensity > 0.7
+                              ? 'bg-orange-400/80 atmospheric-pulse'
+                              : isActive && intensity > 0.4
+                                ? 'bg-blue-400/60 atmospheric-breathe'
+                                : isActive
+                                  ? 'bg-purple-400/40'
+                                  : 'bg-gray-600/20'
                           }`}
                           style={{
-                            animation: isActive && intensity > 0.5 ? 'atmospheric-neural 1.5s infinite' : 'none',
-                            animationDelay: `${i * 0.1}s`
+                            animation:
+                              isActive && intensity > 0.5
+                                ? 'atmospheric-neural 1.5s infinite'
+                                : 'none',
+                            animationDelay: `${i * 0.1}s`,
                           }}
                         />
                       );
                     })}
                   </div>
                   <div className="absolute top-2 right-2 text-xs atmospheric-text-ghost bg-black/60 px-2 py-1 rounded">
-                    Active Synapses: {neuralEnabled ? Math.floor(48 * (networkActivity / 100)) : 0} / 48
+                    Active Synapses: {neuralEnabled ? Math.floor(48 * (networkActivity / 100)) : 0}{' '}
+                    / 48
                   </div>
                 </div>
               </Container>
@@ -615,15 +668,19 @@ export const NeuralEffects: Story = {
               {/* Neural Interface Components */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
-                  { variant: 'alien-chamber', title: 'Neural Chamber', desc: 'Consciousness interface' },
+                  {
+                    variant: 'alien-chamber',
+                    title: 'Neural Chamber',
+                    desc: 'Consciousness interface',
+                  },
                   { variant: 'alien-organ', title: 'Brain Cortex', desc: 'Cognitive processing' },
                   { variant: 'alien-membrane', title: 'Neural Barrier', desc: 'Synaptic membrane' },
                   { variant: 'alien-cavity', title: 'Mind Palace', desc: 'Memory storage' },
                 ].map((item, index) => (
-                  <Card 
+                  <Card
                     key={index}
-                    variant={item.variant as any} 
-                    atmospheric 
+                    variant={item.variant as any}
+                    atmospheric
                     neural={neuralEnabled}
                     className={neuralEnabled ? 'atmospheric-neural' : ''}
                     style={{
@@ -632,7 +689,13 @@ export const NeuralEffects: Story = {
                   >
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
-                        <span className={neuralEnabled ? 'atmospheric-text-vital atmospheric-pulse' : 'text-gray-500'}>
+                        <span
+                          className={
+                            neuralEnabled
+                              ? 'atmospheric-text-vital atmospheric-pulse'
+                              : 'text-gray-500'
+                          }
+                        >
                           ⚡
                         </span>
                         {item.title}
@@ -649,7 +712,9 @@ export const NeuralEffects: Story = {
                         </div>
                         <div className="flex justify-between mt-1">
                           <span className="atmospheric-text-ghost">Activity:</span>
-                          <span className={neuralEnabled ? 'atmospheric-text-vital' : 'text-gray-500'}>
+                          <span
+                            className={neuralEnabled ? 'atmospheric-text-vital' : 'text-gray-500'}
+                          >
                             {neuralEnabled ? `${Math.floor(synapticRate)} Hz` : 'SILENT'}
                           </span>
                         </div>
@@ -661,26 +726,60 @@ export const NeuralEffects: Story = {
 
               {/* Consciousness Levels */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Container alienVariant="membrane" atmospheric neural={neuralEnabled} className="p-4">
-                  <h4 className="font-bold atmospheric-text-vital mb-3 text-sm">CONSCIOUSNESS LEVEL</h4>
+                <Container
+                  alienVariant="membrane"
+                  atmospheric
+                  neural={neuralEnabled}
+                  className="p-4"
+                >
+                  <h4 className="font-bold atmospheric-text-vital mb-3 text-sm">
+                    CONSCIOUSNESS LEVEL
+                  </h4>
                   <div className="text-center">
-                    <div className={`text-3xl ${neuralEnabled ? 'atmospheric-text-vital atmospheric-neural' : 'text-gray-500'}`}>
-                      {coherence > 90 ? '🧠✨' : coherence > 70 ? '🧠' : coherence > 50 ? '🧠💭' : '🧠💤'}
+                    <div
+                      className={`text-3xl ${neuralEnabled ? 'atmospheric-text-vital atmospheric-neural' : 'text-gray-500'}`}
+                    >
+                      {coherence > 90
+                        ? '🧠✨'
+                        : coherence > 70
+                          ? '🧠'
+                          : coherence > 50
+                            ? '🧠💭'
+                            : '🧠💤'}
                     </div>
                     <div className="mt-2 text-sm atmospheric-text-vital">
-                      {coherence > 90 ? 'TRANSCENDENT' : 
-                       coherence > 70 ? 'AWAKENED' : 
-                       coherence > 50 ? 'CONSCIOUS' : 'DORMANT'}
+                      {coherence > 90
+                        ? 'TRANSCENDENT'
+                        : coherence > 70
+                          ? 'AWAKENED'
+                          : coherence > 50
+                            ? 'CONSCIOUS'
+                            : 'DORMANT'}
                     </div>
                   </div>
                 </Container>
 
-                <Container alienVariant="chamber" atmospheric neural={neuralEnabled} className="p-4">
-                  <h4 className="font-bold atmospheric-text-vital mb-3 text-sm">SYNAPTIC EFFICIENCY</h4>
+                <Container
+                  alienVariant="chamber"
+                  atmospheric
+                  neural={neuralEnabled}
+                  className="p-4"
+                >
+                  <h4 className="font-bold atmospheric-text-vital mb-3 text-sm">
+                    SYNAPTIC EFFICIENCY
+                  </h4>
                   <div className="space-y-2">
-                    <Progress value={(synapticRate / 1200) * 100} className="h-3 atmospheric-neural" />
+                    <Progress
+                      value={(synapticRate / 1200) * 100}
+                      className="h-3 atmospheric-neural"
+                    />
                     <div className="text-xs atmospheric-text-ghost">
-                      {Math.floor(synapticRate)} Hz • {synapticRate > 1000 ? 'ENHANCED' : synapticRate > 700 ? 'OPTIMAL' : 'BASELINE'}
+                      {Math.floor(synapticRate)} Hz •{' '}
+                      {synapticRate > 1000
+                        ? 'ENHANCED'
+                        : synapticRate > 700
+                          ? 'OPTIMAL'
+                          : 'BASELINE'}
                     </div>
                   </div>
                 </Container>
@@ -688,15 +787,17 @@ export const NeuralEffects: Story = {
                 <Container alienVariant="organ" atmospheric neural={neuralEnabled} className="p-4">
                   <h4 className="font-bold atmospheric-text-vital mb-3 text-sm">NETWORK STATUS</h4>
                   <div className="space-y-2">
-                    <Badge 
-                      variant={neuralEnabled ? 'membrane' : 'default'} 
+                    <Badge
+                      variant={neuralEnabled ? 'membrane' : 'default'}
                       atmospheric={neuralEnabled}
                       className={neuralEnabled ? 'atmospheric-pulse' : ''}
                     >
                       {neuralEnabled ? 'NETWORK ACTIVE' : 'NETWORK OFFLINE'}
                     </Badge>
                     <div className="text-xs atmospheric-text-ghost">
-                      {neuralEnabled ? `${Math.floor(networkActivity)}% connectivity` : 'Neural link severed'}
+                      {neuralEnabled
+                        ? `${Math.floor(networkActivity)}% connectivity`
+                        : 'Neural link severed'}
                     </div>
                   </div>
                 </Container>
@@ -721,22 +822,27 @@ export const CombinedEffects: Story = {
     return (
       <div className="theme-atmospheric min-h-screen p-8 bg-black text-white">
         <div className="max-w-7xl mx-auto space-y-8">
-          
           {/* Header */}
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-bold atmospheric-text-vital atmospheric-breathe atmospheric-neural">
               Combined Effects System
             </h1>
             <p className="text-lg atmospheric-text-ghost max-w-3xl mx-auto">
-              Experience the full power of the alien biomechanical interface with all effect systems working in harmony
+              Experience the full power of the alien biomechanical interface with all effect systems
+              working in harmony
             </p>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
-            
             {/* Master Controls */}
             <div className="xl:col-span-1 space-y-6">
-              <Container alienVariant="organism" atmospheric={atmosphericEnabled} vital={vitalEnabled} neural={neuralEnabled} className="p-4">
+              <Container
+                alienVariant="organism"
+                atmospheric={atmosphericEnabled}
+                vital={vitalEnabled}
+                neural={neuralEnabled}
+                className="p-4"
+              >
                 <h3 className="font-bold atmospheric-text-vital mb-4">MASTER CONTROLS</h3>
                 <div className="space-y-4">
                   <div>
@@ -752,7 +858,7 @@ export const CombinedEffects: Story = {
                       className="w-full atmospheric-slider"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Button
                       variant={atmosphericEnabled ? 'vessel' : 'membrane'}
@@ -763,7 +869,7 @@ export const CombinedEffects: Story = {
                     >
                       Atmospheric {atmosphericEnabled ? 'ON' : 'OFF'}
                     </Button>
-                    
+
                     <Button
                       variant={vitalEnabled ? 'vessel' : 'membrane'}
                       vital={vitalEnabled}
@@ -774,7 +880,7 @@ export const CombinedEffects: Story = {
                     >
                       Vital {vitalEnabled ? 'ON' : 'OFF'}
                     </Button>
-                    
+
                     <Button
                       variant={neuralEnabled ? 'neural' : 'membrane'}
                       atmospheric
@@ -786,12 +892,19 @@ export const CombinedEffects: Story = {
                       Neural {neuralEnabled ? 'ON' : 'OFF'}
                     </Button>
                   </div>
-                  
+
                   <div className="pt-3 border-t atmospheric-border-vessel">
                     <div className="text-xs atmospheric-text-ghost mb-2">Active Systems:</div>
                     <div className="text-sm atmospheric-text-vital">{activeEffects} / 3</div>
                     <div className="text-xs atmospheric-text-ghost">
-                      Status: {activeEffects === 3 ? 'TRANSCENDENT' : activeEffects === 2 ? 'ENHANCED' : activeEffects === 1 ? 'BASIC' : 'DORMANT'}
+                      Status:{' '}
+                      {activeEffects === 3
+                        ? 'TRANSCENDENT'
+                        : activeEffects === 2
+                          ? 'ENHANCED'
+                          : activeEffects === 1
+                            ? 'BASIC'
+                            : 'DORMANT'}
                     </div>
                   </div>
                 </div>
@@ -802,41 +915,63 @@ export const CombinedEffects: Story = {
 
             {/* Combined Demo Area */}
             <div className="xl:col-span-3 space-y-6">
-              <h3 className="text-xl font-bold atmospheric-text-vital">Ultimate Biomechanical Interface</h3>
-              
+              <h3 className="text-xl font-bold atmospheric-text-vital">
+                Ultimate Biomechanical Interface
+              </h3>
+
               {/* Master Organism Display */}
-              <Container 
-                alienVariant="organism" 
-                atmospheric={atmosphericEnabled} 
-                vital={vitalEnabled} 
+              <Container
+                alienVariant="organism"
+                atmospheric={atmosphericEnabled}
+                vital={vitalEnabled}
                 neural={neuralEnabled}
                 className="p-8"
                 style={{
-                  transform: activeEffects === 3 ? `scale(${1 + (intensityLevel / 500)})` : 'scale(1)',
-                  transition: 'transform 0.5s ease'
+                  transform:
+                    activeEffects === 3 ? `scale(${1 + intensityLevel / 500})` : 'scale(1)',
+                  transition: 'transform 0.5s ease',
                 }}
               >
                 <div className="text-center space-y-6">
                   <div className="text-6xl">
-                    {activeEffects === 3 ? '👁️‍🗨️' : activeEffects === 2 ? '🧬' : activeEffects === 1 ? '🫀' : '💤'}
+                    {activeEffects === 3
+                      ? '👁️‍🗨️'
+                      : activeEffects === 2
+                        ? '🧬'
+                        : activeEffects === 1
+                          ? '🫀'
+                          : '💤'}
                   </div>
                   <div>
-                    <h2 className={`text-2xl font-bold ${
-                      activeEffects === 3 ? 'atmospheric-text-vital atmospheric-breathe atmospheric-neural' :
-                      activeEffects === 2 ? 'atmospheric-text-vital atmospheric-breathe' :
-                      activeEffects === 1 ? 'atmospheric-text-vital' :
-                      'text-gray-500'
-                    }`}>
-                      {activeEffects === 3 ? 'FULLY AWAKENED ORGANISM' :
-                       activeEffects === 2 ? 'PARTIALLY AWAKENED' :
-                       activeEffects === 1 ? 'BASIC FUNCTIONS ONLINE' :
-                       'ORGANISM DORMANT'}
+                    <h2
+                      className={`text-2xl font-bold ${
+                        activeEffects === 3
+                          ? 'atmospheric-text-vital atmospheric-breathe atmospheric-neural'
+                          : activeEffects === 2
+                            ? 'atmospheric-text-vital atmospheric-breathe'
+                            : activeEffects === 1
+                              ? 'atmospheric-text-vital'
+                              : 'text-gray-500'
+                      }`}
+                    >
+                      {activeEffects === 3
+                        ? 'FULLY AWAKENED ORGANISM'
+                        : activeEffects === 2
+                          ? 'PARTIALLY AWAKENED'
+                          : activeEffects === 1
+                            ? 'BASIC FUNCTIONS ONLINE'
+                            : 'ORGANISM DORMANT'}
                     </h2>
                     <p className="atmospheric-text-ghost">
-                      Integration Level: {Math.floor((activeEffects / 3) * intensityLevel)}% • 
-                      Consciousness: {activeEffects === 3 && intensityLevel > 80 ? 'TRANSCENDENT' : 
-                                      activeEffects >= 2 ? 'AWAKENED' : 
-                                      activeEffects === 1 ? 'BASIC' : 'NONE'}
+                      Integration Level: {Math.floor((activeEffects / 3) * intensityLevel)}% •
+                      Consciousness:{' '}
+                      {activeEffects === 3 && intensityLevel > 80
+                        ? 'TRANSCENDENT'
+                        : activeEffects >= 2
+                          ? 'AWAKENED'
+                          : activeEffects === 1
+                            ? 'BASIC'
+                            : 'NONE'}
                     </p>
                   </div>
                 </div>
@@ -845,34 +980,46 @@ export const CombinedEffects: Story = {
               {/* Effect Combination Examples */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
-                  { 
-                    title: 'Pure Atmospheric', 
+                  {
+                    title: 'Pure Atmospheric',
                     effects: { atmospheric: atmosphericEnabled, vital: false, neural: false },
                     icon: '🌊',
-                    desc: 'Breathing membranes only'
+                    desc: 'Breathing membranes only',
                   },
-                  { 
-                    title: 'Living Chamber', 
-                    effects: { atmospheric: atmosphericEnabled, vital: vitalEnabled, neural: false },
+                  {
+                    title: 'Living Chamber',
+                    effects: {
+                      atmospheric: atmosphericEnabled,
+                      vital: vitalEnabled,
+                      neural: false,
+                    },
                     icon: '💓',
-                    desc: 'Atmospheric + Vital'
+                    desc: 'Atmospheric + Vital',
                   },
-                  { 
-                    title: 'Conscious Interface', 
-                    effects: { atmospheric: atmosphericEnabled, vital: false, neural: neuralEnabled },
+                  {
+                    title: 'Conscious Interface',
+                    effects: {
+                      atmospheric: atmosphericEnabled,
+                      vital: false,
+                      neural: neuralEnabled,
+                    },
                     icon: '🧠',
-                    desc: 'Atmospheric + Neural'
+                    desc: 'Atmospheric + Neural',
                   },
-                  { 
-                    title: 'Transcendent Being', 
-                    effects: { atmospheric: atmosphericEnabled, vital: vitalEnabled, neural: neuralEnabled },
+                  {
+                    title: 'Transcendent Being',
+                    effects: {
+                      atmospheric: atmosphericEnabled,
+                      vital: vitalEnabled,
+                      neural: neuralEnabled,
+                    },
                     icon: '✨',
-                    desc: 'All systems combined'
+                    desc: 'All systems combined',
                   },
                 ].map((item, index) => (
-                  <Card 
+                  <Card
                     key={index}
-                    variant="alien-cavity" 
+                    variant="alien-cavity"
                     atmospheric={item.effects.atmospheric}
                     vital={item.effects.vital}
                     neural={item.effects.neural}
@@ -882,7 +1029,7 @@ export const CombinedEffects: Story = {
                     `}
                     style={{
                       animationDelay: `${index * 0.2}s`,
-                      opacity: 0.7 + (intensityLevel / 300)
+                      opacity: 0.7 + intensityLevel / 300,
                     }}
                   >
                     <CardHeader>
@@ -896,19 +1043,31 @@ export const CombinedEffects: Story = {
                       <div className="mt-2 text-xs space-y-1">
                         <div className="flex justify-between">
                           <span>Atmospheric:</span>
-                          <span className={item.effects.atmospheric ? 'atmospheric-text-vital' : 'text-gray-500'}>
+                          <span
+                            className={
+                              item.effects.atmospheric ? 'atmospheric-text-vital' : 'text-gray-500'
+                            }
+                          >
                             {item.effects.atmospheric ? 'ON' : 'OFF'}
                           </span>
                         </div>
                         <div className="flex justify-between">
                           <span>Vital:</span>
-                          <span className={item.effects.vital ? 'atmospheric-text-vital' : 'text-gray-500'}>
+                          <span
+                            className={
+                              item.effects.vital ? 'atmospheric-text-vital' : 'text-gray-500'
+                            }
+                          >
                             {item.effects.vital ? 'ON' : 'OFF'}
                           </span>
                         </div>
                         <div className="flex justify-between">
                           <span>Neural:</span>
-                          <span className={item.effects.neural ? 'atmospheric-text-vital' : 'text-gray-500'}>
+                          <span
+                            className={
+                              item.effects.neural ? 'atmospheric-text-vital' : 'text-gray-500'
+                            }
+                          >
                             {item.effects.neural ? 'ON' : 'OFF'}
                           </span>
                         </div>
@@ -919,11 +1078,19 @@ export const CombinedEffects: Story = {
               </div>
 
               {/* Real-time Metrics Dashboard */}
-              <Container alienVariant="chamber" atmospheric={atmosphericEnabled} vital={vitalEnabled} neural={neuralEnabled} className="p-6">
+              <Container
+                alienVariant="chamber"
+                atmospheric={atmosphericEnabled}
+                vital={vitalEnabled}
+                neural={neuralEnabled}
+                className="p-6"
+              >
                 <h4 className="font-bold atmospheric-text-vital mb-4">REAL-TIME SYSTEM METRICS</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="space-y-3">
-                    <h5 className="font-semibold atmospheric-text-vital text-sm">ATMOSPHERIC LAYER</h5>
+                    <h5 className="font-semibold atmospheric-text-vital text-sm">
+                      ATMOSPHERIC LAYER
+                    </h5>
                     <div className="space-y-2">
                       <div className="flex justify-between text-xs">
                         <span className="atmospheric-text-ghost">Membrane Permeability:</span>
@@ -934,12 +1101,14 @@ export const CombinedEffects: Story = {
                       <div className="flex justify-between text-xs">
                         <span className="atmospheric-text-ghost">Breathing Rate:</span>
                         <span className="atmospheric-text-vital">
-                          {atmosphericEnabled ? `${Math.floor(12 + (intensityLevel / 10))} BPM` : 'STATIC'}
+                          {atmosphericEnabled
+                            ? `${Math.floor(12 + intensityLevel / 10)} BPM`
+                            : 'STATIC'}
                         </span>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <h5 className="font-semibold atmospheric-text-vital text-sm">VITAL SYSTEMS</h5>
                     <div className="space-y-2">
@@ -952,25 +1121,37 @@ export const CombinedEffects: Story = {
                       <div className="flex justify-between text-xs">
                         <span className="atmospheric-text-ghost">Pulse Strength:</span>
                         <span className="atmospheric-text-vital">
-                          {vitalEnabled ? (intensityLevel > 70 ? 'STRONG' : intensityLevel > 40 ? 'MODERATE' : 'WEAK') : 'NONE'}
+                          {vitalEnabled
+                            ? intensityLevel > 70
+                              ? 'STRONG'
+                              : intensityLevel > 40
+                                ? 'MODERATE'
+                                : 'WEAK'
+                            : 'NONE'}
                         </span>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <h5 className="font-semibold atmospheric-text-vital text-sm">NEURAL NETWORK</h5>
                     <div className="space-y-2">
                       <div className="flex justify-between text-xs">
                         <span className="atmospheric-text-ghost">Synaptic Activity:</span>
                         <span className="atmospheric-text-vital">
-                          {neuralEnabled ? `${Math.floor(400 + (intensityLevel * 6))} Hz` : 'SILENT'}
+                          {neuralEnabled ? `${Math.floor(400 + intensityLevel * 6)} Hz` : 'SILENT'}
                         </span>
                       </div>
                       <div className="flex justify-between text-xs">
                         <span className="atmospheric-text-ghost">Consciousness:</span>
                         <span className="atmospheric-text-vital">
-                          {neuralEnabled ? (intensityLevel > 80 ? 'TRANSCENDENT' : intensityLevel > 50 ? 'AWARE' : 'BASIC') : 'ABSENT'}
+                          {neuralEnabled
+                            ? intensityLevel > 80
+                              ? 'TRANSCENDENT'
+                              : intensityLevel > 50
+                                ? 'AWARE'
+                                : 'BASIC'
+                            : 'ABSENT'}
                         </span>
                       </div>
                     </div>

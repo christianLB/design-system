@@ -3,7 +3,7 @@ import React from 'react';
 import { Progress } from './Progress';
 
 const meta: Meta<typeof Progress> = {
-  title: 'Components/Progress',
+  title: 'Core Components/Feedback/Progress',
   component: Progress,
   args: {
     value: 40,
@@ -32,35 +32,35 @@ export const Sizes: Story = {
   ),
 };
 
-export const CyberpunkMatrix: Story = { 
-  args: { 
-    variant: 'cyberpunk-matrix', 
+export const CyberpunkMatrix: Story = {
+  args: {
+    variant: 'cyberpunk-matrix',
     value: 65,
     cyberpunkGlow: 'normal',
-    scanlines: true
-  } 
+    scanlines: true,
+  },
 };
-export const CyberpunkDoom: Story = { 
-  args: { 
-    variant: 'cyberpunk-doom', 
+export const CyberpunkDoom: Story = {
+  args: {
+    variant: 'cyberpunk-doom',
     value: 85,
-    cyberpunkGlow: 'intense'
-  } 
+    cyberpunkGlow: 'intense',
+  },
 };
-export const CyberpunkGhost: Story = { 
-  args: { 
-    variant: 'cyberpunk-ghost', 
+export const CyberpunkGhost: Story = {
+  args: {
+    variant: 'cyberpunk-ghost',
     value: 45,
-    cyberpunkGlow: 'normal'
-  } 
+    cyberpunkGlow: 'normal',
+  },
 };
-export const CyberpunkNeon: Story = { 
-  args: { 
-    variant: 'cyberpunk-neon', 
+export const CyberpunkNeon: Story = {
+  args: {
+    variant: 'cyberpunk-neon',
     value: 75,
     cyberpunkGlow: 'intense',
-    matrixRain: true
-  } 
+    matrixRain: true,
+  },
 };
 
 export const Indeterminate: Story = { args: { isIndeterminate: true } };

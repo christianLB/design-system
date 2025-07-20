@@ -5,7 +5,7 @@ import { Icon } from '@/components/Icon';
 import { Box } from '@/components/Box';
 
 const meta: Meta<typeof NavigationTabs> = {
-  title: 'Navigation/NavigationTabs',
+  title: 'Core Components/Navigation/Navigation Tabs',
   component: NavigationTabs,
   parameters: {
     layout: 'centered',
@@ -48,26 +48,26 @@ const basicItems = [
 ];
 
 const itemsWithIcons = [
-  { 
-    label: 'Dashboard', 
+  {
+    label: 'Dashboard',
     value: 'dashboard',
-    icon: <Icon name="BarChart" size="sm" />
+    icon: <Icon name="BarChart" size="sm" />,
   },
-  { 
-    label: 'Users', 
+  {
+    label: 'Users',
     value: 'users',
-    icon: <Icon name="Users" size="sm" />
+    icon: <Icon name="Users" size="sm" />,
   },
-  { 
-    label: 'Products', 
+  {
+    label: 'Products',
     value: 'products',
-    icon: <Icon name="Package" size="sm" />
+    icon: <Icon name="Package" size="sm" />,
   },
-  { 
-    label: 'Orders', 
+  {
+    label: 'Orders',
     value: 'orders',
     icon: <Icon name="ShoppingCart" size="sm" />,
-    badge: '12'
+    badge: '12',
   },
 ];
 
@@ -86,17 +86,26 @@ const itemsWithDisabled = [
 ];
 
 // Controlled component wrapper for stories
-const ControlledTabs = ({ defaultValue, ...props }: { defaultValue: string, items: {label: string, value: string}[] }) => {
+const ControlledTabs = ({
+  defaultValue,
+  ...props
+}: {
+  defaultValue: string;
+  items: { label: string; value: string }[];
+}) => {
   const [value, setValue] = React.useState(defaultValue || props.items[0]?.value);
-  
+
   return (
     <div>
-      <NavigationTabs 
-        {...props} 
-        value={value} 
-        onChange={setValue} 
-      />
-      <Box style={{ marginTop: '2rem', padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '0.5rem' }}>
+      <NavigationTabs {...props} value={value} onChange={setValue} />
+      <Box
+        style={{
+          marginTop: '2rem',
+          padding: '1rem',
+          backgroundColor: '#f8f9fa',
+          borderRadius: '0.5rem',
+        }}
+      >
         <strong>Active tab:</strong> {value}
       </Box>
     </div>

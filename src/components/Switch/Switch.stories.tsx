@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Switch } from './Switch';
 
 const meta: Meta<typeof Switch> = {
-  title: 'Inputs/Switch',
+  title: 'Core Components/Forms/Switch',
   component: Switch,
 };
 export default meta;
@@ -13,9 +13,7 @@ type Story = StoryObj<typeof Switch>;
 export const Primary: Story = {
   render: (args) => {
     const [checked, setChecked] = useState(false);
-    return (
-      <Switch {...args} checked={checked} onCheckedChange={setChecked} />
-    );
+    return <Switch {...args} checked={checked} onCheckedChange={setChecked} />;
   },
 };
 

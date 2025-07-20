@@ -3,13 +3,13 @@ import React from 'react';
 import Container from './Container';
 
 const meta: Meta<typeof Container> = {
-  title: 'Layout/Container',
+  title: 'Core Components/Layout/Container',
   component: Container,
   argTypes: {
     maxWidth: { control: 'select', options: ['sm', 'md', 'lg', 'xl'] },
-    alienVariant: { 
-      control: 'select', 
-      options: ['organism', 'chamber', 'organ', 'membrane', 'cavity'] 
+    alienVariant: {
+      control: 'select',
+      options: ['organism', 'chamber', 'organ', 'membrane', 'cavity'],
     },
     atmospheric: { control: 'boolean' },
     vital: { control: 'boolean' },
@@ -35,7 +35,9 @@ export const AlienOrganism: Story = {
         <div className="min-h-32 flex items-center justify-center">
           <div className="text-center">
             <h3 className="font-semibold atmospheric-text-vital mb-2">Organism Container</h3>
-            <p className="text-sm atmospheric-text-ghost">Circular organic shape with deep atmospheric shadows</p>
+            <p className="text-sm atmospheric-text-ghost">
+              Circular organic shape with deep atmospheric shadows
+            </p>
           </div>
         </div>
       </Container>
@@ -50,7 +52,9 @@ export const AlienChamber: Story = {
         <div className="min-h-32 flex items-center justify-center">
           <div className="text-center">
             <h3 className="font-semibold atmospheric-text-vital mb-2">Chamber Container</h3>
-            <p className="text-sm atmospheric-text-ghost">Deep organ chamber with complex gradients</p>
+            <p className="text-sm atmospheric-text-ghost">
+              Deep organ chamber with complex gradients
+            </p>
           </div>
         </div>
       </Container>
@@ -65,7 +69,9 @@ export const AlienOrgan: Story = {
         <div className="min-h-32 flex items-center justify-center">
           <div className="text-center">
             <h3 className="font-semibold atmospheric-text-vital mb-2">Organ Container</h3>
-            <p className="text-sm atmospheric-text-ghost">Biomechanical organ with conic gradients</p>
+            <p className="text-sm atmospheric-text-ghost">
+              Biomechanical organ with conic gradients
+            </p>
           </div>
         </div>
       </Container>
@@ -109,7 +115,7 @@ export const AlienWithEffects: Story = {
       <h2 className="text-2xl font-bold atmospheric-text-vital text-center">
         Alien Containers with Atmospheric Effects
       </h2>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <Container alienVariant="organism" atmospheric vital>
           <div className="min-h-24 flex items-center justify-center">
@@ -119,7 +125,7 @@ export const AlienWithEffects: Story = {
             </div>
           </div>
         </Container>
-        
+
         <Container alienVariant="chamber" atmospheric neural>
           <div className="min-h-24 flex items-center justify-center">
             <div className="text-center">
@@ -128,7 +134,7 @@ export const AlienWithEffects: Story = {
             </div>
           </div>
         </Container>
-        
+
         <Container alienVariant="organ" atmospheric vital neural>
           <div className="min-h-24 flex items-center justify-center">
             <div className="text-center">
@@ -137,7 +143,7 @@ export const AlienWithEffects: Story = {
             </div>
           </div>
         </Container>
-        
+
         <Container alienVariant="membrane" atmospheric>
           <div className="min-h-24 flex items-center justify-center">
             <div className="text-center">
@@ -146,7 +152,7 @@ export const AlienWithEffects: Story = {
             </div>
           </div>
         </Container>
-        
+
         <Container alienVariant="cavity" atmospheric vital>
           <div className="min-h-24 flex items-center justify-center">
             <div className="text-center">
@@ -155,7 +161,7 @@ export const AlienWithEffects: Story = {
             </div>
           </div>
         </Container>
-        
+
         <Container alienVariant="organism" atmospheric neural>
           <div className="min-h-24 flex items-center justify-center">
             <div className="text-center">
@@ -179,8 +185,8 @@ export const AlienShowcase: Story = {
               Alien Container Showcase
             </h1>
             <p className="atmospheric-text-ghost max-w-2xl mx-auto">
-              Organic container variants that adapt to their content like living tissue, 
-              creating immersive biomechanical interfaces with atmospheric breathing effects.
+              Organic container variants that adapt to their content like living tissue, creating
+              immersive biomechanical interfaces with atmospheric breathing effects.
             </p>
           </div>
 
@@ -191,28 +197,28 @@ export const AlienShowcase: Story = {
                 Circular shape evoking a complete biological entity
               </p>
             </Container>
-            
+
             <Container alienVariant="chamber" atmospheric className="p-6 min-h-40">
               <h3 className="font-semibold atmospheric-text-vital mb-2">Chamber</h3>
               <p className="text-sm atmospheric-text-ghost">
                 Deep internal space with complex atmospheric gradients
               </p>
             </Container>
-            
+
             <Container alienVariant="organ" atmospheric className="p-6 min-h-40">
               <h3 className="font-semibold atmospheric-text-vital mb-2">Organ</h3>
               <p className="text-sm atmospheric-text-ghost">
                 Functional biomechanical component with conic patterns
               </p>
             </Container>
-            
+
             <Container alienVariant="membrane" atmospheric className="p-6 min-h-40">
               <h3 className="font-semibold atmospheric-text-vital mb-2">Membrane</h3>
               <p className="text-sm atmospheric-text-ghost">
                 Protective barrier with selective permeability
               </p>
             </Container>
-            
+
             <Container alienVariant="cavity" atmospheric className="p-6 min-h-40">
               <h3 className="font-semibold atmospheric-text-vital mb-2">Cavity</h3>
               <p className="text-sm atmospheric-text-ghost">
@@ -226,7 +232,7 @@ export const AlienShowcase: Story = {
             <p className="atmospheric-text-ghost">
               Hover over these containers to experience the atmospheric interactions
             </p>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <Container alienVariant="organism" atmospheric vital neural maxWidth="md">
                 <div className="p-8">
@@ -234,9 +240,9 @@ export const AlienShowcase: Story = {
                     Living Organism Container
                   </h3>
                   <p className="atmospheric-text-ghost mb-4">
-                    This container breathes, pulses with neural activity, and responds to interaction 
-                    like a living entity. All atmospheric effects are combined to create the most 
-                    immersive experience.
+                    This container breathes, pulses with neural activity, and responds to
+                    interaction like a living entity. All atmospheric effects are combined to create
+                    the most immersive experience.
                   </p>
                   <ul className="text-sm atmospheric-text-ghost space-y-1">
                     <li>• Atmospheric breathing animation</li>
@@ -246,16 +252,16 @@ export const AlienShowcase: Story = {
                   </ul>
                 </div>
               </Container>
-              
+
               <Container alienVariant="cavity" atmospheric vital neural maxWidth="md">
                 <div className="p-8">
                   <h3 className="text-lg font-semibold atmospheric-text-vital mb-4">
                     Deep Cavity Container
                   </h3>
                   <p className="atmospheric-text-ghost mb-4">
-                    Enter the depths of the biomechanical organism. This container creates 
-                    the sensation of being inside a living cavity with deep shadows and 
-                    complex atmospheric layers.
+                    Enter the depths of the biomechanical organism. This container creates the
+                    sensation of being inside a living cavity with deep shadows and complex
+                    atmospheric layers.
                   </p>
                   <ul className="text-sm atmospheric-text-ghost space-y-1">
                     <li>• Deep atmospheric shadows</li>
@@ -280,8 +286,8 @@ export const AlienShowcase: Story = {
                       <div className="p-3">
                         <h5 className="font-semibold atmospheric-text-vital mb-2">Membrane Core</h5>
                         <p className="text-sm atmospheric-text-ghost">
-                          Nested alien containers create layered atmospheric effects, 
-                          simulating the depth and complexity of biological systems.
+                          Nested alien containers create layered atmospheric effects, simulating the
+                          depth and complexity of biological systems.
                         </p>
                       </div>
                     </Container>
@@ -298,7 +304,8 @@ export const AlienShowcase: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Complete showcase of alien container variants with organic shapes, atmospheric effects, and biomechanical aesthetics. Demonstrates all alien container types and their interactive behaviors.',
+        story:
+          'Complete showcase of alien container variants with organic shapes, atmospheric effects, and biomechanical aesthetics. Demonstrates all alien container types and their interactive behaviors.',
       },
     },
   },

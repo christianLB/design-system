@@ -9,7 +9,7 @@ import { Stack } from '../components/Stack';
 import { Text } from '../components/Text';
 
 const meta: Meta = {
-  title: 'System Tests/Theme & Variant System',
+  title: 'Documentation/System Tests/Theme & Variant System',
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -58,11 +58,16 @@ type Story = StoryObj;
 // Test component that displays current theme and variant
 const ThemeVariantDisplay = () => {
   const { theme, variant, setTheme, setVariant } = useTheme();
-  
+
   const themes = [
     { id: 'light' as const, name: 'Light', icon: '☀️', description: 'Clean & Professional' },
     { id: 'dark' as const, name: 'Dark', icon: '🌙', description: 'Reduced Eye Strain' },
-    { id: 'futuristic' as const, name: 'Futuristic', icon: '🚀', description: 'High-tech Interface' },
+    {
+      id: 'futuristic' as const,
+      name: 'Futuristic',
+      icon: '🚀',
+      description: 'High-tech Interface',
+    },
     { id: 'cyberpunk' as const, name: 'Cyberpunk', icon: '⚡', description: 'Digital Reality' },
     { id: 'alien' as const, name: 'Alien', icon: '👽', description: 'Biomechanical Interface' },
   ];
@@ -71,7 +76,12 @@ const ThemeVariantDisplay = () => {
     { id: 'default' as const, name: 'Default', icon: '📐', description: 'Standard spacing' },
     { id: 'compact' as const, name: 'Compact', icon: '📱', description: 'Dense UI layout' },
     { id: 'comfortable' as const, name: 'Comfortable', icon: '🪑', description: 'Spacious layout' },
-    { id: 'high-contrast' as const, name: 'High Contrast', icon: '🔍', description: 'Enhanced accessibility' },
+    {
+      id: 'high-contrast' as const,
+      name: 'High Contrast',
+      icon: '🔍',
+      description: 'Enhanced accessibility',
+    },
   ];
 
   return (
@@ -84,21 +94,27 @@ const ThemeVariantDisplay = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <Text size="sm" className="font-semibold mb-2">Active Theme</Text>
+              <Text size="sm" className="font-semibold mb-2">
+                Active Theme
+              </Text>
               <Badge variant="default" className="mb-2">
-                {themes.find(t => t.id === theme)?.icon} {themes.find(t => t.id === theme)?.name}
+                {themes.find((t) => t.id === theme)?.icon}{' '}
+                {themes.find((t) => t.id === theme)?.name}
               </Badge>
               <Text size="xs" className="text-muted-foreground">
-                {themes.find(t => t.id === theme)?.description}
+                {themes.find((t) => t.id === theme)?.description}
               </Text>
             </div>
             <div>
-              <Text size="sm" className="font-semibold mb-2">Active Variant</Text>
+              <Text size="sm" className="font-semibold mb-2">
+                Active Variant
+              </Text>
               <Badge variant="outline" className="mb-2">
-                {variants.find(v => v.id === variant)?.icon} {variants.find(v => v.id === variant)?.name}
+                {variants.find((v) => v.id === variant)?.icon}{' '}
+                {variants.find((v) => v.id === variant)?.name}
               </Badge>
               <Text size="xs" className="text-muted-foreground">
-                {variants.find(v => v.id === variant)?.description}
+                {variants.find((v) => v.id === variant)?.description}
               </Text>
             </div>
           </div>
@@ -154,13 +170,17 @@ const ThemeVariantDisplay = () => {
       {/* Component Showcase */}
       <Card>
         <CardHeader>
-          <CardTitle>Component Showcase - {theme} + {variant}</CardTitle>
+          <CardTitle>
+            Component Showcase - {theme} + {variant}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <Stack gap="lg">
             {/* Buttons */}
             <div>
-              <Text size="sm" className="font-semibold mb-3">Buttons</Text>
+              <Text size="sm" className="font-semibold mb-3">
+                Buttons
+              </Text>
               <Stack direction="row" gap="md" wrap>
                 <Button variant="primary">Primary</Button>
                 <Button variant="secondary">Secondary</Button>
@@ -173,7 +193,9 @@ const ThemeVariantDisplay = () => {
 
             {/* Badges and Alerts */}
             <div>
-              <Text size="sm" className="font-semibold mb-3">Status Elements</Text>
+              <Text size="sm" className="font-semibold mb-3">
+                Status Elements
+              </Text>
               <Stack gap="md">
                 <Stack direction="row" gap="sm" wrap>
                   <Badge variant="default">Default</Badge>
@@ -195,12 +217,22 @@ const ThemeVariantDisplay = () => {
             {/* Cyberpunk Component Variants (Backward Compatibility Test) */}
             {theme === 'cyberpunk' && (
               <div>
-                <Text size="sm" className="font-semibold mb-3">Cyberpunk Component Variants (Backward Compatibility)</Text>
+                <Text size="sm" className="font-semibold mb-3">
+                  Cyberpunk Component Variants (Backward Compatibility)
+                </Text>
                 <Stack direction="row" gap="md" wrap>
-                  <Button variant="cyberpunk-matrix" cyberpunkGlow="normal">Matrix</Button>
-                  <Button variant="cyberpunk-doom" cyberpunkGlow="normal">DOOM</Button>
-                  <Button variant="cyberpunk-ghost" cyberpunkGlow="subtle">Ghost</Button>
-                  <Button variant="cyberpunk-neon" cyberpunkGlow="normal">Neon</Button>
+                  <Button variant="cyberpunk-matrix" cyberpunkGlow="normal">
+                    Matrix
+                  </Button>
+                  <Button variant="cyberpunk-doom" cyberpunkGlow="normal">
+                    DOOM
+                  </Button>
+                  <Button variant="cyberpunk-ghost" cyberpunkGlow="subtle">
+                    Ghost
+                  </Button>
+                  <Button variant="cyberpunk-neon" cyberpunkGlow="normal">
+                    Neon
+                  </Button>
                 </Stack>
               </div>
             )}
@@ -238,7 +270,7 @@ export const SystemValidation: Story = {
                 Interactive testing of the orthogonal theme and variant system
               </p>
             </div>
-            
+
             <ThemeVariantDisplay />
           </div>
         </div>
@@ -249,20 +281,24 @@ export const SystemValidation: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Interactive test to validate that themes and variants work orthogonally. Switch between any theme and any variant to verify all 16 combinations work correctly.'
-      }
-    }
-  }
+        story:
+          'Interactive test to validate that themes and variants work orthogonally. Switch between any theme and any variant to verify all 16 combinations work correctly.',
+      },
+    },
+  },
 };
 
 // Combination Matrix Display
 export const CombinationMatrix: Story = {
   render: () => {
-    const [selectedCombination, setSelectedCombination] = useState<{theme: string, variant: string} | null>(null);
-    
-    const themes = ['light', 'dark', 'futuristic', 'cyberpunk', 'alien'];
+    const [selectedCombination, setSelectedCombination] = useState<{
+      theme: string;
+      variant: string;
+    } | null>(null);
+
+    const themes = ['light', 'dark', 'futuristic', 'cyberpunk', 'alien', 'mirtha'];
     const variants = ['default', 'compact', 'comfortable', 'high-contrast'];
-    
+
     return (
       <ThemeProvider>
         <div className="min-h-screen bg-background text-foreground p-6">
@@ -280,7 +316,7 @@ export const CombinationMatrix: Story = {
                 <thead>
                   <tr>
                     <th className="border p-3 bg-muted text-left">Theme ↓ / Variant →</th>
-                    {variants.map(variant => (
+                    {variants.map((variant) => (
                       <th key={variant} className="border p-3 bg-muted text-center capitalize">
                         {variant}
                       </th>
@@ -288,19 +324,20 @@ export const CombinationMatrix: Story = {
                   </tr>
                 </thead>
                 <tbody>
-                  {themes.map(theme => (
+                  {themes.map((theme) => (
                     <tr key={theme}>
                       <td className="border p-3 bg-muted font-semibold capitalize">{theme}</td>
-                      {variants.map(variant => (
+                      {variants.map((variant) => (
                         <td key={`${theme}-${variant}`} className="border p-2">
                           <Button
                             size="sm"
                             variant={
-                              selectedCombination?.theme === theme && selectedCombination?.variant === variant 
-                                ? 'primary' 
+                              selectedCombination?.theme === theme &&
+                              selectedCombination?.variant === variant
+                                ? 'primary'
                                 : 'outline'
                             }
-                            onClick={() => setSelectedCombination({theme, variant})}
+                            onClick={() => setSelectedCombination({ theme, variant })}
                             className="w-full"
                           >
                             ✓
@@ -325,8 +362,9 @@ export const CombinationMatrix: Story = {
                     <div>
                       <strong>Combination Result: ✅ Valid</strong>
                       <p className="text-sm mt-1">
-                        Theme "{selectedCombination.theme}" with variant "{selectedCombination.variant}" 
-                        loads successfully and maintains proper orthogonal behavior.
+                        Theme "{selectedCombination.theme}" with variant "
+                        {selectedCombination.variant}" loads successfully and maintains proper
+                        orthogonal behavior.
                       </p>
                     </div>
                   </Alert>
@@ -365,8 +403,9 @@ export const CombinationMatrix: Story = {
     layout: 'fullscreen',
     docs: {
       description: {
-        story: 'Matrix view of all 20 possible theme and variant combinations to verify orthogonal system works correctly.'
-      }
-    }
-  }
+        story:
+          'Matrix view of all 20 possible theme and variant combinations to verify orthogonal system works correctly.',
+      },
+    },
+  },
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import { Divider } from './Divider';
 
 const meta: Meta<typeof Divider> = {
-  title: 'Components/Divider',
+  title: 'Core Components/Layout/Divider',
   component: Divider,
   args: {
     orientation: 'horizontal',
@@ -21,10 +21,10 @@ type Story = StoryObj<typeof Divider>;
 
 export const Horizontal: Story = {
   args: { orientation: 'horizontal' },
-  render: args => <Divider {...args} />,
+  render: (args) => <Divider {...args} />,
 };
 
 export const Vertical: Story = {
   args: { orientation: 'vertical', style: { height: '2rem' } },
-  render: args => <Divider {...args} />,
+  render: (args) => <Divider {...args} />,
 };

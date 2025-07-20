@@ -3,15 +3,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Link } from './Link';
 import { Box } from '@/components/Box';
 import { Stack } from '../Stack';
-import { 
+import {
   withTheme,
   withLightBackground,
   withDarkBackground,
-  navItems
+  navItems,
 } from '../Navigation/stories.utils';
 
 const meta: Meta<typeof Link> = {
-  title: 'Navigation/Link',
+  title: 'Core Components/Navigation/Link',
   component: Link,
   tags: ['autodocs'],
   decorators: [withTheme],
@@ -53,7 +53,7 @@ export default meta;
 type Story = StoryObj<typeof Link>;
 
 export const Default: Story = {
-  decorators: [withLightBackground]
+  decorators: [withLightBackground],
 };
 
 export const Variants: Story = {
@@ -105,12 +105,7 @@ export const NavigationLinks: Story = {
     <Box className="p-4 rounded-md">
       <Stack direction="row" align="center" gap="md">
         {navItems.map((item) => (
-          <Link 
-            key={item.label}
-            {...args} 
-            href={item.href} 
-            variant="nav"
-          >
+          <Link key={item.label} {...args} href={item.href} variant="nav">
             {item.label}
           </Link>
         ))}
@@ -125,13 +120,7 @@ export const StackedNavigationLinks: Story = {
     <Box className="p-4 rounded-md w-48">
       <Stack direction="column" align="stretch" gap="sm">
         {navItems.map((item) => (
-          <Link 
-            key={item.label} 
-            {...args} 
-            href={item.href} 
-            variant="nav" 
-            fullWidth
-          >
+          <Link key={item.label} {...args} href={item.href} variant="nav" fullWidth>
             {item.label}
           </Link>
         ))}

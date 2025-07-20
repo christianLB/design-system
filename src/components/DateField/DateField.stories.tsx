@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { DateField } from './DateField';
 
 const meta: Meta<typeof DateField> = {
-  title: 'Inputs/DateField',
+  title: 'Core Components/Forms/Date Field',
   component: DateField,
   argTypes: { error: { control: 'text' } },
 };
@@ -19,7 +19,11 @@ export const Default: Story = {
 
 export const WithReactHookForm: Story = {
   render: (args) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<{ dob: string }>();
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<{ dob: string }>();
     return (
       <form onSubmit={handleSubmit(() => {})} className="space-y-2">
         <DateField
@@ -27,7 +31,9 @@ export const WithReactHookForm: Story = {
           {...register('dob', { required: 'Required' })}
           error={errors.dob?.message}
         />
-        <button type="submit" className="btn">Submit</button>
+        <button type="submit" className="btn">
+          Submit
+        </button>
       </form>
     );
   },

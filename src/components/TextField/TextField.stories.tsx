@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { TextField } from './TextField';
 
 const meta: Meta<typeof TextField> = {
-  title: 'Inputs/TextField',
+  title: 'Core Components/Forms/Text Field',
   component: TextField,
   argTypes: { error: { control: 'text' } },
 };
@@ -13,15 +13,17 @@ export default meta;
 type Story = StoryObj<typeof TextField>;
 
 export const Default: Story = {
-  render: (args) => (
-    <TextField {...args} />
-  ),
+  render: (args) => <TextField {...args} />,
   args: { id: 'first', label: 'First name' },
 };
 
 export const WithReactHookForm: Story = {
   render: (args) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<{ name: string }>();
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<{ name: string }>();
     return (
       <form onSubmit={handleSubmit(() => {})} className="space-y-2">
         <TextField
@@ -29,7 +31,9 @@ export const WithReactHookForm: Story = {
           {...register('name', { required: 'Required' })}
           error={errors.name?.message}
         />
-        <button type="submit" className="btn">Submit</button>
+        <button type="submit" className="btn">
+          Submit
+        </button>
       </form>
     );
   },

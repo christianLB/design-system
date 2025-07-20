@@ -5,7 +5,7 @@ import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 
 const meta: Meta<typeof NotificationBadge> = {
-  title: 'Components/NotificationBadge',
+  title: 'Core Components/Data Display/Notification Badge',
   component: NotificationBadge,
   parameters: {
     layout: 'centered',

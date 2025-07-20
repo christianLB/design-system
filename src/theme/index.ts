@@ -1,15 +1,24 @@
-export { theme, lightTheme, darkTheme, futuristicTheme, cyberpunkTheme, alienTheme } from './theme';
+export {
+  theme,
+  lightTheme,
+  darkTheme,
+  futuristicTheme,
+  cyberpunkTheme,
+  alienTheme,
+  mirthaTheme,
+} from './theme';
 export { alienEffects } from './theme.alien';
-export type { DesignTokens, AlienTheme } from './theme';
+export { mirthaEffects } from './theme.mirtha';
+export type { DesignTokens, AlienTheme, MirthaTheme } from './theme';
 export { ThemeProvider, useTheme } from './ThemeContext';
 export type { Theme } from './ThemeContext';
 
 // Theme Builder exports
-export { 
-  ThemeBuilder, 
-  createThemeBuilder, 
+export {
+  ThemeBuilder,
+  createThemeBuilder,
   quickTheme,
-  defaultThemeBuilderConfig 
+  defaultThemeBuilderConfig,
 } from './builder/ThemeBuilder';
 
 export type {
@@ -32,39 +41,33 @@ export type {
   BreakpointCustomization,
   RadiusCustomization,
   ShadowCustomization,
-  ZIndexCustomization
+  ZIndexCustomization,
 } from './builder/types';
 
 // Theme composition utilities
-export { 
-  composeThemes, 
-  mergeThemes, 
-  overrideTheme, 
+export {
+  composeThemes,
+  mergeThemes,
+  overrideTheme,
   extendTheme,
   applyCustomizations,
-  defaultConflictResolutionConfig 
+  defaultConflictResolutionConfig,
 } from './builder/composition';
 
 // Theme variant utilities
-export { 
-  applyVariant, 
+export {
+  applyVariant,
   variantConfigs,
   getVariantClassNames,
   getVariantCSSProperties,
   isAccessibilityVariant,
-  getRecommendedVariant 
+  getRecommendedVariant,
 } from './builder/variants';
 
 // Theme validation utilities
-export { 
-  validateTheme, 
-  defaultValidationConfig 
-} from './builder/validation';
+export { validateTheme, defaultValidationConfig } from './builder/validation';
 
-export type {
-  ValidationConfig,
-  ValidationRule
-} from './builder/validation';
+export type { ValidationConfig, ValidationRule } from './builder/validation';
 
 // Enhanced color utilities
 export {
@@ -74,7 +77,7 @@ export {
   isAccessible,
   getContrastRatio,
   findBestForeground,
-  validateColorPalette
+  validateColorPalette,
 } from './utils/colorScale';
 
 // Color tokens and scales
@@ -86,15 +89,11 @@ export {
   futuristicColorTokens,
   cyberpunkColorTokens,
   alienColorTokens,
-  colorTokens
+  mirthaColorTokens,
+  colorTokens,
 } from './tokens/colors';
 
-export type {
-  SemanticColorTokens,
-  ColorScales,
-  BaseColors,
-  ColorTokens
-} from './tokens/colors';
+export type { SemanticColorTokens, ColorScales, BaseColors, ColorTokens } from './tokens/colors';
 
 // Animation System exports
 export * from './animation';
@@ -103,7 +102,7 @@ export {
   createAnimation,
   quickAnimations,
   animationPresets,
-  presetCollections
+  presetCollections,
 } from './animation';
 
 export type {
@@ -116,7 +115,7 @@ export type {
   AnimationProperty,
   CSSInJSAnimation,
   AnimationPreset,
-  PresetCategory
+  PresetCategory,
 } from './animation';
 
 // Plugin System exports
@@ -127,7 +126,7 @@ export {
   accessibilityPlugin,
   motionPlugin,
   performancePlugin,
-  PluginUtils
+  PluginUtils,
 } from './plugins';
 
 export type {
@@ -140,5 +139,5 @@ export type {
   PluginCategory,
   AccessibilityPlugin,
   PerformancePlugin,
-  AnimationPlugin
+  AnimationPlugin,
 } from './plugins';
