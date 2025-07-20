@@ -1,6 +1,6 @@
 {
   "name": "@christianlb/design-system",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A comprehensive design system built with React, TypeScript, and CSS with full automation and AI-powered maintenance capabilities.",
   "author": "k2600x <k2600x@gmail.com>",
   "license": "MIT",
