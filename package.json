@@ -23,6 +23,10 @@
     "REQUIREMENTS.md",
     "tailwind.preset.js"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "dev": "vite",
     "build": "pnpm run generate:css-variables && pnpm run build:vite && tsup",
