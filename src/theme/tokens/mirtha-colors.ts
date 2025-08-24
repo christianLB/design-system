@@ -77,9 +77,8 @@ export const mirthaColorTokens: SemanticColorTokens = {
   popover: '#FFFAF7',
   popoverForeground: '#36454F',
 
-  // Secondary
-  secondary: '#FFFBF8',
-  secondaryForeground: '#8B7D6B',
+  // Note: secondary scale already defined above; keep only foreground text helper if part of interface
+  // The SemanticColorTokens interface includes only scale objects and global text helpers below.
 
   // Muted
   muted: '#F5F0EA',

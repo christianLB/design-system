@@ -1,0 +1,274 @@
+/* Global fixes for all showcases */
+
+/* Prevent horizontal overflow on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Fix container widths on mobile */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Fix grid layouts on mobile */
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Fix code blocks overflow */
+  pre, code {
+    overflow-x: auto;
+    max-width: calc(100vw - 2rem);
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+  
+  /* Fix table overflow */
+  .overflow-x-auto {
+    max-width: calc(100vw - 2rem);
+  }
+  
+  table {
+    min-width: unset !important;
+  }
+  
+  /* Fix button minimum heights */
+  button {
+    min-height: 32px !important;
+  }
+  
+  /* Fix small buttons */
+  .btn-sm, button[class*="size-sm"] {
+    min-height: 32px !important;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  
+  /* Fix floating action buttons */
+  .fixed {
+    right: 1rem !important;
+    bottom: 1rem !important;
+  }
+  
+  /* Fix card spacing */
+  .card {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Tablet fixes */
+@media (max-width: 768px) {
+  /* Fix navigation */
+  nav {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  /* Hide desktop-only elements */
+  .hidden.md\:flex {
+    display: none !important;
+  }
+  
+  /* Fix select widths */
+  .select-trigger {
+    min-width: unset !important;
+    width: auto !important;
+  }
+}
+
+/* Contrast improvements for dark themes */
+.bg-gray-900\/50,
+.bg-gray-800,
+.bg-black {
+  background-color: rgba(31, 41, 55, 1) !important; /* Lighter dark for better contrast */
+}
+
+/* Fix text contrast in dark theme */
+.text-muted-foreground {
+  color: rgb(156, 163, 175) !important; /* Lighter gray for better contrast */
+}
+
+/* Fix progress bar contrast */
+.progress-bar-track {
+  background-color: rgba(75, 85, 99, 0.4) !important;
+}
+
+/* Fix tooltip contrast */
+.tooltip {
+  background-color: rgb(31, 41, 55) !important;
+  color: rgb(243, 244, 246) !important;
+}
+
+/* Fix button hover states */
+button:not(:disabled) {
+  cursor: pointer !important;
+}
+
+button:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.5;
+}
+
+/* Fix badge contrast in info variant */
+.badge--info {
+  background-color: rgb(29, 78, 216) !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+/* Fix input field heights */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  min-height: 40px !important;
+}
+
+/* Fix close button sizing */
+button[aria-label*="close"],
+button[aria-label*="Close"],
+button:has(> :only-child:is(span):contains("×")) {
+  min-height: 32px !important;
+  min-width: 32px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure proper spacing in headers */
+header {
+  padding: 0.75rem 1rem !important;
+}
+
+@media (min-width: 640px) {
+  header {
+    padding: 1rem 1.5rem !important;
+  }
+}
+
+/* Fix navigation button heights */
+nav button {
+  min-height: 36px !important;
+  padding: 0.5rem 1rem !important;
+}
+
+/* Ensure cards don't overflow */
+.card {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Fix floating buttons on mobile */
+@media (max-width: 640px) {
+  .fixed.bottom-6.right-6 {
+    bottom: 1rem !important;
+    right: 1rem !important;
+  }
+  
+  /* Make floating buttons smaller on mobile */
+  .fixed button[class*="w-14"],
+  .fixed button[class*="w-16"] {
+    width: 3rem !important;
+    height: 3rem !important;
+    min-height: 48px !important;
+    min-width: 48px !important;
+  }
+}
+
+/* Fix alert close button */
+.alert button[aria-label*="close"] {
+  min-height: 24px !important;
+  min-width: 24px !important;
+  padding: 0.25rem !important;
+}
+
+/* Improve focus states */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid currentColor !important;
+  outline-offset: 2px !important;
+}
+
+/* Fix specific theme contrast issues */
+
+/* Futuristic theme */
+.bg-background:has(.text-foreground) {
+  --background: hsl(222, 47%, 11%);
+  --foreground: hsl(213, 31%, 91%);
+}
+
+/* Cyberpunk theme */
+.bg-cyber-void-black {
+  background-color: rgb(10, 10, 10) !important;
+}
+
+.text-cyber-matrix-green {
+  color: rgb(0, 255, 0) !important;
+}
+
+/* Alien theme */
+.bg-alien-void-black {
+  background-color: rgb(15, 15, 20) !important;
+}
+
+.text-alien-biolume-green {
+  color: rgb(100, 255, 100) !important;
+}
+
+/* Fix responsive tables */
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  tbody {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  /* Make table cells stack on very small screens */
+  @media (max-width: 480px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    
+    tr {
+      margin-bottom: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+    }
+    
+    td {
+      border: none;
+      position: relative;
+      padding-left: 50%;
+      text-align: right;
+    }
+    
+    td:before {
+      position: absolute;
+      left: 0.5rem;
+      width: 45%;
+      text-align: left;
+      font-weight: bold;
+      content: attr(data-label);
+    }
+  }
+}

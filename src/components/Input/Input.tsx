@@ -1,5 +1,6 @@
 import React from 'react';
 import { Label } from '../Label';
+import { useTheme } from '../../theme/ThemeContext';
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'value' | 'onChange'> {
@@ -12,12 +13,24 @@ export interface InputProps
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
-    { id, label, value, onChange, error, className, disabled, ...props },
+    { id, label, value, onChange, error, className, disabled, style, ...props },
     ref,
   ) => {
+    const { activeTheme } = useTheme();
+    
     const inputClasses = ['input', error ? 'input--error' : '', className || '']
       .filter(Boolean)
       .join(' ');
+    
+    // CSS variables for theming
+    const cssVars = {
+      '--input-bg': error ? 'var(--destructive-light, #fef2f2)' : 'var(--background)',
+      '--input-text': 'var(--foreground)',
+      '--input-border': error ? 'var(--destructive)' : 'var(--border)',
+      '--input-focus-border': error ? 'var(--destructive)' : 'var(--primary)',
+      '--input-placeholder': 'var(--muted-foreground)',
+      '--input-disabled-opacity': '0.5',
+    };
 
     return (
       <div className="input-wrapper">
@@ -26,6 +39,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={id}
           className={inputClasses}
+          style={{
+            ...cssVars,
+            ...style
+          }}
           value={value}
           onChange={onChange}
           aria-invalid={Boolean(error)}

@@ -1,0 +1,112 @@
+import React{{#if hasForwardRef}}, { forwardRef }{{/if}} from 'react';
+import { cn } from '@/utils/cn';
+{{#if (includes features 'css')}}
+import styles from './{{name}}.module.css';
+{{/if}}
+
+{{#if hasProps}}
+export interface {{name}}Props extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Additional CSS classes
+   */
+  className?: string;
+  /**
+   * Component children
+   */
+  children?: React.ReactNode;
+  /**
+   * Component variant
+   */
+  variant?: 'default' | 'primary' | 'secondary';
+  /**
+   * Component size
+   */
+  size?: 'sm' | 'md' | 'lg';
+}
+{{/if}}
+
+/**
+ * {{description}}
+ * 
+ * @category {{category}}
+ */
+{{#if hasForwardRef}}
+export const {{name}} = forwardRef<HTMLDivElement, {{#if hasProps}}{{name}}Props{{else}}React.HTMLAttributes<HTMLDivElement>{{/if}}>(
+  ({ className, children, variant = 'default', size = 'md', ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          '{{kebabCase name}}',
+          {{#if (includes features 'css')}}
+          styles.root,
+          styles[variant],
+          styles[size],
+          {{else}}
+          'relative',
+          {
+            'bg-background': variant === 'default',
+            'bg-primary text-primary-foreground': variant === 'primary',
+            'bg-secondary text-secondary-foreground': variant === 'secondary',
+          },
+          {
+            'p-2 text-sm': size === 'sm',
+            'p-4 text-base': size === 'md',
+            'p-6 text-lg': size === 'lg',
+          },
+          {{/if}}
+          className
+        )}
+        data-variant={variant}
+        data-size={size}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+
+{{name}}.displayName = '{{name}}';
+{{else}}
+export const {{name}}: React.FC<{{#if hasProps}}{{name}}Props{{else}}React.HTMLAttributes<HTMLDivElement>{{/if}}> = ({
+  className,
+  children,
+  {{#if hasProps}}variant = 'default', size = 'md',{{/if}}
+  ...props
+}) => {
+  return (
+    <div
+      className={cn(
+        '{{kebabCase name}}',
+        {{#if (includes features 'css')}}
+        styles.root,
+        {{#if hasProps}}styles[variant], styles[size],{{/if}}
+        {{else}}
+        'relative',
+        {{#if hasProps}}
+        {
+          'bg-background': variant === 'default',
+          'bg-primary text-primary-foreground': variant === 'primary',
+          'bg-secondary text-secondary-foreground': variant === 'secondary',
+        },
+        {
+          'p-2 text-sm': size === 'sm',
+          'p-4 text-base': size === 'md',
+          'p-6 text-lg': size === 'lg',
+        },
+        {{/if}}
+        {{/if}}
+        className
+      )}
+      {{#if hasProps}}
+      data-variant={variant}
+      data-size={size}
+      {{/if}}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
+{{/if}}

@@ -1,0 +1,816 @@
+{
+  "timestamp": "2025-08-24T10:33:31.207Z",
+  "totalIssues": 57,
+  "byShowcase": {
+    "futuristic-finance": [
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.avatar avatar--md avatar--circle shrink-0",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.card card--elevated relative overflow-hidden",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.card card--elevated relative overflow-hidden",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.card card--elevated relative overflow-hidden",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.card card--elevated relative overflow-hidden",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.card card--elevated lg:col-span-2",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.card card--elevated",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--primary",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--success",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--warning",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--info",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.card card--elevated",
+        "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "DIV.tabs-list ",
+        "issue": "Low contrast between text (rgb(203, 213, 225)) and background (rgb(30, 41, 59))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "futuristic-finance",
+        "element": "Button: ×",
+        "issue": "Button too small (24px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      }
+    ],
+    "cyberpunk-hacker": [
+      {
+        "showcase": "cyberpunk-hacker",
+        "element": "DIV.bg-cyber-void-black p-3 sm:p-4 rounded min-h-[300px] sm:min-h-[400px] font-mono text-xs sm:text-sm space-y-2 overflow-x-auto",
+        "issue": "Low contrast between text (rgb(57, 255, 20)) and background (rgb(10, 10, 10))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "cyberpunk-hacker",
+        "element": "INPUT.input bg-transparent border-cyber-matrix-green text-cyber-matrix-green placeholder:text-cyber-matrix-green/50 min-h-[40px]",
+        "issue": "Low contrast between text (rgb(0, 255, 0)) and background (rgb(0, 0, 0))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "cyberpunk-hacker",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--cyberpunk-doom",
+        "issue": "Low contrast between text (rgb(255, 0, 0)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "cyberpunk-hacker",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--cyberpunk-matrix",
+        "issue": "Low contrast between text (rgb(255, 0, 0)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "cyberpunk-hacker",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--cyberpunk-neon",
+        "issue": "Low contrast between text (rgb(255, 0, 0)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      }
+    ],
+    "alien-bio-monitor": [
+      {
+        "showcase": "alien-bio-monitor",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-neural",
+        "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "alien-bio-monitor",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-toxic",
+        "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "alien-bio-monitor",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-neural",
+        "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "alien-bio-monitor",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-toxic",
+        "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "alien-bio-monitor",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-neural",
+        "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "alien-bio-monitor",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-toxic",
+        "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "alien-bio-monitor",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-neural",
+        "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "alien-bio-monitor",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-toxic",
+        "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "alien-bio-monitor",
+        "element": "Button: RELEASE (LOCKED)",
+        "issue": "Missing pointer cursor on hover",
+        "severity": "minor",
+        "suggestion": "Add cursor: pointer to interactive elements"
+      }
+    ],
+    "light-corporate-dashboard": [
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--success",
+        "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--primary",
+        "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--warning",
+        "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "DIV.progress-bar-indicator progress-bar-indicator--warning",
+        "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgb(250, 204, 21))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--success",
+        "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--warning",
+        "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "DIV.progress-bar-indicator progress-bar-indicator--warning",
+        "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgb(250, 204, 21))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--destructive",
+        "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "Button: Overview",
+        "issue": "Button too small (0px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "Button: Projects",
+        "issue": "Button too small (0px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "Button: Teams",
+        "issue": "Button too small (0px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "Button: Reports",
+        "issue": "Button too small (0px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "Button: Settings",
+        "issue": "Button too small (0px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      },
+      {
+        "showcase": "light-corporate-dashboard",
+        "element": "Button: ×",
+        "issue": "Button too small (24px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      }
+    ],
+    "dark-developer-portal": [
+      {
+        "showcase": "dark-developer-portal",
+        "element": "BODY.",
+        "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgb(10, 10, 10))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "DIV.tabs ",
+        "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgb(10, 10, 10))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "BUTTON.tabs-trigger tabs-trigger--active ",
+        "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgb(10, 10, 10))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "DIV.tabs-content mt-6 space-y-4",
+        "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgb(10, 10, 10))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "INPUT.radio-item__input",
+        "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgb(250, 250, 250))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "DIV.rounded-lg overflow-hidden bg-gray-900 border border-gray-800",
+        "issue": "Low contrast between text (rgb(250, 250, 250)) and background (oklch(0.21 0.034 264.665))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "DIV.rounded-lg overflow-hidden bg-gray-900 border border-gray-800",
+        "issue": "Low contrast between text (rgb(250, 250, 250)) and background (oklch(0.21 0.034 264.665))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--success",
+        "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgba(75, 85, 99, 0.4))",
+        "severity": "major",
+        "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "Color palette",
+        "issue": "Too many unique colors (23) - indicates inconsistent theming",
+        "severity": "major",
+        "suggestion": "Consolidate colors to use CSS variables consistently"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "Button: Documentation",
+        "issue": "Button too small (0px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "Button: API Reference",
+        "issue": "Button too small (0px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "Button: Components",
+        "issue": "Button too small (0px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "Button: Playground",
+        "issue": "Button too small (0px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "Button: Community",
+        "issue": "Button too small (0px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      },
+      {
+        "showcase": "dark-developer-portal",
+        "element": "Button: View changelog →",
+        "issue": "Button too small (23px height)",
+        "severity": "major",
+        "suggestion": "Minimum button height should be 32px for accessibility"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.avatar avatar--md avatar--circle shrink-0",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.card card--elevated relative overflow-hidden",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.card card--elevated relative overflow-hidden",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.card card--elevated relative overflow-hidden",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.card card--elevated relative overflow-hidden",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.card card--elevated lg:col-span-2",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.card card--elevated",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--primary",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--success",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--warning",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--info",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.card card--elevated",
+      "issue": "Low contrast between text (rgb(248, 250, 252)) and background (rgb(30, 41, 59))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "DIV.tabs-list ",
+      "issue": "Low contrast between text (rgb(203, 213, 225)) and background (rgb(30, 41, 59))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "futuristic-finance",
+      "element": "Button: ×",
+      "issue": "Button too small (24px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "cyberpunk-hacker",
+      "element": "DIV.bg-cyber-void-black p-3 sm:p-4 rounded min-h-[300px] sm:min-h-[400px] font-mono text-xs sm:text-sm space-y-2 overflow-x-auto",
+      "issue": "Low contrast between text (rgb(57, 255, 20)) and background (rgb(10, 10, 10))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "cyberpunk-hacker",
+      "element": "INPUT.input bg-transparent border-cyber-matrix-green text-cyber-matrix-green placeholder:text-cyber-matrix-green/50 min-h-[40px]",
+      "issue": "Low contrast between text (rgb(0, 255, 0)) and background (rgb(0, 0, 0))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "cyberpunk-hacker",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--cyberpunk-doom",
+      "issue": "Low contrast between text (rgb(255, 0, 0)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "cyberpunk-hacker",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--cyberpunk-matrix",
+      "issue": "Low contrast between text (rgb(255, 0, 0)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "cyberpunk-hacker",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--cyberpunk-neon",
+      "issue": "Low contrast between text (rgb(255, 0, 0)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "alien-bio-monitor",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-neural",
+      "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "alien-bio-monitor",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-toxic",
+      "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "alien-bio-monitor",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-neural",
+      "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "alien-bio-monitor",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-toxic",
+      "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "alien-bio-monitor",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-neural",
+      "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "alien-bio-monitor",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-toxic",
+      "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "alien-bio-monitor",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-neural",
+      "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "alien-bio-monitor",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--alien-toxic",
+      "issue": "Low contrast between text (rgb(229, 110, 71)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "alien-bio-monitor",
+      "element": "Button: RELEASE (LOCKED)",
+      "issue": "Missing pointer cursor on hover",
+      "severity": "minor",
+      "suggestion": "Add cursor: pointer to interactive elements"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--success",
+      "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--primary",
+      "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--warning",
+      "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "DIV.progress-bar-indicator progress-bar-indicator--warning",
+      "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgb(250, 204, 21))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--success",
+      "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--warning",
+      "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "DIV.progress-bar-indicator progress-bar-indicator--warning",
+      "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgb(250, 204, 21))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--destructive",
+      "issue": "Low contrast between text (rgb(10, 10, 10)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "Button: Overview",
+      "issue": "Button too small (0px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "Button: Projects",
+      "issue": "Button too small (0px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "Button: Teams",
+      "issue": "Button too small (0px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "Button: Reports",
+      "issue": "Button too small (0px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "Button: Settings",
+      "issue": "Button too small (0px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "light-corporate-dashboard",
+      "element": "Button: ×",
+      "issue": "Button too small (24px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "BODY.",
+      "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgb(10, 10, 10))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "DIV.tabs ",
+      "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgb(10, 10, 10))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "BUTTON.tabs-trigger tabs-trigger--active ",
+      "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgb(10, 10, 10))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "DIV.tabs-content mt-6 space-y-4",
+      "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgb(10, 10, 10))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "INPUT.radio-item__input",
+      "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgb(250, 250, 250))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "DIV.rounded-lg overflow-hidden bg-gray-900 border border-gray-800",
+      "issue": "Low contrast between text (rgb(250, 250, 250)) and background (oklch(0.21 0.034 264.665))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "DIV.rounded-lg overflow-hidden bg-gray-900 border border-gray-800",
+      "issue": "Low contrast between text (rgb(250, 250, 250)) and background (oklch(0.21 0.034 264.665))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "DIV.progress-bar-track progress-bar-track--sm progress-bar-track--success",
+      "issue": "Low contrast between text (rgb(250, 250, 250)) and background (rgba(75, 85, 99, 0.4))",
+      "severity": "major",
+      "suggestion": "Increase contrast ratio to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "Color palette",
+      "issue": "Too many unique colors (23) - indicates inconsistent theming",
+      "severity": "major",
+      "suggestion": "Consolidate colors to use CSS variables consistently"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "Button: Documentation",
+      "issue": "Button too small (0px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "Button: API Reference",
+      "issue": "Button too small (0px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "Button: Components",
+      "issue": "Button too small (0px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "Button: Playground",
+      "issue": "Button too small (0px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "Button: Community",
+      "issue": "Button too small (0px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    },
+    {
+      "showcase": "dark-developer-portal",
+      "element": "Button: View changelog →",
+      "issue": "Button too small (23px height)",
+      "severity": "major",
+      "suggestion": "Minimum button height should be 32px for accessibility"
+    }
+  ]
+}

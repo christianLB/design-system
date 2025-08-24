@@ -1,48 +1,48 @@
 import type { StorybookConfig } from '@storybook/react-vite';
-import { readFileSync } from 'fs';
-import { join } from 'path';
-
-// Read version from package.json
-const packageJson = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf-8'));
-const version = packageJson.version;
+import { mergeConfig } from 'vite';
+import path from 'path';
 
 const config: StorybookConfig = {
-  stories: [
-    '../src/components/**/*.stories.@(ts|tsx|mdx)',
-    '../src/docs/**/*.stories.@(mdx|tsx)',
-    '../src/examples/**/*.stories.@(ts|tsx|mdx)',
-    '../src/stories/**/*.stories.@(ts|tsx|mdx)',
-  ],
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    '@storybook/addon-docs',
   ],
-
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
+  viteFinal: async (config) => {
+    // Remove vite-plugin-inspect if it exists to avoid conflicts
+    if (config.plugins) {
+      config.plugins = config.plugins.filter((plugin) => {
+        if (!plugin || typeof plugin !== 'object') return true;
+        const pluginName = plugin.name || (plugin as any).enforce;
+        return pluginName !== 'vite-plugin-inspect';
+      });
+    }
+    
+    // Import required modules
+    const path = await import('path');
+    const { default: tailwindcss } = await import('@tailwindcss/vite');
+    
+    return mergeConfig(config, {
+      plugins: [tailwindcss()],
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, '../src'),
+        },
+      },
+      define: {
+        // Ensure NODE_ENV is available for Tailwind config
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      },
+      assetsInclude: ['/sb-preview/runtime.js'], // Bug workaround for Storybook
+    });
+  },
   docs: {
     autodocs: 'tag',
   },
-  features: {
-    // @ts-ignore - The Storybook types for Vite do not seem to include this valid option
-    storiesJson: true,
-  },
-  env: (config) => ({
-    ...config,
-    STORYBOOK_PACKAGE_VERSION: version,
-  }),
-  viteFinal: async (config) => {
-    // Inject version as global variable for manager
-    config.define = {
-      ...config.define,
-      '__STORYBOOK_PACKAGE_VERSION__': JSON.stringify(version),
-    };
-    return config;
-  },
-  managerEntries: [require.resolve('./manager.js')],
 };
 
 export default config;

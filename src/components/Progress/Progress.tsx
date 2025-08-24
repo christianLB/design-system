@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { useTheme } from '../../theme/ThemeContext';
 
 export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
   value?: number;
@@ -31,13 +32,81 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       scanlines = false,
       matrixRain = false,
       className,
+      style,
       ...props
     },
     ref
   ) => {
+    const { activeTheme } = useTheme();
     const value = valueProp ?? 0;
     const clampedValue = Math.max(0, Math.min(maxValue, value));
     const percentage = (clampedValue / maxValue) * 100;
+    
+    // Map variants to CSS variables
+    const getProgressCSSVars = () => {
+      const variantMap: Record<string, { bg: string; fill: string; text: string }> = {
+        default: {
+          bg: 'var(--muted)',
+          fill: 'var(--primary)',
+          text: 'var(--foreground)',
+        },
+        primary: {
+          bg: 'var(--primary-light, var(--muted))',
+          fill: 'var(--primary)',
+          text: 'var(--primary-foreground)',
+        },
+        success: {
+          bg: 'var(--success-light, var(--muted))',
+          fill: 'var(--success)',
+          text: 'var(--success-foreground)',
+        },
+        warning: {
+          bg: 'var(--warning-light, var(--muted))',
+          fill: 'var(--warning)',
+          text: 'var(--warning-foreground)',
+        },
+        danger: {
+          bg: 'var(--destructive-light, var(--muted))',
+          fill: 'var(--destructive)',
+          text: 'var(--destructive-foreground)',
+        },
+        info: {
+          bg: 'var(--info-light, var(--muted))',
+          fill: 'var(--info)',
+          text: 'var(--info-foreground)',
+        },
+        'cyberpunk-matrix': {
+          bg: 'var(--cyber-dark-charcoal, #0d1117)',
+          fill: 'var(--cyber-matrix-green, #39ff14)',
+          text: 'var(--cyber-matrix-green, #39ff14)',
+        },
+        'cyberpunk-doom': {
+          bg: 'var(--cyber-dark-charcoal, #0d1117)',
+          fill: 'var(--cyber-doom-red, #ff0000)',
+          text: 'var(--cyber-doom-red, #ff0000)',
+        },
+        'cyberpunk-ghost': {
+          bg: 'var(--cyber-void-black, #000000)',
+          fill: 'var(--cyber-pure-white, #ffffff)',
+          text: 'var(--cyber-pure-white, #ffffff)',
+        },
+        'cyberpunk-neon': {
+          bg: 'var(--cyber-dark-charcoal, #0d1117)',
+          fill: 'var(--cyber-hot-pink, #ff1493)',
+          text: 'var(--cyber-hot-pink, #ff1493)',
+        },
+      };
+      
+      const config = variantMap[variant] || variantMap.default;
+      
+      return {
+        '--progress-bg': config.bg,
+        '--progress-fill': config.fill,
+        '--progress-text': config.text,
+      };
+    };
+    
+    const cssVars = getProgressCSSVars();
 
     const label = isIndeterminate
       ? 'Loading...'
@@ -68,6 +137,10 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       <div
         ref={ref}
         className={containerClasses}
+        style={{
+          ...cssVars,
+          ...style
+        }}
         role="progressbar"
         aria-label="progress"
         aria-valuenow={isIndeterminate ? undefined : clampedValue}

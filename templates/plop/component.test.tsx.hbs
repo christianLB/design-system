@@ -1,0 +1,70 @@
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { describe, it, expect, vi } from 'vitest';
+import { {{name}} } from './{{name}}';
+
+describe('{{name}}', () => {
+  it('renders without crashing', () => {
+    render(<{{name}}>Test Content</{{name}}>);
+    expect(screen.getByText('Test Content')).toBeInTheDocument();
+  });
+
+  it('applies custom className', () => {
+    const { container } = render(
+      <{{name}} className="custom-class">Content</{{name}}>
+    );
+    expect(container.firstChild).toHaveClass('custom-class');
+  });
+
+  {{#if hasProps}}
+  it('renders with different variants', () => {
+    const { rerender, container } = render(
+      <{{name}} variant="primary">Primary</{{name}}>
+    );
+    expect(container.firstChild).toHaveAttribute('data-variant', 'primary');
+
+    rerender(<{{name}} variant="secondary">Secondary</{{name}}>);
+    expect(container.firstChild).toHaveAttribute('data-variant', 'secondary');
+  });
+
+  it('renders with different sizes', () => {
+    const { rerender, container } = render(
+      <{{name}} size="sm">Small</{{name}}>
+    );
+    expect(container.firstChild).toHaveAttribute('data-size', 'sm');
+
+    rerender(<{{name}} size="lg">Large</{{name}}>);
+    expect(container.firstChild).toHaveAttribute('data-size', 'lg');
+  });
+  {{/if}}
+
+  it('forwards HTML attributes', () => {
+    const { container } = render(
+      <{{name}} id="test-id" data-testid="test">Content</{{name}}>
+    );
+    expect(container.firstChild).toHaveAttribute('id', 'test-id');
+    expect(container.firstChild).toHaveAttribute('data-testid', 'test');
+  });
+
+  {{#if hasForwardRef}}
+  it('forwards ref correctly', () => {
+    const ref = vi.fn();
+    render(<{{name}} ref={ref}>Content</{{name}}>);
+    expect(ref).toHaveBeenCalled();
+  });
+  {{/if}}
+
+  it('handles click events', async () => {
+    const handleClick = vi.fn();
+    const user = userEvent.setup();
+    
+    render(
+      <{{name}} onClick={handleClick}>
+        Click me
+      </{{name}}>
+    );
+    
+    await user.click(screen.getByText('Click me'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+});

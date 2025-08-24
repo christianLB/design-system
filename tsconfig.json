@@ -19,6 +19,7 @@
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
+    "verbatimModuleSyntax": false,
     "types": ["node", "@types/jest", "@testing-library/jest-dom"],
     "lib": ["dom", "esnext"]
   },

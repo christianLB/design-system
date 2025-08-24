@@ -1,0 +1,226 @@
+/**
+ * Storybook Tailwind CSS Setup
+ * This file properly imports Tailwind CSS v4 and all theme styles
+ */
+
+/* Import Google Fonts - must be before Tailwind */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Tailwind CSS v4 */
+@import 'tailwindcss';
+
+/* Import theme-specific styles */
+@import '../src/styles/futuristic-components.css';
+@import '../src/styles/futuristic-animations.css';
+@import '../src/styles/futuristic-enhanced-animations.css';
+@import '../src/styles/futuristic-states.css';
+@import '../src/styles/futuristic-responsive.css';
+@import '../src/styles/cyberpunk-v4.css';
+@import '../src/styles/alien.css';
+
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Default CSS Variables */
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  --primary: #171717;
+  --primary-foreground: #fafafa;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #171717;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --accent: #f5f5f5;
+  --accent-foreground: #171717;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #0a0a0a;
+  --radius: 0.5rem;
+  
+  /* Animation easings */
+  --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --easing-expo: cubic-bezier(0.87, 0, 0.13, 1);
+  --easing-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --easing-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #0a0a0a;
+  --card-foreground: #fafafa;
+  --popover: #0a0a0a;
+  --popover-foreground: #fafafa;
+  --primary: #fafafa;
+  --primary-foreground: #171717;
+  --secondary: #262626;
+  --secondary-foreground: #fafafa;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --accent: #262626;
+  --accent-foreground: #fafafa;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #fafafa;
+  --border: #262626;
+  --input: #262626;
+  --ring: #fafafa;
+}
+
+/* Futuristic theme variables */
+[data-theme="futuristic"] {
+  --background: #0a0f1e;
+  --foreground: #e0f4ff;
+  --card: #1a2232;
+  --card-foreground: #e0f4ff;
+  --primary: #00d4ff;
+  --primary-foreground: #001e2b;
+  --secondary: #ff00ff;
+  --secondary-foreground: #1a0033;
+  --accent: #00ff88;
+  --accent-foreground: #001a0d;
+  --muted: #2a3242;
+  --muted-foreground: #a0b4c4;
+  --destructive: #ff0055;
+  --destructive-foreground: #fff0f4;
+  --border: #2a3f5f;
+  --input: #1a2232;
+  --ring: #00d4ff;
+}
+
+/* Alien theme variables */
+[data-theme="alien"] {
+  --background: #000000;
+  --foreground: #39ff14;
+  --card: #0a0f0a;
+  --card-foreground: #39ff14;
+  --primary: #39ff14;
+  --primary-foreground: #000000;
+  --secondary: #ff1493;
+  --secondary-foreground: #000000;
+  --accent: #00ffff;
+  --accent-foreground: #000000;
+  --muted: #1a2a1a;
+  --muted-foreground: #80ff66;
+  --destructive: #ff0000;
+  --destructive-foreground: #ffffff;
+  --border: #39ff14;
+  --input: #0a0f0a;
+  --ring: #39ff14;
+}
+
+/* Mirtha theme variables */
+[data-theme="mirtha"] {
+  --background: #faf7f5;
+  --foreground: #4a3c28;
+  --card: #ffffff;
+  --card-foreground: #4a3c28;
+  --primary: #d4a574;
+  --primary-foreground: #ffffff;
+  --secondary: #c9705f;
+  --secondary-foreground: #ffffff;
+  --accent: #e8b4a0;
+  --accent-foreground: #4a3c28;
+  --muted: #f0e6dc;
+  --muted-foreground: #7a6a56;
+  --destructive: #c94a4a;
+  --destructive-foreground: #ffffff;
+  --border: #e8d5c4;
+  --input: #f5ebe3;
+  --ring: #d4a574;
+}
+
+/* Body styles */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Storybook-specific wrapper styles */
+.storybook-theme-wrapper {
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+}
+
+/* Theme-specific wrapper classes */
+.futuristic-wrap[data-theme="futuristic"] {
+  background: linear-gradient(135deg, #0a0f1e 0%, #1a2232 100%);
+}
+
+.cyberpunk-wrap[data-theme="cyberpunk"] {
+  background: linear-gradient(180deg, #000000 0%, #0a0f0a 50%, #000000 100%);
+}
+
+.alien-wrap[data-theme="alien"] {
+  background: radial-gradient(ellipse at center, #0a1f0a 0%, #000000 100%);
+}
+
+.mirtha-wrap[data-theme="mirtha"] {
+  background: linear-gradient(135deg, #faf7f5 0%, #f0e6dc 100%);
+}
+
+/* Background effect elements */
+.futuristic-bg,
+.cyberpunk-bg,
+.alien-bg,
+.mirtha-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.futuristic-bg {
+  background-image: 
+    linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.cyberpunk-bg {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(57, 255, 20, 0.03) 2px,
+    rgba(57, 255, 20, 0.03) 4px
+  );
+}
+
+.alien-bg {
+  background-image: radial-gradient(
+    circle at 20% 50%,
+    rgba(57, 255, 20, 0.1) 0%,
+    transparent 50%
+  );
+}
+
+.mirtha-bg {
+  background-image: radial-gradient(
+    circle at 80% 20%,
+    rgba(212, 165, 116, 0.1) 0%,
+    transparent 50%
+  );
+}

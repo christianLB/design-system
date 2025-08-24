@@ -1,0 +1,57 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommitTypeAll(chore)",
+    "group:allNonMajor",
+    "schedule:weekly"
+  ],
+  "labels": ["dependencies", "renovate"],
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "matchPackagePatterns": ["^@types/"],
+      "automerge": true,
+      "groupName": "TypeScript type definitions"
+    },
+    {
+      "matchPackagePatterns": ["^@radix-ui/"],
+      "groupName": "Radix UI components"
+    },
+    {
+      "matchPackageNames": ["react", "react-dom"],
+      "rangeStrategy": "widen"
+    },
+    {
+      "matchPackagePatterns": ["^@storybook/"],
+      "groupName": "Storybook packages"
+    },
+    {
+      "matchPackagePatterns": ["^@playwright/", "playwright"],
+      "groupName": "Playwright packages"
+    },
+    {
+      "matchPackagePatterns": ["^vitest", "^@vitest/"],
+      "groupName": "Vitest packages"
+    },
+    {
+      "matchPackageNames": ["typescript"],
+      "automerge": false
+    }
+  ],
+  "prConcurrentLimit": 3,
+  "prCreation": "immediate",
+  "rangeStrategy": "bump",
+  "semanticCommits": "enabled",
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "automerge": true
+  },
+  "postUpdateOptions": ["pnpmDedupe"],
+  "ignorePaths": ["**/node_modules/**", "**/dist/**", "**/coverage/**"]
+}

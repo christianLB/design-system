@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useRef, useEffect, forwardRef, HTMLAttributes, ReactNode } from 'react';
+import { useTheme } from '../../theme/ThemeContext';
 
 // --- Click Outside Hook ---
 const useOnClickOutside = (ref: React.RefObject<HTMLElement>, handler: (event: MouseEvent | TouchEvent) => void) => {
@@ -83,10 +84,26 @@ const Select = ({ children, value: valueProp, defaultValue, onValueChange }: Sel
   );
 };
 
-const SelectTrigger = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButtonElement>>(({ children, className, ...props }, ref) => {
+const SelectTrigger = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButtonElement>>(({ children, className, style, ...props }, ref) => {
   const { isOpen, setIsOpen } = useSelectContext();
+  const { activeTheme } = useTheme();
+  
+  const cssVars = {
+    '--select-bg': 'var(--background)',
+    '--select-text': 'var(--foreground)',
+    '--select-border': 'var(--border)',
+    '--select-hover-border': 'var(--primary)',
+    '--select-focus-ring': 'var(--ring)',
+  };
+  
   return (
-    <button ref={ref} onClick={() => setIsOpen(!isOpen)} className={`select-trigger ${className || ''}`} {...props}>
+    <button 
+      ref={ref} 
+      onClick={() => setIsOpen(!isOpen)} 
+      className={`select-trigger ${className || ''}`}
+      style={{ ...cssVars, ...style }}
+      {...props}
+    >
       {children}
       <span className={`select-icon ${isOpen ? 'select-icon--open' : ''}`}>▼</span>
     </button>
@@ -102,14 +119,22 @@ const SelectValue = ({ placeholder }: { placeholder?: string }) => {
 SelectValue.displayName = 'SelectValue';
 
 const SelectContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ children, className, ...props }, _forwardedRef) => { // Renamed to _forwardedRef
+  ({ children, className, style, ...props }, _forwardedRef) => { // Renamed to _forwardedRef
     if (typeof _forwardedRef === 'undefined') {
       // This is a trivial "use" that should always be false but accesses the variable.
       // It's a bit of a hack to satisfy a stubborn linter.
       console.log('This should not happen: _forwardedRef is undefined');
     }
     const { isOpen, setIsOpen } = useSelectContext();
+    const { activeTheme } = useTheme();
     const internalContentRef = useRef<HTMLDivElement>(null); // For useOnClickOutside
+    
+    const cssVars = {
+      '--select-content-bg': 'var(--popover)',
+      '--select-content-text': 'var(--popover-foreground)',
+      '--select-content-border': 'var(--border)',
+      '--select-content-shadow': '0 10px 50px rgba(0, 0, 0, 0.15)',
+    };
 
     useOnClickOutside(internalContentRef, () => setIsOpen(false));
 
@@ -128,7 +153,12 @@ const SelectContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>
     if (!isOpen) return null;
 
     return (
-      <div ref={combinedRef} className={`select-content ${className || ''}`} {...props}>
+      <div 
+        ref={combinedRef} 
+        className={`select-content ${className || ''}`}
+        style={{ ...cssVars, ...style }}
+        {...props}
+      >
         {children}
       </div>
     );
@@ -142,15 +172,25 @@ export interface SelectItemProps extends HTMLAttributes<HTMLDivElement> {
   disabled?: boolean;
 }
 
-const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(({ value, children, disabled, className, ...props }, ref) => {
+const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(({ value, children, disabled, className, style, ...props }, ref) => {
   const { onValueChange, value: selectedValue } = useSelectContext();
+  const { activeTheme } = useTheme();
   const isSelected = selectedValue === value;
+  
+  const cssVars = {
+    '--select-item-bg': isSelected ? 'var(--accent)' : 'transparent',
+    '--select-item-text': isSelected ? 'var(--accent-foreground)' : 'var(--popover-foreground)',
+    '--select-item-hover-bg': 'var(--accent)',
+    '--select-item-hover-text': 'var(--accent-foreground)',
+    '--select-item-disabled-opacity': '0.5',
+  };
 
   return (
     <div
       ref={ref}
       onClick={() => !disabled && onValueChange(value)}
       className={[`select-item`, isSelected && 'select-item--selected', disabled && 'select-item--disabled', className].filter(Boolean).join(' ')}
+      style={{ ...cssVars, ...style }}
       aria-selected={isSelected}
       role="option"
       {...props}

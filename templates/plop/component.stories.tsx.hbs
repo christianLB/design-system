@@ -1,0 +1,118 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { {{name}} } from './{{name}}';
+
+const meta = {
+  title: '{{category}}/{{name}}',
+  component: {{name}},
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component: '{{description}}',
+      },
+    },
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    {{#if hasProps}}
+    variant: {
+      control: 'select',
+      options: ['default', 'primary', 'secondary'],
+      description: 'Visual style variant',
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+      description: 'Component size',
+    },
+    {{/if}}
+    className: {
+      control: 'text',
+      description: 'Additional CSS classes',
+    },
+    children: {
+      control: 'text',
+      description: 'Component content',
+    },
+  },
+} satisfies Meta<typeof {{name}}>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    children: '{{name}} content',
+  },
+};
+
+{{#if hasProps}}
+export const Primary: Story = {
+  args: {
+    variant: 'primary',
+    children: 'Primary variant',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    variant: 'secondary',
+    children: 'Secondary variant',
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: 'sm',
+    children: 'Small size',
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: 'lg',
+    children: 'Large size',
+  },
+};
+{{/if}}
+
+export const WithCustomClass: Story = {
+  args: {
+    className: 'custom-class border-2 border-dashed border-gray-400',
+    children: 'With custom styling',
+  },
+};
+
+export const Interactive: Story = {
+  args: {
+    children: 'Click me!',
+    onClick: () => alert('{{name}} clicked!'),
+  },
+};
+
+export const AllVariants: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      {{#if hasProps}}
+      <{{name}} variant="default">Default variant</{{name}}>
+      <{{name}} variant="primary">Primary variant</{{name}}>
+      <{{name}} variant="secondary">Secondary variant</{{name}}>
+      {{else}}
+      <{{name}}>Default {{name}}</{{name}}>
+      <{{name}} className="bg-blue-100">Styled {{name}}</{{name}}>
+      {{/if}}
+    </div>
+  ),
+};
+
+{{#if hasProps}}
+export const AllSizes: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start' }}>
+      <{{name}} size="sm">Small size</{{name}}>
+      <{{name}} size="md">Medium size (default)</{{name}}>
+      <{{name}} size="lg">Large size</{{name}}>
+    </div>
+  ),
+};
+{{/if}}

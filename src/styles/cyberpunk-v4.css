@@ -1,0 +1,460 @@
+/**
+ * Cyberpunk Theme CSS - Tailwind v4 Compatible
+ * Visual effects, glow, animations, and cyberpunk-specific styles
+ */
+
+/* =================================================================
+   CSS VARIABLES FOR CYBERPUNK THEME
+   ================================================================= */
+
+[data-theme='cyberpunk'] {
+  /* Base colors */
+  --cyber-matrix-green: #39ff14;
+  --cyber-bright-matrix: #00ff41;
+  --cyber-doom-red: #ff0000;
+  --cyber-bright-red: #ff3333;
+  --cyber-evangelion-purple: #6a0dad;
+  --cyber-swordfish-cyan: #00ffff;
+  --cyber-tech-orange: #ff6600;
+  --cyber-cyber-yellow: #ffff00;
+  --cyber-hot-pink: #ff1493;
+  --cyber-void-black: #000000;
+  --cyber-almost-black: #0a0a0a;
+  --cyber-dark-charcoal: #1a1a1a;
+  --cyber-medium-charcoal: #2a2a2a;
+  --cyber-light-charcoal: #3a3a3a;
+  --cyber-pure-white: #ffffff;
+  
+  /* Glow effect variables */
+  --glow-green-sm: 0 0 5px rgba(57, 255, 20, 0.5);
+  --glow-green-md: 0 0 10px rgba(57, 255, 20, 0.6), 0 0 20px rgba(57, 255, 20, 0.3);
+  --glow-green-lg: 0 0 15px rgba(57, 255, 20, 0.7), 0 0 30px rgba(57, 255, 20, 0.4), 0 0 45px rgba(57, 255, 20, 0.2);
+  
+  --glow-red-sm: 0 0 5px rgba(255, 0, 0, 0.5);
+  --glow-red-md: 0 0 10px rgba(255, 0, 0, 0.6), 0 0 20px rgba(255, 0, 0, 0.3);
+  --glow-red-lg: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.4), 0 0 45px rgba(255, 0, 0, 0.2);
+  
+  --glow-cyan-sm: 0 0 5px rgba(0, 255, 255, 0.5);
+  --glow-cyan-md: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.3);
+  --glow-cyan-lg: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 30px rgba(0, 255, 255, 0.4), 0 0 45px rgba(0, 255, 255, 0.2);
+  
+  /* Animation durations */
+  --cyber-duration-glitch: 150ms;
+  --cyber-duration-flicker: 100ms;
+  --cyber-duration-pulse: 2000ms;
+  --cyber-duration-scan: 3000ms;
+  --cyber-duration-matrix-rain: 8000ms;
+  
+  /* Animation easings */
+  --cyber-easing: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --cyber-easing-glitch: steps(10, end);
+  --cyber-easing-pulse: cubic-bezier(0.4, 0, 0.6, 1);
+  
+  /* Pattern effects */
+  --cyber-scan-lines: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(57, 255, 20, 0.03) 2px,
+    rgba(57, 255, 20, 0.03) 4px
+  );
+  
+  --cyber-grid: 
+    linear-gradient(rgba(57, 255, 20, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.1) 1px, transparent 1px);
+    
+  --cyber-matrix-bg: linear-gradient(
+    180deg,
+    #000000 0%,
+    #0a0f0a 50%,
+    #000000 100%
+  );
+}
+
+/* =================================================================
+   CYBERPUNK THEME BASE STYLES
+   ================================================================= */
+
+[data-theme='cyberpunk'] {
+  background: var(--cyber-void-black);
+  color: var(--cyber-pure-white);
+  font-family: 'Fira Code', 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+.cyberpunk-theme {
+  background: var(--cyber-matrix-bg);
+  color: var(--cyber-pure-white);
+  font-family: 'Fira Code', 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Add subtle scan lines to the entire cyberpunk theme */
+.cyberpunk-theme::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--cyber-scan-lines);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+/* =================================================================
+   TAILWIND V4 CUSTOM UTILITIES
+   ================================================================= */
+
+/* Base component utility using @utility directive */
+@utility cyber-component {
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-light-charcoal);
+  color: var(--cyber-pure-white);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  position: relative;
+}
+
+/* Button utilities */
+@utility cyber-button {
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-light-charcoal);
+  color: var(--cyber-pure-white);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+@utility cyber-button-primary {
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-matrix-green);
+  color: var(--cyber-matrix-green);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--glow-green-sm);
+}
+
+@utility cyber-button-danger {
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-doom-red);
+  color: var(--cyber-doom-red);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--glow-red-sm);
+}
+
+@utility cyber-button-info {
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-swordfish-cyan);
+  color: var(--cyber-swordfish-cyan);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--glow-cyan-sm);
+}
+
+/* Input utilities */
+@utility cyber-input {
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-light-charcoal);
+  color: var(--cyber-pure-white);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+/* Card utilities */
+@utility cyber-card {
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-light-charcoal);
+  color: var(--cyber-pure-white);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Terminal utility */
+@utility cyber-terminal {
+  background: var(--cyber-almost-black);
+  border: 1px solid var(--cyber-matrix-green);
+  color: var(--cyber-matrix-green);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--glow-green-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+/* HUD utility */
+@utility cyber-hud {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--cyber-swordfish-cyan);
+  color: var(--cyber-swordfish-cyan);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  border-radius: 0.5rem;
+  box-shadow: var(--glow-cyan-sm);
+  position: relative;
+}
+
+/* Alert utilities */
+@utility cyber-alert {
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-light-charcoal);
+  color: var(--cyber-pure-white);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left-width: 4px;
+  position: relative;
+}
+
+@utility cyber-alert-success {
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-matrix-green);
+  border-left: 4px solid var(--cyber-matrix-green);
+  color: var(--cyber-matrix-green);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+@utility cyber-alert-error {
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-doom-red);
+  border-left: 4px solid var(--cyber-doom-red);
+  color: var(--cyber-doom-red);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+@utility cyber-alert-warning {
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-tech-orange);
+  border-left: 4px solid var(--cyber-tech-orange);
+  color: var(--cyber-tech-orange);
+  font-family: 'Fira Code', monospace;
+  transition: all 200ms var(--cyber-easing);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+/* Badge utilities */
+@utility cyber-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-light-charcoal);
+  color: var(--cyber-pure-white);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0.25rem;
+  transition: all 200ms var(--cyber-easing);
+}
+
+@utility cyber-badge-success {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-matrix-green);
+  color: var(--cyber-matrix-green);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0.25rem;
+  transition: all 200ms var(--cyber-easing);
+  box-shadow: var(--glow-green-sm);
+}
+
+@utility cyber-badge-danger {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: var(--cyber-dark-charcoal);
+  border: 1px solid var(--cyber-doom-red);
+  color: var(--cyber-doom-red);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0.25rem;
+  transition: all 200ms var(--cyber-easing);
+  box-shadow: var(--glow-red-sm);
+}
+
+/* Glow effect utilities */
+@utility glow-green {
+  box-shadow: var(--glow-green-md);
+  transition: box-shadow 200ms var(--cyber-easing);
+}
+
+@utility glow-red {
+  box-shadow: var(--glow-red-md);
+  transition: box-shadow 200ms var(--cyber-easing);
+}
+
+@utility glow-cyan {
+  box-shadow: var(--glow-cyan-md);
+  transition: box-shadow 200ms var(--cyber-easing);
+}
+
+@utility text-glow-green {
+  text-shadow: var(--glow-green-sm);
+}
+
+@utility text-glow-red {
+  text-shadow: var(--glow-red-sm);
+}
+
+@utility text-glow-cyan {
+  text-shadow: var(--glow-cyan-sm);
+}
+
+/* Animation utilities */
+@utility animate-cyber-glitch {
+  animation: cyber-glitch var(--cyber-duration-glitch) var(--cyber-easing-glitch) infinite;
+}
+
+@utility animate-cyber-pulse {
+  animation: cyber-pulse var(--cyber-duration-pulse) var(--cyber-easing-pulse) infinite;
+}
+
+@utility animate-cyber-flicker {
+  animation: cyber-flicker var(--cyber-duration-flicker) ease-in-out infinite;
+}
+
+/* =================================================================
+   ANIMATIONS
+   ================================================================= */
+
+@keyframes cyber-glitch {
+  0%, 100% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  20% {
+    transform: translate(-1px, 1px);
+    filter: hue-rotate(90deg);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+    filter: hue-rotate(180deg);
+  }
+  60% {
+    transform: translate(1px, 1px);
+    filter: hue-rotate(270deg);
+  }
+  80% {
+    transform: translate(1px, -1px);
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes cyber-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes cyber-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Hover states for interactive elements */
+.cyber-button:hover,
+.cyber-button-primary:hover,
+.cyber-button-danger:hover,
+.cyber-button-info:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.2);
+}
+
+.cyber-input:focus {
+  border-color: var(--cyber-matrix-green);
+  box-shadow: var(--glow-green-sm);
+}
+
+.cyber-card:hover {
+  border-color: var(--cyber-matrix-green);
+  box-shadow: var(--glow-green-sm);
+}
+
+.glow-green:hover {
+  box-shadow: var(--glow-green-lg);
+}
+
+.glow-red:hover {
+  box-shadow: var(--glow-red-lg);
+}
+
+.glow-cyan:hover {
+  box-shadow: var(--glow-cyan-lg);
+}

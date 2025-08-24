@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, forwardRef, HTMLAttributes, ReactNode } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '../../theme/ThemeContext';
 
 export interface TooltipProps extends Omit<HTMLAttributes<HTMLDivElement>, 'content'> {
   content: ReactNode;
@@ -22,12 +23,56 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     className,
     showArrow = true,
     maxWidth = '240px',
+    style,
     ...props
   }, ref) => {
+    const { activeTheme } = useTheme();
     const [isVisible, setIsVisible] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout>();
     const isControlled = controlledOpen !== undefined;
     const show = isControlled ? controlledOpen : isVisible;
+    
+    // Map variants to CSS variables
+    const getTooltipCSSVars = () => {
+      const variantMap: Record<string, { bg: string; text: string; border: string }> = {
+        default: {
+          bg: 'var(--popover)',
+          text: 'var(--popover-foreground)',
+          border: 'var(--border)',
+        },
+        primary: {
+          bg: 'var(--primary)',
+          text: 'var(--primary-foreground)',
+          border: 'var(--primary)',
+        },
+        success: {
+          bg: 'var(--success)',
+          text: 'var(--success-foreground)',
+          border: 'var(--success)',
+        },
+        warning: {
+          bg: 'var(--warning)',
+          text: 'var(--warning-foreground)',
+          border: 'var(--warning)',
+        },
+        danger: {
+          bg: 'var(--destructive)',
+          text: 'var(--destructive-foreground)',
+          border: 'var(--destructive)',
+        },
+      };
+      
+      const config = variantMap[variant] || variantMap.default;
+      
+      return {
+        '--tooltip-bg': config.bg,
+        '--tooltip-text': config.text,
+        '--tooltip-border': config.border,
+        '--tooltip-shadow': '0 10px 50px rgba(0, 0, 0, 0.15)',
+      };
+    };
+    
+    const cssVars = getTooltipCSSVars();
 
     const handleMouseEnter = () => {
       if (isControlled) return;
@@ -74,12 +119,16 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         className="tooltip-trigger-wrapper"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        style={style}
         {...props}
       >
         {children}
         <motion.div
           className={tooltipClasses}
-          style={{ maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth }}
+          style={{ 
+            ...cssVars,
+            maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth 
+          }}
           role="tooltip"
           initial={{ opacity: 0, y: 4 }}
           animate={{ opacity: show ? 1 : 0, y: show ? 0 : 4 }}
