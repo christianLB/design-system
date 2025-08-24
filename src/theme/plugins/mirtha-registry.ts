@@ -42,28 +42,29 @@ export class MirthaPluginRegistry {
 
   private initializePlugins() {
     // Initialize Elegance Plugin
+    const eleganceEnabled = this.config.elegance === false ? false : true;
     this.plugins.set(
       'elegance',
       new MirthaElegancePlugin({
-        enabled: this.config.elegance !== false,
+        enabled: eleganceEnabled,
         ...this.config.elegance,
       }),
     );
 
     // Initialize Golden Plugin
+    const goldenEnabled = this.config.golden === false ? false : true;
     this.plugins.set(
       'golden',
       new MirthaGoldenPlugin({
-        enabled: this.config.golden !== false,
+        enabled: goldenEnabled,
         ...this.config.golden,
       }),
     );
 
-    // Enable plugins based on config
-    if (this.config.elegance !== false) {
+    if (eleganceEnabled) {
       this.enabledPlugins.add('elegance');
     }
-    if (this.config.golden !== false) {
+    if (goldenEnabled) {
       this.enabledPlugins.add('golden');
     }
   }

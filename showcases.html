@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Showcases - Design System</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      color: white;
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card-header {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .card-header.futuristic {
+      background: linear-gradient(135deg, #00d4ff 0%, #090979 100%);
+    }
+    
+    .card-header.cyberpunk {
+      background: linear-gradient(135deg, #00ff00 0%, #ff00ff 100%);
+    }
+    
+    .card-header.alien {
+      background: linear-gradient(135deg, #a8ff00 0%, #ff00a8 100%);
+    }
+    
+    .card-header.mirtha {
+      background: linear-gradient(135deg, #ffd700 0%, #8b4513 100%);
+    }
+    
+    .card-header.light {
+      background: linear-gradient(135deg, #f8f9fa 0%, #dee2e6 100%);
+      color: #212529;
+    }
+    
+    .card-header.dark {
+      background: linear-gradient(135deg, #212529 0%, #495057 100%);
+    }
+    
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-description {
+      opacity: 0.9;
+      font-size: 0.9rem;
+    }
+    
+    .card-body {
+      padding: 1.5rem;
+    }
+    
+    .features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    
+    .features li {
+      padding: 0.5rem 0;
+      color: #666;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .features li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #667eea;
+      font-weight: bold;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: transform 0.2s ease;
+    }
+    
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    
+    .instructions {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .instructions h2 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
+    
+    .instructions p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    
+    .code {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      color: #333;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Theme Showcases</h1>
+    <p class="subtitle">Experience the Design System across all six unique themes</p>
+    
+    <div class="instructions">
+      <h2>How to View the Showcases</h2>
+      <p>The Vite dev server is running on port 5173. To view any showcase:</p>
+      <div class="code">
+        http://localhost:5173/[showcase-name].html
+      </div>
+      <p>For example: <strong>http://localhost:5173/futuristic-finance.html</strong></p>
+      <p>Each showcase automatically applies its theme and demonstrates real-world usage patterns.</p>
+    </div>
+    
+    <div class="grid">
+      <div class="card">
+        <div class="card-header futuristic">
+          <div class="card-title">Futuristic Finance</div>
+          <div class="card-description">QuantumFi Dashboard - Advanced Trading Platform</div>
+        </div>
+        <div class="card-body">
+          <ul class="features">
+            <li>Portfolio performance charts</li>
+            <li>Real-time trading positions</li>
+            <li>Asset allocation overview</li>
+            <li>Market analytics dashboard</li>
+          </ul>
+          <a href="http://localhost:5173/futuristic-finance.html" class="btn">View Showcase →</a>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header cyberpunk">
+          <div class="card-title">Cyberpunk Hacker</div>
+          <div class="card-description">NEXUS_BREACH v2.7 - Network Security Terminal</div>
+        </div>
+        <div class="card-body">
+          <ul class="features">
+            <li>Hacker terminal interface</li>
+            <li>Network scanning tools</li>
+            <li>Exploit deployment system</li>
+            <li>System status monitoring</li>
+          </ul>
+          <a href="http://localhost:5173/cyberpunk-hacker.html" class="btn">View Showcase →</a>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header alien">
+          <div class="card-title">Alien Bio-Monitor</div>
+          <div class="card-description">XENOMORPH Monitor - Biological Analysis System</div>
+        </div>
+        <div class="card-body">
+          <ul class="features">
+            <li>Organism vital monitoring</li>
+            <li>Genetic sequence analysis</li>
+            <li>Evolution tracking matrix</li>
+            <li>Containment protocols</li>
+          </ul>
+          <a href="http://localhost:5173/alien-bio-monitor.html" class="btn">View Showcase →</a>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header mirtha">
+          <div class="card-title">Mirtha Luxury</div>
+          <div class="card-description">Private Wealth - Exclusive Portfolio Management</div>
+        </div>
+        <div class="card-body">
+          <ul class="features">
+            <li>Premium asset portfolio</li>
+            <li>Luxury real estate tracking</li>
+            <li>Art collection management</li>
+            <li>Exclusive investment opportunities</li>
+          </ul>
+          <a href="http://localhost:5173/mirtha-luxury-portfolio.html" class="btn">View Showcase →</a>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header light">
+          <div class="card-title">Corporate Dashboard</div>
+          <div class="card-description">Enterprise Management - Business Analytics</div>
+        </div>
+        <div class="card-body">
+          <ul class="features">
+            <li>KPI tracking dashboard</li>
+            <li>Project management overview</li>
+            <li>Team collaboration tools</li>
+            <li>Performance analytics</li>
+          </ul>
+          <a href="http://localhost:5173/light-corporate-dashboard.html" class="btn">View Showcase →</a>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header dark">
+          <div class="card-title">Developer Portal</div>
+          <div class="card-description">DevPortal - Technical Documentation Hub</div>
+        </div>
+        <div class="card-body">
+          <ul class="features">
+            <li>API documentation</li>
+            <li>Code examples & snippets</li>
+            <li>Terminal integration</li>
+            <li>Project activity feed</li>
+          </ul>
+          <a href="http://localhost:5173/dark-developer-portal.html" class="btn">View Showcase →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

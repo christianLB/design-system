@@ -1,2 +1,11 @@
-/* Import the design system's CSS variables and custom styles */
-@import '../index.css';
+/* Import Tailwind CSS v4 */
+@import 'tailwindcss';
+
+/* Import the design system's styles */
+@import '../src/styles/futuristic-components.css';
+@import '../src/styles/futuristic-animations.css';
+@import '../src/styles/futuristic-enhanced-animations.css';
+@import '../src/styles/futuristic-states.css';
+@import '../src/styles/futuristic-responsive.css';
+@import '../src/styles/cyberpunk.css';
+@import '../src/styles/alien.css';

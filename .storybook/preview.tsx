@@ -1,5 +1,5 @@
 // Import Tailwind CSS with design system styles
-import './tailwind.css';
+import './storybook-tailwind.css';
 import './cyberpunk-fix.css';
 import type { Preview, StoryFn, Decorator, StoryContext } from '@storybook/react';
 // Import real ThemeProvider for scalability and component compatibility

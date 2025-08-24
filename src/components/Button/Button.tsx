@@ -4,6 +4,7 @@ import { motion, HTMLMotionProps } from 'framer-motion';
 import clsx from 'clsx';
 import { Stack } from '../Stack/Stack';
 import { Icon, IconName, IconSize } from '../Icon/Icon';
+import { useTheme } from '../../theme/ThemeContext';
 
 // The component uses whileFocus prop via object spread instead of a type definition
 
@@ -77,14 +78,107 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       whileTap,
       whileFocus,
       transition,
+      style,
       ...props
     },
     ref
   ) => {
     // const micro = useMicroInteraction('button'); // Using optimized framer-motion animations instead
+    const { activeTheme } = useTheme();
+    
     // Calculate icon size based on button size if not explicitly provided
     const calculatedIconSize: IconSize =
       iconSize || (size === 'sm' ? 'sm' : size === 'lg' ? 'md' : 'sm');
+    
+    // Map variants to CSS variables for theming
+    const getButtonCSSVars = () => {
+      const variantMap: Record<string, { bg: string; text: string; border: string }> = {
+        primary: {
+          bg: 'var(--primary)',
+          text: 'var(--primary-foreground)',
+          border: 'var(--primary)',
+        },
+        secondary: {
+          bg: 'var(--secondary)',
+          text: 'var(--secondary-foreground)',
+          border: 'var(--secondary)',
+        },
+        destructive: {
+          bg: 'var(--destructive)',
+          text: 'var(--destructive-foreground)',
+          border: 'var(--destructive)',
+        },
+        success: {
+          bg: 'var(--success)',
+          text: 'var(--success-foreground)',
+          border: 'var(--success)',
+        },
+        outline: {
+          bg: 'transparent',
+          text: 'var(--foreground)',
+          border: 'var(--border)',
+        },
+        ghost: {
+          bg: 'transparent',
+          text: 'var(--foreground)',
+          border: 'transparent',
+        },
+        link: {
+          bg: 'transparent',
+          text: 'var(--primary)',
+          border: 'transparent',
+        },
+        // Cyberpunk variants
+        'cyberpunk-matrix': {
+          bg: 'var(--cyber-dark-charcoal, #0d1117)',
+          text: 'var(--cyber-matrix-green, #39ff14)',
+          border: 'var(--cyber-matrix-green, #39ff14)',
+        },
+        'cyberpunk-doom': {
+          bg: 'var(--cyber-dark-charcoal, #0d1117)',
+          text: 'var(--cyber-doom-red, #ff0000)',
+          border: 'var(--cyber-doom-red, #ff0000)',
+        },
+        'cyberpunk-ghost': {
+          bg: 'transparent',
+          text: 'var(--cyber-pure-white, #ffffff)',
+          border: 'var(--cyber-light-charcoal, #2f3336)',
+        },
+        'cyberpunk-neon': {
+          bg: 'var(--cyber-dark-charcoal, #0d1117)',
+          text: 'var(--cyber-hot-pink, #ff1493)',
+          border: 'var(--cyber-hot-pink, #ff1493)',
+        },
+        // Alien variants
+        membrane: {
+          bg: 'var(--alien-steel-organic, #708090)',
+          text: 'var(--alien-pulsing-life, #e56e47)',
+          border: 'var(--alien-steel-organic, #708090)',
+        },
+        vessel: {
+          bg: 'var(--alien-adrenaline, #d4552f)',
+          text: 'var(--alien-ancient-blood, #6b7280)',
+          border: 'var(--alien-adrenaline, #d4552f)',
+        },
+        neural: {
+          bg: 'var(--alien-primordial-void, #0d1117)',
+          text: 'var(--alien-pulsing-life, #e56e47)',
+          border: 'var(--alien-ancient-blood, #6b7280)',
+        },
+      };
+      
+      const config = variantMap[variant] || variantMap.primary;
+      
+      return {
+        '--btn-bg': config.bg,
+        '--btn-text': config.text,
+        '--btn-border': config.border,
+        '--btn-hover-opacity': '0.9',
+        '--btn-disabled-opacity': '0.5',
+      };
+    };
+    
+    const cssVars = getButtonCSSVars();
 
     // Build the CSS class names based on component props
     const classes = clsx(
@@ -129,6 +223,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <motion.button
         ref={ref}
         className={classes}
+        style={{
+          ...cssVars,
+          ...style
+        }}
         aria-disabled={disabled}
         whileHover={disabled ? undefined : whileHover || {
           scale: 1.02,

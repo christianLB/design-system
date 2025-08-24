@@ -1,0 +1,3284 @@
+{
+  "totalComponents": 76,
+  "themedComponents": 28,
+  "themeCoverage": 37,
+  "themes": [
+    "light",
+    "dark",
+    "futuristic",
+    "cyberpunk",
+    "alien",
+    "mirtha"
+  ],
+  "cssVariables": [
+    {
+      "name": "--spacing-md",
+      "usageCount": 20,
+      "components": [
+        "DataTable",
+        "SkeletonRow",
+        "Header",
+        "Login",
+        "Navbar",
+        "NavigationTabs",
+        "Sidebar",
+        "SimpleHeader"
+      ]
+    },
+    {
+      "name": "--spacing-sm",
+      "usageCount": 17,
+      "components": [
+        "DataTable",
+        "SkeletonRow",
+        "Header",
+        "NavigationTabs",
+        "Sidebar",
+        "SimpleHeader"
+      ]
+    },
+    {
+      "name": "--radius",
+      "usageCount": 14,
+      "components": [
+        "DateField",
+        "Header",
+        "Breadcrumb",
+        "NavigationTabs",
+        "Sidebar",
+        "SimpleHeader",
+        "Skeleton",
+        "TextAreaField",
+        "TextField"
+      ]
+    },
+    {
+      "name": "--border",
+      "usageCount": 13,
+      "components": [
+        "DataTable",
+        "SkeletonRow",
+        "FormSection",
+        "NavigationTabs",
+        "Sidebar",
+        "SimpleHeader"
+      ]
+    },
+    {
+      "name": "--primary",
+      "usageCount": 12,
+      "components": [
+        "CheckboxField",
+        "MetricCard",
+        "Navbar",
+        "NavigationTabs",
+        "Sidebar",
+        "SimpleHeader"
+      ]
+    },
+    {
+      "name": "--background",
+      "usageCount": 11,
+      "components": [
+        "DateField",
+        "FormSection",
+        "Header",
+        "Breadcrumb",
+        "NavigationTabs",
+        "Sidebar",
+        "SimpleHeader",
+        "TextAreaField",
+        "TextField"
+      ]
+    },
+    {
+      "name": "--muted",
+      "usageCount": 10,
+      "components": [
+        "ComponentTests",
+        "DataTable",
+        "FormSection",
+        "SimpleHeader",
+        "Skeleton"
+      ]
+    },
+    {
+      "name": "--spacing-xs",
+      "usageCount": 9,
+      "components": [
+        "NavigationTabs",
+        "Sidebar",
+        "SimpleHeader"
+      ]
+    },
+    {
+      "name": "--foreground",
+      "usageCount": 8,
+      "components": [
+        "FormField",
+        "Breadcrumb",
+        "NavigationTabs",
+        "SimpleHeader"
+      ]
+    },
+    {
+      "name": "--spacing-lg",
+      "usageCount": 8,
+      "components": [
+        "Header",
+        "MetricCard",
+        "Navbar",
+        "SimpleHeader"
+      ]
+    },
+    {
+      "name": "--cyber-matrix-green",
+      "usageCount": 6,
+      "components": [
+        "HUDNotification",
+        "HUDPanel",
+        "HUDProgressBar",
+        "HUDRadar"
+      ]
+    },
+    {
+      "name": "--cyber-doom-red",
+      "usageCount": 6,
+      "components": [
+        "HUDNotification",
+        "HUDPanel",
+        "HUDProgressBar",
+        "HUDRadar"
+      ]
+    },
+    {
+      "name": "--z-index-sticky, 1100",
+      "usageCount": 5,
+      "components": [
+        "AppLayout",
+        "Header"
+      ]
+    },
+    {
+      "name": "--cyber-swordfish-cyan",
+      "usageCount": 5,
+      "components": [
+        "HUDNotification",
+        "HUDPanel",
+        "HUDProgressBar",
+        "HUDRadar"
+      ]
+    },
+    {
+      "name": "--border, #e4e4e7",
+      "usageCount": 5,
+      "components": [
+        "Header",
+        "Sidebar"
+      ]
+    },
+    {
+      "name": "--primary-foreground",
+      "usageCount": 5,
+      "components": [
+        "Navbar",
+        "NavigationTabs",
+        "Sidebar"
+      ]
+    },
+    {
+      "name": "--background-subtle",
+      "usageCount": 5,
+      "components": [
+        "Breadcrumb",
+        "NavigationTabs",
+        "Sidebar"
+      ]
+    },
+    {
+      "name": "--input",
+      "usageCount": 4,
+      "components": [
+        "CheckboxField",
+        "DateField",
+        "TextAreaField",
+        "TextField"
+      ]
+    },
+    {
+      "name": "--ring",
+      "usageCount": 4,
+      "components": [
+        "CheckboxField",
+        "DateField",
+        "TextAreaField",
+        "TextField"
+      ]
+    },
+    {
+      "name": "--destructive",
+      "usageCount": 4,
+      "components": [
+        "FormField",
+        "MetricCard"
+      ]
+    },
+    {
+      "name": "--cyber-tech-orange",
+      "usageCount": 4,
+      "components": [
+        "HUDNotification",
+        "HUDPanel",
+        "HUDProgressBar",
+        "HUDRadar"
+      ]
+    },
+    {
+      "name": "--foreground-muted",
+      "usageCount": 4,
+      "components": [
+        "Breadcrumb",
+        "NavigationTabs",
+        "Sidebar"
+      ]
+    },
+    {
+      "name": "--cyber-hot-pink",
+      "usageCount": 3,
+      "components": [
+        "HUDNotification",
+        "HUDRadar"
+      ]
+    },
+    {
+      "name": "--spacing-${padding}",
+      "usageCount": 2,
+      "components": [
+        "Container",
+        "Header"
+      ]
+    },
+    {
+      "name": "--muted-foreground",
+      "usageCount": 2,
+      "components": [
+        "FormField",
+        "MetricCard"
+      ]
+    },
+    {
+      "name": "--spacing-${gap}",
+      "usageCount": 2,
+      "components": [
+        "Grid",
+        "Stack"
+      ]
+    },
+    {
+      "name": "--cyber-bright-red",
+      "usageCount": 2,
+      "components": [
+        "HUDNotification",
+        "HUDProgressBar"
+      ]
+    },
+    {
+      "name": "--spacing-xl",
+      "usageCount": 2,
+      "components": [
+        "Header",
+        "Sidebar"
+      ]
+    },
+    {
+      "name": "--success",
+      "usageCount": 2,
+      "components": [
+        "MetricCard"
+      ]
+    },
+    {
+      "name": "--background-hover",
+      "usageCount": 2,
+      "components": [
+        "NavigationTabs"
+      ]
+    },
+    {
+      "name": "--breakpoint-${breakpoint}",
+      "usageCount": 1,
+      "components": [
+        "AppLayout"
+      ]
+    },
+    {
+      "name": "--spacing-${contentPadding}",
+      "usageCount": 1,
+      "components": [
+        "AppLayout"
+      ]
+    },
+    {
+      "name": "--spacing-${p}",
+      "usageCount": 1,
+      "components": [
+        "Box"
+      ]
+    },
+    {
+      "name": "--spacing-${m}",
+      "usageCount": 1,
+      "components": [
+        "Box"
+      ]
+    },
+    {
+      "name": "--${bg}",
+      "usageCount": 1,
+      "components": [
+        "Box"
+      ]
+    },
+    {
+      "name": "--secondary",
+      "usageCount": 1,
+      "components": [
+        "DataTable"
+      ]
+    },
+    {
+      "name": "--cyber-evangelion-purple",
+      "usageCount": 1,
+      "components": [
+        "HUDNotification"
+      ]
+    },
+    {
+      "name": "--cyber-medium-charcoal",
+      "usageCount": 1,
+      "components": [
+        "HUDPanel"
+      ]
+    },
+    {
+      "name": "--cyber-cyber-yellow",
+      "usageCount": 1,
+      "components": [
+        "HUDProgressBar"
+      ]
+    },
+    {
+      "name": "--cyber-bright-matrix",
+      "usageCount": 1,
+      "components": [
+        "HUDProgressBar"
+      ]
+    },
+    {
+      "name": "--radar-color-rgb",
+      "usageCount": 1,
+      "components": [
+        "HUDRadar"
+      ]
+    },
+    {
+      "name": "--background-blur, rgba(15, 23, 42, 0.95",
+      "usageCount": 1,
+      "components": [
+        "Header"
+      ]
+    },
+    {
+      "name": "--background-emphasis, var(--background",
+      "usageCount": 1,
+      "components": [
+        "Header"
+      ]
+    },
+    {
+      "name": "--warning",
+      "usageCount": 1,
+      "components": [
+        "MetricCard"
+      ]
+    },
+    {
+      "name": "--border-hover",
+      "usageCount": 1,
+      "components": [
+        "NavigationTabs"
+      ]
+    },
+    {
+      "name": "--primary-subtle",
+      "usageCount": 1,
+      "components": [
+        "NavigationTabs"
+      ]
+    },
+    {
+      "name": "--background-emphasis",
+      "usageCount": 1,
+      "components": [
+        "Sidebar"
+      ]
+    },
+    {
+      "name": "--z-index-modal, 1300",
+      "usageCount": 1,
+      "components": [
+        "Sidebar"
+      ]
+    },
+    {
+      "name": "--super-fast, 0.1s",
+      "usageCount": 1,
+      "components": [
+        "SimpleHeader"
+      ]
+    },
+    {
+      "name": "--spacing-${size}",
+      "usageCount": 1,
+      "components": [
+        "Spacer"
+      ]
+    }
+  ],
+  "componentAnalysis": [
+    {
+      "name": "Sidebar",
+      "path": "src/components/Sidebar/Sidebar.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--background",
+        "--border, #e4e4e7",
+        "--border, #e4e4e7",
+        "--spacing-xs",
+        "--background-subtle",
+        "--spacing-sm",
+        "--background-emphasis",
+        "--spacing-md",
+        "--spacing-sm",
+        "--z-index-modal, 1300",
+        "--primary",
+        "--primary-foreground",
+        "--spacing-xs",
+        "--spacing-sm",
+        "--spacing-xs",
+        "--spacing-xl",
+        "--spacing-sm",
+        "--radius",
+        "--spacing-md",
+        "--spacing-xs",
+        "--spacing-sm",
+        "--foreground-muted",
+        "--spacing-xs",
+        "--spacing-sm",
+        "--border",
+        "--spacing-md",
+        "--border",
+        "--spacing-sm",
+        "--spacing-sm",
+        "--spacing-sm",
+        "--spacing-xs",
+        "--spacing-sm",
+        "--border",
+        "--radius",
+        "--background",
+        "--spacing-xs",
+        "--spacing-sm",
+        "--border",
+        "--spacing-md",
+        "--border"
+      ],
+      "hardcodedColors": [
+        "#e4e4e7",
+        "rgb(0 0 0 / 0.05)",
+        "rgb(0 0 0 / 0.1)"
+      ],
+      "tailwindClasses": [],
+      "customClasses": [
+        "clsx(",
+        "'sidebar',"
+      ],
+      "responsive": true,
+      "darkModeSupport": true,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "NavigationTabs",
+      "path": "src/components/Navigation/NavigationTabs.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--spacing-xs",
+        "--spacing-md",
+        "--spacing-sm",
+        "--radius",
+        "--foreground-muted",
+        "--border",
+        "--primary",
+        "--primary",
+        "--foreground",
+        "--background-subtle",
+        "--background-subtle",
+        "--radius",
+        "--radius",
+        "--background",
+        "--foreground",
+        "--background-hover",
+        "--foreground",
+        "--border",
+        "--background",
+        "--primary",
+        "--primary-foreground",
+        "--primary",
+        "--background-hover",
+        "--border-hover",
+        "--primary",
+        "--primary-subtle",
+        "--foreground",
+        "--background-subtle",
+        "--primary-foreground",
+        "--primary",
+        "--primary",
+        "--primary-foreground"
+      ],
+      "hardcodedColors": [
+        "rgb(0 0 0 / 0.05)"
+      ],
+      "tailwindClasses": [],
+      "customClasses": [
+        "clsx(",
+        "'navigation-tab',",
+        "isActive",
+        "&&",
+        "'navigation-tab--active',",
+        "isDisabled",
+        "'navigation-tab--disabled'",
+        ")",
+        "'navigation-tabs',"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": true,
+        "keyboardSupport": true
+      }
+    },
+    {
+      "name": "Header",
+      "path": "src/components/Header/Header.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--spacing-md",
+        "--spacing-sm",
+        "--spacing-md",
+        "--spacing-lg",
+        "--spacing-md",
+        "--spacing-lg",
+        "--spacing-xl",
+        "--z-index-sticky, 1100",
+        "--z-index-sticky, 1100",
+        "--spacing-md",
+        "--spacing-md",
+        "--spacing-md",
+        "--radius",
+        "--z-index-sticky, 1100",
+        "--background-blur, rgba(15, 23, 42, 0.95",
+        "--background-emphasis, var(--background",
+        "--background",
+        "--border, #e4e4e7",
+        "--border, #e4e4e7",
+        "--border, #e4e4e7",
+        "--spacing-lg",
+        "--spacing-${padding}"
+      ],
+      "hardcodedColors": [
+        "rgba(15, 23, 42, 0.95)",
+        "rgb(0 0 0 / 0.1)",
+        "#e4e4e7"
+      ],
+      "tailwindClasses": [],
+      "customClasses": [
+        "clsx(",
+        "'header',"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "SimpleHeader",
+      "path": "src/components/SimpleHeader/SimpleHeader.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--background",
+        "--border",
+        "--spacing-lg",
+        "--spacing-lg",
+        "--spacing-md",
+        "--spacing-lg",
+        "--spacing-xs",
+        "--spacing-sm",
+        "--spacing-md",
+        "--radius",
+        "--foreground",
+        "--super-fast, 0.1s",
+        "--muted",
+        "--primary",
+        "--foreground",
+        "--muted"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "clsx('simple-header',",
+        "className)"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "HUDRadar",
+      "path": "src/components/HUD/HUDRadar.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--cyber-matrix-green",
+        "--cyber-doom-red",
+        "--cyber-swordfish-cyan",
+        "--cyber-tech-orange",
+        "--cyber-hot-pink",
+        "--cyber-doom-red",
+        "--cyber-matrix-green",
+        "--cyber-hot-pink",
+        "--cyber-swordfish-cyan",
+        "--radar-color-rgb"
+      ],
+      "hardcodedColors": [
+        "rgba(var(--radar-color-rgb)"
+      ],
+      "tailwindClasses": [],
+      "customClasses": [
+        "radarClasses",
+        "hud-radar-background",
+        "hud-radar-scanlines",
+        "hud-radar-noise",
+        "hud-radar-grid",
+        "hud-radar-zones",
+        "hud-radar-trails",
+        "hud-radar-contacts",
+        "clsx('hud-radar-contact',",
+        "hud-radar-contact-ping",
+        "hud-radar-contact-dot",
+        "hud-radar-contact-label",
+        "hud-radar-sweep",
+        "hud-radar-sweep-line",
+        "hud-radar-sweep-fade",
+        "hud-radar-pulse",
+        "hud-radar-pulse-ring",
+        "hud-radar-title",
+        "hud-radar-status",
+        "hud-radar-status-indicator",
+        "hud-radar-status-indicator--jammed",
+        "hud-radar-status-indicator--offline"
+      ],
+      "responsive": true,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "DataTable",
+      "path": "src/components/DataTable/DataTable.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--border",
+        "--secondary",
+        "--spacing-md",
+        "--spacing-sm",
+        "--muted",
+        "--border",
+        "--spacing-md",
+        "--spacing-sm"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "border-[var(--border)]",
+        "bg-[var(--secondary)]",
+        "text-left',"
+      ],
+      "customClasses": [
+        "clsx('overflow-x-auto',",
+        "className)",
+        "clsx('data-table',",
+        "'w-full',",
+        "'border-collapse',",
+        "'mb-4')",
+        "clsx(",
+        "'border",
+        "px-[var(--spacing-md)]",
+        "py-[var(--spacing-sm)]",
+        "sortable",
+        "&&",
+        "header.column.getCanSort()",
+        "'cursor-pointer",
+        "select-none'",
+        ")",
+        "onRowClick",
+        "'cursor-pointer',",
+        "striped",
+        "'even:bg-[var(--muted)]'",
+        "border",
+        "mt-2"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "HUDNotification",
+      "path": "src/components/HUD/HUDNotification.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--cyber-swordfish-cyan",
+        "--cyber-matrix-green",
+        "--cyber-tech-orange",
+        "--cyber-doom-red",
+        "--cyber-bright-red",
+        "--cyber-hot-pink",
+        "--cyber-doom-red",
+        "--cyber-evangelion-purple"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "notificationClasses",
+        "hud-notification-progress",
+        "hud-notification-progress-bar",
+        "hud-notification-content",
+        "hud-notification-header",
+        "hud-notification-icon",
+        "hud-notification-title-section",
+        "hud-notification-title",
+        "hud-notification-meta",
+        "hud-notification-source",
+        "hud-notification-timestamp",
+        "hud-notification-priority",
+        "hud-notification-close",
+        "hud-notification-message",
+        "hud-notification-actions",
+        "clsx('hud-notification-action',",
+        "hud-notification-glow",
+        "hud-notification-alert-overlay",
+        "managerClasses",
+        "hud-notification-queue-indicator"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "HUDProgressBar",
+      "path": "src/components/HUD/HUDProgressBar.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--cyber-doom-red",
+        "--cyber-bright-red",
+        "--cyber-tech-orange",
+        "--cyber-cyber-yellow",
+        "--cyber-matrix-green",
+        "--cyber-bright-matrix",
+        "--cyber-swordfish-cyan",
+        "--cyber-matrix-green"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "progressClasses",
+        "hud-progress-bar-label",
+        "hud-progress-bar-track",
+        "hud-progress-bar-scanlines",
+        "hud-progress-bar-buffer",
+        "hud-progress-bar-segments",
+        "clsx('hud-progress-bar-segment',",
+        "'hud-progress-bar-segment--critical':",
+        "segment.critical,",
+        "hud-progress-bar-fill-container",
+        "hud-progress-bar-fill",
+        "hud-progress-bar-fill--indeterminate",
+        "hud-progress-bar-data-stream",
+        "hud-progress-bar-data-stream-line",
+        "hud-progress-bar-thresholds",
+        "hud-progress-bar-threshold",
+        "hud-progress-bar-threshold--critical",
+        "hud-progress-bar-threshold--warning",
+        "hud-progress-bar-threshold--optimal",
+        "hud-progress-bar-glow",
+        "hud-progress-bar-alert-overlay",
+        "hud-progress-bar-value",
+        "hud-progress-bar-loading",
+        "hud-progress-bar-loading-indicator"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "MetricCard",
+      "path": "src/components/MetricCard/MetricCard.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--muted-foreground",
+        "--success",
+        "--destructive",
+        "--spacing-lg",
+        "--success",
+        "--warning",
+        "--destructive",
+        "--primary"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "clsx(",
+        "'transition-all",
+        "duration-200',",
+        "showGlow",
+        "&&",
+        "status",
+        "===",
+        "'success'",
+        "'glow-effect',",
+        "'hover:scale-[1.02]',",
+        "className",
+        ")",
+        "glow-text"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Breadcrumb",
+      "path": "src/components/Navigation/Breadcrumb.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--background-subtle",
+        "--radius",
+        "--radius",
+        "--radius",
+        "--foreground-muted",
+        "--foreground",
+        "--background",
+        "--foreground-muted"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "breadcrumb-item",
+        "breadcrumb-item--link",
+        "clsx(",
+        "'breadcrumb-item',",
+        "isLast",
+        "&&",
+        "'breadcrumb-item--current',",
+        "item.label",
+        "===",
+        "'...'",
+        "'breadcrumb-item--ellipsis'",
+        ")",
+        "'breadcrumb',",
+        "breadcrumb-separator"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Navbar",
+      "path": "src/components/Navbar/Navbar.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--primary",
+        "--primary-foreground",
+        "--spacing-lg",
+        "--spacing-md",
+        "--spacing-md",
+        "--spacing-md"
+      ],
+      "hardcodedColors": [
+        "rgb(0 0 0 / 0.1)"
+      ],
+      "tailwindClasses": [],
+      "customClasses": [
+        "clsx(",
+        "item.disabled",
+        "&&",
+        "'opacity-50",
+        "pointer-events-none',",
+        "item.active",
+        "'font-semibold'",
+        ")",
+        "badge",
+        "actualLayout",
+        "===",
+        "'horizontal'",
+        "?",
+        "'flex-grow",
+        "justify-center'",
+        ":",
+        "''",
+        "clsx(className)"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "ComponentTests",
+      "path": "src/components/ComponentTests.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--muted",
+        "--muted",
+        "--muted",
+        "--muted",
+        "--muted"
+      ],
+      "hardcodedColors": [
+        "#ccc",
+        "#777",
+        "#eee"
+      ],
+      "tailwindClasses": [],
+      "customClasses": [
+        "btn-outline",
+        "btn--secondary",
+        "mt-2"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "HUDPanel",
+      "path": "src/components/HUD/HUDPanel.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--cyber-matrix-green",
+        "--cyber-medium-charcoal",
+        "--cyber-tech-orange",
+        "--cyber-doom-red",
+        "--cyber-swordfish-cyan"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "panelClasses",
+        "hud-panel-scanlines",
+        "hud-panel-glow",
+        "hud-panel-header",
+        "hud-panel-header-content",
+        "clsx('hud-panel-status',",
+        "hud-panel-status-dot",
+        "hud-panel-title-section",
+        "hud-panel-title",
+        "hud-panel-subtitle",
+        "hud-panel-header-actions",
+        "hud-panel-collapse-button",
+        "hud-panel-content",
+        "hud-panel-footer",
+        "hud-panel-resize-handles",
+        "hud-panel-resize-handle",
+        "hud-panel-resize-handle--se",
+        "hud-panel-corners",
+        "hud-panel-corner",
+        "hud-panel-corner--tl",
+        "hud-panel-corner--tr",
+        "hud-panel-corner--bl",
+        "hud-panel-corner--br"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "AppLayout",
+      "path": "src/components/AppLayout/AppLayout.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--breakpoint-${breakpoint}",
+        "--z-index-sticky, 1100",
+        "--z-index-sticky, 1100",
+        "--spacing-${contentPadding}"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "className",
+        "futuristic-wrap",
+        "futuristic-bg"
+      ],
+      "responsive": false,
+      "darkModeSupport": true,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "DateField",
+      "path": "src/components/DateField/DateField.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--radius",
+        "--input",
+        "--background",
+        "--ring"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "border-[var(--input)]",
+        "bg-[var(--background)]",
+        "text-sm',"
+      ],
+      "customClasses": [
+        "wrapperClassName",
+        "clsx(",
+        "'w-full",
+        "rounded-[var(--radius)]",
+        "border",
+        "p-2",
+        "'focus:outline-none",
+        "focus:border-[var(--ring)]',",
+        "className,",
+        ")"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "FormField",
+      "path": "src/components/FormField/FormField.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--foreground",
+        "--destructive",
+        "--muted-foreground",
+        "--destructive"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "text-sm",
+        "text-[var(--foreground)]",
+        "text-[var(--destructive)]",
+        "text-xs",
+        "text-[var(--muted-foreground)]"
+      ],
+      "customClasses": [
+        "clsx('flex",
+        "flex-col",
+        "gap-1',",
+        "className)",
+        "font-medium",
+        "ml-0.5"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "FormSection",
+      "path": "src/components/FormSection/FormSection.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--border",
+        "--muted",
+        "--border",
+        "--background"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "clsx(",
+        "'p-4',",
+        "variantStyles[variant],",
+        "className",
+        ")",
+        "font-medium"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "TextAreaField",
+      "path": "src/components/TextAreaField/TextAreaField.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--radius",
+        "--input",
+        "--background",
+        "--ring"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "border-[var(--input)]",
+        "bg-[var(--background)]",
+        "text-sm',"
+      ],
+      "customClasses": [
+        "wrapperClassName",
+        "clsx(",
+        "'w-full",
+        "rounded-[var(--radius)]",
+        "border",
+        "p-2",
+        "'focus:outline-none",
+        "focus:border-[var(--ring)]',",
+        "className,",
+        ")"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "TextField",
+      "path": "src/components/TextField/TextField.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--radius",
+        "--input",
+        "--background",
+        "--ring"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "border-[var(--input)]",
+        "bg-[var(--background)]",
+        "text-sm',"
+      ],
+      "customClasses": [
+        "wrapperClassName",
+        "clsx(",
+        "'w-full",
+        "rounded-[var(--radius)]",
+        "border",
+        "p-2",
+        "'focus:outline-none",
+        "focus:border-[var(--ring)]',",
+        "className,",
+        ")"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Box",
+      "path": "src/components/Box/Box.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--spacing-${p}",
+        "--spacing-${m}",
+        "--${bg}"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "CheckboxField",
+      "path": "src/components/CheckboxField/CheckboxField.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--input",
+        "--primary",
+        "--ring"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "border-[var(--input)]",
+        "text-[var(--primary)]',"
+      ],
+      "customClasses": [
+        "wrapperClassName",
+        "clsx(",
+        "'h-4",
+        "w-4",
+        "rounded",
+        "border",
+        "'focus:ring-[var(--ring)]',",
+        "className,",
+        ")"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "SkeletonRow",
+      "path": "src/components/DataTable/SkeletonRow.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--border",
+        "--spacing-md",
+        "--spacing-sm"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "border-[var(--border)]"
+      ],
+      "customClasses": [
+        "border",
+        "px-[var(--spacing-md)]",
+        "py-[var(--spacing-sm)]",
+        "w-full"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Skeleton",
+      "path": "src/components/Skeleton/Skeleton.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--radius",
+        "--muted"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "bg-[var(--muted)]"
+      ],
+      "customClasses": [
+        "clsx(",
+        "'animate-pulse",
+        "rounded-[var(--radius)]",
+        "skeleton-glow',",
+        "className,",
+        ")"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Container",
+      "path": "src/components/Container/Container.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--spacing-${padding}"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "classes"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Grid",
+      "path": "src/components/Grid/Grid.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--spacing-${gap}"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Login",
+      "path": "src/components/Login/Login.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--spacing-md"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "text-center"
+      ],
+      "customClasses": [
+        "flex",
+        "flex-col",
+        "gap-[var(--spacing-md)]",
+        "w-full"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Spacer",
+      "path": "src/components/Spacer/Spacer.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--spacing-${size}"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "spacer"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Stack",
+      "path": "src/components/Stack/Stack.tsx",
+      "hasThemeSupport": true,
+      "themeVariables": [
+        "--spacing-${gap}"
+      ],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Accordion",
+      "path": "src/components/Accordion/Accordion.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "[",
+        "accordion-icon",
+        "accordion-content__inner"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Alert",
+      "path": "src/components/Alert/Alert.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "classes",
+        "alert-icon",
+        "alert-content",
+        "alert-title",
+        "alert-description",
+        "alert-close"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Avatar",
+      "path": "src/components/Avatar/Avatar.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "classes",
+        "avatar__image",
+        "avatar__fallback"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Badge",
+      "path": "src/components/Badge/Badge.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "classes"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Breadcrumb",
+      "path": "src/components/Breadcrumb/Breadcrumb.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "breadcrumb-list",
+        "breadcrumb-item",
+        "breadcrumb-link",
+        "breadcrumb-separator"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Button.pw",
+      "path": "src/components/Button/Button.pw.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Button",
+      "path": "src/components/Button/Button.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "text-center"
+      ],
+      "customClasses": [
+        "classes",
+        "w-full",
+        "h-full",
+        "flex-shrink-0",
+        "flex-1",
+        "whitespace-nowrap"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Card",
+      "path": "src/components/Card/Card.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "classes"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Carousel",
+      "path": "src/components/Carousel/Carousel.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "carousel__viewport",
+        "carousel__content",
+        "carousel__slide",
+        "carousel__navigation",
+        "carousel__button",
+        "carousel__button--prev",
+        "carousel__button--next",
+        "carousel__pagination"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Checkbox",
+      "path": "src/components/Checkbox/Checkbox.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "checkbox",
+        "checkbox-label"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "ConfirmDialog",
+      "path": "src/components/ConfirmDialog/ConfirmDialog.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "confirm-dialog-body",
+        "btn-outline"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "DarkThemeToggle",
+      "path": "src/components/DarkThemeToggle/DarkThemeToggle.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "h-[1.2rem]",
+        "w-[1.2rem]"
+      ],
+      "responsive": false,
+      "darkModeSupport": true,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "TableToolbar",
+      "path": "src/components/DataTable/TableToolbar.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "text-sm",
+        "text-muted-foreground"
+      ],
+      "customClasses": [
+        "clsx('mb-2",
+        "flex",
+        "items-center",
+        "gap-2',",
+        "className)",
+        "input",
+        "flex-1"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "DatePicker",
+      "path": "src/components/DatePicker/DatePicker.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "text-base"
+      ],
+      "customClasses": [
+        "datepicker-day",
+        "datepicker-day--empty",
+        "flex",
+        "justify-between",
+        "items-center",
+        "mb-4",
+        "datepicker-nav-button",
+        "font-medium",
+        "datepicker-grid",
+        "datepicker-day-label"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Dialog",
+      "path": "src/components/Dialog/Dialog.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "dialog-overlay",
+        "dialog-close"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Divider",
+      "path": "src/components/Divider/Divider.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "EmptyState",
+      "path": "src/components/EmptyState/EmptyState.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "empty-state-icon",
+        "empty-state-title",
+        "empty-state-description",
+        "empty-state-action"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "FieldGroup",
+      "path": "src/components/FieldGroup/FieldGroup.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "classes",
+        "field-group__legend"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "FileUpload",
+      "path": "src/components/FileUpload/FileUpload.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "fileupload-dropzone",
+        "hidden",
+        "fileupload-dropzone-text",
+        "fileupload-list",
+        "fileupload-item",
+        "fileupload-item-name",
+        "fileupload-item-delete"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "HUD",
+      "path": "src/components/HUD/HUD.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "hudClasses",
+        "hud-scanlines",
+        "hud-matrix-rain",
+        "hud-matrix-rain-overlay",
+        "hud-collapse-button",
+        "clsx('hud-content',",
+        "'hud-content--collapsed':",
+        "isCollapsed,",
+        "hud-resize-handles",
+        "hud-resize-handle",
+        "hud-resize-handle--se",
+        "hud-status-indicator"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "HUDMetric",
+      "path": "src/components/HUD/HUDMetric.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "metricClasses",
+        "hud-metric-header",
+        "hud-metric-icon",
+        "hud-metric-label",
+        "clsx('hud-metric-change',",
+        "'hud-metric-change--positive':",
+        "change",
+        ">",
+        "0,",
+        "'hud-metric-change--negative':",
+        "<",
+        "hud-metric-value",
+        "hud-metric-number",
+        "hud-metric-unit",
+        "hud-metric-progress",
+        "hud-metric-progress-track",
+        "hud-metric-progress-fill",
+        "hud-metric-threshold",
+        "hud-metric-threshold--critical",
+        "hud-metric-threshold--warning",
+        "hud-metric-threshold--optimal",
+        "hud-metric-sparkline",
+        "hud-metric-sparkline-svg",
+        "hud-metric-alert-overlay"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Heading",
+      "path": "src/components/Heading/Heading.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "classes"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Icon",
+      "path": "src/components/Icon/Icon.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [],
+      "responsive": true,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Input",
+      "path": "src/components/Input/Input.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "input-wrapper",
+        "inputClasses",
+        "input-error"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "InputField",
+      "path": "src/components/InputField/InputField.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "wrapperClasses",
+        "input-error"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Label",
+      "path": "src/components/Label/Label.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "label-required-indicator"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Link",
+      "path": "src/components/Link/Link.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "classes"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Loader",
+      "path": "src/components/Loader/Loader.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "text-center"
+      ],
+      "customClasses": [
+        "relative",
+        "h-32",
+        "page-loader-text"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Menu",
+      "path": "src/components/Menu/Menu.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "shadow-lg",
+        "text-left"
+      ],
+      "customClasses": [
+        "clsx('relative",
+        "inline-block',",
+        "className)",
+        "clsx(",
+        "'absolute",
+        "mt-2",
+        "list-none",
+        "rounded-md",
+        "z-20',",
+        "align",
+        "===",
+        "'right'",
+        "?",
+        "'right-0'",
+        ":",
+        "'left-0'",
+        ")",
+        "justify-start",
+        "w-full"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "MultiSelect",
+      "path": "src/components/MultiSelect/MultiSelect.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "multiselect-group-label",
+        "multiselect-option"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "stories.utils",
+      "path": "src/components/Navigation/stories.utils.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "text-lg",
+        "bg-neutral-100",
+        "bg-neutral-900",
+        "text-white"
+      ],
+      "customClasses": [
+        "font-bold",
+        "w-full",
+        "p-4",
+        "w-64"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "NotificationBadge",
+      "path": "src/components/NotificationBadge/NotificationBadge.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [
+        "text-xs",
+        "border-white',"
+      ],
+      "customClasses": [
+        "clsx('relative",
+        "inline-block',",
+        "className)",
+        "clsx(",
+        "'absolute",
+        "flex",
+        "items-center",
+        "justify-center',",
+        "'text-white",
+        "font-medium",
+        "rounded-full',",
+        "'border-2",
+        "color,",
+        "badgeStyles,",
+        "positionStyles[position]",
+        ")"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Pagination",
+      "path": "src/components/Pagination/Pagination.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "pagination-pages"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Popover",
+      "path": "src/components/Popover/Popover.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "popover-trigger"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Progress",
+      "path": "src/components/Progress/Progress.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "containerClasses",
+        "trackClasses",
+        "indicatorClasses",
+        "progress-bar-label"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "ProgressBar",
+      "path": "src/components/ProgressBar/ProgressBar.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "trackClasses",
+        "indicatorClasses",
+        "progress-bar-label"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "RadioGroup",
+      "path": "src/components/RadioGroup/RadioGroup.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "radio-group-legend",
+        "radio-item",
+        "radio-item__input",
+        "input-error"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": true,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Select",
+      "path": "src/components/Select/Select.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "select-container",
+        "select-value",
+        "[",
+        "select-item-indicator"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "SelectField",
+      "path": "src/components/SelectField/SelectField.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "wrapperClassName",
+        "clsx(",
+        "'input',",
+        "error",
+        "&&",
+        "'input--error',",
+        "className,",
+        ")"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "StatusBadge",
+      "path": "src/components/StatusBadge/StatusBadge.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "clsx(",
+        "baseStyles,",
+        "variantStyles[variant],",
+        "sizeStyles[size],",
+        "className",
+        ")"
+      ],
+      "responsive": true,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "StatusIndicator",
+      "path": "src/components/StatusIndicator/StatusIndicator.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "clsx(",
+        "'rounded-full',",
+        "config.color,",
+        "sizeStyles[size],",
+        "animated",
+        "&&",
+        "'animate-pulse'",
+        ")",
+        "'inline-flex",
+        "items-center",
+        "gap-2",
+        "px-3",
+        "py-1",
+        "rounded-full',",
+        "config.bgColor,",
+        "className",
+        "clsx('font-medium',",
+        "config.textColor)",
+        "clsx('inline-flex',",
+        "className)"
+      ],
+      "responsive": true,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Switch",
+      "path": "src/components/Switch/Switch.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "switchClasses",
+        "switch-thumb"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Tabs",
+      "path": "src/components/Tabs/Tabs.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Terminal",
+      "path": "src/components/Terminal/Terminal.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "terminalClasses",
+        "terminal-matrix-rain",
+        "matrix-rain-overlay",
+        "terminal-scanlines",
+        "scanlines-overlay",
+        "contentClasses",
+        "clsx('terminal-header',",
+        "terminal-header-content",
+        "terminal-header-title",
+        "terminal-header-icon",
+        "terminal-header-text",
+        "terminal-header-controls",
+        "terminal-control",
+        "terminal-control--minimize",
+        "terminal-control--maximize",
+        "terminal-control--close",
+        "clsx('terminal-line',",
+        "terminal-line-content",
+        "terminal-line-number",
+        "terminal-line-prompt",
+        "terminal-line-command",
+        "statusClasses",
+        "terminal-line-output",
+        "terminal-cursor",
+        "animate-terminal-cursor",
+        "clsx('terminal-input-line',",
+        "terminal-input-prompt",
+        "terminal-input-wrapper",
+        "clsx('terminal-input',"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": true
+      }
+    },
+    {
+      "name": "Text",
+      "path": "src/components/Text/Text.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "classes"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Textarea",
+      "path": "src/components/Textarea/Textarea.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "textareaClasses"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": false,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Toast",
+      "path": "src/components/Toast/Toast.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    },
+    {
+      "name": "Tooltip",
+      "path": "src/components/Tooltip/Tooltip.tsx",
+      "hasThemeSupport": false,
+      "themeVariables": [],
+      "hardcodedColors": [],
+      "tailwindClasses": [],
+      "customClasses": [
+        "tooltip-trigger-wrapper",
+        "tooltipClasses",
+        "arrowClasses"
+      ],
+      "responsive": false,
+      "darkModeSupport": false,
+      "accessibility": {
+        "hasAriaLabels": false,
+        "hasRoles": true,
+        "keyboardSupport": false
+      }
+    }
+  ],
+  "issues": {
+    "hardcodedColors": [
+      {
+        "component": "ComponentTests",
+        "colors": [
+          "#ccc",
+          "#777",
+          "#eee"
+        ]
+      },
+      {
+        "component": "HUDRadar",
+        "colors": [
+          "rgba(var(--radar-color-rgb)"
+        ]
+      },
+      {
+        "component": "Header",
+        "colors": [
+          "rgba(15, 23, 42, 0.95)",
+          "rgb(0 0 0 / 0.1)",
+          "#e4e4e7"
+        ]
+      },
+      {
+        "component": "Navbar",
+        "colors": [
+          "rgb(0 0 0 / 0.1)"
+        ]
+      },
+      {
+        "component": "NavigationTabs",
+        "colors": [
+          "rgb(0 0 0 / 0.05)"
+        ]
+      },
+      {
+        "component": "Sidebar",
+        "colors": [
+          "#e4e4e7",
+          "rgb(0 0 0 / 0.05)",
+          "rgb(0 0 0 / 0.1)"
+        ]
+      }
+    ],
+    "missingThemeSupport": [
+      "Accordion",
+      "Alert",
+      "Avatar",
+      "Badge",
+      "Breadcrumb",
+      "Button.pw",
+      "Button",
+      "Card",
+      "Carousel",
+      "Checkbox",
+      "ConfirmDialog",
+      "DarkThemeToggle",
+      "TableToolbar",
+      "DatePicker",
+      "Dialog",
+      "Divider",
+      "EmptyState",
+      "FieldGroup",
+      "FileUpload",
+      "HUD",
+      "HUDMetric",
+      "Heading",
+      "Icon",
+      "Input",
+      "InputField",
+      "Label",
+      "Link",
+      "Loader",
+      "Menu",
+      "MultiSelect",
+      "stories.utils",
+      "NotificationBadge",
+      "Pagination",
+      "Popover",
+      "Progress",
+      "ProgressBar",
+      "RadioGroup",
+      "Select",
+      "SelectField",
+      "StatusBadge",
+      "StatusIndicator",
+      "Switch",
+      "Tabs",
+      "Terminal",
+      "Text",
+      "Textarea",
+      "Toast",
+      "Tooltip"
+    ],
+    "missingDarkMode": [
+      "Accordion",
+      "Alert",
+      "Avatar",
+      "Badge",
+      "Box",
+      "Breadcrumb",
+      "Button.pw",
+      "Button",
+      "Card",
+      "Carousel",
+      "Checkbox",
+      "CheckboxField",
+      "ComponentTests",
+      "ConfirmDialog",
+      "Container",
+      "DataTable",
+      "SkeletonRow",
+      "TableToolbar",
+      "DateField",
+      "DatePicker",
+      "Dialog",
+      "Divider",
+      "EmptyState",
+      "FieldGroup",
+      "FileUpload",
+      "FormField",
+      "FormSection",
+      "Grid",
+      "HUD",
+      "HUDMetric",
+      "HUDNotification",
+      "HUDPanel",
+      "HUDProgressBar",
+      "HUDRadar",
+      "Header",
+      "Heading",
+      "Icon",
+      "Input",
+      "InputField",
+      "Label",
+      "Link",
+      "Loader",
+      "Login",
+      "Menu",
+      "MetricCard",
+      "MultiSelect",
+      "Navbar",
+      "Breadcrumb",
+      "NavigationTabs",
+      "stories.utils",
+      "NotificationBadge",
+      "Pagination",
+      "Popover",
+      "Progress",
+      "ProgressBar",
+      "RadioGroup",
+      "Select",
+      "SelectField",
+      "SimpleHeader",
+      "Skeleton",
+      "Spacer",
+      "Stack",
+      "StatusBadge",
+      "StatusIndicator",
+      "Switch",
+      "Tabs",
+      "Terminal",
+      "Text",
+      "TextAreaField",
+      "TextField",
+      "Textarea",
+      "Toast",
+      "Tooltip"
+    ],
+    "accessibilityIssues": [
+      {
+        "component": "Accordion",
+        "issues": [
+          "Missing ARIA labels",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Alert",
+        "issues": [
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "AppLayout",
+        "issues": [
+          "Missing ARIA labels",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Avatar",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Badge",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Box",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Breadcrumb",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Button.pw",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Button",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Card",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Carousel",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Checkbox",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "CheckboxField",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "ComponentTests",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "ConfirmDialog",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Container",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "DarkThemeToggle",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "DataTable",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "SkeletonRow",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "TableToolbar",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "DateField",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "DatePicker",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Dialog",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Divider",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "EmptyState",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "FieldGroup",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "FileUpload",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "FormField",
+        "issues": [
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "FormSection",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Grid",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "HUD",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "HUDMetric",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "HUDNotification",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "HUDPanel",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "HUDProgressBar",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "HUDRadar",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Header",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Heading",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Icon",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Input",
+        "issues": [
+          "Missing ARIA labels",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "InputField",
+        "issues": [
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Label",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Link",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Loader",
+        "issues": [
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Login",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Menu",
+        "issues": [
+          "Missing ARIA labels",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "MetricCard",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "MultiSelect",
+        "issues": [
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Navbar",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Breadcrumb",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "NavigationTabs",
+        "issues": [
+          "Missing ARIA labels"
+        ]
+      },
+      {
+        "component": "stories.utils",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "NotificationBadge",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Pagination",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Popover",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Progress",
+        "issues": [
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "ProgressBar",
+        "issues": [
+          "Missing ARIA labels",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "RadioGroup",
+        "issues": [
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Select",
+        "issues": [
+          "Missing ARIA labels",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "SelectField",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Sidebar",
+        "issues": [
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "SimpleHeader",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Skeleton",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Spacer",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Stack",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "StatusBadge",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "StatusIndicator",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Switch",
+        "issues": [
+          "Missing ARIA labels",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Tabs",
+        "issues": [
+          "Missing ARIA labels",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Terminal",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles"
+        ]
+      },
+      {
+        "component": "Text",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "TextAreaField",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "TextField",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Textarea",
+        "issues": [
+          "Missing ARIA labels",
+          "Missing ARIA roles",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Toast",
+        "issues": [
+          "Missing ARIA labels",
+          "No keyboard support detected"
+        ]
+      },
+      {
+        "component": "Tooltip",
+        "issues": [
+          "Missing ARIA labels",
+          "No keyboard support detected"
+        ]
+      }
+    ]
+  },
+  "recommendations": [
+    "🔴 Critical: Less than 50% of components have theme support. Consider a systematic theming implementation.",
+    "⚠️ 6 components have hardcoded colors. Replace with CSS variables or theme tokens.",
+    "🌙 73 components lack dark mode support. Add dark: variants or data-theme handling.",
+    "♿ 76 components have accessibility issues. Add ARIA labels and keyboard support.",
+    "📱 Only 7% of components have responsive design. Add responsive breakpoints.",
+    "✨ Most used theme variables: --spacing-md, --spacing-sm, --radius, --border, --primary"
+  ]
+}

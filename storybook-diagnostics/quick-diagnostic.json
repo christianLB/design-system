@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-08-23T03:22:27.411Z",
+  "tailwindCheck": {
+    "tailwindInStylesheets": false,
+    "tailwindClassesInDOM": [],
+    "bodyBackground": "rgb(250, 250, 250)",
+    "bodyColor": "rgb(31, 41, 55)",
+    "bodyFont": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+    "cssVariables": {}
+  },
+  "cssFiles": [],
+  "screenshotsPath": "./storybook-diagnostics"
+}
