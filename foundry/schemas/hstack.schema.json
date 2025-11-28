@@ -1,0 +1,40 @@
+{
+  "$schema": "../schema.json",
+  "name": "HStack",
+  "description": "A flex container that stacks children horizontally with consistent spacing",
+  "category": "layout",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {
+    "gap": {
+      "description": "Space between items",
+      "values": ["none", "xs", "sm", "md", "lg", "xl"],
+      "default": "md"
+    },
+    "align": {
+      "description": "Cross-axis alignment",
+      "values": ["start", "center", "end", "baseline", "stretch"],
+      "default": "center"
+    },
+    "justify": {
+      "description": "Main-axis alignment",
+      "values": ["start", "center", "end", "between", "around", "evenly"],
+      "default": "start"
+    },
+    "wrap": {
+      "description": "Whether items should wrap",
+      "values": ["nowrap", "wrap", "wrap-reverse"],
+      "default": "nowrap"
+    }
+  },
+  "slots": {
+    "children": {
+      "description": "Stack items",
+      "element": "React.ReactNode"
+    }
+  },
+  "accessibility": {
+    "role": "none (layout container)"
+  }
+}

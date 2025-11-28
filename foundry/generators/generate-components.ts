@@ -188,9 +188,15 @@ function generatePropsInterface(context: GenerationContext): string {
         .join('\n')
     : '';
 
-  // Slot prop types (skip if already defined in variants or props)
+  // Slot prop types (skip if already defined in variants or props, and skip 'children' since it's added below)
   const slotProps = slots
-    .filter((s) => s.name !== 'root' && s.name !== 'input' && !definedProps.has(s.name))
+    .filter(
+      (s) =>
+        s.name !== 'root' &&
+        s.name !== 'input' &&
+        s.name !== 'children' &&
+        !definedProps.has(s.name),
+    )
     .map((slot) => `  ${slot.name}?: React.ReactNode;`)
     .join('\n');
 

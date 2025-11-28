@@ -917,6 +917,321 @@
     @media (max-width: 600px) {
       .grid-2 { grid-template-columns: 1fr; }
     }
+
+    /* ========================================
+       LAYOUT COMPONENTS
+       ======================================== */
+
+    /* Container */
+    .layout-container {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .layout-container-sm { max-width: 640px; }
+    .layout-container-md { max-width: 768px; }
+    .layout-container-lg { max-width: 1024px; }
+    .layout-container-xl { max-width: 1280px; }
+    .layout-container-full { max-width: 100%; }
+
+    /* Stack (Vertical) */
+    .stack {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HStack (Horizontal) */
+    .hstack {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    /* VStack (Vertical) */
+    .vstack {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Gap variants */
+    .gap-none { gap: 0; }
+    .gap-xs { gap: 0.25rem; }
+    .gap-sm { gap: 0.5rem; }
+    .gap-md { gap: 1rem; }
+    .gap-lg { gap: 1.5rem; }
+    .gap-xl { gap: 2rem; }
+
+    /* Align variants */
+    .align-start { align-items: flex-start; }
+    .align-center { align-items: center; }
+    .align-end { align-items: flex-end; }
+    .align-stretch { align-items: stretch; }
+    .align-baseline { align-items: baseline; }
+
+    /* Justify variants */
+    .justify-start { justify-content: flex-start; }
+    .justify-center { justify-content: center; }
+    .justify-end { justify-content: flex-end; }
+    .justify-between { justify-content: space-between; }
+    .justify-around { justify-content: space-around; }
+    .justify-evenly { justify-content: space-evenly; }
+
+    /* Grid */
+    .layout-grid {
+      display: grid;
+    }
+    .cols-1 { grid-template-columns: repeat(1, 1fr); }
+    .cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+    /* Divider */
+    .divider {
+      flex-shrink: 0;
+      background: var(--color-border);
+    }
+    .divider-horizontal {
+      height: 1px;
+      width: 100%;
+    }
+    .divider-vertical {
+      width: 1px;
+      height: 100%;
+      align-self: stretch;
+    }
+
+    /* Spacer */
+    .spacer {
+      flex-grow: 1;
+    }
+
+    /* Center */
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Layout Demo Box */
+    .layout-demo-box {
+      background: var(--color-muted);
+      border: 1px dashed var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--color-mutedForeground);
+    }
+
+    /* ========================================
+       OVERLAY COMPONENTS
+       ======================================== */
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      position: relative;
+      background: var(--color-card);
+      color: var(--color-cardForeground);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-border);
+      max-height: 90vh;
+      overflow: auto;
+    }
+
+    .modal-content-sm { width: 100%; max-width: 24rem; }
+    .modal-content-md { width: 100%; max-width: 28rem; }
+    .modal-content-lg { width: 100%; max-width: 32rem; }
+    .modal-content-xl { width: 100%; max-width: 36rem; }
+
+    .modal-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      padding: 1.5rem;
+      padding-bottom: 0;
+    }
+
+    .modal-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.025em;
+    }
+
+    .modal-description {
+      font-size: 0.875rem;
+      color: var(--color-mutedForeground);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      padding: 1.5rem;
+      padding-top: 0;
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      background: transparent;
+      border: none;
+      padding: 0.25rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      opacity: 0.7;
+      color: var(--color-foreground);
+      transition: opacity 0.2s;
+    }
+
+    .modal-close:hover {
+      opacity: 1;
+    }
+
+    /* Drawer */
+    .drawer {
+      position: fixed;
+      z-index: 50;
+      background: var(--color-card);
+      color: var(--color-cardForeground);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-border);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .drawer-right {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 75%;
+      max-width: 24rem;
+      border-left-width: 1px;
+    }
+
+    .drawer-left {
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 75%;
+      max-width: 24rem;
+      border-right-width: 1px;
+    }
+
+    .drawer-top {
+      top: 0;
+      left: 0;
+      right: 0;
+      border-bottom-width: 1px;
+    }
+
+    .drawer-bottom {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top-width: 1px;
+    }
+
+    .drawer-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      padding: 1rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .drawer-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .drawer-body {
+      flex: 1;
+      overflow: auto;
+      padding: 1rem;
+    }
+
+    .drawer-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      padding: 1rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* Popover */
+    .popover {
+      z-index: 50;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      background: var(--color-card);
+      color: var(--color-cardForeground);
+      padding: 1rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Tooltip */
+    .tooltip {
+      z-index: 50;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      background: var(--color-card);
+      color: var(--color-cardForeground);
+      padding: 0.375rem 0.75rem;
+      font-size: 0.875rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Overlay Demo Container */
+    .overlay-demo {
+      position: relative;
+      min-height: 300px;
+      background: var(--color-muted);
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--color-border);
+      overflow: hidden;
+    }
+
+    .overlay-demo .modal,
+    .overlay-demo .modal-backdrop,
+    .overlay-demo .drawer {
+      position: absolute;
+    }
+
+    /* Hidden utility */
+    .hidden {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -1453,6 +1768,206 @@
       </div>
     </section>
 
+    <!-- Layout Section -->
+    <section class="section">
+      <h2>Layout Components</h2>
+
+      <h3>Container Sizes</h3>
+      <div class="stack gap-md" style="margin-bottom: 1.5rem;">
+        <div class="layout-container layout-container-sm" style="background: var(--color-muted); padding: 1rem; border-radius: var(--radius-md);">
+          <div class="layout-demo-box">Container sm (640px max)</div>
+        </div>
+        <div class="layout-container layout-container-md" style="background: var(--color-muted); padding: 1rem; border-radius: var(--radius-md);">
+          <div class="layout-demo-box">Container md (768px max)</div>
+        </div>
+        <div class="layout-container layout-container-lg" style="background: var(--color-muted); padding: 1rem; border-radius: var(--radius-md);">
+          <div class="layout-demo-box">Container lg (1024px max)</div>
+        </div>
+      </div>
+
+      <h3>HStack (Horizontal)</h3>
+      <div class="hstack gap-md" style="margin-bottom: 1.5rem;">
+        <div class="layout-demo-box">Item 1</div>
+        <div class="layout-demo-box">Item 2</div>
+        <div class="layout-demo-box">Item 3</div>
+        <div class="spacer"></div>
+        <div class="layout-demo-box">End</div>
+      </div>
+
+      <h3>VStack (Vertical)</h3>
+      <div class="vstack gap-sm align-start" style="margin-bottom: 1.5rem; max-width: 200px;">
+        <div class="layout-demo-box" style="width: 100%;">Item 1</div>
+        <div class="layout-demo-box" style="width: 100%;">Item 2</div>
+        <div class="layout-demo-box" style="width: 100%;">Item 3</div>
+      </div>
+
+      <h3>Grid</h3>
+      <div class="layout-grid cols-4 gap-md" style="margin-bottom: 1.5rem;">
+        <div class="layout-demo-box">1</div>
+        <div class="layout-demo-box">2</div>
+        <div class="layout-demo-box">3</div>
+        <div class="layout-demo-box">4</div>
+        <div class="layout-demo-box">5</div>
+        <div class="layout-demo-box">6</div>
+        <div class="layout-demo-box">7</div>
+        <div class="layout-demo-box">8</div>
+      </div>
+
+      <h3>Divider</h3>
+      <div class="vstack gap-md" style="margin-bottom: 1.5rem;">
+        <div class="layout-demo-box">Content Above</div>
+        <div class="divider divider-horizontal"></div>
+        <div class="layout-demo-box">Content Below</div>
+      </div>
+
+      <h3>HStack with Vertical Divider</h3>
+      <div class="hstack gap-md" style="height: 3rem; margin-bottom: 1.5rem;">
+        <div class="layout-demo-box">Left</div>
+        <div class="divider divider-vertical"></div>
+        <div class="layout-demo-box">Center</div>
+        <div class="divider divider-vertical"></div>
+        <div class="layout-demo-box">Right</div>
+      </div>
+
+      <h3>Center</h3>
+      <div class="center" style="height: 100px; background: var(--color-muted); border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+        <div class="layout-demo-box">Centered Content</div>
+      </div>
+
+      <h3>Justify Variants</h3>
+      <div class="stack gap-sm" style="margin-bottom: 1.5rem;">
+        <div class="hstack justify-start gap-sm" style="background: var(--color-muted); padding: 0.5rem; border-radius: var(--radius-sm);">
+          <div class="layout-demo-box">start</div>
+          <div class="layout-demo-box">start</div>
+        </div>
+        <div class="hstack justify-center gap-sm" style="background: var(--color-muted); padding: 0.5rem; border-radius: var(--radius-sm);">
+          <div class="layout-demo-box">center</div>
+          <div class="layout-demo-box">center</div>
+        </div>
+        <div class="hstack justify-end gap-sm" style="background: var(--color-muted); padding: 0.5rem; border-radius: var(--radius-sm);">
+          <div class="layout-demo-box">end</div>
+          <div class="layout-demo-box">end</div>
+        </div>
+        <div class="hstack justify-between gap-sm" style="background: var(--color-muted); padding: 0.5rem; border-radius: var(--radius-sm);">
+          <div class="layout-demo-box">between</div>
+          <div class="layout-demo-box">between</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overlay Section -->
+    <section class="section">
+      <h2>Overlay Components</h2>
+
+      <h3>Modal</h3>
+      <div class="component-grid" style="margin-bottom: 1rem;">
+        <button class="btn btn-md btn-primary" onclick="openModal('demo-modal')">Open Modal</button>
+      </div>
+      <div class="overlay-demo">
+        <div id="demo-modal" class="modal hidden">
+          <div class="modal-content modal-content-md">
+            <button class="modal-close" onclick="closeModal('demo-modal')">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div class="modal-header">
+              <h3 class="modal-title">Modal Title</h3>
+              <p class="modal-description">This is a description of what the modal is for.</p>
+            </div>
+            <div class="modal-body">
+              <p>Modal content goes here. You can put forms, text, images, or any other content.</p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-md btn-ghost" onclick="closeModal('demo-modal')">Cancel</button>
+              <button class="btn btn-md btn-primary">Confirm</button>
+            </div>
+          </div>
+        </div>
+        <div id="demo-modal-backdrop" class="modal-backdrop hidden" onclick="closeModal('demo-modal')"></div>
+      </div>
+
+      <h3>Drawer Positions</h3>
+      <div class="component-grid" style="margin-bottom: 1rem;">
+        <button class="btn btn-md btn-outline" onclick="openDrawer('demo-drawer-right')">Open Right</button>
+        <button class="btn btn-md btn-outline" onclick="openDrawer('demo-drawer-left')">Open Left</button>
+        <button class="btn btn-md btn-outline" onclick="openDrawer('demo-drawer-bottom')">Open Bottom</button>
+      </div>
+      <div class="overlay-demo" style="height: 250px;">
+        <!-- Right Drawer -->
+        <div id="demo-drawer-right" class="drawer drawer-right hidden" style="display: flex; flex-direction: column;">
+          <div class="drawer-header">
+            <h3 class="drawer-title">Right Drawer</h3>
+          </div>
+          <div class="drawer-body">
+            <p>Drawer content here...</p>
+          </div>
+          <div class="drawer-footer">
+            <button class="btn btn-sm btn-ghost" onclick="closeDrawer('demo-drawer-right')">Close</button>
+          </div>
+        </div>
+        <!-- Left Drawer -->
+        <div id="demo-drawer-left" class="drawer drawer-left hidden" style="display: flex; flex-direction: column;">
+          <div class="drawer-header">
+            <h3 class="drawer-title">Left Drawer</h3>
+          </div>
+          <div class="drawer-body">
+            <p>Drawer content here...</p>
+          </div>
+          <div class="drawer-footer">
+            <button class="btn btn-sm btn-ghost" onclick="closeDrawer('demo-drawer-left')">Close</button>
+          </div>
+        </div>
+        <!-- Bottom Drawer -->
+        <div id="demo-drawer-bottom" class="drawer drawer-bottom hidden" style="display: flex; flex-direction: column;">
+          <div class="drawer-header">
+            <h3 class="drawer-title">Bottom Drawer</h3>
+          </div>
+          <div class="drawer-body">
+            <p>This drawer slides up from the bottom.</p>
+          </div>
+          <div class="drawer-footer">
+            <button class="btn btn-sm btn-ghost" onclick="closeDrawer('demo-drawer-bottom')">Close</button>
+          </div>
+        </div>
+        <div id="demo-drawer-backdrop" class="modal-backdrop hidden" onclick="closeAllDrawers()"></div>
+      </div>
+
+      <h3>Tooltip & Popover</h3>
+      <div class="hstack gap-xl" style="margin-bottom: 1.5rem;">
+        <div class="vstack gap-sm align-center">
+          <span class="tooltip">Tooltip: Quick hint</span>
+          <span style="font-size: 0.875rem; color: var(--color-mutedForeground);">Tooltip</span>
+        </div>
+        <div class="vstack gap-sm align-center">
+          <div class="popover" style="max-width: 200px;">
+            <strong>Popover Title</strong>
+            <p style="font-size: 0.875rem; margin-top: 0.25rem; color: var(--color-mutedForeground);">More detailed content with multiple elements.</p>
+          </div>
+          <span style="font-size: 0.875rem; color: var(--color-mutedForeground);">Popover</span>
+        </div>
+      </div>
+
+      <h3>Modal Sizes</h3>
+      <div class="hstack gap-md" style="flex-wrap: wrap;">
+        <div class="vstack gap-xs align-center">
+          <div class="modal-content modal-content-sm" style="position: relative; padding: 1rem;">
+            <span class="layout-demo-box">sm</span>
+          </div>
+        </div>
+        <div class="vstack gap-xs align-center">
+          <div class="modal-content modal-content-md" style="position: relative; padding: 1rem;">
+            <span class="layout-demo-box">md</span>
+          </div>
+        </div>
+        <div class="vstack gap-xs align-center">
+          <div class="modal-content modal-content-lg" style="position: relative; padding: 1rem;">
+            <span class="layout-demo-box">lg</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Color Palette -->
     <section class="section">
       <h2>Color Palette</h2>
@@ -1501,6 +2016,36 @@
 
       // Select clicked tab
       el.setAttribute('data-state', 'active');
+    }
+
+    // Modal functions
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById(id + '-backdrop').classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.getElementById(id + '-backdrop').classList.add('hidden');
+    }
+
+    // Drawer functions
+    function openDrawer(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById('demo-drawer-backdrop').classList.remove('hidden');
+    }
+
+    function closeDrawer(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.getElementById('demo-drawer-backdrop').classList.add('hidden');
+    }
+
+    function closeAllDrawers() {
+      ['demo-drawer-right', 'demo-drawer-left', 'demo-drawer-bottom'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+      document.getElementById('demo-drawer-backdrop').classList.add('hidden');
     }
 
     // Initialize with light theme

@@ -1,0 +1,13 @@
+{
+  "$schema": "../schema.json",
+  "name": "Spacer",
+  "description": "A flexible spacer that expands to fill available space in flex containers",
+  "category": "layout",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {},
+  "accessibility": {
+    "aria-hidden": "true"
+  }
+}

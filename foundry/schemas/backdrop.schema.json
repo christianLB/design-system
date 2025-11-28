@@ -1,0 +1,19 @@
+{
+  "$schema": "../schema.json",
+  "name": "Backdrop",
+  "description": "A semi-transparent overlay that covers the page behind modals and drawers",
+  "category": "overlay",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {},
+  "props": {
+    "onClick": {
+      "type": "() => void",
+      "description": "Callback when backdrop is clicked"
+    }
+  },
+  "accessibility": {
+    "aria-hidden": "true"
+  }
+}

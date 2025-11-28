@@ -1,0 +1,30 @@
+{
+  "$schema": "../schema.json",
+  "name": "Grid",
+  "description": "A CSS grid container for creating responsive layouts",
+  "category": "layout",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {
+    "cols": {
+      "description": "Number of columns",
+      "values": ["1", "2", "3", "4", "5", "6", "12"],
+      "default": "3"
+    },
+    "gap": {
+      "description": "Space between items",
+      "values": ["none", "xs", "sm", "md", "lg", "xl"],
+      "default": "md"
+    }
+  },
+  "slots": {
+    "children": {
+      "description": "Grid items",
+      "element": "React.ReactNode"
+    }
+  },
+  "accessibility": {
+    "role": "none (layout container)"
+  }
+}

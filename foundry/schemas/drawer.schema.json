@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema.json",
+  "name": "Drawer",
+  "description": "A panel that slides in from the edge of the screen",
+  "category": "overlay",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {
+    "position": {
+      "description": "Which edge the drawer appears from",
+      "values": ["left", "right", "top", "bottom"],
+      "default": "right"
+    },
+    "size": {
+      "description": "Width (left/right) or height (top/bottom) of the drawer",
+      "values": ["sm", "md", "lg", "xl", "full"],
+      "default": "md"
+    }
+  },
+  "props": {
+    "open": {
+      "type": "boolean",
+      "description": "Whether the drawer is visible"
+    },
+    "onClose": {
+      "type": "() => void",
+      "description": "Callback when drawer should close"
+    }
+  },
+  "slots": {
+    "children": {
+      "description": "Drawer content",
+      "element": "React.ReactNode"
+    }
+  },
+  "states": {
+    "open": {
+      "description": "Drawer is visible",
+      "prop": "open"
+    }
+  },
+  "accessibility": {
+    "role": "dialog",
+    "aria-modal": "true",
+    "focus-trap": "Required when open"
+  }
+}

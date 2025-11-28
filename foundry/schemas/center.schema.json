@@ -1,0 +1,19 @@
+{
+  "$schema": "../schema.json",
+  "name": "Center",
+  "description": "A layout component that centers its children both horizontally and vertically",
+  "category": "layout",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {},
+  "slots": {
+    "children": {
+      "description": "Content to center",
+      "element": "React.ReactNode"
+    }
+  },
+  "accessibility": {
+    "role": "none (layout container)"
+  }
+}

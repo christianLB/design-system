@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema.json",
+  "name": "Modal",
+  "description": "A dialog overlay that appears above page content",
+  "category": "overlay",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {
+    "size": {
+      "description": "Maximum width of the modal",
+      "values": ["sm", "md", "lg", "xl", "full"],
+      "default": "md"
+    },
+    "animation": {
+      "description": "Entry animation style",
+      "values": ["none", "fade", "scale", "slide"],
+      "default": "scale"
+    }
+  },
+  "props": {
+    "open": {
+      "type": "boolean",
+      "description": "Whether the modal is visible"
+    },
+    "onClose": {
+      "type": "() => void",
+      "description": "Callback when modal should close"
+    }
+  },
+  "slots": {
+    "children": {
+      "description": "Modal content",
+      "element": "React.ReactNode"
+    }
+  },
+  "states": {
+    "open": {
+      "description": "Modal is visible",
+      "prop": "open"
+    }
+  },
+  "accessibility": {
+    "role": "dialog",
+    "aria-modal": "true",
+    "focus-trap": "Required when open"
+  }
+}

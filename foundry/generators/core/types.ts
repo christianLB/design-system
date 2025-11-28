@@ -12,7 +12,8 @@ export type ComponentCategory =
   | 'display'
   | 'feedback'
   | 'layout'
-  | 'navigation';
+  | 'navigation'
+  | 'overlay';
 
 // HTML element configuration
 export interface ElementConfig {
@@ -71,16 +72,22 @@ export interface ComponentSchema {
     usage?: string;
   };
   variants: Record<string, VariantConfig>;
-  slots?: Record<string, {
-    description: string;
-    element: string;
-    optional?: boolean;
-  }>;
-  states?: Record<string, {
-    description?: string;
-    attribute?: string;
-    prop?: string;
-  }>;
+  slots?: Record<
+    string,
+    {
+      description: string;
+      element: string;
+      optional?: boolean;
+    }
+  >;
+  states?: Record<
+    string,
+    {
+      description?: string;
+      attribute?: string;
+      prop?: string;
+    }
+  >;
   props?: Record<string, PropConfig>;
   tokens?: {
     base?: Record<string, string>;

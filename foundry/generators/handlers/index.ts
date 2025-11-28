@@ -11,6 +11,8 @@ import { surfaceHandler } from './surface-handler';
 import { feedbackHandler } from './feedback-handler';
 import { displayHandler } from './display-handler';
 import { navigationHandler } from './navigation-handler';
+import { layoutHandler } from './layout-handler';
+import { overlayHandler } from './overlay-handler';
 
 /**
  * Registry of category handlers
@@ -22,7 +24,8 @@ export const HANDLERS: Record<ComponentCategory, CategoryHandler> = {
   feedback: feedbackHandler,
   display: displayHandler,
   navigation: navigationHandler,
-  layout: surfaceHandler, // Fallback to surface (for now)
+  layout: layoutHandler,
+  overlay: overlayHandler,
 };
 
 /**
@@ -38,3 +41,5 @@ export { surfaceHandler } from './surface-handler';
 export { feedbackHandler } from './feedback-handler';
 export { displayHandler } from './display-handler';
 export { navigationHandler } from './navigation-handler';
+export { layoutHandler } from './layout-handler';
+export { overlayHandler } from './overlay-handler';

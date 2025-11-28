@@ -1,0 +1,30 @@
+{
+  "$schema": "../schema.json",
+  "name": "Container",
+  "description": "A responsive container that centers content and provides max-width constraints",
+  "category": "layout",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {
+    "size": {
+      "description": "Maximum width constraint",
+      "values": ["sm", "md", "lg", "xl", "2xl", "full"],
+      "default": "lg"
+    },
+    "padding": {
+      "description": "Horizontal padding",
+      "values": ["none", "sm", "md", "lg", "xl"],
+      "default": "md"
+    }
+  },
+  "slots": {
+    "children": {
+      "description": "Container content",
+      "element": "React.ReactNode"
+    }
+  },
+  "accessibility": {
+    "role": "none (semantic container)"
+  }
+}

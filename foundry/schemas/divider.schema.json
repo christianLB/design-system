@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema.json",
+  "name": "Divider",
+  "description": "A visual separator between content sections",
+  "category": "layout",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {
+    "orientation": {
+      "description": "Divider direction",
+      "values": ["horizontal", "vertical"],
+      "default": "horizontal"
+    }
+  },
+  "props": {
+    "orientation": {
+      "type": "'horizontal' | 'vertical'",
+      "default": "horizontal",
+      "description": "The orientation of the divider"
+    }
+  },
+  "accessibility": {
+    "role": "separator",
+    "aria-orientation": "Matches orientation prop"
+  }
+}

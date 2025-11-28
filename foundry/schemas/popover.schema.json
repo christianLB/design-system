@@ -1,0 +1,31 @@
+{
+  "$schema": "../schema.json",
+  "name": "Popover",
+  "description": "A floating panel that appears near a trigger element",
+  "category": "overlay",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {
+    "side": {
+      "description": "Preferred side relative to trigger",
+      "values": ["top", "right", "bottom", "left"],
+      "default": "bottom"
+    },
+    "animation": {
+      "description": "Entry animation style",
+      "values": ["none", "fade", "scale", "slide"],
+      "default": "fade"
+    }
+  },
+  "slots": {
+    "children": {
+      "description": "Popover content",
+      "element": "React.ReactNode"
+    }
+  },
+  "accessibility": {
+    "role": "dialog",
+    "aria-describedby": "Links to content"
+  }
+}

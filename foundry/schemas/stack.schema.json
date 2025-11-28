@@ -1,0 +1,35 @@
+{
+  "$schema": "../schema.json",
+  "name": "Stack",
+  "description": "A flex container that stacks children vertically with consistent spacing",
+  "category": "layout",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {
+    "gap": {
+      "description": "Space between items",
+      "values": ["none", "xs", "sm", "md", "lg", "xl"],
+      "default": "md"
+    },
+    "align": {
+      "description": "Cross-axis alignment",
+      "values": ["start", "center", "end", "stretch"],
+      "default": "stretch"
+    },
+    "justify": {
+      "description": "Main-axis alignment",
+      "values": ["start", "center", "end", "between", "around", "evenly"],
+      "default": "start"
+    }
+  },
+  "slots": {
+    "children": {
+      "description": "Stack items",
+      "element": "React.ReactNode"
+    }
+  },
+  "accessibility": {
+    "role": "none (layout container)"
+  }
+}

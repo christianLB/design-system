@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema.json",
+  "name": "Tooltip",
+  "description": "A small popup that displays information on hover or focus",
+  "category": "overlay",
+  "element": {
+    "tag": "div"
+  },
+  "variants": {
+    "side": {
+      "description": "Preferred side relative to trigger",
+      "values": ["top", "right", "bottom", "left"],
+      "default": "top"
+    }
+  },
+  "props": {
+    "content": {
+      "type": "React.ReactNode",
+      "description": "The tooltip content to display"
+    }
+  },
+  "slots": {
+    "children": {
+      "description": "Fallback content if no content prop",
+      "element": "React.ReactNode",
+      "optional": true
+    }
+  },
+  "accessibility": {
+    "role": "tooltip"
+  }
+}
