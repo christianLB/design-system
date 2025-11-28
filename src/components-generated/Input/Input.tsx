@@ -34,8 +34,8 @@ export interface InputProps extends React.ButtonHTMLAttributes<HTMLButtonElement
   size?: 'sm' | 'md' | 'lg';
   type?: string;
   placeholder?: string;
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
   className?: string;
   children?: React.ReactNode;
 }

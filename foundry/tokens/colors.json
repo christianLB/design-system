@@ -2,48 +2,52 @@
   "$schema": "./schemas/tokens.schema.json",
   "description": "Base color primitives - raw values that themes build upon",
 
-  "primitives": {
-    "blue": "#2563eb",
-    "indigo": "#4f46e5",
-    "purple": "#7c3aed",
-    "pink": "#db2777",
-    "green": "#059669",
-    "teal": "#0d9488",
-    "cyan": "#0891b2",
-    "orange": "#ea580c",
-    "red": "#dc2626",
-    "gray": "#64748b",
-    "slate": "#475569",
-    "zinc": "#52525b",
-    "neutral": "#525252",
-    "stone": "#57534e",
-    "white": "#ffffff",
-    "black": "#000000"
-  },
+  "color": {
+    "primitive": {
+      "blue": "#2563eb",
+      "indigo": "#4f46e5",
+      "purple": "#7c3aed",
+      "pink": "#db2777",
+      "green": "#059669",
+      "teal": "#0d9488",
+      "cyan": "#0891b2",
+      "orange": "#ea580c",
+      "red": "#dc2626",
+      "gray": "#64748b",
+      "slate": "#475569",
+      "zinc": "#52525b",
+      "neutral": "#525252",
+      "stone": "#57534e",
+      "white": "#ffffff",
+      "black": "#000000"
+    },
 
-  "semantic": {
-    "primary": "{primitives.blue}",
-    "secondary": "{primitives.slate}",
-    "destructive": "{primitives.red}",
-    "success": "{primitives.green}",
-    "warning": "{primitives.orange}",
-    "info": "{primitives.cyan}"
-  },
+    "primary": "#2563eb",
+    "primaryForeground": "#ffffff",
+    "secondary": "#475569",
+    "secondaryForeground": "#ffffff",
+    "destructive": "#dc2626",
+    "destructiveForeground": "#ffffff",
+    "success": "#059669",
+    "successForeground": "#ffffff",
+    "warning": "#ea580c",
+    "warningForeground": "#ffffff",
+    "info": "#0891b2",
+    "infoForeground": "#ffffff",
 
-  "surface": {
-    "background": "{primitives.white}",
+    "background": "#ffffff",
     "foreground": "#0a0a0a",
-    "card": "{primitives.white}",
+    "card": "#ffffff",
     "cardForeground": "#0a0a0a",
-    "popover": "{primitives.white}",
+    "popover": "#ffffff",
     "popoverForeground": "#0a0a0a",
     "muted": "#f4f4f5",
-    "mutedForeground": "#71717a"
-  },
+    "mutedForeground": "#71717a",
+    "accent": "#f4f4f5",
+    "accentForeground": "#0a0a0a",
 
-  "border": {
-    "default": "#e4e4e7",
+    "border": "#e4e4e7",
     "input": "#e4e4e7",
-    "ring": "{semantic.primary}"
+    "ring": "#2563eb"
   }
 }

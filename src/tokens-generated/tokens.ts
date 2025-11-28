@@ -6,47 +6,53 @@
  */
 
 export const colorsTokens = {
-  'description': 'var(--description)',
-  'primitives-blue': 'var(--primitives-blue)',
-  'primitives-indigo': 'var(--primitives-indigo)',
-  'primitives-purple': 'var(--primitives-purple)',
-  'primitives-pink': 'var(--primitives-pink)',
-  'primitives-green': 'var(--primitives-green)',
-  'primitives-teal': 'var(--primitives-teal)',
-  'primitives-cyan': 'var(--primitives-cyan)',
-  'primitives-orange': 'var(--primitives-orange)',
-  'primitives-red': 'var(--primitives-red)',
-  'primitives-gray': 'var(--primitives-gray)',
-  'primitives-slate': 'var(--primitives-slate)',
-  'primitives-zinc': 'var(--primitives-zinc)',
-  'primitives-neutral': 'var(--primitives-neutral)',
-  'primitives-stone': 'var(--primitives-stone)',
-  'primitives-white': 'var(--primitives-white)',
-  'primitives-black': 'var(--primitives-black)',
-  'semantic-primary': 'var(--semantic-primary)',
-  'semantic-secondary': 'var(--semantic-secondary)',
-  'semantic-destructive': 'var(--semantic-destructive)',
-  'semantic-success': 'var(--semantic-success)',
-  'semantic-warning': 'var(--semantic-warning)',
-  'semantic-info': 'var(--semantic-info)',
-  'surface-background': 'var(--surface-background)',
-  'surface-foreground': 'var(--surface-foreground)',
-  'surface-card': 'var(--surface-card)',
-  'surface-cardForeground': 'var(--surface-cardForeground)',
-  'surface-popover': 'var(--surface-popover)',
-  'surface-popoverForeground': 'var(--surface-popoverForeground)',
-  'surface-muted': 'var(--surface-muted)',
-  'surface-mutedForeground': 'var(--surface-mutedForeground)',
-  'border-default': 'var(--border-default)',
-  'border-input': 'var(--border-input)',
-  'border-ring': 'var(--border-ring)',
+  'color-primitive-blue': 'var(--color-primitive-blue)',
+  'color-primitive-indigo': 'var(--color-primitive-indigo)',
+  'color-primitive-purple': 'var(--color-primitive-purple)',
+  'color-primitive-pink': 'var(--color-primitive-pink)',
+  'color-primitive-green': 'var(--color-primitive-green)',
+  'color-primitive-teal': 'var(--color-primitive-teal)',
+  'color-primitive-cyan': 'var(--color-primitive-cyan)',
+  'color-primitive-orange': 'var(--color-primitive-orange)',
+  'color-primitive-red': 'var(--color-primitive-red)',
+  'color-primitive-gray': 'var(--color-primitive-gray)',
+  'color-primitive-slate': 'var(--color-primitive-slate)',
+  'color-primitive-zinc': 'var(--color-primitive-zinc)',
+  'color-primitive-neutral': 'var(--color-primitive-neutral)',
+  'color-primitive-stone': 'var(--color-primitive-stone)',
+  'color-primitive-white': 'var(--color-primitive-white)',
+  'color-primitive-black': 'var(--color-primitive-black)',
+  'color-primary': 'var(--color-primary)',
+  'color-primaryForeground': 'var(--color-primaryForeground)',
+  'color-secondary': 'var(--color-secondary)',
+  'color-secondaryForeground': 'var(--color-secondaryForeground)',
+  'color-destructive': 'var(--color-destructive)',
+  'color-destructiveForeground': 'var(--color-destructiveForeground)',
+  'color-success': 'var(--color-success)',
+  'color-successForeground': 'var(--color-successForeground)',
+  'color-warning': 'var(--color-warning)',
+  'color-warningForeground': 'var(--color-warningForeground)',
+  'color-info': 'var(--color-info)',
+  'color-infoForeground': 'var(--color-infoForeground)',
+  'color-background': 'var(--color-background)',
+  'color-foreground': 'var(--color-foreground)',
+  'color-card': 'var(--color-card)',
+  'color-cardForeground': 'var(--color-cardForeground)',
+  'color-popover': 'var(--color-popover)',
+  'color-popoverForeground': 'var(--color-popoverForeground)',
+  'color-muted': 'var(--color-muted)',
+  'color-mutedForeground': 'var(--color-mutedForeground)',
+  'color-accent': 'var(--color-accent)',
+  'color-accentForeground': 'var(--color-accentForeground)',
+  'color-border': 'var(--color-border)',
+  'color-input': 'var(--color-input)',
+  'color-ring': 'var(--color-ring)',
 } as const;
 
 export type ColorsTokens = typeof colorsTokens;
 
 
 export const motionTokens = {
-  'description': 'var(--description)',
   'duration-instant': 'var(--duration-instant)',
   'duration-fast': 'var(--duration-fast)',
   'duration-normal': 'var(--duration-normal)',
@@ -74,7 +80,6 @@ export type MotionTokens = typeof motionTokens;
 
 
 export const radiusTokens = {
-  'description': 'var(--description)',
   'scale-none': 'var(--scale-none)',
   'scale-sm': 'var(--scale-sm)',
   'scale-md': 'var(--scale-md)',
@@ -95,7 +100,6 @@ export type RadiusTokens = typeof radiusTokens;
 
 
 export const shadowsTokens = {
-  'description': 'var(--description)',
   'scale-none': 'var(--scale-none)',
   'scale-sm': 'var(--scale-sm)',
   'scale-md': 'var(--scale-md)',
@@ -117,7 +121,6 @@ export type ShadowsTokens = typeof shadowsTokens;
 
 
 export const spacingTokens = {
-  'description': 'var(--description)',
   'scale-0': 'var(--scale-0)',
   'scale-1': 'var(--scale-1)',
   'scale-2': 'var(--scale-2)',
@@ -165,7 +168,6 @@ export type SpacingTokens = typeof spacingTokens;
 
 
 export const typographyTokens = {
-  'description': 'var(--description)',
   'fontFamily-sans': 'var(--fontFamily-sans)',
   'fontFamily-mono': 'var(--fontFamily-mono)',
   'fontFamily-display': 'var(--fontFamily-display)',

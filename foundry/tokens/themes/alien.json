@@ -2,43 +2,32 @@
   "$schema": "../schemas/theme.schema.json",
   "name": "alien",
   "description": "Alien biomechanical/Giger inspired theme",
-  "extends": "dark",
 
-  "colors": {
-    "primitives": {
-      "steelOrganic": "#708090",
-      "pulsingLife": "#e56e47",
-      "adrenaline": "#d4552f",
-      "ancientBlood": "#6b7280",
-      "primordialVoid": "#0d1117"
-    },
-    "semantic": {
-      "primary": "{primitives.steelOrganic}",
-      "secondary": "{primitives.pulsingLife}",
-      "destructive": "{primitives.adrenaline}",
-      "success": "{primitives.pulsingLife}",
-      "warning": "#f6bb93"
-    },
-    "surface": {
-      "background": "#0d1117",
-      "foreground": "#f6f7f8",
-      "card": "#1f2328",
-      "cardForeground": "#f6f7f8",
-      "popover": "#323740",
-      "popoverForeground": "#f6f7f8",
-      "muted": "#565d67",
-      "mutedForeground": "#a8aeb5"
-    },
-    "border": {
-      "default": "#6b7280",
-      "input": "#454a52",
-      "ring": "{primitives.pulsingLife}"
-    }
-  },
+  "color": {
+    "primary": "#708090",
+    "primaryForeground": "#f6f7f8",
+    "secondary": "#e56e47",
+    "secondaryForeground": "#f6f7f8",
+    "destructive": "#d4552f",
+    "destructiveForeground": "#ffffff",
+    "success": "#e56e47",
+    "successForeground": "#f6f7f8",
+    "warning": "#f6bb93",
+    "warningForeground": "#0d1117",
 
-  "effects": {
-    "organic": true,
-    "pulsing": true,
-    "atmospheric": true
+    "background": "#0d1117",
+    "foreground": "#f6f7f8",
+    "card": "#1f2328",
+    "cardForeground": "#f6f7f8",
+    "popover": "#323740",
+    "popoverForeground": "#f6f7f8",
+    "muted": "#565d67",
+    "mutedForeground": "#a8aeb5",
+    "accent": "#e56e47",
+    "accentForeground": "#f6f7f8",
+
+    "border": "#6b7280",
+    "input": "#454a52",
+    "ring": "#e56e47"
   }
 }

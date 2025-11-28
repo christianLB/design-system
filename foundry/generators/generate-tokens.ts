@@ -62,6 +62,7 @@ function flattenTokens(obj: unknown, prefix = ''): Record<string, string> {
 
   for (const [key, value] of Object.entries(obj)) {
     if (key.startsWith('$')) continue; // Skip meta keys like $schema
+    if (key === 'description') continue; // Skip description fields
 
     const tokenName = prefix ? `${prefix}-${key}` : key;
 
@@ -73,6 +74,41 @@ function flattenTokens(obj: unknown, prefix = ''): Record<string, string> {
   }
 
   return result;
+}
+
+function resolveAllReferences(tokens: Record<string, string>): Record<string, string> {
+  const resolved: Record<string, string> = {};
+
+  for (const [key, value] of Object.entries(tokens)) {
+    resolved[key] = resolveValue(value, tokens);
+  }
+
+  return resolved;
+}
+
+function resolveValue(value: string, tokens: Record<string, string>, depth = 0): string {
+  if (depth > 10) return value; // Prevent infinite recursion
+
+  // Replace {token.path} with var(--token-path) or actual value
+  const resolved = value.replace(/\{([^}]+)\}/g, (match, tokenPath) => {
+    // Convert dot notation to CSS variable name
+    const cssVarName = tokenPath.replace(/\./g, '-');
+
+    // Try to find the token in our flattened tokens
+    if (tokens[cssVarName]) {
+      const tokenValue = tokens[cssVarName];
+      // If the token value itself has references, resolve them
+      if (tokenValue.includes('{')) {
+        return resolveValue(tokenValue, tokens, depth + 1);
+      }
+      return tokenValue;
+    }
+
+    // Otherwise return CSS variable reference
+    return `var(--${cssVarName})`;
+  });
+
+  return resolved;
 }
 
 function generateCSSVariables(tokens: Record<string, string>, indent = '  '): string {
@@ -89,6 +125,7 @@ function generateCSSFile(allTokens: Record<string, TokenFile>, themes: Record<st
   }
 
   const flatBase = flattenTokens(baseTokens);
+  const resolvedBase = resolveAllReferences(flatBase);
 
   // Generate base :root variables
   let css = `/**
@@ -99,19 +136,27 @@ function generateCSSFile(allTokens: Record<string, TokenFile>, themes: Record<st
  */
 
 :root {
-${generateCSSVariables(flatBase)}
+${generateCSSVariables(resolvedBase)}
 }
 `;
 
   // Generate theme-specific variables
   for (const [themeName, themeTokens] of Object.entries(themes)) {
     const flatTheme = flattenTokens(themeTokens);
+    // Merge with base for reference resolution, then resolve
+    const mergedForResolution = { ...resolvedBase, ...flatTheme };
+    const resolvedTheme = resolveAllReferences(mergedForResolution);
+    // Only keep theme-specific overrides
+    const themeOverrides: Record<string, string> = {};
+    for (const key of Object.keys(flatTheme)) {
+      themeOverrides[key] = resolvedTheme[key];
+    }
 
     css += `
 /* Theme: ${themeName} */
 [data-theme="${themeName}"],
 .theme-${themeName} {
-${generateCSSVariables(flatTheme)}
+${generateCSSVariables(themeOverrides)}
 }
 `;
   }
@@ -119,11 +164,17 @@ ${generateCSSVariables(flatTheme)}
   // Dark mode media query
   if (themes.dark) {
     const flatDark = flattenTokens(themes.dark);
+    const mergedDark = { ...resolvedBase, ...flatDark };
+    const resolvedDark = resolveAllReferences(mergedDark);
+    const darkOverrides: Record<string, string> = {};
+    for (const key of Object.keys(flatDark)) {
+      darkOverrides[key] = resolvedDark[key];
+    }
     css += `
 /* System dark mode preference */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-${generateCSSVariables(flatDark, '    ')}
+${generateCSSVariables(darkOverrides, '    ')}
   }
 }
 `;

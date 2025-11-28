@@ -89,7 +89,9 @@ function generateTypeDefinitions(schema: ComponentSchema): string {
     ? Object.entries(props)
         .map(([key, config]) => {
           const optional = config.required ? '' : '?';
-          return `  ${key}${optional}: ${config.type};`;
+          // Replace ReactNode with React.ReactNode for proper import reference
+          const typeStr = config.type.replace(/\bReactNode\b/g, 'React.ReactNode');
+          return `  ${key}${optional}: ${typeStr};`;
         })
         .join('\n')
     : '';

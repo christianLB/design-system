@@ -46,8 +46,8 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   asChild?: boolean;
   isLoading?: boolean;
   loadingText?: string;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
   fullWidth?: boolean;
   className?: string;
   children?: React.ReactNode;

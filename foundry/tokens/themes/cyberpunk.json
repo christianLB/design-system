@@ -2,44 +2,32 @@
   "$schema": "../schemas/theme.schema.json",
   "name": "cyberpunk",
   "description": "Cyberpunk/Matrix inspired theme",
-  "extends": "dark",
 
-  "colors": {
-    "primitives": {
-      "matrixGreen": "#39ff14",
-      "doomRed": "#ff0000",
-      "techOrange": "#ff6600",
-      "neonCyan": "#00ffff",
-      "hotPink": "#ff1493"
-    },
-    "semantic": {
-      "primary": "{primitives.matrixGreen}",
-      "secondary": "{primitives.doomRed}",
-      "destructive": "{primitives.doomRed}",
-      "success": "{primitives.matrixGreen}",
-      "warning": "{primitives.techOrange}"
-    },
-    "surface": {
-      "background": "#000000",
-      "foreground": "#ffffff",
-      "card": "#0a0a0a",
-      "cardForeground": "#ffffff",
-      "popover": "#1a1a1a",
-      "popoverForeground": "#ffffff",
-      "muted": "#1a1a1a",
-      "mutedForeground": "#999999"
-    },
-    "border": {
-      "default": "#3a3a3a",
-      "input": "#2a2a2a",
-      "ring": "{semantic.primary}"
-    }
-  },
+  "color": {
+    "primary": "#39ff14",
+    "primaryForeground": "#000000",
+    "secondary": "#ff0000",
+    "secondaryForeground": "#ffffff",
+    "destructive": "#ff0000",
+    "destructiveForeground": "#ffffff",
+    "success": "#39ff14",
+    "successForeground": "#000000",
+    "warning": "#ff6600",
+    "warningForeground": "#000000",
 
-  "effects": {
-    "glow": true,
-    "scanlines": true,
-    "glowColor": "{semantic.primary}",
-    "glowIntensity": "medium"
+    "background": "#000000",
+    "foreground": "#ffffff",
+    "card": "#0a0a0a",
+    "cardForeground": "#ffffff",
+    "popover": "#1a1a1a",
+    "popoverForeground": "#ffffff",
+    "muted": "#1a1a1a",
+    "mutedForeground": "#999999",
+    "accent": "#2a2a2a",
+    "accentForeground": "#39ff14",
+
+    "border": "#39ff14",
+    "input": "#2a2a2a",
+    "ring": "#39ff14"
   }
 }

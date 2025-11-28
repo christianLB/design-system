@@ -1,23 +1,27 @@
 {
   "$schema": "../schemas/theme.schema.json",
   "name": "dark",
-  "description": "Default dark theme",
-  "extends": "light",
+  "description": "Dark theme",
 
-  "colors": {
-    "surface": {
-      "background": "#0a0a0a",
-      "foreground": "#fafafa",
-      "card": "#0a0a0a",
-      "cardForeground": "#fafafa",
-      "popover": "#0a0a0a",
-      "popoverForeground": "#fafafa",
-      "muted": "#262626",
-      "mutedForeground": "#a1a1aa"
-    },
-    "border": {
-      "default": "#27272a",
-      "input": "#27272a"
-    }
+  "color": {
+    "primary": "#3b82f6",
+    "primaryForeground": "#ffffff",
+    "secondary": "#64748b",
+    "secondaryForeground": "#ffffff",
+
+    "background": "#0a0a0a",
+    "foreground": "#fafafa",
+    "card": "#0a0a0a",
+    "cardForeground": "#fafafa",
+    "popover": "#0a0a0a",
+    "popoverForeground": "#fafafa",
+    "muted": "#262626",
+    "mutedForeground": "#a1a1aa",
+    "accent": "#27272a",
+    "accentForeground": "#fafafa",
+
+    "border": "#27272a",
+    "input": "#27272a",
+    "ring": "#3b82f6"
   }
 }
