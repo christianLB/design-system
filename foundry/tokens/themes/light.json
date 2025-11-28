@@ -1,0 +1,31 @@
+{
+  "$schema": "../schemas/theme.schema.json",
+  "name": "light",
+  "description": "Default light theme",
+  "extends": null,
+
+  "colors": {
+    "semantic": {
+      "primary": "{primitives.blue}",
+      "secondary": "{primitives.slate}",
+      "destructive": "{primitives.red}",
+      "success": "{primitives.green}",
+      "warning": "{primitives.orange}"
+    },
+    "surface": {
+      "background": "#ffffff",
+      "foreground": "#0a0a0a",
+      "card": "#ffffff",
+      "cardForeground": "#0a0a0a",
+      "popover": "#ffffff",
+      "popoverForeground": "#0a0a0a",
+      "muted": "#f4f4f5",
+      "mutedForeground": "#71717a"
+    },
+    "border": {
+      "default": "#e4e4e7",
+      "input": "#e4e4e7",
+      "ring": "{semantic.primary}"
+    }
+  }
+}

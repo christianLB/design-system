@@ -1,0 +1,230 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Button",
+  "description": "Interactive button component for actions and navigation",
+  "category": "action",
+
+  "primitive": {
+    "package": "@radix-ui/react-slot",
+    "component": "Slot",
+    "usage": "asChild prop for composition"
+  },
+
+  "variants": {
+    "intent": {
+      "description": "Visual style indicating the button's purpose",
+      "values": ["primary", "secondary", "ghost", "destructive", "success", "outline", "link"],
+      "default": "primary"
+    },
+    "size": {
+      "description": "Button size affecting padding and font size",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The button container element",
+      "element": "button"
+    },
+    "iconStart": {
+      "description": "Icon rendered before the label",
+      "element": "span",
+      "optional": true
+    },
+    "iconEnd": {
+      "description": "Icon rendered after the label",
+      "element": "span",
+      "optional": true
+    },
+    "loader": {
+      "description": "Loading spinner when isLoading is true",
+      "element": "span",
+      "optional": true
+    }
+  },
+
+  "states": {
+    "disabled": {
+      "description": "Button cannot be interacted with",
+      "attribute": "disabled"
+    },
+    "loading": {
+      "description": "Button is performing an async action",
+      "prop": "isLoading"
+    },
+    "active": {
+      "description": "Button is currently active/pressed",
+      "attribute": "data-active"
+    }
+  },
+
+  "props": {
+    "asChild": {
+      "type": "boolean",
+      "default": false,
+      "description": "Render as child element using Radix Slot"
+    },
+    "isLoading": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show loading state"
+    },
+    "loadingText": {
+      "type": "string",
+      "description": "Text to show while loading"
+    },
+    "leftIcon": {
+      "type": "ReactNode",
+      "description": "Icon element to render before label"
+    },
+    "rightIcon": {
+      "type": "ReactNode",
+      "description": "Icon element to render after label"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "default": false,
+      "description": "Button takes full container width"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "display": "inline-flex",
+      "alignItems": "center",
+      "justifyContent": "center",
+      "gap": "{spacing.component.button.gap}",
+      "fontWeight": "{typography.fontWeight.medium}",
+      "borderRadius": "{radius.semantic.button}",
+      "transition": "all {motion.semantic.hover.duration} {motion.semantic.hover.easing}",
+      "cursor": "pointer",
+      "userSelect": "none"
+    },
+    "size": {
+      "sm": {
+        "height": "2rem",
+        "paddingX": "{spacing.component.button.paddingX.sm}",
+        "paddingY": "{spacing.component.button.paddingY.sm}",
+        "fontSize": "{typography.fontSize.sm}"
+      },
+      "md": {
+        "height": "2.5rem",
+        "paddingX": "{spacing.component.button.paddingX.md}",
+        "paddingY": "{spacing.component.button.paddingY.md}",
+        "fontSize": "{typography.fontSize.sm}"
+      },
+      "lg": {
+        "height": "3rem",
+        "paddingX": "{spacing.component.button.paddingX.lg}",
+        "paddingY": "{spacing.component.button.paddingY.lg}",
+        "fontSize": "{typography.fontSize.md}"
+      }
+    },
+    "intent": {
+      "primary": {
+        "background": "{colors.semantic.primary}",
+        "color": "{colors.surface.background}",
+        "border": "none",
+        "hover": {
+          "background": "{colors.semantic.primary}/90"
+        },
+        "focus": {
+          "ring": "2px solid {colors.border.ring}",
+          "ringOffset": "2px"
+        }
+      },
+      "secondary": {
+        "background": "{colors.semantic.secondary}",
+        "color": "{colors.surface.background}",
+        "border": "none",
+        "hover": {
+          "background": "{colors.semantic.secondary}/80"
+        }
+      },
+      "ghost": {
+        "background": "transparent",
+        "color": "{colors.surface.foreground}",
+        "border": "none",
+        "hover": {
+          "background": "{colors.surface.muted}"
+        }
+      },
+      "destructive": {
+        "background": "{colors.semantic.destructive}",
+        "color": "{colors.surface.background}",
+        "border": "none",
+        "hover": {
+          "background": "{colors.semantic.destructive}/90"
+        }
+      },
+      "success": {
+        "background": "{colors.semantic.success}",
+        "color": "{colors.surface.background}",
+        "border": "none",
+        "hover": {
+          "background": "{colors.semantic.success}/90"
+        }
+      },
+      "outline": {
+        "background": "transparent",
+        "color": "{colors.surface.foreground}",
+        "border": "1px solid {colors.border.default}",
+        "hover": {
+          "background": "{colors.surface.muted}"
+        }
+      },
+      "link": {
+        "background": "transparent",
+        "color": "{colors.semantic.primary}",
+        "border": "none",
+        "textDecoration": "underline",
+        "hover": {
+          "textDecoration": "none"
+        }
+      }
+    },
+    "state": {
+      "disabled": {
+        "opacity": "0.5",
+        "cursor": "not-allowed",
+        "pointerEvents": "none"
+      },
+      "loading": {
+        "opacity": "0.7",
+        "cursor": "wait"
+      }
+    }
+  },
+
+  "accessibility": {
+    "role": "button",
+    "ariaDisabled": "When disabled prop is true",
+    "ariaBusy": "When isLoading prop is true",
+    "focusVisible": "Ring style on keyboard focus"
+  },
+
+  "examples": [
+    {
+      "name": "Default",
+      "props": {},
+      "children": "Click me"
+    },
+    {
+      "name": "Destructive",
+      "props": { "intent": "destructive" },
+      "children": "Delete"
+    },
+    {
+      "name": "Loading",
+      "props": { "isLoading": true, "loadingText": "Saving..." },
+      "children": "Save"
+    },
+    {
+      "name": "With Icons",
+      "props": { "leftIcon": "Plus" },
+      "children": "Add Item"
+    }
+  ]
+}

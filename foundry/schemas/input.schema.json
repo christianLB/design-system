@@ -1,0 +1,119 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Input",
+  "description": "Text input field for forms",
+  "category": "input",
+
+  "variants": {
+    "size": {
+      "description": "Input size",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The input container",
+      "element": "div"
+    },
+    "input": {
+      "description": "The actual input element",
+      "element": "input"
+    },
+    "startAdornment": {
+      "description": "Content before input (icon, prefix)",
+      "element": "span",
+      "optional": true
+    },
+    "endAdornment": {
+      "description": "Content after input (icon, suffix)",
+      "element": "span",
+      "optional": true
+    }
+  },
+
+  "states": {
+    "disabled": {
+      "description": "Input cannot be edited",
+      "attribute": "disabled"
+    },
+    "invalid": {
+      "description": "Input has validation error",
+      "attribute": "aria-invalid"
+    },
+    "readOnly": {
+      "description": "Input value cannot be changed",
+      "attribute": "readOnly"
+    }
+  },
+
+  "props": {
+    "type": {
+      "type": "string",
+      "default": "text",
+      "description": "HTML input type"
+    },
+    "placeholder": {
+      "type": "string",
+      "description": "Placeholder text"
+    },
+    "startIcon": {
+      "type": "ReactNode",
+      "description": "Icon at start of input"
+    },
+    "endIcon": {
+      "type": "ReactNode",
+      "description": "Icon at end of input"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "width": "100%",
+      "borderRadius": "{radius.semantic.input}",
+      "border": "1px solid {colors.border.input}",
+      "background": "{colors.surface.background}",
+      "color": "{colors.surface.foreground}",
+      "transition": "border-color {motion.semantic.focus.duration} {motion.semantic.focus.easing}"
+    },
+    "size": {
+      "sm": {
+        "height": "2rem",
+        "paddingX": "{spacing.component.input.paddingX}",
+        "fontSize": "{typography.fontSize.sm}"
+      },
+      "md": {
+        "height": "2.5rem",
+        "paddingX": "{spacing.component.input.paddingX}",
+        "fontSize": "{typography.fontSize.sm}"
+      },
+      "lg": {
+        "height": "3rem",
+        "paddingX": "{spacing.component.input.paddingX}",
+        "fontSize": "{typography.fontSize.md}"
+      }
+    },
+    "state": {
+      "focus": {
+        "outline": "none",
+        "borderColor": "{colors.border.ring}",
+        "boxShadow": "{shadows.semantic.inputFocus}"
+      },
+      "invalid": {
+        "borderColor": "{colors.semantic.destructive}"
+      },
+      "disabled": {
+        "opacity": "0.5",
+        "cursor": "not-allowed",
+        "background": "{colors.surface.muted}"
+      }
+    }
+  },
+
+  "accessibility": {
+    "role": "textbox",
+    "ariaInvalid": "When validation fails",
+    "ariaDescribedby": "Link to error message"
+  }
+}

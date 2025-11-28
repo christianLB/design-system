@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "component.schema.json",
+  "title": "Foundry Component Schema",
+  "description": "Schema definition for design system components",
+  "type": "object",
+
+  "required": ["name", "description", "category", "variants", "tokens"],
+
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Component name in PascalCase"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the component's purpose"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["action", "input", "display", "feedback", "layout", "navigation", "surface"],
+      "description": "Component category for organization"
+    },
+    "primitive": {
+      "type": "object",
+      "description": "Underlying primitive component (e.g., Radix)",
+      "properties": {
+        "package": { "type": "string" },
+        "component": { "type": "string" },
+        "usage": { "type": "string" }
+      }
+    },
+    "variants": {
+      "type": "object",
+      "description": "Component variants (intent, size, etc.)",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "values": { "type": "array", "items": { "type": "string" } },
+          "default": { "type": "string" }
+        },
+        "required": ["values", "default"]
+      }
+    },
+    "slots": {
+      "type": "object",
+      "description": "Component slots (composable parts)",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "element": { "type": "string" },
+          "optional": { "type": "boolean" }
+        }
+      }
+    },
+    "states": {
+      "type": "object",
+      "description": "Interactive states",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "attribute": { "type": "string" },
+          "prop": { "type": "string" }
+        }
+      }
+    },
+    "props": {
+      "type": "object",
+      "description": "Component props",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "default": {},
+          "description": { "type": "string" },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "description": "Design token mappings for styling"
+    },
+    "accessibility": {
+      "type": "object",
+      "description": "Accessibility requirements"
+    },
+    "examples": {
+      "type": "array",
+      "description": "Usage examples",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "props": { "type": "object" },
+          "children": {}
+        }
+      }
+    }
+  }
+}

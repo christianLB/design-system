@@ -1,0 +1,108 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Card",
+  "description": "Container for grouping related content",
+  "category": "surface",
+
+  "variants": {
+    "variant": {
+      "description": "Visual style of the card",
+      "values": ["elevated", "outlined", "filled", "ghost"],
+      "default": "elevated"
+    },
+    "padding": {
+      "description": "Internal spacing",
+      "values": ["none", "sm", "md", "lg"],
+      "default": "md"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The card container",
+      "element": "div"
+    },
+    "header": {
+      "description": "Card header section",
+      "element": "div",
+      "optional": true
+    },
+    "content": {
+      "description": "Main card content",
+      "element": "div"
+    },
+    "footer": {
+      "description": "Card footer section",
+      "element": "div",
+      "optional": true
+    }
+  },
+
+  "states": {
+    "interactive": {
+      "description": "Card is clickable",
+      "prop": "isInteractive"
+    },
+    "selected": {
+      "description": "Card is in selected state",
+      "attribute": "data-selected"
+    }
+  },
+
+  "props": {
+    "isInteractive": {
+      "type": "boolean",
+      "default": false,
+      "description": "Makes card clickable with hover effects"
+    },
+    "asChild": {
+      "type": "boolean",
+      "default": false,
+      "description": "Render as child element"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "borderRadius": "{radius.semantic.card}",
+      "overflow": "hidden"
+    },
+    "variant": {
+      "elevated": {
+        "background": "{colors.surface.card}",
+        "boxShadow": "{shadows.semantic.card}",
+        "border": "none"
+      },
+      "outlined": {
+        "background": "{colors.surface.card}",
+        "boxShadow": "none",
+        "border": "1px solid {colors.border.default}"
+      },
+      "filled": {
+        "background": "{colors.surface.muted}",
+        "boxShadow": "none",
+        "border": "none"
+      },
+      "ghost": {
+        "background": "transparent",
+        "boxShadow": "none",
+        "border": "none"
+      }
+    },
+    "padding": {
+      "none": { "padding": "0" },
+      "sm": { "padding": "{spacing.semantic.sm}" },
+      "md": { "padding": "{spacing.component.card.padding}" },
+      "lg": { "padding": "{spacing.semantic.xl}" }
+    },
+    "state": {
+      "interactive": {
+        "cursor": "pointer",
+        "transition": "box-shadow {motion.semantic.hover.duration} {motion.semantic.hover.easing}",
+        "hover": {
+          "boxShadow": "{shadows.semantic.cardHover}"
+        }
+      }
+    }
+  }
+}
