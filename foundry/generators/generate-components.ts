@@ -2,17 +2,23 @@
 /**
  * Component Generator
  *
- * Reads component schemas from foundry/schemas/ and generates:
- * - React component files
- * - TypeScript types
- * - CSS/Tailwind classes
+ * Generates React components from JSON schemas using category-based handlers.
+ * Supports multiple component types: action (buttons), input (forms), surface (cards).
  *
- * Usage: pnpm foundry:components
+ * Usage: npm run foundry:components
  */
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import type {
+  ComponentSchema,
+  ComponentCategory,
+  GenerationContext,
+} from './core/types';
+import { extractSlots } from './core/types';
+import { getHandler } from './handlers';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,51 +26,9 @@ const FOUNDRY_DIR = path.join(__dirname, '..');
 const SCHEMAS_DIR = path.join(FOUNDRY_DIR, 'schemas');
 const OUTPUT_DIR = path.join(FOUNDRY_DIR, '..', 'src', 'components-generated');
 
-interface ComponentSchema {
-  name: string;
-  description: string;
-  category: string;
-  primitive?: {
-    package: string;
-    component: string;
-    usage: string;
-  };
-  variants: Record<string, {
-    description: string;
-    values: string[];
-    default: string;
-  }>;
-  slots?: Record<string, {
-    description: string;
-    element: string;
-    optional?: boolean;
-  }>;
-  states?: Record<string, {
-    description: string;
-    attribute?: string;
-    prop?: string;
-  }>;
-  props?: Record<string, {
-    type: string;
-    default?: unknown;
-    description: string;
-    required?: boolean;
-  }>;
-  tokens: {
-    base: Record<string, string>;
-    size?: Record<string, Record<string, string>>;
-    intent?: Record<string, Record<string, string | Record<string, string>>>;
-    variant?: Record<string, Record<string, string>>;
-    state?: Record<string, Record<string, string>>;
-  };
-  accessibility?: Record<string, string>;
-  examples?: Array<{
-    name: string;
-    props: Record<string, unknown>;
-    children?: unknown;
-  }>;
-}
-
+/**
+ * Load and parse a schema file
+ */
 function loadSchema(schemaPath: string): ComponentSchema | null {
   try {
     const content = fs.readFileSync(schemaPath, 'utf-8');
@@ -75,125 +39,70 @@ function loadSchema(schemaPath: string): ComponentSchema | null {
   }
 }
 
-function generateTypeDefinitions(schema: ComponentSchema): string {
-  const { name, variants, props } = schema;
-
-  const variantTypes = Object.entries(variants)
-    .map(([key, config]) => {
-      const values = config.values.map(v => `'${v}'`).join(' | ');
-      return `  ${key}?: ${values};`;
-    })
-    .join('\n');
-
-  const propTypes = props
-    ? Object.entries(props)
-        .map(([key, config]) => {
-          const optional = config.required ? '' : '?';
-          // Replace ReactNode with React.ReactNode for proper import reference
-          const typeStr = config.type.replace(/\bReactNode\b/g, 'React.ReactNode');
-          return `  ${key}${optional}: ${typeStr};`;
-        })
-        .join('\n')
-    : '';
-
-  return `
-export type ${name}Variant = ${variants.intent?.values.map(v => `'${v}'`).join(' | ') || 'string'};
-export type ${name}Size = ${variants.size?.values.map(v => `'${v}'`).join(' | ') || 'string'};
-
-export interface ${name}Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-${variantTypes}
-${propTypes}
-  className?: string;
-  children?: React.ReactNode;
-}
-`.trim();
-}
-
-function generateVariantClasses(schema: ComponentSchema): string {
-  const { variants, tokens } = schema;
-
-  // Generate CVA-style variant definitions
-  const variantDefs: string[] = [];
-
-  for (const [variantKey, variantConfig] of Object.entries(variants)) {
-    const tokenKey = variantKey === 'intent' ? 'intent' : variantKey;
-    const tokenValues = tokens[tokenKey as keyof typeof tokens];
-
-    if (tokenValues && typeof tokenValues === 'object') {
-      const classMappings = variantConfig.values.map(value => {
-        // Generate Tailwind-compatible classes based on token values
-        return `      '${value}': '${generateTailwindClasses(value, variantKey)}',`;
-      }).join('\n');
-
-      variantDefs.push(`    ${variantKey}: {\n${classMappings}\n    }`);
-    }
-  }
-
-  return variantDefs.join(',\n');
-}
-
-function generateTailwindClasses(value: string, variantType: string): string {
-  // Map semantic values to Tailwind classes
-  const intentClasses: Record<string, string> = {
-    primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
-    secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-    ghost: 'hover:bg-accent hover:text-accent-foreground',
-    destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-    success: 'bg-success text-success-foreground hover:bg-success/90',
-    outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
-    link: 'text-primary underline-offset-4 hover:underline',
-  };
-
-  const sizeClasses: Record<string, string> = {
-    sm: 'h-8 px-3 text-sm',
-    md: 'h-10 px-4 text-sm',
-    lg: 'h-12 px-6 text-base',
-  };
-
-  if (variantType === 'intent') {
-    return intentClasses[value] || '';
-  }
-  if (variantType === 'size') {
-    return sizeClasses[value] || '';
-  }
-
-  return '';
-}
-
+/**
+ * Generate component file using the appropriate handler
+ */
 function generateComponent(schema: ComponentSchema): string {
-  const { name, description, variants, props } = schema;
+  const category = (schema.category || 'action') as ComponentCategory;
+  const handler = getHandler(category);
 
-  const defaultVariants = Object.entries(variants)
+  const elementConfig = handler.getElementConfig(schema);
+  const slots = extractSlots(schema);
+
+  const context: GenerationContext = {
+    schema,
+    category,
+    elementConfig,
+    slots,
+    outputDir: OUTPUT_DIR,
+  };
+
+  // Generate parts using handler
+  const baseClasses = handler.generateBaseClasses(schema);
+  const variantClasses = handler.generateVariantClasses(schema);
+  const componentBody = handler.generateComponentBody(context);
+  const defaultVariants = Object.entries(schema.variants)
     .map(([key, config]) => `      ${key}: '${config.default}'`)
     .join(',\n');
 
-  const propsDestructure = [
-    ...Object.keys(variants),
-    ...(props ? Object.keys(props) : []),
-    'className',
-    'children',
-    '...rest'
-  ].join(', ');
+  // Generate props interface
+  const propsInterface = generatePropsInterface(context);
+
+  // Generate props destructure
+  const propsDestructure = generatePropsDestructure(context);
+
+  // Additional exports (compound components, etc.)
+  const additionalExports = handler.generateAdditionalExports?.(context) || '';
+
+  // Format variant classes for CVA
+  const variantClassesStr = Object.entries(variantClasses)
+    .map(([key, values]) => {
+      const mappings = Object.entries(values)
+        .map(([k, v]) => `      '${k}': '${v}'`)
+        .join(',\n');
+      return `    ${key}: {\n${mappings}\n    }`;
+    })
+    .join(',\n');
 
   return `
 /**
- * ${name}
- * ${description}
+ * ${schema.name}
+ * ${schema.description}
  *
+ * @category ${category}
  * @generated This file was generated by foundry/generators/generate-components.ts
- * DO NOT EDIT DIRECTLY - modify the schema instead: foundry/schemas/${name.toLowerCase()}.schema.json
+ * DO NOT EDIT DIRECTLY - modify the schema instead: foundry/schemas/${schema.name.toLowerCase()}.schema.json
  */
 
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/cn';
 
-const ${name.toLowerCase()}Variants = cva(
-  // Base classes
-  'inline-flex items-center justify-center gap-2 font-medium rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+const ${schema.name.toLowerCase()}Variants = cva(
+  '${baseClasses}',
   {
     variants: {
-${generateVariantClasses(schema)}
+${variantClassesStr}
     },
     defaultVariants: {
 ${defaultVariants}
@@ -201,34 +110,155 @@ ${defaultVariants}
   }
 );
 
-${generateTypeDefinitions(schema)}
+${propsInterface}
 
-export const ${name} = React.forwardRef<HTMLButtonElement, ${name}Props>(
-  ({ ${propsDestructure} }, ref) => {
+export const ${schema.name} = React.forwardRef<${elementConfig.refType}, ${schema.name}Props>(
+  ({ ${propsDestructure}, ...rest }, ref) => {
     return (
-      <button
-        ref={ref}
-        className={cn(
-          ${name.toLowerCase()}Variants({ ${Object.keys(variants).join(', ')} }),
-          className
-        )}
-        {...rest}
-      >
-        {children}
-      </button>
+      ${componentBody}
     );
   }
 );
 
-${name}.displayName = '${name}';
+${schema.name}.displayName = '${schema.name}';
 
-export default ${name};
+${additionalExports}
+
+export default ${schema.name};
 `.trim();
 }
 
-function generateIndexFile(componentNames: string[]): string {
-  const exports = componentNames
-    .map(name => `export { ${name} } from './${name}/${name}';`)
+/**
+ * Generate props interface
+ */
+function generatePropsInterface(context: GenerationContext): string {
+  const { schema, elementConfig, slots } = context;
+  const { name, variants, props } = schema;
+
+  // Variant prop types
+  const variantTypes = Object.entries(variants)
+    .map(([key, config]) => {
+      const values = config.values.map((v) => `'${v}'`).join(' | ');
+      return `  ${key}?: ${values};`;
+    })
+    .join('\n');
+
+  // Custom prop types from schema
+  const customProps = props
+    ? Object.entries(props)
+        .map(([key, config]) => {
+          const optional = config.required ? '' : '?';
+          const type = config.type.replace(/\bReactNode\b/g, 'React.ReactNode');
+          return `  ${key}${optional}: ${type};`;
+        })
+        .join('\n')
+    : '';
+
+  // Slot prop types (for inline slots like icons, adornments)
+  const slotProps = slots
+    .filter((s) => s.name !== 'root' && s.name !== 'input')
+    .map((slot) => `  ${slot.name}?: React.ReactNode;`)
+    .join('\n');
+
+  // Type aliases for backward compatibility
+  const variantTypeAlias = variants.intent
+    ? `export type ${name}Variant = ${variants.intent.values.map((v) => `'${v}'`).join(' | ')};`
+    : '';
+  const sizeTypeAlias = variants.size
+    ? `export type ${name}Size = ${variants.size.values.map((v) => `'${v}'`).join(' | ')};`
+    : '';
+
+  return `
+${variantTypeAlias}
+${sizeTypeAlias}
+
+export interface ${name}Props
+  extends Omit<React.${elementConfig.attributesType}, 'ref'>,
+    VariantProps<typeof ${name.toLowerCase()}Variants> {
+${variantTypes}
+${customProps}
+${slotProps}
+  className?: string;
+  children?: React.ReactNode;
+}`.trim();
+}
+
+/**
+ * Generate props destructure list
+ */
+function generatePropsDestructure(context: GenerationContext): string {
+  const { schema, slots } = context;
+  const { variants, props } = schema;
+
+  const parts: string[] = [
+    ...Object.keys(variants),
+    ...(props ? Object.keys(props) : []),
+    ...slots.filter((s) => s.name !== 'root' && s.name !== 'input').map((s) => s.name),
+    'className',
+    'children',
+  ];
+
+  return parts.join(', ');
+}
+
+/**
+ * Generate *Field wrapper component for input category
+ */
+function generateFieldComponent(schema: ComponentSchema): string | null {
+  const category = (schema.category || 'action') as ComponentCategory;
+
+  // Only generate Field wrappers for input category
+  if (category !== 'input') return null;
+
+  // Check if formField is explicitly disabled
+  if (schema.formField?.enabled === false) return null;
+
+  const handler = getHandler(category);
+  const elementConfig = handler.getElementConfig(schema);
+  const slots = extractSlots(schema);
+
+  const context: GenerationContext = {
+    schema,
+    category,
+    elementConfig,
+    slots,
+    outputDir: OUTPUT_DIR,
+  };
+
+  // Use handler's field wrapper generator
+  if (handler.generateFieldWrapper) {
+    return `
+/**
+ * ${schema.name}Field
+ *
+ * FormField-wrapped version of ${schema.name} with label, description, and error support.
+ *
+ * @category ${category}
+ * @generated DO NOT EDIT - modify foundry/schemas/${schema.name.toLowerCase()}.schema.json
+ */
+
+import * as React from 'react';
+import { ${schema.name}, type ${schema.name}Props } from './${schema.name}';
+
+${handler.generateFieldWrapper(context)}
+`.trim();
+  }
+
+  return null;
+}
+
+/**
+ * Generate index file with all exports
+ */
+function generateIndexFile(components: Array<{ name: string; hasField: boolean }>): string {
+  const exports = components
+    .map(({ name, hasField }) => {
+      let exp = `export { ${name}, type ${name}Props } from './${name}/${name}';`;
+      if (hasField) {
+        exp += `\nexport { ${name}Field, type ${name}FieldProps } from './${name}/${name}Field';`;
+      }
+      return exp;
+    })
     .join('\n');
 
   return `/**
@@ -242,6 +272,20 @@ ${exports}
 `;
 }
 
+/**
+ * Generate component-level index file
+ */
+function generateComponentIndex(name: string, hasField: boolean): string {
+  let exports = `export { ${name}, type ${name}Props } from './${name}';`;
+  if (hasField) {
+    exports += `\nexport { ${name}Field, type ${name}FieldProps } from './${name}Field';`;
+  }
+  return exports + '\n';
+}
+
+/**
+ * Main generator function
+ */
 async function main() {
   console.log('🏭 Foundry Component Generator\n');
 
@@ -251,12 +295,13 @@ async function main() {
   }
 
   // Find all schema files
-  const schemaFiles = fs.readdirSync(SCHEMAS_DIR)
-    .filter(f => f.endsWith('.schema.json') && !f.startsWith('component.'));
+  const schemaFiles = fs
+    .readdirSync(SCHEMAS_DIR)
+    .filter((f) => f.endsWith('.schema.json') && !f.startsWith('component.'));
 
   console.log(`📋 Found ${schemaFiles.length} component schemas\n`);
 
-  const generatedComponents: string[] = [];
+  const generatedComponents: Array<{ name: string; hasField: boolean }> = [];
 
   for (const schemaFile of schemaFiles) {
     const schemaPath = path.join(SCHEMAS_DIR, schemaFile);
@@ -272,17 +317,28 @@ async function main() {
       fs.mkdirSync(componentDir, { recursive: true });
     }
 
-    // Generate component file
+    // Generate main component file
     const componentCode = generateComponent(schema);
     const componentPath = path.join(componentDir, `${schema.name}.tsx`);
     fs.writeFileSync(componentPath, componentCode);
 
-    // Generate index file for component
-    const indexCode = `export { ${schema.name} } from './${schema.name}';\nexport type { ${schema.name}Props } from './${schema.name}';\n`;
+    // Generate Field wrapper for input components
+    const fieldCode = generateFieldComponent(schema);
+    const hasField = fieldCode !== null;
+
+    if (hasField) {
+      const fieldPath = path.join(componentDir, `${schema.name}Field.tsx`);
+      fs.writeFileSync(fieldPath, fieldCode);
+      console.log(`   ✅ ${schema.name} + ${schema.name}Field generated`);
+    } else {
+      console.log(`   ✅ ${schema.name} generated`);
+    }
+
+    // Generate component index file
+    const indexCode = generateComponentIndex(schema.name, hasField);
     fs.writeFileSync(path.join(componentDir, 'index.ts'), indexCode);
 
-    generatedComponents.push(schema.name);
-    console.log(`   ✅ ${schema.name} generated`);
+    generatedComponents.push({ name: schema.name, hasField });
   }
 
   // Generate main index file
@@ -291,7 +347,9 @@ async function main() {
 
   console.log(`\n✨ Generated ${generatedComponents.length} components to src/components-generated/`);
   console.log('\nGenerated components:');
-  generatedComponents.forEach(name => console.log(`  - ${name}`));
+  generatedComponents.forEach(({ name, hasField }) => {
+    console.log(`  - ${name}${hasField ? ' (+ Field wrapper)' : ''}`);
+  });
 }
 
 main().catch(console.error);

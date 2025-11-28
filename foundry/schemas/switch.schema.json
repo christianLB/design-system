@@ -1,0 +1,87 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Switch",
+  "description": "Toggle switch for binary options",
+  "category": "input",
+
+  "element": {
+    "tag": "button"
+  },
+
+  "primitive": {
+    "package": "@radix-ui/react-switch",
+    "component": "Switch",
+    "usage": "Can be replaced with Radix Switch for enhanced accessibility"
+  },
+
+  "variants": {
+    "size": {
+      "description": "Switch size variant",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The switch button container",
+      "element": "button"
+    },
+    "thumb": {
+      "description": "The movable thumb indicator",
+      "element": "span"
+    }
+  },
+
+  "states": {
+    "disabled": {
+      "description": "Switch is disabled",
+      "attribute": "disabled"
+    },
+    "checked": {
+      "description": "Switch is on",
+      "attribute": "data-state"
+    }
+  },
+
+  "props": {
+    "checked": {
+      "type": "boolean",
+      "description": "Whether the switch is on"
+    },
+    "onCheckedChange": {
+      "type": "(checked: boolean) => void",
+      "description": "Callback when switch state changes"
+    },
+    "defaultChecked": {
+      "type": "boolean",
+      "description": "Default checked state (uncontrolled)"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "borderRadius": "9999px",
+      "transition": "background-color 200ms"
+    },
+    "size": {
+      "sm": {
+        "width": "2rem",
+        "height": "1rem"
+      },
+      "md": {
+        "width": "2.75rem",
+        "height": "1.5rem"
+      },
+      "lg": {
+        "width": "3.5rem",
+        "height": "2rem"
+      }
+    }
+  },
+
+  "accessibility": {
+    "role": "switch",
+    "ariaChecked": "true/false based on state"
+  }
+}

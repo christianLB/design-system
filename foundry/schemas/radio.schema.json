@@ -1,0 +1,62 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Radio",
+  "description": "Single selection from a group",
+  "category": "input",
+
+  "element": {
+    "tag": "input",
+    "inputType": "radio"
+  },
+
+  "variants": {
+    "size": {
+      "description": "Radio button size variant",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The radio input",
+      "element": "input"
+    }
+  },
+
+  "states": {
+    "disabled": {
+      "description": "Radio is disabled",
+      "attribute": "disabled"
+    },
+    "checked": {
+      "description": "Radio is selected",
+      "attribute": "checked"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "borderRadius": "9999px",
+      "accentColor": "var(--color-primary)"
+    },
+    "size": {
+      "sm": {
+        "width": "0.875rem",
+        "height": "0.875rem"
+      },
+      "md": {
+        "width": "1rem",
+        "height": "1rem"
+      },
+      "lg": {
+        "width": "1.25rem",
+        "height": "1.25rem"
+      }
+    }
+  },
+
+  "accessibility": {
+    "role": "radio"
+  }
+}

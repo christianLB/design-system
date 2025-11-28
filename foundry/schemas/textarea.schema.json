@@ -1,0 +1,79 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Textarea",
+  "description": "Multi-line text input for longer content",
+  "category": "input",
+
+  "element": {
+    "tag": "textarea"
+  },
+
+  "variants": {
+    "size": {
+      "description": "Textarea size variant",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The textarea element",
+      "element": "textarea"
+    }
+  },
+
+  "states": {
+    "disabled": {
+      "description": "Textarea is disabled",
+      "attribute": "disabled"
+    },
+    "invalid": {
+      "description": "Textarea has validation error",
+      "attribute": "aria-invalid"
+    },
+    "readOnly": {
+      "description": "Textarea is read-only",
+      "attribute": "readOnly"
+    }
+  },
+
+  "props": {
+    "rows": {
+      "type": "number",
+      "default": 3,
+      "description": "Number of visible text lines"
+    },
+    "resize": {
+      "type": "'none' | 'vertical' | 'horizontal' | 'both'",
+      "default": "vertical",
+      "description": "Resize behavior"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "width": "100%",
+      "minHeight": "{spacing.20}"
+    },
+    "size": {
+      "sm": {
+        "padding": "{spacing.2} {spacing.3}",
+        "fontSize": "{typography.size.sm}"
+      },
+      "md": {
+        "padding": "{spacing.2} {spacing.4}",
+        "fontSize": "{typography.size.sm}"
+      },
+      "lg": {
+        "padding": "{spacing.3} {spacing.5}",
+        "fontSize": "{typography.size.base}"
+      }
+    }
+  },
+
+  "accessibility": {
+    "role": "textbox",
+    "ariaMultiline": "true"
+  }
+}
