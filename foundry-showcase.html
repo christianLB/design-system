@@ -278,21 +278,219 @@
       background: var(--color-background);
       color: var(--color-foreground);
       font-size: 0.875rem;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .input:focus {
       outline: none;
       border-color: var(--color-ring);
-      box-shadow: 0 0 0 2px var(--color-ring) / 0.2;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
     }
 
     .input::placeholder {
       color: var(--color-mutedForeground);
     }
 
-    .input-sm { height: 2rem; }
-    .input-lg { height: 3rem; }
+    .input:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .input[aria-invalid="true"] {
+      border-color: var(--color-destructive);
+    }
+
+    .input-sm { height: 2rem; font-size: 0.875rem; }
+    .input-lg { height: 3rem; font-size: 1rem; }
+
+    /* Textarea Component */
+    .textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--color-input);
+      border-radius: var(--radius-md);
+      background: var(--color-background);
+      color: var(--color-foreground);
+      font-size: 0.875rem;
+      font-family: inherit;
+      resize: vertical;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .textarea:focus {
+      outline: none;
+      border-color: var(--color-ring);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+
+    .textarea::placeholder {
+      color: var(--color-mutedForeground);
+    }
+
+    .textarea:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Select Component */
+    .select {
+      width: 100%;
+      height: 2.5rem;
+      padding: 0 2.5rem 0 0.75rem;
+      border: 1px solid var(--color-input);
+      border-radius: var(--radius-md);
+      background: var(--color-background);
+      color: var(--color-foreground);
+      font-size: 0.875rem;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.5rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .select:focus {
+      outline: none;
+      border-color: var(--color-ring);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+
+    .select:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .select-sm { height: 2rem; }
+    .select-lg { height: 3rem; }
+
+    /* Checkbox Component */
+    .checkbox {
+      width: 1rem;
+      height: 1rem;
+      border: 1px solid var(--color-input);
+      border-radius: var(--radius-sm);
+      background: var(--color-background);
+      cursor: pointer;
+      accent-color: var(--color-primary);
+      transition: border-color 0.2s;
+    }
+
+    .checkbox:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+
+    .checkbox:checked {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    .checkbox:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .checkbox-sm { width: 0.875rem; height: 0.875rem; }
+    .checkbox-lg { width: 1.25rem; height: 1.25rem; }
+
+    /* Radio Component */
+    .radio {
+      width: 1rem;
+      height: 1rem;
+      border: 1px solid var(--color-input);
+      border-radius: 50%;
+      background: var(--color-background);
+      cursor: pointer;
+      accent-color: var(--color-primary);
+      transition: border-color 0.2s;
+    }
+
+    .radio:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+
+    .radio:checked {
+      border-color: var(--color-primary);
+    }
+
+    .radio:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .radio-sm { width: 0.875rem; height: 0.875rem; }
+    .radio-lg { width: 1.25rem; height: 1.25rem; }
+
+    /* Switch Component */
+    .switch {
+      position: relative;
+      width: 2.75rem;
+      height: 1.5rem;
+      background: var(--color-muted);
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: calc(1.5rem - 4px);
+      height: calc(1.5rem - 4px);
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .switch[aria-checked="true"] {
+      background: var(--color-primary);
+    }
+
+    .switch[aria-checked="true"]::after {
+      transform: translateX(1.25rem);
+    }
+
+    .switch:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+
+    .switch:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .switch-sm {
+      width: 2rem;
+      height: 1rem;
+    }
+    .switch-sm::after {
+      width: calc(1rem - 4px);
+      height: calc(1rem - 4px);
+    }
+    .switch-sm[aria-checked="true"]::after {
+      transform: translateX(1rem);
+    }
+
+    .switch-lg {
+      width: 3.5rem;
+      height: 2rem;
+    }
+    .switch-lg::after {
+      width: calc(2rem - 4px);
+      height: calc(2rem - 4px);
+    }
+    .switch-lg[aria-checked="true"]::after {
+      transform: translateX(1.5rem);
+    }
 
     /* Card Component */
     .card {
@@ -339,6 +537,44 @@
       gap: 0.5rem;
     }
 
+    /* Form Field Component */
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .form-label .required {
+      color: var(--color-destructive);
+      margin-left: 0.25rem;
+    }
+
+    .form-description {
+      font-size: 0.875rem;
+      color: var(--color-mutedForeground);
+    }
+
+    .form-error {
+      font-size: 0.875rem;
+      color: var(--color-destructive);
+    }
+
+    /* Checkbox/Radio Field (inline) */
+    .form-field-inline {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .form-field-inline .form-label {
+      font-weight: 400;
+    }
+
     /* Color Palette */
     .color-grid {
       display: grid;
@@ -361,19 +597,18 @@
     .demo-form {
       display: flex;
       flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* Grid layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
-      max-width: 400px;
     }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .form-label {
-      font-size: 0.875rem;
-      font-weight: 500;
+    @media (max-width: 600px) {
+      .grid-2 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -410,30 +645,192 @@
         <button class="btn btn-md btn-primary">Medium</button>
         <button class="btn btn-lg btn-primary">Large</button>
       </div>
-
-      <h3>States</h3>
-      <div class="component-grid">
-        <button class="btn btn-md btn-primary">Normal</button>
-        <button class="btn btn-md btn-primary" disabled>Disabled</button>
-      </div>
     </section>
 
-    <!-- Inputs Section -->
+    <!-- Form Inputs Section -->
     <section class="section">
-      <h2>Inputs</h2>
+      <h2>Form Inputs</h2>
 
-      <h3>Sizes</h3>
+      <h3>Input</h3>
       <div class="component-grid" style="flex-direction: column; max-width: 400px;">
         <input class="input input-sm" placeholder="Small input">
         <input class="input" placeholder="Medium input (default)">
         <input class="input input-lg" placeholder="Large input">
+        <input class="input" placeholder="Disabled" disabled>
+        <input class="input" aria-invalid="true" value="Invalid input">
       </div>
 
-      <h3>States</h3>
+      <h3>Textarea</h3>
       <div class="component-grid" style="flex-direction: column; max-width: 400px;">
-        <input class="input" placeholder="Normal">
-        <input class="input" placeholder="Disabled" disabled>
-        <input class="input" value="With value">
+        <textarea class="textarea" placeholder="Enter your message..." rows="3"></textarea>
+        <textarea class="textarea" disabled placeholder="Disabled textarea"></textarea>
+      </div>
+
+      <h3>Select</h3>
+      <div class="component-grid" style="flex-direction: column; max-width: 400px;">
+        <select class="select select-sm">
+          <option value="">Small select...</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+        </select>
+        <select class="select">
+          <option value="">Medium select (default)...</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <select class="select select-lg">
+          <option value="">Large select...</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+        </select>
+        <select class="select" disabled>
+          <option value="">Disabled select...</option>
+        </select>
+      </div>
+
+      <h3>Checkbox</h3>
+      <div class="component-grid" style="align-items: center;">
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+          <input type="checkbox" class="checkbox checkbox-sm"> Small
+        </label>
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+          <input type="checkbox" class="checkbox" checked> Medium (checked)
+        </label>
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+          <input type="checkbox" class="checkbox checkbox-lg"> Large
+        </label>
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+          <input type="checkbox" class="checkbox" disabled> Disabled
+        </label>
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+          <input type="checkbox" class="checkbox" checked disabled> Disabled checked
+        </label>
+      </div>
+
+      <h3>Radio</h3>
+      <div class="component-grid" style="align-items: center;">
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+          <input type="radio" name="radio-demo" class="radio radio-sm"> Small
+        </label>
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+          <input type="radio" name="radio-demo" class="radio" checked> Medium (selected)
+        </label>
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+          <input type="radio" name="radio-demo" class="radio radio-lg"> Large
+        </label>
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+          <input type="radio" name="radio-disabled" class="radio" disabled> Disabled
+        </label>
+      </div>
+
+      <h3>Switch</h3>
+      <div class="component-grid" style="align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <button class="switch switch-sm" role="switch" aria-checked="false" onclick="toggleSwitch(this)"></button>
+          <span>Small</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <button class="switch" role="switch" aria-checked="true" onclick="toggleSwitch(this)"></button>
+          <span>Medium (on)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <button class="switch switch-lg" role="switch" aria-checked="false" onclick="toggleSwitch(this)"></button>
+          <span>Large</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <button class="switch" role="switch" aria-checked="false" disabled></button>
+          <span>Disabled</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Fields Section -->
+    <section class="section">
+      <h2>Form Fields (with labels)</h2>
+      <p style="color: var(--color-mutedForeground); margin-bottom: 1.5rem;">
+        These demonstrate the *Field wrapper components with label, description, and error states.
+      </p>
+
+      <div style="max-width: 500px; display: flex; flex-direction: column; gap: 1.5rem;">
+        <!-- InputField -->
+        <div class="form-field">
+          <label class="form-label">Email<span class="required">*</span></label>
+          <input class="input" type="email" placeholder="you@example.com">
+          <p class="form-description">We'll never share your email with anyone.</p>
+        </div>
+
+        <!-- InputField with error -->
+        <div class="form-field">
+          <label class="form-label">Username<span class="required">*</span></label>
+          <input class="input" aria-invalid="true" value="ab">
+          <p class="form-error">Username must be at least 3 characters.</p>
+        </div>
+
+        <!-- TextareaField -->
+        <div class="form-field">
+          <label class="form-label">Bio</label>
+          <textarea class="textarea" placeholder="Tell us about yourself..." rows="3"></textarea>
+          <p class="form-description">Max 500 characters.</p>
+        </div>
+
+        <!-- SelectField -->
+        <div class="form-field">
+          <label class="form-label">Country<span class="required">*</span></label>
+          <select class="select">
+            <option value="">Select a country...</option>
+            <option value="us">United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="ar">Argentina</option>
+            <option value="es">Spain</option>
+          </select>
+        </div>
+
+        <!-- CheckboxField -->
+        <div class="form-field-inline">
+          <input type="checkbox" class="checkbox" id="terms">
+          <div>
+            <label class="form-label" for="terms">Accept terms and conditions<span class="required">*</span></label>
+            <p class="form-description">You must accept to continue with registration.</p>
+          </div>
+        </div>
+
+        <!-- RadioField group -->
+        <div class="form-field">
+          <label class="form-label">Notification preference</label>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.25rem;">
+            <div class="form-field-inline">
+              <input type="radio" name="notifications" class="radio" id="notif-all" checked>
+              <div>
+                <label class="form-label" for="notif-all">All notifications</label>
+                <p class="form-description">Receive all updates via email.</p>
+              </div>
+            </div>
+            <div class="form-field-inline">
+              <input type="radio" name="notifications" class="radio" id="notif-important">
+              <div>
+                <label class="form-label" for="notif-important">Important only</label>
+                <p class="form-description">Only critical updates.</p>
+              </div>
+            </div>
+            <div class="form-field-inline">
+              <input type="radio" name="notifications" class="radio" id="notif-none">
+              <div>
+                <label class="form-label" for="notif-none">None</label>
+                <p class="form-description">No email notifications.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SwitchField -->
+        <div class="form-field-inline">
+          <button class="switch" role="switch" aria-checked="true" onclick="toggleSwitch(this)" id="marketing"></button>
+          <div>
+            <label class="form-label" for="marketing">Marketing emails</label>
+            <p class="form-description">Receive news and promotional content.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -486,34 +883,73 @@
       </div>
     </section>
 
-    <!-- Demo Form -->
+    <!-- Complete Form Demo -->
     <section class="section">
-      <h2>Demo Form</h2>
+      <h2>Complete Form Demo</h2>
 
-      <div class="card card-outlined" style="max-width: 500px;">
+      <div class="card card-outlined" style="max-width: 600px;">
         <div class="card-header">
-          <div class="card-title">Contact Form</div>
-          <div class="card-description">All components working together</div>
+          <div class="card-title">Create Account</div>
+          <div class="card-description">All form components working together</div>
         </div>
         <div class="card-content">
-          <form class="demo-form">
-            <div class="form-group">
-              <label class="form-label">Name</label>
-              <input class="input" placeholder="Enter your name">
+          <form class="demo-form" onsubmit="return false;">
+            <div class="grid-2">
+              <div class="form-field">
+                <label class="form-label">First Name<span class="required">*</span></label>
+                <input class="input" placeholder="John">
+              </div>
+              <div class="form-field">
+                <label class="form-label">Last Name<span class="required">*</span></label>
+                <input class="input" placeholder="Doe">
+              </div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Email</label>
-              <input class="input" type="email" placeholder="Enter your email">
+
+            <div class="form-field">
+              <label class="form-label">Email<span class="required">*</span></label>
+              <input class="input" type="email" placeholder="john@example.com">
             </div>
-            <div class="form-group">
-              <label class="form-label">Message</label>
-              <input class="input" placeholder="Your message">
+
+            <div class="form-field">
+              <label class="form-label">Password<span class="required">*</span></label>
+              <input class="input" type="password" placeholder="••••••••">
+              <p class="form-description">Must be at least 8 characters.</p>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">Role</label>
+              <select class="select">
+                <option value="">Select your role...</option>
+                <option value="developer">Developer</option>
+                <option value="designer">Designer</option>
+                <option value="manager">Manager</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">About</label>
+              <textarea class="textarea" placeholder="Tell us about yourself..." rows="3"></textarea>
+            </div>
+
+            <div class="form-field-inline">
+              <input type="checkbox" class="checkbox" id="form-terms">
+              <div>
+                <label class="form-label" for="form-terms">I agree to the Terms of Service<span class="required">*</span></label>
+              </div>
+            </div>
+
+            <div class="form-field-inline">
+              <button class="switch" role="switch" aria-checked="false" onclick="toggleSwitch(this)"></button>
+              <div>
+                <label class="form-label">Subscribe to newsletter</label>
+              </div>
             </div>
           </form>
         </div>
         <div class="card-footer">
-          <button class="btn btn-md btn-ghost">Reset</button>
-          <button class="btn btn-md btn-primary">Submit</button>
+          <button class="btn btn-md btn-ghost">Cancel</button>
+          <button class="btn btn-md btn-primary">Create Account</button>
         </div>
       </div>
     </section>
@@ -547,6 +983,11 @@
           btn.classList.add('active');
         }
       });
+    }
+
+    function toggleSwitch(el) {
+      const isChecked = el.getAttribute('aria-checked') === 'true';
+      el.setAttribute('aria-checked', !isChecked);
     }
 
     // Initialize with light theme
