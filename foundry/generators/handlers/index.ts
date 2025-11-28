@@ -8,6 +8,9 @@ import type { CategoryHandler, ComponentCategory } from '../core/types';
 import { actionHandler } from './action-handler';
 import { inputHandler } from './input-handler';
 import { surfaceHandler } from './surface-handler';
+import { feedbackHandler } from './feedback-handler';
+import { displayHandler } from './display-handler';
+import { navigationHandler } from './navigation-handler';
 
 /**
  * Registry of category handlers
@@ -16,11 +19,10 @@ export const HANDLERS: Record<ComponentCategory, CategoryHandler> = {
   action: actionHandler,
   input: inputHandler,
   surface: surfaceHandler,
-  // Stub handlers for categories not yet implemented
-  display: actionHandler, // Fallback to action
-  feedback: surfaceHandler, // Fallback to surface
-  layout: surfaceHandler, // Fallback to surface
-  navigation: actionHandler, // Fallback to action
+  feedback: feedbackHandler,
+  display: displayHandler,
+  navigation: navigationHandler,
+  layout: surfaceHandler, // Fallback to surface (for now)
 };
 
 /**
@@ -33,3 +35,6 @@ export function getHandler(category: ComponentCategory): CategoryHandler {
 export { actionHandler } from './action-handler';
 export { inputHandler } from './input-handler';
 export { surfaceHandler } from './surface-handler';
+export { feedbackHandler } from './feedback-handler';
+export { displayHandler } from './display-handler';
+export { navigationHandler } from './navigation-handler';

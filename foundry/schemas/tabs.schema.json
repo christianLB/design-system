@@ -1,0 +1,44 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Tabs",
+  "description": "Tab navigation container",
+  "category": "navigation",
+
+  "element": {
+    "tag": "div"
+  },
+
+  "variants": {
+    "size": {
+      "description": "Tabs size",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The tabs container",
+      "element": "div"
+    }
+  },
+
+  "props": {
+    "role": {
+      "type": "string",
+      "description": "ARIA role (defaults to tablist)"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "backgroundColor": "var(--color-muted)",
+      "borderRadius": "{radius.md}",
+      "padding": "{spacing.1}"
+    }
+  },
+
+  "accessibility": {
+    "role": "tablist"
+  }
+}

@@ -15,22 +15,22 @@ const selectVariants = cva(
   'w-full rounded-md border border-input bg-background text-foreground transition-colors placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive',
   {
     variants: {
-    size: {
-      'sm': 'h-8 px-3 text-sm',
-      'md': 'h-10 px-4 text-sm',
-      'lg': 'h-12 px-5 text-base'
-    }
+      size: {
+        sm: 'h-8 px-3 text-sm',
+        md: 'h-10 px-4 text-sm',
+        lg: 'h-12 px-5 text-base',
+      },
     },
     defaultVariants: {
-      size: 'md'
+      size: 'md',
     },
-  }
+  },
 );
 
 export type SelectSize = 'sm' | 'md' | 'lg';
 
 export interface SelectProps
-  extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'ref'>,
+  extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'ref' | 'size'>,
     VariantProps<typeof selectVariants> {
   size?: 'sm' | 'md' | 'lg';
   placeholder?: string;
@@ -42,19 +42,13 @@ export interface SelectProps
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ size, placeholder, className, children, ...rest }, ref) => {
     return (
-      <select
-        ref={ref}
-        className={cn(selectVariants({ size }), className)}
-        {...rest}
-      >
+      <select ref={ref} className={cn(selectVariants({ size }), className)} {...rest}>
         {children}
       </select>
     );
-  }
+  },
 );
 
 Select.displayName = 'Select';
-
-
 
 export default Select;

@@ -1,0 +1,48 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Link",
+  "description": "Navigation link component",
+  "category": "navigation",
+
+  "element": {
+    "tag": "a"
+  },
+
+  "variants": {
+    "variant": {
+      "description": "Visual variant",
+      "values": ["default", "muted", "nav", "destructive"],
+      "default": "default"
+    },
+    "size": {
+      "description": "Link size",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The anchor element",
+      "element": "a"
+    }
+  },
+
+  "props": {
+    "external": {
+      "type": "boolean",
+      "description": "Opens in new tab with external icon"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "textDecoration": "none",
+      "transition": "color 150ms"
+    }
+  },
+
+  "accessibility": {
+    "role": "link"
+  }
+}

@@ -15,22 +15,22 @@ const inputVariants = cva(
   'w-full rounded-md border border-input bg-background text-foreground transition-colors placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive',
   {
     variants: {
-    size: {
-      'sm': 'h-8 px-3 text-sm',
-      'md': 'h-10 px-4 text-sm',
-      'lg': 'h-12 px-5 text-base'
-    }
+      size: {
+        sm: 'h-8 px-3 text-sm',
+        md: 'h-10 px-4 text-sm',
+        lg: 'h-12 px-5 text-base',
+      },
     },
     defaultVariants: {
-      size: 'md'
+      size: 'md',
     },
-  }
+  },
 );
 
 export type InputSize = 'sm' | 'md' | 'lg';
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'ref'>,
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'ref' | 'size'>,
     VariantProps<typeof inputVariants> {
   size?: 'sm' | 'md' | 'lg';
   type?: string;
@@ -44,7 +44,21 @@ export interface InputProps
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ size, type, placeholder, startIcon, endIcon, startAdornment, endAdornment, className, children, ...rest }, ref) => {
+  (
+    {
+      size,
+      type,
+      placeholder,
+      startIcon,
+      endIcon,
+      startAdornment,
+      endAdornment,
+      className,
+      children,
+      ...rest
+    },
+    ref,
+  ) => {
     return (
       <div className="relative flex items-center">
         {startAdornment && (
@@ -54,12 +68,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
         <input
           ref={ref}
-          
           className={cn(
             inputVariants({ size }),
             startAdornment && 'pl-10',
             endAdornment && 'pr-10',
-            className
+            className,
           )}
           {...rest}
         />
@@ -70,11 +83,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = 'Input';
-
-
 
 export default Input;

@@ -50,14 +50,31 @@ export abstract class BaseCategoryHandler implements CategoryHandler {
   /**
    * Generate variant class mappings for CVA - override in subclasses
    */
-  abstract generateVariantClasses(
-    schema: ComponentSchema
-  ): Record<string, Record<string, string>>;
+  abstract generateVariantClasses(schema: ComponentSchema): Record<string, Record<string, string>>;
 
   /**
    * Generate component body JSX - override in subclasses
    */
   abstract generateComponentBody(context: GenerationContext): string;
+
+  /**
+   * Get list of conflicting HTML attributes that need to be omitted
+   */
+  protected getOmittedAttributes(schema: ComponentSchema, elementConfig: ElementConfig): string[] {
+    const omitted = ['ref'];
+
+    // 'size' variant conflicts with HTML size attribute on input/select
+    if (schema.variants.size && ['input', 'select', 'textarea'].includes(elementConfig.tag)) {
+      omitted.push('size');
+    }
+
+    // 'content' prop conflicts with HTMLAttributes.content
+    if (schema.slots?.content || schema.props?.content) {
+      omitted.push('content');
+    }
+
+    return omitted;
+  }
 
   /**
    * Generate type definitions for props interface
@@ -66,18 +83,24 @@ export abstract class BaseCategoryHandler implements CategoryHandler {
     const { schema, elementConfig, slots } = context;
     const { name, variants, props } = schema;
 
+    // Collect all prop names to avoid duplicates
+    const definedProps = new Set<string>();
+
     // Variant prop types
     const variantTypes = Object.entries(variants)
       .map(([key, config]) => {
+        definedProps.add(key);
         const values = config.values.map((v) => `'${v}'`).join(' | ');
         return `  ${key}?: ${values};`;
       })
       .join('\n');
 
-    // Custom prop types from schema
+    // Custom prop types from schema (skip if already defined as variant)
     const customProps = props
       ? Object.entries(props)
+          .filter(([key]) => !definedProps.has(key))
           .map(([key, config]) => {
+            definedProps.add(key);
             const optional = config.required ? '' : '?';
             const type = config.type.replace(/\bReactNode\b/g, 'React.ReactNode');
             return `  ${key}${optional}: ${type};`;
@@ -85,15 +108,19 @@ export abstract class BaseCategoryHandler implements CategoryHandler {
           .join('\n')
       : '';
 
-    // Slot prop types (for inline slots like icons)
+    // Slot prop types (for inline slots like icons) - skip if already defined
     const slotProps = slots
-      .filter((s) => s.name !== 'root' && s.name !== 'input')
+      .filter((s) => s.name !== 'root' && s.name !== 'input' && !definedProps.has(s.name))
       .map((slot) => `  ${slot.name}?: React.ReactNode;`)
       .join('\n');
 
+    // Build omit list
+    const omitted = this.getOmittedAttributes(schema, elementConfig);
+    const omitString = omitted.map((o) => `'${o}'`).join(' | ');
+
     return `
 export interface ${name}Props
-  extends Omit<React.${elementConfig.attributesType}, 'ref'>,
+  extends Omit<React.${elementConfig.attributesType}, ${omitString}>,
     VariantProps<typeof ${name.toLowerCase()}Variants> {
 ${variantTypes}
 ${customProps}

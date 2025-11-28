@@ -12,11 +12,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import type {
-  ComponentSchema,
-  ComponentCategory,
-  GenerationContext,
-} from './core/types';
+import type { ComponentSchema, ComponentCategory, GenerationContext } from './core/types';
 import { extractSlots } from './core/types';
 import { getHandler } from './handlers';
 
@@ -129,34 +125,72 @@ export default ${schema.name};
 }
 
 /**
+ * Get list of conflicting HTML attributes that need to be omitted
+ */
+function getOmittedAttributes(
+  schema: ComponentSchema,
+  elementConfig: ReturnType<typeof getHandler>['getElementConfig'] extends (
+    s: ComponentSchema,
+  ) => infer R
+    ? R
+    : never,
+): string[] {
+  const omitted = ['ref'];
+
+  // 'size' variant conflicts with HTML size attribute on input/select
+  if (schema.variants.size && ['input', 'select', 'textarea'].includes(elementConfig.tag)) {
+    omitted.push('size');
+  }
+
+  // 'content' slot/prop conflicts with HTMLAttributes.content
+  if (schema.slots?.content || schema.props?.content) {
+    omitted.push('content');
+  }
+
+  return omitted;
+}
+
+/**
  * Generate props interface
  */
 function generatePropsInterface(context: GenerationContext): string {
   const { schema, elementConfig, slots } = context;
   const { name, variants, props } = schema;
 
+  // Track defined props to avoid duplicates
+  const definedProps = new Set<string>();
+
   // Variant prop types
   const variantTypes = Object.entries(variants)
     .map(([key, config]) => {
+      definedProps.add(key);
       const values = config.values.map((v) => `'${v}'`).join(' | ');
       return `  ${key}?: ${values};`;
     })
     .join('\n');
 
-  // Custom prop types from schema
+  // Custom prop types from schema (skip if already defined)
   const customProps = props
     ? Object.entries(props)
+        .filter(([key]) => !definedProps.has(key))
         .map(([key, config]) => {
+          definedProps.add(key);
           const optional = config.required ? '' : '?';
-          const type = config.type.replace(/\bReactNode\b/g, 'React.ReactNode');
+          // Handle ReactNode type - avoid double prefixing React.React.ReactNode
+          let type = config.type;
+          if (type === 'ReactNode') {
+            type = 'React.ReactNode';
+          } else if (!type.includes('React.') && type.includes('ReactNode')) {
+            type = type.replace(/\bReactNode\b/g, 'React.ReactNode');
+          }
           return `  ${key}${optional}: ${type};`;
         })
         .join('\n')
     : '';
 
-  // Slot prop types (for inline slots like icons, adornments)
+  // Slot prop types (skip if already defined in variants or props)
   const slotProps = slots
-    .filter((s) => s.name !== 'root' && s.name !== 'input')
+    .filter((s) => s.name !== 'root' && s.name !== 'input' && !definedProps.has(s.name))
     .map((slot) => `  ${slot.name}?: React.ReactNode;`)
     .join('\n');
 
@@ -168,12 +202,16 @@ function generatePropsInterface(context: GenerationContext): string {
     ? `export type ${name}Size = ${variants.size.values.map((v) => `'${v}'`).join(' | ')};`
     : '';
 
+  // Build omit list for conflicting HTML attributes
+  const omitted = getOmittedAttributes(schema, elementConfig);
+  const omitString = omitted.map((o) => `'${o}'`).join(' | ');
+
   return `
 ${variantTypeAlias}
 ${sizeTypeAlias}
 
 export interface ${name}Props
-  extends Omit<React.${elementConfig.attributesType}, 'ref'>,
+  extends Omit<React.${elementConfig.attributesType}, ${omitString}>,
     VariantProps<typeof ${name.toLowerCase()}Variants> {
 ${variantTypes}
 ${customProps}
@@ -184,21 +222,31 @@ ${slotProps}
 }
 
 /**
- * Generate props destructure list
+ * Generate props destructure list (avoiding duplicates)
  */
 function generatePropsDestructure(context: GenerationContext): string {
   const { schema, slots } = context;
   const { variants, props } = schema;
 
-  const parts: string[] = [
-    ...Object.keys(variants),
-    ...(props ? Object.keys(props) : []),
-    ...slots.filter((s) => s.name !== 'root' && s.name !== 'input').map((s) => s.name),
-    'className',
-    'children',
-  ];
+  // Use a Set to avoid duplicates
+  const parts = new Set<string>();
 
-  return parts.join(', ');
+  // Add variant keys
+  Object.keys(variants).forEach((k) => parts.add(k));
+
+  // Add custom props (may overlap with variants)
+  if (props) {
+    Object.keys(props).forEach((k) => parts.add(k));
+  }
+
+  // Add slot props (may overlap with props)
+  slots.filter((s) => s.name !== 'root' && s.name !== 'input').forEach((s) => parts.add(s.name));
+
+  // Always include className and children
+  parts.add('className');
+  parts.add('children');
+
+  return Array.from(parts).join(', ');
 }
 
 /**
@@ -345,7 +393,9 @@ async function main() {
   const indexPath = path.join(OUTPUT_DIR, 'index.ts');
   fs.writeFileSync(indexPath, generateIndexFile(generatedComponents));
 
-  console.log(`\n✨ Generated ${generatedComponents.length} components to src/components-generated/`);
+  console.log(
+    `\n✨ Generated ${generatedComponents.length} components to src/components-generated/`,
+  );
   console.log('\nGenerated components:');
   generatedComponents.forEach(({ name, hasField }) => {
     console.log(`  - ${name}${hasField ? ' (+ Field wrapper)' : ''}`);

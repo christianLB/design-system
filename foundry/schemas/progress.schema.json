@@ -1,0 +1,61 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Progress",
+  "description": "Progress bar to show completion status",
+  "category": "feedback",
+
+  "element": {
+    "tag": "div"
+  },
+
+  "variants": {
+    "size": {
+      "description": "Progress bar height",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The progress track",
+      "element": "div"
+    },
+    "indicator": {
+      "description": "The progress indicator",
+      "element": "div"
+    }
+  },
+
+  "props": {
+    "value": {
+      "type": "number",
+      "default": 0,
+      "description": "Current progress value"
+    },
+    "max": {
+      "type": "number",
+      "default": 100,
+      "description": "Maximum progress value"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "borderRadius": "9999px",
+      "backgroundColor": "var(--color-secondary)"
+    },
+    "size": {
+      "sm": { "height": "0.25rem" },
+      "md": { "height": "0.5rem" },
+      "lg": { "height": "1rem" }
+    }
+  },
+
+  "accessibility": {
+    "role": "progressbar",
+    "ariaValuenow": "value",
+    "ariaValuemin": "0",
+    "ariaValuemax": "max"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Alert",
+  "description": "Display important messages and feedback to users",
+  "category": "feedback",
+
+  "element": {
+    "tag": "div"
+  },
+
+  "variants": {
+    "intent": {
+      "description": "Visual intent/status of the alert",
+      "values": ["default", "info", "success", "warning", "error"],
+      "default": "default"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The alert container",
+      "element": "div"
+    },
+    "icon": {
+      "description": "Optional icon slot",
+      "element": "svg",
+      "optional": true
+    }
+  },
+
+  "props": {
+    "icon": {
+      "type": "React.ReactNode",
+      "description": "Icon element to display"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "padding": "{spacing.4}",
+      "borderRadius": "{radius.lg}",
+      "borderWidth": "1px"
+    }
+  },
+
+  "accessibility": {
+    "role": "alert",
+    "ariaLive": "polite"
+  }
+}

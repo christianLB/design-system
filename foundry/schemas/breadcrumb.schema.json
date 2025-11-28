@@ -1,0 +1,49 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Breadcrumb",
+  "description": "Navigation breadcrumb trail",
+  "category": "navigation",
+
+  "element": {
+    "tag": "nav"
+  },
+
+  "variants": {
+    "size": {
+      "description": "Breadcrumb size",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The nav container",
+      "element": "nav"
+    },
+    "list": {
+      "description": "The ordered list",
+      "element": "ol"
+    },
+    "item": {
+      "description": "Individual breadcrumb item",
+      "element": "li"
+    },
+    "separator": {
+      "description": "Separator between items",
+      "element": "span"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "fontSize": "{typography.size.sm}",
+      "color": "var(--color-muted-foreground)"
+    }
+  },
+
+  "accessibility": {
+    "role": "navigation",
+    "ariaLabel": "breadcrumb"
+  }
+}

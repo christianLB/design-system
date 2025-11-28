@@ -15,22 +15,22 @@ const textareaVariants = cva(
   'w-full rounded-md border border-input bg-background text-foreground transition-colors placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive',
   {
     variants: {
-    size: {
-      'sm': 'h-8 px-3 text-sm',
-      'md': 'h-10 px-4 text-sm',
-      'lg': 'h-12 px-5 text-base'
-    }
+      size: {
+        sm: 'h-8 px-3 text-sm',
+        md: 'h-10 px-4 text-sm',
+        lg: 'h-12 px-5 text-base',
+      },
     },
     defaultVariants: {
-      size: 'md'
+      size: 'md',
     },
-  }
+  },
 );
 
 export type TextareaSize = 'sm' | 'md' | 'lg';
 
 export interface TextareaProps
-  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'ref'>,
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'ref' | 'size'>,
     VariantProps<typeof textareaVariants> {
   size?: 'sm' | 'md' | 'lg';
   rows?: number;
@@ -43,19 +43,13 @@ export interface TextareaProps
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ size, rows, resize, className, children, ...rest }, ref) => {
     return (
-      <textarea
-        ref={ref}
-        className={cn(textareaVariants({ size }), className)}
-        {...rest}
-      >
+      <textarea ref={ref} className={cn(textareaVariants({ size }), className)} {...rest}>
         {children}
       </textarea>
     );
-  }
+  },
 );
 
 Textarea.displayName = 'Textarea';
-
-
 
 export default Textarea;

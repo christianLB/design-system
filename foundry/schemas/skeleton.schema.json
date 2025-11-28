@@ -1,0 +1,45 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Skeleton",
+  "description": "Loading placeholder with pulse animation",
+  "category": "display",
+
+  "element": {
+    "tag": "div"
+  },
+
+  "variants": {
+    "variant": {
+      "description": "Skeleton shape variant",
+      "values": ["default", "circular", "text"],
+      "default": "default"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The skeleton element",
+      "element": "div"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "backgroundColor": "var(--color-muted)",
+      "borderRadius": "{radius.md}"
+    },
+    "variant": {
+      "circular": {
+        "borderRadius": "9999px"
+      },
+      "text": {
+        "height": "1em",
+        "borderRadius": "{radius.sm}"
+      }
+    }
+  },
+
+  "accessibility": {
+    "ariaHidden": "true"
+  }
+}

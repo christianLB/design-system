@@ -1,0 +1,68 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Avatar",
+  "description": "User avatar with image and fallback",
+  "category": "display",
+
+  "element": {
+    "tag": "span"
+  },
+
+  "variants": {
+    "size": {
+      "description": "Avatar size",
+      "values": ["xs", "sm", "md", "lg", "xl"],
+      "default": "md"
+    },
+    "shape": {
+      "description": "Avatar shape",
+      "values": ["circle", "square"],
+      "default": "circle"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The avatar container",
+      "element": "span"
+    },
+    "image": {
+      "description": "The avatar image",
+      "element": "img",
+      "optional": true
+    },
+    "fallback": {
+      "description": "Fallback content when no image",
+      "element": "span"
+    }
+  },
+
+  "props": {
+    "src": {
+      "type": "string",
+      "description": "Image source URL"
+    },
+    "alt": {
+      "type": "string",
+      "description": "Alt text for the image"
+    },
+    "fallback": {
+      "type": "React.ReactNode",
+      "description": "Fallback content (initials, icon)"
+    }
+  },
+
+  "tokens": {
+    "size": {
+      "xs": { "width": "1.5rem", "height": "1.5rem" },
+      "sm": { "width": "2rem", "height": "2rem" },
+      "md": { "width": "2.5rem", "height": "2.5rem" },
+      "lg": { "width": "3rem", "height": "3rem" },
+      "xl": { "width": "4rem", "height": "4rem" }
+    }
+  },
+
+  "accessibility": {
+    "role": "img"
+  }
+}

@@ -15,25 +15,24 @@ const checkboxVariants = cva(
   'peer shrink-0 border border-input bg-background text-primary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded',
   {
     variants: {
-    size: {
-      'sm': 'h-3.5 w-3.5',
-      'md': 'h-4 w-4',
-      'lg': 'h-5 w-5'
-    }
+      size: {
+        sm: 'h-3.5 w-3.5',
+        md: 'h-4 w-4',
+        lg: 'h-5 w-5',
+      },
     },
     defaultVariants: {
-      size: 'md'
+      size: 'md',
     },
-  }
+  },
 );
 
 export type CheckboxSize = 'sm' | 'md' | 'lg';
 
 export interface CheckboxProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'ref'>,
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'ref' | 'size'>,
     VariantProps<typeof checkboxVariants> {
   size?: 'sm' | 'md' | 'lg';
-
 
   className?: string;
   children?: React.ReactNode;
@@ -49,11 +48,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         {...rest}
       />
     );
-  }
+  },
 );
 
 Checkbox.displayName = 'Checkbox';
-
-
 
 export default Checkbox;

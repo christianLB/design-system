@@ -575,6 +575,313 @@
       font-weight: 400;
     }
 
+    /* Alert Component */
+    .alert {
+      position: relative;
+      width: 100%;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      padding: 1rem;
+    }
+
+    .alert-default {
+      background: var(--color-background);
+      color: var(--color-foreground);
+    }
+
+    .alert-info {
+      border-color: #93c5fd;
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+    [data-theme="dark"] .alert-info {
+      border-color: #1e40af;
+      background: #172554;
+      color: #bfdbfe;
+    }
+
+    .alert-success {
+      border-color: #86efac;
+      background: #f0fdf4;
+      color: #14532d;
+    }
+    [data-theme="dark"] .alert-success {
+      border-color: #166534;
+      background: #052e16;
+      color: #bbf7d0;
+    }
+
+    .alert-warning {
+      border-color: #fcd34d;
+      background: #fefce8;
+      color: #713f12;
+    }
+    [data-theme="dark"] .alert-warning {
+      border-color: #a16207;
+      background: #422006;
+      color: #fef08a;
+    }
+
+    .alert-error {
+      border-color: #fca5a5;
+      background: #fef2f2;
+      color: #7f1d1d;
+    }
+    [data-theme="dark"] .alert-error {
+      border-color: #991b1b;
+      background: #450a0a;
+      color: #fecaca;
+    }
+
+    .alert-title {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .alert-description {
+      font-size: 0.875rem;
+    }
+
+    .alert-icon {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+    }
+
+    .alert.has-icon {
+      padding-left: 3rem;
+    }
+
+    /* Badge Component */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 9999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: colors 0.2s;
+    }
+
+    .badge-sm { padding: 0.125rem 0.5rem; font-size: 0.625rem; }
+    .badge-md { padding: 0.125rem 0.625rem; font-size: 0.75rem; }
+    .badge-lg { padding: 0.25rem 0.75rem; font-size: 0.875rem; }
+
+    .badge-default { background: var(--color-primary); color: var(--color-primaryForeground); }
+    .badge-secondary { background: var(--color-secondary); color: var(--color-secondaryForeground); }
+    .badge-outline { background: transparent; border-color: var(--color-border); color: var(--color-foreground); }
+    .badge-success { background: #22c55e; color: white; }
+    .badge-warning { background: #eab308; color: white; }
+    .badge-error { background: #ef4444; color: white; }
+
+    /* Progress Component */
+    .progress {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 9999px;
+      background: var(--color-muted);
+    }
+
+    .progress-sm { height: 0.25rem; }
+    .progress-md { height: 0.5rem; }
+    .progress-lg { height: 1rem; }
+
+    .progress-indicator {
+      height: 100%;
+      background: var(--color-primary);
+      transition: width 0.3s ease;
+    }
+
+    /* Avatar Component */
+    .avatar {
+      position: relative;
+      display: flex;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 9999px;
+      background: var(--color-muted);
+    }
+
+    .avatar-xs { width: 1.5rem; height: 1.5rem; font-size: 0.5rem; }
+    .avatar-sm { width: 2rem; height: 2rem; font-size: 0.625rem; }
+    .avatar-md { width: 2.5rem; height: 2.5rem; font-size: 0.75rem; }
+    .avatar-lg { width: 3rem; height: 3rem; font-size: 0.875rem; }
+    .avatar-xl { width: 4rem; height: 4rem; font-size: 1rem; }
+
+    .avatar-square { border-radius: var(--radius-md); }
+
+    .avatar img {
+      aspect-ratio: 1;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-fallback {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-muted);
+      color: var(--color-mutedForeground);
+      font-weight: 500;
+    }
+
+    /* Tag Component */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      font-weight: 500;
+    }
+
+    .tag-sm { padding: 0.125rem 0.375rem; font-size: 0.75rem; }
+    .tag-md { padding: 0.25rem 0.5rem; font-size: 0.75rem; }
+    .tag-lg { padding: 0.25rem 0.625rem; font-size: 0.875rem; }
+
+    .tag-default { background: var(--color-muted); color: var(--color-mutedForeground); }
+    .tag-outline { background: transparent; border-color: var(--color-border); color: var(--color-foreground); }
+    .tag-primary { background: var(--color-primary); color: var(--color-primaryForeground); }
+
+    .tag-remove {
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .tag-remove:hover { opacity: 1; }
+
+    /* Skeleton Component */
+    .skeleton {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      background: var(--color-muted);
+      border-radius: var(--radius-md);
+    }
+
+    .skeleton-circular { border-radius: 9999px; }
+    .skeleton-text { height: 1rem; border-radius: var(--radius-sm); }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Link Component */
+    .link {
+      display: inline-flex;
+      align-items: center;
+      text-decoration-line: underline;
+      text-underline-offset: 4px;
+      transition: color 0.2s;
+    }
+
+    .link:focus-visible {
+      outline: 2px solid var(--color-ring);
+      outline-offset: 2px;
+    }
+
+    .link-default { color: var(--color-primary); }
+    .link-default:hover { text-decoration: none; }
+
+    .link-muted { color: var(--color-mutedForeground); text-decoration: none; }
+    .link-muted:hover { color: var(--color-foreground); }
+
+    .link-nav { color: var(--color-foreground); opacity: 0.6; text-decoration: none; }
+    .link-nav:hover { opacity: 1; }
+
+    .link-destructive { color: var(--color-destructive); }
+
+    .link-sm { font-size: 0.875rem; }
+    .link-md { font-size: 1rem; }
+    .link-lg { font-size: 1.125rem; }
+
+    .link-external-icon {
+      width: 0.75rem;
+      height: 0.75rem;
+      margin-left: 0.25rem;
+    }
+
+    /* Breadcrumb Component */
+    .breadcrumb {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.875rem;
+      color: var(--color-mutedForeground);
+    }
+
+    .breadcrumb-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+
+    .breadcrumb-link {
+      color: var(--color-mutedForeground);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .breadcrumb-link:hover { color: var(--color-foreground); }
+
+    .breadcrumb-separator {
+      color: var(--color-mutedForeground);
+    }
+
+    .breadcrumb-page {
+      color: var(--color-foreground);
+      font-weight: 400;
+    }
+
+    /* Tabs Component */
+    .tabs {
+      display: inline-flex;
+      height: 2.5rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-md);
+      background: var(--color-muted);
+      padding: 0.25rem;
+      color: var(--color-mutedForeground);
+    }
+
+    .tab-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      border-radius: var(--radius-sm);
+      padding: 0.375rem 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      background: transparent;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-item:focus-visible {
+      outline: 2px solid var(--color-ring);
+      outline-offset: 2px;
+    }
+
+    .tab-item:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .tab-item[data-state="active"] {
+      background: var(--color-background);
+      color: var(--color-foreground);
+      box-shadow: var(--shadow-sm);
+    }
+
     /* Color Palette */
     .color-grid {
       display: grid;
@@ -834,6 +1141,198 @@
       </div>
     </section>
 
+    <!-- Feedback Components Section -->
+    <section class="section">
+      <h2>Feedback Components</h2>
+
+      <h3>Alert</h3>
+      <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 600px;">
+        <div class="alert alert-default">
+          <div class="alert-title">Default Alert</div>
+          <div class="alert-description">This is a default alert for general information.</div>
+        </div>
+        <div class="alert alert-info">
+          <div class="alert-title">Info Alert</div>
+          <div class="alert-description">This is an informational alert with helpful details.</div>
+        </div>
+        <div class="alert alert-success">
+          <div class="alert-title">Success!</div>
+          <div class="alert-description">Your changes have been saved successfully.</div>
+        </div>
+        <div class="alert alert-warning">
+          <div class="alert-title">Warning</div>
+          <div class="alert-description">Please review your input before continuing.</div>
+        </div>
+        <div class="alert alert-error">
+          <div class="alert-title">Error</div>
+          <div class="alert-description">Something went wrong. Please try again.</div>
+        </div>
+      </div>
+
+      <h3>Badge</h3>
+      <div class="component-grid" style="align-items: center;">
+        <span class="badge badge-sm badge-default">Small</span>
+        <span class="badge badge-md badge-default">Default</span>
+        <span class="badge badge-lg badge-default">Large</span>
+        <span class="badge badge-md badge-secondary">Secondary</span>
+        <span class="badge badge-md badge-outline">Outline</span>
+        <span class="badge badge-md badge-success">Success</span>
+        <span class="badge badge-md badge-warning">Warning</span>
+        <span class="badge badge-md badge-error">Error</span>
+      </div>
+
+      <h3>Progress</h3>
+      <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+        <div>
+          <span style="font-size: 0.875rem; color: var(--color-mutedForeground);">Small (25%)</span>
+          <div class="progress progress-sm">
+            <div class="progress-indicator" style="width: 25%;"></div>
+          </div>
+        </div>
+        <div>
+          <span style="font-size: 0.875rem; color: var(--color-mutedForeground);">Medium (50%)</span>
+          <div class="progress progress-md">
+            <div class="progress-indicator" style="width: 50%;"></div>
+          </div>
+        </div>
+        <div>
+          <span style="font-size: 0.875rem; color: var(--color-mutedForeground);">Large (75%)</span>
+          <div class="progress progress-lg">
+            <div class="progress-indicator" style="width: 75%;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Display Components Section -->
+    <section class="section">
+      <h2>Display Components</h2>
+
+      <h3>Avatar</h3>
+      <div class="component-grid" style="align-items: center;">
+        <div class="avatar avatar-xs"><span class="avatar-fallback">XS</span></div>
+        <div class="avatar avatar-sm"><span class="avatar-fallback">SM</span></div>
+        <div class="avatar avatar-md"><span class="avatar-fallback">MD</span></div>
+        <div class="avatar avatar-lg"><span class="avatar-fallback">LG</span></div>
+        <div class="avatar avatar-xl"><span class="avatar-fallback">XL</span></div>
+        <div class="avatar avatar-md avatar-square"><span class="avatar-fallback">SQ</span></div>
+        <div class="avatar avatar-lg">
+          <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User avatar">
+        </div>
+        <div class="avatar avatar-lg">
+          <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sophie" alt="User avatar">
+        </div>
+      </div>
+
+      <h3>Tag</h3>
+      <div class="component-grid" style="align-items: center;">
+        <span class="tag tag-sm tag-default">Small</span>
+        <span class="tag tag-md tag-default">Default</span>
+        <span class="tag tag-lg tag-default">Large</span>
+        <span class="tag tag-md tag-outline">Outline</span>
+        <span class="tag tag-md tag-primary">Primary</span>
+        <span class="tag tag-md tag-default">
+          Removable
+          <button class="tag-remove" onclick="this.parentElement.remove()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </span>
+      </div>
+
+      <h3>Skeleton</h3>
+      <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <div class="skeleton skeleton-circular" style="width: 3rem; height: 3rem;"></div>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
+            <div class="skeleton skeleton-text" style="width: 60%;"></div>
+            <div class="skeleton skeleton-text" style="width: 80%;"></div>
+          </div>
+        </div>
+        <div class="skeleton" style="width: 100%; height: 8rem;"></div>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <div class="skeleton skeleton-text" style="width: 100%;"></div>
+          <div class="skeleton skeleton-text" style="width: 90%;"></div>
+          <div class="skeleton skeleton-text" style="width: 70%;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Components Section -->
+    <section class="section">
+      <h2>Navigation Components</h2>
+
+      <h3>Link</h3>
+      <div class="component-grid" style="align-items: center;">
+        <a href="#" class="link link-default link-sm">Small Link</a>
+        <a href="#" class="link link-default link-md">Default Link</a>
+        <a href="#" class="link link-default link-lg">Large Link</a>
+        <a href="#" class="link link-muted link-md">Muted Link</a>
+        <a href="#" class="link link-nav link-md">Nav Link</a>
+        <a href="#" class="link link-destructive link-md">Destructive Link</a>
+        <a href="#" class="link link-default link-md" target="_blank">
+          External
+          <svg class="link-external-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+        </a>
+      </div>
+
+      <h3>Breadcrumb</h3>
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <nav class="breadcrumb">
+          <span class="breadcrumb-item">
+            <a href="#" class="breadcrumb-link">Home</a>
+          </span>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-item">
+            <a href="#" class="breadcrumb-link">Products</a>
+          </span>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-item">
+            <span class="breadcrumb-page">Electronics</span>
+          </span>
+        </nav>
+        <nav class="breadcrumb">
+          <span class="breadcrumb-item">
+            <a href="#" class="breadcrumb-link">Dashboard</a>
+          </span>
+          <span class="breadcrumb-separator">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </span>
+          <span class="breadcrumb-item">
+            <a href="#" class="breadcrumb-link">Settings</a>
+          </span>
+          <span class="breadcrumb-separator">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </span>
+          <span class="breadcrumb-item">
+            <span class="breadcrumb-page">Profile</span>
+          </span>
+        </nav>
+      </div>
+
+      <h3>Tabs</h3>
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="tabs" role="tablist">
+          <button class="tab-item" role="tab" data-state="active" onclick="selectTab(this)">Account</button>
+          <button class="tab-item" role="tab" onclick="selectTab(this)">Password</button>
+          <button class="tab-item" role="tab" onclick="selectTab(this)">Settings</button>
+        </div>
+        <div class="tabs" role="tablist">
+          <button class="tab-item" role="tab" data-state="active" onclick="selectTab(this)">Overview</button>
+          <button class="tab-item" role="tab" onclick="selectTab(this)">Analytics</button>
+          <button class="tab-item" role="tab" onclick="selectTab(this)">Reports</button>
+          <button class="tab-item" role="tab" disabled>Disabled</button>
+        </div>
+      </div>
+    </section>
+
     <!-- Cards Section -->
     <section class="section">
       <h2>Cards</h2>
@@ -988,6 +1487,20 @@
     function toggleSwitch(el) {
       const isChecked = el.getAttribute('aria-checked') === 'true';
       el.setAttribute('aria-checked', !isChecked);
+    }
+
+    function selectTab(el) {
+      // Find parent tabs container
+      const tabs = el.closest('.tabs');
+      if (!tabs) return;
+
+      // Deselect all tabs in this group
+      tabs.querySelectorAll('.tab-item').forEach(tab => {
+        tab.setAttribute('data-state', 'inactive');
+      });
+
+      // Select clicked tab
+      el.setAttribute('data-state', 'active');
     }
 
     // Initialize with light theme

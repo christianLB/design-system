@@ -15,25 +15,24 @@ const radioVariants = cva(
   'peer shrink-0 border border-input bg-background text-primary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-full',
   {
     variants: {
-    size: {
-      'sm': 'h-3.5 w-3.5',
-      'md': 'h-4 w-4',
-      'lg': 'h-5 w-5'
-    }
+      size: {
+        sm: 'h-3.5 w-3.5',
+        md: 'h-4 w-4',
+        lg: 'h-5 w-5',
+      },
     },
     defaultVariants: {
-      size: 'md'
+      size: 'md',
     },
-  }
+  },
 );
 
 export type RadioSize = 'sm' | 'md' | 'lg';
 
 export interface RadioProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'ref'>,
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'ref' | 'size'>,
     VariantProps<typeof radioVariants> {
   size?: 'sm' | 'md' | 'lg';
-
 
   className?: string;
   children?: React.ReactNode;
@@ -42,18 +41,11 @@ export interface RadioProps
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   ({ size, className, children, ...rest }, ref) => {
     return (
-      <input
-        ref={ref}
-        type="radio"
-        className={cn(radioVariants({ size }), className)}
-        {...rest}
-      />
+      <input ref={ref} type="radio" className={cn(radioVariants({ size }), className)} {...rest} />
     );
-  }
+  },
 );
 
 Radio.displayName = 'Radio';
-
-
 
 export default Radio;

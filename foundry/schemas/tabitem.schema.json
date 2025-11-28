@@ -1,0 +1,55 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "TabItem",
+  "description": "Individual tab button/trigger",
+  "category": "navigation",
+
+  "element": {
+    "tag": "button"
+  },
+
+  "variants": {
+    "variant": {
+      "description": "Tab style variant",
+      "values": ["default", "underline"],
+      "default": "default"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The tab button",
+      "element": "button"
+    }
+  },
+
+  "states": {
+    "active": {
+      "description": "Tab is currently selected",
+      "attribute": "data-state"
+    },
+    "disabled": {
+      "description": "Tab is disabled",
+      "attribute": "disabled"
+    }
+  },
+
+  "props": {
+    "active": {
+      "type": "boolean",
+      "description": "Whether this tab is active"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "fontWeight": "500",
+      "transition": "all 150ms"
+    }
+  },
+
+  "accessibility": {
+    "role": "tab",
+    "ariaSelected": "true/false based on active state"
+  }
+}

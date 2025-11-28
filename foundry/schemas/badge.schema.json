@@ -1,0 +1,55 @@
+{
+  "$schema": "./component.schema.json",
+  "name": "Badge",
+  "description": "Small status indicator or label",
+  "category": "feedback",
+
+  "element": {
+    "tag": "span"
+  },
+
+  "variants": {
+    "variant": {
+      "description": "Visual variant of the badge",
+      "values": ["default", "secondary", "outline", "success", "warning", "error"],
+      "default": "default"
+    },
+    "size": {
+      "description": "Badge size",
+      "values": ["sm", "md", "lg"],
+      "default": "md"
+    }
+  },
+
+  "slots": {
+    "root": {
+      "description": "The badge container",
+      "element": "span"
+    }
+  },
+
+  "tokens": {
+    "base": {
+      "borderRadius": "9999px",
+      "fontWeight": "600"
+    },
+    "size": {
+      "sm": {
+        "padding": "0.125rem 0.5rem",
+        "fontSize": "0.625rem"
+      },
+      "md": {
+        "padding": "0.125rem 0.625rem",
+        "fontSize": "0.75rem"
+      },
+      "lg": {
+        "padding": "0.25rem 0.75rem",
+        "fontSize": "0.875rem"
+      }
+    }
+  },
+
+  "accessibility": {
+    "role": "status"
+  }
+}
