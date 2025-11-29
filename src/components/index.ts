@@ -17,6 +17,7 @@ export * from './Label/index';
 export * from './Text';
 export * from './Heading';
 export * from './Icon';
+export * from './IconButton';
 export * from './Spacer';
 export * from './Loader/index';
 export * from './MultiSelect/index';
