@@ -2,6 +2,9 @@
  * Plugin System Type Definitions
  */
 
+import type { BuiltTheme } from '../builder/types';
+import type { AnimationTokens } from '../tokens/animation';
+
 export interface PluginConfig {
   enabled?: boolean;
   [key: string]: any;
@@ -14,6 +17,14 @@ export type PluginCapability =
   | 'performance'
   | 'styling'
   | 'interaction';
+
+export type PluginCategory =
+  | 'accessibility'
+  | 'performance'
+  | 'animation'
+  | 'utility'
+  | 'integration'
+  | 'enhancement';
 
 export interface PluginMetadata {
   name: string;
@@ -42,7 +53,9 @@ export interface PluginLifecycle {
 export type PluginPriority = 'low' | 'normal' | 'high' | 'critical';
 
 export interface PluginContext {
-  theme?: any;
+  theme?: BuiltTheme;
+  animations?: AnimationTokens;
+  cssVariables?: Record<string, string>;
   isDarkMode?: boolean;
   isReducedMotion?: boolean;
   viewport?: {
@@ -54,6 +67,187 @@ export interface PluginContext {
     isTablet: boolean;
     isDesktop: boolean;
   };
+}
+
+/**
+ * Plugin result returned from hook execution
+ */
+export interface PluginResult {
+  success: boolean;
+  modifications?: {
+    theme?: Partial<BuiltTheme>;
+    animations?: Record<string, any>;
+    cssVariables?: Record<string, string>;
+    styles?: string;
+    [key: string]: any;
+  };
+  error?: Error;
+  errors?: string[];
+  warnings?: string[];
+  metadata?: Record<string, any>;
+}
+
+/**
+ * Plugin hooks for lifecycle events
+ */
+export interface PluginHooks {
+  beforeThemeBuild?: (
+    context: PluginContext,
+    config?: PluginConfig,
+  ) => Promise<PluginResult> | PluginResult;
+  afterThemeBuild?: (
+    context: PluginContext,
+    config?: PluginConfig,
+  ) => Promise<PluginResult> | PluginResult;
+  beforeApply?: (
+    context: PluginContext,
+    config?: PluginConfig,
+  ) => Promise<PluginResult> | PluginResult;
+  afterApply?: (
+    context: PluginContext,
+    config?: PluginConfig,
+  ) => Promise<PluginResult> | PluginResult;
+  onThemeChange?: (
+    context: PluginContext,
+    config?: PluginConfig,
+  ) => Promise<PluginResult> | PluginResult;
+}
+
+/**
+ * Main ThemePlugin interface
+ */
+export interface ThemePlugin {
+  name: string;
+  version: string;
+  description: string;
+  category: PluginCategory;
+  priority: PluginPriority;
+  tags?: string[];
+  dependencies?: string[];
+  defaultConfig?: PluginConfig;
+  hooks?: PluginHooks;
+  enabled?: boolean;
+  initialized?: boolean;
+  init?: (config?: PluginConfig) => Promise<void> | void;
+  destroy?: () => Promise<void> | void;
+  enable?: () => void;
+  disable?: () => void;
+}
+
+/**
+ * Specialized plugin types
+ */
+export interface AccessibilityPlugin extends ThemePlugin {
+  category: 'accessibility';
+}
+
+export interface PerformancePlugin extends ThemePlugin {
+  category: 'performance';
+}
+
+export interface AnimationPlugin extends ThemePlugin {
+  category: 'animation';
+}
+
+export interface UtilityPlugin extends ThemePlugin {
+  category: 'utility';
+}
+
+export interface IntegrationPlugin extends ThemePlugin {
+  category: 'integration';
+}
+
+export interface EnhancementPlugin extends ThemePlugin {
+  category: 'enhancement';
+}
+
+/**
+ * Hook name type for executeHooks
+ */
+export type PluginHookName = keyof PluginHooks;
+
+/**
+ * Plugin manager configuration
+ */
+export interface PluginManagerConfig {
+  enabledByDefault?: boolean;
+  autoInitialize?: boolean;
+  strictMode?: boolean;
+  logLevel?: 'none' | 'error' | 'warn' | 'info' | 'debug';
+  maxPlugins?: number;
+  allowDuplicates?: boolean;
+  maxExecutionTime?: number;
+  allowAsyncHooks?: boolean;
+  errorHandling?: 'throw' | 'log' | 'warn' | 'ignore';
+}
+
+/**
+ * Plugin registration options
+ */
+export interface PluginRegistrationOptions {
+  config?: PluginConfig;
+  autoEnable?: boolean;
+  autoInitialize?: boolean;
+}
+
+/**
+ * Plugin execution options
+ */
+export interface PluginExecutionOptions {
+  categories?: PluginCategory[];
+  priorities?: PluginPriority[];
+  includeDisabled?: boolean;
+  parallel?: boolean;
+  timeout?: number;
+  ignoreErrors?: boolean;
+  filterByCategory?: PluginCategory;
+  filterByTags?: string[];
+  excludePlugins?: string[];
+  includeOnly?: string[];
+}
+
+/**
+ * Plugin event types
+ */
+export interface PluginEvent {
+  type: string;
+  plugin?: string;
+  data?: any;
+  timestamp: number;
+}
+
+export type PluginEventListener = (event: PluginEvent) => void;
+
+export interface PluginManagerEvents {
+  'plugin:registered': { plugin: string };
+  'plugin:unregistered': { plugin: string };
+  'plugin:enabled': { plugin: string };
+  'plugin:disabled': { plugin: string };
+  'plugin:initialized': { plugin: string };
+  'plugin:destroyed': { plugin: string };
+  'plugin:error': { plugin: string; error: Error };
+  'hook:before': { lifecycle: PluginHookName; plugins: string[] };
+  'hook:after': { lifecycle: PluginHookName; results: Record<string, PluginResult> };
+}
+
+/**
+ * Plugin validation result
+ */
+export interface PluginValidationResult {
+  valid: boolean;
+  errors: string[];
+  warnings: string[];
+  plugin?: ThemePlugin;
+}
+
+/**
+ * Plugin registry for managing registered plugins
+ */
+export interface PluginRegistry {
+  plugins: Map<string, ThemePlugin>;
+  configs: Map<string, PluginConfig>;
+  dependencies: Map<string, string[]>;
+  executionOrder: string[];
 }
 
 // Plugin utilities

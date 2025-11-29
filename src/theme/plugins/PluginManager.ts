@@ -10,7 +10,7 @@ import {
   PluginExecutionOptions,
   PluginContext,
   PluginResult,
-  PluginLifecycle,
+  PluginHookName,
   PluginEvent,
   PluginEventListener,
   PluginManagerEvents,
@@ -30,7 +30,10 @@ import type { AnimationTokens } from '../tokens/animation';
 class SimpleEventEmitter {
   private listeners: Map<string, PluginEventListener[]> = new Map();
 
-  on<K extends keyof PluginManagerEvents>(event: K, listener: (data: PluginManagerEvents[K]) => void): this {
+  on<K extends keyof PluginManagerEvents>(
+    event: K,
+    listener: (data: PluginManagerEvents[K]) => void,
+  ): this {
     if (!this.listeners.has(event)) {
       this.listeners.set(event, []);
     }
@@ -42,7 +45,10 @@ class SimpleEventEmitter {
     return this;
   }
 
-  off<K extends keyof PluginManagerEvents>(event: K, listener: (data: PluginManagerEvents[K]) => void): this {
+  off<K extends keyof PluginManagerEvents>(
+    event: K,
+    listener: (data: PluginManagerEvents[K]) => void,
+  ): this {
     const eventListeners = this.listeners.get(event);
     if (eventListeners) {
       // For simplicity, remove all listeners for this event
@@ -55,7 +61,9 @@ class SimpleEventEmitter {
   emit<K extends keyof PluginManagerEvents>(event: K, data: PluginManagerEvents[K]): boolean {
     const eventListeners = this.listeners.get(event);
     if (eventListeners) {
-      eventListeners.forEach(listener => listener({ type: event, plugin: '', data, timestamp: Date.now() }));
+      eventListeners.forEach((listener) =>
+        listener({ type: event, plugin: '', data, timestamp: Date.now() }),
+      );
       return true;
     }
     return false;
@@ -127,10 +135,7 @@ export class PluginManager extends SimpleEventEmitter {
   /**
    * Register a plugin
    */
-  async register(
-    plugin: ThemePlugin, 
-    options: PluginRegistrationOptions = {}
-  ): Promise<void> {
+  async register(plugin: ThemePlugin, options: PluginRegistrationOptions = {}): Promise<void> {
     const validation = this.validatePlugin(plugin);
     if (!validation.valid) {
       const error = new Error(`Plugin validation failed: ${validation.errors.join(', ')}`);
@@ -157,7 +162,7 @@ export class PluginManager extends SimpleEventEmitter {
     // Register the plugin
     this.registry.plugins.set(plugin.name, plugin);
     this.registry.configs.set(plugin.name, { ...plugin.defaultConfig, ...options.config });
-    
+
     if (plugin.dependencies) {
       this.registry.dependencies.set(plugin.name, plugin.dependencies);
     }
@@ -174,7 +179,7 @@ export class PluginManager extends SimpleEventEmitter {
     // Update execution order
     this.resolveExecutionOrder();
 
-    this.emit('plugin:registered', { plugin });
+    this.emit('plugin:registered', { plugin: plugin.name });
     this.log('info', `Plugin '${plugin.name}' registered successfully`);
   }
 
@@ -264,14 +269,14 @@ export class PluginManager extends SimpleEventEmitter {
    * Execute plugins for a specific lifecycle
    */
   async executeHooks(
-    lifecycle: PluginLifecycle, 
+    lifecycle: PluginHookName,
     context: PluginContext,
-    options: PluginExecutionOptions = {}
+    options: PluginExecutionOptions = {},
   ): Promise<Record<string, PluginResult>> {
     const enabledPlugins = this.getEnabledPlugins(options);
     const results: Record<string, PluginResult> = {};
 
-    this.emit('hook:before', { lifecycle, plugins: enabledPlugins.map(p => p.name) });
+    this.emit('hook:before', { lifecycle, plugins: enabledPlugins.map((p) => p.name) });
 
     if (options.parallel && this.config.allowAsyncHooks) {
       // Execute plugins in parallel
@@ -295,7 +300,7 @@ export class PluginManager extends SimpleEventEmitter {
         } catch (error) {
           results[plugin.name] = { success: false, error: error as Error };
           this.handleError('plugin:error', plugin.name, error as Error);
-          
+
           if (!options.ignoreErrors && this.config.errorHandling === 'throw') {
             throw error;
           }
@@ -326,25 +331,25 @@ export class PluginManager extends SimpleEventEmitter {
    * Get enabled plugins
    */
   getEnabledPlugins(options: PluginExecutionOptions = {}): ThemePlugin[] {
-    let plugins = this.getPlugins().filter(plugin => plugin.enabled);
+    let plugins = this.getPlugins().filter((plugin) => plugin.enabled);
 
     // Apply filters
     if (options.filterByCategory) {
-      plugins = plugins.filter(plugin => options.filterByCategory!.includes(plugin.category));
+      plugins = plugins.filter((plugin) => options.filterByCategory!.includes(plugin.category));
     }
 
     if (options.filterByTags) {
-      plugins = plugins.filter(plugin => 
-        plugin.tags && plugin.tags.some(tag => options.filterByTags!.includes(tag))
+      plugins = plugins.filter(
+        (plugin) => plugin.tags && plugin.tags.some((tag) => options.filterByTags!.includes(tag)),
       );
     }
 
     if (options.excludePlugins) {
-      plugins = plugins.filter(plugin => !options.excludePlugins!.includes(plugin.name));
+      plugins = plugins.filter((plugin) => !options.excludePlugins!.includes(plugin.name));
     }
 
     if (options.includeOnly) {
-      plugins = plugins.filter(plugin => options.includeOnly!.includes(plugin.name));
+      plugins = plugins.filter((plugin) => options.includeOnly!.includes(plugin.name));
     }
 
     // Sort by execution order
@@ -359,7 +364,7 @@ export class PluginManager extends SimpleEventEmitter {
    * Get plugins by category
    */
   getPluginsByCategory(category: PluginCategory): ThemePlugin[] {
-    return this.getPlugins().filter(plugin => plugin.category === category);
+    return this.getPlugins().filter((plugin) => plugin.category === category);
   }
 
   /**
@@ -411,8 +416,8 @@ export class PluginManager extends SimpleEventEmitter {
     byPriority: Record<PluginPriority, number>;
   } {
     const plugins = this.getPlugins();
-    const enabled = plugins.filter(p => p.enabled);
-    const initialized = plugins.filter(p => p.initialized);
+    const enabled = plugins.filter((p) => p.enabled);
+    const initialized = plugins.filter((p) => p.initialized);
 
     const byCategory: Record<PluginCategory, number> = {
       accessibility: 0,
@@ -430,7 +435,7 @@ export class PluginManager extends SimpleEventEmitter {
       critical: 0,
     };
 
-    plugins.forEach(plugin => {
+    plugins.forEach((plugin) => {
       byCategory[plugin.category]++;
       byPriority[plugin.priority]++;
     });
@@ -449,7 +454,7 @@ export class PluginManager extends SimpleEventEmitter {
    */
   async clear(): Promise<void> {
     const pluginNames = Array.from(this.registry.plugins.keys());
-    
+
     for (const name of pluginNames) {
       await this.unregister(name);
     }
@@ -473,7 +478,14 @@ export class PluginManager extends SimpleEventEmitter {
     if (!plugin.priority) errors.push('Plugin priority is required');
 
     // Valid values
-    const validCategories: PluginCategory[] = ['accessibility', 'performance', 'animation', 'utility', 'integration', 'enhancement'];
+    const validCategories: PluginCategory[] = [
+      'accessibility',
+      'performance',
+      'animation',
+      'utility',
+      'integration',
+      'enhancement',
+    ];
     if (plugin.category && !validCategories.includes(plugin.category)) {
       errors.push(`Invalid category: ${plugin.category}`);
     }
@@ -500,8 +512,8 @@ export class PluginManager extends SimpleEventEmitter {
    * Initialize all plugins
    */
   private async initializeAllPlugins(): Promise<void> {
-    const plugins = this.getPlugins().filter(p => p.enabled && !p.initialized);
-    
+    const plugins = this.getPlugins().filter((p) => p.enabled && !p.initialized);
+
     for (const plugin of plugins) {
       await this.initializePlugin(plugin.name);
     }
@@ -553,9 +565,9 @@ export class PluginManager extends SimpleEventEmitter {
    */
   private async executePluginHook(
     plugin: ThemePlugin,
-    lifecycle: PluginLifecycle,
+    lifecycle: PluginHookName,
     context: PluginContext,
-    timeout?: number
+    timeout?: number,
   ): Promise<PluginResult> {
     const hook = plugin.hooks?.[lifecycle];
     if (!hook) {
@@ -569,8 +581,8 @@ export class PluginManager extends SimpleEventEmitter {
       if (this.config.allowAsyncHooks) {
         return await Promise.race([
           hook(context, config),
-          new Promise<PluginResult>((_, reject) => 
-            setTimeout(() => reject(new Error(`Plugin '${plugin.name}' timed out`)), maxTimeout)
+          new Promise<PluginResult>((_, reject) =>
+            setTimeout(() => reject(new Error(`Plugin '${plugin.name}' timed out`)), maxTimeout),
           ),
         ]);
       } else {
@@ -597,7 +609,7 @@ export class PluginManager extends SimpleEventEmitter {
       this.handleError('plugin:error', 'system', error as Error);
       // Fallback to priority-based order
       const plugins = PluginUtils.sortPluginsByPriority(this.getPlugins());
-      this.registry.executionOrder = plugins.map(p => p.name);
+      this.registry.executionOrder = plugins.map((p) => p.name);
     }
   }
 
@@ -606,7 +618,7 @@ export class PluginManager extends SimpleEventEmitter {
    */
   private handleError(event: keyof PluginManagerEvents, pluginName: string, error: Error): void {
     this.log('error', `Plugin '${pluginName}' error: ${error.message}`);
-    
+
     if (event === 'plugin:error') {
       this.emit(event, { plugin: pluginName, error });
     }
