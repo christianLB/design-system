@@ -77,10 +77,6 @@ export const mirthaColorTokens: SemanticColorTokens = {
   popover: '#FFFAF7',
   popoverForeground: '#36454F',
 
-  // Secondary
-  secondary: '#FFFBF8',
-  secondaryForeground: '#8B7D6B',
-
   // Muted
   muted: '#F5F0EA',
   mutedForeground: '#8B7D6B',
